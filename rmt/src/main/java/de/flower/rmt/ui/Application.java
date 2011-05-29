@@ -35,7 +35,7 @@ public class Application extends WebApplication {
 
     @Override
     public Class getHomePage() {
-        return HomePage.class;
+        return ScalaHomePage.class;
     }
 
 
