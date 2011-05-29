@@ -10,9 +10,11 @@ dependencies {
     compile 'org.springframework:spring-core:3.0.5.RELEASE'
     compile 'org.springframework:spring-context:3.0.5.RELEASE'
     compile 'org.springframework:spring-web:3.0.5.RELEASE'
-    compile 'org.apache.wicket:wicket-core:1.5-RC4.2'
+    compile 'org.apache.wicket:wicket:1.5-RC4.2'
     compile 'org.apache.wicket:wicket-spring:1.5-RC4.2'
+    compile 'org.apache.wicket:wicket-ioc:1.5-RC4.2'
     runtime 'ch.qos.logback:logback-classic:0.9.28'
+
 }
 
 

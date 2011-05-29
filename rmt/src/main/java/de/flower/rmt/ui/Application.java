@@ -1,13 +1,16 @@
 package de.flower.rmt.ui;
 
-import org.apache.wicket.protocol.http.WebApplication;
+import de.flower.rmt.ui.player.pages.login.LoginPage;
+import org.apache.wicket.authentication.AuthenticatedWebApplication;
+import org.apache.wicket.authentication.AuthenticatedWebSession;
+import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 @Component(value = "wicketApplication")
-public class Application extends WebApplication {
+public class Application extends AuthenticatedWebApplication {
 
     private static final String DEFAULT_ENCODING = "UTF-8";
 
@@ -32,10 +35,20 @@ public class Application extends WebApplication {
 
     }
 
+    @Override
+    protected Class<? extends AuthenticatedWebSession> getWebSessionClass() {
+        return de.flower.rmt.ui.AuthenticatedWebSession.class;
+    }
+
+    @Override
+    protected Class<? extends WebPage> getSignInPageClass() {
+        return LoginPage.class;
+    }
+
 
     @Override
     public Class getHomePage() {
-        return ScalaHomePage.class;
+        return HomePage.class;
     }
 
 

@@ -1,0 +1,24 @@
+<component name="libraryTable">
+  <library name="Spring">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-orm/jars/spring-orm-3.0.5.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-core/jars/spring-security-core-3.0.5.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-core/jars/spring-core-3.0.5.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-tx/jars/spring-tx-3.0.5.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-beans/jars/spring-beans-3.0.5.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-context/jars/spring-context-3.0.5.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-jdbc/jars/spring-jdbc-3.0.5.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-aop/jars/spring-aop-3.0.5.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-asm/jars/spring-asm-3.0.5.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-expression/jars/spring-expression-3.0.5.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/asm/asm/jars/asm-3.1.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/cglib/cglib/jars/cglib-2.2.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/aopalliance/aopalliance/jars/aopalliance-1.0.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-web/jars/spring-web-3.0.5.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-config/jars/spring-security-config-3.0.5.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-web/jars/spring-security-web-3.0.5.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

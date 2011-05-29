@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="GAE JPA">
+    <CLASSES>
+      <root url="jar://C:/Program Files/Development/appengine-java-sdk-1.5.0.1/lib/user/orm/datanucleus-appengine-1.0.8.final.jar!/" />
+      <root url="jar://C:/Program Files/Development/appengine-java-sdk-1.5.0.1/lib/user/orm/geronimo-jpa_3.0_spec-1.1.1.jar!/" />
+      <root url="jar://C:/Program Files/Development/appengine-java-sdk-1.5.0.1/lib/user/orm/datanucleus-jpa-1.1.5.jar!/" />
+      <root url="jar://C:/Program Files/Development/appengine-java-sdk-1.5.0.1/lib/user/orm/datanucleus-core-1.1.5.jar!/" />
+      <root url="jar://C:/Program Files/Development/appengine-java-sdk-1.5.0.1/lib/user/orm/geronimo-jta_1.1_spec-1.1.1.jar!/" />
+      <root url="jar://C:/Program Files/Development/appengine-java-sdk-1.5.0.1/lib/user/orm/jdo2-api-2.3-eb.jar!/" />
+      <root url="jar://C:/Program Files/Development/appengine-java-sdk-1.5.0.1/lib/impl/appengine-api.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/cache/org.datanucleus/datanucleus-jpa/sources/datanucleus-jpa-1.1.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

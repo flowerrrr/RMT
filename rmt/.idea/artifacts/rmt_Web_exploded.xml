@@ -2,11 +2,10 @@
   <artifact type="exploded-war" build-on-make="true" name="rmt:Web exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/rmt_Web_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="rmt-manager/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="rmt" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket/poms/wicket-1.5-RC4.2.pom" />
+          <element id="jpa-descriptors" facet="rmt/jpa/JPA" />
         </element>
         <element id="directory" name="lib">
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/aopalliance/aopalliance/jars/aopalliance-1.0.jar" />
@@ -29,6 +28,15 @@
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/ch.qos.logback/logback-classic/jars/logback-classic-0.9.28.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/ch.qos.logback/logback-core/jars/logback-core-0.9.28.jar" />
           <element id="library" level="application" name="scala-library-2.9.0.1" />
+          <element id="file-copy" path="C:/Program Files/Development/appengine-java-sdk-1.5.0.1/lib/user/orm/datanucleus-appengine-1.0.8.final.jar" />
+          <element id="file-copy" path="C:/Program Files/Development/appengine-java-sdk-1.5.0.1/lib/user/orm/datanucleus-jpa-1.1.5.jar" />
+          <element id="library" level="project" name="GAE JPA" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-tx/jars/spring-tx-3.0.5.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-orm/jars/spring-orm-3.0.5.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-jdbc/jars/spring-jdbc-3.0.5.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-auth-roles/jars/wicket-auth-roles-1.5-M3.jar" />
+          <element id="library" level="project" name="Spring" />
+          <element id="library" level="project" name="Wicket" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="rmt/web/Web" />

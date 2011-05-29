@@ -2,9 +2,56 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xmlns:tx="http://www.springframework.org/schema/task"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd
+       http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 
-	    <context:annotation-config />
-	    <context:component-scan base-package="de.flower.rmt" />
+    <context:annotation-config/>
+    <context:component-scan base-package="de.flower.rmt"/>
+
+    <!-- *********************************************************************** -->
+    <!-- Dao Stuff                                                               -->
+    <!-- *********************************************************************** -->
+
+    <bean id="entityManagerFactory"
+          class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean" lazy-init="true">
+        <property name="persistenceUnitName" value="rmt-pu"/>
+    </bean>
+    <bean name="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <tx:annotation-driven/>
+
+    <!-- *********************************************************************** -->
+    <!-- Security Stuff                                                          -->
+    <!-- *********************************************************************** -->
+
+    <security:http create-session="never" auto-config="true" >
+        <security:remember-me/>
+        <security:intercept-url pattern="/**"/>
+    </security:http>
+
+
+    <security:authentication-manager alias="authenticationManager">
+        <security:authentication-provider>
+
+            <!--  TODO change this to reference our real user service -->
+            <security:user-service>
+                <security:user name="admin" password="admin"
+                    authorities="ROLE_ADMIN, ROLE_MANAGER, ROLE_USER" />
+                <security:user name="manager" password="manager"
+                    authorities="ROLE_MANAGER, ROLE_USER" />
+                <security:user name="user" password="user"
+                    authorities="ROLE_USER" />
+
+            </security:user-service>
+        </security:authentication-provider>
+
+    </security:authentication-manager>
+
+    <security:global-method-security secured-annotations="enabled" />
+
 
 </beans>
