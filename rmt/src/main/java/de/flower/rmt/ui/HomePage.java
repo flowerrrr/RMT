@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.manager;
+package de.flower.rmt.ui;
 
 /**
  * @author oblume

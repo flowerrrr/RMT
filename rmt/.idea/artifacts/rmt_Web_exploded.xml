@@ -1,11 +1,11 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="rmt-manager:Web exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/rmt_manager_Web_exploded</output-path>
+  <artifact type="exploded-war" build-on-make="true" name="rmt:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/rmt_Web_exploded</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="rmt-manager/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="rmt-manager" />
+          <element id="module-output" name="rmt" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket/poms/wicket-1.5-RC4.2.pom" />
         </element>
         <element id="directory" name="lib">
@@ -30,6 +30,7 @@
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/ch.qos.logback/logback-core/jars/logback-core-0.9.28.jar" />
         </element>
       </element>
+      <element id="javaee-facet-resources" facet="rmt/web/Web" />
     </root>
   </artifact>
 </component>

@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.manager;
+package de.flower.rmt.ui;
 
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
