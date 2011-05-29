@@ -12,7 +12,7 @@ public class Application extends WebApplication {
     private static final String DEFAULT_ENCODING = "UTF-8";
 
     @Autowired
-        private ApplicationContext applicationContext;
+    private ApplicationContext applicationContext;
 
     @Override
     protected void init() {
@@ -38,8 +38,5 @@ public class Application extends WebApplication {
         return HomePage.class;
     }
 
-    public static Application get() {
-        return (Application) WebApplication.get();
-    }
 
 }
