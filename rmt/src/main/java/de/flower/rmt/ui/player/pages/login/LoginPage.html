@@ -6,7 +6,12 @@
 <body>
     <wicket:extend>
 
-        <form wicket:id="loginForm" />
+        <form wicket:id="loginForm" >
+            <div>Username: <input wicket:id="username"/></div>
+             <div>Password: <input wicket:id="password" type="password"/></div>
+
+             <input type="submit" value="Submit"/>
+        </form>
 
     </wicket:extend>
 </body>
