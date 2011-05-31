@@ -1,10 +1,9 @@
 package de.flower.rmt.ui;
 
-import org.apache.wicket.application.IComponentInstantiationListener;
 import org.apache.wicket.authorization.strategies.role.Roles;
+import org.apache.wicket.injection.Injector;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,8 +12,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-
-import java.util.Iterator;
 
 /**
  * @author oblume
@@ -39,14 +36,7 @@ public class AuthenticatedWebSession extends org.apache.wicket.authentication.Au
     }
 
     private void injectDependencies() {
-        Iterator<IComponentInstantiationListener> iterator = getApplication().getComponentInstantiationListeners().iterator();
-        while (iterator.hasNext()) {
-            IComponentInstantiationListener next = iterator.next();
-            if (next instanceof SpringComponentInjector) {
-                ((SpringComponentInjector) next).inject(this);
-                return;
-            }
-        }
+        Injector.get().inject(this);
     }
 
     @Override
