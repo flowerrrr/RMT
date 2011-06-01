@@ -1,6 +1,6 @@
-package de.flower.rmt.ui.player.pages.login;
+package de.flower.rmt.ui.common.page.login;
 
-import de.flower.rmt.ui.BasePage;
+import de.flower.rmt.ui.common.page.BasePage;
 
 /**
  * @author oblume

@@ -1,5 +1,6 @@
-package de.flower.rmt.ui.player.pages.login;
+package de.flower.rmt.ui.common.page.login;
 
+import de.flower.rmt.ui.app.WebSession;
 import org.apache.wicket.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
@@ -15,6 +16,8 @@ class LoginForm extends Form {
 
     private String password;
 
+    private HomePageResolver homePageResolver = new HomePageResolver();
+
     public LoginForm(String id) {
         super(id);
         setModel(new CompoundPropertyModel(this));
@@ -26,13 +29,14 @@ class LoginForm extends Form {
 
     @Override
     protected void onSubmit() {
-        AuthenticatedWebSession session = AuthenticatedWebSession.get();
+        AuthenticatedWebSession session = WebSession.get();
         if(session.signIn(username, password)) {
-            setDefaultResponsePageIfNecessary();
+            setResponsePage(homePageResolver.getHomePage(session));
         } else {
             error(getString("login.failed"));
         }
     }
+
 
     private void setDefaultResponsePageIfNecessary() {
         if(!continueToOriginalDestination()) {

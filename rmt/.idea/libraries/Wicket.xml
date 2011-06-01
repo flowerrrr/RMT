@@ -10,6 +10,10 @@
       <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-ioc/jars/wicket-ioc-1.5-RC4.2.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-core/sources/wicket-core-1.5-RC4.2-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-core/sources/wicket-core-1.5-RC4.2-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-auth-roles/sources/wicket-auth-roles-1.5-M3-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

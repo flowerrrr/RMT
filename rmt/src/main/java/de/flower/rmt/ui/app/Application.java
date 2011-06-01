@@ -1,6 +1,7 @@
-package de.flower.rmt.ui;
+package de.flower.rmt.ui.app;
 
-import de.flower.rmt.ui.player.pages.login.LoginPage;
+import de.flower.rmt.ui.player.PlayerHomePage;
+import de.flower.rmt.ui.common.page.login.LoginPage;
 import org.apache.wicket.authentication.AuthenticatedWebApplication;
 import org.apache.wicket.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.html.WebPage;
@@ -48,7 +49,7 @@ public class Application extends AuthenticatedWebApplication {
 
     @Override
     public Class getHomePage() {
-        return HomePage.class;
+        return PlayerHomePage.class;
     }
 
 

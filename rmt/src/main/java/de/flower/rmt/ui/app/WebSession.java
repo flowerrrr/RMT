@@ -1,4 +1,4 @@
-package de.flower.rmt.ui;
+package de.flower.rmt.ui.app;
 
 import org.apache.wicket.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authorization.strategies.role.Roles;

@@ -1,4 +1,4 @@
-package de.flower.rmt.ui;
+package de.flower.rmt.ui.common.page;
 
 import org.apache.wicket.markup.html.WebPage;
 
