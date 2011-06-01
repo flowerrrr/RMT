@@ -24,7 +24,7 @@ public class GaeInitializer implements IInitializer {
 
     public void init(Application application) {
 
-        // disable ModificationWatcher
+        // disable ModificationWatcher, cause it spawns a thread
         application.getResourceSettings().setResourcePollFrequency(null);
 
         initResourceReloading(application);
@@ -46,6 +46,12 @@ public class GaeInitializer implements IInitializer {
         application.getResourceSettings().setFileUploadCleaner(null);
     }
 
+    /**
+     * Since the ModificationWatcher is disabled the html-template reloading does not work.
+     * So we intercept every request and check if a resource has to be reloaded.
+     *
+     * @param application
+     */
     private void initResourceReloading(Application application) {
         if (application.getConfigurationType() == RuntimeConfigurationType.DEVELOPMENT) {
             staticModificationWatcher = new StaticModificationWatcher();
