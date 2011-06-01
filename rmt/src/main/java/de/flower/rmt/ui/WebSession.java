@@ -1,5 +1,6 @@
 package de.flower.rmt.ui;
 
+import org.apache.wicket.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authorization.strategies.role.Roles;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.request.Request;
@@ -16,14 +17,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 /**
  * @author oblume
  */
-public class AuthenticatedWebSession extends org.apache.wicket.authentication.AuthenticatedWebSession {
+public class WebSession extends AuthenticatedWebSession {
 
-    private static final Logger logger = LoggerFactory.getLogger(AuthenticatedWebSession.class);
+    private static final Logger logger = LoggerFactory.getLogger(WebSession.class);
 
     @SpringBean(name="authenticationManager")
     private AuthenticationManager authenticationManager;
 
-    public AuthenticatedWebSession(Request request) {
+    public WebSession(Request request) {
         super(request);
         injectDependencies();
         ensureDependenciesNotNull();

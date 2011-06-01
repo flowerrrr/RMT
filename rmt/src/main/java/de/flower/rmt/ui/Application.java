@@ -37,7 +37,7 @@ public class Application extends AuthenticatedWebApplication {
 
     @Override
     protected Class<? extends AuthenticatedWebSession> getWebSessionClass() {
-        return de.flower.rmt.ui.AuthenticatedWebSession.class;
+        return WebSession.class;
     }
 
     @Override
