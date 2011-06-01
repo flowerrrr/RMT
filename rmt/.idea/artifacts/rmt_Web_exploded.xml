@@ -8,35 +8,14 @@
           <element id="jpa-descriptors" facet="rmt/jpa/JPA" />
         </element>
         <element id="directory" name="lib">
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/aopalliance/aopalliance/jars/aopalliance-1.0.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/commons-logging/commons-logging/jars/commons-logging-1.1.1.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.6.1.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-aop/jars/spring-aop-3.0.5.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-asm/jars/spring-asm-3.0.5.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-beans/jars/spring-beans-3.0.5.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-context/jars/spring-context-3.0.5.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-core/jars/spring-core-3.0.5.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-expression/jars/spring-expression-3.0.5.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-core/jars/wicket-core-1.5-RC4.2.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-request/jars/wicket-request-1.5-RC4.2.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-util/jars/wicket-util-1.5-RC4.2.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-web/jars/spring-web-3.0.5.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-spring/jars/wicket-spring-1.5-RC4.2.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-ioc/jars/wicket-ioc-1.5-RC4.2.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/cglib/cglib/jars/cglib-2.2.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/asm/asm/jars/asm-3.1.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/ch.qos.logback/logback-classic/jars/logback-classic-0.9.28.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/ch.qos.logback/logback-core/jars/logback-core-0.9.28.jar" />
           <element id="library" level="application" name="scala-library-2.9.0.1" />
-          <element id="file-copy" path="C:/Program Files/Development/appengine-java-sdk-1.5.0.1/lib/user/orm/datanucleus-appengine-1.0.8.final.jar" />
-          <element id="file-copy" path="C:/Program Files/Development/appengine-java-sdk-1.5.0.1/lib/user/orm/datanucleus-jpa-1.1.5.jar" />
           <element id="library" level="project" name="GAE JPA" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-tx/jars/spring-tx-3.0.5.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-orm/jars/spring-orm-3.0.5.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-jdbc/jars/spring-jdbc-3.0.5.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-auth-roles/jars/wicket-auth-roles-1.5-M3.jar" />
-          <element id="library" level="project" name="Spring" />
           <element id="library" level="project" name="Wicket" />
+          <element id="library" level="project" name="Spring" />
+          <element id="library" level="project" name="Logging" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="rmt/web/Web" />
