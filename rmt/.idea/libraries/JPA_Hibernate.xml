@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="JPA-Hibernate">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-commons-annotations/jars/hibernate-commons-annotations-3.2.0.Final.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/antlr/antlr/jars/antlr-2.7.6.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate.javax.persistence/hibernate-jpa-2.0-api/jars/hibernate-jpa-2.0-api-1.0.0.Final.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/xml-apis/xml-apis/jars/xml-apis-1.0.b2.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/dom4j/dom4j/jars/dom4j-1.6.1.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/commons-collections/commons-collections/jars/commons-collections-3.1.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/javax.transaction/jta/jars/jta-1.1.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/mysql/mysql-connector-java/jars/mysql-connector-java-5.1.16.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/javassist/javassist/jars/javassist-3.12.0.GA.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-entitymanager/jars/hibernate-entitymanager-3.6.4.Final.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-core/jars/hibernate-core-3.6.4.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

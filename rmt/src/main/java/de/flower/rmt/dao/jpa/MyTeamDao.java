@@ -1,33 +1,38 @@
 package de.flower.rmt.dao.jpa;
 
-import de.flower.rmt.dao.ITestDao;
-import de.flower.rmt.model.TestBE;
+import de.flower.rmt.dao.IMyTeamDao;
+import de.flower.rmt.model.MyTeamBE;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 /**
  * @author oblume
  */
 @Transactional
 @Repository
-public class TestDao implements ITestDao {
+public class MyTeamDao implements IMyTeamDao {
 
     @PersistenceContext
     EntityManager em;
 
     @Override
-    public void save(TestBE entity) {
+    public void save(MyTeamBE entity) {
         em.persist(entity);
         // em.close();
     }
 
 
     @Override
-    public TestBE loadById(Long id) {
-        return em.find(TestBE.class, id);
+    public MyTeamBE loadById(Long id) {
+        return em.find(MyTeamBE.class, id);
+    }
+
+    @Override
+    public List<MyTeamBE> loadAll() {
+        return em.createQuery("select e from MyTeamBE e").getResultList();
     }
 }

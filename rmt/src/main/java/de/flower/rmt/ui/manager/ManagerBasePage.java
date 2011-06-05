@@ -8,4 +8,8 @@ import org.apache.wicket.markup.html.WebPage;
  */
 @AuthorizeInstantiation("ROLE_MANAGER")
 public class ManagerBasePage extends WebPage {
+
+    public ManagerBasePage() {
+        add(new NavigationPanel("navPanel"));
+    }
 }

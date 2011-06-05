@@ -14,19 +14,6 @@
           <root url="file://$MODULE_DIR$/src/main/resources" />
         </sourceRoots>
       </configuration>
-      <facet type="google-app-engine" name="Google App Engine">
-        <configuration>
-          <password>dff2dfdbdf9bdfdddf98dfcfdf99dfd8df9e</password>
-          <files-to-enhance>
-            <file path="$MODULE_DIR$/src/main/java/de/flower/rmt/dao" />
-            <file path="$MODULE_DIR$/src/main/java/de/flower/rmt/model" />
-          </files-to-enhance>
-          <persistence-api>JPA</persistence-api>
-          <run-enhancer-on-make>true</run-enhancer-on-make>
-          <sdk-home-path>C:/Program Files/Development/appengine-java-sdk-1.5.0.1</sdk-home-path>
-          <email>oliver.blume.1968@gmail.com</email>
-        </configuration>
-      </facet>
     </facet>
     <facet type="Spring" name="Spring">
       <configuration />
@@ -53,6 +40,11 @@
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
       </configuration>
     </facet>
+    <facet type="hibernate" name="Hibernate">
+      <configuration>
+        <datasource-map />
+      </configuration>
+    </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
@@ -68,10 +60,10 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="library" exported="" name="scala-library-2.9.0.1" level="application" />
-    <orderEntry type="library" exported="" name="GAE JPA" level="project" />
     <orderEntry type="library" exported="" name="Wicket" level="project" />
     <orderEntry type="library" exported="" name="Spring" level="project" />
     <orderEntry type="library" exported="" name="Logging" level="project" />
+    <orderEntry type="library" exported="" name="JPA-Hibernate" level="project" />
   </component>
 </module>
 

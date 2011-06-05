@@ -16,8 +16,6 @@ class LoginForm extends Form {
 
     private String password;
 
-    private HomePageResolver homePageResolver = new HomePageResolver();
-
     public LoginForm(String id) {
         super(id);
         setModel(new CompoundPropertyModel(this));
@@ -31,7 +29,7 @@ class LoginForm extends Form {
     protected void onSubmit() {
         AuthenticatedWebSession session = WebSession.get();
         if(session.signIn(username, password)) {
-            setResponsePage(homePageResolver.getHomePage(session));
+            setResponsePage(HomePageResolver.getHomePage(session));
         } else {
             error(getString("login.failed"));
         }

@@ -16,7 +16,7 @@ public class HomePageResolver {
      * Determine if user is manager or player and redirect to appropriate home page.
      * @param application
      */
-    public Class<? extends IRequestablePage> getHomePage(AuthenticatedWebSession session) {
+    public static Class<? extends IRequestablePage> getHomePage(AuthenticatedWebSession session) {
         // get roles
         if (session.getRoles().hasRole(Role.MANAGER.getRoleName())) {
             return ManagerHomePage.class;

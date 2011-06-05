@@ -18,7 +18,8 @@
           class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean" lazy-init="true">
         <property name="persistenceUnitName" value="rmt-pu"/>
     </bean>
-    <bean name="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
@@ -28,7 +29,7 @@
     <!-- Security Stuff                                                          -->
     <!-- *********************************************************************** -->
 
-    <security:http create-session="never" auto-config="true" >
+    <security:http create-session="ifRequired" auto-config="true" >
         <security:remember-me/>
         <security:intercept-url pattern="/**"/>
     </security:http>
