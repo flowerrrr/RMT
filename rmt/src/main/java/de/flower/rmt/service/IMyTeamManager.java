@@ -9,5 +9,7 @@ import java.util.List;
  */
 public interface IMyTeamManager {
 
+    void save(MyTeamBE entity);
+
     List<MyTeamBE> loadAll();
 }

@@ -7,10 +7,6 @@
     <persistence-unit name="rmt-pu" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <properties>
-            <property name="hibernate.connection.url" value="jdbc:mysql://media-pc:3306/rmt_dev"/>
-            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
-            <property name="hibernate.connection.password" value="asdasd"/>
-            <property name="hibernate.connection.username" value="root"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
         </properties>
     </persistence-unit>

@@ -22,7 +22,6 @@ public class MyTeamDao implements IMyTeamDao {
     @Override
     public void save(MyTeamBE entity) {
         em.persist(entity);
-        // em.close();
     }
 
 

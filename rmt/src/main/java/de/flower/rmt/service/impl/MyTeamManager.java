@@ -20,6 +20,12 @@ public class MyTeamManager implements IMyTeamManager {
     @Autowired
     private IMyTeamDao myTeamDao;
 
+
+    @Override
+    public void save(MyTeamBE entity) {
+        myTeamDao.save(entity);
+    }
+
     @Override
     public List<MyTeamBE> loadAll() {
         return myTeamDao.loadAll();

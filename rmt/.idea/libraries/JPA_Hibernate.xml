@@ -12,6 +12,8 @@
       <root url="jar://$USER_HOME$/.gradle/cache/javassist/javassist/jars/javassist-3.12.0.GA.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-entitymanager/jars/hibernate-entitymanager-3.6.4.Final.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-core/jars/hibernate-core-3.6.4.Final.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/commons-dbcp/commons-dbcp/jars/commons-dbcp-1.4.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/commons-pool/commons-pool/jars/commons-pool-1.5.4.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

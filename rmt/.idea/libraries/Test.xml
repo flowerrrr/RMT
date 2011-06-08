@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Test">
+    <CLASSES>
+      <root url="jar://$APPLICATION_HOME_DIR$/plugins/testng/lib/testng-jdk15.jar!/" />
+      <root url="jar://C:/Program Files/Development/scalatest_2.9.0-1.6.1.RC1.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-test/jars/spring-test-3.0.5.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
