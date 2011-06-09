@@ -16,6 +16,8 @@
       <root url="jar://$USER_HOME$/.gradle/cache/commons-pool/commons-pool/jars/commons-pool-1.5.4.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-entitymanager/sources/hibernate-entitymanager-3.6.4.Final-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

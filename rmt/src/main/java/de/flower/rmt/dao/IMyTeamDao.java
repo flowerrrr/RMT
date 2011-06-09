@@ -14,4 +14,6 @@ public interface IMyTeamDao {
     MyTeamBE loadById(Long id);
 
     List<MyTeamBE> loadAll();
+
+    void delete(MyTeamBE entity);
 }

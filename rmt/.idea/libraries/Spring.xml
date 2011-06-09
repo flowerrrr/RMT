@@ -21,6 +21,8 @@
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-orm/sources/spring-orm-3.0.5.RELEASE-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-orm/sources/spring-orm-3.0.5.RELEASE-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-tx/sources/spring-tx-3.0.5.RELEASE-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

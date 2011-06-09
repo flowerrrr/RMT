@@ -3,7 +3,6 @@ package de.flower.rmt.dao.jpa;
 import de.flower.rmt.dao.IMyTeamDao;
 import de.flower.rmt.model.MyTeamBE;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,7 +11,6 @@ import java.util.List;
 /**
  * @author oblume
  */
-@Transactional
 @Repository
 public class MyTeamDao implements IMyTeamDao {
 
@@ -24,6 +22,10 @@ public class MyTeamDao implements IMyTeamDao {
         em.persist(entity);
     }
 
+    @Override
+    public void delete(MyTeamBE entity) {
+        em.remove(entity);
+    }
 
     @Override
     public MyTeamBE loadById(Long id) {

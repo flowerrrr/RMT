@@ -1,8 +1,7 @@
-package de.flower.rmt.service.impl;
+package de.flower.rmt.service;
 
 import de.flower.rmt.dao.IMyTeamDao;
 import de.flower.rmt.model.MyTeamBE;
-import de.flower.rmt.service.IMyTeamManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;

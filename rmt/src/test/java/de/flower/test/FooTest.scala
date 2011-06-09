@@ -2,12 +2,12 @@ package de.flower.test
 
 import scala.collection.mutable.ListBuffer
 import org.testng.Assert._
-import org.testng.annotations.Test
-import org.testng.annotations.Configuration
 import org.scalatest.Assertions
 import de.flower.rmt.model.MyTeamBE
+import org.testng.annotations.{BeforeMethod, Test, Configuration}
+import reflect.Method
 
-class FooTest extends AbstractIntegrationTests with Assertions {
+class FooTest extends  Assertions {
 
     var sb: StringBuilder = _
     var lb: ListBuffer[String] = _
@@ -18,14 +18,7 @@ class FooTest extends AbstractIntegrationTests with Assertions {
         lb = new ListBuffer[String]
     }
 
-    @Test
-    def testDao() {
-        myTeamManager.save(new MyTeamBE())
-        myTeamManager.loadAll()
-    }
-
-
-    @Test def verifyEasy() {
+   @Test def verifyEasy() {
         // Uses TestNG-style assertions
         sb.append("easy!")
         assertEquals("ScalaTest is easy!", sb.toString)
