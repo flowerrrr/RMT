@@ -50,7 +50,7 @@ public class MyTeamsPage extends ManagerBasePage {
         return new LoadableDetachableModel<List<MyTeamBE>>() {
             @Override
             protected List<MyTeamBE> load() {
-                return myTeamManager.loadAll();
+                return myTeamManager.findAll();
             }
         };
     }

@@ -14,6 +14,8 @@
       <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-core/jars/hibernate-core-3.6.4.Final.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/cache/commons-dbcp/commons-dbcp/jars/commons-dbcp-1.4.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/cache/commons-pool/commons-pool/jars/commons-pool-1.5.4.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.data/spring-data-jpa/jars/spring-data-jpa-1.0.0.M2.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.data/spring-data-commons-core/jars/spring-data-commons-core-1.0.0.M5.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

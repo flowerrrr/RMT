@@ -11,5 +11,5 @@ public interface IMyTeamManager {
 
     void save(MyTeamBE entity);
 
-    List<MyTeamBE> loadAll();
+    List<MyTeamBE> findAll();
 }
