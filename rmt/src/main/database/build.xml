@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+        Build-File for working with the database using DBUnit.
+    -->
+
+<project name="rmt-db" basedir=".">
+
+    <property name="projectdir" location="${basedir}/../../.."/>
+    <property name="basedir.lib" location="${user.home}/.gradle/cache"/>
+    <property name="builddir" location="${projectdir}/out/production/rmt" />
+
+    <path id="toolslib">
+        <fileset dir="${basedir.lib}">
+            <include name="**/hibernate-tools-3.2.4.GA.jar"/>
+            <include name="**/jcl-over-slf4j-1.6.1.jar" />
+            <include name="**/freemarker-2.3.8.jar"/>
+            <include name="**/hibernate-core-3.6.4.Final.jar"/>
+            <include name="**/hibernate-entitymanager-3.6.4.Final.jar" />
+            <include name="**/javassist-3.12.0.GA.jar" />
+            <include name="**/hibernate-commons-annotations-3.2.0.Final.jar" />
+            <include name="**/hibernate-jpa-2.0-api-1.0.0.Final.jar" />
+            <include name="**/dom4j-1.6.1.jar" />
+            <include name="**/slf4j-api-1.6.1.jar" />
+            <include name="**/logback-classic-0.9.28.jar" />
+            <include name="**/logback-core-0.9.28.jar" />
+        </fileset>
+    </path>
+
+
+    <taskdef name="hibernatetool"
+             classname="org.hibernate.tool.ant.HibernateToolTask"
+             classpathref="toolslib"/>
+
+
+    <target name="schema.export">
+        <echo>${projectdir}</echo>
+        <hibernatetool destdir="${projectdir}/src/main/database">
+            <jpaconfiguration persistenceunit="rmt-pu"/>
+            <classpath>
+                <!-- it is in this classpath you put your classes dir,
+           and/or jpa persistence compliant jar -->
+                <path location="${builddir}"/>
+            </classpath>
+
+            <!-- list exporters here -->
+            <hbm2ddl export="false" outputfilename="schema-export.ddl.sql"/>
+
+        </hibernatetool>
+    </target>
+
+
+</project>
