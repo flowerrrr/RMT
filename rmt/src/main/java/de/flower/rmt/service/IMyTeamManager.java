@@ -1,6 +1,6 @@
 package de.flower.rmt.service;
 
-import de.flower.rmt.model.MyTeamBE;
+import de.flower.rmt.model.TeamBE;
 
 import java.util.List;
 
@@ -9,9 +9,9 @@ import java.util.List;
  */
 public interface IMyTeamManager {
 
-    void save(MyTeamBE entity);
+    void save(TeamBE entity);
 
-    List<MyTeamBE> findAll();
+    List<TeamBE> findAll();
 
-    void delete(MyTeamBE modelObject);
+    void delete(TeamBE modelObject);
 }

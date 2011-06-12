@@ -1,7 +1,5 @@
 package de.flower.rmt.ui.common.page.login;
 
-import de.flower.rmt.ui.app.WebSession;
-import org.apache.wicket.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.RequiredTextField;
@@ -24,16 +22,5 @@ class LoginForm extends Form {
         add(new PasswordTextField("password"));
 
     }
-
-    @Override
-    protected void onSubmit() {
-        AuthenticatedWebSession session = WebSession.get();
-        if(session.signIn(username, password)) {
-            setResponsePage(HomePageResolver.getHomePage(session));
-        } else {
-            error(getString("login.failed"));
-        }
-    }
-
 
 }

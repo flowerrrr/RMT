@@ -13,26 +13,17 @@
     <!-- Security Stuff                                                          -->
     <!-- *********************************************************************** -->
 
-    <security:http create-session="ifRequired" auto-config="false" entry-point-ref="entryPoint">
+    <security:http create-session="ifRequired" auto-config="true">
         <security:remember-me/>
-        <security:intercept-url pattern="/**"/>
+        <security:intercept-url pattern="/manager/**" access="ROLE_MANAGER"/>
+        <security:intercept-url pattern="/player/**" access="ROLE_PLAYER"/>
+        <security:form-login login-page="/login"/>
+        <security:logout logout-success-url="/"/>
     </security:http>
-
-    <bean id="entryPoint" class="org.springframework.security.web.authentication.Http403ForbiddenEntryPoint"/>
 
     <security:authentication-manager alias="authenticationManager">
         <security:authentication-provider>
-
-            <!--  TODO change this to reference our real user service -->
-            <security:user-service>
-                <security:user name="admin" password="admin"
-                               authorities="ROLE_ADMIN, ROLE_MANAGER, ROLE_USER"/>
-                <security:user name="manager" password="manager"
-                               authorities="ROLE_MANAGER, ROLE_USER"/>
-                <security:user name="user" password="user"
-                               authorities="ROLE_USER"/>
-
-            </security:user-service>
+            <security:jdbc-user-service data-source-ref="dataSource"/>
         </security:authentication-provider>
 
     </security:authentication-manager>

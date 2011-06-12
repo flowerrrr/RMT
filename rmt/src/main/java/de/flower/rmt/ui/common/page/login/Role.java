@@ -5,7 +5,7 @@ package de.flower.rmt.ui.common.page.login;
  */
 public enum Role {
 
-    USER("ROLE_USER"),
+    PLAYER("ROLE_PLAYER"),
     MANAGER("ROLE_MANAGER"),
     ADMIN("ROLE_ADMIN");
 

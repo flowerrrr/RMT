@@ -4,15 +4,17 @@
 
 </head>
 <body>
-    <wicket:extend>
+<wicket:extend>
 
-        <form wicket:id="loginForm" >
-            <div>Username: <input wicket:id="username"/></div>
-             <div>Password: <input wicket:id="password" type="password"/></div>
+    <form name="loginForm" action="j_spring_security_check" method="POST">
+        <ul>
+            <li>Username: <input name="j_username" type="text"/></li>
+            <li>Password: <input name="j_password" type="password"/></li>
+        </ul>
+        <input type="checkbox" name="_spring_security_remember_me" value="true"/>
+        <input type="submit" value="TODO"/>
+    </form>
 
-             <input type="submit" value="Submit"/>
-        </form>
-
-    </wicket:extend>
+</wicket:extend>
 </body>
 </html>

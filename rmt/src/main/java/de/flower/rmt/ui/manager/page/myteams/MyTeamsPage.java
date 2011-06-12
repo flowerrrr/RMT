@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.manager.page.myteams;
 
 import de.flower.common.ui.ajax.AjaxLinkWithConfirmation;
-import de.flower.rmt.model.MyTeamBE;
+import de.flower.rmt.model.TeamBE;
 import de.flower.rmt.service.IMyTeamManager;
 import de.flower.rmt.ui.common.ajax.AjaxEvent;
 import de.flower.rmt.ui.common.ajax.AjaxRespondListener;
@@ -47,10 +47,10 @@ public class MyTeamsPage extends ManagerBasePage {
 
         WebMarkupContainer teamListContainer = new WebMarkupContainer("teamListContainer");
         add(teamListContainer);
-        teamListContainer.add(new ListView<MyTeamBE>("teamList", getTeamListModel()) {
+        teamListContainer.add(new ListView<TeamBE>("teamList", getTeamListModel()) {
 
             @Override
-            protected void populateItem(final ListItem<MyTeamBE> item) {
+            protected void populateItem(final ListItem<TeamBE> item) {
                 item.add(new Label("name", item.getModelObject().getName()));
                 item.add(new AjaxLink("editButton") {
 
@@ -75,10 +75,10 @@ public class MyTeamsPage extends ManagerBasePage {
     }
 
 
-    private IModel<List<MyTeamBE>> getTeamListModel() {
-        return new LoadableDetachableModel<List<MyTeamBE>>() {
+    private IModel<List<TeamBE>> getTeamListModel() {
+        return new LoadableDetachableModel<List<TeamBE>>() {
             @Override
-            protected List<MyTeamBE> load() {
+            protected List<TeamBE> load() {
                 return myTeamManager.findAll();
             }
         };

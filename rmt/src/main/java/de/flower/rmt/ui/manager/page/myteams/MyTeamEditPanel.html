@@ -7,14 +7,20 @@
 <wicket:panel>
 
     <form wicket:id="form">
+        <div wicket:id="feedback">[Validation messages]</div>
         <ul>
             <li>
-                <wicket:message key="manager.myteams.name"/>
-                <input wicket:id="name"/>
+                <div xwicket:id="nameBorder">
+                    <wicket:message key="manager.myteams.name"/>
+                    <input wicket:id="name"/>
+                    <span wicket:id="feedback2">[Validation errors]</span>
+                </div>
             </li>
             <li>
-                <wicket:message key="manager.myteams.url"/>
-                <input wicket:id="url"/>
+                <div xwicket:id="urlBorder">
+                    <wicket:message key="manager.myteams.url"/>
+                    <input wicket:id="url"/>
+                </div>
             </li>
         </ul>
         <a wicket:id="saveButton">

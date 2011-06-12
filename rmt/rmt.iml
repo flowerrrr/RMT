@@ -20,7 +20,7 @@
         <fileset id="fileset1" name="My Fileset" removed="false">
           <file>file://$MODULE_DIR$/src/main/resources/applicationContext-service.xml</file>
           <file>file://$MODULE_DIR$/src/test/resources/applicationContext-test.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/applicationContext-web.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/applicationContext-security.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/applicationContext.xml</file>
         </fileset>
       </configuration>
@@ -40,7 +40,7 @@
     <facet type="jpa" name="JPA">
       <configuration>
         <setting name="validation-enabled" value="true" />
-        <setting name="provider-name" value="" />
+        <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="rmt-pu" />
         </datasource-mapping>

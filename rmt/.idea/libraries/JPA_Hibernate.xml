@@ -20,6 +20,8 @@
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-entitymanager/sources/hibernate-entitymanager-3.6.4.Final-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-commons-annotations/sources/hibernate-commons-annotations-3.2.0.Final-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-core/sources/hibernate-core-3.6.4.Final-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

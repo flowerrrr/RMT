@@ -2,7 +2,7 @@ package de.flower.rmt.service
 
 import de.flower.test.AbstractIntegrationTests
 import org.testng.annotations.Test
-import de.flower.rmt.model.MyTeamBE
+import de.flower.rmt.model.TeamBE
 import org.springframework.test.annotation.NotTransactional
 import org.springframework.beans.factory.annotation.Autowired
 import org.testng.Assert._
@@ -22,7 +22,7 @@ class MyTeamManagerTest extends AbstractIntegrationTests {
     @Test
     @NotTransactional
     def testSave() {
-        var entity = new MyTeamBE()
+        var entity = new TeamBE()
         entity setName "Juve Amateure"
         myTeamManager.save(entity)
 
@@ -43,7 +43,7 @@ class MyTeamManagerTest extends AbstractIntegrationTests {
 
     @Test
     def testValidation() {
-        var entity = new MyTeamBE()
+        var entity = new TeamBE()
 
         intercept[ConstraintViolationException] {
             myTeamManager save entity
@@ -53,7 +53,7 @@ class MyTeamManagerTest extends AbstractIntegrationTests {
         var violations = validator.validate(entity)
         assertEquals(1, violations.size())
 
-        var violation: ConstraintViolation[MyTeamBE] = violations.toList.head
+        var violation: ConstraintViolation[TeamBE] = violations.toList.head
         assertEquals(entity.getName(), violation.getInvalidValue())
         log info "" + violation.getConstraintDescriptor
 

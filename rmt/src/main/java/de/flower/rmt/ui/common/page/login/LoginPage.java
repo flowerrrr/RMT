@@ -8,6 +8,6 @@ import de.flower.rmt.ui.common.page.BasePage;
 public class LoginPage extends BasePage {
 
     public LoginPage() {
-        add(new LoginForm("loginForm"));
+        // add(new LoginForm("loginForm"));
     }
 }
