@@ -1,15 +1,16 @@
 package de.flower.rmt.ui.manager;
 
+import de.flower.rmt.ui.app.AbstractBasePage;
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
-import org.apache.wicket.markup.html.WebPage;
 
 /**
  * @author oblume
  */
 @AuthorizeInstantiation("ROLE_MANAGER")
-public class ManagerBasePage extends WebPage {
+public class ManagerBasePage extends AbstractBasePage {
 
     public ManagerBasePage() {
         add(new NavigationPanel("navPanel"));
     }
+
 }

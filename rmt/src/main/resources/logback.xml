@@ -19,8 +19,16 @@
       </encoder>
     </appender>
 
+    <!--<logger name="org.apache.wicket" level="INFO" />-->
+    <logger name="org.springframework" level="DEBUG" />
 
-    <root level="debug">
+    <logger name="org.hibernate.SQL" level="DEBUG" />
+
+    <logger name="de.flower" level="DEBUG" />
+
+
+
+    <root level="INFO">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILE" />
     </root>

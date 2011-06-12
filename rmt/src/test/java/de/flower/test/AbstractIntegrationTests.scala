@@ -5,13 +5,14 @@ import org.springframework.transaction.annotation.Transactional
 import org.springframework.test.context.{TestExecutionListeners, ContextConfiguration}
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests
 import org.springframework.beans.factory.annotation.Autowired
-import de.flower.rmt.dao.IMyTeamDao
 import de.flower.rmt.service.IMyTeamManager
 import org.testng.annotations.AfterMethod
 import javax.persistence.{TransactionRequiredException, PersistenceContext, EntityManager}
 import org.scalatest.Assertions
-import javax.transaction.TransactionManager
 import org.springframework.transaction.PlatformTransactionManager
+import de.flower.rmt.repository.IMyTeamRepo
+import org.hibernate.AssertionFailure
+import org.slf4j.{LoggerFactory, Logger}
 
 /**
  *
@@ -22,12 +23,15 @@ import org.springframework.transaction.PlatformTransactionManager
 @ContextConfiguration(locations = Array("/applicationContext-test.xml"))
 class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Assertions {
 
+    protected var log: Logger = LoggerFactory.getLogger(this.getClass());
+
+
     /**************************************************************************/
     /*                        Daos                                            */
     /**************************************************************************/
 
     @Autowired
-    protected var myTeamDao: IMyTeamDao = _
+    protected var myTeamRepo: IMyTeamRepo = _
 
 
     /**************************************************************************/
@@ -51,17 +55,20 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
      */
     @AfterMethod
     def syncDatabase(method: java.lang.reflect.Method) {
-        logger info "Flushing EM"
+        log info "Flushing EM"
         try {
             em.flush();
         } catch {
+            case e: AssertionFailure => {
+                log info "Test had previous hibernate errors. Cannot sync with database."
+            }
             case e: TransactionRequiredException => {
-                logger info "Test " + method.getName + " is not transactional."
+                log info "Test " + method.getName + " is not transactional."
             }
             case e: RuntimeException => {
                 var message: String = "Testmethod " + method.getName() +
                         " failed. Fix this testcase cause all following tests will be skipped after this error!";
-                logger.error(message, e);
+                log.error(message, e);
                 throw new RuntimeException(message, e);
             }
         }

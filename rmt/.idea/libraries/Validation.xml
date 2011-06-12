@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Validation">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-validator/jars/hibernate-validator-4.1.0.Final.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/javax.validation/validation-api/jars/validation-api-1.0.0.GA.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/org.wicketstuff/jsr303/jars/jsr303-1.5-RC4.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -4,12 +4,20 @@ import de.flower.test.AbstractIntegrationTests
 import org.testng.annotations.Test
 import de.flower.rmt.model.MyTeamBE
 import org.springframework.test.annotation.NotTransactional
+import org.springframework.beans.factory.annotation.Autowired
+import org.testng.Assert._
+import javax.validation.{ConstraintViolation, Validator, ConstraintViolationException}
+import scala.collection.JavaConversions._
+
 /**
- * 
+ *
  * @author oblume
  */
 
 class MyTeamManagerTest extends AbstractIntegrationTests {
+
+    @Autowired
+    var validator: Validator = _
 
     @Test
     @NotTransactional
@@ -19,22 +27,36 @@ class MyTeamManagerTest extends AbstractIntegrationTests {
         myTeamManager.save(entity)
 
         var id = entity.getId()
-        entity = myTeamDao.loadById(id)
-        logger info entity
+        entity = myTeamRepo.findOne(id)
+        log info "" + entity
 
         var status = transactionManager.getTransaction(null)
-        entity = myTeamDao.loadById(id)
-        myTeamDao delete entity
+        entity = myTeamRepo.findOne(id)
+        myTeamRepo delete entity
         transactionManager.commit(status)
 
-        entity = myTeamDao.loadById(id)
+        entity = myTeamRepo.findOne(id)
         assert(entity == null)
 
 
     }
 
     @Test
-    def testLoadAll() {
+    def testValidation() {
+        var entity = new MyTeamBE()
+
+        intercept[ConstraintViolationException] {
+            myTeamManager save entity
+        }
+
+        entity setName "     "
+        var violations = validator.validate(entity)
+        assertEquals(1, violations.size())
+
+        var violation: ConstraintViolation[MyTeamBE] = violations.toList.head
+        assertEquals(entity.getName(), violation.getInvalidValue())
+        log info "" + violation.getConstraintDescriptor
+
 
     }
 

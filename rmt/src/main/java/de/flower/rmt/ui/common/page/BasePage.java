@@ -1,9 +1,10 @@
 package de.flower.rmt.ui.common.page;
 
-import org.apache.wicket.markup.html.WebPage;
+import de.flower.rmt.ui.app.AbstractBasePage;
 
 /**
  * @author oblume
  */
-public class BasePage extends WebPage {
+public class BasePage extends AbstractBasePage {
+
 }

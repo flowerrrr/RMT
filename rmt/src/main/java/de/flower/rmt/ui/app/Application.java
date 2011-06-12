@@ -1,7 +1,9 @@
 package de.flower.rmt.ui.app;
 
-import de.flower.rmt.ui.player.PlayerHomePage;
+import de.flower.rmt.ui.common.page.login.HomePageResolver;
 import de.flower.rmt.ui.common.page.login.LoginPage;
+import de.flower.rmt.ui.manager.ManagerHomePage;
+import de.flower.rmt.ui.manager.page.myteams.MyTeamsPage;
 import org.apache.wicket.authentication.AuthenticatedWebApplication;
 import org.apache.wicket.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.html.WebPage;
@@ -21,19 +23,17 @@ public class Application extends AuthenticatedWebApplication {
     @Override
     protected void init() {
         super.init();
+        // add support for @SpringBean
         getComponentInstantiationListeners().add(new SpringComponentInjector(this));
 
-/*
-        getMarkupSettings().setDefaultMarkupEncoding(DEFAULT_ENCODING);
-        getRequestCycleSettings().setResponseRequestEncoding(DEFAULT_ENCODING);
+        initBookmarkablePages();
+    }
 
-        if (getConfigurationType().equals(WebApplication.DEPLOYMENT)) {
-            getMarkupSettings().setStripWicketTags(true);
-            getMarkupSettings().setStripComments(true);
-            getMarkupSettings().setCompressWhitespace(true);
-        }
-*/
-
+    private void initBookmarkablePages() {
+        mountPage("manager", ManagerHomePage.class);
+        mountPage("manager/myteams", MyTeamsPage.class);
+        // mountPage("manager/players", null);
+        mountPage("login", LoginPage.class);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class Application extends AuthenticatedWebApplication {
 
     @Override
     public Class getHomePage() {
-        return PlayerHomePage.class;
+        return HomePageResolver.getHomePage(WebSession.get());
     }
 
 

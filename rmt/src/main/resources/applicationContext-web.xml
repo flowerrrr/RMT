@@ -13,11 +13,12 @@
     <!-- Security Stuff                                                          -->
     <!-- *********************************************************************** -->
 
-    <security:http create-session="ifRequired" auto-config="true" >
+    <security:http create-session="ifRequired" auto-config="false" entry-point-ref="entryPoint">
         <security:remember-me/>
         <security:intercept-url pattern="/**"/>
     </security:http>
 
+    <bean id="entryPoint" class="org.springframework.security.web.authentication.Http403ForbiddenEntryPoint"/>
 
     <security:authentication-manager alias="authenticationManager">
         <security:authentication-provider>
@@ -25,18 +26,18 @@
             <!--  TODO change this to reference our real user service -->
             <security:user-service>
                 <security:user name="admin" password="admin"
-                    authorities="ROLE_ADMIN, ROLE_MANAGER, ROLE_USER" />
+                               authorities="ROLE_ADMIN, ROLE_MANAGER, ROLE_USER"/>
                 <security:user name="manager" password="manager"
-                    authorities="ROLE_MANAGER, ROLE_USER" />
+                               authorities="ROLE_MANAGER, ROLE_USER"/>
                 <security:user name="user" password="user"
-                    authorities="ROLE_USER" />
+                               authorities="ROLE_USER"/>
 
             </security:user-service>
         </security:authentication-provider>
 
     </security:authentication-manager>
 
-    <security:global-method-security secured-annotations="enabled" />
+    <security:global-method-security secured-annotations="enabled"/>
 
 
 </beans>

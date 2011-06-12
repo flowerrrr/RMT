@@ -6,13 +6,25 @@
 <wicket:extend>
     My Teams
 
-    <ul>
-        <li wicket:id="teamList">
-            <span wicket:id="name">[Team A]</span>
-            <a wicket:id="editButton"><wicket:message key="manager.myteams.edit">[Edit]</wicket:message></a>
-            <a wicket:id="deleteButton"><wicket:message key="manager.myteams.delete">[Delete]</wicket:message></a>
-        </li>
-    </ul>
+    <div wicket:id="teamDialog"/>
+
+    <a wicket:id="newButton">
+        <wicket:message key="manager.myteams.new">[New]</wicket:message>
+    </a>
+
+    <div wicket:id="teamListContainer">
+        <ul>
+            <li wicket:id="teamList">
+                <span wicket:id="name">[Team A]</span>
+                <a wicket:id="editButton">
+                    <wicket:message key="manager.myteams.edit">[Edit]</wicket:message>
+                </a>
+                <a wicket:id="deleteButton">
+                    <wicket:message key="manager.myteams.delete">[Delete]</wicket:message>
+                </a>
+            </li>
+        </ul>
+    </div>
 
 </wicket:extend>
 

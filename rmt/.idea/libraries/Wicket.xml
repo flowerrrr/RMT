@@ -8,6 +8,7 @@
       <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-request/jars/wicket-request-1.5-RC4.2.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-util/jars/wicket-util-1.5-RC4.2.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-ioc/jars/wicket-ioc-1.5-RC4.2.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-extensions/jars/wicket-extensions-1.5-RC4.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

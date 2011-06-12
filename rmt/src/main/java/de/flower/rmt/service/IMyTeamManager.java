@@ -12,4 +12,6 @@ public interface IMyTeamManager {
     void save(MyTeamBE entity);
 
     List<MyTeamBE> findAll();
+
+    void delete(MyTeamBE modelObject);
 }

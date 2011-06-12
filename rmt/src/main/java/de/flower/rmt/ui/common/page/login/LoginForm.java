@@ -36,10 +36,4 @@ class LoginForm extends Form {
     }
 
 
-    private void setDefaultResponsePageIfNecessary() {
-        if(!continueToOriginalDestination()) {
-            setResponsePage(getApplication().getHomePage());
-        }
-    }
-
 }

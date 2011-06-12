@@ -1,4 +1,4 @@
-package de.flower.rmt.model;
+package de.flower.common.model;
 
 import javax.persistence.*;
 import java.io.Serializable;

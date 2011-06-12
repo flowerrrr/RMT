@@ -73,6 +73,7 @@
     <orderEntry type="library" exported="" name="Logging" level="project" />
     <orderEntry type="library" exported="" name="JPA-Hibernate" level="project" />
     <orderEntry type="library" scope="TEST" name="Test" level="project" />
+    <orderEntry type="library" exported="" name="Validation" level="project" />
   </component>
 </module>
 
