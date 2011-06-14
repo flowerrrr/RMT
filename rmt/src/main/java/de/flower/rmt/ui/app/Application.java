@@ -3,7 +3,7 @@ package de.flower.rmt.ui.app;
 import de.flower.rmt.ui.common.page.login.HomePageResolver;
 import de.flower.rmt.ui.common.page.login.LoginPage;
 import de.flower.rmt.ui.manager.ManagerHomePage;
-import de.flower.rmt.ui.manager.page.myteams.MyTeamsPage;
+import de.flower.rmt.ui.manager.page.teams.TeamsPage;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.springframework.stereotype.Component;
@@ -24,7 +24,7 @@ public class Application extends WebApplication {
         // TODO (oblume - 12.06.11) determine correct order
         mountPackage("manager", ManagerHomePage.class);
         mountPage("manager", ManagerHomePage.class);
-        mountPage("manager/myteams", MyTeamsPage.class);
+        mountPage("manager/teams", TeamsPage.class);
         // mountPage("manager/players", null);
         mountPage("login", LoginPage.class);
     }

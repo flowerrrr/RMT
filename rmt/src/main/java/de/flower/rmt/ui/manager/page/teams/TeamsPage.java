@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.manager.page.myteams;
+package de.flower.rmt.ui.manager.page.teams;
 
 import de.flower.common.ui.ajax.AjaxLinkWithConfirmation;
 import de.flower.rmt.model.Team;
@@ -23,15 +23,15 @@ import java.util.List;
 /**
  * @author oblume
  */
-public class MyTeamsPage extends ManagerBasePage {
+public class TeamsPage extends ManagerBasePage {
 
     @SpringBean
     private ITeamManager teamManager;
 
-    public MyTeamsPage() {
+    public TeamsPage() {
 
         final ModalDialogWindow modal = new ModalDialogWindow("teamDialog");
-        final MyTeamEditPanel teamEditPanel = new MyTeamEditPanel(modal.getContentId());
+        final TeamEditPanel teamEditPanel = new TeamEditPanel(modal.getContentId());
         modal.setContent(teamEditPanel);
         add(modal);
 

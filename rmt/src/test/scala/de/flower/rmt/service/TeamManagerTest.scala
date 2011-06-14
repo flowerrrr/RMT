@@ -14,7 +14,7 @@ import scala.collection.JavaConversions._
  * @author oblume
  */
 
-class MyTeamManagerTest extends AbstractIntegrationTests {
+class TeamManagerTest extends AbstractIntegrationTests {
 
     @Autowired
     var validator: Validator = _

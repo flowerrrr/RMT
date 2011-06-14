@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.manager;
 
-import de.flower.rmt.ui.manager.page.myteams.MyTeamsPage;
+import de.flower.rmt.ui.manager.page.teams.TeamsPage;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.panel.Panel;
 
@@ -13,6 +13,6 @@ public class NavigationPanel extends Panel {
         super(id);
 
         add(new BookmarkablePageLink("home", ManagerHomePage.class));
-        add(new BookmarkablePageLink("myteams", MyTeamsPage.class));
+        add(new BookmarkablePageLink("myteams", TeamsPage.class));
     }
 }

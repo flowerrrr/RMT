@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.manager.page.myteams;
+package de.flower.rmt.ui.manager.page.teams;
 
 import de.flower.common.ui.FormMode;
 import de.flower.common.ui.form.MyForm;
@@ -24,7 +24,7 @@ import org.wicketstuff.jsr303.PropertyValidation;
 /**
  * @author oblume
  */
-public class MyTeamEditPanel extends BasePanel {
+public class TeamEditPanel extends BasePanel {
 
     private FormMode mode;
 
@@ -33,7 +33,7 @@ public class MyTeamEditPanel extends BasePanel {
     @SpringBean
     private ITeamManager teamManager;
 
-    public MyTeamEditPanel(String id) {
+    public TeamEditPanel(String id) {
         super(id);
 
         form = new MyForm<Team>("form", new CompoundPropertyModel<Team>(new Team()));
