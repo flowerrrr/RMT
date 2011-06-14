@@ -43,5 +43,5 @@ public class Users extends AbstractBaseEntity {
     private String email;
 
     @ManyToOne
-    private ClubBE clubBE;
+    private Club club;
 }

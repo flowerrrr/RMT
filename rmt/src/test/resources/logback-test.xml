@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration debug="true" scan="true">
+<configuration debug="false" scan="false">
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <!-- encoders are assigned the type
@@ -19,11 +19,16 @@
       </encoder>
     </appender>
 
-    <logger name="org.hibernate.type" level="TRACE" />
+    <logger name="org.hibernate" level="DEBUG" />
+    <logger name="org.hibernate.cfg" level="WARN" />
+    <logger name="org.hibernate.sql" level="DEBUG" />
+    <logger name="org.hibernate.type" level="WARN" /> <!-- set to TRACE to see sql parameter values -->
+    <logger name="org.springframework" level="INFO" />
+    <logger name="org.dbunit" level="INFO" />
 
     <root level="DEBUG">
         <appender-ref ref="STDOUT"/>
-        <!--<appender-ref ref="FILE" />-->
+        <appender-ref ref="FILE" />
     </root>
 
 </configuration>

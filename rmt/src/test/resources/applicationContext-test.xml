@@ -13,9 +13,4 @@
 
     <import resource="applicationContext-service.xml" />
 
-    <bean id="validatorFactory" class="javax.validation.Validation" factory-method="buildDefaultValidatorFactory" />
-
-    <bean id="validator" class="javax.validation.Validator" factory-bean="validatorFactory" factory-method="getValidator"
-            scope="prototype"/>
-
 </beans>

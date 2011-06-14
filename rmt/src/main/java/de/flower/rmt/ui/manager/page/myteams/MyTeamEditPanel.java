@@ -2,8 +2,8 @@ package de.flower.rmt.ui.manager.page.myteams;
 
 import de.flower.common.ui.FormMode;
 import de.flower.common.ui.form.MyForm;
-import de.flower.rmt.model.TeamBE;
-import de.flower.rmt.service.IMyTeamManager;
+import de.flower.rmt.model.Team;
+import de.flower.rmt.service.ITeamManager;
 import de.flower.rmt.ui.common.ajax.AjaxEvent;
 import de.flower.rmt.ui.common.ajax.AjaxRespondListener;
 import de.flower.rmt.ui.common.panel.BasePanel;
@@ -28,15 +28,15 @@ public class MyTeamEditPanel extends BasePanel {
 
     private FormMode mode;
 
-    private Form<TeamBE> form;
+    private Form<Team> form;
 
     @SpringBean
-    private IMyTeamManager myTeamManager;
+    private ITeamManager teamManager;
 
     public MyTeamEditPanel(String id) {
         super(id);
 
-        form = new MyForm<TeamBE>("form", new CompoundPropertyModel<TeamBE>(new TeamBE()));
+        form = new MyForm<Team>("form", new CompoundPropertyModel<Team>(new Team()));
         add(form);
         final FeedbackPanel feedback;
         form.add(feedback = new FeedbackPanel("feedback", new ComponentFeedbackMessageFilter(form)));
@@ -44,7 +44,7 @@ public class MyTeamEditPanel extends BasePanel {
 
         TextField name;
         form.add(name = new TextField("name"));
-        // add(new InputValidationBorder<TeamBE>("nameBorder", form, name));
+        // add(new InputValidationBorder<Team>("nameBorder", form, name));
         name.setRequired(false);
         name.add(new AjaxFormComponentUpdatingBehavior("onblur") {
             @Override
@@ -65,7 +65,7 @@ public class MyTeamEditPanel extends BasePanel {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 // TODO validate data
-                myTeamManager.save((TeamBE) form.getModelObject());
+                teamManager.save((Team) form.getModelObject());
                 target.registerRespondListener(new AjaxRespondListener(AjaxEvent.MYTEAM_CREATED));
                 ModalWindow.closeCurrent(target);
             }
@@ -79,10 +79,10 @@ public class MyTeamEditPanel extends BasePanel {
 
     }
 
-    public void init(IModel<TeamBE> model) {
+    public void init(IModel<Team> model) {
         if (model == null) {
-            model = Model.of(new TeamBE());
+            model = Model.of(new Team());
         }
-        form.setModel(new CompoundPropertyModel<TeamBE>(model));
+        form.setModel(new CompoundPropertyModel<Team>(model));
     }
 }

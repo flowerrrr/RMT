@@ -3,7 +3,7 @@ package de.flower.test
 import scala.collection.mutable.ListBuffer
 import org.testng.Assert._
 import org.scalatest.Assertions
-import de.flower.rmt.model.TeamBE
+import de.flower.rmt.model.Team
 import org.testng.annotations.{BeforeMethod, Test, Configuration}
 import reflect.Method
 

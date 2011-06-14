@@ -1,40 +1,402 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
-        Build-File for working with the database using DBUnit.
+        Build-File for working with the ADSM database using DBUnit.
+
+        ===============================================================================
+        DATE WHO CHANGE
+        ===============================================================================
+        2007.11.28 blumo Initial version
+        ==============================================================================
     -->
 
-<project name="rmt-db" basedir=".">
+<project name="database" basedir=".">
 
-    <property name="projectdir" location="${basedir}/../../.."/>
+    <!-- use a basedir property that also works when this build file is imported into other
+         build files. -->
+    <dirname property="basedir.self" file="${ant.file.database}"/>
+    <echo>${basedir.self}</echo>
+
+    <property file="${basedir.self}/build.properties.${user.name}"/>
+    <property file="${basedir.self}/build.properties"/>
+
+    <property name="projectdir" location="${basedir.self}/../../.."/>
+    <property name="database.dir" value="${projectdir}/src/main/database"/>
     <property name="basedir.lib" location="${user.home}/.gradle/cache"/>
-    <property name="builddir" location="${projectdir}/out/production/rmt" />
+    <property name="builddir" location="${projectdir}/out/production/rmt"/>
+    <property name="export.dir" value="${database.dir}/export"/>
 
     <path id="toolslib">
+        <pathelement location="${basedir.self}" /> <!-- to include logback.xml -->
         <fileset dir="${basedir.lib}">
             <include name="**/hibernate-tools-3.2.4.GA.jar"/>
-            <include name="**/jcl-over-slf4j-1.6.1.jar" />
+            <include name="**/jcl-over-slf4j-1.6.1.jar"/>
             <include name="**/freemarker-2.3.8.jar"/>
             <include name="**/hibernate-core-3.6.4.Final.jar"/>
-            <include name="**/hibernate-entitymanager-3.6.4.Final.jar" />
-            <include name="**/javassist-3.12.0.GA.jar" />
-            <include name="**/hibernate-commons-annotations-3.2.0.Final.jar" />
-            <include name="**/hibernate-jpa-2.0-api-1.0.0.Final.jar" />
-            <include name="**/dom4j-1.6.1.jar" />
-            <include name="**/slf4j-api-1.6.1.jar" />
-            <include name="**/logback-classic-0.9.28.jar" />
-            <include name="**/logback-core-0.9.28.jar" />
+            <include name="**/hibernate-entitymanager-3.6.4.Final.jar"/>
+            <include name="**/javassist-3.12.0.GA.jar"/>
+            <include name="**/hibernate-commons-annotations-3.2.0.Final.jar"/>
+            <include name="**/hibernate-jpa-2.0-api-1.0.0.Final.jar"/>
+            <include name="**/dom4j-1.6.1.jar"/>
+            <include name="**/slf4j-api-1.6.1.jar"/>
+            <include name="**/logback-classic-0.9.28.jar"/>
+            <include name="**/logback-core-0.9.28.jar"/>
+            <include name="**/dbunit-2.4.8.jar"/>
+        </fileset>
+    </path>
+
+    <path id="classpath.db.driver">
+        <fileset dir="${basedir.lib}">
+            <include name="**/mysql-connector-java-5.1.16.jar"/>
         </fileset>
     </path>
 
 
-    <taskdef name="hibernatetool"
-             classname="org.hibernate.tool.ant.HibernateToolTask"
-             classpathref="toolslib"/>
+    <taskdef resource="net/sf/antcontrib/antcontrib.properties">
+        <classpath>
+            <fileset dir="${basedir.lib}">
+                <include name="**/ant-contrib-1.0b3.jar"/>
+            </fileset>
+        </classpath>
+    </taskdef>
 
 
-    <target name="schema.export">
-        <echo>${projectdir}</echo>
-        <hibernatetool destdir="${projectdir}/src/main/database">
+    <!--
+         dbunit is used to export/import data into the database.
+         http://dbunit.sourceforge.net/anttask.html
+     -->
+    <taskdef name="dbunit" classname="org.dbunit.ant.DbUnitTask">
+        <classpath>
+            <path refid="toolslib"/>
+            <path refid="classpath.db.driver"/>
+        </classpath>
+    </taskdef>
+
+    <!-- ========================================================= -->
+    <!--
+         Internal target used to set the database that is used by the
+         build-script. If the property "database" is not set the user is asked
+         to select from the list of prod, test or dev
+     -->
+    <!-- ========================================================= -->
+    <target name="_setdatabase" unless="database.initialized">
+        <if>
+            <not>
+                <isset property="database"/>
+            </not>
+            <then>
+                <input message="Which database do you want to operate on?"
+                       validargs="integration,production" addproperty="database" defaultvalue="integration"/>
+            </then>
+        </if>
+
+        <if>
+            <equals arg1="${database}" arg2="integration"/>
+            <then>
+                <property name="db.url" value="${integration.db.jdbc.url}"/>
+                <property name="db.userid" value="${integration.db.user}"/>
+                <property name="db.password" value="${integration.db.user.password}"/>
+            </then>
+        </if>
+        <if>
+            <equals arg1="${database}" arg2="production"/>
+            <then>
+                <property name="db.url" value="${production.db.jdbc.url}"/>
+                <property name="db.userid" value="${production.db.user}"/>
+                <property name="db.password" value="${production.db.user.password}"/>
+                <property name="user.doubleconfirm" value="true"/>
+            </then>
+        </if>
+
+        <echo>Using ${database} database
+            [url=${db.url};userid=${db.userid};password=${db.password};]
+        </echo>
+        <property name="database.initialized" value="true"/>
+        <!--
+              so that this target is not called more than once during a build.
+          -->
+    </target>
+
+    <target name="_confirm">
+        <if>
+            <not>
+                <equals arg1="${user.confirm}" arg2="false"/>
+            </not>
+            <then>
+                <input message="Do you want to rebuild the database?"
+                       validargs="y,n" addproperty="do.rebuild"/>
+                <condition property="do.abort">
+                    <not>
+                        <equals arg1="y" arg2="${do.rebuild}"/>
+                    </not>
+                </condition>
+                <fail if="do.abort">Build aborted by user.</fail>
+            </then>
+        </if>
+        <!-- if doubleconfirm is true, ask user again to avoid accidently rebuilding production database. -->
+        <if>
+            <equals arg1="${user.doubleconfirm}" arg2="true"/>
+            <then>
+                <input message="Attention: You are about to rebuild a production database. Are you really sure? [yes|no]"
+                       addproperty="do.rebuild2"/>
+                <condition property="do.abort2">
+                    <not>
+                        <equals arg1="yes" arg2="${do.rebuild2}"/>
+                    </not>
+                </condition>
+                <fail if="do.abort2">Build aborted by user.</fail>
+            </then>
+        </if>
+    </target>
+    <!-- ========================================================= -->
+    <!--
+         Exportiert das Datenbank Schema in eine DTD.
+         http://dbunit.sourceforge.net/faq.html#generatedtd
+     -->
+    <!-- ========================================================= -->
+    <target name="export-all" depends="_setdatabase" description="Exports the database schema">
+        <mkdir dir="${export.dir}"/>
+        <echo message="Exporting database to ${export.dir}."/>
+
+        <dbunit driver="${db.driver}" url="${db.url}" userid="${db.userid}"
+                password="${db.password}">
+            <dbconfig>
+                <property name="datatypeFactory" value="org.dbunit.ext.mysql.MySqlDataTypeFactory" />
+            </dbconfig>
+            <export dest="${export.dir}/export.dtd" format="dtd"/>
+            <export dest="${export.dir}/export.xml" format="flat"/>
+        </dbunit>
+    </target>
+
+    <target name="export-table" depends="_setdatabase">
+        <input message="Which table do you want to export?"
+               addproperty="export.table"/>
+        <mkdir dir="${export.dir}"/>
+        <echo message="Exporting table '${export.table}' to ${export.dir}."/>
+
+        <dbunit driver="${db.driver}" url="${db.url}" userid="${db.userid}"
+                password="${db.password}">
+            <dbconfig>
+                <property name="datatypeFactory" value="org.dbunit.ext.mysql.MySqlDataTypeFactory" />
+            </dbconfig>
+            <export dest="${export.dir}/${export.table}_export.xml" format="flat">
+                <table name="${export.table}"/>
+            </export>
+        </dbunit>
+    </target>
+
+    <target name="export-query" depends="_setdatabase">
+        <input message="Specify query to execute (select * from foo where bar)?"
+               addproperty="export.query"/>
+        <mkdir dir="${export.dir}"/>
+        <echo message="Exporting query '${export.query}' to ${export.dir}."/>
+
+        <dbunit driver="${db.driver}" url="${db.url}" userid="${db.userid}"
+                password="${db.password}">
+            <dbconfig>
+                <property name="datatypeFactory" value="org.dbunit.ext.mysql.MySqlDataTypeFactory" />
+            </dbconfig>
+            <export dest="${export.dir}/query_export.xml" format="flat">
+                <query name="table_name" sql="${export.query}"/>
+            </export>
+        </dbunit>
+    </target>
+
+    <!-- ========================================================= -->
+    <!--
+         Baut eine bestehende Datenbankinstanz wieder neu auf Voraussetzung
+         dafür ist, dass die Build Properties "db.url", "db.schema",
+         "db.userid", "db.password" richtig gesetzt sind.
+     -->
+    <!-- ========================================================= -->
+    <target name="db-rebuild-with-masterdata" depends="_setdatabase"
+            description="Baut eine bestehende Datenbankinstanz wieder neu auf und füllt sie mit Masterdaten.">
+        <antcall target="db-rebuild-all">
+        </antcall>
+        <antcall target="db-insert-masterdata">
+        </antcall>
+        <antcall target="deploy-process-definitions"/>
+    </target>
+
+    <target name="db-rebuild-with-testdata" depends="_setdatabase"
+            description="Baut eine bestehende Datenbankinstanz wieder neu auf und füllt sie mit Master und Testdaten.">
+        <antcall target="db-rebuild-with-masterdata">
+        </antcall>
+        <antcall target="db-insert-testdata">
+        </antcall>
+    </target>
+
+    <target name="db-rebuild-base" depends="_setdatabase, _confirm"
+            description="Baut eine bestehende Datenbankinstanz wieder neu auf, fügt aber keine Daten ein.">
+
+        <antcall target="db-drop-base"></antcall>
+        <!-- Rebuild database schema. -->
+        <sql driver="${db.driver}" url="${db.url}" userid="${db.userid}"
+             password="${db.password}">
+            <classpath ref="classpath.db.driver"/>
+            <transaction src="${database.dir}/ddl/schema.ddl.sql"/>
+        </sql>
+    </target>
+
+    <target name="db-drop-base" depends="_setdatabase, _confirm">
+        <antcall target="db-create-drop-scripts"></antcall>
+        <sql driver="${db.driver}" url="${db.url}" userid="${db.userid}"
+             password="${db.password}" onerror="continue" print="true">
+            <classpath ref="classpath.db.driver"/>
+            <!-- <transaction src="database/ddl/drop_views.ddl" /> drop table statements also cascade into views. -->
+            <transaction src="database/ddl/drop_tables.ddl"/>
+        </sql>
+    </target>
+
+    <target name="db-create-drop-scripts" depends="_setdatabase">
+
+        <sql driver="${db.driver}" url="${db.url}" userid="${db.userid}"
+             password="${db.password}" onerror="continue"
+             print="true" showheaders="false" showtrailers="false"
+             output="database/ddl/drop_views.ddl">
+            <classpath ref="classpath.db.driver"/>
+            <!-- views -->
+            <transaction>
+                SELECT '-- do not edit this file. it is generated by the ant-target \'db-drop-base\'.';
+                SELECT 'DROP VIEW ' || n.nspname || '.' ||
+                c.relname || ' CASCADE;' FROM pg_catalog.pg_class AS c LEFT JOIN
+                pg_catalog.pg_namespace AS n ON n.oid = c.relnamespace WHERE relkind =
+                'v' AND n.nspname NOT IN ('pg_catalog', 'pg_toast') AND
+                pg_catalog.pg_table_is_visible(c.oid);
+            </transaction>
+        </sql>
+        <sql driver="${db.driver}" url="${db.url}" userid="${db.userid}"
+             password="${db.password}" onerror="continue"
+             print="true" showheaders="false" showtrailers="false"
+             output="database/ddl/drop_tables.ddl">
+            <classpath ref="classpath.db.driver"/>
+            <!-- tables -->
+            <transaction>
+                SELECT '-- do not edit this file. it is generated by the ant-target \'db-drop-base\'.';
+                SELECT 'DROP TABLE ' || n.nspname || '.' ||
+                c.relname || ' CASCADE;' FROM pg_catalog.pg_class AS c LEFT JOIN
+                pg_catalog.pg_namespace AS n ON n.oid = c.relnamespace WHERE relkind =
+                'r' AND n.nspname NOT IN ('pg_catalog', 'pg_toast') AND
+                pg_catalog.pg_table_is_visible(c.oid);
+            </transaction>
+        </sql>
+        <sql driver="${db.driver}" url="${db.url}" userid="${db.userid}"
+             password="${db.password}" onerror="continue"
+             print="true" showheaders="false" showtrailers="false"
+             output="database/ddl/drop_sequences.ddl">
+            <classpath ref="classpath.db.driver"/>
+            <!-- sequences -->
+            <transaction>
+                SELECT '-- do not edit this file. it is generated by the ant-target \'db-drop-base\'.';
+                SELECT 'DROP SEQUENCE ' || n.nspname || '.' ||
+                c.relname || ';' FROM pg_catalog.pg_class AS c LEFT JOIN
+                pg_catalog.pg_namespace AS n ON n.oid = c.relnamespace WHERE relkind =
+                'S' AND n.nspname NOT IN ('pg_catalog', 'pg_toast') AND
+                pg_catalog.pg_table_is_visible(c.oid);
+            </transaction>
+        </sql>
+    </target>
+
+    <target name="db-patch-with-script" depends="_setdatabase, _setpatchscript"
+            description="Executes a patch script against the choosen database.">
+        <sql driver="${db.driver}" url="${db.url}" userid="${db.userid}"
+             password="${db.password}">
+            <classpath ref="classpath.db.driver"/>
+            <transaction src="${database.dir}/ddl/patches/${patch.script}"/>
+        </sql>
+    </target>
+
+    <target name="db-refresh-masterdata" depends="_setdatabase">
+        <property name="db.action.type" value="REFRESH"/>
+        <antcall target="_db-fill-masterdata"></antcall>
+    </target>
+
+    <target name="db-insert-masterdata" depends="_setdatabase, db-delete-all-masterdata">
+        <property name="db.action.type" value="CLEAN_INSERT"/>
+        <antcall target="_db-fill-masterdata"></antcall>
+    </target>
+
+    <!-- Fill with permissions ans roles and other default data. -->
+    <target name="_db-fill-masterdata" depends="_setdatabase">
+
+        <dbunit driver="${db.driver}" url="${db.url}" userid="${db.userid}"
+                password="${db.password}">
+            <!--
+                        <operation type="${db.action.type}" transaction="true" format="flat"
+                            src="${database.dir}/data/master/sector.xml" />
+            -->
+        </dbunit>
+
+    </target>
+
+    <!-- Fill database with some test data like user accounts and so on. -->
+    <target name="db-refresh-testdata" depends="_setdatabase">
+        <property name="db.action.type" value="REFRESH"/>
+        <antcall target="_db-fill-testdata"></antcall>
+    </target>
+
+    <target name="db-insert-testdata" depends="_setdatabase, db-delete-all-testdata">
+        <property name="db.action.type" value="CLEAN_INSERT"/>
+        <antcall target="_db-fill-testdata"></antcall>
+    </target>
+
+    <target name="_db-fill-testdata" depends="_setdatabase">
+        <dbunit driver="${db.driver}" url="${db.url}" userid="${db.userid}"
+                password="${db.password}">
+            <operation type="${db.action.type}" transaction="true" format="flat"
+                       src="${database.dir}/data/test/customer.xml"/>
+            <operation type="${db.action.type}" transaction="true" format="flat"
+                       src="${database.dir}/data/test/customer_data.xml"/>
+            <operation type="${db.action.type}" transaction="true" format="flat"
+                       src="${database.dir}/data/test/customer_detail.xml"/>
+            <operation type="${db.action.type}" transaction="true" format="flat"
+                       src="${database.dir}/data/test/customer_configuration.xml"/>
+            <operation type="${db.action.type}" transaction="true" format="flat"
+                       src="${database.dir}/data/test/selected_channel.xml"/>
+            <operation type="${db.action.type}" transaction="true" format="flat"
+                       src="${database.dir}/data/test/selected_sector.xml"/>
+            <operation type="${db.action.type}" transaction="true" format="flat"
+                       src="${database.dir}/data/test/log.xml"/>
+        </dbunit>
+    </target>
+
+    <!-- Refresh the data with contents from named dbunit-file. -->
+    <target name="db-refresh-table" depends="_setdatabase, _setinputfile">
+        <property name="db.action.type" value="REFRESH"/>
+        <dbunit driver="${db.driver}" url="${db.url}" userid="${db.userid}"
+                password="${db.password}">
+            <operation type="${db.action.type}" transaction="true" format="flat"
+                       src="${input.file}"/>
+        </dbunit>
+    </target>
+
+    <!-- remove all master data -->
+    <target name="db-delete-all-masterdata" depends="_setdatabase">
+        <dbunit driver="${db.driver}" url="${db.url}" userid="${db.userid}"
+                password="${db.password}">
+            <operation type="DELETE_ALL" transaction="true" format="flat"
+                       src="${database.dir}/data/master/delete_tables.xml"/>
+        </dbunit>
+    </target>
+
+    <!-- remove all test data -->
+    <target name="db-delete-all-testdata" depends="_setdatabase">
+        <dbunit driver="${db.driver}" url="${db.url}" userid="${db.userid}"
+                password="${db.password}">
+            <operation type="DELETE_ALL" transaction="true" format="flat"
+                       src="${database.dir}/data/test/delete_tables.xml"/>
+        </dbunit>
+    </target>
+
+
+    <!--
+         Hibernate Schema Export. Generates DDL based on annotations in
+         java-entity-classes.
+     -->
+    <target name="schema-export">
+        <taskdef name="hibernatetool" classname="org.hibernate.tool.ant.HibernateToolTask"
+                 classpathref="toolslib"/>
+
+        <hibernatetool destdir="${export.dir}">
             <jpaconfiguration persistenceunit="rmt-pu"/>
             <classpath>
                 <!-- it is in this classpath you put your classes dir,
@@ -42,11 +404,43 @@
                 <path location="${builddir}"/>
             </classpath>
 
-            <!-- list exporters here -->
-            <hbm2ddl export="false" outputfilename="schema-export.ddl.sql"/>
+            <!-- Write all CREATE statements to a file. -->
+            <hbm2ddl drop="false" create="true" export="false"
+                     outputfilename="schema.ddl" delimiter=";" format="true"/>
 
         </hibernatetool>
     </target>
 
+    <target name="_setpatchscript" unless="patch.script.initialized">
+        <if>
+            <not>
+                <isset property="patch.script"/>
+            </not>
+            <then>
+                <input message="Which patch script do you want to execute (path relative to database/ddl/patches)?"
+                       addproperty="patch.script"/>
+            </then>
+        </if>
+        <property name="patch.script.initialized" value="true"/>
+        <!--
+              so that this target is not called more than once during a build.
+          -->
+    </target>
+
+    <target name="_setinputfile" unless="input.file.initialized">
+        <if>
+            <not>
+                <isset property="input.file"/>
+            </not>
+            <then>
+                <input message="Name of input file (path relative to ${basedir.self})?"
+                       addproperty="input.file"/>
+            </then>
+        </if>
+        <property name="input.file.initialized" value="true"/>
+        <!--
+              so that this target is not called more than once during a build.
+          -->
+    </target>
 
 </project>

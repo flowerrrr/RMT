@@ -1,7 +1,7 @@
 package de.flower.rmt.service;
 
-import de.flower.rmt.model.TeamBE;
-import de.flower.rmt.repository.IMyTeamRepo;
+import de.flower.rmt.model.Team;
+import de.flower.rmt.repository.ITeamRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -14,27 +14,27 @@ import java.util.List;
  */
 @Service
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-public class MyTeamManager implements IMyTeamManager {
+public class TeamManager implements ITeamManager {
 
     @Autowired
-    private IMyTeamRepo myTeamRepo;
+    private ITeamRepo teamRepo;
 
 
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-    public void save(TeamBE entity) {
-        myTeamRepo.save(entity);
+    public void save(Team entity) {
+        teamRepo.save(entity);
     }
 
     @Override
-    public List<TeamBE> findAll() {
-        return myTeamRepo.findAll();
+    public List<Team> findAll() {
+        return teamRepo.findAll();
     }
 
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-    public void delete(TeamBE entity) {
+    public void delete(Team entity) {
         // TODO (oblume - 11.06.11) decide whether to soft or hard delete entity.
-        myTeamRepo.delete(entity);
+        teamRepo.delete(entity);
     }
 }

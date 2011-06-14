@@ -14,6 +14,9 @@
     <context:component-scan base-package="de.flower.rmt.model"/>
     <jpa:repositories base-package="de.flower.rmt.repository"/>
 
+    <!-- this bean allows non spring beans to access the application context. -->
+    <bean id="springApplicationContextBridge" factory-method="getInstance"
+    	class="de.flower.common.util.SpringApplicationContextBridge" />
 
     <context:property-placeholder location="classpath:application.properties"/>
 
@@ -23,12 +26,12 @@
 
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" lazy-init="true">
-        <property name="persistenceUnitName" value="rmt-pu"/>
+        <property name="persistenceUnitName" value="${persistence.unit}"/>
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="driverClassName" value="${jdbc.driver}"/>
         <property name="url" value="${jdbc.url}"/>
         <property name="username" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.password}"/>
@@ -40,5 +43,12 @@
 
     <tx:annotation-driven/>
 
+    <!-- *********************************************************************** -->
+    <!-- Validation.                                                             -->
+    <!--                                                                         -->
+    <!-- Use spring factory to be able to use DI in validator implementations.   -->
+    <!-- *********************************************************************** -->
+    <bean id="validator"
+          class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
 
 </beans>

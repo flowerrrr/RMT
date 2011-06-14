@@ -1,6 +1,6 @@
 package de.flower.rmt.repository;
 
-import de.flower.rmt.model.TeamBE;
+import de.flower.rmt.model.Team;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -10,6 +10,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author oblume
  */
-public interface IMyTeamRepo extends JpaRepository<TeamBE, Long> {
+public interface ITeamRepo extends JpaRepository<Team, Long> {
 
 }

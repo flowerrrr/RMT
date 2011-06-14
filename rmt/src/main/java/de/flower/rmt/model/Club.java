@@ -11,13 +11,13 @@ import java.util.Set;
  * @author oblume
  */
 @Entity
-public class ClubBE extends AbstractBaseEntity {
+public class Club extends AbstractBaseEntity {
 
     @Column
     private String name;
 
-    @OneToMany
-    private Set<TeamBE> teams;
+    @OneToMany(mappedBy = "club")
+    private Set<Team> teams;
 
     public String getName() {
         return name;
@@ -27,11 +27,11 @@ public class ClubBE extends AbstractBaseEntity {
         this.name = name;
     }
 
-    public Set<TeamBE> getTeams() {
+    public Set<Team> getTeams() {
         return teams;
     }
 
-    public void setTeams(Set<TeamBE> teams) {
+    public void setTeams(Set<Team> teams) {
         this.teams = teams;
     }
 }

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <club id="1" name="Juventus Urin"/>
+    <users id="1" enabled="true" password="admin" username="admin" email="admin@foo.bar" club_id="1"/>
+    <users id="2" enabled="true" password="manager" username="manager" email="manager@foo.bar" club_id="1"/>
+    <users id="3" enabled="true" password="player" username="player" email="player@foo.bar" club_id="1"/>
+    <users id="4" enabled="true" password="both" username="both" email="both@foo.bar" club_id="1"/>
+    <authorities id="1" authority="ROLE_ADMIN" username="admin"/>
+    <authorities id="2" authority="ROLE_MANAGER" username="manager"/>
+    <authorities id="3" authority="ROLE_PLAYER" username="player"/>
+    <authorities id="4" authority="ROLE_MANAGER" username="both"/>
+    <authorities id="5" authority="ROLE_PLAYER" username="both"/>
+</dataset>

@@ -1,8 +1,8 @@
 package de.flower.rmt.ui.manager.page.myteams;
 
 import de.flower.common.ui.ajax.AjaxLinkWithConfirmation;
-import de.flower.rmt.model.TeamBE;
-import de.flower.rmt.service.IMyTeamManager;
+import de.flower.rmt.model.Team;
+import de.flower.rmt.service.ITeamManager;
 import de.flower.rmt.ui.common.ajax.AjaxEvent;
 import de.flower.rmt.ui.common.ajax.AjaxRespondListener;
 import de.flower.rmt.ui.common.page.ModalDialogWindow;
@@ -26,7 +26,7 @@ import java.util.List;
 public class MyTeamsPage extends ManagerBasePage {
 
     @SpringBean
-    private IMyTeamManager myTeamManager;
+    private ITeamManager teamManager;
 
     public MyTeamsPage() {
 
@@ -47,10 +47,10 @@ public class MyTeamsPage extends ManagerBasePage {
 
         WebMarkupContainer teamListContainer = new WebMarkupContainer("teamListContainer");
         add(teamListContainer);
-        teamListContainer.add(new ListView<TeamBE>("teamList", getTeamListModel()) {
+        teamListContainer.add(new ListView<Team>("teamList", getTeamListModel()) {
 
             @Override
-            protected void populateItem(final ListItem<TeamBE> item) {
+            protected void populateItem(final ListItem<Team> item) {
                 item.add(new Label("name", item.getModelObject().getName()));
                 item.add(new AjaxLink("editButton") {
 
@@ -64,7 +64,7 @@ public class MyTeamsPage extends ManagerBasePage {
 
                     @Override
                     public void onClick(AjaxRequestTarget target) {
-                        myTeamManager.delete(item.getModelObject());
+                        teamManager.delete(item.getModelObject());
                         target.registerRespondListener(new AjaxRespondListener(AjaxEvent.MYTEAM_DELETED));
                     }
                 });
@@ -75,11 +75,11 @@ public class MyTeamsPage extends ManagerBasePage {
     }
 
 
-    private IModel<List<TeamBE>> getTeamListModel() {
-        return new LoadableDetachableModel<List<TeamBE>>() {
+    private IModel<List<Team>> getTeamListModel() {
+        return new LoadableDetachableModel<List<Team>>() {
             @Override
-            protected List<TeamBE> load() {
-                return myTeamManager.findAll();
+            protected List<Team> load() {
+                return teamManager.findAll();
             }
         };
     }
