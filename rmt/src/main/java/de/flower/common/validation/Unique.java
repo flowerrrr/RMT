@@ -1,15 +1,21 @@
 package de.flower.common.validation;
 
+import de.flower.common.model.BaseEntity;
+
+import javax.persistence.UniqueConstraint;
 import javax.validation.Constraint;
 import javax.validation.Payload;
+import javax.validation.groups.Default;
 import java.lang.annotation.*;
 
 /**
- * Defines a list of fields that are unique for an entity.
+ * Defines a uniqueness validator.
+ * Either the list of fields has to specified or
+ * the name of the uniqueness constraint defined in @Table has to be given.
  *
  * @see ExtendedEntityHome
  */
-@Target( {ElementType.FIELD })
+@Target( {ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = UniqueValidator.class)
 @Documented
@@ -21,9 +27,11 @@ public @interface Unique {
 
     Class<? extends Payload>[] payload() default {};
 
-	/**
-	 * A list of field (property) names.
-     * If empty the annotated field is preset.
-	 */
-	String[] fields() default {};
+    /**
+     * If left empty the constraints are derived from the @Table annotation.
+     * @return
+     */
+	UniqueConstraint[] constraints() default {};
+
+
 }

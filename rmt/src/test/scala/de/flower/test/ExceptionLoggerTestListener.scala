@@ -1,7 +1,7 @@
 package de.flower.test
 
 import org.slf4j.Logger
-import de.flower.common.util.logging.Slf4jUtil
+import de.flower.common.logging.Slf4jUtil
 import org.testng.{TestListenerAdapter, ITestResult}
 
 /**

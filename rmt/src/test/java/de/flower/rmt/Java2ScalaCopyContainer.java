@@ -1,6 +1,6 @@
 package de.flower.rmt;
 
-import de.flower.common.util.logging.Slf4jUtil;
+import de.flower.common.logging.Slf4jUtil;
 import org.slf4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;

@@ -12,6 +12,7 @@
     <context:annotation-config/>
     <context:component-scan base-package="de.flower.rmt.service"/>
     <context:component-scan base-package="de.flower.rmt.model"/>
+    <context:component-scan base-package="de.flower.common" />
     <jpa:repositories base-package="de.flower.rmt.repository"/>
 
     <!-- this bean allows non spring beans to access the application context. -->

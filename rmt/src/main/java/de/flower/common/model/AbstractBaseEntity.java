@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author oblume
  */
 @MappedSuperclass
-public abstract class AbstractBaseEntity implements Serializable {
+public abstract class AbstractBaseEntity implements Serializable, BaseEntity {
 
     /** This constant is only needed for serialization purposes. It overwrites the default mechanism and so makes the BE longer binary compatible */
     private static final long serialVersionUID = 1L;
@@ -29,8 +29,6 @@ public abstract class AbstractBaseEntity implements Serializable {
         this.id = id;
     }
 
-    // public abstract void setId(Long id);
-
 	/**
 	 * Returns true if this entity is transient (not saved yet).
 	 *
@@ -40,7 +38,6 @@ public abstract class AbstractBaseEntity implements Serializable {
 		return (getId() == null);
 	}
 
-	//----Constructors----
 
 	//---Methods
 	/* (non-Javadoc)
@@ -50,7 +47,7 @@ public abstract class AbstractBaseEntity implements Serializable {
 	public String toString() {
 		StringBuilder retVal = new StringBuilder();
 
-		retVal.append("[AbstractBaseEntity]");
+		retVal.append("[" + this.getClass().getSimpleName() + "]");
 
 		return retVal.toString();
 	}

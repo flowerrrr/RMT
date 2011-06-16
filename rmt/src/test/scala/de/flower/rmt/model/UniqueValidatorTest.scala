@@ -6,6 +6,8 @@ import org.testng.annotations.Test
 import javax.validation.{ConstraintViolation, ConstraintViolationException, Validator}
 import org.testng.Assert._
 import scala.collection.JavaConversions._
+import de.flower.rmt.service.TeamManager
+import org.springframework.test.annotation.NotTransactional
 
 /**
  *
@@ -22,15 +24,18 @@ class UniqueValidatorTest extends AbstractIntegrationTests {
     def testValidation() {
 
         // save one entity
-        var entity = new Team("1", null, club)
+        var teamName = "fc bayern"
+        var entity = new Team(teamName, null, club)
 
         var violations = validator.validate(entity)
         assertEquals(0, violations.size())
 
         teamRepo save entity
 
-        // try to save team with same name
-        entity = new Team("1", null, club)
+        var id = entity.getId
+
+        // try to save new team with same name
+        entity = new Team(teamName, null, club)
         violations = validator.validate(entity)
         assertEquals(1, violations.size())
 
@@ -38,7 +43,14 @@ class UniqueValidatorTest extends AbstractIntegrationTests {
         log info "" + violation.getConstraintDescriptor
 
         intercept[ConstraintViolationException] {
-            myTeamManager save entity
+            teamManager save entity
         }
+
+        // now edit the first team.
+        entity = teamRepo.findOne(id)
+        violations = validator.validate(entity)
+        assertEquals(0, violations.size())
+
+        teamRepo save entity
     }
 }

@@ -24,7 +24,7 @@ class TeamManagerTest extends AbstractIntegrationTests {
     def testSave() {
         var entity = new Team()
         entity setName "Juve Amateure"
-        myTeamManager.save(entity)
+        teamManager.save(entity)
 
         var id = entity.getId()
         entity = teamRepo.findOne(id)
@@ -46,7 +46,7 @@ class TeamManagerTest extends AbstractIntegrationTests {
         var entity = new Team()
 
         intercept[ConstraintViolationException] {
-            myTeamManager save entity
+            teamManager save entity
         }
 
         entity setName "     "

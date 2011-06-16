@@ -23,8 +23,9 @@ import org.testng.annotations.{Listeners, BeforeMethod, AfterMethod}
  * @author oblume
  */
 @Listeners(Array(classOf[de.flower.test.ExceptionLoggerTestListener]))
-@TestExecutionListeners(Array(classOf[TransactionalTestExecutionListener]))
-@Transactional
+// in-memory database -> no need for transactional support and rollbacks
+//@TestExecutionListeners(Array(classOf[TransactionalTestExecutionListener]))
+// @Transactional
 @ContextConfiguration(locations = Array("/applicationContext-test.xml"))
 class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Assertions {
 
@@ -46,7 +47,7 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
     /**************************************************************************/
 
     @Autowired
-    protected var myTeamManager: ITeamManager = _
+    protected var teamManager: ITeamManager = _
 
 
     @PersistenceContext

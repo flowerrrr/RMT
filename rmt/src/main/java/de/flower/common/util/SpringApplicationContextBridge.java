@@ -3,7 +3,7 @@ package de.flower.common.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.flower.common.util.logging.Slf4jUtil;
+import de.flower.common.logging.Slf4jUtil;
 import org.slf4j.Logger;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

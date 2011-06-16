@@ -1,4 +1,4 @@
-package de.flower.common.util.logging;
+package de.flower.common.logging;
 
 import org.slf4j.Logger;
 

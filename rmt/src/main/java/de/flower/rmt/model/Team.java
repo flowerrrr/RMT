@@ -14,11 +14,11 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name", "club_id"}))
+@Unique
 public class Team extends AbstractBaseEntity {
 
     @NotBlank
     @Size(max = 40)
-    @Unique(fields = {"name", "club"})
     @Column
     private String name;
 
