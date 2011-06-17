@@ -1,4 +1,4 @@
-package de.flower.common.util;
+package de.flower.common.spring;
 
 import java.util.ArrayList;
 import java.util.List;

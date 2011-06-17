@@ -1,6 +1,6 @@
 package de.flower.common.validation;
 
-import de.flower.common.util.SpringApplicationContextBridge;
+import de.flower.common.spring.SpringApplicationContextBridge;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory;
 

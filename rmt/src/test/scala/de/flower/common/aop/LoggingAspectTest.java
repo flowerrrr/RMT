@@ -1,7 +1,7 @@
 package de.flower.common.aop;
 
-import de.flower.common.logging.Slf4jUtil;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
 /**
@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
  */
 public class LoggingAspectTest {
 
-    private final static Logger log = Slf4jUtil.getLogger();
+    private final static Logger log = LoggerFactory.getLogger(LoggingAspectTest.class);
 
 
     @Test

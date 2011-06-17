@@ -9,8 +9,8 @@ import org.aspectj.lang.annotation.Pointcut;
 @Aspect
 public class TestLoggingAspect extends AbstractSlf4JLoggingAspect {
 
-    @Pointcut("execution(* de.flower.common.aop.LoggingAspectTest..*(..))")
-    protected void trace() {
+    @Pointcut("execution(* de.flower..*(..))")
+    protected void entry() {
     }
 
 }

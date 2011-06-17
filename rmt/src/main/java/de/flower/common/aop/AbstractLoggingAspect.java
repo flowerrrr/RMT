@@ -10,18 +10,16 @@ import org.aspectj.lang.annotation.Pointcut;
  */
 public abstract class AbstractLoggingAspect {
 
-//    @Pointcut("")
-//    abstract protected void entry();
-
-//    @Pointcut("cflow(entry())")
-//    final void trace() {
-//    }
-
     @Pointcut("")
-    abstract protected void trace();
+    abstract protected void entry();
+
+    @Pointcut("entry() && !within(AbstractLoggingAspect+)")
+    protected void trace() {
+
+    }
 
     @Before("trace()")
-    public void _logEnter(JoinPoint.StaticPart jp) {
+    public void _logEnter(JoinPoint jp) {
         logEnter(jp);
     }
 
@@ -30,7 +28,7 @@ public abstract class AbstractLoggingAspect {
         logExit(jp);
     }
 
-    abstract protected void logEnter(JoinPoint.StaticPart jp);
+    abstract protected void logEnter(JoinPoint jp);
 
     abstract protected void logExit(JoinPoint.StaticPart jp);
 

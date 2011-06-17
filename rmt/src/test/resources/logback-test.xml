@@ -27,7 +27,8 @@
     <logger name="org.dbunit" level="INFO" />
     <logger name="org.apache.commons" level="INFO" />
 
-    <logger name="de.flower.common.aop" level="TRACE"  />
+    <!-- Tracing loggers -->
+    <logger name="trace.de.flower" level="TRACE" />
 
     <root level="INFO">
         <appender-ref ref="STDOUT"/>

@@ -1,16 +1,15 @@
 package de.flower.common.aop;
 
-import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 
 /**
  * @author oblume
  */
-@Aspect
+// @Aspect
 public class LoggingAspect extends AbstractSlf4JLoggingAspect {
 
     @Pointcut("execution(* de.flower.common.validation..*(..))")
-    protected void trace() {
+    protected void entry() {
     }
 
 
