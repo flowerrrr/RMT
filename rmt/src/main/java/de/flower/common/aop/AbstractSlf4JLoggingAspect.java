@@ -2,22 +2,24 @@ package de.flower.common.aop;
 
 import org.apache.commons.lang.StringUtils;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * @author oblume
  */
+@Aspect
 public abstract class AbstractSlf4JLoggingAspect extends AbstractLoggingAspect {
 
     private int depth = 1;
 
     @Override
-    protected void logEnter(JoinPoint jp) {
+    protected void logEnter(JoinPoint jp, boolean indent) {
         Logger log = getLogger(jp.getStaticPart());
         if (log.isTraceEnabled()) {
             String msg;
-            msg = indent(depth++, ">>");
+            msg = (indent == true) ? indent(depth++, ">>") : ">> new ";
             // msg += "<" + jp.getKind();
             msg += " " + jp.getSignature().toShortString();
             String args = null;

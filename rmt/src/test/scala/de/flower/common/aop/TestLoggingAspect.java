@@ -7,6 +7,7 @@ import org.aspectj.lang.annotation.Pointcut;
  * @author oblume
  */
 @Aspect
+@Deprecated
 public class TestLoggingAspect extends AbstractSlf4JLoggingAspect {
 
     @Pointcut("execution(* de.flower..*(..))")

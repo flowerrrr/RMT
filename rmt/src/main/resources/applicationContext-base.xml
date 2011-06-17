@@ -10,8 +10,14 @@
         http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
     <context:annotation-config/>
-    <context:component-scan base-package="de.flower.rmt.service"/>
+
+    <!-- this bean allows non spring beans to access the application context. -->
+    <bean id="springApplicationContextBridge" factory-method="getInstance"
+    	class="de.flower.common.spring.SpringApplicationContextBridge" />
 
     <context:property-placeholder location="classpath:application.properties"/>
+
+    <!-- load time weaving support -->
+    <context:load-time-weaver aspectj-weaving="autodetect"/>
 
 </beans>

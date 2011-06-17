@@ -15,13 +15,14 @@ import com.google.common.base.Preconditions._
  */
 
 object Database {
+
     def createDataSet(classpathResource: String): IDataSet = {
         return new FlatXmlDataSetBuilder().build(IO.loadClasspathResourceAsStream(classpathResource))
     }
 
 }
 
-class Database {
+class Database(properties: Map[String, Object]) {
 
     private var log: Logger = LoggerFactory.getLogger(getClass)
 
@@ -45,9 +46,14 @@ class Database {
     }
 
     private def getDatabaseConnection: IDatabaseConnection = {
-        return new DatabaseDataSourceConnection(checkNotNull(dataSource))
+        val connection = new DatabaseDataSourceConnection(checkNotNull(dataSource))
+        return configureConnection(connection)
     }
 
+    private def configureConnection(connection: IDatabaseConnection) : IDatabaseConnection = {
+        properties.foreach((e) => connection.getConfig.setProperty(e._1, e._2))
+        return connection
+    }
 
     /**
      * @return the dataSource

@@ -1,0 +1,27 @@
+<!DOCTYPE aspectj PUBLIC
+        "-//AspectJ//DTD//EN" "http://www.eclipse.org/aspectj/dtd/aspectj.dtd">
+<aspectj>
+
+    <weaver options="-verbose           -showWeaveInfo
+          -XmessageHandlerClass:org.springframework.aop.aspectj.AspectJWeaverMessageHandler">
+
+        <!-- only weave classes in our application-specific packages -->
+        <include within="de.flower.rmt..*"/>
+
+        <!-- exclude generated proxy classes -->
+        <exclude within="*..*CGLIB*" />
+        <exclude within="*..*javassist*" />
+
+    </weaver>
+
+    <aspects>
+
+        <!-- we only use aspects defined in this file. allows greater flexibility. -->
+        <concrete-aspect name="de.flower.common.aop.LoggingAspect" extends="de.flower.common.aop.AbstractSlf4JLoggingAspect">
+            <pointcut name="entry" expression="execution(* de.flower..*(..))"/>
+            <pointcut name="ctor" expression="execution(de.flower..new(..))"/>
+        </concrete-aspect>
+
+    </aspects>
+
+</aspectj>

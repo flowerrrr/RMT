@@ -1,5 +1,6 @@
 package de.flower.test
 
+import mock.{IListAppender, LogBackListAppender}
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.test.context.{TestExecutionListeners, ContextConfiguration}
@@ -10,13 +11,15 @@ import javax.persistence.{TransactionRequiredException, PersistenceContext, Enti
 import org.scalatest.Assertions
 import org.springframework.transaction.PlatformTransactionManager
 import org.hibernate.AssertionFailure
-import org.slf4j.{LoggerFactory, Logger}
 import de.flower.rmt.model.Club
 import de.flower.rmt.repository.{IClubRepo, ITeamRepo}
 import com.google.common.base.Preconditions._
 import javax.sql.DataSource
 import java.lang.reflect.Method
-import org.testng.annotations.{Listeners, BeforeMethod, AfterMethod}
+import org.slf4j.{LoggerFactory, Logger}
+import org.testng.annotations.{BeforeClass, Listeners, BeforeMethod, AfterMethod}
+import org.apache.wicket.event.IEvent
+import ch.qos.logback.classic.spi.ILoggingEvent
 
 /**
  *
@@ -59,14 +62,22 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
     @Autowired
     protected var dataSource: DataSource = _
 
+    protected var listAppender: IListAppender[ILoggingEvent] = _
+
 
     /**Club used for testing. */
     protected var club: Club = _
 
+    @BeforeClass
+    def initClass() {
+        listAppender = LogBackListAppender.configureListAppender()
+    }
+
     @BeforeMethod
-    def init() {
+    def initTest() {
         // reset database
-        resetTestdata();
+        resetTestdata()
+        resetListAppender()
 
         // load some often used entities
         club = checkNotNull(clubRepo.findOne(1L))
@@ -79,7 +90,8 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
     def resetTestdata() {
         log.info("Resetting test data in database.");
         // use db-unit to refresh the the test data
-        var db: Database = new Database();
+        val properties = Map("http://www.dbunit.org/properties/datatypeFactory" -> new org.dbunit.ext.h2.H2DataTypeFactory())
+        val db: Database = new Database(properties);
         db.setDataSource(dataSource);
 
         db.deleteAll(Database.createDataSet("/truncate_tables.xml"));
@@ -88,6 +100,15 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
         // checkDataConsistency();
     }
 
+
+    /**
+     * Reset the internal buffer of the mock appender before each test method is started.
+     */
+    def resetListAppender() {
+        if (listAppender != null) {
+            listAppender.reset();
+        }
+    }
 
     /**
      * Sync hibernate with database. This is done inside the transaction shortly before commiting/rollbacking the transaction.

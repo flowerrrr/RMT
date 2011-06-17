@@ -11,6 +11,8 @@
          properties in above file. -->
     <context:property-placeholder location="classpath:application.properties,classpath:application-test.properties"/>
 
-    <import resource="applicationContext-service.xml" />
+    <import resource="applicationContext-base.xml"/>
+    <import resource="applicationContext-dao.xml"/>
+    <import resource="applicationContext-service.xml"/>
 
 </beans>

@@ -18,9 +18,19 @@ public abstract class AbstractLoggingAspect {
 
     }
 
+    @Pointcut("ctor() && !within(AbstractLoggingAspect+)")
+    protected void _ctor() {
+
+    }
+
+    @Before("_ctor()")
+    public void _ctorEnter(JoinPoint jp) {
+        logEnter(jp, false);
+    }
+
     @Before("trace()")
     public void _logEnter(JoinPoint jp) {
-        logEnter(jp);
+        logEnter(jp, true);
     }
 
     @After("trace()")
@@ -28,7 +38,7 @@ public abstract class AbstractLoggingAspect {
         logExit(jp);
     }
 
-    abstract protected void logEnter(JoinPoint jp);
+    abstract protected void logEnter(JoinPoint jp, boolean indent);
 
     abstract protected void logExit(JoinPoint.StaticPart jp);
 
