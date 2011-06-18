@@ -83,6 +83,15 @@
     <orderEntry type="library" scope="TEST" name="Test" level="project" />
     <orderEntry type="library" exported="" name="Validation" level="project" />
     <orderEntry type="library" name="Misc" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/cache/net.sourceforge.findbugs/annotations/jars/annotations-1.3.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
 

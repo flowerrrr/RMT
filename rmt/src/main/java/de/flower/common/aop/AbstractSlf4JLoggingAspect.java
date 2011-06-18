@@ -1,5 +1,7 @@
 package de.flower.common.aop;
 
+import net.jcip.annotations.NotThreadSafe;
+import org.apache.commons.collections.ArrayStack;
 import org.apache.commons.lang.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -7,12 +9,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * @NotThreadSafe Uses unsynchronized and not thread context bound stack to
+ * trace start time in #logEnter.
+ *
  * @author oblume
  */
+@NotThreadSafe
 @Aspect
 public abstract class AbstractSlf4JLoggingAspect extends AbstractLoggingAspect {
 
     private int depth = 1;
+
+    private ArrayStack stack = new ArrayStack();
 
     @Override
     protected void logEnter(JoinPoint jp, boolean indent) {
@@ -32,6 +40,10 @@ public abstract class AbstractSlf4JLoggingAspect extends AbstractLoggingAspect {
                     args += "Object: null";
                 }
             }
+            // push start of execution time onto stack
+            if (indent) {
+                pushTime();
+            }
             msg += (StringUtils.isEmpty(args)) ? "" : "(" + args + ")";
             log.trace(msg);
         }
@@ -43,9 +55,22 @@ public abstract class AbstractSlf4JLoggingAspect extends AbstractLoggingAspect {
         if (log.isTraceEnabled()) {
             String msg;
             msg = indent(--depth, "<<");
+            long time = System.currentTimeMillis() - popTime();
+            if (time > 0) {
+                msg += " [" + time + " ms]";
+            }
             msg += " " + jp.toString();
             log.trace(msg);
         }
+    }
+
+    private void pushTime() {
+        stack.push(System.currentTimeMillis());
+    }
+
+    private long popTime() {
+        Long start = (Long) stack.pop();
+        return start;
     }
 
     /**
