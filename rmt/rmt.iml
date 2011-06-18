@@ -17,11 +17,14 @@
     </facet>
     <facet type="Spring" name="Spring">
       <configuration>
+        <fileset id="web: application context" name="MVC application context" removed="true" />
         <fileset id="fileset1" name="My Fileset" removed="false">
           <file>file://$MODULE_DIR$/src/main/resources/applicationContext-service.xml</file>
           <file>file://$MODULE_DIR$/src/test/resources/applicationContext-test.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/applicationContext-security.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/applicationContext.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/applicationContext-dao.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/applicationContext-base.xml</file>
         </fileset>
       </configuration>
     </facet>

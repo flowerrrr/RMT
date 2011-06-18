@@ -12,6 +12,4 @@
     <context:annotation-config/>
     <context:component-scan base-package="de.flower.rmt.service"/>
 
-    <context:property-placeholder location="classpath:application.properties"/>
-
 </beans>
