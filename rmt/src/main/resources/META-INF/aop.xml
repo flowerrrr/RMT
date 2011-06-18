@@ -18,7 +18,7 @@
 
         <!-- we only use aspects defined in this file. allows greater flexibility. -->
         <concrete-aspect name="de.flower.common.aop.LoggingAspect" extends="de.flower.common.aop.AbstractSlf4JLoggingAspect">
-            <pointcut name="entry" expression="execution(* de.flower..*(..))"/>
+            <pointcut name="entry" expression="execution(* de.flower..*(..)) &amp;&amp; !execution(* get*(..))"/>
             <pointcut name="ctor" expression="execution(de.flower..new(..))"/>
         </concrete-aspect>
 

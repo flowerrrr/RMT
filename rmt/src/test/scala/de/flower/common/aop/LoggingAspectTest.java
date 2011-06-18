@@ -53,6 +53,7 @@ public class LoggingAspectTest {
         // b) matches a pointcut
         Team team = new Team();
         team.setName("foobar");
+        team.getUrl();
         team.equals(new Team());
 
         // read out the mockappender and look for output from the logging aspect
