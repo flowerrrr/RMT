@@ -80,7 +80,6 @@ test {
     jvmArgs = ["-javaagent:$configurations.aspectJAgent.singleFile", "-Daj.weaving.verbose=true"]
     println test.getJvmArgs()
     println test.getClasspath().getFiles()
-    exit
 }
 
 ideaModule {
