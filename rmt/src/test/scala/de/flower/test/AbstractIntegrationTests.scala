@@ -20,6 +20,7 @@ import org.slf4j.{LoggerFactory, Logger}
 import org.testng.annotations.{BeforeClass, Listeners, BeforeMethod, AfterMethod}
 import org.apache.wicket.event.IEvent
 import ch.qos.logback.classic.spi.ILoggingEvent
+import de.flower.rmt.Java2ScalaCopyContainer
 
 /**
  *

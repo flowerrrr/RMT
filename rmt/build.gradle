@@ -1,27 +1,90 @@
-apply plugin: 'scala'
 apply plugin: 'java'
+apply plugin: 'scala'
 apply plugin: 'idea'
 
 repositories {
     mavenCentral()
+    mavenRepo name: "Spring Maven MILESTONE Repository", urls: ["http://maven.springframework.org/milestone"]
 }
+
+configurations {
+    provided
+    aspectJAgent
+}
+
+// version properties
+version_spring = "3.0.5.RELEASE"
+version_wicket = "1.5-RC4.2"
+version_hibernate = "3.6.4.Final"
+version_scala = "2.9.0-1"
+
 
 dependencies {
-    compile 'org.springframework:spring-core:3.0.5.RELEASE'
-    compile 'org.springframework:spring-context:3.0.5.RELEASE'
-    compile 'org.springframework:spring-web:3.0.5.RELEASE'
-    compile 'org.apache.wicket:wicket:1.5-RC4.2'
-    compile 'org.apache.wicket:wicket-spring:1.5-RC4.2'
-    compile 'org.apache.wicket:wicket-ioc:1.5-RC4.2'
-    runtime 'ch.qos.logback:logback-classic:0.9.28'
+    compile(
+            'org.aspectj:aspectjrt:1.6.11',
+            'org.springframework:spring-core:' + version_spring,
+            'org.springframework:spring-context:' + version_spring,
+            'org.springframework.security:spring-security-web:' + version_spring,
+            'org.apache.wicket:wicket:' + version_wicket,
+            'org.apache.wicket:wicket-extensions:' + version_wicket,
+            'org.apache.wicket:wicket-spring:' + version_wicket,
+            'org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.0.FINAL',
+            'org.hibernate:hibernate-validator:4.1.0.Final',
+            'org.springframework.data:spring-data-jpa:1.0.0.M2',
+            'commons-beanutils:commons-beanutils:1.8.3'
+    )
+    runtime(
+            'org.slf4j:jcl-over-slf4j:1.6.1',
+            'ch.qos.logback:logback-classic:0.9.28',
+            'com.h2database:h2:1.3.155',
+            'commons-dbcp:commons-dbcp:1.4',
+            'org.hibernate:hibernate-core:' + version_hibernate,
+            'org.hibernate:hibernate-entitymanager:' + version_hibernate,
+            'mysql:mysql-connector-java:5.1.16',
+            'org.springframework:spring-aspects:' + version_spring,
+            'org.springframework.security:spring-security-config:' + version_spring,
+            'org.springframework.security:spring-security-web:' + version_spring
+
+    )
+    provided(
+
+    )
+    testCompile(
+            'org.hibernate:hibernate-core:' + version_hibernate,
+            'org.springframework:spring-test:' + version_spring,
+            'ch.qos.logback:logback-classic:0.9.28',
+            'org.dbunit:dbunit:2.4.8',
+            'org.scala-lang:scala-library:' + version_scala,
+            'org.testng:testng:6.0.1',
+            'org.scalatest:scalatest:1.4.RC2',
+            'com.google.guava:guava:r09'
+    )
+    scalaTools(
+            'org.scala-lang:scala-compiler:' + version_scala,
+            'org.scala-lang:scala-library:' + version_scala
+    )
+    aspectJAgent 'org.aspectj:aspectjweaver:1.6.11'
 
 }
 
-
-task hello << {
-    println 'Hello world'
+// add directory with db-unit files to test-classpath
+sourceSets.test.resources.srcDirs('/src/test/database')
+/**
+ * It's currently not possible to capture the console output of the tests.
+ * Until it is fixed (http://issues.gradle.org/browse/GRADLE-1009) use the
+ * log-file.
+ */
+test {
+    useTestNG()
+    println "-javaagent:$configurations.aspectJAgent.singleFile"
+    jvmArgs = ["-javaagent:$configurations.aspectJAgent.singleFile", "-Daj.weaving.verbose=true"]
+    println test.getJvmArgs()
+    println test.getClasspath().getFiles()
+    exit
 }
 
-task intro(dependsOn: hello) << {
-    println "I'm Gradle"
+ideaModule {
+    beforeConfigured { module ->
+        module.dependencies.clear()
+    }
 }

@@ -17,10 +17,8 @@
 
     <context:property-placeholder location="classpath:application.properties"/>
 
-<!--
-    &lt;!&ndash; load time weaving support &ndash;&gt;
-    <context:load-time-weaver aspectj-weaving="autodetect"/>
--->
+    <!-- load time weaving support -->
+    <!--<context:load-time-weaver aspectj-weaving="autodetect"/>-->
 
     <!-- make @Configurable work -->
     <context:spring-configured />
