@@ -7,6 +7,7 @@ import de.flower.common.model.BaseEntity;
 import de.flower.common.util.ReflectionUtil;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -22,6 +23,7 @@ import javax.validation.ConstraintValidatorContext;
 /**
  * @author oblume
  */
+@Configurable
 public class UniqueValidator implements ConstraintValidator<Unique, BaseEntity> {
 
     private final static Logger log = Slf4jUtil.getLogger();

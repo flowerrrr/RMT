@@ -1,0 +1,22 @@
+<!DOCTYPE aspectj PUBLIC
+        "-//AspectJ//DTD//EN" "http://www.eclipse.org/aspectj/dtd/aspectj.dtd">
+<aspectj>
+
+    <weaver options="-verbose -showWeaveInfo
+          -XmessageHandlerClass:org.springframework.aop.aspectj.AspectJWeaverMessageHandler">
+
+        <!-- required for /de/flower/common/aop/ConfigurableTest.scala -->
+        <include within="de.flower.common.aop.ConfigurableFoo"/>
+
+        <!-- exclude generated proxy classes -->
+        <exclude within="*..*CGLIB*" />
+        <exclude within="*..*javassist*" />
+
+    </weaver>
+
+    <aspects>
+
+
+    </aspects>
+
+</aspectj>

@@ -6,6 +6,7 @@
       <root url="jar://$USER_HOME$/.gradle/cache/commons-beanutils/commons-beanutils/jars/commons-beanutils-1.8.3.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/cache/org.aspectj/aspectjrt/jars/aspectjrt-1.6.11.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/cache/org.aspectj/aspectjweaver/jars/aspectjweaver-1.6.8.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-aspects/jars/spring-aspects-3.0.5.RELEASE.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

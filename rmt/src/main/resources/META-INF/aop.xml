@@ -7,6 +7,7 @@
 
         <!-- only weave classes in our application-specific packages -->
         <include within="de.flower.rmt..*"/>
+        <include within="de.flower.common.validation.UniqueValidator" />
 
         <!-- exclude generated proxy classes -->
         <exclude within="*..*CGLIB*" />
