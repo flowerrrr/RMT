@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author oblume
  */
 @MappedSuperclass
-public abstract class AbstractBaseEntity implements Serializable, BaseEntity {
+public abstract class AbstractBaseEntity implements Serializable, BaseEntity, Cloneable {
 
     /** This constant is only needed for serialization purposes. It overwrites the default mechanism and so makes the BE longer binary compatible */
     private static final long serialVersionUID = 1L;
@@ -52,30 +52,24 @@ public abstract class AbstractBaseEntity implements Serializable, BaseEntity {
 		return retVal.toString();
 	}
 
-	/**
-	 * Copies only the state, not the references - so the copy is shallow.
-	 * The @Id fields are not copied. Reason: you cannot copy a persistent object
-	 * with already existing primary key.
-	 * Subclasses must override this method and copy field for field to
-	 * the new object.
-	 *
-	 * @return a shallow copy of the BaseBE
-	 */
-	protected AbstractBaseEntity copyShallow() {
-		AbstractBaseEntity shallowCopy = null;
-
-		try {
-			shallowCopy = this.getClass().newInstance();
-		} catch (InstantiationException e) {
-			throw new RuntimeException("Cannot shallow copy class: "
-					+ this.getClass() + " due to reflection problems.", e);
-		} catch (IllegalAccessException e) {
-			throw new RuntimeException("Cannot shallow copy class: "
-					+ this.getClass() + " due to reflection problems.", e);
-		}
-
-		return shallowCopy;
-	}
+    /**
+     * The @Id fields are not copied.
+     * Reason: you cannot copy a persistent object
+     * with already existing primary key.
+     *
+     * @return
+     */
+    @Override
+    public AbstractBaseEntity clone() {
+        AbstractBaseEntity clone = null;
+        try {
+            clone = (AbstractBaseEntity) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+        clone.setId(null);
+        return clone;
+    }
 
 	/**
 	 * Update from object.

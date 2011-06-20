@@ -9,13 +9,14 @@ import javax.persistence.{PersistenceContext, EntityManager}
 import org.scalatest.Assertions
 import org.springframework.transaction.PlatformTransactionManager
 import de.flower.rmt.model.Club
-import de.flower.rmt.repository.{IClubRepo, ITeamRepo}
 import com.google.common.base.Preconditions._
 import javax.sql.DataSource
 import java.lang.reflect.Method
 import org.slf4j.{LoggerFactory, Logger}
 import org.testng.annotations.{BeforeClass, Listeners, BeforeMethod, AfterMethod}
 import ch.qos.logback.classic.spi.ILoggingEvent
+import de.flower.rmt.repository.{IUserRepo, IClubRepo, ITeamRepo}
+
 /**
  *
  * @author oblume
@@ -37,7 +38,11 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
     @Autowired
     protected var teamRepo: ITeamRepo = _
 
-    @Autowired var clubRepo: IClubRepo = _
+    @Autowired
+    protected var clubRepo: IClubRepo = _
+
+    @Autowired
+    protected var userRepo: IUserRepo = _
 
 
     /**************************************************************************/

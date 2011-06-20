@@ -1,11 +1,8 @@
-package de.flower.common.validation;
-
-import de.flower.common.model.BaseEntity;
+package de.flower.common.validation.unique;
 
 import javax.persistence.UniqueConstraint;
 import javax.validation.Constraint;
 import javax.validation.Payload;
-import javax.validation.groups.Default;
 import java.lang.annotation.*;
 
 /**

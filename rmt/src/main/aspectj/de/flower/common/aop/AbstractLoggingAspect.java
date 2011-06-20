@@ -31,6 +31,7 @@ public abstract class AbstractLoggingAspect {
         logEnter(jp, false);
     }
 
+
 /*
     Does not work. Produces this error in unit tests: Caused by: java.lang.VerifyError: (class: de/flower/rmt/model/Team, method: setName signature: (Ljava/lang/String;)V) Incompatible object argument for function call
     Will implement stop watch with logEnter and logExit.

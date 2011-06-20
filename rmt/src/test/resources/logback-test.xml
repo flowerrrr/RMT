@@ -39,6 +39,7 @@
 
     <!-- Tracing loggers -->
     <logger name="trace.de.flower" level="TRACE"/>
+    <logger name="trace.de.flower.common.model.AbstractBaseEntity" level="INFO" />
 
     <root level="INFO">
         <appender-ref ref="STDOUT"/>

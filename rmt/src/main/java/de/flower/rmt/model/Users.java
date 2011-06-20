@@ -11,7 +11,6 @@ import java.util.Set;
  * @author oblume
  */
 @Entity
-@Table
 public class Users extends AbstractBaseEntity {
 
     /**
@@ -44,4 +43,11 @@ public class Users extends AbstractBaseEntity {
 
     @ManyToOne
     private Club club;
+
+    public Users(String username, String password, boolean enabled, String email) {
+        this.username = username;
+        this.password = password;
+        this.enabled = enabled;
+        this.email = email;
+    }
 }

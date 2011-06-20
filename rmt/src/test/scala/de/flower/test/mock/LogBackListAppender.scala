@@ -58,7 +58,7 @@ class LogBackListAppender extends AppenderBase[ILoggingEvent] with IListAppender
         throw new UnsupportedOperationException("Feature not implemented!")
     }
 
-    protected def append(e: ILoggingEvent) = {
+    protected def append(e: ILoggingEvent) {
         list += e
     }
 }

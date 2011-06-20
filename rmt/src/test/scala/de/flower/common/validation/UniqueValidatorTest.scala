@@ -6,7 +6,9 @@ import org.testng.annotations.Test
 import javax.validation.{ConstraintViolation, ConstraintViolationException, Validator}
 import org.testng.Assert._
 import scala.collection.JavaConversions._
-import de.flower.rmt.model.Team
+import de.flower.rmt.model.{Users, Team}
+import javax.persistence.Column
+import org.mockito.Mockito._
 
 /**
  *
@@ -20,7 +22,7 @@ class UniqueValidatorTest extends AbstractIntegrationTests {
 
 
     @Test
-    def testValidation() {
+    def testTableUnique() {
 
         // save one entity
         var teamName = "fc bayern"
@@ -52,4 +54,5 @@ class UniqueValidatorTest extends AbstractIntegrationTests {
 
         teamRepo save entity
     }
+
 }
