@@ -26,7 +26,6 @@ dependencies {
             'org.apache.wicket:wicket:' + version_wicket,
             'org.apache.wicket:wicket-extensions:' + version_wicket,
             'org.apache.wicket:wicket-spring:' + version_wicket,
-            'org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.0.FINAL',
             'org.hibernate:hibernate-validator:4.1.0.Final',
             'org.springframework.data:spring-data-jpa:1.0.0.M2',
             'commons-beanutils:commons-beanutils:1.8.3'
