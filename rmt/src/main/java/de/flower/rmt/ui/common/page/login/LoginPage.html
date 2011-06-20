@@ -10,9 +10,11 @@
         <ul>
             <li>Username: <input name="j_username" type="text"/></li>
             <li>Password: <input name="j_password" type="password"/></li>
+            <li><input type="checkbox" name="_spring_security_remember_me" checked="true"/>
+                <wicket:message key="login.rememberme">[Remember me]</wicket:message>
+            </li>
         </ul>
-        <input type="checkbox" name="_spring_security_remember_me" value="true"/>
-        <input type="submit" value="TODO"/>
+        <input type="submit" value="Login"/>
     </form>
 
 </wicket:extend>
