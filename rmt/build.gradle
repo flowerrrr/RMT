@@ -69,6 +69,10 @@ test {
     useTestNG()
 }
 
+/**
+ * Use this task to update idea project file with depenendencies.
+ * It will remove existing depenendcies before updating them.
+ */
 ideaModule {
     beforeConfigured { module ->
         module.dependencies.clear()
