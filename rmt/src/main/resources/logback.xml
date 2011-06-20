@@ -5,7 +5,7 @@
         <!-- encoders are assigned the type
      ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>%d{HH:mm:ss.SSS} [%.5thread] %-5level %-36logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
@@ -15,7 +15,7 @@
       <!-- encoders are assigned the type
            ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
       <encoder>
-          <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+          <pattern>%d{HH:mm:ss.SSS} [%.5thread] %-5level %-36logger{36} - %msg%n</pattern>
       </encoder>
     </appender>
 
@@ -27,7 +27,7 @@
     <logger name="de.flower" level="DEBUG" />
 
     <logger name="trace" level="TRACE" />
-
+    <logger name="trace.de.flower.common.model" level="INFO" />
 
 
     <root level="INFO">
