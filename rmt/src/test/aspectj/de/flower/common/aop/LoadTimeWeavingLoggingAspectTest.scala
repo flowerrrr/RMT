@@ -2,7 +2,6 @@ package de.flower.common.aop
 
 import de.flower.test.AbstractIntegrationTests
 import org.testng.annotations.Test
-import de.flower.common.aop.LoggingAspectTest.FooBar
 
 
 /**
@@ -12,9 +11,9 @@ import de.flower.common.aop.LoggingAspectTest.FooBar
 
 class LoadTimeWeavingLoggingAspectTest extends AbstractIntegrationTests {
 
-    @Test
+    @Test(expectedExceptions = Array(classOf[AssertionError]))
     def testAspect() {
-        LoggingAspectTest.runTest()
+        LoggingAspectTest.runTest
     }
 
 }

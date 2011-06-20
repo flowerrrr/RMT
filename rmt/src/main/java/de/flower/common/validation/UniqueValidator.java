@@ -23,7 +23,6 @@ import javax.validation.ConstraintValidatorContext;
 /**
  * @author oblume
  */
-@Configurable
 public class UniqueValidator implements ConstraintValidator<Unique, BaseEntity> {
 
     private final static Logger log = Slf4jUtil.getLogger();

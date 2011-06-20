@@ -1,9 +1,7 @@
 package de.flower.common.aop;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 
@@ -14,6 +12,9 @@ public abstract class AbstractLoggingAspect {
 
     @Pointcut("")
     abstract protected void entry();
+
+    @Pointcut("")
+    protected abstract void ctor();
 
     @Pointcut("entry() && !within(AbstractLoggingAspect+)")
     protected void trace() {

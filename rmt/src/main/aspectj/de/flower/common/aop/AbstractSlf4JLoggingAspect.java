@@ -3,7 +3,6 @@ package de.flower.common.aop;
 import org.apache.commons.collections.ArrayStack;
 import org.apache.commons.lang.StringUtils;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +14,6 @@ import org.slf4j.LoggerFactory;
  */
 // TODO enable again
 // @NotThreadSafe
-@Aspect
 public abstract class AbstractSlf4JLoggingAspect extends AbstractLoggingAspect {
 
     private int depth = 1;

@@ -14,7 +14,7 @@
           <element id="library" level="project" name="Spring" />
           <element id="library" level="project" name="Wicket" />
           <element id="library" level="project" name="Validation" />
-          <element id="library" level="project" name="Misc" />
+          <element id="library" level="project" name="AspectJ" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="rmt/web/Web" />
