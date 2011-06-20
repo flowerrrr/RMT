@@ -26,6 +26,8 @@
 
     <logger name="de.flower" level="DEBUG" />
 
+    <logger name="trace" level="TRACE" />
+
 
 
     <root level="INFO">

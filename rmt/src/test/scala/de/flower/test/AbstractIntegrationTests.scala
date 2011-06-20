@@ -1,16 +1,13 @@
 package de.flower.test
 
 import mock.{IListAppender, LogBackListAppender}
-import org.springframework.test.context.transaction.TransactionalTestExecutionListener
-import org.springframework.transaction.annotation.Transactional
-import org.springframework.test.context.{TestExecutionListeners, ContextConfiguration}
+import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests
 import org.springframework.beans.factory.annotation.Autowired
 import de.flower.rmt.service.ITeamManager
-import javax.persistence.{TransactionRequiredException, PersistenceContext, EntityManager}
+import javax.persistence.{PersistenceContext, EntityManager}
 import org.scalatest.Assertions
 import org.springframework.transaction.PlatformTransactionManager
-import org.hibernate.AssertionFailure
 import de.flower.rmt.model.Club
 import de.flower.rmt.repository.{IClubRepo, ITeamRepo}
 import com.google.common.base.Preconditions._
@@ -18,10 +15,7 @@ import javax.sql.DataSource
 import java.lang.reflect.Method
 import org.slf4j.{LoggerFactory, Logger}
 import org.testng.annotations.{BeforeClass, Listeners, BeforeMethod, AfterMethod}
-import org.apache.wicket.event.IEvent
 import ch.qos.logback.classic.spi.ILoggingEvent
-import de.flower.rmt.Java2ScalaCopyContainer
-
 /**
  *
  * @author oblume
@@ -95,8 +89,7 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
         val db: Database = new Database(properties);
         db.setDataSource(dataSource);
 
-        db.deleteAll(Database.createDataSet("/truncate_tables.xml"));
-        db.cleanInsert(Database.createDataSet("/test_data.xml"));
+        db.cleanInsert(Database.createDataSet("/data/test_data.xml"));
 
         // checkDataConsistency();
     }
@@ -111,31 +104,6 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
         }
     }
 
-    /**
-     * Sync hibernate with database. This is done inside the transaction shortly before commiting/rollbacking the transaction.
-     *
-     * @param method the method
-     */
-    @AfterMethod
-    def syncDatabase(method: Method) {
-        log info "Flushing EM"
-        try {
-            em.flush();
-        } catch {
-            case e: AssertionFailure => {
-                log info "Test had previous hibernate errors. Cannot sync with database."
-            }
-            case e: TransactionRequiredException => {
-                log info "Test " + method.getName + " is not transactional."
-            }
-            case e: RuntimeException => {
-                var message: String = "Testmethod " + method.getName() +
-                        " failed. Fix this testcase cause all following tests will be skipped after this error!";
-                log.error(message, e);
-                throw new RuntimeException(message, e);
-            }
-        }
-    }
 
     /**
      * Test started.

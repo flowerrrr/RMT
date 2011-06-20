@@ -15,6 +15,13 @@
           <element id="library" level="project" name="Wicket" />
           <element id="library" level="project" name="Validation" />
           <element id="library" level="project" name="AspectJ" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/commons-lang/commons-lang/jars/commons-lang-2.4.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/com.mysema.querydsl/querydsl-core/jars/querydsl-core-2.1.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/com.mysema.querydsl/querydsl-jpa/jars/querydsl-jpa-2.1.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/net.sourceforge.findbugs/jsr305/jars/jsr305-1.3.2.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-config/jars/spring-security-config-3.0.5.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/commons-collections/commons-collections/jars/commons-collections-3.2.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/commons-beanutils/commons-beanutils/jars/commons-beanutils-1.8.3.jar" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="rmt/web/Web" />

@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!-- data set used to truncate tables before doing a clean insert. -->
-<dataset>
-	<club/>
-	<users />
-	<authorities />
-    <team />
-</dataset>

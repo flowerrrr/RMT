@@ -1,6 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
+    <!-- clubs. needs to be first because of fk constraints -->
     <club id="1" name="Juventus Urin"/>
+
     <users id="1" enabled="true" password="admin" username="admin" email="admin@foo.bar" club_id="1"/>
     <users id="2" enabled="true" password="manager" username="manager" email="manager@foo.bar" club_id="1"/>
     <users id="3" enabled="true" password="player" username="player" email="player@foo.bar" club_id="1"/>
@@ -10,4 +12,9 @@
     <authorities id="3" authority="ROLE_PLAYER" username="player"/>
     <authorities id="4" authority="ROLE_MANAGER" username="both"/>
     <authorities id="5" authority="ROLE_PLAYER" username="both"/>
+
+
+    <team id="1" name="Juventus Urin" club_id="1" />
+    <team id="2" name="Juve Amateure" club_id="1" />
+
 </dataset>
