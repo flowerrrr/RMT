@@ -1,13 +1,13 @@
 package de.flower.common.spring;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import de.flower.common.logging.Slf4jUtil;
 import org.slf4j.Logger;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Wrapper to allow return a reference to the Spring Application Context from
@@ -16,7 +16,7 @@ import org.springframework.context.ApplicationContextAware;
  * for this bean to be initialized during application startup.
  *
  * Note: This is a general way of accessing spring beans from legacy code.
- * In a webcontext one could also use {@link org.springframework.web.context.support.WebApplicationContextUtils#getWebApplicationContext(javax.servlet.ServletContext)}
+ * In a webcontext one could also use {org.springframework.web.context.support.WebApplicationContextUtils#getWebApplicationContext(javax.servlet.ServletContext)}
  *
  * @author oblume
  */

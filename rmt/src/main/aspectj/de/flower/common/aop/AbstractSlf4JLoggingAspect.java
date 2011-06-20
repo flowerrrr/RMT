@@ -3,17 +3,18 @@ package de.flower.common.aop;
 import org.apache.commons.collections.ArrayStack;
 import org.apache.commons.lang.StringUtils;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * @author oblume
  * @NotThreadSafe Uses unsynchronized and not thread context bound stack to
  * trace start time in #logEnter.
- *
- * @author oblume
  */
 // TODO enable again
 // @NotThreadSafe
+@Aspect
 public abstract class AbstractSlf4JLoggingAspect extends AbstractLoggingAspect {
 
     private int depth = 1;
@@ -74,7 +75,7 @@ public abstract class AbstractSlf4JLoggingAspect extends AbstractLoggingAspect {
     /**
      * Creates and returns a logger with a name based on the target object.
      * Allows controlling trace logging through enabling loggers in logging config.
-     *
+     * <p/>
      * Performance: It is assumed that the underlying log implementation uses a
      * caching mechanism (logback does).
      *

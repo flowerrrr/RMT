@@ -8,6 +8,15 @@
   </component>
   <component name="FacetAutodetectingManager">
     <autodetection-disabled>
+      <facet-type id="BeanValidation">
+        <modules>
+          <module name="rmt">
+            <files>
+              <file url="file://$PROJECT_DIR$/src/main/resources/META-INF/validation.xml" />
+            </files>
+          </module>
+        </modules>
+      </facet-type>
       <facet-type id="google-app-engine">
         <modules>
           <module name="rmt">
