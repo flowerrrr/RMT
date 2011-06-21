@@ -51,7 +51,8 @@ dependencies {
             'org.testng:testng:6.0.1',
             'org.scalatest:scalatest:1.4.RC2',
             'com.google.guava:guava:r09',
-            'org.mockito:mockito-core:1.8.5'
+            'org.mockito:mockito-core:1.8.5',
+            'javax.servlet:servlet-api:2.5'
     )
     scalaTools(
             'org.scala-lang:scala-compiler:' + version_scala,

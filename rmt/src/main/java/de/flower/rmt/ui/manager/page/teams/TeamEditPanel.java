@@ -1,11 +1,11 @@
 package de.flower.rmt.ui.manager.page.teams;
 
 import de.flower.common.ui.FormMode;
+import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
+import de.flower.common.ui.ajax.updatebehavior.events.Event;
 import de.flower.common.ui.form.MyForm;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.service.ITeamManager;
-import de.flower.rmt.ui.common.ajax.AjaxEvent;
-import de.flower.rmt.ui.common.ajax.AjaxRespondListener;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
@@ -66,7 +66,7 @@ public class TeamEditPanel extends BasePanel {
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 // TODO validate data
                 teamManager.save((Team) form.getModelObject());
-                target.registerRespondListener(new AjaxRespondListener(AjaxEvent.MYTEAM_CREATED));
+                target.registerRespondListener(new AjaxRespondListener(Event.EntityCreated(Team.class), Event.EntityUpdated(Team.class)));
                 ModalWindow.closeCurrent(target);
             }
 
