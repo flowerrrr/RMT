@@ -26,7 +26,7 @@ import de.flower.rmt.repository.{IUserRepo, IClubRepo, ITeamRepo}
 //@TestExecutionListeners(Array(classOf[TransactionalTestExecutionListener]))
 // @Transactional
 @ContextConfiguration(locations = Array("/applicationContext-test.xml"))
-class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Assertions {
+class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Assertions with TestMethodListener {
 
     protected var log: Logger = LoggerFactory.getLogger(this.getClass());
 
@@ -109,28 +109,4 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
         }
     }
 
-
-    /**
-     * Test started.
-     *
-     * @param method the method
-     */
-    @BeforeMethod(alwaysRun = true)
-    def testStarted(method: Method): Unit = {
-        log.info("***************************************************************")
-        log.info("Test [" + method.getName + "] started.")
-        log.info("***************************************************************")
-    }
-
-    /**
-     * Test finished.
-     *
-     * @param method the method
-     */
-    @AfterMethod(alwaysRun = true)
-    def testFinished(method: Method): Unit = {
-        log.info("***************************************************************")
-        log.info("Test [" + method.getName + "()] finshed.")
-        log.info("***************************************************************")
-    }
 }

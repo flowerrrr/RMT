@@ -13,7 +13,7 @@ import org.slf4j.{LoggerFactory, Logger}
 
 trait TestMethodListener {
 
-    protected var log: Logger = LoggerFactory.getLogger(this.getClass());
+    private val log: Logger = LoggerFactory.getLogger(this.getClass());
 
 
     /**
