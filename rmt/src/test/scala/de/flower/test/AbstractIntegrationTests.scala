@@ -11,9 +11,8 @@ import org.springframework.transaction.PlatformTransactionManager
 import de.flower.rmt.model.Club
 import com.google.common.base.Preconditions._
 import javax.sql.DataSource
-import java.lang.reflect.Method
 import org.slf4j.{LoggerFactory, Logger}
-import org.testng.annotations.{BeforeClass, Listeners, BeforeMethod, AfterMethod}
+import org.testng.annotations.{BeforeClass, Listeners, BeforeMethod}
 import ch.qos.logback.classic.spi.ILoggingEvent
 import de.flower.rmt.repository.{IUserRepo, IClubRepo, ITeamRepo}
 
