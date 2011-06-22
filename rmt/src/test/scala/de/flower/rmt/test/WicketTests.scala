@@ -4,6 +4,7 @@ import de.flower.test.WicketUnitTestBase
 import org.springframework.context.ApplicationContext
 import org.apache.wicket.protocol.http.WebApplication
 import de.flower.rmt.ui.app.Application
+import de.flower.rmt.ui.common.app.TestApplication
 
 /**
  * 
@@ -13,6 +14,6 @@ import de.flower.rmt.ui.app.Application
 class WicketTests extends WicketUnitTestBase {
 
     protected def createWebApp(ctx: ApplicationContext, flag: Boolean): WebApplication = {
-        return new Application();
+        return new TestApplication(ctx);
     }
 }

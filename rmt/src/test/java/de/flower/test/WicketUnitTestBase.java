@@ -4,9 +4,7 @@ import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.util.tester.WicketTester;
 import org.apache.wicket.util.tester.WicketTesterHelper;
 import org.springframework.context.ApplicationContext;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -16,7 +14,7 @@ import static org.mockito.Mockito.validateMockitoUsage;
 /**
  * Base class for testing wicket components using TestNG.
  */
-@ContextConfiguration(locations = { "file:src/test/resources/applicationContext.xml" })
+@ContextConfiguration(locations = { "classpath:/applicationContext-test.xml"  })
 // @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public abstract class WicketUnitTestBase extends AbstractTestNGSpringContextTests {
 

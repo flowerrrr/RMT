@@ -15,4 +15,8 @@
     <import resource="applicationContext-dao.xml"/>
     <import resource="applicationContext-service.xml"/>
 
+    <!-- for detecting wicketApplication -->
+    <context:annotation-config/>
+    <context:component-scan base-package="de.flower.rmt.ui"/>
+
 </beans>

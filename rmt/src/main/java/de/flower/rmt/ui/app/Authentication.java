@@ -23,7 +23,9 @@ public class Authentication {
     public static List<String> getRolesIfSignedIn() {
         List<String> roles = new ArrayList<String>();
         org.springframework.security.core.Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        addRolesFromAuthentication(roles, authentication);
+        if (authentication != null) {
+            addRolesFromAuthentication(roles, authentication);
+        }
         return roles;
     }
 

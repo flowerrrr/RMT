@@ -15,9 +15,12 @@ public class Application extends WebApplication {
     protected void init() {
         super.init();
         // add support for @SpringBean
-        getComponentInstantiationListeners().add(new SpringComponentInjector(this));
-
+        getComponentInstantiationListeners().add(getSpringComponentInjector());
         initBookmarkablePages();
+    }
+
+    protected SpringComponentInjector getSpringComponentInjector() {
+        return new SpringComponentInjector(this);
     }
 
     private void initBookmarkablePages() {
