@@ -7,6 +7,8 @@ import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.lang.reflect.Modifier;
+
 /**
  * @author oblume
  * @NotThreadSafe Uses unsynchronized and not thread context bound stack to
@@ -24,7 +26,10 @@ public abstract class AbstractSlf4JLoggingAspect extends AbstractLoggingAspect {
     @Override
     protected void logEnter(JoinPoint jp, boolean indent) {
         Logger log = getLogger(jp.getStaticPart());
-        if (log.isTraceEnabled()) {
+        // public method -> debug, private -> trace
+        boolean publicMethod = isPublicMethod(jp.getStaticPart());
+        boolean logEnabled = (publicMethod) ? log.isDebugEnabled() : log.isTraceEnabled();
+        if (logEnabled) {
             String msg;
             msg = (indent == true) ? indent(depth++, ">>") : ">> new ";
             // msg += "<" + jp.getKind();
@@ -44,14 +49,25 @@ public abstract class AbstractSlf4JLoggingAspect extends AbstractLoggingAspect {
                 pushTime();
             }
             msg += (StringUtils.isEmpty(args)) ? "" : "(" + args + ")";
-            log.trace(msg);
+            if (publicMethod == true) {
+                log.debug(msg);
+            } else {
+                log.trace(msg);
+            }
         }
     }
+
+    private boolean isPublicMethod(JoinPoint.StaticPart jp) {
+        return Modifier.isPublic(jp.getSignature().getModifiers());
+    }
+
 
     @Override
     protected void logExit(JoinPoint.StaticPart jp) {
         Logger log = getLogger(jp);
-        if (log.isTraceEnabled()) {
+        boolean publicMethod = isPublicMethod(jp);
+        boolean logEnabled = (publicMethod) ? log.isDebugEnabled() : log.isTraceEnabled();
+        if (logEnabled) {
             String msg;
             msg = indent(--depth, "<<");
             long time = System.currentTimeMillis() - popTime();
@@ -59,7 +75,11 @@ public abstract class AbstractSlf4JLoggingAspect extends AbstractLoggingAspect {
                 msg += " [" + time + " ms]";
             }
             msg += " " + jp.toString();
-            log.trace(msg);
+            if (publicMethod == true) {
+                log.debug(msg);
+            } else {
+                log.trace(msg);
+            }
         }
     }
 
