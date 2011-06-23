@@ -1,9 +1,11 @@
 package de.flower.common.ui.ajax.updatebehavior.events;
 
+import java.io.Serializable;
+
 /**
  * @author oblume
  */
-public abstract class Event {
+public abstract class Event implements Serializable {
 
     private Class<?> clazz;
 

@@ -20,7 +20,7 @@
     </appender>
 
     <logger name="org.hibernate.cfg" level="WARN"/>
-    <logger name="org.hibernate.sql" level="DEBUG"/>
+    <logger name="org.hibernate.SQL" level="DEBUG"/>
     <logger name="org.hibernate.type" level="WARN"/>
     <!-- set to TRACE to see sql parameter values -->
     <logger name="org.hibernate" level="INFO"/>
@@ -29,7 +29,6 @@
     <logger name="org.springframework.aop" level="DEBUG" />
     <logger name="org.springframework.instrument" level="DEBUG" />
     -->
-    <logger name="AspectJ Weaver" level="INFO"/>
     <!-- to see which beans are instantiated by spring -->
     <logger name="org.springframework.beans.factory" level="INFO"/>
     <logger name="org.aspectj" level="INFO"/>

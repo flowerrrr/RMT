@@ -15,7 +15,7 @@ import scala.collection.JavaConversions._
  * Base class for testing wicket components using TestNG.
  */
 @ContextConfiguration(locations = Array("classpath:/applicationContext-test.xml"))
-abstract class AbstractWicketTests extends AbstractTestNGSpringContextTests {
+abstract class AbstractWicketTests extends AbstractIntegrationTests {
 
     @BeforeMethod def init: Unit = {
         createTester(applicationContext)

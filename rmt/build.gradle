@@ -60,6 +60,10 @@ dependencies {
     )
 }
 
+// wicket app: need to copy .html files from java-src to classes
+sourceSets.main.resources.srcDirs('/src/main/java')
+sourceSets.test.resources.srcDirs('/src/test/java')
+
 // add directory with db-unit files to test-classpath
 sourceSets.test.resources.srcDirs('/src/test/database')
 /**

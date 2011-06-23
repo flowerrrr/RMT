@@ -104,7 +104,7 @@ public class UniqueValidator implements ConstraintValidator<Unique, BaseEntity> 
             boolean valid = rowCount(entity, columnResolver.map2FieldNames(entity.getClass(), constraint.columnNames)).intValue() == 0;
             if (!valid) {
                 context.buildConstraintViolationWithTemplate("{de.flower.validation.constraints.unique.message." + constraint.name + "}")
-                        .addNode(constraint.name).addConstraintViolation();
+                        .addNode(constraint.name).addConstraintViolation().disableDefaultConstraintViolation();
             }
             return valid;
         }

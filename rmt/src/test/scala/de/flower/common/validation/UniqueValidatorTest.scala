@@ -38,7 +38,7 @@ class UniqueValidatorTest extends AbstractIntegrationTests {
         // try to save new team with same name
         entity = new Team(teamName, null, club)
         violations = validator.validate(entity)
-        assertEquals(1, violations.size())
+        assertEquals(1, violations.size(), violations.toString())
 
         var violation: ConstraintViolation[Team] = violations.toList.head
         log info "" + violation.getConstraintDescriptor

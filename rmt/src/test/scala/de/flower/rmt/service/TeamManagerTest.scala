@@ -21,7 +21,7 @@ class TeamManagerTest extends AbstractIntegrationTests {
     @Test
     def testSave() {
         var entity = new Team()
-        entity setName "Juve Amateure"
+        entity setName "Foo Bar"
         entity setClub club
         teamManager.save(entity)
 
