@@ -20,7 +20,7 @@ class AjaxUpdateBehaviorTestPage extends WebPage {
     entity = new Entity("foo")
     var label: Label = new Label("label", new PropertyModel[Entity](entity, "label"))
     add(label)
-    label.add(new AjaxUpdateBehavior(label, Event.EntityAll(classOf[Entity])))
+    label.add(new AjaxUpdateBehavior(Event.EntityAll(classOf[Entity])))
     add(new AjaxLink[Void](("link1")) {
         def onClick(target: AjaxRequestTarget): Unit = {
             entity.setLabel("bar")

@@ -60,7 +60,7 @@ dependencies {
     )
 }
 
-// wicket app: need to copy .html files from java-src to classes
+// wicket app: need to copy .html files from java-src to output
 sourceSets.main.resources.srcDirs('/src/main/java')
 sourceSets.test.resources.srcDirs('/src/test/java')
 

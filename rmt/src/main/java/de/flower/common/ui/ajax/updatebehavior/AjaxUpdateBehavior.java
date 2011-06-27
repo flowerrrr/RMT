@@ -11,8 +11,16 @@ public class AjaxUpdateBehavior extends Behavior {
 
     private Event registeredEvent;
 
-    public AjaxUpdateBehavior(Component component, Event registeredEvent) {
+    public AjaxUpdateBehavior(Event registeredEvent) {
         this.registeredEvent = registeredEvent;
+    }
+
+    /**
+     * Called immediately after attaching the behavior. Helps to make the constructor leaner.
+     * @param component
+     */
+    @Override
+    public void bind(Component component) {
         component.setOutputMarkupId(true);
     }
 

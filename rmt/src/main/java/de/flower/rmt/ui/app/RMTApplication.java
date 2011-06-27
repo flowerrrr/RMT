@@ -5,11 +5,13 @@ import de.flower.rmt.ui.common.page.login.LoginPage;
 import de.flower.rmt.ui.manager.ManagerHomePage;
 import de.flower.rmt.ui.manager.page.teams.TeamsPage;
 import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.wicket.request.Request;
+import org.apache.wicket.request.Response;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.springframework.stereotype.Component;
 
 @Component(value = "wicketApplication")
-public class Application extends WebApplication {
+public class RMTApplication extends WebApplication {
 
     @Override
     protected void init() {
@@ -35,6 +37,11 @@ public class Application extends WebApplication {
     @Override
     public Class getHomePage() {
         return HomePageResolver.getHomePage();
+    }
+
+    @Override
+    public RMTSession newSession(Request request, Response response) {
+        return new RMTSession(request);
     }
 
 

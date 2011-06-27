@@ -20,6 +20,7 @@
     </appender>
 
     <logger name="org.apache.wicket" level="INFO" />
+    <logger name="org.wicketstuff" level="DEBUG" />
     <logger name="org.springframework" level="INFO" />
 
     <logger name="org.hibernate.SQL" level="DEBUG" />

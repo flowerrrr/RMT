@@ -22,8 +22,10 @@ public class PropertyValidation extends Behavior {
 
     private final static Logger log = Slf4jUtil.getLogger();
 
-    public PropertyValidation(Form<?> form) {
-        assign(form);
+    public PropertyValidation(Form<?> form, boolean lazyInit) {
+        if (!lazyInit) {
+            assign(form);
+        }
     }
 
     static class JSR303ValidatorFormComponentVisitor implements IVisitor<Component, Void> {
@@ -40,10 +42,16 @@ public class PropertyValidation extends Behavior {
 
     private boolean assigned = false;
 
+    /**
+     * if lazyinit == true then the validator will be bound juts before rendering.
+     * helps keeping the form initialization code lean.
+     *
+     * @param context
+     */
     @Override
-    public synchronized void beforeRender(Component context) {
+    public synchronized void onConfigure(Component context) {
         assign(context);
-        super.beforeRender(context);
+        super.onConfigure(context);
     }
 
     private void assign(Component context) {

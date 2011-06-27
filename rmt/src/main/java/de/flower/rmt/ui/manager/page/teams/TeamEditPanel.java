@@ -4,22 +4,21 @@ import de.flower.common.ui.FormMode;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.events.Event;
 import de.flower.common.ui.form.MyForm;
+import de.flower.common.ui.form.ValidatedTextField;
 import de.flower.rmt.model.Team;
+import de.flower.rmt.model.Users;
 import de.flower.rmt.service.ITeamManager;
+import de.flower.rmt.ui.app.RMTSession;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
 import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
-import org.apache.wicket.feedback.ComponentFeedbackMessageFilter;
 import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-import org.wicketstuff.jsr303.PropertyValidation;
+import org.wicketstuff.jsr303.BeanValidator;
 
 /**
  * @author oblume
@@ -36,52 +35,36 @@ public class TeamEditPanel extends BasePanel {
     public TeamEditPanel(String id) {
         super(id);
 
-        form = new MyForm<Team>("form", new CompoundPropertyModel<Team>(new Team()));
+        form = new MyForm<Team>("form", new Team());
         add(form);
-        final FeedbackPanel feedback;
-        form.add(feedback = new FeedbackPanel("feedback", new ComponentFeedbackMessageFilter(form)));
-        feedback.setOutputMarkupId(true);
 
-        TextField name;
-        form.add(name = new TextField("name"));
-        // add(new InputValidationBorder<Team>("nameBorder", form, name));
-        name.setRequired(false);
-        name.add(new AjaxFormComponentUpdatingBehavior("onblur") {
-            @Override
-            protected void onUpdate(AjaxRequestTarget target) {
-                target.add(feedback);
-            }
-            @Override
-            protected void onError(AjaxRequestTarget target, RuntimeException e) {
-                target.add(feedback);
-            }
+        form.add(new ValidatedTextField("name"));
+        form.add(new ValidatedTextField("url"));
 
-        });
-        form.add(new FeedbackPanel("feedback2", new ComponentFeedbackMessageFilter(name)));
-
-
-        form.add(new TextField("url"));
         form.add(new AjaxSubmitLink("saveButton") {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-                // TODO validate data
-                teamManager.save((Team) form.getModelObject());
-                target.registerRespondListener(new AjaxRespondListener(Event.EntityCreated(Team.class), Event.EntityUpdated(Team.class)));
-                ModalWindow.closeCurrent(target);
+                if (!new BeanValidator(form).isValid(form.getModelObject())) {
+                    onError(target, form);
+                } else {
+                    teamManager.save((Team) form.getModelObject());
+                    target.registerRespondListener(new AjaxRespondListener(Event.EntityCreated(Team.class), Event.EntityUpdated(Team.class)));
+                    // target.add(form);
+                    ModalWindow.closeCurrent(target);
+                }
             }
 
             @Override
             protected void onError(AjaxRequestTarget target, Form<?> form) {
-                //To change body of implemented methods use File | Settings | File Templates.
+                target.add(form);
             }
         });
-        form.add(new PropertyValidation(form));
-
     }
 
     public void init(IModel<Team> model) {
         if (model == null) {
-            model = Model.of(new Team());
+            Users user = RMTSession.get().getUser();
+            model = Model.of(new Team(user.getClub()));
         }
         form.setModel(new CompoundPropertyModel<Team>(model));
     }

@@ -44,10 +44,61 @@ public class Users extends AbstractBaseEntity {
     @ManyToOne
     private Club club;
 
+    public Users() {
+    }
+
     public Users(String username, String password, boolean enabled, String email) {
         this.username = username;
         this.password = password;
         this.enabled = enabled;
+        this.email = email;
+    }
+
+    public Club getClub() {
+        return club;
+    }
+
+    public void setClub(Club club) {
+        this.club = club;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Set<Authorities> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(Set<Authorities> authorities) {
+        this.authorities = authorities;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
         this.email = email;
     }
 }

@@ -35,7 +35,10 @@ public class Team extends AbstractBaseEntity {
 //    private Set<Users> managers;
 
     public Team() {
+    }
 
+    public Team(Club club) {
+        this.club = club;
     }
 
     public Team(String name, String url, Club club) {

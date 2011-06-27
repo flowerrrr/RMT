@@ -71,7 +71,7 @@ public class TeamsPage extends ManagerBasePage {
                 });
             }
         });
-        teamListContainer.add(new AjaxUpdateBehavior(teamListContainer, Event.EntityAll(Team.class)));
+        teamListContainer.add(new AjaxUpdateBehavior(Event.EntityAll(Team.class)));
     }
 
 

@@ -49,7 +49,7 @@ public abstract class AbstractSlf4JLoggingAspect extends AbstractLoggingAspect {
                 pushTime();
             }
             msg += (StringUtils.isEmpty(args)) ? "" : "(" + args + ")";
-            if (publicMethod == true) {
+            if (publicMethod == true && indent /* no debug for constructors */) {
                 log.debug(msg);
             } else {
                 log.trace(msg);

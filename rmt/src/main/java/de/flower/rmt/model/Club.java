@@ -19,6 +19,9 @@ public class Club extends AbstractBaseEntity {
     @OneToMany(mappedBy = "club")
     private Set<Team> teams;
 
+    public Club() {
+    }
+
     public String getName() {
         return name;
     }

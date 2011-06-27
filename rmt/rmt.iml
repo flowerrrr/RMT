@@ -69,6 +69,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/scala" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/database" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/aspectj" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/sandbox" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
     </content>
