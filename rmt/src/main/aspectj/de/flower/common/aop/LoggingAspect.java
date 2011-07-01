@@ -9,7 +9,7 @@ import org.aspectj.lang.annotation.Pointcut;
 @Aspect
 public class LoggingAspect extends AbstractSlf4JLoggingAspect {
 
-    @Pointcut("execution(* de.flower..*(..)) && !execution(* get*(..))")
+    @Pointcut("execution(* de.flower..*.*(..)) && !execution(* get*(..))")
     protected void entry() {
     }
 

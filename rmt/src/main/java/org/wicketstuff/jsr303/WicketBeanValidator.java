@@ -16,6 +16,10 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
+ * Validator that can be bound to a input field but does a bean validation.
+ * Requires that the form uses a CompoundPropertyModel containing the bean
+ * to validate.
+ *
  * @author oblume
  */
 public class WicketBeanValidator<T> extends Behavior implements INullAcceptingValidator<String>, Serializable {
@@ -49,20 +53,15 @@ public class WicketBeanValidator<T> extends Behavior implements INullAcceptingVa
         }
     }
 
-    /**
-     * Because the model of the form might be set after form is constructed and validator is set we lazy init the bean model.
-     */
-    private void lazyInit() {
-        if (beanModel == null) {
-            beanModel = (IModel<T>) form.getDefaultModel();
-        }
-    }
-
     @Override
     public void validate(IValidatable<String> validatable) {
-        lazyInit();
+        T bean;
+        if (beanModel == null) {
+            bean = (T) form.getModelObject();
+        } else {
+            bean = beanModel.getObject();
+        }
 
-        T bean = beanModel.getObject();
         // TODO (oblume - 01.07.11) create copy of bean or write back original value after validating
         ReflectionUtil.setProperty(bean, propertyName, validatable.getValue());
 

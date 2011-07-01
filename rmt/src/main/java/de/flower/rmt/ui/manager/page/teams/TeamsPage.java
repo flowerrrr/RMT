@@ -61,7 +61,7 @@ public class TeamsPage extends ManagerBasePage {
                         modal.show(target);
                     }
                 });
-                item.add(new AjaxLinkWithConfirmation("deleteButton", new ResourceModel("manager.myteams.delete.confirm")) {
+                item.add(new AjaxLinkWithConfirmation("deleteButton", new ResourceModel("manager.teams.delete.confirm")) {
 
                     @Override
                     public void onClick(AjaxRequestTarget target) {

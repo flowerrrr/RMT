@@ -28,7 +28,6 @@ public class ValidatedTextField<T> extends Panel {
     public ValidatedTextField(String id) {
         super(id);
         setOutputMarkupId(true);
-        // add(new InputValidationBorder<Team>("nameBorder", form, name));
         field = new TextField<T>(id);
         add(field);
         field.setRequired(false);
@@ -71,8 +70,15 @@ public class ValidatedTextField<T> extends Panel {
 
     }
 
+    @Override
+    public void onDetach() {
+        // reset state of component.
+        isValidatedAndValid = false;
+        super.onDetach();
+    }
 
-    /**
+
+     /**
      * Need to create markup programmatically to set the id of the input tag to the fieldname so that the
      * compoundpropertymodel of the form is happy.
      * @return

@@ -38,15 +38,14 @@ dependencies {
             'org.hibernate:hibernate-core:' + version_hibernate,
             'org.hibernate:hibernate-entitymanager:' + version_hibernate,
             'mysql:mysql-connector-java:5.1.16',
-            'org.springframework.security:spring-security-web:' + version_spring
+            'org.springframework.security:spring-security-web:' + version_spring,
+            'org.springframework.security:spring-security-config:' + version_spring
     )
     provided(
 
     )
     testCompile(
             'org.springframework:spring-test:' + version_spring,
-            // necessary for some unknown reason.
-            'org.springframework.security:spring-security-config:' + version_spring,
             'com.h2database:h2:1.3.155',
             'org.dbunit:dbunit:2.4.8',
             'org.scala-lang:scala-library:' + version_scala,

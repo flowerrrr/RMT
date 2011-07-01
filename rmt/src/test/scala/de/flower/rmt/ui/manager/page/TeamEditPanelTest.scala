@@ -24,10 +24,6 @@ class TeamEditPanelTest extends WicketTests {
         panel.init(null)
         wicketTester.dumpPage()
         wicketTester.debugComponentTrees()
-        var border: Component = wicketTester.getComponentFromLastRenderedPage("form:name")
-        val attributeAppender = getBehavior(border, classOf[AttributeAppender])
-        var model: IModel[String] = ReflectionUtil.getField(attributeAppender, "replaceModel").asInstanceOf[IModel[String]]
-        assertEquals(model.getObject(), "")
         // input name and validate field
         val formTester = wicketTester.newFormTester("form")
         val field = wicketTester.getComponentFromLastRenderedPage("form:name:name")
@@ -35,14 +31,13 @@ class TeamEditPanelTest extends WicketTests {
         wicketTester.executeAjaxEvent(field, "onblur")
         wicketTester.dumpPage()
         // check if class="valid" is set in text field border
-        assertEquals(model.getObject(), Css.VALID)
+        wicketTester.assertContains("class=\"" + Css.VALID)
         // set teamname to existing team and revalidate field
         formTester.setValue(field, "Juve Amateure")
         wicketTester.executeAjaxEvent(field, "onblur")
         wicketTester.dumpPage()
         // check if class="valid" is set in text field border
-        assertEquals(model.getObject(), Css.ERROR)
-
+        wicketTester.assertContains("class=\"" + Css.ERROR)
 
     }
 

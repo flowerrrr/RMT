@@ -27,8 +27,8 @@ public abstract class AbstractSlf4JLoggingAspect extends AbstractLoggingAspect {
     protected void logEnter(JoinPoint jp, boolean indent) {
         Logger log = getLogger(jp.getStaticPart());
         // public method -> debug, private -> trace
-        boolean publicMethod = isPublicMethod(jp.getStaticPart());
-        boolean logEnabled = (publicMethod) ? log.isDebugEnabled() : log.isTraceEnabled();
+        boolean privateMethod = isPrivateMethod(jp.getStaticPart());
+        boolean logEnabled = (!privateMethod) ? log.isDebugEnabled() : log.isTraceEnabled();
         if (logEnabled) {
             String msg;
             msg = (indent == true) ? indent(depth++, ">>") : ">> new ";
@@ -49,7 +49,7 @@ public abstract class AbstractSlf4JLoggingAspect extends AbstractLoggingAspect {
                 pushTime();
             }
             msg += (StringUtils.isEmpty(args)) ? "" : "(" + args + ")";
-            if (publicMethod == true && indent /* no debug for constructors */) {
+            if (privateMethod == false && indent /* no debug for constructors */) {
                 log.debug(msg);
             } else {
                 log.trace(msg);
@@ -57,25 +57,23 @@ public abstract class AbstractSlf4JLoggingAspect extends AbstractLoggingAspect {
         }
     }
 
-    private boolean isPublicMethod(JoinPoint.StaticPart jp) {
-        return Modifier.isPublic(jp.getSignature().getModifiers());
+    private boolean isPrivateMethod(JoinPoint.StaticPart jp) {
+        return Modifier.isPrivate(jp.getSignature().getModifiers());
     }
 
 
     @Override
     protected void logExit(JoinPoint.StaticPart jp) {
         Logger log = getLogger(jp);
-        boolean publicMethod = isPublicMethod(jp);
-        boolean logEnabled = (publicMethod) ? log.isDebugEnabled() : log.isTraceEnabled();
+        boolean privateMethod = isPrivateMethod(jp);
+        boolean logEnabled = (!privateMethod) ? log.isDebugEnabled() : log.isTraceEnabled();
         if (logEnabled) {
             String msg;
             msg = indent(--depth, "<<");
             long time = System.currentTimeMillis() - popTime();
-            if (time > 0) {
-                msg += " [" + time + " ms]";
-            }
-            msg += " " + jp.toString();
-            if (publicMethod == true) {
+            msg += " [" + time + " ms]";
+            msg += " " + jp.getSignature().toShortString();
+            if (privateMethod == false) {
                 log.debug(msg);
             } else {
                 log.trace(msg);

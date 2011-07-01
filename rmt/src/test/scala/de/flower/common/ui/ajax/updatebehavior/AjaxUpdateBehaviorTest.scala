@@ -21,6 +21,7 @@ class AjaxUpdateBehaviorTest {
     }
 
     @Test def testFooBar: Unit = {
+        var wicketTester = new WicketTester
         wicketTester.startPage(new AjaxUpdateBehaviorTestPage)
         log.info(wicketTester.getLastResponse.getDocument)
         wicketTester.debugComponentTrees

@@ -72,5 +72,7 @@ public class TeamEditPanel extends BasePanel {
             model = Model.of(new Team(user.getClub()));
         }
         form.setModel(new CompoundPropertyModel<Team>(model));
+        // clear css marker of previous validations
+
     }
 }
