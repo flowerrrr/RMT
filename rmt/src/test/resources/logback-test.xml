@@ -33,12 +33,17 @@
     <logger name="org.springframework.beans.factory" level="INFO"/>
     <logger name="org.aspectj" level="INFO"/>
 
+    <logger name="org.apache.wicket" level="INFO" />
+
     <logger name="org.dbunit" level="INFO"/>
     <logger name="org.apache.commons" level="INFO"/>
 
     <!-- Tracing loggers -->
     <logger name="trace.de.flower" level="TRACE"/>
     <logger name="trace.de.flower.common.model.AbstractBaseEntity" level="INFO" />
+
+    <logger name="de.flower" level="DEBUG" />
+    <logger name="org.wicketstuff" level="DEBUG" />
 
     <root level="INFO">
         <appender-ref ref="STDOUT"/>

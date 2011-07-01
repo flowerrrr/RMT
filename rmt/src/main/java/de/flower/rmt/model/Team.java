@@ -2,6 +2,7 @@ package de.flower.rmt.model;
 
 import de.flower.common.model.AbstractBaseEntity;
 import de.flower.common.validation.unique.Unique;
+import org.apache.wicket.behavior.IBehaviorListener;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
 
@@ -13,8 +14,8 @@ import javax.validation.constraints.Size;
  * @author oblume
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name", "club_id"}))
-@Unique
+@Table(uniqueConstraints = @UniqueConstraint(name = "uc_name", columnNames = {"name", "club_id"}))
+@Unique(groups = { Unique.class })
 public class Team extends AbstractBaseEntity {
 
     @NotBlank

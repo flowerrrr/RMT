@@ -5,7 +5,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 /**
  * @author oblume
  */
-public class BasePanel<T> extends Panel {
+public class BasePanel extends Panel {
 
     public BasePanel(String id) {
         super(id);

@@ -5,6 +5,7 @@ import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.events.Event;
 import de.flower.common.ui.form.MyForm;
 import de.flower.common.ui.form.ValidatedTextField;
+import de.flower.common.validation.unique.Unique;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.model.Users;
 import de.flower.rmt.service.ITeamManager;
@@ -19,6 +20,8 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.wicketstuff.jsr303.BeanValidator;
+import org.wicketstuff.jsr303.ConstraintFilter;
+import org.wicketstuff.jsr303.WicketBeanValidator;
 
 /**
  * @author oblume
@@ -38,7 +41,9 @@ public class TeamEditPanel extends BasePanel {
         form = new MyForm<Team>("form", new Team());
         add(form);
 
-        form.add(new ValidatedTextField("name"));
+        ValidatedTextField name;
+        form.add(name = new ValidatedTextField("name"));
+        name.add(new WicketBeanValidator(Unique.class, new ConstraintFilter("{de.flower.validation.constraints.unique.message.uc_name}")));
         form.add(new ValidatedTextField("url"));
 
         form.add(new AjaxSubmitLink("saveButton") {

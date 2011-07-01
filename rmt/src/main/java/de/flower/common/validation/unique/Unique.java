@@ -20,7 +20,7 @@ public @interface Unique {
 
     String message() default "{validation.unique}";
 
-    Class<?>[] groups() default {};
+    Class<?>[] groups() default { };
 
     Class<? extends Payload>[] payload() default {};
 

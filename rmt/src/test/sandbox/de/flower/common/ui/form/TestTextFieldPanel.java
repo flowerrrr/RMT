@@ -2,7 +2,6 @@ package de.flower.common.ui.form;
 
 import de.flower.common.logging.Slf4jUtil;
 import org.apache.wicket.markup.ComponentTag;
-import org.apache.wicket.markup.IMarkupFragment;
 import org.apache.wicket.markup.Markup;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -28,7 +27,7 @@ public class TestTextFieldPanel extends Panel {
     }
 
     @Override
-    public IMarkupFragment getAssociatedMarkup() {
+    public Markup getAssociatedMarkup() {
         return Markup.of("<wicket:panel><input wicket:id='foobar'/></wicket:panel>");
     }
 }

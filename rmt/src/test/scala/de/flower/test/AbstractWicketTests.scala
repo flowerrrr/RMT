@@ -4,17 +4,15 @@ import org.apache.wicket.protocol.http.WebApplication
 import org.apache.wicket.util.tester.WicketTester
 import org.apache.wicket.util.tester.WicketTesterHelper
 import org.springframework.context.ApplicationContext
-import org.springframework.test.context.ContextConfiguration
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests
 import org.testng.annotations.AfterMethod
 import org.testng.annotations.BeforeMethod
 import org.mockito.Mockito._
 import scala.collection.JavaConversions._
+import org.apache.wicket.Component
 
 /**
  * Base class for testing wicket components using TestNG.
  */
-@ContextConfiguration(locations = Array("classpath:/applicationContext-test.xml"))
 abstract class AbstractWicketTests extends AbstractIntegrationTests {
 
     @BeforeMethod def init: Unit = {
@@ -59,6 +57,24 @@ abstract class AbstractWicketTests extends AbstractIntegrationTests {
             }
         }
         return s.toString
+    }
+
+    /**
+     * Gets the first behavior of a component that matches a specified class.
+     *
+     * @param <T> the behavior class type
+     * @param component the component
+     * @param behaviourClass the behaviour class
+     * @return the behavior
+     * @throws IllegalArgumentException if no behavior of specified class is found.
+     */
+    protected def getBehavior[T](component: Component, behaviourClass: Class[T]): T = {
+        for (iBehavior <- component.getBehaviors) {
+            if (iBehavior.getClass == behaviourClass) {
+                return iBehavior.asInstanceOf[T]
+            }
+        }
+        throw new IllegalArgumentException("No behavior of class [" + behaviourClass + "] found in component [" + component + "].")
     }
 
     protected var wicketTester: WicketTester = null

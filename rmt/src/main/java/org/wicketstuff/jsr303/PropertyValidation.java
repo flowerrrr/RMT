@@ -43,7 +43,7 @@ public class PropertyValidation extends Behavior {
     private boolean assigned = false;
 
     /**
-     * if lazyinit == true then the validator will be bound juts before rendering.
+     * if lazyinit == true then the validator will be bound just before rendering.
      * helps keeping the form initialization code lean.
      *
      * @param context
