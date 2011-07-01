@@ -1,9 +1,9 @@
 package de.flower.common.ui.ajax.updatebehavior
 
 import org.apache.wicket.util.tester.WicketTester
-import org.testng.annotations.Test
 import org.testng.Assert._
 import org.slf4j.{LoggerFactory, Logger}
+import org.testng.annotations.{BeforeMethod, Test}
 
 /**
  * @author oblume
@@ -12,6 +12,13 @@ import org.slf4j.{LoggerFactory, Logger}
 class AjaxUpdateBehaviorTest {
 
     private final val log: Logger = LoggerFactory.getLogger(this.getClass)
+
+    private var wicketTester: WicketTester = _
+
+    @BeforeMethod
+    def init() {
+        wicketTester = new WicketTester
+    }
 
     @Test def testFooBar: Unit = {
         wicketTester.startPage(new AjaxUpdateBehaviorTestPage)
@@ -23,5 +30,4 @@ class AjaxUpdateBehaviorTest {
         assertTrue(document.contains(">bar<"))
     }
 
-    private var wicketTester: WicketTester = new WicketTester
 }
