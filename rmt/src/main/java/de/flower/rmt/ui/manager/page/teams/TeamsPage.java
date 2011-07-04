@@ -1,6 +1,7 @@
 package de.flower.rmt.ui.manager.page.teams;
 
 import de.flower.common.ui.ajax.AjaxLinkWithConfirmation;
+import de.flower.common.ui.ajax.MyAjaxLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.Event;
@@ -9,7 +10,6 @@ import de.flower.rmt.service.ITeamManager;
 import de.flower.rmt.ui.common.page.ModalDialogWindow;
 import de.flower.rmt.ui.manager.ManagerBasePage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -36,7 +36,7 @@ public class TeamsPage extends ManagerBasePage {
         modal.setContent(teamEditPanel);
         add(modal);
 
-        add(new AjaxLink("newButton") {
+        add(new MyAjaxLink("newButton") {
 
             @Override
             public void onClick(AjaxRequestTarget target) {
@@ -53,7 +53,7 @@ public class TeamsPage extends ManagerBasePage {
             @Override
             protected void populateItem(final ListItem<Team> item) {
                 item.add(new Label("name", item.getModelObject().getName()));
-                item.add(new AjaxLink("editButton") {
+                item.add(new MyAjaxLink("editButton") {
 
                     @Override
                     public void onClick(AjaxRequestTarget target) {

@@ -6,6 +6,10 @@
 <body>
 <wicket:extend>
 
+    <div wicket:id="loginFailure">
+        <wicket:message key="login.failure" />
+    </div>
+
     <form name="loginForm" action="j_spring_security_check" method="POST">
         <ul>
             <li>Username: <input name="j_username" type="text"/></li>

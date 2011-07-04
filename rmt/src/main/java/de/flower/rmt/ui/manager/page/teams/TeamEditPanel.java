@@ -1,6 +1,7 @@
 package de.flower.rmt.ui.manager.page.teams;
 
 import de.flower.common.ui.FormMode;
+import de.flower.common.ui.ajax.MyAjaxSubmitLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.events.Event;
 import de.flower.common.ui.form.MyForm;
@@ -47,7 +48,7 @@ public class TeamEditPanel extends BasePanel {
         form.add(new ValidatedTextField("url"));
 
         AjaxSubmitLink submitLink;
-        form.add(submitLink = new AjaxSubmitLink("saveButton") {
+        form.add(submitLink = new MyAjaxSubmitLink("saveButton") {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 if (!new BeanValidator(form).isValid(form.getModelObject())) {
