@@ -6,9 +6,13 @@ import org.apache.wicket.markup.html.WebPage;
 /**
  * @author oblume
  */
-@Deprecated // might be obsolete
 public class AbstractBasePage extends WebPage implements IAjaxIndicatorAware {
 
+    /**
+     * Display a ajax loading indicator for every ajax request.
+     *
+     * @return
+     */
     @Override
     public String getAjaxIndicatorMarkupId() {
         return "veil";

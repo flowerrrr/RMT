@@ -31,7 +31,7 @@ public abstract class AbstractSlf4JLoggingAspect extends AbstractLoggingAspect {
         boolean logEnabled = (!privateMethod) ? log.isDebugEnabled() : log.isTraceEnabled();
         if (logEnabled) {
             String msg;
-            msg = (indent == true) ? indent(depth++, ">>") : ">> new ";
+            msg = (indent == true) ? indent(depth++, ">>") : indent(depth, ">>") + " new ";
             // msg += "<" + jp.getKind();
             msg += " " + jp.getSignature().toShortString();
             String args = null;

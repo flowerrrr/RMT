@@ -10,9 +10,27 @@
 }
 
 /*************************************************************************
-    validation stuff
+    misc
 **************************************************************************/
-#veil #ajax-loader {
-    background: url(../img/ajax-loader.gif) center no-repeat;
+.center {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+/*************************************************************************
+    ajax loading
+**************************************************************************/
+#veil .ajax-loader {
     height:100%;
+}
+
+
+.ajax-loader {
+    background: url(../img/ajax-loader.gif) center no-repeat;
+    height: 16px;
+    width: 16px;
 }

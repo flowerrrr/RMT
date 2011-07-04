@@ -2,16 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
-
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" ></script>
 </head>
 <body>
 
 <wicket:child/>
 
-<div id="veil"
-     style="display:none;position:absolute;top:0;left:0;z-index:99999;width:100%;height:100%">
-    <div id="ajax-loader" ></div>
-</div>
+
+<div id="veil" style="display:none;z-index:99999" class="ajax-loader center"></div>
+
+<!-- Include script at end of page in order to override wicket functions. -->
+<script type="text/javascript" src="js/main.js" ></script>
 
 </body>
 </html>

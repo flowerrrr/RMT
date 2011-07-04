@@ -46,7 +46,8 @@ public class TeamEditPanel extends BasePanel {
         name.add(new WicketBeanValidator(Unique.class, new ConstraintFilter("{de.flower.validation.constraints.unique.message.uc_name}")));
         form.add(new ValidatedTextField("url"));
 
-        form.add(new AjaxSubmitLink("saveButton") {
+        AjaxSubmitLink submitLink;
+        form.add(submitLink = new AjaxSubmitLink("saveButton") {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 if (!new BeanValidator(form).isValid(form.getModelObject())) {
@@ -64,6 +65,7 @@ public class TeamEditPanel extends BasePanel {
                 target.add(form);
             }
         });
+        // submitLink.add()
     }
 
     public void init(IModel<Team> model) {

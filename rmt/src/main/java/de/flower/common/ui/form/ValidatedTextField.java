@@ -48,7 +48,6 @@ public class ValidatedTextField<T> extends Panel {
                 isValidatedAndValid = false;
                 target.add(ValidatedTextField.this);
             }
-
         });
         add(new FeedbackPanel("feedback", new ComponentFeedbackMessageFilter(field)));
 
