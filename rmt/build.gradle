@@ -64,6 +64,7 @@ dependencies {
 // wicket app: need to copy .html files from java-src to output
 sourceSets.main.resources.srcDirs('/src/main/java')
 sourceSets.test.resources.srcDirs('/src/test/java')
+sourceSets.test.resources.srcDirs('/src/test/scala')
 
 // add directory with db-unit files to test-classpath
 sourceSets.test.resources.srcDirs('/src/test/database')
