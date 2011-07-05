@@ -33,7 +33,7 @@ public class PlayersPage extends ManagerBasePage {
 
     public PlayersPage() {
 
-        final ModalDialogWindow modal = new ModalDialogWindow("playersDialog");
+        final ModalDialogWindow modal = new ModalDialogWindow("playerDialog");
         final PlayerEditPanel playerEditPanel = new PlayerEditPanel(modal.getContentId());
         modal.setContent(playerEditPanel);
         add(modal);
@@ -42,7 +42,7 @@ public class PlayersPage extends ManagerBasePage {
 
             @Override
             public void onClick(AjaxRequestTarget target) {
-                // show modal dialog with team edit form.
+                // show modal dialog with edit form.
                 playerEditPanel.init(null);
                 modal.show(target);
             }
