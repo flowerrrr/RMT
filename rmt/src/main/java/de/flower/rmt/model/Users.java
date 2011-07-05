@@ -1,27 +1,36 @@
 package de.flower.rmt.model;
 
 import de.flower.common.model.AbstractBaseEntity;
+import de.flower.common.validation.unique.Unique;
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Set;
 
 /**
  * @author oblume
  */
 @Entity
+@Unique
 public class Users extends AbstractBaseEntity {
 
     /**
      * Spring security related fields. Do not rename or remove.
+     * The user's email address is used as the username.
      */
 
-    @NotNull
+    @NotBlank
+    @Email
     @Column(unique = true)
     private String username;
 
-    @NotNull
+    @NotBlank
     @Column
     private String password;
 
@@ -30,28 +39,33 @@ public class Users extends AbstractBaseEntity {
     private boolean enabled;
 
     @OneToMany(mappedBy = "user")
-    private Set<Authorities> authorities;
+    private List<Authorities> authorities;
 
     /**
      * All other fields.
      */
 
-    @Email
-    @NotNull
+    @NotBlank
     @Column
-    private String email;
+    private String fullname;
 
+
+    @NotNull
     @ManyToOne
     private Club club;
 
     public Users() {
     }
 
-    public Users(String username, String password, boolean enabled, String email) {
+    public Users(String username, String password, boolean enabled, String fullname) {
         this.username = username;
         this.password = password;
         this.enabled = enabled;
-        this.email = email;
+        this.fullname = fullname;
+    }
+
+    public Users(Club club) {
+        this.club = club;
     }
 
     public Club getClub() {
@@ -62,12 +76,20 @@ public class Users extends AbstractBaseEntity {
         this.club = club;
     }
 
-    public String getUsername() {
+    private String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    private void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getEmail() {
+        return getUsername();
+    }
+
+    public void setEmail(String email) {
+        setUsername(email);
     }
 
     public String getPassword() {
@@ -78,6 +100,14 @@ public class Users extends AbstractBaseEntity {
         this.password = password;
     }
 
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
     public boolean isEnabled() {
         return enabled;
     }
@@ -86,19 +116,29 @@ public class Users extends AbstractBaseEntity {
         this.enabled = enabled;
     }
 
-    public Set<Authorities> getAuthorities() {
+    public List<Authorities> getAuthorities() {
         return authorities;
     }
 
-    public void setAuthorities(Set<Authorities> authorities) {
+    public void setAuthorities(List<Authorities> authorities) {
         this.authorities = authorities;
     }
 
-    public String getEmail() {
-        return email;
+    public boolean isManager() {
+        return hasRole(Role.MANAGER.getRoleName());
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public boolean hasRole(String role) {
+        for (Authorities authority : authorities) {
+            if (authority.getAuthority().equals(role)) {
+                return true;
+            }
+        }
+        return false;
     }
+
+    public enum Collections {
+        Authorities;
+    }
+
 }

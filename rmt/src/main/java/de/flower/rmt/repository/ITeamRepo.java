@@ -1,7 +1,10 @@
 package de.flower.rmt.repository;
 
+import de.flower.rmt.model.Club;
 import de.flower.rmt.model.Team;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
 
 /**
  * Uses Spring Data JPA library to define a XXXRepistory
@@ -12,4 +15,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface ITeamRepo extends JpaRepository<Team, Long> {
 
+    List<Team> findAllByClub(Club club);
 }

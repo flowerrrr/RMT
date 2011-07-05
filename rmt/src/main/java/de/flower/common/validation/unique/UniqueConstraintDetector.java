@@ -17,7 +17,7 @@ public class UniqueConstraintDetector {
 
         List<UniqueConstraintDef> constraints = new ArrayList<UniqueConstraintDef>();
 
-        // lookup uniquness constraints in @Table annotation of class
+        // lookup uniqueness constraints in @Table annotation of class
         Table table = entityClass.getAnnotation(Table.class);
         if (table != null) {
             constraints = convert(table.uniqueConstraints());

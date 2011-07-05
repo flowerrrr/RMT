@@ -21,8 +21,8 @@
 
     <logger name="org.hibernate.cfg" level="WARN"/>
     <logger name="org.hibernate.SQL" level="DEBUG"/>
-    <logger name="org.hibernate.type" level="WARN"/>
     <!-- set to TRACE to see sql parameter values -->
+    <logger name="org.hibernate.type" level="TRACE"/>
     <logger name="org.hibernate" level="INFO"/>
     <!--
     <logger name="org.springframework" level="DEBUG" />

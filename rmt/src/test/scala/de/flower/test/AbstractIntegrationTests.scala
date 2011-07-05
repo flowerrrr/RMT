@@ -4,17 +4,19 @@ import mock.{IListAppender, LogBackListAppender}
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests
 import org.springframework.beans.factory.annotation.Autowired
-import de.flower.rmt.service.ITeamManager
 import javax.persistence.{PersistenceContext, EntityManager}
 import org.scalatest.Assertions
 import org.springframework.transaction.PlatformTransactionManager
-import de.flower.rmt.model.Club
 import com.google.common.base.Preconditions._
 import javax.sql.DataSource
 import org.slf4j.{LoggerFactory, Logger}
 import org.testng.annotations.{BeforeClass, Listeners, BeforeMethod}
 import ch.qos.logback.classic.spi.ILoggingEvent
 import de.flower.rmt.repository.{IUserRepo, IClubRepo, ITeamRepo}
+import de.flower.rmt.service.{IUserManager, ITeamManager}
+import org.springframework.security.authentication.TestingAuthenticationToken
+import de.flower.rmt.model.{Role, Club}
+import org.springframework.security.core.context.SecurityContextHolderStrategy
 
 /**
  *
@@ -51,6 +53,12 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
     @Autowired
     protected var teamManager: ITeamManager = _
 
+    @Autowired
+    protected var userManager: IUserManager = _
+
+    @Autowired
+    protected var securityContextHolderStrategy: SecurityContextHolderStrategy = _
+
 
     @PersistenceContext
     protected var em: EntityManager = _
@@ -80,7 +88,23 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
 
         // load some often used entities
         club = checkNotNull(clubRepo.findOne(1L))
+
+        initializeSecurityContextWithTestUser()
+
     }
+
+    /**
+     * Initialize security context with test user.
+     */
+    protected def initializeSecurityContextWithTestUser() {
+        // set the security context with a test user.
+        var username = "manager-rmt@mailinator.com"
+        var authentication = new TestingAuthenticationToken(username, "manager", Role.MANAGER.getRoleName)
+        checkNotNull(userRepo.findByUsername(username), "Make sure test user is present in test database.".asInstanceOf[Object])
+        securityContextHolderStrategy.getContext.setAuthentication(authentication)
+    }
+
+
 
     /**
      * Reset testdata. Most workflow unit tests are @NotTransactional annotated to have a more realistic transactional behaviour of the workflow-methods. That means we have to reset any test-data that

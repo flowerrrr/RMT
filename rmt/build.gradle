@@ -27,16 +27,22 @@ dependencies {
             'org.apache.wicket:wicket-extensions:' + version_wicket,
             'org.apache.wicket:wicket-spring:' + version_wicket,
             'org.hibernate:hibernate-validator:4.1.0.Final',
-            'org.springframework.data:spring-data-jpa:1.0.0.M2',
+            'org.hibernate:hibernate-entitymanager:' + version_hibernate,
+            'org.springframework.data:spring-data-jpa:1.0.0.RC1',
+            'org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.0.Final',
+            'org.hibernate:hibernate-core:' + version_hibernate,
             'commons-beanutils:commons-beanutils:1.8.3',
             'commons-collections:commons-collections:3.2.1',
+            'commons-lang:commons-lang:2.6',
             'ch.qos.logback:logback-classic:0.9.28',
+            'com.google.guava:guava:r09',
+            // TODO - jar needed for idea to use apt during compilation. possible to move to other configuration?
+            'org.hibernate:hibernate-jpamodelgen:1.1.1.Final'
     )
     runtime(
             'org.slf4j:jcl-over-slf4j:1.6.1',
             'commons-dbcp:commons-dbcp:1.4',
             'org.hibernate:hibernate-core:' + version_hibernate,
-            'org.hibernate:hibernate-entitymanager:' + version_hibernate,
             'mysql:mysql-connector-java:5.1.16',
             'org.springframework.security:spring-security-web:' + version_spring,
             'org.springframework.security:spring-security-config:' + version_spring
@@ -59,6 +65,7 @@ dependencies {
             'org.scala-lang:scala-compiler:' + version_scala,
             'org.scala-lang:scala-library:' + version_scala
     )
+
 }
 
 // wicket app: need to copy .html files from java-src to output

@@ -2,19 +2,24 @@
 <dataset>
     <!-- clubs. needs to be first because of fk constraints -->
     <club id="1" name="Juventus Urin"/>
+    <club id="2" name="FC Bayern" />
 
-    <users id="1" enabled="true" password="admin" username="admin" email="admin@foo.bar" club_id="1"/>
-    <users id="2" enabled="true" password="manager" username="manager" email="manager@foo.bar" club_id="1"/>
-    <users id="3" enabled="true" password="player" username="player" email="player@foo.bar" club_id="1"/>
-    <users id="4" enabled="true" password="both" username="both" email="both@foo.bar" club_id="1"/>
-    <authorities id="1" authority="ROLE_ADMIN" username="admin"/>
-    <authorities id="2" authority="ROLE_MANAGER" username="manager"/>
-    <authorities id="3" authority="ROLE_PLAYER" username="player"/>
-    <authorities id="4" authority="ROLE_MANAGER" username="both"/>
-    <authorities id="5" authority="ROLE_PLAYER" username="both"/>
+    <users id="1" enabled="true" password="admin" username="admin-rmt@mailinator.com" fullname="Flower" club_id="1"/>
+    <users id="2" enabled="true" password="manager" username="manager-rmt@mailinator.com" fullname="Basti" club_id="1"/>
+    <users id="3" enabled="true" password="player" username="player-rmt@mailinator.com" fullname="Ingo" club_id="1"/>
+    <users id="4" enabled="true" password="both" username="both-rmt@mailinator.com" fullname="Malte" club_id="1"/>
+    <users id="5" enabled="true" password="foo" username="bayern-rmt@mailinator.com" fullname="Uli Hoeneß" club_id="2"/>
+    <authorities id="1" authority="ROLE_ADMIN" username="admin-rmt@mailinator.com"/>
+    <authorities id="2" authority="ROLE_MANAGER" username="manager-rmt@mailinator.com"/>
+    <authorities id="3" authority="ROLE_PLAYER" username="player-rmt@mailinator.com"/>
+    <authorities id="4" authority="ROLE_MANAGER" username="both-rmt@mailinator.com"/>
+    <authorities id="5" authority="ROLE_PLAYER" username="both-rmt@mailinator.com"/>
+    <authorities id="6" authority="ROLE_MANAGER" username="bayern-rmt@mailinator.com"/>
 
 
     <team id="1" name="Juventus Urin" club_id="1" />
     <team id="2" name="Juve Amateure" club_id="1" />
+
+    <team id="10" name="FC Bayern Profis" club_id="2" />
 
 </dataset>

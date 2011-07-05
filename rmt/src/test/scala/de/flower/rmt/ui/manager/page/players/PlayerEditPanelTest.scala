@@ -1,23 +1,14 @@
-package de.flower.rmt.ui.manager.page
+package de.flower.rmt.ui.manager.page.players
 
 import de.flower.rmt.test.WicketTests
-import org.testng.annotations.Test
-import teams.TeamEditPanel
-import org.apache.wicket.Component
-import org.apache.wicket.behavior.AttributeAppender
-import org.testng.Assert._
-import de.flower.common.util.ReflectionUtil
-import org.apache.wicket.model.IModel
-import javax.swing.text.html.CSS
-import de.flower.common.ui.Css
-
 /**
  * 
  * @author oblume
  */
 
-class TeamEditPanelTest extends WicketTests {
+class PlayerEditPanelTest extends WicketTests {
 
+/*
     @Test
     def validateUniquenessConstraint() {
         val panel: TeamEditPanel = wicketTester.startPanel(classOf[TeamEditPanel]).asInstanceOf[TeamEditPanel]
@@ -40,6 +31,7 @@ class TeamEditPanelTest extends WicketTests {
         wicketTester.assertContains("class=\"" + Css.ERROR)
 
     }
+*/
 
 
 }

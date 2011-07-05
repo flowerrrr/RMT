@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head></head>
+<body>
+
+<wicket:extend>
+
+    My Player
+
+    <div wicket:id="playerDialog"/>
+
+    <a wicket:id="newButton">
+        <wicket:message key="manager.players.new">[New]</wicket:message>
+    </a>
+
+    <div wicket:id="playerListContainer">
+        <ul>
+            <li wicket:id="playerList">
+                <span wicket:id="fullname">Gerd Müller</span>
+                <span wicket:id="email">gerd@mueller.de</span>
+                <span wicket:id="manager">x</span>
+                <a wicket:id="editButton">
+                    <wicket:message key="manager.players.edit">[Edit]</wicket:message>
+                </a>
+                <a wicket:id="deleteButton">
+                    <wicket:message key="manager.players.delete">[Delete]</wicket:message>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+ </wicket:extend>
+
+
+</body>
+</html>

@@ -1,8 +1,7 @@
-package de.flower.rmt.ui.manager.page
+package de.flower.rmt.ui.manager.page.teams
 
 import de.flower.rmt.test.WicketTests
 import org.testng.annotations.Test
-import teams.TeamsPage
 
 /**
  * 

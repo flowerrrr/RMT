@@ -26,4 +26,11 @@ public class Authorities extends AbstractBaseEntity {
     @JoinColumn(name = "username", referencedColumnName = "username")
     private Users user;
 
+    public String getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(String authority) {
+        this.authority = authority;
+    }
 }

@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.common.page.login;
+package de.flower.rmt.model;
 
 /**
  * @author oblume

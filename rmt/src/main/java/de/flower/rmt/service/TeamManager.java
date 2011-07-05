@@ -16,11 +16,10 @@ import java.util.List;
  */
 @Service
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-public class TeamManager implements ITeamManager {
+public class TeamManager extends AbstractService implements ITeamManager {
 
     @Autowired
     private ITeamRepo teamRepo;
-
 
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
@@ -30,7 +29,7 @@ public class TeamManager implements ITeamManager {
 
     @Override
     public List<Team> findAll() {
-        return teamRepo.findAll();
+        return teamRepo.findAllByClub(getClub());
     }
 
     @Override
