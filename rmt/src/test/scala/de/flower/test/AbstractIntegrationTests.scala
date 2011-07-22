@@ -99,8 +99,8 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
     protected def initializeSecurityContextWithTestUser() {
         // set the security context with a test user.
         var username = "manager-rmt@mailinator.com"
-        var authentication = new TestingAuthenticationToken(username, "manager", Role.MANAGER.getRoleName)
-        checkNotNull(userRepo.findByUsername(username), "Make sure test user is present in test database.".asInstanceOf[Object])
+        var authentication = new TestingAuthenticationToken(username, "manager", Role.Roles.MANAGER.getRoleName)
+        checkNotNull(userRepo.findByEmail(username), "Make sure test user is present in test database.".asInstanceOf[Object])
         securityContextHolderStrategy.getContext.setAuthentication(authentication)
     }
 

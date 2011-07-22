@@ -1,6 +1,5 @@
 package org.wicketstuff.jsr303;
 
-import de.flower.common.logging.Slf4jUtil;
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.model.AbstractPropertyModel;
@@ -22,7 +21,7 @@ public class PropertyValidator<T> extends Behavior implements INullAcceptingVali
 
     private static final long serialVersionUID = 1L;
 
-    private final static Logger log = Slf4jUtil.getLogger();
+    private final static Logger log = LoggerFactory.getLogger(PropertyValidator.class);
 
     private final Class<T> beanClass;
     private final String propertyExpression;

@@ -2,8 +2,6 @@ package de.flower.rmt.ui.manager.page.teams
 
 import de.flower.rmt.test.WicketTests
 import org.testng.annotations.Test
-import de.flower.common.ui.Css
-
 /**
  * 
  * @author oblume
@@ -18,20 +16,11 @@ class TeamEditPanelTest extends WicketTests {
         wicketTester.dumpPage()
         wicketTester.debugComponentTrees()
         // input name and validate field
-        val formTester = wicketTester.newFormTester("form")
+        formTester = wicketTester.newFormTester("form")
         val field = wicketTester.getComponentFromLastRenderedPage("form:name:name")
-        formTester.setValue(field, "teamname")
-        wicketTester.executeAjaxEvent(field, "onblur")
-        wicketTester.dumpPage()
-        // check if class="valid" is set in text field border
-        wicketTester.assertContains("class=\"" + Css.VALID)
+        assertValidation(field, "teamname", true)
         // set teamname to existing team and revalidate field
-        formTester.setValue(field, "Juve Amateure")
-        wicketTester.executeAjaxEvent(field, "onblur")
-        wicketTester.dumpPage()
-        // check if class="valid" is set in text field border
-        wicketTester.assertContains("class=\"" + Css.ERROR)
-
+        assertValidation(field, "Juve Amateure", false)
     }
 
 

@@ -1,6 +1,5 @@
 package org.wicketstuff.jsr303;
 
-import de.flower.common.logging.Slf4jUtil;
 import de.flower.common.util.ReflectionUtil;
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
@@ -9,25 +8,31 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.validation.INullAcceptingValidator;
 import org.apache.wicket.validation.IValidatable;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.validation.ConstraintViolation;
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Set;
 
+import static com.google.common.base.Preconditions.*;
+
 /**
  * Validator that can be bound to a input field but does a bean validation.
  * Requires that the form uses a CompoundPropertyModel containing the bean
  * to validate.
+ * Must be added after the component is added to a form.
+ *
  *
  * @author oblume
  */
 public class WicketBeanValidator<T> extends Behavior implements INullAcceptingValidator<String>, Serializable {
 
-    private final static Logger log = Slf4jUtil.getLogger();
+    private final static Logger log = LoggerFactory.getLogger(WicketBeanValidator.class);
 
     private Class<?>[] groups;
 
+    /** This filter restricts the validation messages to the one that are related to the property. */
     private ConstraintFilter filter;
 
     private IModel<T> beanModel;
@@ -48,6 +53,7 @@ public class WicketBeanValidator<T> extends Behavior implements INullAcceptingVa
     @Override
     public void bind(Component component) {
         form = component.findParent(Form.class);
+        checkNotNull(form);
         if (propertyName == null) {
             propertyName = component.getId();
         }

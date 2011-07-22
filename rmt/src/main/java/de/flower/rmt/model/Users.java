@@ -5,32 +5,27 @@ import de.flower.common.validation.unique.Unique;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.groups.Default;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author oblume
  */
 @Entity
-@Unique
+@Table(uniqueConstraints = @UniqueConstraint(name = "fullname", columnNames = {"fullname", "club_id"}))
+@Unique(groups = { Unique.class, Default.class }) // need group Unique to be able to restrict bean validation to this validator
 public class Users extends AbstractBaseEntity {
-
-    /**
-     * Spring security related fields. Do not rename or remove.
-     * The user's email address is used as the username.
-     */
 
     @NotBlank
     @Email
-    @Column(unique = true)
-    private String username;
+    // need to be  named username to satisfy spring security
+    @Column(unique = true, name = "username")
+    private String email;
 
-    @NotBlank
+    // @NotBlank
     @Column
     private String password;
 
@@ -38,12 +33,8 @@ public class Users extends AbstractBaseEntity {
     @Column
     private boolean enabled;
 
-    @OneToMany(mappedBy = "user")
-    private List<Authorities> authorities;
-
-    /**
-     * All other fields.
-     */
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+    private List<Role> roles = new ArrayList<Role>();
 
     @NotBlank
     @Column
@@ -57,8 +48,8 @@ public class Users extends AbstractBaseEntity {
     public Users() {
     }
 
-    public Users(String username, String password, boolean enabled, String fullname) {
-        this.username = username;
+    public Users(String email, String password, boolean enabled, String fullname) {
+        this.email = email;
         this.password = password;
         this.enabled = enabled;
         this.fullname = fullname;
@@ -76,20 +67,12 @@ public class Users extends AbstractBaseEntity {
         this.club = club;
     }
 
-    private String getUsername() {
-        return username;
-    }
-
-    private void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getEmail() {
-        return getUsername();
+        return email;
     }
 
     public void setEmail(String email) {
-        setUsername(email);
+        this.email = email;
     }
 
     public String getPassword() {
@@ -116,29 +99,25 @@ public class Users extends AbstractBaseEntity {
         this.enabled = enabled;
     }
 
-    public List<Authorities> getAuthorities() {
-        return authorities;
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    public void setAuthorities(List<Authorities> authorities) {
-        this.authorities = authorities;
+    public void setRoles(List<Role> authorities) {
+        this.roles = authorities;
     }
 
     public boolean isManager() {
-        return hasRole(Role.MANAGER.getRoleName());
+        return hasRole(Role.Roles.MANAGER.getRoleName());
     }
 
     public boolean hasRole(String role) {
-        for (Authorities authority : authorities) {
-            if (authority.getAuthority().equals(role)) {
+        for (Role r : roles) {
+            if (r.getAuthority().equals(role)) {
                 return true;
             }
         }
         return false;
-    }
-
-    public enum Collections {
-        Authorities;
     }
 
 }

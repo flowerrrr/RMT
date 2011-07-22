@@ -37,8 +37,11 @@ public class ConventionColumnResolver implements IColumnResolver {
                     guessedColumnName = attr.getName(); break;
                 case MANY_TO_ONE:
                     guessedColumnName = attr.getName() + "_id";  break;
+                case ONE_TO_MANY:
+                    // mapping not supported. typically the associated table owns the joining column.
+                    break;
                 default:
-                    throw new RuntimeException("Unsupported mapping type [" + attr.getPersistentAttributeType() + "].");
+                    throw new RuntimeException("Unsupported mapping type [" + attr.getPersistentAttributeType() + "] for column [" + attr.getName() + "].");
             }
             if (columnName.equals(guessedColumnName)) {
                 return attr.getName();

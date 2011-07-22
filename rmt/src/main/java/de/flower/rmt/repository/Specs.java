@@ -38,6 +38,9 @@ public class Specs {
                         root.fetch((SingularAttribute<? super X, Object>) attribute);
                     }
                 }
+                // force distinct results. fetching associations might lead to duplicate root entities in the result set.
+                query.distinct(true);
+                //  return always-true-predicate to satisfy caller. null is not allowed.
                 return new BooleanStaticAssertionPredicate((CriteriaBuilderImpl) cb, true);
             }
         };

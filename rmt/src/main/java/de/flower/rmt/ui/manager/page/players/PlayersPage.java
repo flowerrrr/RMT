@@ -86,7 +86,7 @@ public class PlayersPage extends ManagerBasePage {
         return new LoadableDetachableModel<List<Users>>() {
             @Override
             protected List<Users> load() {
-                return playerManager.findAll(Users_.authorities);
+                return playerManager.findAll(Users_.roles);
             }
         };
     }

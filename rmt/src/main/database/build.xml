@@ -46,6 +46,18 @@
         </fileset>
     </path>
 
+    <!-- for schema-export -->
+    <path id="hbm2dlllib">
+        <path refid="toolslib" />
+        <fileset dir="${basedir.lib}">
+            <include name="**/aspectjrt-1.6.8.jar"/>
+            <include name="**/validation-api-1.0.0.GA.jar"/>
+            <include name="**/hibernate-validator-4.1.0.Final.jar"/>
+            <include name="**/commons-collections-3.2.1.jar"/>
+            <include name="**/commons-lang-2.6.jar"/>
+        </fileset>
+    </path>
+
     <path id="classpath.db.driver">
         <fileset dir="${basedir.lib}">
             <include name="**/mysql-connector-java-5.1.16.jar"/>
@@ -237,6 +249,7 @@
              password="${db.password}">
             <classpath refid="classpath.db.driver"/>
             <transaction src="${database.dir}/ddl/schema.ddl"/>
+            <transaction src="${database.dir}/ddl/views.ddl"/>
         </sql>
     </target>
 
@@ -338,6 +351,7 @@
 
     <!-- remove all master data -->
     <target name="db-delete-all-masterdata" depends="_setdatabase">
+        <echo>Target not implemented.</echo>
 <!--
         <dbunit driver="${db.driver}" url="${db.url}" userid="${db.userid}"
                 password="${db.password}">
@@ -349,6 +363,7 @@
 
     <!-- remove all test data -->
     <target name="db-delete-all-testdata" depends="_setdatabase">
+        <echo>Target not implemented.</echo>
 <!--
         <dbunit driver="${db.driver}" url="${db.url}" userid="${db.userid}"
                 password="${db.password}">
@@ -365,7 +380,7 @@
      -->
     <target name="schema-export">
         <taskdef name="hibernatetool" classname="org.hibernate.tool.ant.HibernateToolTask"
-                 classpathref="toolslib"/>
+                 classpathref="hbm2dlllib"/>
 
         <hibernatetool destdir="${export.dir}">
             <jpaconfiguration persistenceunit="rmt-pu"/>

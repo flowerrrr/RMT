@@ -9,12 +9,13 @@
     <users id="3" enabled="true" password="player" username="player-rmt@mailinator.com" fullname="Ingo" club_id="1"/>
     <users id="4" enabled="true" password="both" username="both-rmt@mailinator.com" fullname="Malte" club_id="1"/>
     <users id="5" enabled="true" password="foo" username="bayern-rmt@mailinator.com" fullname="Uli Hoeneß" club_id="2"/>
-    <authorities id="1" authority="ROLE_ADMIN" username="admin-rmt@mailinator.com"/>
-    <authorities id="2" authority="ROLE_MANAGER" username="manager-rmt@mailinator.com"/>
-    <authorities id="3" authority="ROLE_PLAYER" username="player-rmt@mailinator.com"/>
-    <authorities id="4" authority="ROLE_MANAGER" username="both-rmt@mailinator.com"/>
-    <authorities id="5" authority="ROLE_PLAYER" username="both-rmt@mailinator.com"/>
-    <authorities id="6" authority="ROLE_MANAGER" username="bayern-rmt@mailinator.com"/>
+
+    <role id="1" authority="ROLE_ADMIN" user_id="1"/>
+    <role id="2" authority="ROLE_MANAGER" user_id="2"/>
+    <role id="3" authority="ROLE_PLAYER" user_id="3"/>
+    <role id="4" authority="ROLE_MANAGER" user_id="4"/>
+    <role id="5" authority="ROLE_PLAYER" user_id="4"/>
+    <role id="6" authority="ROLE_MANAGER" user_id="5"/>
 
 
     <team id="1" name="Juventus Urin" club_id="1" />

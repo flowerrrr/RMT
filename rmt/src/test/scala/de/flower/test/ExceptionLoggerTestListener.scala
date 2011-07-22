@@ -1,8 +1,7 @@
 package de.flower.test
 
-import org.slf4j.Logger
-import de.flower.common.logging.Slf4jUtil
 import org.testng.{TestListenerAdapter, ITestResult}
+import org.slf4j.{LoggerFactory, Logger}
 
 /**
  *
@@ -11,7 +10,7 @@ import org.testng.{TestListenerAdapter, ITestResult}
 
 class ExceptionLoggerTestListener extends TestListenerAdapter {
 
-    private final val log: Logger = Slf4jUtil.getLogger
+    private final val log: Logger = LoggerFactory.getLogger(getClass)
 
     override def onTestFailure(tr: ITestResult): Unit = {
         log.error(tr.toString, tr.getThrowable)

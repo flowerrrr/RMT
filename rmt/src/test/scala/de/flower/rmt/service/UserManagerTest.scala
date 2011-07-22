@@ -3,8 +3,8 @@ package de.flower.rmt.service
 import de.flower.test.AbstractIntegrationTests
 import org.testng.annotations.Test
 import org.testng.Assert._
-import de.flower.rmt.model.{Users_, Users}
 import org.hibernate.LazyInitializationException
+import de.flower.rmt.model.{Users, Users_}
 
 /**
  * 
@@ -19,10 +19,10 @@ class UserManagerTest extends AbstractIntegrationTests {
      */
     @Test
     def testEagerFetching() {
-        var users = userManager.findAll(Users_.authorities)
+        var users = userManager.findAll(Users_.roles)
         assertTrue(users.size() > 0)
         var user = users.get(0)
-        log.info(user.getAuthorities().get(0).getAuthority())
+        log.info(user.getRoles().get(0).getAuthority())
     }
 
     /**
@@ -34,8 +34,16 @@ class UserManagerTest extends AbstractIntegrationTests {
         assertTrue(users.size() > 0)
         var user = users.get(0)
         intercept[LazyInitializationException] {
-            log.info(user.getAuthorities().get(0).getAuthority())
+            log.info(user.getRoles().get(0).getAuthority())
         }
+    }
+
+    @Test
+    def testSaveNewUser() {
+        val user = userManager.newPlayerInstance();
+        user.setEmail("foo@bar.com")
+        user.setFullname("Foo Bar")
+        userManager.save(user)
     }
 
 

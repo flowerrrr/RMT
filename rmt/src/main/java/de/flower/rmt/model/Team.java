@@ -14,7 +14,7 @@ import javax.validation.groups.Default;
  * @author oblume
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(name = "uc_name", columnNames = {"name", "club_id"}))
+@Table(uniqueConstraints = @UniqueConstraint(name = "name", columnNames = {"name", "club_id"}))
 @Unique(groups = { Unique.class, Default.class })
 public class Team extends AbstractBaseEntity {
 

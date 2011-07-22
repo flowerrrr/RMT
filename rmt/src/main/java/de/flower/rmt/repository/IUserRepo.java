@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface IUserRepo extends JpaRepository<Users, Long>, JpaSpecificationExecutor<Users> {
 
-    Users findByUsername(String username);
+    Users findByEmail(String username);
 
     List<Users> findByClub(Club club);
 }

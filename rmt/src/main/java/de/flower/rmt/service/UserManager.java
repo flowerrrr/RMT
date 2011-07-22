@@ -1,11 +1,13 @@
 package de.flower.rmt.service;
 
+import de.flower.rmt.model.Role;
 import de.flower.rmt.model.Users;
 import de.flower.rmt.model.Users_;
 import de.flower.rmt.repository.IUserRepo;
 import de.flower.rmt.repository.Specs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,11 +27,14 @@ public class UserManager extends AbstractService implements IUserManager {
 
     @Override
     public Users findByUsername(String username) {
-        return userRepo.findByUsername(username);
+        return userRepo.findByEmail(username);
     }
 
     @Override
+    @Transactional(readOnly = false)
     public void save(Users user) {
+        // check that a role is assigned
+        assert (user.getRoles() != null && !user.getRoles().isEmpty()) : "user has no role(s) assigned";
         userRepo.save(user);
     }
 
@@ -42,9 +47,18 @@ public class UserManager extends AbstractService implements IUserManager {
     }
 
     @Override
+    @Transactional(readOnly = false)
     public void delete(Users user) {
         throw new UnsupportedOperationException("Feature not implemented!");
     }
 
+    @Override
+    public Users newPlayerInstance() {
 
+        Users user = new Users(getClub());
+        Role role = new Role(Role.Roles.PLAYER.getRoleName());
+        user.getRoles().add(role);
+        role.setUser(user);
+        return user;
+    }
 }

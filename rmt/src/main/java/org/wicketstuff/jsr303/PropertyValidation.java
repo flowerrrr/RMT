@@ -1,6 +1,5 @@
 package org.wicketstuff.jsr303;
 
-import de.flower.common.logging.Slf4jUtil;
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.html.form.Form;
@@ -10,6 +9,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.util.visit.IVisit;
 import org.apache.wicket.util.visit.IVisitor;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Behavior to be added to either a FormComponent or Form. If used on a FormComponent, it has to be
@@ -20,7 +20,7 @@ public class PropertyValidation extends Behavior {
 
     private static final long serialVersionUID = 1L;
 
-    private final static Logger log = Slf4jUtil.getLogger();
+    private final static Logger log = LoggerFactory.getLogger(PropertyValidation.class);
 
     public PropertyValidation(Form<?> form, boolean lazyInit) {
         if (!lazyInit) {

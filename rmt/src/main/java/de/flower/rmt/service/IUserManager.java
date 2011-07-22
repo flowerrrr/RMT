@@ -19,4 +19,6 @@ public interface IUserManager {
     void delete(Users user);
 
     List<Users> findAll(Attribute... attributes);
+
+    Users newPlayerInstance();
 }

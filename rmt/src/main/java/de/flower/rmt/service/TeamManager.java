@@ -39,5 +39,10 @@ public class TeamManager extends AbstractService implements ITeamManager {
         teamRepo.delete(entity);
     }
 
+    @Override
+    public Team newTeamInstance() {
+        return new Team(getClub());
+    }
+
 
 }

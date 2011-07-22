@@ -63,6 +63,13 @@
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-spring/jars/wicket-spring-1.5-RC5.1.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-util/jars/wicket-util-1.5-RC5.1.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-config/jars/spring-security-config-3.0.5.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/commons-lang/commons-lang/jars/commons-lang-2.6.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/com.google.guava/guava/jars/guava-r09.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.hibernate/hibernate-jpamodelgen/jars/hibernate-jpamodelgen-1.1.1.Final.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/ch.qos.logback/logback-classic/jars/logback-classic-0.9.29.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/ch.qos.logback/logback-core/jars/logback-core-0.9.29.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework.data/spring-data-commons-core/jars/spring-data-commons-core-1.1.0.M2.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework.data/spring-data-jpa/jars/spring-data-jpa-1.0.0.RC1.jar" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="rmt/web/Web" />

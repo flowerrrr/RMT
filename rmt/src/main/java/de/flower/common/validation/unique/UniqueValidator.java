@@ -2,10 +2,10 @@ package de.flower.common.validation.unique;
 
 
 import de.flower.common.jpa.IColumnResolver;
-import de.flower.common.logging.Slf4jUtil;
 import de.flower.common.model.BaseEntity;
 import de.flower.common.util.ReflectionUtil;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class UniqueValidator implements ConstraintValidator<Unique, BaseEntity> {
 
-    private final static Logger log = Slf4jUtil.getLogger();
+    private final static Logger log = LoggerFactory.getLogger(UniqueValidator.class);
 
     private List<UniqueConstraintDef> constraints;
 

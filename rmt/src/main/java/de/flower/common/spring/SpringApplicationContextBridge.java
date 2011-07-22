@@ -1,7 +1,7 @@
 package de.flower.common.spring;
 
-import de.flower.common.logging.Slf4jUtil;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -23,7 +23,7 @@ import java.util.List;
 public final class SpringApplicationContextBridge implements ApplicationContextAware {
 
 	/** The log. */
-    private final static Logger log = Slf4jUtil.getLogger();
+    private final static Logger log = LoggerFactory.getLogger(SpringApplicationContextBridge.class);
 
     /** The application context. */
 	private ApplicationContext applicationContext;

@@ -24,7 +24,7 @@ object Database {
 
 class Database(properties: Map[String, Object]) {
 
-    private var log: Logger = LoggerFactory.getLogger(getClass)
+    private val log: Logger = LoggerFactory.getLogger(getClass)
 
     private var dataSource: DataSource = _
 

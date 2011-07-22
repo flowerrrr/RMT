@@ -20,9 +20,9 @@ public class HomePageResolver {
      */
     public static Class<? extends IRequestablePage> getHomePage() {
         // get roles
-        if (Authentication.hasRole(Role.MANAGER.getRoleName())) {
+        if (Authentication.hasRole(Role.Roles.MANAGER.getRoleName())) {
             return ManagerHomePage.class;
-        } else if (Authentication.hasRole(Role.PLAYER.getRoleName())){
+        } else if (Authentication.hasRole(Role.Roles.PLAYER.getRoleName())){
             return PlayerHomePage.class;
         } else {
             return HomePage.class;

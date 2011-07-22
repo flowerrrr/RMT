@@ -4,6 +4,7 @@ SET foreign_key_checks = 0;
 
 DROP TABLE authorities;
 DROP TABLE club;
+DROP TABLE role;
 DROP TABLE team;
 DROP TABLE users;
 

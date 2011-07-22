@@ -1,21 +1,63 @@
 package de.flower.rmt.model;
 
+import de.flower.common.model.AbstractBaseEntity;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 /**
+
  * @author oblume
  */
-public enum Role {
+@Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "authority"}))
+public class Role extends AbstractBaseEntity {
 
-    PLAYER("ROLE_PLAYER"),
-    MANAGER("ROLE_MANAGER"),
-    ADMIN("ROLE_ADMIN");
+    /**
+     * @author oblume
+     */
+    public enum Roles {
 
-    private String roleName;
+        PLAYER("ROLE_PLAYER"),
+        MANAGER("ROLE_MANAGER"),
+        ADMIN("ROLE_ADMIN");
 
-    Role(String roleName) {
-        this.roleName = roleName;
+        private String roleName;
+
+        Roles(String roleName) {
+            this.roleName = roleName;
+        }
+
+        public String getRoleName() {
+            return roleName;
+        }
     }
 
-    public String getRoleName() {
-        return roleName;
+    @NotNull
+    @Column
+    private String authority;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private Users user;
+
+    public Role(String authority) {
+        this.authority = authority;
+    }
+
+    public String getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(String authority) {
+        this.authority = authority;
+    }
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
     }
 }

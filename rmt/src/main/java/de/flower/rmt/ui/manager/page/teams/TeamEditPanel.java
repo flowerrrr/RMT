@@ -8,9 +8,7 @@ import de.flower.common.ui.form.MyForm;
 import de.flower.common.ui.form.ValidatedTextField;
 import de.flower.common.validation.unique.Unique;
 import de.flower.rmt.model.Team;
-import de.flower.rmt.model.Users;
 import de.flower.rmt.service.ITeamManager;
-import de.flower.rmt.ui.app.RMTSession;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
@@ -43,7 +41,8 @@ public class TeamEditPanel extends BasePanel {
 
         ValidatedTextField name;
         form.add(name = new ValidatedTextField("name"));
-        name.add(new WicketBeanValidator(Unique.class, new ConstraintFilter("{de.flower.validation.constraints.unique.message.uc_name}")));
+        // add a class level validator to this property
+        name.add(new WicketBeanValidator(Unique.class, new ConstraintFilter("{de.flower.validation.constraints.unique.message.name}")));
         form.add(new ValidatedTextField("url"));
 
         form.add(new MyAjaxSubmitLink("saveButton") {
@@ -67,8 +66,7 @@ public class TeamEditPanel extends BasePanel {
 
     public void init(IModel<Team> model) {
         if (model == null) {
-            Users user = RMTSession.get().getUser();
-            model = Model.of(new Team(user.getClub()));
+            model = Model.of(teamManager.newTeamInstance());
         }
         form.setModel(new CompoundPropertyModel<Team>(model));
         // clear css marker of previous validations
