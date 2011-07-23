@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head></head>
+<body>
+
+<wicket:extend>
+
+    Venues
+
+    <div wicket:id="venueDialog"/>
+
+    <a wicket:id="newButton">
+        <wicket:message key="manager.venues.new">[New]</wicket:message>
+    </a>
+
+    <div wicket:id="venueListContainer">
+        <ul>
+            <li wicket:id="venueList">
+                <span wicket:id="name">[Venue A]</span>
+                <a wicket:id="editButton">
+                    <wicket:message key="manager.venues.edit">[Edit]</wicket:message>
+                </a>
+                <a wicket:id="deleteButton">
+                    <wicket:message key="manager.venues.delete">[Delete]</wicket:message>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div wicket:id="gmap" class="venues-map" >[Map with venues]</div>
+
+ </wicket:extend>
+
+
+</body>
+</html>

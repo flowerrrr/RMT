@@ -38,7 +38,7 @@ class PlayerEditPanelTest extends WicketTests {
         assertValidation(fullname, "", false) // cannot be blank
         assertValidation(fullname, "foo bar", true)
         assertValidation(fullname, user.getFullname(), false) // must be unique per club
-        // but fullname must not be unique accross different clubs
+        // but fullname must not be unique across different clubs
         user = userRepo.findOne(5)
         assertNotEquals(user.getClub(), userUnderTest.getClub)
         assertValidation(fullname, user.getFullname(), true)

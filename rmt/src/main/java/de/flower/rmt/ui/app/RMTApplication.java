@@ -18,6 +18,9 @@ public class RMTApplication extends WebApplication {
         super.init();
         // add support for @SpringBean
         getComponentInstantiationListeners().add(getSpringComponentInjector());
+        // google maps have problems when wicket tags are rendered in development mode, so strip those tags
+        getMarkupSettings().setStripWicketTags(true);
+
         initBookmarkablePages();
     }
 

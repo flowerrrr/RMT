@@ -34,3 +34,17 @@
     height: 16px;
     width: 16px;
 }
+
+/*************************************************************************
+    google maps
+    need to set initial width and height.
+**************************************************************************/
+.venue-map { /* map with one venue on it */
+    width: 400px;
+    height: 300px;
+}
+
+.venues-map { /* map with all venues on it */
+    width: 500px;
+    height: 400px;
+}

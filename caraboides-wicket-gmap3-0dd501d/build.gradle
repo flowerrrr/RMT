@@ -1,0 +1,31 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+repositories {
+    mavenCentral()
+}
+
+
+// version properties
+version_wicket = "1.+"
+
+
+dependencies {
+    compile(
+            'org.apache.wicket:wicket:' + version_wicket,
+    )
+    testCompile(
+            'junit:junit:4.+'
+    )
+
+}
+
+/**
+ * Use this task to update idea project file with dependencies.
+ * It will remove existing dependencies before updating them.
+ */
+ideaModule {
+    beforeConfigured { module ->
+        module.dependencies.clear()
+    }
+}

@@ -1,13 +1,8 @@
 package de.flower.common.ui.form
 
 import org.apache.wicket.markup.html.WebPage
-import de.flower.common.ui.ajax.updatebehavior.events.Event
-import org.apache.wicket.MarkupContainer._
 import org.apache.wicket.ajax.markup.html.AjaxLink
 import org.apache.wicket.ajax.AjaxRequestTarget
-import de.flower.common.ui.ajax.updatebehavior.{AjaxRespondListener, AjaxUpdateBehavior}
-import de.flower.common.ui.form.TestTextFieldPanel
-
 /**
  * 
  * @author oblume

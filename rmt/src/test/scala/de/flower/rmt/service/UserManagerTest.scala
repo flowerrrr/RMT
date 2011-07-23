@@ -4,7 +4,7 @@ import de.flower.test.AbstractIntegrationTests
 import org.testng.annotations.Test
 import org.testng.Assert._
 import org.hibernate.LazyInitializationException
-import de.flower.rmt.model.{Users, Users_}
+import de.flower.rmt.model.Users_
 
 /**
  * 

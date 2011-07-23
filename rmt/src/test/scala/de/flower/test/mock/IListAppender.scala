@@ -1,6 +1,5 @@
 package de.flower.test.mock
 
-import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.Appender
 
 /**

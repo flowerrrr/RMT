@@ -23,4 +23,8 @@
 
     <team id="10" name="FC Bayern Profis" club_id="2" />
 
+    <venue id="1" name="Mintraching" address="Erdinger Straße 10\n 85375 Neufahrn bei Freising" lat="48.374497" lng="11.689453" club_id="1" />
+    <venue id="2" name="EDV Freimann" address="" lat="48.193399" lng="11.612356" club_id="1" />
+
+
 </dataset>

@@ -55,6 +55,7 @@
             <include name="**/hibernate-validator-4.1.0.Final.jar"/>
             <include name="**/commons-collections-3.2.1.jar"/>
             <include name="**/commons-lang-2.6.jar"/>
+            <include name="**/gmap2-1.5-RC5.1.jar"/>
         </fileset>
     </path>
 

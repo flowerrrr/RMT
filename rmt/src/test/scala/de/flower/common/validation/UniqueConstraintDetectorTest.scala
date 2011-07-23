@@ -2,9 +2,7 @@ package de.flower.common.validation
 
 import org.testng.annotations.Test
 import org.testng.Assert._
-import javax.persistence.Column._
 import javax.persistence.{UniqueConstraint, Table, Column}
-import ch.qos.logback.classic.db.names.ColumnName
 import unique.UniqueConstraintDetector
 
 /**

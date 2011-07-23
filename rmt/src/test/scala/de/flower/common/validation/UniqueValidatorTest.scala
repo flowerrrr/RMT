@@ -6,10 +6,7 @@ import org.testng.annotations.Test
 import javax.validation.{ConstraintViolation, ConstraintViolationException, Validator}
 import org.testng.Assert._
 import scala.collection.JavaConversions._
-import de.flower.rmt.model.{Users, Team}
-import javax.persistence.Column
-import org.mockito.Mockito._
-
+import de.flower.rmt.model.Team
 /**
  *
  * @author oblume

@@ -1,9 +1,7 @@
 package de.flower.test
 
-import org.testng.annotations.BeforeMethod._
 import java.lang.reflect.Method
 import org.testng.annotations.{AfterMethod, BeforeMethod}
-import org.testng.annotations.AfterMethod._
 import org.slf4j.{LoggerFactory, Logger}
 
 /**

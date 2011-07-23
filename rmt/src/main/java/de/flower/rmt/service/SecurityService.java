@@ -23,6 +23,7 @@ public class SecurityService implements ISecurityService {
 
     public Users getCurrentUser() {
         String username = schs.getContext().getAuthentication().getName();
+        // TODO (oblume - 23.07.11) - if lookup to slow then cache user object in security context
         Users user = userManager.findByUsername(username);
         return user;
     }

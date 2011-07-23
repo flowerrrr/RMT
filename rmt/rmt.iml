@@ -233,6 +233,15 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
+          <root url="file://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket/poms/wicket-1.5-RC5.1.pom" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
           <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-core/jars/wicket-core-1.5-RC5.1.jar!/" />
         </CLASSES>
         <JAVADOC />

@@ -1,8 +1,6 @@
 package de.flower.rmt.service;
 
-import de.flower.rmt.model.Club;
 import de.flower.rmt.model.Team;
-import de.flower.rmt.model.Users;
 import de.flower.rmt.repository.ITeamRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
