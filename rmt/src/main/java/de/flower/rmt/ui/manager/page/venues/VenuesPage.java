@@ -74,7 +74,12 @@ public class VenuesPage extends ManagerBasePage {
         });
         venueListContainer.add(new AjaxUpdateBehavior(Event.EntityAll(Venue.class)));
 
-        add(new GMapPanel("gmap"));
+        add(new GMapPanel("gmap") {
+            @Override
+            public boolean isVisible() {
+                return false;
+            }
+        });
     }
 
 

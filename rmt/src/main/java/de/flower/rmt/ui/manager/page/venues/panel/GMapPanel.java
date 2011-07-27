@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.manager.page.venues.panel;
 
 import de.flower.common.util.geo.GeoUtil;
-import de.flower.common.util.geo.LatLng;
+import de.flower.common.util.geo.LatLngEx;
 import de.flower.rmt.model.Venue;
 import de.flower.rmt.service.IVenueManager;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -28,18 +28,18 @@ public class GMapPanel extends Panel {
         GMap map = new GMap("map");
         add(map);
 
-        List<LatLng> latLngs = new ArrayList<LatLng>();
+        List<LatLngEx> latLngs = new ArrayList<LatLngEx>();
         for (Venue venue : venueManager.findAll()) {
-            if (venue.getGLatLng() != null) {
+            if (venue.getLatLng() != null) {
                 GOverlay marker = new GMarker(new GMarkerOptions(map,
-                        venue.getGLatLng(),
+                        venue.getLatLng(),
                         venue.getName()));
                 map.addOverlay(marker);
-                latLngs.add(venue.getGLatLng());
+                latLngs.add(venue.getLatLng());
             }
         }
 
-        LatLng center = GeoUtil.centerOf(latLngs);
+        LatLngEx center = GeoUtil.centerOf(latLngs);
         map.setCenter(center);
         map.setZoom(10);
 

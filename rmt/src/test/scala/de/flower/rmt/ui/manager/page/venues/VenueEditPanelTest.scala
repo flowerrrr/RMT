@@ -10,7 +10,7 @@ import org.testng.annotations.Test
 class VenueEditPanelTest extends WicketTests {
 
     @Test
-    def validateUniquenessConstraint() {
+    def testPanel() {
         val panel: VenueEditPanel = wicketTester.startPanel(classOf[VenueEditPanel]).asInstanceOf[VenueEditPanel]
 /*
         panel.init(null)

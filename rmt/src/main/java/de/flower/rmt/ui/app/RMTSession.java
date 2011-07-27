@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.app;
 
-import de.flower.common.util.geo.LatLng;
+import de.flower.common.util.geo.LatLngEx;
 import de.flower.rmt.model.Users;
 import de.flower.rmt.service.ISecurityService;
 import org.apache.wicket.injection.Injector;
@@ -15,7 +15,7 @@ public class RMTSession extends WebSession {
 
     private Users user;
 
-    private LatLng latLng;
+    private LatLngEx latLng;
 
     @SpringBean
     private ISecurityService securityService;
@@ -45,14 +45,14 @@ public class RMTSession extends WebSession {
         // latLng = iplocationtools.com/api?....
         // latLng = configurationService.getDefaultLocation();
         // latLng = user.getClub().getLatLng();
-        latLng = new LatLng(48.139126, 11.580186); // München
+        latLng = new LatLngEx(48.139126, 11.580186); // München
     }
 
     public Users getUser() {
         return user;
     }
 
-    public LatLng getLatLng() {
+    public LatLngEx getLatLng() {
         return latLng;
     }
 }

@@ -6,7 +6,7 @@ import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.events.Event;
 import de.flower.common.ui.form.MyForm;
 import de.flower.common.ui.form.ValidatedTextField;
-import de.flower.common.util.geo.LatLng;
+import de.flower.common.util.geo.LatLngEx;
 import de.flower.rmt.model.Venue;
 import de.flower.rmt.service.ISecurityService;
 import de.flower.rmt.service.IVenueManager;
@@ -31,6 +31,8 @@ public class VenueEditPanel extends BasePanel {
     private FormMode mode;
 
     private Form<Venue> form;
+
+    private GMapPanel2 mapPanel;
 
     @SpringBean
     private IVenueManager venueManager;
@@ -65,10 +67,10 @@ public class VenueEditPanel extends BasePanel {
             }
         });
 
-        add(new GMapPanel2("gmap", form.getModelObject().getGLatLng(), RMTSession.get().getLatLng()) {
+        form.add(mapPanel = new GMapPanel2("gmap", RMTSession.get().getLatLng()) {
             @Override
-            public void onUpdateMarker(LatLng latLng) {
-                form.getModelObject().setGLatLng(latLng);
+            public void onUpdateMarker(LatLngEx latLng) {
+                form.getModelObject().setLatLng(latLng);
             }
         });
     }
@@ -78,7 +80,6 @@ public class VenueEditPanel extends BasePanel {
             model = Model.of(venueManager.newVenueInstance());
         }
         form.setModel(new CompoundPropertyModel<Venue>(model));
-        // clear css marker of previous validations
-
+        mapPanel.init(Model.of(model.getObject().getLatLng()));
     }
 }

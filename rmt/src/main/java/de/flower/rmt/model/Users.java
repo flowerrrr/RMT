@@ -1,7 +1,6 @@
 package de.flower.rmt.model;
 
 import de.flower.common.model.AbstractBaseEntity;
-import de.flower.common.util.geo.LatLng;
 import de.flower.common.validation.unique.Unique;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
