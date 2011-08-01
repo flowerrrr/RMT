@@ -19,6 +19,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import wicket.contrib.gmap3.GMap;
 
 import java.util.List;
 
@@ -44,7 +45,10 @@ public class VenuesPage extends ManagerBasePage {
                 // show modal dialog with venue edit form.
                 venueEditPanel.init(null);
                 modal.show(target);
+                resizeMap(target, venueEditPanel);
             }
+
+
         });
 
         WebMarkupContainer venueListContainer = new WebMarkupContainer("venueListContainer");
@@ -60,6 +64,7 @@ public class VenuesPage extends ManagerBasePage {
                     public void onClick(AjaxRequestTarget target) {
                         venueEditPanel.init(item.getModel());
                         modal.show(target);
+                        resizeMap(target, venueEditPanel);
                     }
                 });
                 item.add(new AjaxLinkWithConfirmation("deleteButton", new ResourceModel("manager.venues.delete.confirm")) {
@@ -74,13 +79,23 @@ public class VenuesPage extends ManagerBasePage {
         });
         venueListContainer.add(new AjaxUpdateBehavior(Event.EntityAll(Venue.class)));
 
-        add(new GMapPanel("gmap") {
-            @Override
-            public boolean isVisible() {
-                return false;
-            }
-        });
+        add(new GMapPanel("gmap"));
     }
+
+    /**
+     * Fix for layout bug when map is loaded in hidden div (like in modal window).
+     * See http://code.google.com/p/gmaps-api-issues/issues/detail?id=1448.
+     * @param target
+     * @param venueEditPanel
+     */
+    private void resizeMap(AjaxRequestTarget target, VenueEditPanel venueEditPanel) {
+        GMap map = venueEditPanel.getGMap();
+        String js = "google.maps.event.trigger(" + map.getJsReference() + ".map, 'resize');";
+        js += map.getJSinvoke("reCenter()");
+        // js += map.getJsReference() + ".setZoom(" + map.getJsReference() + ".map.getZoom());";
+        target.appendJavaScript(js);
+    }
+
 
 
     private IModel<List<Venue>> getVenueListModel() {

@@ -19,6 +19,8 @@
  *
  * @author Martin Funk
  */
+
+
 // Wicket Namespace
 var Wicket;
 if (!Wicket) {
@@ -97,7 +99,7 @@ function WicketMap(id) {
 	this.addListener = function(event, callBack) {
 		var self = this;
        
-		google.maps.event.addListener(this.map, event, function() {
+		google.maps.event.addListener(this.map, event, function(evt) {
 			var params = {};
 			for ( var p = 0; p < arguments.length; p++) {
 				if (arguments[p] != null) {
@@ -105,9 +107,16 @@ function WicketMap(id) {
 				}
 			}
 
+            params['event'] = event;
+            params['latLng'] = evt.latLng;
+
 			self.onEvent(callBack, params);
 		});
 	}
+
+    this.clearInstanceListeners = function() {
+        google.maps.Event.clearInstanceListeners(this.map);
+    }
 
 	this.addOverlayListener = function(overlayID, event) {
 		var self = this;
@@ -185,8 +194,13 @@ function WicketMap(id) {
 	}
 
 	this.setCenter = function(center) {
+        this.center = center;
 		this.map.setCenter(center);
 	}
+
+    this.reCenter = function() {
+        this.map.setCenter(this.center);
+    }
 	
 	this.openInfoWindowHtml = function(latlng, myHtml) {
 		this.map.openInfoWindowHtml(latlng, myHtml);
@@ -224,6 +238,7 @@ function WicketMap(id) {
 		}
 	}
 
+
 	this.addOverlay = function(overlayId, overlay) {
 		this.overlays[overlayId] = overlay;
 		overlay.overlayId = overlayId;
@@ -231,20 +246,23 @@ function WicketMap(id) {
 			return overlayId;
 		};
 
-		this.map.addOverlay(overlay);
+		// this.map.addOverlay(overlay);
 	}
+
 
 	this.removeOverlay = function(overlayId) {
 		if (this.overlays[overlayId] != null) {
-			this.map.removeOverlay(this.overlays[overlayId]);
+            this.overlays[overlayId].setMap(null);
 
 			this.overlays[overlayId] = null;
 		}
 	}
 
 	this.clearOverlays = function() {
+        for (var overlayId in this.overlays) {
+            this.removeOverlay(overlayId);
+        }
 		this.overlays = {};
-		this.map.clearOverlays();
 	}
 
 	this.openInfoWindowTabs = function(latLng, tabs) {

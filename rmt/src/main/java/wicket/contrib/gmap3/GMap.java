@@ -267,6 +267,14 @@ public class GMap extends Panel implements GOverlayContainer {
         return Collections.unmodifiableList( _overlays );
     }
 
+    public GMap clearAllListeners() {
+
+        if ( AjaxRequestTarget.get() != null && findPage() != null ) {
+            AjaxRequestTarget.get().appendJavaScript(getJSinvoke("clearInstanceListeners()"));
+        }
+        return this;
+    }
+
     public Set<GControl> getControls() {
         return Collections.unmodifiableSet( _controls );
     }

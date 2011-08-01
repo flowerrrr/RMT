@@ -45,7 +45,7 @@ public class RMTSession extends WebSession {
         // latLng = iplocationtools.com/api?....
         // latLng = configurationService.getDefaultLocation();
         // latLng = user.getClub().getLatLng();
-        latLng = new LatLngEx(48.139126, 11.580186); // München
+        latLng = new LatLngEx(48.133333, 11.566667); // München
     }
 
     public Users getUser() {

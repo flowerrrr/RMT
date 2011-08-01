@@ -17,7 +17,9 @@ import java.io.Serializable;
  */
 public class GMapPanel2 extends Panel {
 
-    private GMap map;
+    private GMap mapNew;
+
+    private GMap mapEdit;
 
     /**
      * @param id
@@ -26,43 +28,55 @@ public class GMapPanel2 extends Panel {
     public GMapPanel2(String id, LatLngEx defaultCenter) {
         super(id);
 
-        map = new GMap("map");
+        mapNew = initMap("mapNew");
+        mapNew.setCenter(defaultCenter);
+        mapNew.add(new ClickListener() {
+             @Override
+             protected void onClick(AjaxRequestTarget target, LatLng glatLng, GOverlay overlay) {
+                 if (glatLng != null) {
+                     // only one gMarker allowed. if already a gMarker present ignore click event.
+                     if (mapNew.getOverlays().size() == 0) {
+                         DraggableMarker marker = new DraggableMarker(mapNew, glatLng);
+                         onUpdateMarker(new LatLngEx(glatLng));
+                     }
+                 }
+             }
+        });
+
+        mapEdit = initMap("mapEdit");
+    }
+
+    private GMap initMap(String id) {
+        GMap map = new GMap(id);
         add(map);
 
-        map.setCenter(defaultCenter);
-        map.setZoom(10);
+        map.setZoom(11);
+        return map;
     }
 
     /**
      * Update map marker.
      */
     public void init(IModel<LatLngEx> model) {
-        resetMap();
         LatLngEx latLng = model.getObject();
         if (latLng == null) {
-            // panel in new-mode, no marker present, but can be added by clicking on map.
-            map.add(new ClickListener() {
-                @Override
-                protected void onClick(AjaxRequestTarget target, LatLng glatLng, GOverlay overlay) {
-                    if (glatLng != null) {
-                        // only one gMarker allowed. if already a gMarker present ignore click event.
-                        if (map.getOverlays().size() == 0) {
-                            DraggableMarker marker = new DraggableMarker(map, glatLng);
-                            onUpdateMarker(new LatLngEx(glatLng));
-                        }
-                    }
-                }
-            });
+            mapNew.setVisible(true);
+            mapEdit.setVisible(false);
+            mapNew.removeAllOverlays();
         } else {
+            mapNew.setVisible(false);
+            mapEdit.setVisible(true);
+            mapEdit.removeAllOverlays();
             // put draggable marker on map.
-            DraggableMarker marker = new DraggableMarker(map, latLng);
+            DraggableMarker marker = new DraggableMarker(mapEdit, latLng);
             // and center map on marker
-            map.setCenter(latLng);
+            mapEdit.setCenter(latLng);
         }
+
     }
 
-    private void resetMap() {
-        map.removeAllOverlays();
+    public GMap getGMap() {
+        return mapNew.isVisible() ? mapNew : mapEdit;
     }
 
     private class DraggableMarker implements Serializable {

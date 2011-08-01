@@ -55,7 +55,7 @@ public abstract class ClickListener extends GEventListenerBehavior {
             }
         }
 
-        String latLngParameter = request.getRequestParameters().getParameterValue( "argument1" ).toString();
+        String latLngParameter = request.getRequestParameters().getParameterValue( "latLng" ).toString();
         if ( latLngParameter != null ) {
             latLng = LatLng.parse( latLngParameter );
         }

@@ -51,6 +51,10 @@ public abstract class GOverlay implements Serializable {
         _id = String.valueOf( Session.get().nextSequenceValue() );
     }
 
+    public String getJsReference() {
+        return _parent.getJsReference() + ".overlays['" + getId() + "']";
+    }
+
     /**
      * @return String representing the JavaScript add command for the
      *         corresponding JavaScript object.
@@ -62,9 +66,10 @@ public abstract class GOverlay implements Serializable {
     }
 
     private StringBuffer addOverlays( final StringBuffer js ) {
-        js.append( "var overlay" + getId() + "= " + getJSconstructor() + ";" );
-        // Overlays will set map in they options, so this is not necessary 
+        js.append( "var overlay" + getId() + " = " + getJSconstructor() + ";" );
+        // Overlays will set map in their options, so this is not necessary
         js.append( "overlay" + getId() + ".setMap(" + _parent.getJsReference() + ".map);" );
+        js.append(_parent.getJSinvoke("addOverlay('" + getId() + "', overlay" + getId() + ")"));
         return js;
     }
 
