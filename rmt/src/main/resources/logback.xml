@@ -27,7 +27,7 @@
 
     <logger name="de.flower" level="DEBUG" />
 
-    <logger name="trace" level="TRACE" />
+    <logger name="trace" level="INFO" />
     <logger name="trace.de.flower.common.model" level="INFO" />
     <logger name="trace.de.flower.common.ui.ajax.updatebehavior" level="INFO" />
 
