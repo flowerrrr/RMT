@@ -6,17 +6,16 @@ import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.events.Event;
 import de.flower.common.ui.form.MyForm;
 import de.flower.common.ui.form.ValidatedTextField;
-import de.flower.common.util.geo.LatLngEx;
 import de.flower.rmt.model.Venue;
 import de.flower.rmt.service.ISecurityService;
 import de.flower.rmt.service.IVenueManager;
-import de.flower.rmt.ui.app.RMTSession;
 import de.flower.rmt.ui.common.panel.BasePanel;
-import de.flower.rmt.ui.manager.page.venues.panel.GMapPanel2;
+import de.flower.rmt.ui.manager.page.venues.panel.GMapPage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextArea;
+import org.apache.wicket.markup.html.link.InlineFrame;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -32,7 +31,7 @@ public class VenueEditPanel extends BasePanel {
 
     private Form<Venue> form;
 
-    private GMapPanel2 mapPanel;
+    private GMapPage gmapPage;
 
     @SpringBean
     private IVenueManager venueManager;
@@ -67,12 +66,15 @@ public class VenueEditPanel extends BasePanel {
             }
         });
 
-        form.add(mapPanel = new GMapPanel2("gmap", RMTSession.get().getLatLng()) {
+ /*       gmapPage = new GMapPage()  {
             @Override
-            public void onUpdateMarker(LatLngEx latLng) {
-                form.getModelObject().setLatLng(latLng);
-            }
-        });
+             public void onUpdateMarker(LatLngEx latLng) {
+                 form.getModelObject().setLatLng(latLng);
+             }
+        };
+*/
+        form.add(new InlineFrame("mapFrame", GMapPage.class));
+
     }
 
     public void init(IModel<Venue> model) {
@@ -80,6 +82,6 @@ public class VenueEditPanel extends BasePanel {
             model = Model.of(venueManager.newVenueInstance());
         }
         form.setModel(new CompoundPropertyModel<Venue>(model));
-        mapPanel.init(Model.of(model.getObject().getLatLng()));
+        // gmapPage.init(Model.of(model.getObject().getLatLng()));
     }
 }
