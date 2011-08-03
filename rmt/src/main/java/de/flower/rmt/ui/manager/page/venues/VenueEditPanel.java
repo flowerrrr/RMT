@@ -35,6 +35,8 @@ public class VenueEditPanel extends BasePanel {
 
     private GMapPanel2 mapPanel;
 
+    private LatLngEx latLng;
+
     @SpringBean
     private IVenueManager venueManager;
 
@@ -53,10 +55,12 @@ public class VenueEditPanel extends BasePanel {
         form.add(new MyAjaxSubmitLink("saveButton") {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-                if (!new BeanValidator(form).isValid(form.getModelObject())) {
+                Venue venue = (Venue) form.getModelObject();
+                venue.setLatLng(latLng);
+                if (!new BeanValidator(form).isValid(venue)) {
                     onError(target, form);
                 } else {
-                    venueManager.save((Venue) form.getModelObject());
+                    venueManager.save(venue);
                     target.registerRespondListener(new AjaxRespondListener(Event.EntityCreated(Venue.class), Event.EntityUpdated(Venue.class)));
                     ModalWindow.closeCurrent(target);
                 }
@@ -71,7 +75,7 @@ public class VenueEditPanel extends BasePanel {
         form.add(mapPanel = new GMapPanel2("gmap", RMTSession.get().getLatLng()) {
             @Override
             public void onUpdateMarker(LatLngEx latLng) {
-                form.getModelObject().setLatLng(latLng);
+                VenueEditPanel.this.latLng = latLng;
             }
         });
     }

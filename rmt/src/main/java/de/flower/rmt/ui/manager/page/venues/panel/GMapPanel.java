@@ -1,5 +1,7 @@
 package de.flower.rmt.ui.manager.page.venues.panel;
 
+import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
+import de.flower.common.ui.ajax.updatebehavior.events.Event;
 import de.flower.common.util.geo.GeoUtil;
 import de.flower.common.util.geo.LatLngEx;
 import de.flower.rmt.model.Venue;
@@ -43,6 +45,6 @@ public class GMapPanel extends Panel {
         map.setCenter(center);
         map.setZoom(10);
 
-
+        add(new AjaxUpdateBehavior(Event.EntityAll(Venue.class)));
     }
 }

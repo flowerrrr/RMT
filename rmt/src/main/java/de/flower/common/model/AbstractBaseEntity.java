@@ -47,7 +47,7 @@ public abstract class AbstractBaseEntity implements Serializable, BaseEntity, Cl
 	public String toString() {
 		StringBuilder retVal = new StringBuilder();
 
-		retVal.append("[" + this.getClass().getSimpleName() + "]");
+		retVal.append("[" + this.getClass().getSimpleName() + "@" + this.hashCode() + "]");
 
 		return retVal.toString();
 	}

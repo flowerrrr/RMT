@@ -28,7 +28,7 @@ public abstract class GEventListenerBehavior extends AbstractDefaultAjaxBehavior
     @Override
     protected void onBind() {
         if ( !( getComponent() instanceof GMap ) ) {
-            throw new IllegalArgumentException( "must be bound to GMap2" );
+            throw new IllegalArgumentException( "must be bound to GMap3" );
         }
     }
 

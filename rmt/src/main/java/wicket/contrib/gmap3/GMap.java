@@ -710,6 +710,7 @@ public class GMap extends Panel implements GOverlayContainer {
 
             final String overlayId = request.getRequestParameters().getParameterValue( "overlay.overlayId" ).toString();
             final String event = request.getRequestParameters().getParameterValue( "overlay.event" ).toString();
+            final String latLng = request.getRequestParameters().getParameterValue("overlay.latLng").toString();
             // TODO this is ugly
             // the id's of the Overlays are unique within the ArrayList
             // maybe we should change that collection

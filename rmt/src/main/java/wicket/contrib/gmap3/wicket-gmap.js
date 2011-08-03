@@ -115,14 +115,14 @@ function WicketMap(id) {
 	}
 
     this.clearInstanceListeners = function() {
-        google.maps.Event.clearInstanceListeners(this.map);
+        google.maps.event.clearInstanceListeners(this.map);
     }
 
 	this.addOverlayListener = function(overlayID, event) {
 		var self = this;
 		var overlay = this.overlays[overlayID];
 
-		google.maps.Event.addListener(overlay, event, function() {
+		google.maps.event.addListener(overlay, event, function(evt) {
 			var params = {};
 			for ( var p = 0; p < arguments.length; p++) {
 				if (arguments[p] != null) {
@@ -130,7 +130,7 @@ function WicketMap(id) {
 				}
 			}
 
-			params['overlay.latLng'] = overlay.getLatLng();
+			params['overlay.latLng'] = overlay.getPosition();
 			params['overlay.overlayId'] = overlay.overlayId;
 			params['overlay.event'] = event;
 
@@ -142,7 +142,7 @@ function WicketMap(id) {
 		var self = this;
 		var overlay = this.overlays[overlayID];
 
-		google.maps.Event.clearListeners(overlay, event);
+		google.maps.event.clearListeners(overlay, event);
 	}
 
 	this.setDraggingEnabled = function(enabled) {
@@ -215,9 +215,7 @@ function WicketMap(id) {
 	}
 
 	this.zoomOut = function() {
-	   
 	    this.map.setZoom(this.map.getZoom()-1)
-		
 	}
 
 	this.zoomIn = function() {

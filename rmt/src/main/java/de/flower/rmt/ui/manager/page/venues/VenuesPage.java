@@ -47,8 +47,6 @@ public class VenuesPage extends ManagerBasePage {
                 modal.show(target);
                 resizeMap(target, venueEditPanel);
             }
-
-
         });
 
         WebMarkupContainer venueListContainer = new WebMarkupContainer("venueListContainer");
