@@ -50,7 +50,7 @@ public class GMapPanel2 extends Panel {
         GMap map = new GMap(id);
         add(map);
 
-        map.setZoom(11);
+        map.setZoom(14);
         return map;
     }
 

@@ -53,7 +53,7 @@ public class GInfoWindowContent implements GValue {
      */
     @Override
     public String getJSconstructor() {
-        return new Constructor( "google.maps.InfoWindow" ).add( "document.getElementById('" + _content.getMarkupId() + "')" ).toJS();
+        return new Constructor( "google.maps.InfoWindow" ).add( "{content: document.getElementById('" + _content.getMarkupId() + "')}" ).toJS();
     }
 
     public String getJSconstructor( LatLng latLng ) {

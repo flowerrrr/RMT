@@ -28,11 +28,6 @@
         </fileset>
       </configuration>
     </facet>
-    <facet type="wicketforge" name="Wicket">
-      <configuration>
-        <resourceUrls />
-      </configuration>
-    </facet>
     <facet type="scala" name="Scala">
       <configuration>
         <option name="compilerLibraryLevel" value="Global" />
@@ -228,15 +223,6 @@
         <SOURCES>
           <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-web/sources/spring-web-3.0.3.RELEASE-sources.jar!/" />
         </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="file://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket/poms/wicket-1.5-RC5.1.pom" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
@@ -526,11 +512,11 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/commons-lang/commons-lang/jars/commons-lang-2.6.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.commons/commons-lang3/jars/commons-lang3-3.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/commons-lang/commons-lang/sources/commons-lang-2.6-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.commons/commons-lang3/sources/commons-lang3-3.0-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -559,11 +545,44 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/com.google.guava/guava/jars/guava-r09.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.httpcomponents/httpclient/jars/httpclient-4.1.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/com.google.guava/guava/sources/guava-r09-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.httpcomponents/httpclient/sources/httpclient-4.1.2-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.httpcomponents/httpcore/jars/httpcore-4.1.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.httpcomponents/httpcore/sources/httpcore-4.1.2-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/cache/commons-codec/commons-codec/jars/commons-codec-1.4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/cache/commons-codec/commons-codec/sources/commons-codec-1.4-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/cache/com.google.code.gson/gson/jars/gson-1.7.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/cache/com.google.code.gson/gson/sources/gson-1.7.1-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -667,11 +686,11 @@
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.scala-lang/scala-library/jars/scala-library-2.9.0-1.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.scala-lang/scala-library/jars/scala-library-2.9.1.RC1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.scala-lang/scala-library/sources/scala-library-2.9.0-1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.scala-lang/scala-library/sources/scala-library-2.9.1.RC1-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -731,11 +750,11 @@
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.mockito/mockito-core/jars/mockito-core-1.8.5.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.mockito/mockito-core/jars/mockito-core-1.9.0-rc1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.mockito/mockito-core/sources/mockito-core-1.8.5-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.mockito/mockito-core/sources/mockito-core-1.9.0-rc1-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>

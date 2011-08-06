@@ -1,5 +1,6 @@
 package de.flower.common.ui.ajax;
 
+import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.IAjaxCallDecorator;
 import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
 import org.apache.wicket.markup.html.form.Form;
@@ -20,6 +21,11 @@ public abstract class MyAjaxSubmitLink extends AjaxSubmitLink {
     @Override
     protected IAjaxCallDecorator getAjaxCallDecorator() {
         return new PreventDoubleClickAjaxCallDecorator();
+    }
+
+    @Override
+    protected void onError(AjaxRequestTarget target, Form<?> form) {
+        target.add(form);
     }
 
 }

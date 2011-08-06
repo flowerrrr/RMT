@@ -7,7 +7,7 @@ import de.flower.common.util.IO
 import org.dbunit.dataset.IDataSet
 import org.slf4j.{LoggerFactory, Logger}
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder
-import com.google.common.base.Preconditions._
+import org.apache.commons.lang3.Validate
 
 /**
  *
@@ -46,7 +46,7 @@ class Database(properties: Map[String, Object]) {
     }
 
     private def getDatabaseConnection: IDatabaseConnection = {
-        val connection = new DatabaseDataSourceConnection(checkNotNull(dataSource))
+        val connection = new DatabaseDataSourceConnection(Validate.notNull(dataSource))
         return configureConnection(connection)
     }
 

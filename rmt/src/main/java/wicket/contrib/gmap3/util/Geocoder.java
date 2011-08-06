@@ -31,6 +31,7 @@ import java.util.StringTokenizer;
  * 
  * @author Thijs Vonk
  */
+@Deprecated // needs rewrite for api v3.
 public class Geocoder implements Serializable {
 
     private static final long serialVersionUID = 1L;

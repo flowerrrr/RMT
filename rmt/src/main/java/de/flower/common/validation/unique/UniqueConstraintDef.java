@@ -1,7 +1,5 @@
 package de.flower.common.validation.unique;
 
-import org.apache.commons.lang.StringUtils;
-
 /**
  * @author oblume
  */
@@ -20,7 +18,7 @@ public class UniqueConstraintDef {
         this.name = name;
         this.columnNames = columnNames;
         if (name == null) {
-            name = "uc_" + StringUtils.join(columnNames, "_");
+            name = "uc_" + org.apache.commons.lang3.StringUtils.join(columnNames, "_");
         }
     }
 }

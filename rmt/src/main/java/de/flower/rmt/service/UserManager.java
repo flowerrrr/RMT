@@ -5,6 +5,7 @@ import de.flower.rmt.model.Users;
 import de.flower.rmt.model.Users_;
 import de.flower.rmt.repository.IUserRepo;
 import de.flower.rmt.repository.Specs;
+import static org.apache.commons.lang3.Validate.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -33,7 +34,7 @@ public class UserManager extends AbstractService implements IUserManager {
     @Transactional(readOnly = false)
     public void save(Users user) {
         // check that a role is assigned
-        assert (user.getRoles() != null && !user.getRoles().isEmpty()) : "user has no role(s) assigned";
+        notEmpty(user.getRoles(), "user has no role(s) assigned");
         userRepo.save(user);
     }
 

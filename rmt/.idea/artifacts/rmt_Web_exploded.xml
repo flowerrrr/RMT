@@ -71,6 +71,11 @@
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework.data/spring-data-commons-core/jars/spring-data-commons-core-1.1.0.M2.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework.data/spring-data-jpa/jars/spring-data-jpa-1.0.0.RC1.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.wicketstuff/gmap2/jars/gmap2-1.5-RC5.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/commons-codec/commons-codec/jars/commons-codec-1.4.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.commons/commons-lang3/jars/commons-lang3-3.0.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/com.google.code.gson/gson/jars/gson-1.7.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.httpcomponents/httpclient/jars/httpclient-4.1.2.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.httpcomponents/httpcore/jars/httpcore-4.1.2.jar" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="rmt/web/Web" />

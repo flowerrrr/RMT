@@ -72,7 +72,7 @@ public class GInfoWindow extends WebMarkupContainer {
      *            content to open in info window
      * @return This
      */
-    public GInfoWindow open( GMap map, GMarker marker, Component content ) {
+    public GInfoWindow open( GMarker marker, Component content ) {
         return open( marker, new GInfoWindowContent( content ) );
     }
 

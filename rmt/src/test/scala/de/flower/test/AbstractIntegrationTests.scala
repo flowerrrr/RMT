@@ -3,11 +3,9 @@ package de.flower.test
 import mock.{IListAppender, LogBackListAppender}
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests
-import org.springframework.beans.factory.annotation.Autowired
 import javax.persistence.{PersistenceContext, EntityManager}
 import org.scalatest.Assertions
 import org.springframework.transaction.PlatformTransactionManager
-import com.google.common.base.Preconditions._
 import javax.sql.DataSource
 import org.slf4j.{LoggerFactory, Logger}
 import org.testng.annotations.{BeforeClass, Listeners, BeforeMethod}
@@ -17,6 +15,9 @@ import de.flower.rmt.service.{IUserManager, ITeamManager}
 import org.springframework.security.authentication.TestingAuthenticationToken
 import de.flower.rmt.model.{Role, Club}
 import org.springframework.security.core.context.SecurityContextHolderStrategy
+import de.flower.rmt.service.geocoding.IGeocodingService
+import org.springframework.beans.factory.annotation.Autowired
+import org.apache.commons.lang3.Validate
 
 /**
  *
@@ -57,6 +58,9 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
     protected var userManager: IUserManager = _
 
     @Autowired
+    protected var geocodingService: IGeocodingService = _
+
+    @Autowired
     protected var securityContextHolderStrategy: SecurityContextHolderStrategy = _
 
 
@@ -87,7 +91,7 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
         resetListAppender()
 
         // load some often used entities
-        club = checkNotNull(clubRepo.findOne(1L))
+        club = Validate.notNull(clubRepo.findOne(1L))
 
         initializeSecurityContextWithTestUser()
 
@@ -100,7 +104,7 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
         // set the security context with a test user.
         var username = "manager-rmt@mailinator.com"
         var authentication = new TestingAuthenticationToken(username, "manager", Role.Roles.MANAGER.getRoleName)
-        checkNotNull(userRepo.findByEmail(username), "Make sure test user is present in test database.".asInstanceOf[Object])
+        Validate.notNull(userRepo.findByEmail(username), "Make sure test user is present in test database.")
         securityContextHolderStrategy.getContext.setAuthentication(authentication)
     }
 

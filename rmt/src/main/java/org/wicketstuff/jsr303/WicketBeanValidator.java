@@ -15,7 +15,7 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Set;
 
-import static com.google.common.base.Preconditions.*;
+import static org.apache.commons.lang3.Validate.*;
 
 /**
  * Validator that can be bound to a input field but does a bean validation.
@@ -53,7 +53,7 @@ public class WicketBeanValidator<T> extends Behavior implements INullAcceptingVa
     @Override
     public void bind(Component component) {
         form = component.findParent(Form.class);
-        checkNotNull(form);
+        notNull(form);
         if (propertyName == null) {
             propertyName = component.getId();
         }

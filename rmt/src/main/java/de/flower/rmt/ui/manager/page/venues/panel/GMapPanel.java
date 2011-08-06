@@ -1,7 +1,5 @@
 package de.flower.rmt.ui.manager.page.venues.panel;
 
-import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
-import de.flower.common.ui.ajax.updatebehavior.events.Event;
 import de.flower.common.util.geo.GeoUtil;
 import de.flower.common.util.geo.LatLngEx;
 import de.flower.rmt.model.Venue;
@@ -11,7 +9,6 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import wicket.contrib.gmap3.GMap;
 import wicket.contrib.gmap3.api.GMarker;
 import wicket.contrib.gmap3.api.GMarkerOptions;
-import wicket.contrib.gmap3.api.GOverlay;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,13 +24,13 @@ public class GMapPanel extends Panel {
     public GMapPanel(String id) {
         super(id);
 
-        GMap map = new GMap("map");
+        final GMap map = new GMap("map");
         add(map);
 
         List<LatLngEx> latLngs = new ArrayList<LatLngEx>();
-        for (Venue venue : venueManager.findAll()) {
+        for (final Venue venue : venueManager.findAll()) {
             if (venue.getLatLng() != null) {
-                GOverlay marker = new GMarker(new GMarkerOptions(map,
+                final GMarker marker = new GMarker(new GMarkerOptions(map,
                         venue.getLatLng(),
                         venue.getName()));
                 map.addOverlay(marker);
@@ -45,6 +42,8 @@ public class GMapPanel extends Panel {
         map.setCenter(center);
         map.setZoom(10);
 
-        add(new AjaxUpdateBehavior(Event.EntityAll(Venue.class)));
+        // updates of venue locations must be done via javascript. repainting the whole map
+        // takes to long and doesn't look nice.
+        // add(new AjaxUpdateBehavior(Event.EntityAll(Venue.class)));
     }
 }

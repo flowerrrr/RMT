@@ -56,9 +56,9 @@ public class GMap extends Panel implements GOverlayContainer {
 
     private boolean _draggingEnabled = true;
 
-    private boolean _doubleClickZoomEnabled = false;
+    private boolean _doubleClickZoomEnabled = true;
 
-    private boolean _scrollWheelZoomEnabled = false;
+    private boolean _scrollWheelZoomEnabled = true;
 
     private GMapType _mapType = GMapType.ROADMAP;
 

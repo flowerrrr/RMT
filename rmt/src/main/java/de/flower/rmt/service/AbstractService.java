@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import static com.google.common.base.Preconditions.*;
+import static org.apache.commons.lang3.Validate.*;
+
 
 /**
  * @author oblume
@@ -24,7 +25,7 @@ public abstract class AbstractService {
      */
     protected Club getClub() {
         Users currentUser = securityService.getCurrentUser();
-        checkNotNull(currentUser, "Security Context must be filled with a user");
+        notNull(currentUser, "Security Context must be filled with a user");
         return currentUser.getClub();
     }
 

@@ -33,9 +33,10 @@ dependencies {
             'org.hibernate:hibernate-core:' + version_hibernate,
             'commons-beanutils:commons-beanutils:1.+',
             'commons-collections:commons-collections:3.+',
-            'commons-lang:commons-lang:2.+',
+            'org.apache.commons:commons-lang3:3.+',
             'ch.qos.logback:logback-classic:+',
-            'com.google.guava:guava:+',
+            'org.apache.httpcomponents:httpclient:4.+',
+            'com.google.code.gson:gson:1.+',
             // TODO - jar needed for idea to use apt during compilation. possible to move to other configuration?
             'org.hibernate:hibernate-jpamodelgen:1.1.1.Final'
     )

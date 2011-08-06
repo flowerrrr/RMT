@@ -17,9 +17,21 @@
             <li>
                 <wicket:message key="manager.venue.address" />
                 <textarea wicket:id="address" />
+                <a wicket:id="geocodeButton">[Find on map]</a>
+            </li>
+            <li wicket:id="geocodeNoResult">
+                <wicket:message key="manager.venue.geocode.noresult"/>
+            </li>
+            <li wicket:id="geocodeResultListContainer">
+                <ul>
+                    <li wicket:id="geocodeResultList">
+                        <span wicket:id="address">[Werner-Heisenberg-Allee 25, 80939 München]</span>
+                        <a wicket:id="chooseButton">[Select this location]</a>
+                    </li>
+                </ul>
             </li>
             <li>
-                <div wicket:id="gmap" class="venue-map" >[Map with venues]</div>
+                <div wicket:id="mapPanel" class="venue-map" >[Map with venues]</div>
             </li>
         </ul>
 

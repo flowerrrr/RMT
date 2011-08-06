@@ -1,7 +1,7 @@
 package de.flower.common.aop;
 
 import org.apache.commons.collections.ArrayStack;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
