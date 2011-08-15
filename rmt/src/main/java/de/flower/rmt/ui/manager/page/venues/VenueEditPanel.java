@@ -8,7 +8,7 @@ import de.flower.common.ui.form.MyForm;
 import de.flower.common.ui.form.ValidatedTextField;
 import de.flower.common.util.geo.LatLngEx;
 import de.flower.rmt.model.Venue;
-import de.flower.rmt.service.ISecurityService;
+import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.service.IVenueManager;
 import de.flower.rmt.service.geocoding.GeocodingResult;
 import de.flower.rmt.service.geocoding.IGeocodingService;

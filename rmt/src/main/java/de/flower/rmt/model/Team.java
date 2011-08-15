@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.validation.groups.Default;
+import java.util.List;
 
 /**
  * @author oblume
@@ -31,6 +32,9 @@ public class Team extends AbstractBaseEntity {
     @NotNull
     @ManyToOne
     private Club club;
+
+    @ManyToMany
+    private List<Users> players;
 
 //    @ManyToMany
 //    private Set<Users> managers;
@@ -70,5 +74,13 @@ public class Team extends AbstractBaseEntity {
 
     public void setClub(Club club) {
         this.club = club;
+    }
+
+    public List<Users> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Users> players) {
+        this.players = players;
     }
 }

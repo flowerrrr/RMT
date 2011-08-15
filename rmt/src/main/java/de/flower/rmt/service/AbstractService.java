@@ -2,6 +2,7 @@ package de.flower.rmt.service;
 
 import de.flower.rmt.model.Club;
 import de.flower.rmt.model.Users;
+import de.flower.rmt.service.security.ISecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +17,7 @@ import static org.apache.commons.lang3.Validate.*;
 public abstract class AbstractService {
 
     @Autowired
-    private ISecurityService securityService;
+    protected ISecurityService securityService;
 
     /**
      * Returns club of currently logged in user.

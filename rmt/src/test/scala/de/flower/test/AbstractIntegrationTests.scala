@@ -18,6 +18,8 @@ import org.springframework.security.core.context.SecurityContextHolderStrategy
 import de.flower.rmt.service.geocoding.IGeocodingService
 import org.springframework.beans.factory.annotation.Autowired
 import org.apache.commons.lang3.Validate
+import org.springframework.security.core.userdetails.UserDetailsService
+import java.util.ArrayList
 
 /**
  *
@@ -58,6 +60,9 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
     protected var userManager: IUserManager = _
 
     @Autowired
+    protected var userDetailService: UserDetailsService = _
+
+    @Autowired
     protected var geocodingService: IGeocodingService = _
 
     @Autowired
@@ -75,9 +80,8 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
 
     protected var listAppender: IListAppender[ILoggingEvent] = _
 
-
-    /**Club used for testing. */
-    protected var club: Club = _
+    @Autowired
+    protected var testData: TestData = _
 
     @BeforeClass
     def initClass() {
@@ -90,8 +94,6 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
         resetTestdata()
         resetListAppender()
 
-        // load some often used entities
-        club = Validate.notNull(clubRepo.findOne(1L))
 
         initializeSecurityContextWithTestUser()
 
@@ -103,8 +105,9 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
     protected def initializeSecurityContextWithTestUser() {
         // set the security context with a test user.
         var username = "manager-rmt@mailinator.com"
-        var authentication = new TestingAuthenticationToken(username, "manager", Role.Roles.MANAGER.getRoleName)
         Validate.notNull(userRepo.findByEmail(username), "Make sure test user is present in test database.")
+        val principal = userDetailService.loadUserByUsername(username)
+        val authentication = new TestingAuthenticationToken(principal, principal.getPassword, new ArrayList(principal.getAuthorities))
         securityContextHolderStrategy.getContext.setAuthentication(authentication)
     }
 

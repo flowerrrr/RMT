@@ -41,7 +41,7 @@ public class Role extends AbstractBaseEntity {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private Users user;
 
-    private Role() {
+    public Role() {
     }
 
     public Role(String authority) {

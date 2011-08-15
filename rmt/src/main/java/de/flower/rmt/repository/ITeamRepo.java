@@ -1,8 +1,8 @@
 package de.flower.rmt.repository;
 
+import de.flower.common.repository.IRepository;
 import de.flower.rmt.model.Club;
 import de.flower.rmt.model.Team;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author oblume
  */
-public interface ITeamRepo extends JpaRepository<Team, Long> {
+public interface ITeamRepo extends IRepository<Team, Long> {
 
     List<Team> findAllByClub(Club club);
 }

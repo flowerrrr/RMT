@@ -33,16 +33,22 @@ public class Users extends AbstractBaseEntity {
     @Column
     private boolean enabled;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "user", cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
     private List<Role> roles = new ArrayList<Role>();
 
     @NotBlank
     @Column
     private String fullname;
 
+    @Column
+    private Status status;
+
     @NotNull
     @ManyToOne
     private Club club;
+
+    @ManyToMany(mappedBy = "players")
+    private List<Team> teams;
 
     public Users() {
     }
@@ -72,6 +78,10 @@ public class Users extends AbstractBaseEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getUsername() {
+        return getEmail();
     }
 
     public String getPassword() {
@@ -119,4 +129,34 @@ public class Users extends AbstractBaseEntity {
         return false;
     }
 
+    public Status getStatus() {
+        return (status == null) ? Status.UNKNOWN : status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = (status == null) ? Status.UNKNOWN : status;
+    }
+
+    public List<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(List<Team> teams) {
+        this.teams = teams;
+    }
+
+    public enum Status {
+        UNKNOWN,
+        FIT,
+        INJURED;
+    }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id='" + getId() + '\'' +
+                "email='" + email + '\'' +
+                ", fullname='" + fullname + '\'' +
+                '}';
+    }
 }

@@ -2,7 +2,7 @@ package de.flower.rmt.ui.app;
 
 import de.flower.common.util.geo.LatLngEx;
 import de.flower.rmt.model.Users;
-import de.flower.rmt.service.ISecurityService;
+import de.flower.rmt.service.security.ISecurityService;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.protocol.http.WebSession;
 import org.apache.wicket.request.Request;
@@ -48,6 +48,7 @@ public class RMTSession extends WebSession {
         latLng = new LatLngEx(48.133333, 11.566667); // München
     }
 
+    // TODO (oblume - 14.08.11) check if this method is obsolete
     public Users getUser() {
         return user;
     }

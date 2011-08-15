@@ -10,6 +10,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.persistence.metamodel.Attribute;
+import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.PluralAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 
@@ -23,6 +24,15 @@ public class Specs {
             @Override
             public Predicate toPredicate(Root<X> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                 return cb.equal(root.get(attribute), object);
+            }
+        };
+    }
+
+    public static <X, T> Specification in(final ListAttribute<X, T> attribute, final T object) {
+        return  new Specification<X>() {
+            @Override
+            public Predicate toPredicate(Root<X> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                return cb.isMember(object, root.get(attribute));
             }
         };
     }
@@ -48,5 +58,9 @@ public class Specs {
 
     public static Specification and(Specification a, Specification b) {
         return Specifications.where(a).and(b);
+    }
+
+    public static Specification not(Specification a) {
+        return Specifications.not(a);
     }
 }

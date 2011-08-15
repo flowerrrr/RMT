@@ -1,11 +1,11 @@
 package de.flower.rmt.service;
 
 import de.flower.rmt.model.Role;
+import de.flower.rmt.model.Team;
 import de.flower.rmt.model.Users;
 import de.flower.rmt.model.Users_;
 import de.flower.rmt.repository.IUserRepo;
 import de.flower.rmt.repository.Specs;
-import static org.apache.commons.lang3.Validate.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.metamodel.Attribute;
 import java.util.List;
+
+import static org.apache.commons.lang3.Validate.*;
 
 /**
  * @author oblume
@@ -47,9 +49,21 @@ public class UserManager extends AbstractService implements IUserManager {
     }
 
     @Override
+    public List<Users> findUnassignedPlayers(Team team) {
+        Specification hasClub = Specs.eq(Users_.club, getClub());
+        Specification notInTeam = Specs.not(Specs.in(Users_.teams, team));
+        List<Users> list = userRepo.findAll(Specs.and(hasClub, notInTeam));
+        return list;
+    }
+
+    @Override
     @Transactional(readOnly = false)
     public void delete(Users user) {
-        throw new UnsupportedOperationException("Feature not implemented!");
+        // do not allow to delete currently logged in user
+        if (securityService.isCurrentUser(user)) {
+            throw new IllegalArgumentException("Cannot delete currently logged in user.");
+        }
+        userRepo.delete(user);
     }
 
     @Override

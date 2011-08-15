@@ -1,6 +1,7 @@
-package de.flower.rmt.service;
+package de.flower.rmt.service.security;
 
 import de.flower.rmt.model.Users;
+import de.flower.rmt.service.IUserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolderStrategy;
 import org.springframework.stereotype.Service;
@@ -21,11 +22,14 @@ public class SecurityService implements ISecurityService {
     private IUserManager userManager;
 
 
+    @Override
     public Users getCurrentUser() {
-        String username = schs.getContext().getAuthentication().getName();
-        // TODO (oblume - 23.07.11) - if lookup to slow then cache user object in security context
-        Users user = userManager.findByUsername(username);
-        return user;
+        UserDetailsBean principal = (UserDetailsBean) schs.getContext().getAuthentication().getPrincipal();
+        return principal.getUser();
     }
 
+    @Override
+    public boolean isCurrentUser(Users user) {
+        return getCurrentUser().equals(user);
+    }
 }

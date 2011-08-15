@@ -12,10 +12,12 @@
     <import resource="applicationContext-base.xml"/>
     <import resource="applicationContext-dao.xml"/>
     <import resource="applicationContext-service.xml"/>
-    <import resource="applicationContext-security.xml" />
+    <import resource="applicationContext-security.xml"/>
 
-  <!--  &lt;!&ndash; for detecting wicketApplication &ndash;&gt;
-    <context:annotation-config/>
-    <context:component-scan base-package="de.flower.rmt.ui"/>
--->
+
+    <context:component-scan base-package="de.flower.test" />
+    <!--  &lt;!&ndash; for detecting wicketApplication &ndash;&gt;
+        <context:annotation-config/>
+        <context:component-scan base-package="de.flower.rmt.ui"/>
+    -->
 </beans>

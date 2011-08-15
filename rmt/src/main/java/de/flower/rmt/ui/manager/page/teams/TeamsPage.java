@@ -9,9 +9,11 @@ import de.flower.rmt.model.Team;
 import de.flower.rmt.service.ITeamManager;
 import de.flower.rmt.ui.common.page.ModalDialogWindow;
 import de.flower.rmt.ui.manager.ManagerBasePage;
+import de.flower.rmt.ui.manager.page.squad.SquadPage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
@@ -53,6 +55,12 @@ public class TeamsPage extends ManagerBasePage {
             @Override
             protected void populateItem(final ListItem<Team> item) {
                 item.add(new Label("name", item.getModelObject().getName()));
+                item.add(new Link("squadButton") {
+                    @Override
+                    public void onClick() {
+                        setResponsePage(new SquadPage(item.getModel()));
+                    }
+                });
                 item.add(new MyAjaxLink("editButton") {
 
                     @Override

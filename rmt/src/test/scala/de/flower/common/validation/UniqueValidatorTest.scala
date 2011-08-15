@@ -21,6 +21,7 @@ class UniqueValidatorTest extends AbstractIntegrationTests {
     @Test
     def testTableUnique() {
 
+        val club = testData.getClub()
         // save one entity
         var teamName = "fc bayern"
         var entity = new Team(teamName, null, club)

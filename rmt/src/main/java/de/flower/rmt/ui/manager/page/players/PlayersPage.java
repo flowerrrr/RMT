@@ -7,6 +7,7 @@ import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.Event;
 import de.flower.rmt.model.Users;
 import de.flower.rmt.model.Users_;
+import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.service.IUserManager;
 import de.flower.rmt.ui.common.page.ModalDialogWindow;
 import de.flower.rmt.ui.manager.ManagerBasePage;
@@ -31,6 +32,9 @@ public class PlayersPage extends ManagerBasePage {
     @SpringBean
     private IUserManager playerManager;
 
+    @SpringBean
+    private ISecurityService securityService;
+
     public PlayersPage() {
 
         final ModalDialogWindow modal = new ModalDialogWindow("playerDialog");
@@ -52,6 +56,7 @@ public class PlayersPage extends ManagerBasePage {
         add(playerListContainer);
         playerListContainer.add(new ListView<Users>("playerList", getPlayerListModel()) {
 
+
             @Override
             protected void populateItem(final ListItem<Users> item) {
                 Users player = item.getModelObject();
@@ -68,14 +73,17 @@ public class PlayersPage extends ManagerBasePage {
                         modal.show(target);
                     }
                 });
-                item.add(new AjaxLinkWithConfirmation("deleteButton", new ResourceModel("manager.players.delete.confirm")) {
+                AjaxLinkWithConfirmation deleteButton;
+                item.add(deleteButton = new AjaxLinkWithConfirmation("deleteButton", new ResourceModel("manager.players.delete.confirm")) {
 
                     @Override
                     public void onClick(AjaxRequestTarget target) {
                         playerManager.delete(item.getModelObject());
                         target.registerRespondListener(new AjaxRespondListener(Event.EntityDeleted(Users.class)));
                     }
+
                 });
+                deleteButton.setVisible(!securityService.isCurrentUser(player));
             }
         });
         playerListContainer.add(new AjaxUpdateBehavior(Event.EntityAll(Users.class)));

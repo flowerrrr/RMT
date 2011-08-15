@@ -13,7 +13,7 @@
 
     <context:component-scan base-package="de.flower.rmt.model"/>
     <context:component-scan base-package="de.flower.common"/>
-    <jpa:repositories base-package="de.flower.rmt.repository"/>
+    <jpa:repositories base-package="de.flower.rmt.repository" factory-class="de.flower.common.repository.RepositoryFactoryBean"/>
 
     <!-- *********************************************************************** -->
     <!-- Dao Stuff                                                               -->

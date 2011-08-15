@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head></head>
+<body>
+
+<wicket:extend>
+
+    <a wicket:id="addButton">
+        <wicket:message key="manager.squad.add">[Add]</wicket:message>
+    </a>
+
+    <div wicket:id="addPlayerPanel" />
+
+    <div wicket:id="playerListContainer">
+        <ul>
+            <li wicket:id="noPlayer">
+                <wicket:message key="manager.squad.noplayer">[No player added.]</wicket:message>
+            </li>
+            <li wicket:id="playerList">
+                <span wicket:id="name">[Player A]</span>
+                <span wicket:id="status">[Fit|Injured|OnVacation]</span>
+                <a wicket:id="editButton">
+                    <wicket:message key="manager.squad.edit">[Edit]</wicket:message>
+                </a>
+                <a wicket:id="removeButton">
+                    <wicket:message key="manager.squad.remove">[Remove]</wicket:message>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+ </wicket:extend>
+
+
+</body>
+</html>

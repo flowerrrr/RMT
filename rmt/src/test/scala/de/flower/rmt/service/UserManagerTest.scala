@@ -5,6 +5,7 @@ import org.testng.annotations.Test
 import org.testng.Assert._
 import org.hibernate.LazyInitializationException
 import de.flower.rmt.model.Users_
+import scala.collection.JavaConversions._
 
 /**
  * 
@@ -46,6 +47,15 @@ class UserManagerTest extends AbstractIntegrationTests {
         userManager.save(user)
     }
 
+    @Test
+    def testUnassignedPlayer() {
+        val team = testData.getJuveAmateure()
+        var players = userManager.findUnassignedPlayers(team)
+        assertFalse(players.isEmpty())
+        players.foreach( p => teamManager.addPlayer(team, p))
+        players = userManager.findUnassignedPlayers(team)
+        assertTrue(players.isEmpty())
+    }
 
 
 

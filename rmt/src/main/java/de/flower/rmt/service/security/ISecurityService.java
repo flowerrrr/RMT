@@ -1,4 +1,4 @@
-package de.flower.rmt.service;
+package de.flower.rmt.service.security;
 
 import de.flower.rmt.model.Users;
 
@@ -8,4 +8,6 @@ import de.flower.rmt.model.Users;
 public interface ISecurityService {
 
     Users getCurrentUser();
+
+    boolean isCurrentUser(Users user);
 }
