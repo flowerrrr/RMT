@@ -1,6 +1,5 @@
 package de.flower.rmt.ui.manager;
 
-import de.flower.rmt.model.Team;
 import de.flower.rmt.ui.app.AbstractBasePage;
 import org.apache.wicket.model.IModel;
 
@@ -13,7 +12,7 @@ public class ManagerBasePage extends AbstractBasePage {
         this(null);
     }
 
-    public ManagerBasePage(IModel<Team> model) {
+    public ManagerBasePage(IModel<?> model) {
         super(model);
         add(new NavigationPanel("navPanel"));
     }

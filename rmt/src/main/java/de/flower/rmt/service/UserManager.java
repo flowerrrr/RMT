@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.metamodel.Attribute;
 import java.util.List;
 
-import static org.apache.commons.lang3.Validate.*;
+import static de.flower.common.util.Check.*;
 
 /**
  * @author oblume

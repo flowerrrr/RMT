@@ -3,11 +3,13 @@ package de.flower.test
 import javax.sql.DataSource
 import org.dbunit.operation.{TransactionOperation, DatabaseOperation}
 import org.dbunit.database.{DatabaseDataSourceConnection, IDatabaseConnection}
-import de.flower.common.util.IO
 import org.dbunit.dataset.IDataSet
 import org.slf4j.{LoggerFactory, Logger}
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder
+import de.flower.common.util.Check._
 import org.apache.commons.lang3.Validate
+import de.flower.common.util.{Check, IO}
+import javax.validation.Validation
 
 /**
  *

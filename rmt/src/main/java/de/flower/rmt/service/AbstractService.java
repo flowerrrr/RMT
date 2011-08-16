@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.apache.commons.lang3.Validate.*;
+import static de.flower.common.util.Check.*;
 
 
 /**

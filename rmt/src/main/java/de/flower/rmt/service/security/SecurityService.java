@@ -24,8 +24,14 @@ public class SecurityService implements ISecurityService {
 
     @Override
     public Users getCurrentUser() {
-        UserDetailsBean principal = (UserDetailsBean) schs.getContext().getAuthentication().getPrincipal();
-        return principal.getUser();
+        Object o = schs.getContext().getAuthentication().getPrincipal();
+        if (o instanceof UserDetailsBean) {
+            UserDetailsBean principal = (UserDetailsBean) o;
+            return principal.getUser();
+        } else {
+            // anonymous user.
+            return null;
+        }
     }
 
     @Override

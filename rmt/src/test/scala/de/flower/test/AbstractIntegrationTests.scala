@@ -17,9 +17,11 @@ import de.flower.rmt.model.{Role, Club}
 import org.springframework.security.core.context.SecurityContextHolderStrategy
 import de.flower.rmt.service.geocoding.IGeocodingService
 import org.springframework.beans.factory.annotation.Autowired
-import org.apache.commons.lang3.Validate
 import org.springframework.security.core.userdetails.UserDetailsService
 import java.util.ArrayList
+import de.flower.common.util.Check._
+import de.flower.common.util.Check
+import org.apache.commons.lang3.Validate
 
 /**
  *

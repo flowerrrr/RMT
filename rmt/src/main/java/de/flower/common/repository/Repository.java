@@ -1,7 +1,7 @@
 package de.flower.common.repository;
 
 import de.flower.common.model.AbstractBaseEntity;
-import org.apache.commons.lang3.Validate;
+import de.flower.common.util.Check;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 
@@ -19,9 +19,9 @@ public class Repository<T extends AbstractBaseEntity, ID extends Serializable> e
 
     @Override
     public T reload(T entity) {
-        Validate.notNull(entity);
+        Check.notNull(entity);
         T reloaded = findOne((ID) entity.getId());
-        Validate.notNull(reloaded);
+        Check.notNull(reloaded);
         return reloaded;
     }
 }

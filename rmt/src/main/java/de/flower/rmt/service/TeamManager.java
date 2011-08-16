@@ -1,9 +1,9 @@
 package de.flower.rmt.service;
 
+import de.flower.common.util.Check;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.model.Users;
 import de.flower.rmt.repository.ITeamRepo;
-import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -56,7 +56,7 @@ public class TeamManager extends AbstractService implements ITeamManager {
     public void addPlayers(Team team, List<Users> players) {
         team = teamRepo.reload(team);
         for (Users player : players) {
-            Validate.isTrue(!team.getPlayers().contains(player));
+            Check.isTrue(!team.getPlayers().contains(player));
             team.getPlayers().add(player);
         }
         save(team);
@@ -66,7 +66,7 @@ public class TeamManager extends AbstractService implements ITeamManager {
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void removePlayer(Team team, Users player) {
         team = teamRepo.reload(team);
-        Validate.isTrue(team.getPlayers().contains(player));
+        Check.isTrue(team.getPlayers().contains(player));
         team.getPlayers().remove(player);
         save(team);
     }

@@ -2,9 +2,11 @@ package de.flower.rmt.ui.manager.page.squad;
 
 import de.flower.common.ui.ajax.AjaxLinkWithConfirmation;
 import de.flower.common.ui.ajax.MyAjaxLink;
+import de.flower.common.ui.ajax.panel.AjaxSlideTogglePanel;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.Event;
+import de.flower.common.ui.js.JQuery;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.model.Team2Player;
 import de.flower.rmt.model.Users;
@@ -30,7 +32,7 @@ public class SquadPage extends ManagerBasePage {
     @SpringBean
     private ITeamManager teamManager;
 
-    private AddPlayerPanel addPlayerPanel;
+    private AjaxSlideTogglePanel addPlayerPanel;
 
     public SquadPage(final IModel<Team> model) {
         super(model);
@@ -41,28 +43,19 @@ public class SquadPage extends ManagerBasePage {
             @Override
             public void onClick(AjaxRequestTarget target) {
                 // show inline  dialog with squad edit form.
-                addPlayerPanel.setVisible(true);
-                target.add(addPlayerPanel);
-                target.add(this);
+                addPlayerPanel.show(target);
+                target.appendJavaScript(JQuery.fadeOut(this, "slow"));
             }
-
-            @Override
-            public boolean isVisible() {
-                return !addPlayerPanel.isVisible();
-            }
-        };
-        addButton.setOutputMarkupPlaceholderTag(true);
+       };
         add(addButton);
 
-        add(addPlayerPanel = new AddPlayerPanel("addPlayerPanel", model) {
+        addPlayerPanel = new AjaxSlideTogglePanel("addPlayerPanel", new AddPlayerPanel(model)) {
             @Override
-            public void onClose(AjaxRequestTarget target) {
-                target.add(addButton);
+            public void onHide(AjaxRequestTarget target) {
+                target.prependJavaScript(JQuery.fadeIn(addButton, "slow"));
             }
-        });
-        addPlayerPanel.setOutputMarkupPlaceholderTag(true);
-        addPlayerPanel.setVisible(false);
-        addPlayerPanel.add(new AjaxUpdateBehavior(Event.EntityAll(Team2Player.class)));
+        };
+        add(addPlayerPanel);
 
         WebMarkupContainer playerListContainer = new WebMarkupContainer("playerListContainer");
         add(playerListContainer);

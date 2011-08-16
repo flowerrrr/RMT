@@ -2,14 +2,15 @@ package de.flower.rmt.ui.manager.page.squad;
 
 import de.flower.common.ui.ajax.MyAjaxLink;
 import de.flower.common.ui.ajax.MyAjaxSubmitLink;
+import de.flower.common.ui.ajax.panel.AjaxSlideTogglePanel;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
+import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.Event;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.model.Team2Player;
 import de.flower.rmt.model.Users;
 import de.flower.rmt.service.ITeamManager;
 import de.flower.rmt.service.IUserManager;
-import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -18,6 +19,7 @@ import org.apache.wicket.markup.html.form.CheckGroup;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -28,7 +30,7 @@ import java.util.List;
 /**
  * @author oblume
  */
-public class AddPlayerPanel extends BasePanel {
+public class AddPlayerPanel extends GenericPanel<Team> {
 
     @SpringBean
     private IUserManager userManager;
@@ -38,8 +40,8 @@ public class AddPlayerPanel extends BasePanel {
 
     private List<Users> selectedPlayers = new ArrayList<Users>();
 
-    public AddPlayerPanel(String id, IModel<Team> model) {
-        super(id, model);
+    public AddPlayerPanel( IModel<Team> model) {
+        super("panel", model);
 
         Form form = new Form("form");
         add(form);
@@ -66,11 +68,12 @@ public class AddPlayerPanel extends BasePanel {
         form.add(new MyAjaxSubmitLink("addButton") {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-                teamManager.addPlayers((Team) AddPlayerPanel.this.getDefaultModelObject(), selectedPlayers);
+                teamManager.addPlayers(AddPlayerPanel.this.getModelObject(), selectedPlayers);
                 target.registerRespondListener(new AjaxRespondListener(Event.EntityCreated(Team2Player.class)));
                 close(target);
             }
         });
+
 
         form.add(new MyAjaxLink("cancelButton") {
             @Override
@@ -78,6 +81,9 @@ public class AddPlayerPanel extends BasePanel {
                 close(target);
             }
         });
+
+        add(new AjaxUpdateBehavior(Event.EntityAll(Team2Player.class)));
+
     }
 
     /**
@@ -95,13 +101,8 @@ public class AddPlayerPanel extends BasePanel {
     }
 
     private void close(AjaxRequestTarget target) {
-        this.setVisible(false);
         selectedPlayers.clear();
-        target.add(this);
-        onClose(target);
+        AjaxSlideTogglePanel.hideCurrent(this, target);
     }
 
-    public void onClose(AjaxRequestTarget target) {
-        //To change body of created methods use File | Settings | File Templates.
-    }
 }

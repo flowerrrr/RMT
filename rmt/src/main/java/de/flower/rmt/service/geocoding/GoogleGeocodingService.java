@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.List;
 
-import static org.apache.commons.lang3.Validate.*;
+import static de.flower.common.util.Check.*;
 
 /**
  * @author oblume
@@ -41,9 +41,9 @@ public class GoogleGeocodingService implements IGeocodingService {
 
     public List<GeocodingResult> geocode(String address, String region, String language) {
 
-        notEmpty(address);
-        notEmpty(region);
-        notEmpty(language);
+        notBlank(address);
+        notBlank(region);
+        notBlank(language);
 
         HttpGet httpGet = null;
 

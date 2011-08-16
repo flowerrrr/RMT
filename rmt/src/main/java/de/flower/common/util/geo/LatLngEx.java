@@ -1,6 +1,6 @@
 package de.flower.common.util.geo;
 
-import static org.apache.commons.lang3.Validate.*;
+import static de.flower.common.util.Check.*;
 import wicket.contrib.gmap3.api.LatLng;
 
 /**
