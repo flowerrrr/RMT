@@ -40,6 +40,9 @@ public class ConventionColumnResolver implements IColumnResolver {
                 case ONE_TO_MANY:
                     // mapping not supported. typically the associated table owns the joining column.
                     break;
+                case MANY_TO_MANY:
+                    // mapping not supported.
+                    break;
                 default:
                     throw new RuntimeException("Unsupported mapping type [" + attr.getPersistentAttributeType() + "] for column [" + attr.getName() + "].");
             }
