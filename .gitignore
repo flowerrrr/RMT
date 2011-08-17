@@ -9,3 +9,6 @@
 /rmt/build
 /rmt/src/main/generated
 /caraboides-wicket-gmap3-0dd501d
+/rmt/src/main/database/export/export.dtd
+/rmt/src/main/database/export/export.xml
+/rmt/src/main/database/export/schema.ddl
