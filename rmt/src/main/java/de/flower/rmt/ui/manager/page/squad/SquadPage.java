@@ -1,5 +1,6 @@
 package de.flower.rmt.ui.manager.page.squad;
 
+import de.flower.common.ui.FeatureNotImplementedLink;
 import de.flower.common.ui.ajax.AjaxLinkWithConfirmation;
 import de.flower.common.ui.ajax.MyAjaxLink;
 import de.flower.common.ui.ajax.panel.AjaxSlideTogglePanel;
@@ -76,13 +77,7 @@ public class SquadPage extends ManagerBasePage {
             protected void populateItem(final ListItem<Users> item) {
                 item.add(new Label("name", item.getModelObject().getFullname()));
                 item.add(new Label("status", new ResourceModel("player.status." + item.getModelObject().getStatus().toString().toLowerCase())));
-                item.add(new MyAjaxLink("editButton") {
-
-                    @Override
-                    public void onClick(AjaxRequestTarget target) {
-                        throw new UnsupportedOperationException("Feature not implemented!");
-                    }
-                });
+                item.add(new FeatureNotImplementedLink("editButton", "Editing players"));
                 item.add(new AjaxLinkWithConfirmation("removeButton", new ResourceModel("manager.squad.remove.confirm")) {
 
                     @Override
