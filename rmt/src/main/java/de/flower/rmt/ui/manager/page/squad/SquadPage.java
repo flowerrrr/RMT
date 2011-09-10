@@ -38,6 +38,7 @@ public class SquadPage extends ManagerBasePage {
     public SquadPage(final IModel<Team> model) {
         super(model);
 
+        add(new Label("teamName", model.getObject().getName()));
 
         final MyAjaxLink addButton = new MyAjaxLink("addButton") {
 

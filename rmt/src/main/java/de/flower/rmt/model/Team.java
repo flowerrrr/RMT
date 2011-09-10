@@ -17,7 +17,7 @@ import java.util.List;
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(name = "name", columnNames = {"name", "club_id"}))
 @Unique(groups = { Unique.class, Default.class })
-public class Team extends AbstractBaseEntity {
+public class Team extends AbstractClubRelatedEntity {
 
     @NotBlank
     @Size(max = 40)
@@ -29,27 +29,21 @@ public class Team extends AbstractBaseEntity {
     @Column
     private String url;
 
-    @NotNull
-    @ManyToOne
-    private Club club;
-
     @ManyToMany
+    @JoinTable(name = "Team_Player")
     private List<Users> players;
-
-//    @ManyToMany
-//    private Set<Users> managers;
 
     public Team() {
     }
 
     public Team(Club club) {
-        this.club = club;
+        super(club);
     }
 
     public Team(String name, String url, Club club) {
+        super(club);
         this.name = name;
         this.url = url;
-        this.club = club;
     }
 
     public String getName() {
@@ -66,14 +60,6 @@ public class Team extends AbstractBaseEntity {
 
     public void setUrl(String url) {
         this.url = url;
-    }
-
-    public Club getClub() {
-        return club;
-    }
-
-    public void setClub(Club club) {
-        this.club = club;
     }
 
     public List<Users> getPlayers() {

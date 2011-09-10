@@ -23,10 +23,13 @@
 
     <team id="10" name="FC Bayern Profis" club_id="2" />
 
-    <venue id="1" name="Mintraching" address="Erdinger Straße 10\n 85375 Neufahrn bei Freising" lat="48.374497" lng="11.689453" club_id="1" />
-    <venue id="2" name="EDV Freimann" address="" lat="48.193399" lng="11.612356" club_id="1" />
+    <venue id="1" address="Erdinger Stra&#223;e 10 85375 Neufahrn bei Freising" lat="48.31343" lng="11.69539" name="Mintraching" club_id="1"/>
+    <venue id="2" lat="48.193399" lng="11.612356" name="EDV Freimann" club_id="1"/>
+    <venue id="3" address="St. Martin-Stra&#223;e, M&#252;nchen" lat="48.12075424194336" lng="11.603121757507324" name="Rote Erde" club_id="1"/>
 
-    <team_users />
+    <team_users teams_id="1" players_id="2"/>
+    <team_users teams_id="2" players_id="2"/>
+    <team_users teams_id="2" players_id="1"/>
 
 
 </dataset>

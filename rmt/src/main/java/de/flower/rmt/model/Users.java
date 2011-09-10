@@ -17,7 +17,7 @@ import java.util.List;
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(name = "fullname", columnNames = {"fullname", "club_id"}))
 @Unique(groups = { Unique.class, Default.class }) // need group Unique to be able to restrict bean validation to this validator
-public class Users extends AbstractBaseEntity {
+public class Users extends AbstractClubRelatedEntity {
 
     @NotBlank
     @Email
@@ -43,10 +43,6 @@ public class Users extends AbstractBaseEntity {
     @Column
     private Status status;
 
-    @NotNull
-    @ManyToOne
-    private Club club;
-
     @ManyToMany(mappedBy = "players")
     private List<Team> teams;
 
@@ -61,15 +57,7 @@ public class Users extends AbstractBaseEntity {
     }
 
     public Users(Club club) {
-        this.club = club;
-    }
-
-    public Club getClub() {
-        return club;
-    }
-
-    public void setClub(Club club) {
-        this.club = club;
+        super(club);
     }
 
     public String getEmail() {

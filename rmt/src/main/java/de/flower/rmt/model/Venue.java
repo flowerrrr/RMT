@@ -1,20 +1,17 @@
 package de.flower.rmt.model;
 
-import de.flower.common.model.AbstractBaseEntity;
 import de.flower.common.util.geo.LatLngEx;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
  * @author oblume
  */
 @Entity
-public class Venue extends AbstractBaseEntity {
+public class Venue extends AbstractClubRelatedEntity {
 
     @NotBlank
     @Size(max = 80)
@@ -31,22 +28,18 @@ public class Venue extends AbstractBaseEntity {
     @Column
     private Double lng;
 
-    @NotNull
-    @ManyToOne
-    private Club club;
-
     public Venue() {
     }
 
     public Venue(Club club) {
-        this.club = club;
+        super(club);
     }
 
     public Venue(String name, String address, LatLngEx gLatLng, Club club) {
+        super(club);
         this.name = name;
         this.address = address;
         setLatLng(gLatLng);
-        this.club = club;
     }
 
     public String getName() {
@@ -78,11 +71,4 @@ public class Venue extends AbstractBaseEntity {
         this.lng = latLng.getLng();
     }
 
-    public Club getClub() {
-        return club;
-    }
-
-    public void setClub(Club club) {
-        this.club = club;
-    }
 }

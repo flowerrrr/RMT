@@ -38,7 +38,9 @@ dependencies {
             'org.apache.httpcomponents:httpclient:4.+',
             'com.google.code.gson:gson:1.+',
             // TODO - jar needed for idea to use apt during compilation. possible to move to other configuration?
-            'org.hibernate:hibernate-jpamodelgen:1.1.1.Final'
+            'org.hibernate:hibernate-jpamodelgen:1.1.1.Final' ,
+            'joda-time:joda-time:2.+',
+            'joda-time:joda-time-hibernate:1.+'
     )
     runtime(
             'org.slf4j:jcl-over-slf4j:1.+',
