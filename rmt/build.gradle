@@ -23,7 +23,7 @@ dependencies {
             'org.springframework:spring-core:' + version_spring,
             'org.springframework:spring-context:' + version_spring,
             'org.springframework.security:spring-security-web:' + version_spring,
-            'org.apache.wicket:wicket:' + version_wicket,
+            'org.apache.wicket:wicket-core:' + version_wicket,
             'org.apache.wicket:wicket-extensions:' + version_wicket,
             'org.apache.wicket:wicket-spring:' + version_wicket,
             'org.hibernate:hibernate-validator:4.1.0.Final',
@@ -89,6 +89,7 @@ test {
  * It will remove existing dependencies before updating them.
  */
 ideaModule {
+    // downloadJavadoc = true
     beforeConfigured { module ->
         module.dependencies.clear()
     }

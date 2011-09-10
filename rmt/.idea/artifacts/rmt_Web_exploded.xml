@@ -18,7 +18,7 @@
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/commons-codec/commons-codec/jars/commons-codec-1.4.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/commons-collections/commons-collections/jars/commons-collections-3.2.1.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/commons-dbcp/commons-dbcp/jars/commons-dbcp-1.4.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.commons/commons-lang3/jars/commons-lang3-3.0.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.commons/commons-lang3/jars/commons-lang3-3.0.1.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/commons-logging/commons-logging/jars/commons-logging-1.1.1.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/commons-pool/commons-pool/jars/commons-pool-1.5.4.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/dom4j/dom4j/jars/dom4j-1.6.1.jar" />
@@ -33,11 +33,13 @@
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.httpcomponents/httpcore/jars/httpcore-4.1.2.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/javassist/javassist/jars/javassist-3.12.0.GA.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.slf4j/jcl-over-slf4j/jars/jcl-over-slf4j-1.6.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.slf4j/jcl-over-slf4j/jars/jcl-over-slf4j-1.6.2.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/javax.transaction/jta/jars/jta-1.1.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/ch.qos.logback/logback-classic/jars/logback-classic-0.9.29.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/ch.qos.logback/logback-core/jars/logback-core-0.9.29.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/mysql/mysql-connector-java/jars/mysql-connector-java-5.1.16.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.6.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.6.2.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-aop/jars/spring-aop-3.0.5.RELEASE.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-asm/jars/spring-asm-3.0.5.RELEASE.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-beans/jars/spring-beans-3.0.5.RELEASE.jar" />
@@ -54,12 +56,12 @@
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-tx/jars/spring-tx-3.0.5.RELEASE.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-web/jars/spring-web-3.0.3.RELEASE.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/javax.validation/validation-api/jars/validation-api-1.0.0.GA.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-core/jars/wicket-core-1.5-RC5.1.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-extensions/jars/wicket-extensions-1.5-RC5.1.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-ioc/jars/wicket-ioc-1.5-RC5.1.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-request/jars/wicket-request-1.5-RC5.1.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-spring/jars/wicket-spring-1.5-RC5.1.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-util/jars/wicket-util-1.5-RC5.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-core/jars/wicket-core-1.5.0.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-extensions/jars/wicket-extensions-1.5.0.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-ioc/jars/wicket-ioc-1.5.0.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-request/jars/wicket-request-1.5.0.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-spring/jars/wicket-spring-1.5.0.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-util/jars/wicket-util-1.5.0.jar" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="rmt/web/Web" />
