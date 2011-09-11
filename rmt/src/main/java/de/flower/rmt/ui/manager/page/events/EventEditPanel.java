@@ -2,6 +2,7 @@ package de.flower.rmt.ui.manager.page.events;
 
 import de.flower.common.ui.ajax.MyAjaxSubmitLink;
 import de.flower.common.ui.form.MyForm;
+import de.flower.common.ui.form.TimeSelect;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.Match;
 import de.flower.rmt.service.IEventManager;
@@ -58,7 +59,7 @@ public class EventEditPanel extends BasePanel {
         dateField.add(new DatePicker());
         form.add(dateField);
 
-        DateTextField timeField = DateTextField.forDateStyle("time", "-S");
+        TimeSelect timeField = new TimeSelect("time");
         form.add(timeField);
 
         form.add(new MyAjaxSubmitLink("saveButton") {
