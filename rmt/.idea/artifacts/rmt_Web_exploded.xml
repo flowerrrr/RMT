@@ -65,6 +65,7 @@
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/joda-time/joda-time/jars/joda-time-2.0.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/joda-time/joda-time-hibernate/jars/joda-time-hibernate-1.3.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-devutils/jars/wicket-devutils-1.5.0.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-datetime/jars/wicket-datetime-1.5.0.jar" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="rmt/web/Web" />

@@ -1,6 +1,5 @@
 package de.flower.rmt.ui.manager.page.teams;
 
-import de.flower.common.ui.FormMode;
 import de.flower.common.ui.ajax.MyAjaxSubmitLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
@@ -25,8 +24,6 @@ import org.wicketstuff.jsr303.WicketBeanValidator;
  * @author oblume
  */
 public class TeamEditPanel extends BasePanel {
-
-    private FormMode mode;
 
     private Form<Team> form;
 

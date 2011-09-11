@@ -1,7 +1,6 @@
 package de.flower.rmt.model.event;
 
 import de.flower.rmt.model.Team;
-import de.flower.rmt.model.event.Event;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalTime;
 
@@ -20,7 +19,7 @@ public class Training extends Event {
     @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
     private LocalTime kickOff;
 
-    private Training() {
+    public Training() {
     }
 
     public Training(Team team) {

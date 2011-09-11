@@ -1,7 +1,6 @@
 package de.flower.rmt.model.event;
 
 import de.flower.rmt.model.Team;
-import de.flower.rmt.model.event.Event;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalTime;
 
@@ -22,14 +21,14 @@ public class Match extends Event {
     private Team opponent;
 
     @Column
-    @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+    @Type(type = "org.joda.time.contrib.hibernate.PersistentLocalTimeAsTime")
     private LocalTime kickOff;
 
 
 //    @ManyToOne
 //    private Jersey jersey;
 
-    private Match() {
+    public Match() {
     }
 
     public Match(Team team) {

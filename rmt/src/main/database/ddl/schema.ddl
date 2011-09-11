@@ -8,7 +8,6 @@
     create table Event (
         eventType varchar(31) not null,
         id bigint not null auto_increment,
-        allDay bit,
         comment varchar(255),
         date datetime,
         kickOff datetime,

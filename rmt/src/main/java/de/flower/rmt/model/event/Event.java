@@ -9,19 +9,20 @@ import org.joda.time.DateTime;
 import org.joda.time.LocalTime;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.List;
 
 /**
  * @author oblume
  */
 @Entity
-@Inheritance(strategy= InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(
-    name = "eventType",
-    discriminatorType=DiscriminatorType.STRING
+        name = "eventType",
+        discriminatorType = DiscriminatorType.STRING
 )
 @DiscriminatorValue("Event")
-public abstract class Event extends AbstractClubRelatedEntity {
+public class Event extends AbstractClubRelatedEntity {
 
     @ManyToOne
     private Team team;
@@ -29,25 +30,33 @@ public abstract class Event extends AbstractClubRelatedEntity {
     @ManyToOne
     private Venue venue;
 
+    /**
+     * Only the date-part of DateTime.
+     */
     @Column
     @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
     private DateTime date;
 
     @Column
-    private boolean allDay;
+    @Type(type = "org.joda.time.contrib.hibernate.PersistentLocalTimeAsTime")
+    private LocalTime time;
 
     @OneToMany(mappedBy = "event")
     private List<Invitation> invitations;
 
     private String comment;
 
-    protected Event() {
+    public Event() {
 
     }
 
     public Event(Team team) {
         super(team.getClub());
         this.team = team;
+    }
+
+    public static List<Class<? extends Event>> getEventTypes() {
+        return Arrays.asList(Match.class, Training.class, Tournament.class, Event.class);
     }
 
     public Team getTeam() {
@@ -74,12 +83,12 @@ public abstract class Event extends AbstractClubRelatedEntity {
         this.date = date;
     }
 
-    public boolean isAllDay() {
-        return allDay;
+    public LocalTime getTime() {
+        return this.time;
     }
 
-    public void setAllDay(boolean allDay) {
-        this.allDay = allDay;
+    public void setTime(LocalTime time) {
+        this.time = time;
     }
 
     public List<Invitation> getInvitations() {
@@ -102,7 +111,11 @@ public abstract class Event extends AbstractClubRelatedEntity {
         return "not implemented";
     }
 
-    public String getType() {
-        return this.getClass().getSimpleName().toLowerCase();
+    public String getTypeResourceKey() {
+        return getTypeResourceKey(this.getClass());
+    }
+
+    public static String getTypeResourceKey(Class<? extends Event> clazz) {
+        return "event.type." + clazz.getSimpleName().toLowerCase();
     }
 }

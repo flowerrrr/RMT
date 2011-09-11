@@ -13,8 +13,8 @@ public abstract class MyAjaxLink<T> extends AjaxLink<T> {
         super(id);
     }
 
-    protected MyAjaxLink(String id, IModel<T> tiModel) {
-        super(id, tiModel);
+    protected MyAjaxLink(String id, IModel<T> model) {
+        super(id, model);
     }
 
     @Override

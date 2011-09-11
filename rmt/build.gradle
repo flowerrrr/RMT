@@ -26,6 +26,7 @@ dependencies {
             'org.apache.wicket:wicket-core:' + version_wicket,
             'org.apache.wicket:wicket-extensions:' + version_wicket,
             'org.apache.wicket:wicket-spring:' + version_wicket,
+            'org.apache.wicket:wicket-datetime:' + version_wicket,
             'org.apache.wicket:wicket-devutils:' + version_wicket,
             'org.hibernate:hibernate-validator:4.1.0.Final',
             'org.hibernate:hibernate-entitymanager:' + version_hibernate,

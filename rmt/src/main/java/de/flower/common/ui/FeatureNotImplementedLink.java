@@ -10,7 +10,7 @@ public class FeatureNotImplementedLink extends Link {
 
     public FeatureNotImplementedLink(String id, String message) {
         super(id);
-        add(new AttributeModifier("onclick", "alert('Upps. This feature is not implemented yet.\n\n" + message + "'); return false;"));
+        add(new AttributeModifier("onclick", "alert('Upps. This feature is not implemented yet.\\n\\n" + message + "'); return false;"));
     }
 
 

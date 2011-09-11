@@ -9,6 +9,7 @@ import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.manager.ManagerBasePage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
@@ -16,9 +17,9 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-import org.joda.time.DateTime;
 
 import java.util.List;
 
@@ -32,8 +33,14 @@ public class EventsPage extends ManagerBasePage {
 
     public EventsPage() {
 
-        final Link addButton = new FeatureNotImplementedLink("newButton", "New Event");
-        add(addButton);
+        final Link newButton = new Link("newButton") {
+
+            @Override
+            public void onClick() {
+                setResponsePage(new EventsEditPage(null));
+            }
+        };
+        add(newButton);
 
         final IModel<List<Event>> listModel = getListModel();
         WebMarkupContainer listContainer = new WebMarkupContainer("listContainer");
@@ -53,12 +60,18 @@ public class EventsPage extends ManagerBasePage {
             @Override
             protected void populateItem(ListItem<Event> item) {
                 final Event event = item.getModelObject();
-                item.add(new Label("date", formatDate(event.getDate())));
-                item.add(new Label("type", new ResourceModel("manager.event.type." + event.getType())));
+                item.add(DateLabel.forDateStyle("date", Model.of(event.getDate().toDate()), "SS"));
+                item.add(new Label("type", new ResourceModel(event.getTypeResourceKey())));
                 item.add(new Label("team", event.getTeam().getName()));
                 item.add(new Label("summary", event.getSummary()));
                 item.add(new Label("responses", getResponses(event)));
-                item.add(new FeatureNotImplementedLink("editButton", "Editing Event"));
+                item.add(new Link("editButton") {
+
+                    @Override
+                    public void onClick() {
+                        setResponsePage(new EventsEditPage(event));
+                    }
+                });
                 item.add(new AjaxLinkWithConfirmation("deleteButton", new ResourceModel("manager.events.delete.confirm")) {
 
                     @Override
@@ -70,10 +83,6 @@ public class EventsPage extends ManagerBasePage {
             }
 
             // TODO (oblume - 11.09.11) use 'Converter'
-            private String formatDate(DateTime date) {
-                return "not implemented";
-            }
-
             private String getResponses(Event event) {
                 return "Zusagen / Absagen / offen";
             }

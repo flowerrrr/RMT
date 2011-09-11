@@ -15,4 +15,5 @@ public interface IEventManager {
 
     void delete(Event entity);
 
+    Event newInstance(Class<? extends Event> eventType);
 }
