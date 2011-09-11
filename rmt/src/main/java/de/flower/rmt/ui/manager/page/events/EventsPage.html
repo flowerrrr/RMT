@@ -5,6 +5,29 @@
 
 <wicket:extend>
 
+    My Events
+
+    <a wicket:id="newButton">
+        <wicket:message key="manager.events.new">[New]</wicket:message>
+    </a>
+
+    <div wicket:id="listContainer">
+        <ul>
+            <li wicket:id="list">
+                <span wicket:id="date">[Date #1]</span>
+                <span wicket:id="team">[Team]</span>
+                <span wicket:id="type">[Event Type]</span>
+                <span wicket:id="summary">[Summary]</span>
+                <span wicket:id="responses">[Responses]</span>
+                <a wicket:id="editButton">
+                    <wicket:message key="manager.events.edit">[Edit]</wicket:message>
+                </a>
+                <a wicket:id="deleteButton">
+                    <wicket:message key="manager.events.delete">[Delete]</wicket:message>
+                </a>
+            </li>
+        </ul>
+    </div>
 
  </wicket:extend>
 

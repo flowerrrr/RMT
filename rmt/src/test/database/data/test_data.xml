@@ -27,9 +27,12 @@
     <venue id="2" lat="48.193399" lng="11.612356" name="EDV Freimann" club_id="1"/>
     <venue id="3" address="St. Martin-Stra&#223;e, M&#252;nchen" lat="48.12075424194336" lng="11.603121757507324" name="Rote Erde" club_id="1"/>
 
-    <team_users teams_id="1" players_id="2"/>
-    <team_users teams_id="2" players_id="2"/>
-    <team_users teams_id="2" players_id="1"/>
+    <team_player teams_id="1" players_id="2"/>
+    <team_player teams_id="2" players_id="2"/>
+    <team_player teams_id="2" players_id="1"/>
+
+    <event eventType="Training" id="1" allDay="false" comment="Saisonopening" date="2011-10-01 12:00:00.0" club_id="1" team_id="1" venue_id="1"/>
+
 
 
 </dataset>

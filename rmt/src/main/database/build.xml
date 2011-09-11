@@ -252,7 +252,7 @@
              password="${db.password}">
             <classpath refid="classpath.db.driver"/>
             <transaction src="${database.dir}/ddl/schema.ddl"/>
-            <transaction src="${database.dir}/ddl/views.ddl"/>
+            <!--<transaction src="${database.dir}/ddl/views.ddl"/>-->
         </sql>
     </target>
 

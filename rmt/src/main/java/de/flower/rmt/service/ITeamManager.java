@@ -14,7 +14,7 @@ public interface ITeamManager {
 
     List<Team> findAll();
 
-    void delete(Team modelObject);
+    void delete(Team entity);
 
     Team newTeamInstance();
 

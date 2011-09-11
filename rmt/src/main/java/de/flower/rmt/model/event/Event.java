@@ -1,5 +1,9 @@
-package de.flower.rmt.model;
+package de.flower.rmt.model.event;
 
+import de.flower.rmt.model.AbstractClubRelatedEntity;
+import de.flower.rmt.model.Invitation;
+import de.flower.rmt.model.Team;
+import de.flower.rmt.model.Venue;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 import org.joda.time.LocalTime;
@@ -17,7 +21,7 @@ import java.util.List;
     discriminatorType=DiscriminatorType.STRING
 )
 @DiscriminatorValue("Event")
-public class Event extends AbstractClubRelatedEntity {
+public abstract class Event extends AbstractClubRelatedEntity {
 
     @ManyToOne
     private Team team;

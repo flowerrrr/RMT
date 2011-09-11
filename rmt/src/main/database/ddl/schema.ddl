@@ -11,8 +11,9 @@
         allDay bit,
         comment varchar(255),
         date datetime,
-        meetingTime datetime,
+        kickOff datetime,
         club_id bigint not null,
+        team_id bigint,
         venue_id bigint,
         opponent_id bigint,
         primary key (id)
@@ -44,7 +45,8 @@
 
     create table Team_Player (
         teams_id bigint not null,
-        players_id bigint not null
+        players_id bigint not null,
+        primary key (teams_id, players_id)
     );
 
     create table Users (
@@ -85,6 +87,12 @@
         add index FK403827A37C9631A (opponent_id), 
         add constraint FK403827A37C9631A 
         foreign key (opponent_id) 
+        references Team (id);
+
+    alter table Event 
+        add index FK403827A1C96621A (team_id), 
+        add constraint FK403827A1C96621A 
+        foreign key (team_id) 
         references Team (id);
 
     alter table Invitation 
