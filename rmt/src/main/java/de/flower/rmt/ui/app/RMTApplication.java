@@ -21,6 +21,8 @@ public class RMTApplication extends WebApplication {
         // google maps have problems when wicket tags are rendered in development mode, so strip those tags
         getMarkupSettings().setStripWicketTags(true);
 
+        getDebugSettings().setDevelopmentUtilitiesEnabled(true);
+
         initBookmarkablePages();
     }
 

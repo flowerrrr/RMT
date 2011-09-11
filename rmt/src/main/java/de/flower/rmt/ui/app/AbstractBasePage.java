@@ -1,6 +1,7 @@
 package de.flower.rmt.ui.app;
 
 import org.apache.wicket.ajax.IAjaxIndicatorAware;
+import org.apache.wicket.devutils.debugbar.DebugBar;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.IModel;
 
@@ -10,11 +11,12 @@ import org.apache.wicket.model.IModel;
 public class AbstractBasePage extends WebPage implements IAjaxIndicatorAware {
 
     public AbstractBasePage() {
-        super();
+        this(null);
     }
 
     public AbstractBasePage(IModel<?> model) {
         super(model);
+        add(new DebugBar("debugBar"));
     }
 
     /**

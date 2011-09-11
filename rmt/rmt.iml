@@ -325,6 +325,17 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-devutils/jars/wicket-devutils-1.5.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-devutils/sources/wicket-devutils-1.5.0-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
           <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-validator/jars/hibernate-validator-4.1.0.Final.jar!/" />
         </CLASSES>
         <JAVADOC />
