@@ -3,7 +3,7 @@ package de.flower.rmt.ui.manager.page.teams;
 import de.flower.common.ui.FormMode;
 import de.flower.common.ui.ajax.MyAjaxSubmitLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
-import de.flower.common.ui.ajax.updatebehavior.events.Event;
+import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.common.ui.form.MyForm;
 import de.flower.common.ui.form.ValidatedTextField;
 import de.flower.common.validation.unique.Unique;
@@ -52,7 +52,7 @@ public class TeamEditPanel extends BasePanel {
                     onError(target, form);
                 } else {
                     teamManager.save((Team) form.getModelObject());
-                    target.registerRespondListener(new AjaxRespondListener(Event.EntityCreated(Team.class), Event.EntityUpdated(Team.class)));
+                    target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Team.class), AjaxEvent.EntityUpdated(Team.class)));
                     ModalWindow.closeCurrent(target);
                 }
             }

@@ -1,6 +1,6 @@
 package de.flower.common.ui.ajax.updatebehavior;
 
-import de.flower.common.ui.ajax.updatebehavior.events.Event;
+import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
 
@@ -9,9 +9,9 @@ import org.apache.wicket.behavior.Behavior;
  */
 public class AjaxUpdateBehavior extends Behavior {
 
-    private Event registeredEvent;
+    private AjaxEvent registeredEvent;
 
-    public AjaxUpdateBehavior(Event registeredEvent) {
+    public AjaxUpdateBehavior(AjaxEvent registeredEvent) {
         this.registeredEvent = registeredEvent;
     }
 
@@ -30,8 +30,8 @@ public class AjaxUpdateBehavior extends Behavior {
      * @param events
      * @return
      */
-    public boolean checkForComponentUpdate(Event[] events) {
-        for (Event triggeredEvent : events) {
+    public boolean checkForComponentUpdate(AjaxEvent[] events) {
+        for (AjaxEvent triggeredEvent : events) {
             if (registeredEvent.matches(triggeredEvent)) {
                 return true;
             }

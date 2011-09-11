@@ -4,7 +4,7 @@ import de.flower.common.ui.ajax.AjaxLinkWithConfirmation;
 import de.flower.common.ui.ajax.MyAjaxLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
-import de.flower.common.ui.ajax.updatebehavior.events.Event;
+import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.rmt.model.Users;
 import de.flower.rmt.model.Users_;
 import de.flower.rmt.service.security.ISecurityService;
@@ -79,14 +79,14 @@ public class PlayersPage extends ManagerBasePage {
                     @Override
                     public void onClick(AjaxRequestTarget target) {
                         playerManager.delete(item.getModelObject());
-                        target.registerRespondListener(new AjaxRespondListener(Event.EntityDeleted(Users.class)));
+                        target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(Users.class)));
                     }
 
                 });
                 deleteButton.setVisible(!securityService.isCurrentUser(player));
             }
         });
-        playerListContainer.add(new AjaxUpdateBehavior(Event.EntityAll(Users.class)));
+        playerListContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Users.class)));
     }
 
 

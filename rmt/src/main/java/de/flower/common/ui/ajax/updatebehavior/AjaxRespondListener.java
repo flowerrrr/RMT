@@ -1,6 +1,6 @@
 package de.flower.common.ui.ajax.updatebehavior;
 
-import de.flower.common.ui.ajax.updatebehavior.events.Event;
+import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import org.apache.wicket.Component;
 import org.apache.wicket.Page;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -14,9 +14,9 @@ import java.util.List;
  */
 public class AjaxRespondListener implements AjaxRequestTarget.ITargetRespondListener {
 
-    private Event[] events;
+    private AjaxEvent[] events;
 
-    public AjaxRespondListener(Event... events) {
+    public AjaxRespondListener(AjaxEvent... events) {
         this.events = events;
     }
 

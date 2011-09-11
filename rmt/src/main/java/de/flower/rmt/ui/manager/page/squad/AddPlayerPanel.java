@@ -5,7 +5,7 @@ import de.flower.common.ui.ajax.MyAjaxSubmitLink;
 import de.flower.common.ui.ajax.panel.AjaxSlideTogglePanel;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
-import de.flower.common.ui.ajax.updatebehavior.events.Event;
+import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.model.Team2Player;
 import de.flower.rmt.model.Users;
@@ -69,7 +69,7 @@ public class AddPlayerPanel extends GenericPanel<Team> {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 teamManager.addPlayers(AddPlayerPanel.this.getModelObject(), selectedPlayers);
-                target.registerRespondListener(new AjaxRespondListener(Event.EntityCreated(Team2Player.class)));
+                target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Team2Player.class)));
                 close(target);
             }
         });
@@ -82,7 +82,7 @@ public class AddPlayerPanel extends GenericPanel<Team> {
             }
         });
 
-        add(new AjaxUpdateBehavior(Event.EntityAll(Team2Player.class)));
+        add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Team2Player.class)));
 
     }
 

@@ -5,27 +5,27 @@ import java.io.Serializable;
 /**
  * @author oblume
  */
-public abstract class Event implements Serializable {
+public abstract class AjaxEvent implements Serializable {
 
     private Class<?> clazz;
 
-    protected Event(Class<?> clazz) {
+    protected AjaxEvent(Class<?> clazz) {
         this.clazz = clazz;
     }
 
-    public static Event EntityUpdated(Class<?> clazz) {
+    public static AjaxEvent EntityUpdated(Class<?> clazz) {
         return new EntityUpdatedEvent(clazz);
     }
 
-    public static Event EntityCreated(Class<?> clazz) {
+    public static AjaxEvent EntityCreated(Class<?> clazz) {
         return new EntityCreatedEvent(clazz);
     }
 
-    public static Event EntityDeleted(Class<?> clazz) {
+    public static AjaxEvent EntityDeleted(Class<?> clazz) {
         return new EntityDeletedEvent(clazz);
     }
 
-    public static Event EntityAll(Class<?> clazz) {
+    public static AjaxEvent EntityAll(Class<?> clazz) {
         return new EntityAllEvent(clazz);
     }
 
@@ -40,7 +40,7 @@ public abstract class Event implements Serializable {
      * @param triggeredEvent
      * @return
      */
-    public boolean matches(Event triggeredEvent) {
+    public boolean matches(AjaxEvent triggeredEvent) {
         if (!this.clazz.equals(triggeredEvent.getClazz())) {
             return false;
         }

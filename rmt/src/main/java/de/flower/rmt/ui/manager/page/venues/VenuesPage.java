@@ -4,7 +4,7 @@ import de.flower.common.ui.ajax.AjaxLinkWithConfirmation;
 import de.flower.common.ui.ajax.MyAjaxLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
-import de.flower.common.ui.ajax.updatebehavior.events.Event;
+import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.rmt.model.Venue;
 import de.flower.rmt.service.IVenueManager;
 import de.flower.rmt.ui.common.page.ModalDialogWindow;
@@ -70,12 +70,12 @@ public class VenuesPage extends ManagerBasePage {
                     @Override
                     public void onClick(AjaxRequestTarget target) {
                         venueManager.delete(item.getModelObject());
-                        target.registerRespondListener(new AjaxRespondListener(Event.EntityDeleted(Venue.class)));
+                        target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(Venue.class)));
                     }
                 });
             }
         });
-        venueListContainer.add(new AjaxUpdateBehavior(Event.EntityAll(Venue.class)));
+        venueListContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Venue.class)));
 
         add(new GMapPanel("mapPanel"));
     }

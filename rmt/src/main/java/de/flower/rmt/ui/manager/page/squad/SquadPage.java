@@ -6,7 +6,7 @@ import de.flower.common.ui.ajax.MyAjaxLink;
 import de.flower.common.ui.ajax.panel.AjaxSlideTogglePanel;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
-import de.flower.common.ui.ajax.updatebehavior.events.Event;
+import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.common.ui.js.JQuery;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.model.Team2Player;
@@ -59,15 +59,17 @@ public class SquadPage extends ManagerBasePage {
         };
         add(addPlayerPanel);
 
+        final IModel<List<Users>> listModel = getListModel(model);
+
         WebMarkupContainer playerListContainer = new WebMarkupContainer("playerListContainer");
         add(playerListContainer);
         playerListContainer.add(new WebMarkupContainer("noPlayer") {
             @Override
             public boolean isVisible() {
-                return getListModel(model).getObject().isEmpty();
+                return listModel.getObject().isEmpty();
             }
         });
-        playerListContainer.add(new ListView<Users>("playerList", getListModel(model)) {
+        playerListContainer.add(new ListView<Users>("playerList", listModel) {
 
             @Override
             public boolean isVisible() {
@@ -84,12 +86,12 @@ public class SquadPage extends ManagerBasePage {
                     @Override
                     public void onClick(AjaxRequestTarget target) {
                         teamManager.removePlayer((Team) SquadPage.this.getDefaultModelObject(), item.getModelObject());
-                        target.registerRespondListener(new AjaxRespondListener(Event.EntityDeleted(Team2Player.class)));
+                        target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(Team2Player.class)));
                     }
                 });
             }
         });
-        playerListContainer.add(new AjaxUpdateBehavior(Event.EntityAll(Team2Player.class)));
+        playerListContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Team2Player.class)));
 
     }
 

@@ -20,15 +20,14 @@ import java.util.List;
 public class Event extends AbstractClubRelatedEntity {
 
     @ManyToOne
+    private Team team;
+
+    @ManyToOne
     private Venue venue;
 
     @Column
     @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
     private DateTime date;
-
-    @Column
-    @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
-    private LocalTime meetingTime;
 
     @Column
     private boolean allDay;
@@ -37,6 +36,23 @@ public class Event extends AbstractClubRelatedEntity {
     private List<Invitation> invitations;
 
     private String comment;
+
+    protected Event() {
+
+    }
+
+    public Event(Team team) {
+        super(team.getClub());
+        this.team = team;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
 
     public Venue getVenue() {
         return venue;
@@ -62,14 +78,6 @@ public class Event extends AbstractClubRelatedEntity {
         this.allDay = allDay;
     }
 
-    public LocalTime getMeetingTime() {
-        return meetingTime;
-    }
-
-    public void setMeetingTime(LocalTime meetingTime) {
-        this.meetingTime = meetingTime;
-    }
-
     public List<Invitation> getInvitations() {
         return invitations;
     }
@@ -84,5 +92,13 @@ public class Event extends AbstractClubRelatedEntity {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public String getSummary() {
+        return "not implemented";
+    }
+
+    public String getType() {
+        return this.getClass().getSimpleName().toLowerCase();
     }
 }

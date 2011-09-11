@@ -3,7 +3,7 @@ package de.flower.rmt.ui.manager.page.venues;
 import de.flower.common.ui.FormMode;
 import de.flower.common.ui.ajax.MyAjaxSubmitLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
-import de.flower.common.ui.ajax.updatebehavior.events.Event;
+import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.common.ui.form.MyForm;
 import de.flower.common.ui.form.ValidatedTextField;
 import de.flower.common.util.geo.LatLngEx;
@@ -136,7 +136,7 @@ public class VenueEditPanel extends BasePanel {
                     onError(target, form);
                 } else {
                     venueManager.save(venue);
-                    target.registerRespondListener(new AjaxRespondListener(Event.EntityCreated(Venue.class), Event.EntityUpdated(Venue.class)));
+                    target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Venue.class), AjaxEvent.EntityUpdated(Venue.class)));
                     ModalWindow.closeCurrent(target);
                 }
             }

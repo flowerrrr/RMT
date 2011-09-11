@@ -3,7 +3,7 @@ package de.flower.rmt.ui.manager.page.players;
 import de.flower.common.ui.FormMode;
 import de.flower.common.ui.ajax.MyAjaxSubmitLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
-import de.flower.common.ui.ajax.updatebehavior.events.Event;
+import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.common.ui.form.MyForm;
 import de.flower.common.ui.form.ValidatedTextField;
 import de.flower.common.validation.unique.Unique;
@@ -55,7 +55,7 @@ public class PlayerEditPanel extends BasePanel {
                     onError(target, form);
                 } else {
                     playerManager.save((Users) form.getModelObject());
-                    target.registerRespondListener(new AjaxRespondListener(Event.EntityCreated(Users.class), Event.EntityUpdated(Users.class)));
+                    target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Users.class), AjaxEvent.EntityUpdated(Users.class)));
                     ModalWindow.closeCurrent(target);
                 }
             }

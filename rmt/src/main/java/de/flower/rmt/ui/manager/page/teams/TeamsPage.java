@@ -4,7 +4,7 @@ import de.flower.common.ui.ajax.AjaxLinkWithConfirmation;
 import de.flower.common.ui.ajax.MyAjaxLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
-import de.flower.common.ui.ajax.updatebehavior.events.Event;
+import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.service.ITeamManager;
 import de.flower.rmt.ui.common.page.ModalDialogWindow;
@@ -74,12 +74,12 @@ public class TeamsPage extends ManagerBasePage {
                     @Override
                     public void onClick(AjaxRequestTarget target) {
                         teamManager.delete(item.getModelObject());
-                        target.registerRespondListener(new AjaxRespondListener(Event.EntityDeleted(Team.class)));
+                        target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(Team.class)));
                     }
                 });
             }
         });
-        teamListContainer.add(new AjaxUpdateBehavior(Event.EntityAll(Team.class)));
+        teamListContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Team.class)));
     }
 
 

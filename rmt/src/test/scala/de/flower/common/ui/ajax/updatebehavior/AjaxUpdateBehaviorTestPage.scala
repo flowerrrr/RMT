@@ -1,6 +1,6 @@
 package de.flower.common.ui.ajax.updatebehavior
 
-import de.flower.common.ui.ajax.updatebehavior.events.Event
+import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent
 import org.apache.wicket.ajax.AjaxRequestTarget
 import org.apache.wicket.ajax.markup.html.AjaxLink
 import org.apache.wicket.markup.html.WebPage
@@ -20,11 +20,11 @@ class AjaxUpdateBehaviorTestPage extends WebPage {
     entity = new Entity("foo")
     var label: Label = new Label("label", new PropertyModel[Entity](entity, "label"))
     add(label)
-    label.add(new AjaxUpdateBehavior(Event.EntityAll(classOf[Entity])))
+    label.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(classOf[Entity])))
     add(new AjaxLink[Void](("link1")) {
         def onClick(target: AjaxRequestTarget): Unit = {
             entity.setLabel("bar")
-            target.registerRespondListener(new AjaxRespondListener(Event.EntityUpdated(classOf[Entity])))
+            target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityUpdated(classOf[Entity])))
         }
     })
 
