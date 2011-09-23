@@ -5,11 +5,16 @@ import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.model.Venue;
 import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.NotBlank;
 import org.joda.time.DateTime;
 import org.joda.time.LocalTime;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,26 +30,35 @@ import java.util.List;
 public class Event extends AbstractClubRelatedEntity {
 
     @ManyToOne
+    @NotNull
     private Team team;
 
     @ManyToOne
     private Venue venue;
 
     /**
-     * Only the date-part of DateTime.
+     * Only the date-part of Date.
+     * Modelled as java.util.Date cause this makes handling the field
+     * in wicket forms much easier.
      */
     @Column
-    @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
-    private DateTime date;
+    @NotNull
+    private Date date;
 
     @Column
+    @NotNull
     @Type(type = "org.joda.time.contrib.hibernate.PersistentLocalTimeAsTime")
     private LocalTime time;
 
+    @Column
+    @NotBlank @Size(max = 40)
+    private String summary;
+
+    @Column @Size(max = 255)
+    private String comment;
+
     @OneToMany(mappedBy = "event")
     private List<Invitation> invitations;
-
-    private String comment;
 
     public Event() {
 
@@ -53,10 +67,6 @@ public class Event extends AbstractClubRelatedEntity {
     public Event(Team team) {
         super(team.getClub());
         this.team = team;
-    }
-
-    public static List<Class<? extends Event>> getEventTypes() {
-        return Arrays.asList(Match.class, Training.class, Tournament.class, Event.class);
     }
 
     public Team getTeam() {
@@ -75,11 +85,11 @@ public class Event extends AbstractClubRelatedEntity {
         this.venue = venue;
     }
 
-    public DateTime getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(DateTime date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -99,6 +109,14 @@ public class Event extends AbstractClubRelatedEntity {
         this.invitations = invitations;
     }
 
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
     public String getComment() {
         return comment;
     }
@@ -107,15 +125,4 @@ public class Event extends AbstractClubRelatedEntity {
         this.comment = comment;
     }
 
-    public String getSummary() {
-        return "not implemented";
-    }
-
-    public String getTypeResourceKey() {
-        return getTypeResourceKey(this.getClass());
-    }
-
-    public static String getTypeResourceKey(Class<? extends Event> clazz) {
-        return "event.type." + clazz.getSimpleName().toLowerCase();
-    }
 }

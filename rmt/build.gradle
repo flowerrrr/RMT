@@ -60,7 +60,7 @@ dependencies {
             'com.h2database:h2:1.+',
             'org.dbunit:dbunit:2.+',
             'org.scala-lang:scala-library:' + version_scala,
-            'org.testng:testng:6.+',
+            'org.testng:testng:6.1.1', // current rel. 6.2.1 has dependency to com.google.inject
             'org.scalatest:scalatest:1.+',
             'org.mockito:mockito-core:1.+',
             'javax.servlet:servlet-api:2.5'

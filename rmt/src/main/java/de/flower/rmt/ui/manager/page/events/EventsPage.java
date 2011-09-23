@@ -1,11 +1,11 @@
 package de.flower.rmt.ui.manager.page.events;
 
-import de.flower.common.ui.FeatureNotImplementedLink;
 import de.flower.common.ui.ajax.AjaxLinkWithConfirmation;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.rmt.model.event.Event;
+import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.manager.ManagerBasePage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -60,8 +60,9 @@ public class EventsPage extends ManagerBasePage {
             @Override
             protected void populateItem(ListItem<Event> item) {
                 final Event event = item.getModelObject();
-                item.add(DateLabel.forDateStyle("date", Model.of(event.getDate().toDate()), "SS"));
-                item.add(new Label("type", new ResourceModel(event.getTypeResourceKey())));
+                item.add(DateLabel.forDateStyle("date", Model.of(event.getDate()), "S-"));
+                item.add(DateLabel.forDateStyle("time", Model.of(event.getTime().toDateTimeToday().toDate()), "-S"));
+                item.add(new Label("type", new ResourceModel(EventType.from(event).getResourceKey())));
                 item.add(new Label("team", event.getTeam().getName()));
                 item.add(new Label("summary", event.getSummary()));
                 item.add(new Label("responses", getResponses(event)));

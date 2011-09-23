@@ -31,10 +31,10 @@
     <team_player teams_id="2" players_id="2"/>
     <team_player teams_id="2" players_id="1"/>
 
-    <event eventType="Training" id="1"  comment="Saisonopening" date="2011-10-01 17:00:00.0" club_id="1" team_id="1" venue_id="1"/>
-    <event eventType="Training" id="2" comment="2. Training" date="2011-10-08 17:00:00.0" club_id="1" team_id="1" venue_id="1"/>
-    <event eventType="Match" id="3" comment="Spiel im November" date="2011-11-01 12:00:00.0" kickOff="2011-11-01 12:45:00.0" club_id="1" team_id="1" venue_id="1"/>
-    <event eventType="Event" id="4" comment="Weihnachtsfeier" date="2011-12-15 20:00:00.0" club_id="1" team_id="1" venue_id="1"/>
+    <event eventType="Training" id="1"  comment="Saisonopening" date="2011-10-01 00:00:00.0" time="17:00:00" club_id="1" team_id="1" venue_id="1"/>
+    <event eventType="Training" id="2" comment="2. Training" date="2011-10-08 00:00:00.0" time="17:00:00" club_id="1" team_id="1" venue_id="1"/>
+    <event eventType="Match" id="3" comment="Spiel im November" date="2011-11-01 00:00:00.0" time="17:00:00" kickOff="2011-11-01 12:45:00.0" club_id="1" team_id="1" venue_id="1"/>
+    <event eventType="Event" id="4" comment="Weihnachtsfeier" date="2011-12-15 00:00:00.0" time="17:00:00" club_id="1" team_id="1" venue_id="1"/>
 
 
 

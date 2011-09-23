@@ -8,4 +8,6 @@
     <context:annotation-config/>
     <context:component-scan base-package="de.flower.rmt.service"/>
 
+    <!-- transaction configuration in dao.xml -->
+
 </beans>

@@ -80,5 +80,12 @@ abstract class AbstractWicketTests extends AbstractIntegrationTests {
 
     protected var wicketTester: WicketTester = null
 
-    protected var formTester: FormTester = null
+    private var formTester: FormTester = null
+
+    protected def getFormTester(path: String = "form"): FormTester = {
+        if (formTester == null) {
+            formTester = wicketTester.newFormTester(path)
+        }
+        return formTester;
+    }
 }

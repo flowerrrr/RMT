@@ -20,6 +20,7 @@ class WicketTests extends AbstractWicketTests {
     }
 
     def assertValidation(field: Component, value: String, assertion: Boolean) {
+        var formTester = getFormTester();
         formTester.setValue(field, value)
         wicketTester.executeAjaxEvent(field, "onblur")
         wicketTester.dumpPage()

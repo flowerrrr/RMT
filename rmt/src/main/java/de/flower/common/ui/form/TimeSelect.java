@@ -14,7 +14,10 @@ import java.util.List;
  */
 public class TimeSelect extends DropDownChoice<LocalTime> {
 
-    DateTimeFormatter formatter =  DateTimeFormat.shortTime();
+    /**
+     * DateTimeFormatter is not serializable. Use lazy-init to load it.
+     */
+    private transient DateTimeFormatter formatter;
 
     public TimeSelect(String id) {
         super(id);
@@ -22,7 +25,7 @@ public class TimeSelect extends DropDownChoice<LocalTime> {
         setChoiceRenderer(new IChoiceRenderer<LocalTime>() {
             @Override
             public Object getDisplayValue(LocalTime time) {
-                return formatter.print(time);
+                return getFormatter().print(time);
             }
 
             @Override
@@ -38,10 +41,17 @@ public class TimeSelect extends DropDownChoice<LocalTime> {
         LocalTime end = start.minusMillis(1);
         int interval = 15;
         int millis = start.getMillisOfDay();
-        while (millis <= end.getMillisOfDay()){
+        while (millis <= end.getMillisOfDay()) {
             list.add(LocalTime.fromMillisOfDay(millis));
             millis += interval * 60 * 1000;
         }
         return list;
+    }
+
+    public DateTimeFormatter getFormatter() {
+        if (formatter == null) {
+            formatter = DateTimeFormat.shortTime();
+        }
+        return formatter;
     }
 }

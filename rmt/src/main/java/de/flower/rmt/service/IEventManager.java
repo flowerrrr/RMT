@@ -1,6 +1,7 @@
 package de.flower.rmt.service;
 
 import de.flower.rmt.model.event.Event;
+import de.flower.rmt.model.event.EventType;
 
 import java.util.List;
 
@@ -15,5 +16,5 @@ public interface IEventManager {
 
     void delete(Event entity);
 
-    Event newInstance(Class<? extends Event> eventType);
+    Event newInstance(EventType eventType);
 }

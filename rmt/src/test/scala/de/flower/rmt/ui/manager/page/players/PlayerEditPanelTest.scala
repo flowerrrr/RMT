@@ -23,7 +23,6 @@ class PlayerEditPanelTest extends WicketTests {
         wicketTester.dumpPage()
         wicketTester.debugComponentTrees()
         // input email and validate field
-        formTester = wicketTester.newFormTester("form")
         var email = wicketTester.getComponentFromLastRenderedPage("form:email:email")
         assertValidation(email, "", false) // field cannot be empty
         assertValidation(email, "foo@bar.com", true)

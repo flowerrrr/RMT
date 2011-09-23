@@ -16,7 +16,6 @@ class TeamEditPanelTest extends WicketTests {
         wicketTester.dumpPage()
         wicketTester.debugComponentTrees()
         // input name and validate field
-        formTester = wicketTester.newFormTester("form")
         val field = wicketTester.getComponentFromLastRenderedPage("form:name:name")
         assertValidation(field, "teamname", true)
         // set teamname to existing team and revalidate field

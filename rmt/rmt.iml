@@ -831,19 +831,6 @@
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.testng/testng/jars/testng-6.2.1.jar!/" />
-        </CLASSES>
-        <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.testng/testng/javadocs/testng-6.2.1-javadoc.jar!/" />
-        </JAVADOC>
-        <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.testng/testng/sources/testng-6.2.1-sources.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" scope="TEST">
-      <library>
-        <CLASSES>
           <root url="jar://$USER_HOME$/.gradle/cache/org.beanshell/bsh/jars/bsh-2.0b4.jar!/" />
         </CLASSES>
         <JAVADOC />
@@ -935,6 +922,15 @@
         <SOURCES>
           <root url="jar://$USER_HOME$/.gradle/cache/javax.servlet/servlet-api/sources/servlet-api-2.5-sources.jar!/" />
         </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/cache/org.testng/testng/jars/testng-6.1.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
       </library>
     </orderEntry>
   </component>

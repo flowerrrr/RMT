@@ -1,6 +1,7 @@
 package de.flower.rmt.service;
 
 import de.flower.rmt.model.event.Event;
+import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.repository.IEventRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,9 +38,9 @@ public class EventManager extends AbstractService implements IEventManager {
         eventRepo.delete(entity);
     }
 
-    public Event newInstance(Class<? extends Event> eventType) {
+    public Event newInstance(EventType eventType) {
         try {
-            Event event = eventType.newInstance();
+            Event event = eventType.getClazz().newInstance();
             event.setClub(getClub());
             return event;
         } catch (Exception e) {

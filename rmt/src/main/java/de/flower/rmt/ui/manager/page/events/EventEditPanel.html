@@ -12,9 +12,28 @@
         <div wicket:id="hasErrors"><wicket:message key="form.haserrors"/></div>
         <div wicket:id="feedback">[Validation messages]</div>
 
+        <wicket:message key="manager.event.date"/>
         <input wicket:id="date" />
+        <span wicket:id="feedback_date" ></span>
 
+        <wicket:message key="manager.event.time" />
         <select wicket:id="time" />
+
+        <wicket:message key="manager.event.venue" />
+        <select wicket:id="venue" />
+
+        <wicket:message key="manager.event.venue.surface" />
+        <span>TBD</span>
+
+        <wicket:message key="manager.event.summary" />
+        <input wicket:id="summary" />
+
+        <wicket:message key="manager.event.comment" />
+        <input wicket:id="comment" />
+
+        <wicket:message key="manager.event.participants" />
+        <span>TBD</span>
+
 
         <a wicket:id="saveButton">
             <wicket:message key="button.save"/>
