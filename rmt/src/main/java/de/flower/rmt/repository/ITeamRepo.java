@@ -1,6 +1,5 @@
 package de.flower.rmt.repository;
 
-import de.flower.common.repository.IRepository;
 import de.flower.rmt.model.Club;
 import de.flower.rmt.model.Team;
 

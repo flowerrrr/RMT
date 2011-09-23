@@ -28,6 +28,7 @@ public class Venue extends AbstractClubRelatedEntity {
     @Column
     private Double lng;
 
+    @Deprecated
     public Venue() {
     }
 

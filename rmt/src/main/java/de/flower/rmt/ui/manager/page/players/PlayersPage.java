@@ -5,10 +5,10 @@ import de.flower.common.ui.ajax.MyAjaxLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
-import de.flower.rmt.model.Users;
-import de.flower.rmt.model.Users_;
-import de.flower.rmt.service.security.ISecurityService;
+import de.flower.rmt.model.User;
+import de.flower.rmt.model.User_;
 import de.flower.rmt.service.IUserManager;
+import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.ui.common.page.ModalDialogWindow;
 import de.flower.rmt.ui.manager.ManagerBasePage;
 import org.apache.wicket.Component;
@@ -54,12 +54,12 @@ public class PlayersPage extends ManagerBasePage {
 
         WebMarkupContainer playerListContainer = new WebMarkupContainer("playerListContainer");
         add(playerListContainer);
-        playerListContainer.add(new ListView<Users>("playerList", getPlayerListModel()) {
+        playerListContainer.add(new ListView<User>("playerList", getPlayerListModel()) {
 
 
             @Override
-            protected void populateItem(final ListItem<Users> item) {
-                Users player = item.getModelObject();
+            protected void populateItem(final ListItem<User> item) {
+                User player = item.getModelObject();
                 item.add(new Label("fullname", player.getFullname()));
                 item.add(new Label("email", player.getEmail()));
                 Component manager;
@@ -79,22 +79,22 @@ public class PlayersPage extends ManagerBasePage {
                     @Override
                     public void onClick(AjaxRequestTarget target) {
                         playerManager.delete(item.getModelObject());
-                        target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(Users.class)));
+                        target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(User.class)));
                     }
 
                 });
                 deleteButton.setVisible(!securityService.isCurrentUser(player));
             }
         });
-        playerListContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Users.class)));
+        playerListContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(User.class)));
     }
 
 
-    private IModel<List<Users>> getPlayerListModel() {
-        return new LoadableDetachableModel<List<Users>>() {
+    private IModel<List<User>> getPlayerListModel() {
+        return new LoadableDetachableModel<List<User>>() {
             @Override
-            protected List<Users> load() {
-                return playerManager.findAll(Users_.roles);
+            protected List<User> load() {
+                return playerManager.findAll(User_.roles);
             }
         };
     }

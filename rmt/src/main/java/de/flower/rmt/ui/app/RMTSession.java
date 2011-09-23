@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.app;
 
 import de.flower.common.util.geo.LatLngEx;
-import de.flower.rmt.model.Users;
+import de.flower.rmt.model.User;
 import de.flower.rmt.service.security.ISecurityService;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.protocol.http.WebSession;
@@ -13,7 +13,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
  */
 public class RMTSession extends WebSession {
 
-    private Users user;
+    private User user;
 
     private LatLngEx latLng;
 
@@ -49,7 +49,7 @@ public class RMTSession extends WebSession {
     }
 
     // TODO (oblume - 14.08.11) check if this method is obsolete
-    public Users getUser() {
+    public User getUser() {
         return user;
     }
 

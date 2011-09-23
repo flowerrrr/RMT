@@ -1,9 +1,6 @@
 package de.flower.rmt.repository;
 
-import de.flower.rmt.model.Club;
-import de.flower.rmt.model.event.Event;
-
-import java.util.List;
+import de.flower.rmt.model.Player;
 
 /**
  * Uses Spring Data JPA library to define a XXXRepistory
@@ -12,7 +9,7 @@ import java.util.List;
  *
  * @author oblume
  */
-public interface IEventRepo extends IRepository<Event, Long> {
+public interface IPlayerRepo extends IRepository<Player, Long> {
 
-    List<Event> findAllByClub(Club club);
+
 }

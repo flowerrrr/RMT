@@ -1,8 +1,10 @@
 package de.flower.rmt.service;
 
 import de.flower.common.util.Check;
+import de.flower.rmt.model.Player;
 import de.flower.rmt.model.Team;
-import de.flower.rmt.model.Users;
+import de.flower.rmt.model.User;
+import de.flower.rmt.repository.IPlayerRepo;
 import de.flower.rmt.repository.ITeamRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,9 @@ public class TeamManager extends AbstractService implements ITeamManager {
 
     @Autowired
     private ITeamRepo teamRepo;
+
+    @Autowired
+    private IPlayerRepo playerRepo;
 
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
@@ -47,36 +52,38 @@ public class TeamManager extends AbstractService implements ITeamManager {
 
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-    public void addPlayer(Team team, Users player) {
-        addPlayers(team, Arrays.asList(player));
+    public void addPlayer(Team team, User user) {
+        addPlayers(team, Arrays.asList(user));
     }
 
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-    public void addPlayers(Team team, List<Users> players) {
+    public void addPlayers(Team team, List<User> users) {
         team = teamRepo.reload(team);
-        for (Users player : players) {
-            Check.isTrue(!team.getPlayers().contains(player));
-            team.getPlayers().add(player);
+        for (User user : users) {
+            Player player = new Player(team, user);
+            playerRepo.save(player);
         }
-        save(team);
     }
 
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-    public void removePlayer(Team team, Users player) {
+    public void removePlayer(Team team, Player player) {
         team = teamRepo.reload(team);
         Check.isTrue(team.getPlayers().contains(player));
-        team.getPlayers().remove(player);
-        save(team);
+        deletePlayer(player);
     }
 
     @Override
-    public List<Users> getPlayers(Team team) {
+    public List<Player> getPlayers(Team team) {
         team = teamRepo.reload(team);
-        List<Users> players = team.getPlayers();
+        List<Player> players = team.getPlayers();
         // init collection to avoid lazyinitexception
         players.size();
         return players;
+    }
+
+    public void deletePlayer(Player player) {
+        playerRepo.delete(player);
     }
 }

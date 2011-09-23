@@ -1,7 +1,7 @@
 package de.flower.rmt.service;
 
 import de.flower.rmt.model.Team;
-import de.flower.rmt.model.Users;
+import de.flower.rmt.model.User;
 
 import javax.persistence.metamodel.Attribute;
 import java.util.List;
@@ -11,15 +11,15 @@ import java.util.List;
  */
 public interface IUserManager {
 
-    Users findByUsername(String username);
+    User findByUsername(String username);
 
-    void save(Users user);
+    void save(User user);
 
-    // List<Users> findAll();
+    // List<User> findAll();
 
-    void delete(Users user);
+    void delete(User user);
 
-    List<Users> findAll(Attribute... attributes);
+    List<User> findAll(Attribute... attributes);
 
     /**
      * Returns all players of the club that are not assigned to the given team.
@@ -27,7 +27,7 @@ public interface IUserManager {
      * @param team
      * @return
      */
-    List<Users> findUnassignedPlayers(Team team);
+    List<User> findUnassignedPlayers(Team team);
 
-    Users newPlayerInstance();
+    User newUserInstance();
 }

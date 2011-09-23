@@ -8,9 +8,9 @@ import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.common.ui.js.JQuery;
+import de.flower.rmt.model.Player;
 import de.flower.rmt.model.Team;
-import de.flower.rmt.model.Team2Player;
-import de.flower.rmt.model.Users;
+import de.flower.rmt.model.User;
 import de.flower.rmt.service.ITeamManager;
 import de.flower.rmt.ui.manager.ManagerBasePage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -59,7 +59,7 @@ public class SquadPage extends ManagerBasePage {
         };
         add(addPlayerPanel);
 
-        final IModel<List<Users>> listModel = getListModel(model);
+        final IModel<List<Player>> listModel = getListModel(model);
 
         WebMarkupContainer playerListContainer = new WebMarkupContainer("playerListContainer");
         add(playerListContainer);
@@ -69,7 +69,7 @@ public class SquadPage extends ManagerBasePage {
                 return listModel.getObject().isEmpty();
             }
         });
-        playerListContainer.add(new ListView<Users>("playerList", listModel) {
+        playerListContainer.add(new ListView<Player>("playerList", listModel) {
 
             @Override
             public boolean isVisible() {
@@ -77,28 +77,29 @@ public class SquadPage extends ManagerBasePage {
             }
 
             @Override
-            protected void populateItem(final ListItem<Users> item) {
-                item.add(new Label("name", item.getModelObject().getFullname()));
-                item.add(new Label("status", new ResourceModel("player.status." + item.getModelObject().getStatus().toString().toLowerCase())));
+            protected void populateItem(final ListItem<Player> item) {
+                final Player player = item.getModelObject();
+                item.add(new Label("name",  player.getFullname()));
+                item.add(new Label("status", new ResourceModel("player.status." + player.getStatus().toString().toLowerCase())));
                 item.add(new FeatureNotImplementedLink("editButton", "Editing players"));
                 item.add(new AjaxLinkWithConfirmation("removeButton", new ResourceModel("manager.squad.remove.confirm")) {
 
                     @Override
                     public void onClick(AjaxRequestTarget target) {
                         teamManager.removePlayer((Team) SquadPage.this.getDefaultModelObject(), item.getModelObject());
-                        target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(Team2Player.class)));
+                        target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(Player.class)));
                     }
                 });
             }
         });
-        playerListContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Team2Player.class)));
+        playerListContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Player.class)));
 
     }
 
-    private IModel<List<Users>> getListModel(final IModel<Team> model) {
-        return new LoadableDetachableModel<List<Users>>() {
+    private IModel<List<Player>> getListModel(final IModel<Team> model) {
+        return new LoadableDetachableModel<List<Player>>() {
             @Override
-            protected List<Users> load() {
+            protected List<Player> load() {
                 return teamManager.getPlayers(model.getObject());
             }
         };

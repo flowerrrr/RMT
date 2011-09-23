@@ -1,7 +1,8 @@
 package de.flower.rmt.service;
 
+import de.flower.rmt.model.Player;
 import de.flower.rmt.model.Team;
-import de.flower.rmt.model.Users;
+import de.flower.rmt.model.User;
 
 import java.util.List;
 
@@ -18,12 +19,12 @@ public interface ITeamManager {
 
     Team newTeamInstance();
 
-    void addPlayer(Team team, Users player);
+    void addPlayer(Team team, User user);
 
-    void addPlayers(Team team, List<Users> players);
+    void addPlayers(Team team, List<User> users);
 
-    void removePlayer(Team team, Users player);
+    void removePlayer(Team team, Player player);
 
-    List<Users> getPlayers(Team team);
+    List<Player> getPlayers(Team team);
 
 }

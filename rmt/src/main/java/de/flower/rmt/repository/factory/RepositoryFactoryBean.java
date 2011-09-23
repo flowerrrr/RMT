@@ -1,10 +1,14 @@
-package de.flower.common.repository;
+package de.flower.rmt.repository.factory;
 
+import de.flower.rmt.repository.IUserRepo;
+import de.flower.rmt.repository.impl.UserRepo;
+import de.flower.rmt.repository.impl.BaseRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean;
 import org.springframework.data.repository.core.RepositoryMetadata;
+import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
 import java.io.Serializable;
@@ -32,13 +36,21 @@ public class RepositoryFactoryBean<T extends JpaRepository<S, ID>, S, ID extends
 
             JpaEntityInformation<?, Serializable> entityInformation =
                     getEntityInformation(metadata.getDomainClass());
-
-            return new Repository(entityInformation, entityManager);
+            Assert.notNull(entityInformation);
+            if (metadata.getRepositoryInterface().equals(IUserRepo.class)) {
+                return new UserRepo(entityInformation, entityManager);
+            } else {
+                return new BaseRepository(entityInformation, entityManager);
+            }
         }
 
         @Override
         public Class<?> getRepositoryBaseClass(RepositoryMetadata metadata) {
-            return Repository.class;
+            if (metadata.getRepositoryInterface().equals(IUserRepo.class)) {
+                return UserRepo.class;
+            } else {
+                return BaseRepository.class;
+            }
         }
     }
 }

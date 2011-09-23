@@ -1,9 +1,6 @@
 package de.flower.rmt.service;
 
-import de.flower.rmt.model.Role;
-import de.flower.rmt.model.Team;
-import de.flower.rmt.model.Users;
-import de.flower.rmt.model.Users_;
+import de.flower.rmt.model.*;
 import de.flower.rmt.repository.IUserRepo;
 import de.flower.rmt.repository.Specs;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.criteria.*;
 import javax.persistence.metamodel.Attribute;
 import java.util.List;
 
@@ -28,37 +26,34 @@ public class UserManager extends AbstractService implements IUserManager {
     private IUserRepo userRepo;
 
     @Override
-    public Users findByUsername(String username) {
+    public User findByUsername(String username) {
         return userRepo.findByEmail(username);
     }
 
     @Override
     @Transactional(readOnly = false)
-    public void save(Users user) {
+    public void save(User user) {
         // check that a role is assigned
         notEmpty(user.getRoles(), "user has no role(s) assigned");
         userRepo.save(user);
     }
 
     @Override
-    public List<Users> findAll(final Attribute... attributes) {
-        Specification hasClub = Specs.eq(Users_.club, getClub());
+    public List<User> findAll(final Attribute... attributes) {
+        Specification hasClub = Specs.eq(User_.club, getClub());
         Specification fetch = Specs.fetch(attributes);
-        List<Users> list = userRepo.findAll(Specs.and(hasClub, fetch));
+        List<User> list = userRepo.findAll(Specs.and(hasClub, fetch));
         return list;
     }
 
     @Override
-    public List<Users> findUnassignedPlayers(Team team) {
-        Specification hasClub = Specs.eq(Users_.club, getClub());
-        Specification notInTeam = Specs.not(Specs.in(Users_.teams, team));
-        List<Users> list = userRepo.findAll(Specs.and(hasClub, notInTeam));
-        return list;
+    public List<User> findUnassignedPlayers(final Team team) {
+        return userRepo.findUnassignedPlayers(team, getClub());
     }
 
     @Override
     @Transactional(readOnly = false)
-    public void delete(Users user) {
+    public void delete(User user) {
         // do not allow to delete currently logged in user
         if (securityService.isCurrentUser(user)) {
             throw new IllegalArgumentException("Cannot delete currently logged in user.");
@@ -67,9 +62,9 @@ public class UserManager extends AbstractService implements IUserManager {
     }
 
     @Override
-    public Users newPlayerInstance() {
+    public User newUserInstance() {
 
-        Users user = new Users(getClub());
+        User user = new User(getClub());
         Role role = new Role(Role.Roles.PLAYER.getRoleName());
         user.getRoles().add(role);
         role.setUser(user);

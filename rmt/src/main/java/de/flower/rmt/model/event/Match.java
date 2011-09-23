@@ -1,5 +1,7 @@
 package de.flower.rmt.model.event;
 
+import de.flower.rmt.model.Jersey;
+import de.flower.rmt.model.Opponent;
 import de.flower.rmt.model.Team;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalTime;
@@ -16,17 +18,15 @@ import javax.persistence.ManyToOne;
 @DiscriminatorValue("Match")
 public class Match extends Event {
 
-    @ManyToOne
-    // TODO: check if @OneToMany might be better
-    private Team opponent;
-
     @Column
     @Type(type = "org.joda.time.contrib.hibernate.PersistentLocalTimeAsTime")
     private LocalTime kickOff;
 
+    @ManyToOne
+    private Opponent opponent;
 
-//    @ManyToOne
-//    private Jersey jersey;
+    @ManyToOne
+    private Jersey jersey;
 
     public Match() {
     }

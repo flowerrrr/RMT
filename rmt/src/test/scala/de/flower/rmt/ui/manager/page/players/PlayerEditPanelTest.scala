@@ -3,7 +3,7 @@ package de.flower.rmt.ui.manager.page.players
 import de.flower.rmt.test.WicketTests
 import org.testng.annotations.Test
 import org.testng.Assert._
-import de.flower.rmt.model.Users
+import de.flower.rmt.model.User
 
 /**
  * 
@@ -19,7 +19,7 @@ class PlayerEditPanelTest extends WicketTests {
         panel.init(null)
         // get user under test
         val form = wicketTester.getComponentFromLastRenderedPage("form")
-        val userUnderTest = form.getDefaultModelObject().asInstanceOf[Users]
+        val userUnderTest = form.getDefaultModelObject().asInstanceOf[User]
         wicketTester.dumpPage()
         wicketTester.debugComponentTrees()
         // input email and validate field

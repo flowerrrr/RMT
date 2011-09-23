@@ -7,7 +7,7 @@ import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.common.ui.form.MyForm;
 import de.flower.common.ui.form.ValidatedTextField;
 import de.flower.common.validation.unique.Unique;
-import de.flower.rmt.model.Users;
+import de.flower.rmt.model.User;
 import de.flower.rmt.service.IUserManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -28,7 +28,7 @@ public class PlayerEditPanel extends BasePanel {
 
     private FormMode mode;
 
-    private Form<Users> form;
+    private Form<User> form;
 
     @SpringBean
     private IUserManager playerManager;
@@ -36,7 +36,7 @@ public class PlayerEditPanel extends BasePanel {
     public PlayerEditPanel(String id) {
         super(id);
 
-        form = new MyForm<Users>("form", new Users());
+        form = new MyForm<User>("form", new User());
         add(form);
 
         ValidatedTextField fullname = new ValidatedTextField("fullname");
@@ -54,8 +54,8 @@ public class PlayerEditPanel extends BasePanel {
                 if (!new BeanValidator(form).isValid(form.getModelObject())) {
                     onError(target, form);
                 } else {
-                    playerManager.save((Users) form.getModelObject());
-                    target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Users.class), AjaxEvent.EntityUpdated(Users.class)));
+                    playerManager.save((User) form.getModelObject());
+                    target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(User.class), AjaxEvent.EntityUpdated(User.class)));
                     ModalWindow.closeCurrent(target);
                 }
             }
@@ -67,11 +67,11 @@ public class PlayerEditPanel extends BasePanel {
         });
     }
 
-    public void init(IModel<Users> model) {
+    public void init(IModel<User> model) {
         if (model == null) {
-            model = Model.of(playerManager.newPlayerInstance());
+            model = Model.of(playerManager.newUserInstance());
         }
-        form.setModel(new CompoundPropertyModel<Users>(model));
+        form.setModel(new CompoundPropertyModel<User>(model));
         // clear css marker of previous validations
 
     }

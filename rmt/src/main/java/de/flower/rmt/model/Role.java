@@ -39,8 +39,9 @@ public class Role extends AbstractBaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private Users user;
+    private User user;
 
+    @Deprecated
     public Role() {
     }
 
@@ -56,11 +57,11 @@ public class Role extends AbstractBaseEntity {
         this.authority = authority;
     }
 
-    public Users getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(Users user) {
+    public void setUser(User user) {
         this.user = user;
     }
 }

@@ -1,7 +1,7 @@
 package de.flower.rmt.repository;
 
 import de.flower.rmt.model.Club;
-import de.flower.rmt.model.Users;
+import de.flower.rmt.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
@@ -10,9 +10,9 @@ import java.util.List;
 /**
  * @author oblume
  */
-public interface IUserRepo extends JpaRepository<Users, Long>, JpaSpecificationExecutor<Users> {
+public interface IUserRepo extends JpaRepository<User, Long>, JpaSpecificationExecutor<User>, IUserRepoEx {
 
-    Users findByEmail(String username);
+    User findByEmail(String username);
 
-    List<Users> findByClub(Club club);
+    List<User> findByClub(Club club);
 }

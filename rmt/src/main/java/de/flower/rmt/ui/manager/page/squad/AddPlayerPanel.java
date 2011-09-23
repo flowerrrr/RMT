@@ -6,9 +6,9 @@ import de.flower.common.ui.ajax.panel.AjaxSlideTogglePanel;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
+import de.flower.rmt.model.Player;
 import de.flower.rmt.model.Team;
-import de.flower.rmt.model.Team2Player;
-import de.flower.rmt.model.Users;
+import de.flower.rmt.model.User;
 import de.flower.rmt.service.ITeamManager;
 import de.flower.rmt.service.IUserManager;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -38,7 +38,7 @@ public class AddPlayerPanel extends GenericPanel<Team> {
     @SpringBean
     private ITeamManager teamManager;
 
-    private List<Users> selectedPlayers = new ArrayList<Users>();
+    private List<User> selectedPlayers = new ArrayList<User>();
 
     public AddPlayerPanel( IModel<Team> model) {
         super("panel", model);
@@ -51,11 +51,11 @@ public class AddPlayerPanel extends GenericPanel<Team> {
         form.add(playerListContainer);
         CheckGroup group = new CheckGroup("group", selectedPlayers);
         playerListContainer.add(group);
-        ListView playerList = new ListView<Users>("playerList", getListModel(model.getObject())) {
+        ListView playerList = new ListView<User>("playerList", getListModel(model.getObject())) {
 
             @Override
-            protected void populateItem(ListItem<Users> item) {
-                Users player = item.getModelObject();
+            protected void populateItem(ListItem<User> item) {
+                User player = item.getModelObject();
                 item.add(new Check("checkbox", item.getModel()));
                 item.add(new Label("name", player.getFullname()));
             }
@@ -69,7 +69,7 @@ public class AddPlayerPanel extends GenericPanel<Team> {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 teamManager.addPlayers(AddPlayerPanel.this.getModelObject(), selectedPlayers);
-                target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Team2Player.class)));
+                target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Player.class)));
                 close(target);
             }
         });
@@ -82,7 +82,7 @@ public class AddPlayerPanel extends GenericPanel<Team> {
             }
         });
 
-        add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Team2Player.class)));
+        add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Player.class)));
 
     }
 
@@ -91,10 +91,10 @@ public class AddPlayerPanel extends GenericPanel<Team> {
      *
      * @return
      */
-    private IModel<List<Users>> getListModel(final Team team) {
-        return new LoadableDetachableModel<List<Users>>() {
+    private IModel<List<User>> getListModel(final Team team) {
+        return new LoadableDetachableModel<List<User>>() {
             @Override
-            protected List<Users> load() {
+            protected List<User> load() {
                 return userManager.findUnassignedPlayers(team);
             }
         };

@@ -17,7 +17,7 @@ import java.util.List;
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(name = "name", columnNames = {"name", "club_id"}))
 @Unique(groups = { Unique.class, Default.class })
-public class Team extends AbstractClubRelatedEntity {
+public class Team extends AbstractClubRelatedEntity  {
 
     @NotBlank
     @Size(max = 40)
@@ -29,10 +29,13 @@ public class Team extends AbstractClubRelatedEntity {
     @Column
     private String url;
 
-    @ManyToMany
-    @JoinTable(name = "Team_Player")
-    private List<Users> players;
+    @OneToMany(mappedBy = "team")
+    private List<Manager> managers;
 
+    @OneToMany(mappedBy = "team")
+    private List<Player> players;
+
+    @Deprecated
     public Team() {
     }
 
@@ -62,11 +65,11 @@ public class Team extends AbstractClubRelatedEntity {
         this.url = url;
     }
 
-    public List<Users> getPlayers() {
+    public List<Player> getPlayers() {
         return players;
     }
 
-    public void setPlayers(List<Users> players) {
+    public void setPlayers(List<Player> players) {
         this.players = players;
     }
 }

@@ -1,10 +1,9 @@
 package de.flower.rmt.service.security;
 
 import de.flower.rmt.model.Role;
-import de.flower.rmt.model.Users;
+import de.flower.rmt.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,16 +11,16 @@ import java.util.List;
 /**
  * @author oblume
  */
-public class UserDetailsBean extends User {
+public class UserDetailsBean extends org.springframework.security.core.userdetails.User {
 
-    private Users user;
+    private User user;
 
-    public UserDetailsBean(Users user) {
+    public UserDetailsBean(User user) {
         super(user.getUsername(), user.getPassword(), user.isEnabled(), true, true, true, getGrantedAuthorities(user));
         this.user = user;
     }
 
-    private static List<GrantedAuthority> getGrantedAuthorities(Users user) {
+    private static List<GrantedAuthority> getGrantedAuthorities(User user) {
         List<String> grantedAuthorities = new ArrayList<String>();
         for (Role role : user.getRoles()) {
             grantedAuthorities.add(role.getAuthority());
@@ -29,7 +28,7 @@ public class UserDetailsBean extends User {
         return AuthorityUtils.createAuthorityList(grantedAuthorities.toArray(new String[]{}));
     }
 
-    public Users getUser() {
+    public User getUser() {
         return user;
     }
 }

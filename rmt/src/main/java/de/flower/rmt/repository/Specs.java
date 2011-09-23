@@ -5,10 +5,7 @@ import org.hibernate.ejb.criteria.predicate.BooleanStaticAssertionPredicate;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.domain.Specifications;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import javax.persistence.metamodel.Attribute;
 import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.PluralAttribute;
@@ -33,6 +30,19 @@ public class Specs {
             @Override
             public Predicate toPredicate(Root<X> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                 return cb.isMember(object, root.get(attribute));
+            }
+        };
+    }
+
+    /**
+     * Not the ideal solution. Want to separate building the predicate and the join.
+     */
+    public static <X, Y, T> Specification joinEq(final ListAttribute<X, Y> joinAttribute, final SingularAttribute<Y, T> attribute, final T object) {
+        return  new Specification<X>() {
+            @Override
+            public Predicate toPredicate(Root<X> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                final ListJoin<X,Y> join = root.join(joinAttribute);
+                return cb.equal(join.get(attribute), object);
             }
         };
     }

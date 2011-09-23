@@ -60,8 +60,8 @@ public class Event extends AbstractClubRelatedEntity {
     @OneToMany(mappedBy = "event")
     private List<Invitation> invitations;
 
+    @Deprecated
     public Event() {
-
     }
 
     public Event(Team team) {

@@ -15,9 +15,9 @@ import java.util.List;
  * @author oblume
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(name = "fullname", columnNames = {"fullname", "club_id"}))
+@Table(name = "Users", uniqueConstraints = @UniqueConstraint(name = "fullname", columnNames = {"fullname", "club_id"}))
 @Unique(groups = { Unique.class, Default.class }) // need group Unique to be able to restrict bean validation to this validator
-public class Users extends AbstractClubRelatedEntity {
+public class User extends AbstractClubRelatedEntity {
 
     @NotBlank
     @Email
@@ -43,20 +43,24 @@ public class Users extends AbstractClubRelatedEntity {
     @Column
     private Status status;
 
-    @ManyToMany(mappedBy = "players")
-    private List<Team> teams;
+    /**
+     * A user can be part of several teams.
+     */
+    @OneToMany(mappedBy = "user")
+    private List<Player> players;
 
-    public Users() {
+    @Deprecated
+    public User() {
     }
 
-    public Users(String email, String password, boolean enabled, String fullname) {
+    public User(String email, String password, boolean enabled, String fullname) {
         this.email = email;
         this.password = password;
         this.enabled = enabled;
         this.fullname = fullname;
     }
 
-    public Users(Club club) {
+    public User(Club club) {
         super(club);
     }
 
@@ -125,12 +129,8 @@ public class Users extends AbstractClubRelatedEntity {
         this.status = (status == null) ? Status.UNKNOWN : status;
     }
 
-    public List<Team> getTeams() {
-        return teams;
-    }
-
-    public void setTeams(List<Team> teams) {
-        this.teams = teams;
+    public List<Player> getPlayers() {
+        return players;
     }
 
     public enum Status {
@@ -141,7 +141,7 @@ public class Users extends AbstractClubRelatedEntity {
 
     @Override
     public String toString() {
-        return "Users{" +
+        return "User{" +
                 "id='" + getId() + '\'' +
                 "email='" + email + '\'' +
                 ", fullname='" + fullname + '\'' +

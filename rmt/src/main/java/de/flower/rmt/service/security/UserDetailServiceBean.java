@@ -1,7 +1,7 @@
 package de.flower.rmt.service.security;
 
 import de.flower.rmt.model.Club;
-import de.flower.rmt.model.Users;
+import de.flower.rmt.model.User;
 import de.flower.rmt.service.IUserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Custom implementation of spring's UserDetailService in order to use Users domain entity as principal.
+ * Custom implementation of spring's UserDetailService in order to use User domain entity as principal.
  *
  * @author oblume
  */
@@ -26,7 +26,7 @@ public class UserDetailServiceBean implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DataAccessException {
-        Users user = userManager.findByUsername(username);
+        User user = userManager.findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException("Username {" + username + "} not found");
         }

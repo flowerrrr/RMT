@@ -1,7 +1,8 @@
-package de.flower.common.repository;
+package de.flower.rmt.repository.impl;
 
 import de.flower.common.model.AbstractBaseEntity;
 import de.flower.common.util.Check;
+import de.flower.rmt.repository.IRepository;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 
@@ -11,9 +12,9 @@ import java.io.Serializable;
 /**
  * @author oblume
  */
-public class Repository<T extends AbstractBaseEntity, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements IRepository<T, ID> {
+public class BaseRepository<T extends AbstractBaseEntity, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements IRepository<T, ID> {
 
-    public Repository(JpaEntityInformation<T, ?> entityInformation, EntityManager entityManager) {
+    public BaseRepository(JpaEntityInformation<T, ?> entityInformation, EntityManager entityManager) {
         super(entityInformation, entityManager);
     }
 

@@ -1,7 +1,7 @@
 package de.flower.rmt.service;
 
 import de.flower.rmt.model.Club;
-import de.flower.rmt.model.Users;
+import de.flower.rmt.model.User;
 import de.flower.rmt.service.security.ISecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
@@ -25,7 +25,7 @@ public abstract class AbstractService {
      * @return
      */
     protected Club getClub() {
-        Users currentUser = securityService.getCurrentUser();
+        User currentUser = securityService.getCurrentUser();
         notNull(currentUser, "Security Context must be filled with a user");
         return currentUser.getClub();
     }

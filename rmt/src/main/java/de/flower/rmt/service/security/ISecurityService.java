@@ -1,13 +1,13 @@
 package de.flower.rmt.service.security;
 
-import de.flower.rmt.model.Users;
+import de.flower.rmt.model.User;
 
 /**
  * @author oblume
  */
 public interface ISecurityService {
 
-    Users getCurrentUser();
+    User getCurrentUser();
 
-    boolean isCurrentUser(Users user);
+    boolean isCurrentUser(User user);
 }

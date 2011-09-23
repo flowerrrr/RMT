@@ -1,6 +1,6 @@
 package de.flower.rmt.service.security;
 
-import de.flower.rmt.model.Users;
+import de.flower.rmt.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolderStrategy;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ public class SecurityService implements ISecurityService {
     private SecurityContextHolderStrategy schs;
 
     @Override
-    public Users getCurrentUser() {
+    public User getCurrentUser() {
         Object o = schs.getContext().getAuthentication().getPrincipal();
         if (o instanceof UserDetailsBean) {
             UserDetailsBean principal = (UserDetailsBean) o;
@@ -27,7 +27,7 @@ public class SecurityService implements ISecurityService {
     }
 
     @Override
-    public boolean isCurrentUser(Users user) {
+    public boolean isCurrentUser(User user) {
         return getCurrentUser().equals(user);
     }
 }
