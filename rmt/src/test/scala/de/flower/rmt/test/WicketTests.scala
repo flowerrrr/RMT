@@ -28,5 +28,4 @@ class WicketTests extends AbstractWicketTests {
         wicketTester.assertContains("class=\"" + cssClass)
     }
 
-
 }

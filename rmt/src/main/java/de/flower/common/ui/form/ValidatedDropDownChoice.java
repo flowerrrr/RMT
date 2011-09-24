@@ -3,35 +3,35 @@ package de.flower.common.ui.form;
 import de.flower.common.ui.Css;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.IAjaxCallDecorator;
-import org.apache.wicket.ajax.calldecorator.AjaxCallDecorator;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.feedback.ComponentFeedbackMessageFilter;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.Markup;
-import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.form.DropDownChoice;
+import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.validation.IValidator;
 
+import java.util.List;
 
 /**
  * @author oblume
  */
-public class ValidatedTextField<T> extends Panel {
+public class ValidatedDropDownChoice<T> extends Panel {
 
     private boolean isValidatedAndValid = false;
 
-    final TextField<T> c;
+    final DropDownChoice<T> c;
 
-    public ValidatedTextField(String id) {
+    public ValidatedDropDownChoice(String id) {
         super(id);
         setOutputMarkupId(true);
-        c = new TextField<T>(id);
+        c = new DropDownChoice<T>(id);
         add(c);
         c.setRequired(false);
         c.add(new AjaxFormComponentUpdatingBehavior("onblur") {
@@ -40,7 +40,7 @@ public class ValidatedTextField<T> extends Panel {
                 if (!c.getInput().isEmpty()) {
                     isValidatedAndValid = true;
                 }
-                target.add(ValidatedTextField.this);
+                target.add(ValidatedDropDownChoice.this);
             }
 
             @Override
@@ -49,19 +49,7 @@ public class ValidatedTextField<T> extends Panel {
                     throw e;
                 }
                 isValidatedAndValid = false;
-                target.add(ValidatedTextField.this);
-            }
-
-            @Override
-            protected IAjaxCallDecorator getAjaxCallDecorator() {
-                // to avoid triggering validation when input c is empty.
-                // // TODO (oblume - 24.09.11) - could be extended to avoid validation when c value has not changed
-                return new AjaxCallDecorator() {
-                    @Override
-                    public CharSequence decorateScript(Component c, CharSequence script) {
-                        return "if(jQuery.trim(this.value)=='')return false; " + script;
-                    }
-                };
+                target.add(ValidatedDropDownChoice.this);
             }
         });
         add(new FeedbackPanel("feedback", new ComponentFeedbackMessageFilter(c)));
@@ -84,6 +72,14 @@ public class ValidatedTextField<T> extends Panel {
 
     }
 
+    protected void setChoiceRenderer(IChoiceRenderer<T> iChoiceRenderer) {
+        c.setChoiceRenderer(iChoiceRenderer);
+    }
+
+    protected void setChoices(IModel<List<T>> entityChoices) {
+        c.setChoices(entityChoices);
+    }
+
     @Override
     public void onDetach() {
         // reset state of component.
@@ -99,7 +95,7 @@ public class ValidatedTextField<T> extends Panel {
      */
     @Override
     public Markup getAssociatedMarkup() {
-        return Markup.of("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><wicket:panel><input wicket:id=\"" + getId() + "\" />\n" +
+        return Markup.of("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><wicket:panel><select wicket:id=\"" + getId() + "\" />\n" +
                 "    <span wicket:id=\"feedback\" ></span></wicket:panel>");
     }
 

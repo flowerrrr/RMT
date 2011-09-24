@@ -3,44 +3,44 @@ package de.flower.common.ui.form;
 import de.flower.common.ui.Css;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.IAjaxCallDecorator;
-import org.apache.wicket.ajax.calldecorator.AjaxCallDecorator;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.feedback.ComponentFeedbackMessageFilter;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.Markup;
-import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.form.DropDownChoice;
+import org.apache.wicket.markup.html.form.FormComponent;
+import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.validation.IValidator;
 
+import java.util.List;
 
 /**
  * @author oblume
  */
-public class ValidatedTextField<T> extends Panel {
+public class ValidatedFormComponent<T> extends Panel {
 
     private boolean isValidatedAndValid = false;
 
-    final TextField<T> c;
+    final FormComponent<T> c;
 
-    public ValidatedTextField(String id) {
-        super(id);
+    public ValidatedFormComponent(final FormComponent<T> c) {
+        super(c.getId()); // must be identical with wrapped component id. other wise getMarkup() will fail.
         setOutputMarkupId(true);
-        c = new TextField<T>(id);
+        this.c = c;
         add(c);
-        c.setRequired(false);
         c.add(new AjaxFormComponentUpdatingBehavior("onblur") {
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
                 if (!c.getInput().isEmpty()) {
                     isValidatedAndValid = true;
                 }
-                target.add(ValidatedTextField.this);
+                target.add(ValidatedFormComponent.this);
             }
 
             @Override
@@ -49,19 +49,7 @@ public class ValidatedTextField<T> extends Panel {
                     throw e;
                 }
                 isValidatedAndValid = false;
-                target.add(ValidatedTextField.this);
-            }
-
-            @Override
-            protected IAjaxCallDecorator getAjaxCallDecorator() {
-                // to avoid triggering validation when input c is empty.
-                // // TODO (oblume - 24.09.11) - could be extended to avoid validation when c value has not changed
-                return new AjaxCallDecorator() {
-                    @Override
-                    public CharSequence decorateScript(Component c, CharSequence script) {
-                        return "if(jQuery.trim(this.value)=='')return false; " + script;
-                    }
-                };
+                target.add(ValidatedFormComponent.this);
             }
         });
         add(new FeedbackPanel("feedback", new ComponentFeedbackMessageFilter(c)));
@@ -91,7 +79,6 @@ public class ValidatedTextField<T> extends Panel {
         super.onDetach();
     }
 
-
      /**
      * Need to create markup programmatically to set the id of the input tag to the fieldname so that the
      * compoundpropertymodel of the form is happy.
@@ -99,8 +86,9 @@ public class ValidatedTextField<T> extends Panel {
      */
     @Override
     public Markup getAssociatedMarkup() {
-        return Markup.of("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><wicket:panel><input wicket:id=\"" + getId() + "\" />\n" +
-                "    <span wicket:id=\"feedback\" ></span></wicket:panel>");
+        return Markup.of("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><wicket:panel>"
+                + getMarkup().toString(true) + "\n"
+                + "    <span wicket:id=\"feedback\" ></span></wicket:panel>");
     }
 
     @Override

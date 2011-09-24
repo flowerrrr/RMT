@@ -29,8 +29,13 @@ public class Team extends AbstractClubRelatedEntity  {
     @Column
     private String url;
 
-    @OneToMany(mappedBy = "team")
-    private List<Manager> managers;
+    @ManyToMany
+    @JoinTable(
+        name="Manager",
+        joinColumns=@JoinColumn(name="team_id"),
+        inverseJoinColumns=@JoinColumn(name="user_id")
+    )
+    private List<User> managers;
 
     @OneToMany(mappedBy = "team")
     private List<Player> players;

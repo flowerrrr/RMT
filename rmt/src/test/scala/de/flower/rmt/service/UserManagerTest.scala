@@ -50,11 +50,11 @@ class UserManagerTest extends AbstractIntegrationTests {
     @Test
     def testUnassignedPlayer() {
         val team = testData.getJuveAmateure()
-        var players = userManager.findUnassignedPlayers(team)
-        assertFalse(players.isEmpty())
-        players.foreach( p => teamManager.addPlayer(team, p))
-        players = userManager.findUnassignedPlayers(team)
-        assertTrue(players.isEmpty())
+        var users = userManager.findUnassignedPlayers(team)
+        assertFalse(users.isEmpty())
+        users.foreach( p => teamManager.addPlayer(team, p))
+        users = userManager.findUnassignedPlayers(team)
+        assertTrue(users.isEmpty())
     }
 
 

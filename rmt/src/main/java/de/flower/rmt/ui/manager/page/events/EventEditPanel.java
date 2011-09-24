@@ -5,12 +5,13 @@ import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.common.ui.form.MyForm;
 import de.flower.common.ui.form.TimeSelect;
+import de.flower.common.ui.form.ValidatedFormComponent;
 import de.flower.common.ui.form.ValidatedTextField;
+import de.flower.common.util.Check;
 import de.flower.rmt.model.event.Event;
-import de.flower.rmt.model.event.EventType;
-import de.flower.rmt.model.event.Match;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
+import de.flower.rmt.ui.manager.component.TeamSelect;
 import de.flower.rmt.ui.manager.component.VenueSelect;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.datetime.markup.html.form.DateTextField;
@@ -18,7 +19,6 @@ import org.apache.wicket.feedback.ComponentFeedbackMessageFilter;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
-import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.wicketstuff.jsr303.BeanValidator;
@@ -35,31 +35,13 @@ public class EventEditPanel extends BasePanel {
 
     public EventEditPanel(String id, IModel<Event> model) {
         super(id, model);
+        Check.notNull(model.getObject());
 
-        add(new PreCreateEventEditPanel("selectEventType") {
-            @Override
-            public void onSelect(EventType eventType, AjaxRequestTarget target) {
-                Event event = eventManager.newInstance(eventType);
-                EventEditPanel.this.setDefaultModelObject(event);
-                form.setModel(new CompoundPropertyModel<Event>(event));
-                target.add(this, form);
-            }
-
-            @Override
-            public boolean isVisible() {
-                //  only display at beginning of new event dialog
-                return EventEditPanel.this.getDefaultModelObject() == null;
-            }
-        }.setOutputMarkupId(true));
-
-        form = new MyForm<Event>("form", (model.getObject() == null) ? new Match() : model.getObject()) {
-            @Override
-            public boolean isVisible() {
-                return EventEditPanel.this.getDefaultModelObject() != null;
-            }
-        };
+        form = new MyForm<Event>("form", model.getObject());
         form.setOutputMarkupPlaceholderTag(true);
         add(form);
+
+        form.add(new TeamSelect("team"));
 
         DateTextField dateField = DateTextField.forDateStyle("date", "S-");
         // dateField.add(new DatePicker());
@@ -67,7 +49,7 @@ public class EventEditPanel extends BasePanel {
         form.add(new FeedbackPanel("feedback_date", new ComponentFeedbackMessageFilter(dateField)));
 
         TimeSelect timeField = new TimeSelect("time");
-        form.add(timeField);
+        form.add(new ValidatedFormComponent(timeField));
 
         VenueSelect venueSelect = new VenueSelect("venue");
         form.add(venueSelect);

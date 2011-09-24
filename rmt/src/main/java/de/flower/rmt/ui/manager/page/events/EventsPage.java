@@ -1,6 +1,7 @@
 package de.flower.rmt.ui.manager.page.events;
 
 import de.flower.common.ui.ajax.AjaxLinkWithConfirmation;
+import de.flower.common.ui.ajax.MyAjaxLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
@@ -9,16 +10,14 @@ import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.manager.ManagerBasePage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
-import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.LoadableDetachableModel;
-import org.apache.wicket.model.Model;
-import org.apache.wicket.model.ResourceModel;
+import org.apache.wicket.model.*;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import java.util.List;
@@ -33,14 +32,28 @@ public class EventsPage extends ManagerBasePage {
 
     public EventsPage() {
 
-        final Link newButton = new Link("newButton") {
-
+        // fade in panel to preselect event-type before opening the event edit page.
+        final PreCreateEventEditPanel preCreateEventEditPanel = new PreCreateEventEditPanel("selectEventType") {
             @Override
-            public void onClick() {
-                setResponsePage(new EventsEditPage(null));
+            public void onSelect(EventType eventType, AjaxRequestTarget target) {
+                Event event = eventManager.newInstance(eventType);
+                setResponsePage(new EventsEditPage(event));
             }
         };
+        preCreateEventEditPanel.setOutputMarkupPlaceholderTag(true);
+        preCreateEventEditPanel.setVisible(false);
+        preCreateEventEditPanel.setOutputMarkupId(true);
+        add(preCreateEventEditPanel);
+
+        final AjaxLink newButton = new MyAjaxLink("newButton") {
+           @Override
+            public void onClick(AjaxRequestTarget target) {
+               preCreateEventEditPanel.setVisible(true);
+               target.add(preCreateEventEditPanel);
+           }
+        };
         add(newButton);
+
 
         final IModel<List<Event>> listModel = getListModel();
         WebMarkupContainer listContainer = new WebMarkupContainer("listContainer");

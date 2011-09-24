@@ -11,7 +11,6 @@ import org.slf4j.{LoggerFactory, Logger}
 import org.testng.annotations.{BeforeClass, Listeners, BeforeMethod}
 import ch.qos.logback.classic.spi.ILoggingEvent
 import de.flower.rmt.repository.{IUserRepo, IClubRepo, ITeamRepo}
-import de.flower.rmt.service.{IUserManager, ITeamManager}
 import org.springframework.security.authentication.TestingAuthenticationToken
 import de.flower.rmt.model.{Role, Club}
 import org.springframework.security.core.context.SecurityContextHolderStrategy
@@ -22,6 +21,7 @@ import java.util.ArrayList
 import de.flower.common.util.Check._
 import de.flower.common.util.Check
 import org.apache.commons.lang3.Validate
+import de.flower.rmt.service.{IEventManager, IUserManager, ITeamManager}
 
 /**
  *
@@ -60,6 +60,9 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
 
     @Autowired
     protected var userManager: IUserManager = _
+
+    @Autowired
+    protected var eventManager: IEventManager = _
 
     @Autowired
     protected var userDetailService: UserDetailsService = _

@@ -34,6 +34,7 @@ public class Event extends AbstractClubRelatedEntity {
     private Team team;
 
     @ManyToOne
+    @NotNull
     private Venue venue;
 
     /**
