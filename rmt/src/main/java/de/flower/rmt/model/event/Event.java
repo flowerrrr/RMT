@@ -1,9 +1,6 @@
 package de.flower.rmt.model.event;
 
-import de.flower.rmt.model.AbstractClubRelatedEntity;
-import de.flower.rmt.model.Invitation;
-import de.flower.rmt.model.Team;
-import de.flower.rmt.model.Venue;
+import de.flower.rmt.model.*;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
 import org.joda.time.LocalTime;
@@ -57,6 +54,9 @@ public class Event extends AbstractClubRelatedEntity {
 
     @OneToMany(mappedBy = "event")
     private List<Invitation> invitations;
+
+    @OneToMany(mappedBy = "event")
+    private List<Response> responses;
 
     @Deprecated
     public Event() {

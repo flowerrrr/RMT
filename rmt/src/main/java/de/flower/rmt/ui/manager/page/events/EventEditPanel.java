@@ -45,8 +45,7 @@ public class EventEditPanel extends BasePanel {
 
         DateTextField dateField = DateTextField.forDateStyle("date", "S-");
         // dateField.add(new DatePicker());
-        form.add(dateField);
-        form.add(new FeedbackPanel("feedback_date", new ComponentFeedbackMessageFilter(dateField)));
+        form.add(new ValidatedFormComponent(dateField));
 
         TimeSelect timeField = new TimeSelect("time");
         form.add(new ValidatedFormComponent(timeField));
