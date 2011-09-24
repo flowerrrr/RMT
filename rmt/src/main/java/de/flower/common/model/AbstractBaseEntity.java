@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 @MappedSuperclass
 public abstract class AbstractBaseEntity implements Serializable, BaseEntity, Cloneable {

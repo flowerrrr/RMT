@@ -1,7 +1,7 @@
 package de.flower.common.validation.unique;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class UniqueConstraintDef {
 

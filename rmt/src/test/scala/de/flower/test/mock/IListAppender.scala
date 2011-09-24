@@ -4,7 +4,7 @@ import ch.qos.logback.core.Appender
 
 /**
  *
- * @author oblume
+ * @author flowerrrr
  */
 
 trait IListAppender[T] extends Appender[T] {

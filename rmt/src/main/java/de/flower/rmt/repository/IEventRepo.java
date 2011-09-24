@@ -10,7 +10,7 @@ import java.util.List;
  * interface that Spring will create a Bean object
  * with CRUD methods for a XXX.
  *
- * @author oblume
+ * @author flowerrrr
  */
 public interface IEventRepo extends IRepository<Event, Long> {
 

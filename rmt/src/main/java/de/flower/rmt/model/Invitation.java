@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 @Entity
 public class Invitation extends AbstractBaseEntity {

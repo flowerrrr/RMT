@@ -18,7 +18,7 @@ import de.flower.rmt.model.{Club, Team}
  * Requires that the aspect {@link TestLoggingAspect} is compiled and aspectj compiler is running as part
  * of the build.
  *
- * @author oblume
+ * @author flowerrrr
  */
 object LoggingAspectTest {
 

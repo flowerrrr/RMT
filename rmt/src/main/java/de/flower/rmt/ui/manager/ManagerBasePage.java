@@ -4,7 +4,7 @@ import de.flower.rmt.ui.app.AbstractBasePage;
 import org.apache.wicket.model.IModel;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class ManagerBasePage extends AbstractBasePage {
 

@@ -5,7 +5,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class AjaxUpdateBehavior extends Behavior {
 

@@ -10,7 +10,7 @@ import javax.persistence.EntityManager;
 import java.io.Serializable;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class BaseRepository<T extends AbstractBaseEntity, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements IRepository<T, ID> {
 

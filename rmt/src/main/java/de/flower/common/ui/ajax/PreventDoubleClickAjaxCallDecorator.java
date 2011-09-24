@@ -4,7 +4,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.ajax.IAjaxCallDecorator;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class PreventDoubleClickAjaxCallDecorator implements IAjaxCallDecorator {
 

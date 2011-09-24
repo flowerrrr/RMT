@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import java.util.List;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public interface IUserRepo extends JpaRepository<User, Long>, JpaSpecificationExecutor<User>, IUserRepoEx {
 

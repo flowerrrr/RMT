@@ -8,7 +8,7 @@ import ch.qos.logback.core.{AppenderBase, Appender}
 
 /**
  *
- * @author oblume
+ * @author flowerrrr
  */
 class LogBackListAppender extends AppenderBase[ILoggingEvent] with IListAppender[ILoggingEvent] {
 

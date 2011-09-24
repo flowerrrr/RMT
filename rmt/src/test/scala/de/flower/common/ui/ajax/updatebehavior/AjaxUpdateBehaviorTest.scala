@@ -6,7 +6,7 @@ import org.slf4j.{LoggerFactory, Logger}
 import org.testng.annotations.{BeforeMethod, Test}
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 
 class AjaxUpdateBehaviorTest {

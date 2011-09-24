@@ -25,7 +25,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import java.util.List;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class PlayersPage extends ManagerBasePage {
 

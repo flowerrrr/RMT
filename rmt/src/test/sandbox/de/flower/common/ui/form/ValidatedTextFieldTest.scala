@@ -6,7 +6,7 @@ import org.testng.annotations.{BeforeMethod, Test}
 
 /**
  *
- * @author oblume
+ * @author flowerrrr
  */
 
 class ValidatedTextFieldTest {

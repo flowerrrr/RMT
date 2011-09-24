@@ -5,7 +5,7 @@ import org.testng.annotations.Test
 
 /**
  * 
- * @author oblume
+ * @author flowerrrr
  */
 
 class TeamsPageTest extends WicketTests {

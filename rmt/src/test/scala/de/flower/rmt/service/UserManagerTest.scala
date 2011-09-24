@@ -9,7 +9,7 @@ import de.flower.rmt.model.User_
 
 /**
  * 
- * @author oblume
+ * @author flowerrrr
  */
 
 class UserManagerTest extends AbstractIntegrationTests {

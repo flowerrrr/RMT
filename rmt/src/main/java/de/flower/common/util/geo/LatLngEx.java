@@ -5,7 +5,7 @@ import wicket.contrib.gmap3.api.LatLng;
 import static de.flower.common.util.Check.*;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class LatLngEx extends LatLng {
 

@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Map;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class GeocodingResult implements Serializable {
 

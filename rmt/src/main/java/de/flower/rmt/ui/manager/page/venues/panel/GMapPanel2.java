@@ -13,7 +13,7 @@ import java.io.Serializable;
 /**
  * The model contains the latLng of the marker to display. If null no marker is displayed.
  *
- * @author oblume
+ * @author flowerrrr
  */
 public class GMapPanel2 extends Panel {
 

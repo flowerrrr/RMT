@@ -31,7 +31,7 @@ public class RMTApplication extends WebApplication {
     }
 
     private void initBookmarkablePages() {
-        // TODO (oblume - 12.06.11) determine correct order
+        // TODO (flowerrrr - 12.06.11) determine correct order
         mountPackage("manager", ManagerHomePage.class);
         mountPage("manager", ManagerHomePage.class);
         mountPage("manager/teams", TeamsPage.class);

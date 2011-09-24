@@ -10,7 +10,7 @@ import reflect.BeanProperty
 
 /**
  * test page with some ajax updatable components in it.
- * @author oblume
+ * @author flowerrrr
  */
 
 class AjaxUpdateBehaviorTestPage extends WebPage {

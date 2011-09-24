@@ -7,7 +7,7 @@ import de.flower.rmt.model.User;
 import java.util.List;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public interface IUserRepoEx {
 

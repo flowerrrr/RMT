@@ -6,7 +6,7 @@ import org.testng.annotations.Test
 
 /**
  *
- * @author oblume
+ * @author flowerrrr
  */
 
 class LoadTimeWeavingLoggingAspectTest extends AbstractIntegrationTests {

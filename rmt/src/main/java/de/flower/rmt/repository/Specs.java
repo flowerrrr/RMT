@@ -12,7 +12,7 @@ import javax.persistence.metamodel.PluralAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class Specs {
 

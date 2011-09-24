@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.common.page;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class HomePage extends CommonBasePage {
 }

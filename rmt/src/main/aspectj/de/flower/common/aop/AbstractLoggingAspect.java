@@ -7,7 +7,7 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 @Aspect
 public abstract class AbstractLoggingAspect {

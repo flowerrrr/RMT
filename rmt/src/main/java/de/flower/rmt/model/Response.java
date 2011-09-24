@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 @Entity
 public class Response extends AbstractBaseEntity {

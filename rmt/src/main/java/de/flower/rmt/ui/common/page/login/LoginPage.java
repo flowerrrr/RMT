@@ -5,7 +5,7 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class LoginPage extends CommonBasePage {
 

@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class MRUCache<K,V> extends LinkedHashMap<K,V> {
 

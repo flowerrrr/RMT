@@ -14,7 +14,7 @@ import java.util.Arrays;
 /**
  * Panel to let user select event type before event form is displayed.
  *
- * @author oblume
+ * @author flowerrrr
  */
 public abstract class PreCreateEventEditPanel extends Panel {
 

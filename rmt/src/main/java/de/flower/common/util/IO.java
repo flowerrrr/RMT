@@ -11,7 +11,7 @@ import java.net.URLConnection;
 /**
  * Class with some usefull helper methods related to I/O operations.
  *
- * @author oblume
+ * @author flowerrrr
  */
 public class IO {
 

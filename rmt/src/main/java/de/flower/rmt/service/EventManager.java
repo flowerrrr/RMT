@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 @Service
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
@@ -34,7 +34,7 @@ public class EventManager extends AbstractService implements IEventManager {
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void delete(Event entity) {
-        // TODO (oblume - 11.06.11) decide whether to soft or hard delete entity.
+        // TODO (flowerrrr - 11.06.11) decide whether to soft or hard delete entity.
         eventRepo.delete(entity);
     }
 

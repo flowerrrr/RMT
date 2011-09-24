@@ -5,7 +5,7 @@ import de.flower.rmt.ui.common.panel.LogoutLink;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class ManagerHomePage extends ManagerBasePage {
 

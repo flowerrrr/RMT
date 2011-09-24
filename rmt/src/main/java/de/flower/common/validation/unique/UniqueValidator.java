@@ -19,7 +19,7 @@ import javax.validation.ConstraintValidatorContext;
 import java.util.List;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class UniqueValidator implements ConstraintValidator<Unique, BaseEntity> {
 

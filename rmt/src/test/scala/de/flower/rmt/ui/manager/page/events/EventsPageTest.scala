@@ -4,7 +4,7 @@ import de.flower.rmt.test.WicketTests
 import org.testng.annotations.Test
 /**
  * 
- * @author oblume
+ * @author flowerrrr
  */
 
 class EventsPageTest extends WicketTests {

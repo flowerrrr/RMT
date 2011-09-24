@@ -3,7 +3,7 @@ package de.flower.common.util;
 import org.apache.commons.lang3.Validate;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class Check extends Validate {
 

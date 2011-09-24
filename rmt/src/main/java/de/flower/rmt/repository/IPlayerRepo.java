@@ -7,7 +7,7 @@ import de.flower.rmt.model.Player;
  * interface that Spring will create a Bean object
  * with CRUD methods for a XXX.
  *
- * @author oblume
+ * @author flowerrrr
  */
 public interface IPlayerRepo extends IRepository<Player, Long> {
 

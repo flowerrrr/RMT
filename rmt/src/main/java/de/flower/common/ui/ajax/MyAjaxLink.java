@@ -5,7 +5,7 @@ import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.model.IModel;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public abstract class MyAjaxLink<T> extends AjaxLink<T> {
 

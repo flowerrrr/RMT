@@ -11,7 +11,7 @@ import static de.flower.common.util.Check.*;
 
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
 public abstract class AbstractService {

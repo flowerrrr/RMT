@@ -3,7 +3,7 @@ package de.flower.common.ui;
 /**
  * Constants for Css class names.
  *
- * @author oblume
+ * @author flowerrrr
  */
 public class Css {
 

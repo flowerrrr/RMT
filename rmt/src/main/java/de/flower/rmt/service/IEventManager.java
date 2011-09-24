@@ -6,7 +6,7 @@ import de.flower.rmt.model.event.EventType;
 import java.util.List;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public interface IEventManager {
 

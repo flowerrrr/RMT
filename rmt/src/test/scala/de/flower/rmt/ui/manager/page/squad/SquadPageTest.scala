@@ -6,7 +6,7 @@ import org.apache.wicket.model.Model
 
 /**
  * 
- * @author oblume
+ * @author flowerrrr
  */
 
 class SquadPageTest extends WicketTests {

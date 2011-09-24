@@ -4,7 +4,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class BasePanel extends Panel {
 

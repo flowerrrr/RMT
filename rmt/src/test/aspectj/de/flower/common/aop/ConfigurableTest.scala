@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.{Configurable, Autowired}
 
 /**
  * 
- * @author oblume
+ * @author flowerrrr
  */
 
 class ConfigurableTest extends AbstractIntegrationTests {

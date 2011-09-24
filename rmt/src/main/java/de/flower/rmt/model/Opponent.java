@@ -10,10 +10,10 @@ import javax.validation.constraints.Size;
 
 /**
  * Opponents for matches.
- * // TODO (oblume - 23.09.11) need to clarify if entities can be
+ * // TODO (flowerrrr - 23.09.11) need to clarify if entities can be
  * stored together with Team-instances in same table.
  *
- * @author oblume
+ * @author flowerrrr
  */
 @Entity
 public class Opponent extends AbstractBaseEntity {

@@ -11,7 +11,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class UserRepo extends BaseRepository implements IUserRepoEx {
 

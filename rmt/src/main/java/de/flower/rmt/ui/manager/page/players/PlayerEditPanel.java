@@ -22,7 +22,7 @@ import org.wicketstuff.jsr303.ConstraintFilter;
 import org.wicketstuff.jsr303.WicketBeanValidator;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class PlayerEditPanel extends BasePanel {
 

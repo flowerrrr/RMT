@@ -9,7 +9,7 @@ import org.apache.wicket.markup.Markup;
 import org.apache.wicket.markup.html.panel.Panel;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class AjaxSlideTogglePanel extends Panel {
 

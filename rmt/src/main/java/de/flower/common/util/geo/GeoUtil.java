@@ -3,7 +3,7 @@ package de.flower.common.util.geo;
 import java.util.List;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class GeoUtil {
 

@@ -5,7 +5,7 @@ package de.flower.common.jpa;
  * Can either be done by accessing hibernates underlying meta model or
  * by using certain conventions when naming columns.
  *
- * @author oblume
+ * @author flowerrrr
  */
 public interface IColumnResolver {
 

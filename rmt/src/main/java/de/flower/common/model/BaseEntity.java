@@ -2,7 +2,7 @@ package de.flower.common.model;
 
 /**
  * Marker interface for entity classes.
- * @author oblume
+ * @author flowerrrr
  */
 public interface BaseEntity {
 

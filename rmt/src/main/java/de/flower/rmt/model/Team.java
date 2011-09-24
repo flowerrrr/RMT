@@ -10,7 +10,7 @@ import javax.validation.groups.Default;
 import java.util.List;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(name = "name", columnNames = {"name", "club_id"}))

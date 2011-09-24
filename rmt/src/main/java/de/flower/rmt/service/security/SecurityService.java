@@ -6,7 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolderStrategy;
 import org.springframework.stereotype.Service;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 @Service
 public class SecurityService implements ISecurityService {

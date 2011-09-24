@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 
 /**
  *
- * @author oblume
+ * @author flowerrrr
  */
 @Entity
 public class Player extends AbstractBaseEntity {

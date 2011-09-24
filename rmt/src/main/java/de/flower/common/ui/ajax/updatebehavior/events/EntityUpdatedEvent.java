@@ -1,7 +1,7 @@
 package de.flower.common.ui.ajax.updatebehavior.events;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class EntityUpdatedEvent extends EntityAllEvent {
 

@@ -17,7 +17,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.validation.IValidator;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class ValidatedFormComponent<T> extends Panel {
 
@@ -101,7 +101,7 @@ public class ValidatedFormComponent<T> extends Panel {
      * @param behaviors
      * @return
      */
-    // TODO (oblume - 01.07.11) - might need further tuning.
+    // TODO (flowerrrr - 01.07.11) - might need further tuning.
     @Override
     public Component add(Behavior... behaviors) {
         for (Behavior behavior : behaviors) {

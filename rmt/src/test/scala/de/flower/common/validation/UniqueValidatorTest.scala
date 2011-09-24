@@ -9,7 +9,7 @@ import scala.collection.JavaConversions._
 import de.flower.rmt.model.Team
 /**
  *
- * @author oblume
+ * @author flowerrrr
  */
 
 class UniqueValidatorTest extends AbstractIntegrationTests {

@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * Custom implementation of spring's UserDetailService in order to use User domain entity as principal.
  *
- * @author oblume
+ * @author flowerrrr
  */
 @Service("userDetailService")
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)

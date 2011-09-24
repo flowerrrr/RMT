@@ -1,7 +1,7 @@
 package de.flower.rmt.model;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public enum RSVPStatus {
 

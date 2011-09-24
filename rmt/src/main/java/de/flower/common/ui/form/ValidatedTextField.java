@@ -20,7 +20,7 @@ import org.apache.wicket.validation.IValidator;
 
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class ValidatedTextField<T> extends Panel {
 
@@ -55,7 +55,7 @@ public class ValidatedTextField<T> extends Panel {
             @Override
             protected IAjaxCallDecorator getAjaxCallDecorator() {
                 // to avoid triggering validation when input c is empty.
-                // // TODO (oblume - 24.09.11) - could be extended to avoid validation when c value has not changed
+                // // TODO (flowerrrr - 24.09.11) - could be extended to avoid validation when c value has not changed
                 return new AjaxCallDecorator() {
                     @Override
                     public CharSequence decorateScript(Component c, CharSequence script) {
@@ -117,7 +117,7 @@ public class ValidatedTextField<T> extends Panel {
      * @param behaviors
      * @return
      */
-    // TODO (oblume - 01.07.11) - might need further tuning.
+    // TODO (flowerrrr - 01.07.11) - might need further tuning.
     @Override
     public Component add(Behavior... behaviors) {
         for (Behavior behavior : behaviors) {

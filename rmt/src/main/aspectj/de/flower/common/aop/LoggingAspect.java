@@ -4,7 +4,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 @Aspect
 public class LoggingAspect extends AbstractSlf4JLoggingAspect {

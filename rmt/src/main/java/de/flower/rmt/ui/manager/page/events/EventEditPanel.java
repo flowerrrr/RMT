@@ -24,7 +24,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.wicketstuff.jsr303.BeanValidator;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class EventEditPanel extends BasePanel {
 

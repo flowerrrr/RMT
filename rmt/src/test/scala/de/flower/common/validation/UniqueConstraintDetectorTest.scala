@@ -7,7 +7,7 @@ import unique.UniqueConstraintDetector
 
 /**
  * 
- * @author oblume
+ * @author flowerrrr
  */
 
 class UniqueConstraintDetectorTest {

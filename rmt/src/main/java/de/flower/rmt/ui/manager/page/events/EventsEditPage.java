@@ -5,7 +5,7 @@ import de.flower.rmt.ui.manager.ManagerBasePage;
 import org.apache.wicket.model.Model;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class EventsEditPage extends ManagerBasePage {
 

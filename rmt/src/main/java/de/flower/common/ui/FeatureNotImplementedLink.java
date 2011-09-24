@@ -4,7 +4,7 @@ import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.link.Link;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class FeatureNotImplementedLink extends Link {
 

@@ -9,7 +9,7 @@ import org.apache.wicket.request.component.IRequestablePage;
 
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class HomePageResolver {
 

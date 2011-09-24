@@ -8,7 +8,7 @@ import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.panel.Panel;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class NavigationPanel extends Panel {
 

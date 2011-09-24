@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class UserDetailsBean extends org.springframework.security.core.userdetails.User {
 

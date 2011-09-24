@@ -3,7 +3,7 @@ package de.flower.rmt.service.security;
 import de.flower.rmt.model.User;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public interface ISecurityService {
 

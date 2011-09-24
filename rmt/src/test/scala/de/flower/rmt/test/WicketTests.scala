@@ -9,7 +9,7 @@ import de.flower.common.ui.Css
 
 /**
  * 
- * @author oblume
+ * @author flowerrrr
  */
 
 class WicketTests extends AbstractWicketTests {

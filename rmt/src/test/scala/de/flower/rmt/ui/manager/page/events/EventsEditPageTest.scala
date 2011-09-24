@@ -6,7 +6,7 @@ import de.flower.rmt.model.event.EventType
 
 /**
  * 
- * @author oblume
+ * @author flowerrrr
  */
 
 class EventsEditPageTest extends WicketTests {

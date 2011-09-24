@@ -8,7 +8,7 @@ import javax.persistence.OneToMany;
 import java.util.List;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 @Entity
 public class Club extends AbstractBaseEntity {

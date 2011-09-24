@@ -26,7 +26,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import java.util.List;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class EventsPage extends ManagerBasePage {
 
@@ -99,7 +99,7 @@ public class EventsPage extends ManagerBasePage {
                 });
             }
 
-            // TODO (oblume - 11.09.11) use 'Converter'
+            // TODO (flowerrrr - 11.09.11) use 'Converter'
             private String getResponses(Event event) {
                 return "Zusagen / Absagen / offen";
             }

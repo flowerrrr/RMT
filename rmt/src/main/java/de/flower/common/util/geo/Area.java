@@ -1,7 +1,7 @@
 package de.flower.common.util.geo;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class Area {
 

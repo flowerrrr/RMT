@@ -15,7 +15,7 @@ import javax.validation.ConstraintValidatorFactory;
  * Since the factory is instaniated before the spring context is alive the factory delays instantiation of
  * the delegated factory until it is needed.
  *
- * @author oblume
+ * @author flowerrrr
  */
 public class MySpringConstraintValidationFactory implements ConstraintValidatorFactory {
 

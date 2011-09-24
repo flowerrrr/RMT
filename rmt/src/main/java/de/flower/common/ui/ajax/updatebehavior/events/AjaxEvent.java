@@ -3,7 +3,7 @@ package de.flower.common.ui.ajax.updatebehavior.events;
 import java.io.Serializable;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public abstract class AjaxEvent implements Serializable {
 

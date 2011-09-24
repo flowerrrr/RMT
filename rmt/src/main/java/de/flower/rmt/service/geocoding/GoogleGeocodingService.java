@@ -19,7 +19,7 @@ import java.util.List;
 import static de.flower.common.util.Check.*;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 @Service
 public class GoogleGeocodingService implements IGeocodingService {
@@ -49,7 +49,7 @@ public class GoogleGeocodingService implements IGeocodingService {
 
         try {
             String params = "address=" + URLEncoder.encode(address, HTTP.UTF_8);
-            // NOTE (oblume - 05.08.11): use region of currently logged in user.
+            // NOTE (flowerrrr - 05.08.11): use region of currently logged in user.
             params += "&region=" + region;
             params += "&language=" + language;
             params += "&sensor=false";

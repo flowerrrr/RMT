@@ -1,7 +1,7 @@
 package de.flower.common.util;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class Misc {
 

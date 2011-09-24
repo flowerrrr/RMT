@@ -3,7 +3,7 @@ package de.flower.rmt.service.geocoding;
 import java.util.List;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public interface IGeocodingService {
 

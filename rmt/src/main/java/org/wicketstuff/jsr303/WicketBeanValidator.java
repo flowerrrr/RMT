@@ -24,7 +24,7 @@ import java.util.Set;
  * Must be added after the component is added to a form.
  *
  *
- * @author oblume
+ * @author flowerrrr
  */
 public class WicketBeanValidator<T> extends Behavior implements INullAcceptingValidator<String>, Serializable {
 
@@ -68,7 +68,7 @@ public class WicketBeanValidator<T> extends Behavior implements INullAcceptingVa
             bean = beanModel.getObject();
         }
 
-        // TODO (oblume - 01.07.11) create copy of bean or write back original value after validating
+        // TODO (flowerrrr - 01.07.11) create copy of bean or write back original value after validating
         ReflectionUtil.setProperty(bean, propertyName, validatable.getValue());
 
         log.debug("Validating bean[{}]", bean);

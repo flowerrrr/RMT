@@ -6,7 +6,7 @@ import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
 import org.apache.wicket.markup.html.form.Form;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public abstract class MyAjaxSubmitLink extends AjaxSubmitLink {
 

@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.validation.constraints.Size;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 @Entity
 public class Venue extends AbstractClubRelatedEntity {

@@ -9,7 +9,7 @@ import org.apache.wicket.request.Request;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class RMTSession extends WebSession {
 
@@ -41,14 +41,14 @@ public class RMTSession extends WebSession {
      * Determine location based on IP address of browser.
      */
     private void initLocation() {
-        // TODO (oblume - 24.07.11) replace with real implementation
+        // TODO (flowerrrr - 24.07.11) replace with real implementation
         // latLng = iplocationtools.com/api?....
         // latLng = configurationService.getDefaultLocation();
         // latLng = user.getClub().getLatLng();
         latLng = new LatLngEx(48.133333, 11.566667); // München
     }
 
-    // TODO (oblume - 14.08.11) check if this method is obsolete
+    // TODO (flowerrrr - 14.08.11) check if this method is obsolete
     public User getUser() {
         return user;
     }

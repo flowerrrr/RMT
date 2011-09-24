@@ -4,7 +4,7 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class ModalDialogWindow extends ModalWindow {
 

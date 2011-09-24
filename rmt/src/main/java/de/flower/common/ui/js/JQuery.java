@@ -4,7 +4,7 @@ import de.flower.common.util.Check;
 import org.apache.wicket.Component;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class JQuery {
 

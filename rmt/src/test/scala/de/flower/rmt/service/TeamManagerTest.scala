@@ -10,7 +10,7 @@ import scala.collection.JavaConversions._
 
 /**
  *
- * @author oblume
+ * @author flowerrrr
  */
 
 class TeamManagerTest extends AbstractIntegrationTests {

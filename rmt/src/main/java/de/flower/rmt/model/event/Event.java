@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)

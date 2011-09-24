@@ -20,7 +20,7 @@ import org.apache.wicket.validation.IValidator;
 import java.util.List;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class ValidatedDropDownChoice<T> extends Panel {
 
@@ -113,7 +113,7 @@ public class ValidatedDropDownChoice<T> extends Panel {
      * @param behaviors
      * @return
      */
-    // TODO (oblume - 01.07.11) - might need further tuning.
+    // TODO (flowerrrr - 01.07.11) - might need further tuning.
     @Override
     public Component add(Behavior... behaviors) {
         for (Behavior behavior : behaviors) {

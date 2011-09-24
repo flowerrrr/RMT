@@ -11,7 +11,7 @@ import javax.persistence.metamodel.ManagedType;
  * Implements a column resolver by using some conventions, e.g.
  * a propery of type Class is mapped to propertyName_id.
  *
- * @author oblume
+ * @author flowerrrr
  */
 @Service
 public class ConventionColumnResolver implements IColumnResolver {

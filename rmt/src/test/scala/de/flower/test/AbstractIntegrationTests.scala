@@ -22,7 +22,7 @@ import de.flower.rmt.service.{IEventManager, IUserManager, ITeamManager}
 
 /**
  *
- * @author oblume
+ * @author flowerrrr
  */
 @Listeners(Array(classOf[de.flower.test.ExceptionLoggerTestListener]))
 // in-memory database -> no need for transactional support and rollbacks

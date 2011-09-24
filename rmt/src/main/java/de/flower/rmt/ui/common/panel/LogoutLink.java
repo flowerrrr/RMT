@@ -5,7 +5,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.request.component.IRequestablePage;
 
 /**
-* @author oblume
+* @author flowerrrr
 */
 public class LogoutLink extends Panel {
 

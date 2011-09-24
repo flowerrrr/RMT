@@ -7,7 +7,7 @@ import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 @MappedSuperclass
 public abstract class AbstractClubRelatedEntity extends AbstractBaseEntity {

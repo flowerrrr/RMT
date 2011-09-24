@@ -3,7 +3,7 @@ package de.flower.rmt.ui.player;
 import de.flower.rmt.ui.common.panel.LogoutLink;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class PlayerHomePage extends PlayerBasePage {
 

@@ -24,7 +24,7 @@ import wicket.contrib.gmap3.GMap;
 import java.util.List;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class VenuesPage extends ManagerBasePage {
 

@@ -9,7 +9,7 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.wicketstuff.jsr303.PropertyValidation;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public class MyForm<T> extends Form<T> {
 

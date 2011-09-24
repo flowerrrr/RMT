@@ -5,7 +5,7 @@ import org.testng.Assert._
 import scala.collection.JavaConversions._
 /**
  * 
- * @author oblume
+ * @author flowerrrr
  */
 
 class GeoUtilTest {

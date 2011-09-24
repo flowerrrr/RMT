@@ -7,14 +7,14 @@ import javax.validation.constraints.NotNull;
 
 /**
 
- * @author oblume
+ * @author flowerrrr
  */
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "authority"}))
 public class Role extends AbstractBaseEntity {
 
     /**
-     * @author oblume
+     * @author flowerrrr
      */
     public enum Roles {
 

@@ -1,7 +1,7 @@
 package de.flower.rmt.model.event;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public enum EventType {
 

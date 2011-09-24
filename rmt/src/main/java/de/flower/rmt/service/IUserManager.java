@@ -7,7 +7,7 @@ import javax.persistence.metamodel.Attribute;
 import java.util.List;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public interface IUserManager {
 

@@ -7,7 +7,7 @@ import de.flower.rmt.model.User
 
 /**
  * 
- * @author oblume
+ * @author flowerrrr
  */
 
 class PlayerEditPanelTest extends WicketTests {

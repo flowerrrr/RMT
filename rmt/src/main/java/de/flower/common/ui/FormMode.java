@@ -1,7 +1,7 @@
 package de.flower.common.ui;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 public enum FormMode {
 

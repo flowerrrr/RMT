@@ -9,7 +9,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 @Entity
 @DiscriminatorValue("Training")

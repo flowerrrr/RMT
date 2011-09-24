@@ -4,7 +4,7 @@ import org.apache.wicket.spring.injection.annot.SpringComponentInjector
 import org.springframework.context.ApplicationContext
 
 /**
- * @author oblume
+ * @author flowerrrr
  */
 class TestApplication(val ctx: ApplicationContext) extends RMTApplication {
 
