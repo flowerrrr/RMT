@@ -6,11 +6,8 @@ import org.dbunit.database.{DatabaseDataSourceConnection, IDatabaseConnection}
 import org.dbunit.dataset.IDataSet
 import org.slf4j.{LoggerFactory, Logger}
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder
-import de.flower.common.util.Check._
 import org.apache.commons.lang3.Validate
-import de.flower.common.util.{Check, IO}
-import javax.validation.Validation
-
+import de.flower.common.util.IO
 /**
  *
  * @author oblume

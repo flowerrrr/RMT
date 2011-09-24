@@ -3,8 +3,6 @@ package de.flower.common.util.geo
 import org.testng.annotations.Test
 import org.testng.Assert._
 import scala.collection.JavaConversions._
-import de.flower.common.util.geo.LatLngEx
-
 /**
  * 
  * @author oblume

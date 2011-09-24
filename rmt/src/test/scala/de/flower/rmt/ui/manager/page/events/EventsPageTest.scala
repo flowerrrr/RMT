@@ -2,10 +2,6 @@ package de.flower.rmt.ui.manager.page.events
 
 import de.flower.rmt.test.WicketTests
 import org.testng.annotations.Test
-import de.flower.rmt.ui.manager.page.squad.SquadPage
-import org.apache.wicket.model.Model
-import de.flower.rmt.ui.manager.page.events.EventsPage
-
 /**
  * 
  * @author oblume

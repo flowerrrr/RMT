@@ -4,9 +4,7 @@ import org.springframework.stereotype.Service
 import de.flower.rmt.model.{Team, Club}
 import org.springframework.beans.factory.annotation.Autowired
 import scala.Predef._
-import de.flower.rmt.service.{ITeamManager, TeamManager}
 import de.flower.rmt.repository.{ITeamRepo, IClubRepo}
-import de.flower.common.util.Check._
 import org.apache.commons.lang3.Validate
 
 /**

@@ -1,6 +1,9 @@
 package de.flower.rmt.service;
 
-import de.flower.rmt.model.*;
+import de.flower.rmt.model.Role;
+import de.flower.rmt.model.Team;
+import de.flower.rmt.model.User;
+import de.flower.rmt.model.User_;
 import de.flower.rmt.repository.IUserRepo;
 import de.flower.rmt.repository.Specs;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.criteria.*;
 import javax.persistence.metamodel.Attribute;
 import java.util.List;
 

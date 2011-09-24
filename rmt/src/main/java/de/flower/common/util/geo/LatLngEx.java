@@ -1,7 +1,8 @@
 package de.flower.common.util.geo;
 
-import static de.flower.common.util.Check.*;
 import wicket.contrib.gmap3.api.LatLng;
+
+import static de.flower.common.util.Check.*;
 
 /**
  * @author oblume

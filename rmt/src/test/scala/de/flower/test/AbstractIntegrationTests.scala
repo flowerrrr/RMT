@@ -12,14 +12,11 @@ import org.testng.annotations.{BeforeClass, Listeners, BeforeMethod}
 import ch.qos.logback.classic.spi.ILoggingEvent
 import de.flower.rmt.repository.{IUserRepo, IClubRepo, ITeamRepo}
 import org.springframework.security.authentication.TestingAuthenticationToken
-import de.flower.rmt.model.{Role, Club}
 import org.springframework.security.core.context.SecurityContextHolderStrategy
 import de.flower.rmt.service.geocoding.IGeocodingService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.userdetails.UserDetailsService
 import java.util.ArrayList
-import de.flower.common.util.Check._
-import de.flower.common.util.Check
 import org.apache.commons.lang3.Validate
 import de.flower.rmt.service.{IEventManager, IUserManager, ITeamManager}
 

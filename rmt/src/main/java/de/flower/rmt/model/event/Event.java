@@ -6,14 +6,11 @@ import de.flower.rmt.model.Team;
 import de.flower.rmt.model.Venue;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
-import org.joda.time.DateTime;
 import org.joda.time.LocalTime;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 

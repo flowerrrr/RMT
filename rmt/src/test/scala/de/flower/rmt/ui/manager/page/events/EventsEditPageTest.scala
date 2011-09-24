@@ -2,7 +2,7 @@ package de.flower.rmt.ui.manager.page.events
 
 import de.flower.rmt.test.WicketTests
 import org.testng.annotations.Test
-import de.flower.rmt.model.event.{EventType, Event}
+import de.flower.rmt.model.event.EventType
 
 /**
  * 

@@ -1,7 +1,6 @@
 package de.flower.rmt.service.geocoding
 
 import org.testng.annotations.Test
-import de.flower.test.AbstractIntegrationTests
 import org.testng.Assert._
 import de.flower.common.util.geo.LatLngEx
 import org.slf4j.{LoggerFactory, Logger}

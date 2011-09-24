@@ -1,8 +1,8 @@
 package de.flower.rmt.repository.factory;
 
 import de.flower.rmt.repository.IUserRepo;
-import de.flower.rmt.repository.impl.UserRepo;
 import de.flower.rmt.repository.impl.BaseRepository;
+import de.flower.rmt.repository.impl.UserRepo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
