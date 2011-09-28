@@ -15,4 +15,6 @@ import java.util.List;
 public interface ITeamRepo extends IRepository<Team, Long> {
 
     List<Team> findAllByClub(Club club);
+
+    Team findByNameAndClub(String name, Club club);
 }

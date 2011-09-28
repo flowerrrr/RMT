@@ -13,12 +13,11 @@ import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.manager.component.TeamSelect;
 import de.flower.rmt.ui.manager.component.VenueSelect;
+import de.flower.rmt.ui.manager.page.response.ResponsePage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.datetime.markup.html.form.DateTextField;
-import org.apache.wicket.feedback.ComponentFeedbackMessageFilter;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextArea;
-import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.wicketstuff.jsr303.BeanValidator;
@@ -65,11 +64,13 @@ public class EventEditPanel extends BasePanel {
         form.add(new MyAjaxSubmitLink("saveButton") {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-                if (!new BeanValidator(form).isValid(form.getModelObject())) {
+                final Event event = (Event) form.getModelObject();
+                if (!new BeanValidator(form).isValid(event)) {
                     onError(target, form);
                 } else {
-                    eventManager.save((Event) form.getModelObject());
+                    eventManager.save(event);
                     target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Event.class), AjaxEvent.EntityUpdated(Event.class)));
+                    setResponsePage(new ResponsePage(event.getId()));
                 }
             }
 

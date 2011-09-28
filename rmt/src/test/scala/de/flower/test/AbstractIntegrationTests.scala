@@ -8,7 +8,6 @@ import org.scalatest.Assertions
 import org.springframework.transaction.PlatformTransactionManager
 import javax.sql.DataSource
 import org.slf4j.{LoggerFactory, Logger}
-import org.testng.annotations.{BeforeClass, Listeners, BeforeMethod}
 import ch.qos.logback.classic.spi.ILoggingEvent
 import de.flower.rmt.repository.{IUserRepo, IClubRepo, ITeamRepo}
 import org.springframework.security.authentication.TestingAuthenticationToken
@@ -19,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetailsService
 import java.util.ArrayList
 import org.apache.commons.lang3.Validate
 import de.flower.rmt.service.{IEventManager, IUserManager, ITeamManager}
+import org.testng.annotations.{AfterMethod, BeforeClass, Listeners, BeforeMethod}
 
 /**
  *
@@ -85,9 +85,15 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
     @Autowired
     protected var testData: TestData = _
 
+    private var db: Database = _
+
     @BeforeClass
     def initClass() {
         listAppender = LogBackListAppender.configureListAppender()
+        // use db-unit to refresh the the test data
+        val properties = Map("http://www.dbunit.org/properties/datatypeFactory" -> new org.dbunit.ext.h2.H2DataTypeFactory())
+        db = new Database(properties)
+        db.setDataSource(dataSource)
     }
 
     @BeforeMethod
@@ -96,9 +102,13 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
         resetTestdata()
         resetListAppender()
 
-
         initializeSecurityContextWithTestUser()
+    }
 
+    @AfterMethod
+    def afterTest() {
+        // dump database to disk
+        db.export()
     }
 
     /**
@@ -120,13 +130,9 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
      * was modified during a testmethod.
      */
     def resetTestdata() {
-        log.info("Resetting test data in database.");
-        // use db-unit to refresh the the test data
-        val properties = Map("http://www.dbunit.org/properties/datatypeFactory" -> new org.dbunit.ext.h2.H2DataTypeFactory())
-        val db: Database = new Database(properties);
-        db.setDataSource(dataSource);
+        log.info("Resetting test data in database.")
 
-        db.cleanInsert(Database.createDataSet("/data/test_data.xml"));
+        db.cleanInsert(Database.createDataSet("/data/test_data.xml"))
 
         // checkDataConsistency();
     }

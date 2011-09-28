@@ -53,9 +53,9 @@ public class Specs {
             public Predicate toPredicate(Root<X> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                 for (Attribute attribute : attributes) {
                     if (attribute.isCollection()) {
-                        root.fetch((PluralAttribute<? super X, ?, Object>) attribute);
+                        root.fetch((PluralAttribute<? super X, ?, Object>) attribute, JoinType.LEFT);
                     } else {
-                        root.fetch((SingularAttribute<? super X, Object>) attribute);
+                        root.fetch((SingularAttribute<? super X, Object>) attribute, JoinType.LEFT);
                     }
                 }
                 // force distinct results. fetching associations might lead to duplicate root entities in the result set.

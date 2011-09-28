@@ -5,9 +5,11 @@ import org.dbunit.operation.{TransactionOperation, DatabaseOperation}
 import org.dbunit.database.{DatabaseDataSourceConnection, IDatabaseConnection}
 import org.dbunit.dataset.IDataSet
 import org.slf4j.{LoggerFactory, Logger}
-import org.dbunit.dataset.xml.FlatXmlDataSetBuilder
 import org.apache.commons.lang3.Validate
 import de.flower.common.util.IO
+import java.io.FileOutputStream
+import org.dbunit.dataset.xml.{FlatXmlDataSet, FlatXmlDataSetBuilder}
+
 /**
  *
  * @author flowerrrr
@@ -18,7 +20,6 @@ object Database {
     def createDataSet(classpathResource: String): IDataSet = {
         return new FlatXmlDataSetBuilder().build(IO.loadClasspathResourceAsStream(classpathResource))
     }
-
 }
 
 class Database(properties: Map[String, Object]) {
@@ -37,6 +38,13 @@ class Database(properties: Map[String, Object]) {
         execute(DatabaseOperation.CLEAN_INSERT, dataSet)
     }
 
+    def export() {
+        var connection: IDatabaseConnection = getDatabaseConnection
+        // full database export
+        val fullDataSet = connection.createDataSet(Array("club", "team", "player", "event", "response", "invitation"));
+        FlatXmlDataSet.write(fullDataSet, new FileOutputStream("src/test/database/data/export.xml"));
+    }
+
     private def execute(operation: DatabaseOperation, dataSet: IDataSet) {
         var connection: IDatabaseConnection = getDatabaseConnection
         var transOp: TransactionOperation = new TransactionOperation(operation)
@@ -49,7 +57,7 @@ class Database(properties: Map[String, Object]) {
         return configureConnection(connection)
     }
 
-    private def configureConnection(connection: IDatabaseConnection) : IDatabaseConnection = {
+    private def configureConnection(connection: IDatabaseConnection): IDatabaseConnection = {
         properties.foreach((e) => connection.getConfig.setProperty(e._1, e._2))
         return connection
     }

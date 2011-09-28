@@ -52,7 +52,8 @@ public class User extends AbstractClubRelatedEntity {
     public User() {
     }
 
-    public User(String email, String password, boolean enabled, String fullname) {
+    public User(String email, String password, boolean enabled, String fullname, Club club) {
+        super(club);
         this.email = email;
         this.password = password;
         this.enabled = enabled;

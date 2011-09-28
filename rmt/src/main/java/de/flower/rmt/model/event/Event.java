@@ -27,8 +27,10 @@ public class Event extends AbstractClubRelatedEntity {
     @NotNull
     private Team team;
 
+    /**
+     * Can be null. Sometimes events are created before it is clear where they are held.
+     */
     @ManyToOne
-    @NotNull
     private Venue venue;
 
     /**

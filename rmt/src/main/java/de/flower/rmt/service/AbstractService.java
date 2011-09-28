@@ -1,5 +1,7 @@
 package de.flower.rmt.service;
 
+import de.flower.common.util.Check;
+import de.flower.rmt.model.AbstractClubRelatedEntity;
 import de.flower.rmt.model.Club;
 import de.flower.rmt.model.User;
 import de.flower.rmt.service.security.ISecurityService;
@@ -28,6 +30,12 @@ public abstract class AbstractService {
         User currentUser = securityService.getCurrentUser();
         notNull(currentUser, "Security Context must be filled with a user");
         return currentUser.getClub();
+    }
+
+    protected void assertClub(AbstractClubRelatedEntity entity) {
+        if (entity != null) {
+            Check.isEqual(entity.getClub(), getClub());
+        }
     }
 
 
