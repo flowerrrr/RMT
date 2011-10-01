@@ -7,8 +7,8 @@ import org.dbunit.dataset.IDataSet
 import org.slf4j.{LoggerFactory, Logger}
 import org.apache.commons.lang3.Validate
 import de.flower.common.util.IO
-import java.io.FileOutputStream
-import org.dbunit.dataset.xml.{FlatXmlDataSet, FlatXmlDataSetBuilder}
+import org.dbunit.dataset.xml.{FlatDtdWriter, FlatXmlDataSet, FlatXmlDataSetBuilder}
+import java.io.{Writer, OutputStreamWriter, FileOutputStream}
 
 /**
  *
@@ -28,6 +28,12 @@ class Database(properties: Map[String, Object]) {
 
     private var dataSource: DataSource = _
 
+    def deleteAll(tables: Array[String]) {
+        var connection: IDatabaseConnection = getDatabaseConnection
+        val dataset = connection.createDataSet(tables);
+        deleteAll(dataset)
+    }
+
     def deleteAll(dataSet: IDataSet) {
         log.info("Delete all. Dataset: " + dataSet)
         execute(DatabaseOperation.DELETE_ALL, dataSet)
@@ -38,11 +44,10 @@ class Database(properties: Map[String, Object]) {
         execute(DatabaseOperation.CLEAN_INSERT, dataSet)
     }
 
-    def export() {
+    def export(filename: String, tables: Array[String]) {
         var connection: IDatabaseConnection = getDatabaseConnection
-        // full database export
-        val fullDataSet = connection.createDataSet(Array("club", "team", "player", "event", "response", "invitation"));
-        FlatXmlDataSet.write(fullDataSet, new FileOutputStream("src/test/database/data/export.xml"));
+        val dataset = connection.createDataSet(tables);
+        FlatXmlDataSet.write(dataset, new FileOutputStream(filename));
     }
 
     private def execute(operation: DatabaseOperation, dataSet: IDataSet) {

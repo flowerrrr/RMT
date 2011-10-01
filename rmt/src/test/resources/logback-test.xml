@@ -24,6 +24,7 @@
     <!-- set to TRACE to see sql parameter values -->
     <logger name="org.hibernate.type" level="TRACE"/>
     <logger name="org.hibernate" level="INFO"/>
+    <logger name="org.hibernate.tool.hbm2ddl" level="DEBUG" />
     <!--
     <logger name="org.springframework" level="DEBUG" />
     <logger name="org.springframework.aop" level="DEBUG" />

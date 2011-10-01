@@ -19,6 +19,7 @@ import java.util.ArrayList
 import org.apache.commons.lang3.Validate
 import de.flower.rmt.service.{IEventManager, IUserManager, ITeamManager}
 import org.testng.annotations.{AfterMethod, BeforeClass, Listeners, BeforeMethod}
+import org.springframework.test.annotation.DirtiesContext
 
 /**
  *
@@ -29,10 +30,10 @@ import org.testng.annotations.{AfterMethod, BeforeClass, Listeners, BeforeMethod
 //@TestExecutionListeners(Array(classOf[TransactionalTestExecutionListener]))
 // @Transactional
 @ContextConfiguration(locations = Array("/applicationContext-test.xml"))
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Assertions with TestMethodListener {
 
     protected var log: Logger = LoggerFactory.getLogger(this.getClass());
-
 
     /**************************************************************************/
     /*                        Daos                                            */
@@ -46,7 +47,6 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
 
     @Autowired
     protected var userRepo: IUserRepo = _
-
 
     /**************************************************************************/
     /*                        Services                                        */
@@ -69,7 +69,6 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
 
     @Autowired
     protected var securityContextHolderStrategy: SecurityContextHolderStrategy = _
-
 
     @PersistenceContext
     protected var em: EntityManager = _
@@ -98,17 +97,33 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
 
     @BeforeMethod
     def initTest() {
-        // reset database
-        resetTestdata()
-        resetListAppender()
+        try {
+            // reset database
+            resetTestdata()
+            resetListAppender()
 
-        initializeSecurityContextWithTestUser()
+            initializeSecurityContextWithTestUser()
+        } catch {
+            case e: Exception => {
+                log.error(e.getMessage(), e)
+                throw e;
+            }
+        }
     }
 
     @AfterMethod
     def afterTest() {
-        // dump database to disk
-        db.export()
+        try {
+            // dump database to disk
+            // full database export (cannot export users table: always a dbunit error wiht this table.)
+            val tables = Array("club", "team", "venue", "player", "event", "response", "invitation");
+            db.export("src/test/database/data/export.xml", tables)
+        } catch {
+            case e: Exception => {
+                log.error(e.getMessage(), e)
+                throw e;
+            }
+        }
     }
 
     /**
@@ -123,8 +138,6 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
         securityContextHolderStrategy.getContext.setAuthentication(authentication)
     }
 
-
-
     /**
      * Reset testdata. Most workflow unit tests are @NotTransactional annotated to have a more realistic transactional behaviour of the workflow-methods. That means we have to reset any test-data that
      * was modified during a testmethod.
@@ -132,11 +145,11 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
     def resetTestdata() {
         log.info("Resetting test data in database.")
 
+        db.deleteAll(Database.createDataSet("/data/test_data_delete.xml"))
         db.cleanInsert(Database.createDataSet("/data/test_data.xml"))
 
         // checkDataConsistency();
     }
-
 
     /**
      * Reset the internal buffer of the mock appender before each test method is started.
@@ -146,5 +159,4 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
             listAppender.reset();
         }
     }
-
 }

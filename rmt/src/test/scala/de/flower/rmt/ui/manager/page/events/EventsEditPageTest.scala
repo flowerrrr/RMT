@@ -20,7 +20,7 @@ class EventsEditPageTest extends WicketTests {
         val formId = "eventEditPanel:form"
         val formTester = getFormTester(formId)
         formTester.select("team:team", 1)
-        formTester.setValue("date", "1.12.2011")
+        formTester.setValue("date:date", "1.12.2011")
         formTester.select("time:time", 4) // select some arbitrary value
         formTester.select("venue:venue", 1)
         formTester.setValue("summary:summary", "New training next sunday")

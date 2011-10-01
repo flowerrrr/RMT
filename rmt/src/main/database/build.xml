@@ -395,7 +395,20 @@
 
             <!-- Write all CREATE statements to a file. -->
             <hbm2ddl drop="false" create="true" export="false"
-                     outputfilename="schema.ddl" delimiter=";" format="true"/>
+                     outputfilename="schema-rmt-pu.ddl" delimiter=";" format="true"/>
+
+        </hibernatetool>
+        <hibernatetool destdir="${export.dir}">
+            <jpaconfiguration persistenceunit="rmt-test-pu"/>
+            <classpath>
+                <!-- it is in this classpath you put your classes dir,
+           and/or jpa persistence compliant jar -->
+                <path location="${builddir}"/>
+            </classpath>
+
+            <!-- Write all CREATE statements to a file. -->
+            <hbm2ddl drop="false" create="true" export="false"
+                     outputfilename="schema-rmt-test-pu.ddl" delimiter=";" format="true"/>
 
         </hibernatetool>
     </target>

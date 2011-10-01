@@ -1,7 +1,7 @@
 package de.flower.test
 
-import org.testng.{TestListenerAdapter, ITestResult}
 import org.slf4j.{LoggerFactory, Logger}
+import org.testng.{Assert, TestListenerAdapter, ITestResult}
 
 /**
  *
@@ -15,4 +15,9 @@ class ExceptionLoggerTestListener extends TestListenerAdapter {
     override def onTestFailure(tr: ITestResult): Unit = {
         log.error(tr.toString, tr.getThrowable)
     }
+
+    override def onTestSkipped(tr: ITestResult): Unit = {
+        log.error(tr.toString, tr.getThrowable)
+    }
+
 }

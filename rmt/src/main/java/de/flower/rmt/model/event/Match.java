@@ -19,7 +19,7 @@ import javax.persistence.ManyToOne;
 public class Match extends Event {
 
     @Column
-    @Type(type = "org.joda.time.contrib.hibernate.PersistentLocalTimeAsTime")
+    @Type(type = "org.joda.time.contrib.hibernate.PersistentLocalTimeAsTime") /* must be same as in Training! */
     private LocalTime kickOff;
 
     @ManyToOne
