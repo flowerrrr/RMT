@@ -31,9 +31,9 @@
     <player team_id="2" user_id="2"/>
     <player team_id="2" user_id="1"/>
 
+    <event eventType="Match" id="3" summary="Spiel im November" date="2011-11-01 00:00:00.0" time="17:00:00" kickOff="12:45:00" club_id="1" team_id="1" venue_id="1"/>
     <event eventType="Training" id="1"  summary="Saisonopening" date="2011-10-01 00:00:00.0" time="17:00:00" club_id="1" team_id="1" venue_id="1"/>
     <event eventType="Training" id="2" summary="2. Training" date="2011-10-08 00:00:00.0" time="17:00:00" club_id="1" team_id="1" venue_id="1"/>
-    <event eventType="Match" id="3" summary="Spiel im November" date="2011-11-01 00:00:00.0" time="17:00:00" kickOff="2011-11-01 12:45:00.0" club_id="1" team_id="1" venue_id="1"/>
     <event eventType="Event" id="4" summary="Weihnachtsfeier" date="2011-12-15 00:00:00.0" time="17:00:00" club_id="1" team_id="1" venue_id="1"/>
 
 

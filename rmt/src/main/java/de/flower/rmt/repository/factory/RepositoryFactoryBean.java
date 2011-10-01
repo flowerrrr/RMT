@@ -31,9 +31,8 @@ public class RepositoryFactoryBean<T extends JpaRepository<S, ID>, S, ID extends
         }
 
         @Override
-        protected <T, ID extends Serializable> Object getTargetRepository(
-                RepositoryMetadata metadata, EntityManager entityManager) {
-
+        protected <T, ID extends Serializable> JpaRepository<?, ?>
+            getTargetRepository(RepositoryMetadata metadata, EntityManager entityManager) {
             JpaEntityInformation<?, Serializable> entityInformation =
                     getEntityInformation(metadata.getDomainClass());
             Assert.notNull(entityInformation);
