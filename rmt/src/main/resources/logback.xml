@@ -31,6 +31,8 @@
     <logger name="trace.de.flower.common.model" level="INFO" />
     <logger name="trace.de.flower.common.ui.ajax.updatebehavior" level="INFO" />
 
+    <logger name="de.flower.common.ui.LoggingSerializer" level="TRACE" />
+
 
     <root level="INFO">
         <appender-ref ref="STDOUT"/>

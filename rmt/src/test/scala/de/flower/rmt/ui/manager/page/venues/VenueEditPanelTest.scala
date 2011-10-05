@@ -19,7 +19,7 @@ class VenueEditPanelTest extends WicketTests {
         wicketTester.debugComponentTrees()
         // input name and validate field
         val field = wicketTester.getComponentFromLastRenderedPage("form:address")
-        getFormTester().setValue(field, "Werner-Heisenberg-Allee 25\n 80939 München")
+        wicketTester.getFormTester().setValue(field, "Werner-Heisenberg-Allee 25\n 80939 München")
         wicketTester.clickLink("form:geocodeButton")
         wicketTester.dumpPage()
     }

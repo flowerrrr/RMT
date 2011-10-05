@@ -45,6 +45,11 @@
     <logger name="trace.de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener" level="INFO" />
 
     <logger name="de.flower" level="DEBUG" />
+
+    <logger name="de.flower.common.ui.LoggingSerializer" additivity="false" level="TRACE" >
+        <appender-ref ref="FILE" />
+    </logger>
+
     <logger name="org.wicketstuff" level="DEBUG" />
 
     <root level="INFO">

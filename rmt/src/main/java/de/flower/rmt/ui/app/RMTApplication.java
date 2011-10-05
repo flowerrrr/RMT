@@ -1,5 +1,6 @@
 package de.flower.rmt.ui.app;
 
+import de.flower.common.ui.LoggingSerializer;
 import de.flower.rmt.ui.common.page.login.HomePageResolver;
 import de.flower.rmt.ui.common.page.login.LoginPage;
 import de.flower.rmt.ui.manager.ManagerHomePage;
@@ -7,6 +8,7 @@ import de.flower.rmt.ui.manager.page.teams.TeamsPage;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
+import org.apache.wicket.serialize.ISerializer;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.springframework.stereotype.Component;
 
@@ -23,7 +25,14 @@ public class RMTApplication extends WebApplication {
 
         getDebugSettings().setDevelopmentUtilitiesEnabled(true);
 
+        initSerializer();
+
         initBookmarkablePages();
+    }
+
+    private void initSerializer() {
+        final ISerializer serializer = getFrameworkSettings().getSerializer();
+        getFrameworkSettings().setSerializer(new LoggingSerializer(serializer));
     }
 
     protected SpringComponentInjector getSpringComponentInjector() {

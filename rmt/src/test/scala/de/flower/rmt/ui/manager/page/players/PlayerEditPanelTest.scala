@@ -24,23 +24,23 @@ class PlayerEditPanelTest extends WicketTests {
         wicketTester.debugComponentTrees()
         // input email and validate field
         var email = wicketTester.getComponentFromLastRenderedPage("form:email:email")
-        assertValidation(email, "", false) // field cannot be empty
-        assertValidation(email, "foo@bar.com", true)
-        assertValidation(email, "not-an-email-address", false) // invalid email format
+        wicketTester.assertValidation(email, "", false) // field cannot be empty
+        wicketTester.assertValidation(email, "foo@bar.com", true)
+        wicketTester.assertValidation(email, "not-an-email-address", false) // invalid email format
         // set email to existing user and revalidate field  -> not unique validator must fire
         var user = userRepo.findOne(1)
         assertEquals(user.getClub(), userUnderTest.getClub)
-        assertValidation(email, user.getEmail(), false)
-        assertValidation(email, "foo@bar.com", true)
+        wicketTester.assertValidation(email, user.getEmail(), false)
+        wicketTester.assertValidation(email, "foo@bar.com", true)
         // test fullname field
         var fullname = wicketTester.getComponentFromLastRenderedPage("form:fullname:fullname")
-        assertValidation(fullname, "", false) // cannot be blank
-        assertValidation(fullname, "foo bar", true)
-        assertValidation(fullname, user.getFullname(), false) // must be unique per club
+        wicketTester.assertValidation(fullname, "", false) // cannot be blank
+        wicketTester.assertValidation(fullname, "foo bar", true)
+        wicketTester.assertValidation(fullname, user.getFullname(), false) // must be unique per club
         // but fullname must not be unique across different clubs
         user = userRepo.findOne(5)
         assertNotEquals(user.getClub(), userUnderTest.getClub)
-        assertValidation(fullname, user.getFullname(), true)
+        wicketTester.assertValidation(fullname, user.getFullname(), true)
 
      }
 

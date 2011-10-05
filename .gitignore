@@ -12,3 +12,4 @@
 /rmt/src/main/database/export/export.dtd
 /rmt/src/main/database/export/export.xml
 /rmt/src/main/database/export/schema.ddl
+/rmt/src/test/database/data/export.xml

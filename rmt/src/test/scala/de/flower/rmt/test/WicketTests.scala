@@ -19,13 +19,5 @@ class WicketTests extends AbstractWicketTests {
         return new TestApplication(ctx);
     }
 
-    def assertValidation(field: Component, value: String, assertion: Boolean) {
-        var formTester = getFormTester();
-        formTester.setValue(field, value)
-        wicketTester.executeAjaxEvent(field, "onblur")
-        wicketTester.dumpPage()
-        val cssClass = if (assertion)  Css.VALID else Css.ERROR
-        wicketTester.assertContains("class=\"" + cssClass)
-    }
 
 }
