@@ -9,6 +9,11 @@ import org.apache.wicket.util.tester.{FormTester, WicketTester, WicketTesterHelp
 import de.flower.common.ui.{LoggingSerializer, Css}
 import org.apache.wicket.serialize.java.JavaSerializer
 import scala.Boolean
+import com.thoughtworks.xstream.XStream
+import de.flower.common.util.xstream.ClassEmittingReflectionConverter
+import org.slf4j.{LoggerFactory, Logger}
+import java.util.regex.{Pattern, Matcher}
+import org.testng.Assert
 
 /**
  * 
@@ -17,23 +22,39 @@ import scala.Boolean
 
 class RMTWicketTester(application: WebApplication) extends WicketTester(application) {
 
+    private val log: Logger = LoggerFactory.getLogger(this.getClass());
+
+    private val xstreamLog: Logger = LoggerFactory.getLogger("test.xstream");
+
+    private val xstream: XStream = new XStream
+
+    xstream.registerConverter(new ClassEmittingReflectionConverter(xstream), XStream.PRIORITY_VERY_LOW)
 
 
-    /**
-     * Get the text document that was written as part of this response.
-     *
-     * @return html markup
-     */
     override def processRequest(): Boolean = {
         val b = super.processRequest();
         val page = getLastRenderedPage()
         if (page != null) {
-            val serializer = new LoggingSerializer(new JavaSerializer("foobar"))
-            serializer.serialize(page)
+            val xml = xstream.toXML(page);
+            xstreamLog.info(xml);
+            checkSerializedString(xml);
         }
         return b;
     }
 
+    private def checkSerializedString(s: String) = {
+        val m: Matcher = Pattern.compile("\"de\\.flower\\.rmt\\.model\\..*?\"").matcher(s);
+        while (m.find()) {
+            var matched = m.group();
+            log.warn("Serialized class [" + matched + "].");
+        }
+    }
+
+    /**
+  * Get the text document that was written as part of this response.
+  *
+  * @return html markup
+  */
     def getPageDump: String = {
         return getLastResponse.getDocument
     }
