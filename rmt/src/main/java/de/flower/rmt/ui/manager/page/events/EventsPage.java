@@ -9,6 +9,7 @@ import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.manager.ManagerBasePage;
+import de.flower.rmt.ui.manager.page.response.ResponsePage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
@@ -82,15 +83,19 @@ public class EventsPage extends ManagerBasePage {
                 item.add(new Label("team", event.getTeam().getName()));
                 item.add(new Label("summary", event.getSummary()));
                 item.add(new Label("responses", getResponses(event)));
+                item.add(new Link("responsesButton") {
+                    @Override
+                    public void onClick() {
+                        setResponsePage(new ResponsePage(item.getModelObject().getId()));
+                    }
+                });
                 item.add(new Link("editButton") {
-
                     @Override
                     public void onClick() {
                         setResponsePage(new EventsEditPage(item.getModelObject()));
                     }
                 });
                 item.add(new AjaxLinkWithConfirmation("deleteButton", new ResourceModel("manager.events.delete.confirm")) {
-
                     @Override
                     public void onClick(AjaxRequestTarget target) {
                         eventManager.delete(item.getModelObject());

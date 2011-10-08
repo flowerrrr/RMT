@@ -18,6 +18,9 @@
         <security:remember-me/>
         <security:intercept-url pattern="/manager/**" access="ROLE_MANAGER"/>
         <security:intercept-url pattern="/player/**" access="ROLE_PLAYER"/>
+        <!--  access to wicket/resources is vital.
+        <security:intercept-url pattern="/wicket/**" access="ROLE_NEVER" /> -->
+        <security:intercept-url pattern="/wicket/bookmarkable/**" access="ROLE_NEVER" />
         <security:form-login login-page="/login" authentication-failure-url="/login?error=1"/>
         <security:logout logout-success-url="/"/>
     </security:http>

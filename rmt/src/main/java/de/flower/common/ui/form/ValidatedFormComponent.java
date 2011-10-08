@@ -3,6 +3,8 @@ package de.flower.common.ui.form;
 import de.flower.common.ui.Css;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.IAjaxCallDecorator;
+import org.apache.wicket.ajax.calldecorator.AjaxCallDecorator;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.behavior.Behavior;
@@ -47,7 +49,20 @@ public class ValidatedFormComponent<T> extends Panel {
                 isValidatedAndValid = false;
                 target.add(ValidatedFormComponent.this);
             }
+
+            @Override
+             protected IAjaxCallDecorator getAjaxCallDecorator() {
+                 // to avoid triggering validation when input c is empty.
+                 // // TODO (flowerrrr - 24.09.11) - could be extended to avoid validation when c value has not changed
+                 return new AjaxCallDecorator() {
+                     @Override
+                     public CharSequence decorateScript(Component c, CharSequence script) {
+                         return "if(jQuery.trim(this.value)=='')return false; " + script;
+                     }
+                 };
+             }
         });
+
         add(new FeedbackPanel("feedback", new ComponentFeedbackMessageFilter(c)));
 
         // set css class of border according to validation result.

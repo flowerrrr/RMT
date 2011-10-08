@@ -19,6 +19,16 @@
       </encoder>
     </appender>
 
+    <appender name="XSTREAM_FILE" class="ch.qos.logback.core.FileAppender">
+      <file>${LOG_HOME}/rmt-xstream.log</file>
+      <append>false</append>
+      <!-- encoders are assigned the type
+           ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+      <encoder>
+          <pattern>%d{HH:mm:ss.SSS} [%.5thread] %-5level %-36logger{36} - %msg%n</pattern>
+      </encoder>
+    </appender>
+
     <logger name="org.apache.wicket" level="INFO" />
     <logger name="org.wicketstuff" level="DEBUG" />
     <logger name="org.springframework" level="INFO" />
@@ -30,8 +40,11 @@
     <logger name="trace" level="INFO" />
     <logger name="trace.de.flower.common.model" level="INFO" />
     <logger name="trace.de.flower.common.ui.ajax.updatebehavior" level="INFO" />
+    <logger name="trace.de.flower.common.util.xstream.ClassEmittingReflectionConverter" level="INFO" />
 
-    <logger name="de.flower.common.ui.LoggingSerializer" level="TRACE" />
+    <logger name="xstream" additivity="false" level="TRACE" >
+        <appender-ref ref="XSTREAM_FILE" />
+    </logger>
 
 
     <root level="INFO">

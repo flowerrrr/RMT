@@ -6,7 +6,6 @@ import org.apache.wicket.protocol.http.WebApplication
 import scala.collection.JavaConversions._
 import org.apache.wicket.Component
 import org.apache.wicket.util.tester.{FormTester, WicketTester, WicketTesterHelper}
-import de.flower.common.ui.{LoggingSerializer, Css}
 import org.apache.wicket.serialize.java.JavaSerializer
 import scala.Boolean
 import com.thoughtworks.xstream.XStream
@@ -16,6 +15,8 @@ import java.util.regex.{Pattern, Matcher}
 import org.testng.Assert
 import org.apache.wicket.protocol.http.mock.MockHttpServletRequest
 import org.apache.wicket.request.IRequestHandler
+import de.flower.common.ui.serialize.LoggingSerializer
+import de.flower.common.ui.Css
 
 /**
  * 
@@ -26,34 +27,15 @@ class RMTWicketTester(application: WebApplication) extends WicketTester(applicat
 
     private val log: Logger = LoggerFactory.getLogger(this.getClass());
 
-    private val xstreamLog: Logger = LoggerFactory.getLogger("test.xstream");
-
-    private val xstream: XStream = new XStream
-
-    xstream.registerConverter(new ClassEmittingReflectionConverter(xstream), XStream.PRIORITY_VERY_LOW)
+    private val loggingSerializer = new LoggingSerializer("\"de\\.flower\\.rmt\\.model\\.[^-]*?\"");
 
     override def processRequest(forcedRequest: MockHttpServletRequest, forcedRequestHandler: IRequestHandler, redirect: Boolean): Boolean = {
         val b = super.processRequest(forcedRequest, forcedRequestHandler, redirect);
         val page = getLastRenderedPage()
         if (page != null) {
-            val xml = xstream.toXML(page);
-            xstreamLog.info(xml);
-            checkSerializedString(xml);
+            loggingSerializer.notify(page, null);
         }
         return b;
-    }
-
-    private def checkSerializedString(s: String) = {
-        val m: Matcher = Pattern.compile("\"de\\.flower\\.rmt\\.model\\.[^-]*?\"").matcher(s);
-        var error = false;
-        while (m.find()) {
-            error = true;
-            var matched = m.group();
-            log.warn("Serialized class [" + matched + "].");
-        }
-        if (error) {
-            Assert.fail("Serialized domain objects in your wicket pages! Use LoadableDetachableModels instead.");
-        }
     }
 
     /**

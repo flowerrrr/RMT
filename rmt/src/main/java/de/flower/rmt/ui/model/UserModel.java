@@ -2,30 +2,22 @@ package de.flower.rmt.ui.model;
 
 import de.flower.rmt.model.User;
 import de.flower.rmt.service.IUserManager;
-import org.apache.wicket.injection.Injector;
-import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
  * @author flowerrrr
  */
-public class UserModel extends LoadableDetachableModel<User> {
+public class UserModel extends AbstractEntityModel<User> {
 
     @SpringBean
     private IUserManager manager;
 
-    private Long id;
-
     public UserModel(User entity) {
-        if (entity != null) {
-            setObject(entity);
-            this.id = entity.getId();
-        }
-        Injector.get().inject(this);
+        super(entity);
     }
 
     @Override
-    protected User load() {
+    protected User load(Long id) {
         if (id == null) {
             return manager.newUserInstance();
         } else {

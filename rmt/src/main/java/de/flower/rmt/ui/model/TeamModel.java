@@ -2,30 +2,22 @@ package de.flower.rmt.ui.model;
 
 import de.flower.rmt.model.Team;
 import de.flower.rmt.service.ITeamManager;
-import org.apache.wicket.injection.Injector;
-import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
  * @author flowerrrr
  */
-public class TeamModel extends LoadableDetachableModel<Team> {
+public class TeamModel extends AbstractEntityModel<Team> {
 
     @SpringBean
     private ITeamManager manager;
 
-    private Long id;
-
     public TeamModel(Team entity) {
-        if (entity != null) {
-            setObject(entity);
-            this.id = entity.getId();
-        }
-        Injector.get().inject(this);
+        super(entity);
     }
 
     @Override
-    protected Team load() {
+    protected Team load(Long id) {
         if (id == null) {
             return manager.newTeamInstance();
         } else {
