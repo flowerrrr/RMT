@@ -11,6 +11,8 @@ import java.util.List;
  */
 public interface IUserManager {
 
+    User findById(Long id);
+
     User findByUsername(String username);
 
     void save(User user);

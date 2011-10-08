@@ -2,7 +2,7 @@ package de.flower.common.validation.unique;
 
 
 import de.flower.common.jpa.IColumnResolver;
-import de.flower.common.model.BaseEntity;
+import de.flower.common.model.IEntity;
 import de.flower.common.util.ReflectionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class UniqueValidator implements ConstraintValidator<Unique, BaseEntity> {
+public class UniqueValidator implements ConstraintValidator<Unique, IEntity> {
 
     private final static Logger log = LoggerFactory.getLogger(UniqueValidator.class);
 
@@ -71,7 +71,7 @@ public class UniqueValidator implements ConstraintValidator<Unique, BaseEntity> 
     }
 
     @Override
-    public boolean isValid(BaseEntity entity, ConstraintValidatorContext context) {
+    public boolean isValid(IEntity entity, ConstraintValidatorContext context) {
         lazyInitialize(entity.getClass());
         if (constraints.isEmpty()) {
             return true; // warnings of misconfiguration have been logged. just keep quiet and let bean validate.
@@ -100,7 +100,7 @@ public class UniqueValidator implements ConstraintValidator<Unique, BaseEntity> 
             this.columnResolver = columnResolver;
         }
 
-        public boolean isValid(BaseEntity entity, ConstraintValidatorContext context, UniqueConstraintDef constraint) {
+        public boolean isValid(IEntity entity, ConstraintValidatorContext context, UniqueConstraintDef constraint) {
             boolean valid = rowCount(entity, columnResolver.map2FieldNames(entity.getClass(), constraint.columnNames)).intValue() == 0;
             if (!valid) {
                 context.buildConstraintViolationWithTemplate("{de.flower.validation.constraints.unique.message." + constraint.name + "}")
@@ -109,11 +109,11 @@ public class UniqueValidator implements ConstraintValidator<Unique, BaseEntity> 
             return valid;
         }
 
-        private Long rowCount(BaseEntity entity, String[] fields) {
-            Class<? extends BaseEntity> entityClass = entity.getClass();
+        private Long rowCount(IEntity entity, String[] fields) {
+            Class<? extends IEntity> entityClass = entity.getClass();
             CriteriaBuilder cb = em.getCriteriaBuilder();
             CriteriaQuery<Long> query = cb.createQuery(Long.class);
-            Root<? extends BaseEntity> root = query.from(entityClass);
+            Root<? extends IEntity> root = query.from(entityClass);
             query.select(cb.count(root));
             Predicate condition = null;
             for (String field : fields) {

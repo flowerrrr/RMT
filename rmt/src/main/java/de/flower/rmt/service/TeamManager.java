@@ -34,6 +34,11 @@ public class TeamManager extends AbstractService implements ITeamManager {
     }
 
     @Override
+    public Team findById(Long id) {
+        return teamRepo.findOne(id);
+    }
+
+    @Override
     public List<Team> findAll() {
         return teamRepo.findAllByClub(getClub());
     }

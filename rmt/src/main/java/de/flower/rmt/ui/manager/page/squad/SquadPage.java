@@ -34,8 +34,8 @@ public class SquadPage extends ManagerBasePage {
 
     private AjaxSlideTogglePanel addPlayerPanel;
 
-    public SquadPage(final IModel<Team> model) {
-        super(model);
+    public SquadPage(final LoadableDetachableModel<Team> model) {
+        super();
 
         add(new Label("teamName", model.getObject().getName()));
 

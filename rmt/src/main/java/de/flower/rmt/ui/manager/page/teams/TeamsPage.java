@@ -10,6 +10,7 @@ import de.flower.rmt.service.ITeamManager;
 import de.flower.rmt.ui.common.page.ModalDialogWindow;
 import de.flower.rmt.ui.manager.ManagerBasePage;
 import de.flower.rmt.ui.manager.page.squad.SquadPage;
+import de.flower.rmt.ui.model.TeamModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -58,7 +59,7 @@ public class TeamsPage extends ManagerBasePage {
                 item.add(new Link("squadButton") {
                     @Override
                     public void onClick() {
-                        setResponsePage(new SquadPage(item.getModel()));
+                        setResponsePage(new SquadPage(new TeamModel(item.getModel().getObject())));
                     }
                 });
                 item.add(new MyAjaxLink("editButton") {

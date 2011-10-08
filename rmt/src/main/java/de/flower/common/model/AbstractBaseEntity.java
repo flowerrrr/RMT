@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author flowerrrr
  */
 @MappedSuperclass
-public abstract class AbstractBaseEntity implements Serializable, BaseEntity, Cloneable {
+public abstract class AbstractBaseEntity implements Serializable, IEntity, Cloneable {
 
     /** This constant is only needed for serialization purposes. It overwrites the default mechanism and so makes the BE longer binary compatible */
     private static final long serialVersionUID = 1L;

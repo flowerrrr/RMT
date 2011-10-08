@@ -3,7 +3,7 @@ package de.flower.rmt.ui.manager.page.events;
 import de.flower.common.ui.ajax.MyAjaxSubmitLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
-import de.flower.common.ui.form.MyForm;
+import de.flower.common.ui.form.EntityForm;
 import de.flower.common.ui.form.TimeSelect;
 import de.flower.common.ui.form.ValidatedFormComponent;
 import de.flower.common.ui.form.ValidatedTextField;
@@ -14,6 +14,7 @@ import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.manager.component.TeamSelect;
 import de.flower.rmt.ui.manager.component.VenueSelect;
 import de.flower.rmt.ui.manager.page.response.ResponsePage;
+import de.flower.rmt.ui.model.EventModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.datetime.markup.html.form.DateTextField;
 import org.apache.wicket.markup.html.form.Form;
@@ -23,20 +24,23 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.wicketstuff.jsr303.BeanValidator;
 
 /**
+ * A bit different form other editing panels cause it is always
+ * called with a domain object passed into the panel.
+ *
  * @author flowerrrr
  */
 public class EventEditPanel extends BasePanel {
 
-    private Form<Event> form;
+    private EntityForm<Event> form;
 
     @SpringBean
     private IEventManager eventManager;
 
     public EventEditPanel(String id, IModel<Event> model) {
-        super(id, model);
+        super(id);
         Check.notNull(model.getObject());
 
-        form = new MyForm<Event>("form", model.getObject());
+        form = new EntityForm<Event>("form", new EventModel(model.getObject()));
         form.setOutputMarkupPlaceholderTag(true);
         add(form);
 

@@ -13,6 +13,8 @@ public interface ITeamManager {
 
     void save(Team entity);
 
+    Team findById(Long id);
+
     List<Team> findAll();
 
     void delete(Team entity);

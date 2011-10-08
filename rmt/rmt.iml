@@ -381,11 +381,13 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-validator/jars/hibernate-validator-4.2.0.Final.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.wicketstuff/wicketstuff-jsr303/jars/wicketstuff-jsr303-1.5.0.jar!/" />
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC>
+          <root url="jar://$USER_HOME$/.gradle/cache/org.wicketstuff/wicketstuff-jsr303/javadocs/wicketstuff-jsr303-1.5.0-javadoc.jar!/" />
+        </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-validator/sources/hibernate-validator-4.2.0.Final-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.wicketstuff/wicketstuff-jsr303/sources/wicketstuff-jsr303-1.5.0-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -399,6 +401,17 @@
         </JAVADOC>
         <SOURCES>
           <root url="jar://$USER_HOME$/.gradle/cache/javax.validation/validation-api/sources/validation-api-1.0.0.GA-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-validator/jars/hibernate-validator-4.2.0.Final.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-validator/sources/hibernate-validator-4.2.0.Final-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>

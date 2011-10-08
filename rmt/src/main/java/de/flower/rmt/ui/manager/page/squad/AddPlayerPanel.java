@@ -40,8 +40,8 @@ public class AddPlayerPanel extends GenericPanel<Team> {
 
     private List<User> selectedPlayers = new ArrayList<User>();
 
-    public AddPlayerPanel( IModel<Team> model) {
-        super("panel", model);
+    public AddPlayerPanel(final IModel<Team> model) {
+        super("panel");
 
         Form form = new Form("form");
         add(form);
@@ -51,7 +51,7 @@ public class AddPlayerPanel extends GenericPanel<Team> {
         form.add(playerListContainer);
         CheckGroup group = new CheckGroup("group", selectedPlayers);
         playerListContainer.add(group);
-        ListView playerList = new ListView<User>("playerList", getListModel(model.getObject())) {
+        ListView playerList = new ListView<User>("playerList", getListModel(model)) {
 
             @Override
             protected void populateItem(ListItem<User> item) {
@@ -68,7 +68,7 @@ public class AddPlayerPanel extends GenericPanel<Team> {
         form.add(new MyAjaxSubmitLink("addButton") {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-                teamManager.addPlayers(AddPlayerPanel.this.getModelObject(), selectedPlayers);
+                teamManager.addPlayers(model.getObject(), selectedPlayers);
                 target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Player.class)));
                 close(target);
             }
@@ -91,11 +91,12 @@ public class AddPlayerPanel extends GenericPanel<Team> {
      *
      * @return
      */
-    private IModel<List<User>> getListModel(final Team team) {
+    private IModel<List<User>> getListModel(final IModel<Team> model) {
+        final Long id = model.getObject().getId(); // to avoid serialization of model and entity object
         return new LoadableDetachableModel<List<User>>() {
             @Override
             protected List<User> load() {
-                return userManager.findUnassignedPlayers(team);
+                return userManager.findUnassignedPlayers(model.getObject());
             }
         };
     }

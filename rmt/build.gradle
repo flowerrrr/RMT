@@ -28,6 +28,7 @@ dependencies {
             'org.apache.wicket:wicket-spring:' + version_wicket,
             'org.apache.wicket:wicket-datetime:' + version_wicket,
             'org.apache.wicket:wicket-devutils:' + version_wicket,
+            'org.wicketstuff:wicketstuff-jsr303:1.5.0',
             'org.hibernate:hibernate-validator:4.2.0.Final',
             'org.hibernate:hibernate-entitymanager:' + version_hibernate,
             'org.springframework.data:spring-data-jpa:1.0.1.RELEASE',

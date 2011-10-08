@@ -5,10 +5,10 @@ import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.Event_;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.manager.ManagerBasePage;
+import de.flower.rmt.ui.model.EventModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
@@ -22,12 +22,8 @@ public class ResponsePage extends ManagerBasePage {
      public ResponsePage(Long eventId) {
 
          final Event event = Check.notNull(eventManager.findById(eventId, Event_.invitations));
-         WebMarkupContainer noInvitationsPanel = new WebMarkupContainer("noInvitationsPanel") {
-             @Override
-             public boolean isVisible() {
-                 return event.getInvitations().isEmpty();
-             }
-         };
+         WebMarkupContainer noInvitationsPanel = new WebMarkupContainer("noInvitationsPanel");
+         noInvitationsPanel.setVisible(event.getInvitations().isEmpty());
          noInvitationsPanel.add(new AjaxLink("sendInvitationButton") {
              @Override
              public void onClick(AjaxRequestTarget target) {
@@ -37,6 +33,6 @@ public class ResponsePage extends ManagerBasePage {
          })  ;
          add(noInvitationsPanel);
 
-         add(new ResponsePanel("responsePanel", Model.of(event)));
+         add(new ResponsePanel("responsePanel", new EventModel(event)));
      }
 }

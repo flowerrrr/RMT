@@ -15,7 +15,7 @@ public class Check extends Validate {
         }
     }
 
-    static String format(Object actual, Object expected, String message) {
+    private static String format(Object actual, Object expected, String message) {
         String formatted = "";
         if (null != message) {
             formatted = message + " ";
@@ -23,6 +23,5 @@ public class Check extends Validate {
 
         return formatted + "expected:<" + expected + "> but was:<" + actual + ">";
     }
-
 
 }

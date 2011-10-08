@@ -23,10 +23,10 @@ public class UserRepo extends BaseRepository implements IUserRepoEx {
     }
 
     @Override
-    public List<User> findUnassignedPlayers(final Team team, Club club) {
+    public List<User> findUnassignedPlayers(final Team teamId, Club club) {
         // select from User u where u.club = :club and u not in (select from User u left join Player where p.team = :team)
         final Query query = em.createQuery("select u from User u where u.club = :club and u not in (select u2 from Player p join p.user u2 where p.team = :team)");
-        query.setParameter("team", team);
+        query.setParameter("team", teamId);
         query.setParameter("club", club);
         return query.getResultList();
 

@@ -3,29 +3,29 @@ package de.flower.rmt.ui.manager.page.teams;
 import de.flower.common.ui.ajax.MyAjaxSubmitLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
-import de.flower.common.ui.form.MyForm;
+import de.flower.common.ui.form.EntityForm;
 import de.flower.common.ui.form.ValidatedTextField;
 import de.flower.common.validation.unique.Unique;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.service.ITeamManager;
+import de.flower.rmt.ui.common.IEntityEditPanel;
 import de.flower.rmt.ui.common.panel.BasePanel;
+import de.flower.rmt.ui.model.TeamModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.wicketstuff.jsr303.BeanValidator;
 import org.wicketstuff.jsr303.ConstraintFilter;
-import org.wicketstuff.jsr303.WicketBeanValidator;
+import org.wicketstuff.jsr303.ComponentBeanValidator;
 
 /**
  * @author flowerrrr
  */
-public class TeamEditPanel extends BasePanel {
+public class TeamEditPanel extends BasePanel implements IEntityEditPanel<Team> {
 
-    private Form<Team> form;
+    private EntityForm<Team> form;
 
     @SpringBean
     private ITeamManager teamManager;
@@ -33,13 +33,13 @@ public class TeamEditPanel extends BasePanel {
     public TeamEditPanel(String id) {
         super(id);
 
-        form = new MyForm<Team>("form", new Team());
+        form = new EntityForm<Team>("form", new TeamModel(null));
         add(form);
 
         ValidatedTextField name;
         form.add(name = new ValidatedTextField("name"));
         // add a class level validator to this property
-        name.add(new WicketBeanValidator(Unique.class, new ConstraintFilter("{de.flower.validation.constraints.unique.message.name}")));
+        name.add(new ComponentBeanValidator(Unique.class, new ConstraintFilter("{de.flower.validation.constraints.unique.message.name}")));
         form.add(new ValidatedTextField("url"));
 
         form.add(new MyAjaxSubmitLink("saveButton") {
@@ -63,10 +63,8 @@ public class TeamEditPanel extends BasePanel {
 
     public void init(IModel<Team> model) {
         if (model == null) {
-            model = Model.of(teamManager.newTeamInstance());
+            model = new TeamModel(null);
         }
-        form.setModel(new CompoundPropertyModel<Team>(model));
-        // clear css marker of previous validations
-
+        form.replaceModel(model);
     }
 }

@@ -14,6 +14,8 @@ import de.flower.common.util.xstream.ClassEmittingReflectionConverter
 import org.slf4j.{LoggerFactory, Logger}
 import java.util.regex.{Pattern, Matcher}
 import org.testng.Assert
+import org.apache.wicket.protocol.http.mock.MockHttpServletRequest
+import org.apache.wicket.request.IRequestHandler
 
 /**
  * 
@@ -30,9 +32,8 @@ class RMTWicketTester(application: WebApplication) extends WicketTester(applicat
 
     xstream.registerConverter(new ClassEmittingReflectionConverter(xstream), XStream.PRIORITY_VERY_LOW)
 
-
-    override def processRequest(): Boolean = {
-        val b = super.processRequest();
+    override def processRequest(forcedRequest: MockHttpServletRequest, forcedRequestHandler: IRequestHandler, redirect: Boolean): Boolean = {
+        val b = super.processRequest(forcedRequest, forcedRequestHandler, redirect);
         val page = getLastRenderedPage()
         if (page != null) {
             val xml = xstream.toXML(page);
@@ -43,10 +44,15 @@ class RMTWicketTester(application: WebApplication) extends WicketTester(applicat
     }
 
     private def checkSerializedString(s: String) = {
-        val m: Matcher = Pattern.compile("\"de\\.flower\\.rmt\\.model\\..*?\"").matcher(s);
+        val m: Matcher = Pattern.compile("\"de\\.flower\\.rmt\\.model\\.[^-]*?\"").matcher(s);
+        var error = false;
         while (m.find()) {
+            error = true;
             var matched = m.group();
             log.warn("Serialized class [" + matched + "].");
+        }
+        if (error) {
+            Assert.fail("Serialized domain objects in your wicket pages! Use LoadableDetachableModels instead.");
         }
     }
 

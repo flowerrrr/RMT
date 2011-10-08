@@ -28,7 +28,7 @@ public class ResponsePanel extends Panel {
         super(id, model);
         Event event = Check.notNull(model.getObject());
 
-        ListView acceptedList = new ListView<Response>("acceptedList", getResponseList(event, RSVPStatus.ACCEPTED)) {
+        ListView acceptedList = new ListView<Response>("acceptedList", getResponseList(model, RSVPStatus.ACCEPTED)) {
             @Override
             protected void populateItem(ListItem<Response> item) {
                 final Response response = item.getModelObject();
@@ -40,11 +40,11 @@ public class ResponsePanel extends Panel {
         add(acceptedList);
     }
 
-    private IModel<? extends List<? extends Response>> getResponseList(final Event event, final RSVPStatus rsvpStatus) {
+    private IModel<? extends List<? extends Response>> getResponseList(final IModel<Event> model, final RSVPStatus rsvpStatus) {
         return new LoadableDetachableModel<List<? extends Response>>() {
             @Override
             protected List<? extends Response> load() {
-                return responseManager.findByEventAndStatus(event, rsvpStatus);
+                return responseManager.findByEventAndStatus(model.getObject(), rsvpStatus);
             }
         };
     }

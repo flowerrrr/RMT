@@ -1,34 +1,31 @@
 package de.flower.rmt.ui.manager.page.players;
 
-import de.flower.common.ui.FormMode;
 import de.flower.common.ui.ajax.MyAjaxSubmitLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
-import de.flower.common.ui.form.MyForm;
+import de.flower.common.ui.form.EntityForm;
 import de.flower.common.ui.form.ValidatedTextField;
 import de.flower.common.validation.unique.Unique;
 import de.flower.rmt.model.User;
 import de.flower.rmt.service.IUserManager;
+import de.flower.rmt.ui.common.IEntityEditPanel;
 import de.flower.rmt.ui.common.panel.BasePanel;
+import de.flower.rmt.ui.model.UserModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.wicketstuff.jsr303.BeanValidator;
 import org.wicketstuff.jsr303.ConstraintFilter;
-import org.wicketstuff.jsr303.WicketBeanValidator;
+import org.wicketstuff.jsr303.ComponentBeanValidator;
 
 /**
  * @author flowerrrr
  */
-public class PlayerEditPanel extends BasePanel {
+public class PlayerEditPanel extends BasePanel implements IEntityEditPanel<User> {
 
-    private FormMode mode;
-
-    private Form<User> form;
+    private EntityForm<User> form;
 
     @SpringBean
     private IUserManager playerManager;
@@ -36,17 +33,17 @@ public class PlayerEditPanel extends BasePanel {
     public PlayerEditPanel(String id) {
         super(id);
 
-        form = new MyForm<User>("form", new User());
+        form = new EntityForm<User>("form", new UserModel(null));
         add(form);
 
         ValidatedTextField fullname = new ValidatedTextField("fullname");
         form.add(fullname);
-        fullname.add(new WicketBeanValidator(Unique.class, new ConstraintFilter("{de.flower.validation.constraints.unique.message.fullname}")));
+        fullname.add(new ComponentBeanValidator(Unique.class, new ConstraintFilter("{de.flower.validation.constraints.unique.message.fullname}")));
 
         ValidatedTextField email = new ValidatedTextField("email");
         form.add(email);
         // add a class level validator to this property
-        email.add(new WicketBeanValidator(Unique.class, new ConstraintFilter("{de.flower.validation.constraints.unique.message.email}")));
+        email.add(new ComponentBeanValidator(Unique.class, new ConstraintFilter("{de.flower.validation.constraints.unique.message.email}")));
 
         form.add(new MyAjaxSubmitLink("saveButton") {
             @Override
@@ -69,10 +66,8 @@ public class PlayerEditPanel extends BasePanel {
 
     public void init(IModel<User> model) {
         if (model == null) {
-            model = Model.of(playerManager.newUserInstance());
+            model = new UserModel(null);
         }
-        form.setModel(new CompoundPropertyModel<User>(model));
-        // clear css marker of previous validations
-
+        form.replaceModel(model);
     }
 }

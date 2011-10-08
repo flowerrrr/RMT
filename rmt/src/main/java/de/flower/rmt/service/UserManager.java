@@ -28,6 +28,11 @@ public class UserManager extends AbstractService implements IUserManager {
     private IUserRepo userRepo;
 
     @Override
+    public User findById(Long id) {
+        return userRepo.findOne(id);
+    }
+
+    @Override
     public User findByUsername(String username) {
         return userRepo.findByEmail(username);
     }

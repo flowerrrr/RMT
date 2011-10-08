@@ -1,10 +1,9 @@
 package de.flower.rmt.ui.manager.page.venues;
 
-import de.flower.common.ui.FormMode;
 import de.flower.common.ui.ajax.MyAjaxSubmitLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
-import de.flower.common.ui.form.MyForm;
+import de.flower.common.ui.form.EntityForm;
 import de.flower.common.ui.form.ValidatedTextField;
 import de.flower.common.util.geo.LatLngEx;
 import de.flower.rmt.model.Venue;
@@ -13,8 +12,10 @@ import de.flower.rmt.service.geocoding.GeocodingResult;
 import de.flower.rmt.service.geocoding.IGeocodingService;
 import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.ui.app.RMTSession;
+import de.flower.rmt.ui.common.IEntityEditPanel;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.manager.page.venues.panel.GMapPanel2;
+import de.flower.rmt.ui.model.VenueModel;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
@@ -26,7 +27,6 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
-import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -39,11 +39,9 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class VenueEditPanel extends BasePanel {
+public class VenueEditPanel extends BasePanel implements IEntityEditPanel<Venue> {
 
-    private FormMode mode;
-
-    private Form<Venue> form;
+    private EntityForm<Venue> form;
 
     private GMapPanel2 mapPanel;
 
@@ -65,7 +63,7 @@ public class VenueEditPanel extends BasePanel {
     public VenueEditPanel(String id) {
         super(id);
 
-        form = new MyForm<Venue>("form", new Venue());
+        form = new EntityForm<Venue>("form", new VenueModel(null));
         add(form);
 
         form.add(new ValidatedTextField("name"));
@@ -153,9 +151,9 @@ public class VenueEditPanel extends BasePanel {
 
     public void init(IModel<Venue> model) {
         if (model == null) {
-            model = Model.of(venueManager.newVenueInstance());
+            model = new VenueModel(null);
         }
-        form.setModel(new CompoundPropertyModel<Venue>(model));
+        form.replaceModel(model);
         mapPanel.init(Model.of(model.getObject().getLatLng()));
         hideGeocodingResults();
     }

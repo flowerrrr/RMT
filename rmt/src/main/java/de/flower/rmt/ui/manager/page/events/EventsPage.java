@@ -74,7 +74,7 @@ public class EventsPage extends ManagerBasePage {
             }
 
             @Override
-            protected void populateItem(ListItem<Event> item) {
+            protected void populateItem(final ListItem<Event> item) {
                 final Event event = item.getModelObject();
                 item.add(DateLabel.forDateStyle("date", Model.of(event.getDate()), "S-"));
                 item.add(DateLabel.forDateStyle("time", Model.of(event.getTime().toDateTimeToday().toDate()), "-S"));
@@ -86,14 +86,14 @@ public class EventsPage extends ManagerBasePage {
 
                     @Override
                     public void onClick() {
-                        setResponsePage(new EventsEditPage(event));
+                        setResponsePage(new EventsEditPage(item.getModelObject()));
                     }
                 });
                 item.add(new AjaxLinkWithConfirmation("deleteButton", new ResourceModel("manager.events.delete.confirm")) {
 
                     @Override
                     public void onClick(AjaxRequestTarget target) {
-                        eventManager.delete(event);
+                        eventManager.delete(item.getModelObject());
                         target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(Event.class)));
                     }
                 });

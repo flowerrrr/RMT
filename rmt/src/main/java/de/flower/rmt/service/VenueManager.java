@@ -30,6 +30,11 @@ public class VenueManager extends AbstractService implements IVenueManager {
     }
 
     @Override
+    public Venue findById(Long id) {
+        return venueRepo.findOne(id);
+    }
+
+    @Override
     public List<Venue> findAll(final Attribute... attributes) {
         Specification hasClub = Specs.eq(Venue_.club, getClub());
         List<Venue> list = venueRepo.findAll(hasClub);

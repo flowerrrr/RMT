@@ -11,6 +11,6 @@ import java.util.List;
  */
 public interface IUserRepoEx {
 
-    List<User> findUnassignedPlayers(Team team, Club club);
+    List<User> findUnassignedPlayers(Team teamId, Club club);
 
 }

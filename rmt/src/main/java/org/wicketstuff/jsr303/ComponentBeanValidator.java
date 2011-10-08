@@ -26,9 +26,9 @@ import java.util.Set;
  *
  * @author flowerrrr
  */
-public class WicketBeanValidator<T> extends Behavior implements INullAcceptingValidator<String>, Serializable {
+public class ComponentBeanValidator<T> extends Behavior implements INullAcceptingValidator<String>, Serializable {
 
-    private final static Logger log = LoggerFactory.getLogger(WicketBeanValidator.class);
+    private final static Logger log = LoggerFactory.getLogger(ComponentBeanValidator.class);
 
     private Class<?>[] groups;
 
@@ -41,12 +41,12 @@ public class WicketBeanValidator<T> extends Behavior implements INullAcceptingVa
 
     private Form form;
 
-    public WicketBeanValidator(Class<?>[] groups, ConstraintFilter filter) {
+    public ComponentBeanValidator(Class<?>[] groups, ConstraintFilter filter) {
         this.groups = groups;
         this.filter = filter;
     }
 
-    public WicketBeanValidator(Class<?> group, ConstraintFilter filter) {
+    public ComponentBeanValidator(Class<?> group, ConstraintFilter filter) {
         this(new Class<?>[]{group}, filter);
     }
 
