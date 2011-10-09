@@ -5,6 +5,7 @@ import de.flower.common.model.AbstractBaseEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -23,6 +24,7 @@ public class Player extends AbstractBaseEntity {
      * If true, player is not required to respond to invitations.
      */
     @Column
+    @NotNull
     private Boolean optional;
 
     @Deprecated

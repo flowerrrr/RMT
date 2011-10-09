@@ -5,7 +5,6 @@ package de.flower.rmt.model;
  */
 public enum RSVPStatus {
 
-    NO_RESPONSE,
     ACCEPTED,
     DECLINED,
     UNSURE;

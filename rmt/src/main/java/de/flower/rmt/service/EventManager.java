@@ -1,6 +1,5 @@
 package de.flower.rmt.service;
 
-import de.flower.rmt.model.User_;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.model.event.Event_;

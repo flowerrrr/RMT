@@ -16,6 +16,7 @@
 
 
     <context:component-scan base-package="de.flower.test" />
+    <context:component-scan base-package="de.flower.rmt.test" />
     <!--  &lt;!&ndash; for detecting wicketApplication &ndash;&gt;
         <context:annotation-config/>
         <context:component-scan base-package="de.flower.rmt.ui"/>

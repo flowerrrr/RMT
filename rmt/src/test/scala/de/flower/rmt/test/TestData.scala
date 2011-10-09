@@ -1,4 +1,4 @@
-package de.flower.test
+package de.flower.rmt.test
 
 import org.springframework.stereotype.Service
 import org.springframework.beans.factory.annotation.Autowired
@@ -11,9 +11,6 @@ import de.flower.rmt.service.{IUserManager, ITeamManager, IResponseManager, IEve
 import org.apache.commons.lang3.{RandomStringUtils, Validate}
 import scala.collection.JavaConversions._
 import collection.mutable.ListBuffer
-import javax.persistence.{EntityManager, PersistenceContext}
-import javax.transaction.TransactionManager
-import org.springframework.transaction.PlatformTransactionManager
 import de.flower.rmt.repository.{IPlayerRepo, IEventRepo, ITeamRepo, IClubRepo}
 
 /**
@@ -64,7 +61,7 @@ class TestData {
             val users = createUsers(20)
             teamManager.addPlayers(team, users)
         }
-        return teamRepo.reload(team)
+        return team;
     }
 
     def createTeam(name: String): Team = {
@@ -86,16 +83,21 @@ class TestData {
         return users
     }
 
-    /**
-     * Creates an event with some responses.
-     */
-    def getEventWithResponses(): Event = {
+    def getEvent(): Event = {
         val event = eventManager.newInstance(EventType.Training)
         event.setDate(new Date())
         event.setTime(LocalTime.now())
         event.setSummary("Summary")
-        event.setTeam(getTeamWithPlayer("Socca Five"))
+        event.setTeam(getTeamWithPlayer("Socca Five 2"))
         eventManager.save(event)
+        return event
+    }
+
+    /**
+     * Creates an event with some responses.
+     */
+    def getEventWithResponses(): Event = {
+        val event = getEvent();
         responseManager.respond(event, playerRepo.findByTeam(event.getTeam()).get(15), RSVPStatus.ACCEPTED, "some comment")
         responseManager.respond(event, playerRepo.findByTeam(event.getTeam()).get(1), RSVPStatus.DECLINED, "some comment")
         responseManager.respond(event, playerRepo.findByTeam(event.getTeam()).get(2), RSVPStatus.DECLINED, "some comment")

@@ -7,8 +7,8 @@ import org.dbunit.dataset.IDataSet
 import org.slf4j.{LoggerFactory, Logger}
 import org.apache.commons.lang3.Validate
 import de.flower.common.util.IO
-import org.dbunit.dataset.xml.{FlatDtdWriter, FlatXmlDataSet, FlatXmlDataSetBuilder}
-import java.io.{Writer, OutputStreamWriter, FileOutputStream}
+import org.dbunit.dataset.xml.{FlatXmlDataSet, FlatXmlDataSetBuilder}
+import java.io.FileOutputStream
 
 /**
  *

@@ -3,10 +3,7 @@ package de.flower.rmt.model;
 import de.flower.common.model.AbstractBaseEntity;
 import de.flower.rmt.model.event.Event;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +14,7 @@ import java.util.List;
 @Entity
 public class Response extends AbstractBaseEntity {
 
-    @Column
+    @Enumerated(EnumType.STRING)
     @NotNull
     private RSVPStatus status;
 

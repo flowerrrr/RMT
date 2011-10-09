@@ -15,4 +15,5 @@ public interface IUserRepo extends JpaRepository<User, Long>, JpaSpecificationEx
     User findByEmail(String username);
 
     List<User> findByClub(Club club);
+
 }

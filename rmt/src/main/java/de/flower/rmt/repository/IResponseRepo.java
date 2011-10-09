@@ -16,4 +16,5 @@ import java.util.List;
 public interface IResponseRepo extends IRepository<Response, Long> {
 
     List<Response> findByEventAndStatusOrderByDateAsc(Event event, RSVPStatus rsvpStatus);
+
 }

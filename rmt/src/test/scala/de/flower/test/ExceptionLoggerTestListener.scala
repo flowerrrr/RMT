@@ -1,7 +1,7 @@
 package de.flower.test
 
 import org.slf4j.{LoggerFactory, Logger}
-import org.testng.{Assert, TestListenerAdapter, ITestResult}
+import org.testng.{TestListenerAdapter, ITestResult}
 
 /**
  *

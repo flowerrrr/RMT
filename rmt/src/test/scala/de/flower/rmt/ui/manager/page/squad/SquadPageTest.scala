@@ -2,7 +2,6 @@ package de.flower.rmt.ui.manager.page.squad
 
 import de.flower.rmt.test.WicketTests
 import org.testng.annotations.Test
-import org.apache.wicket.model.Model
 import de.flower.rmt.ui.model.TeamModel
 
 /**

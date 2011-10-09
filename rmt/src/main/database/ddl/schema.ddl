@@ -5,23 +5,75 @@
         primary key (id)
     );
 
+    create table Comment (
+        id bigint not null auto_increment,
+        comment varchar(255),
+        author_id bigint,
+        response_id bigint,
+        primary key (id)
+    );
+
     create table Event (
         eventType varchar(31) not null,
         id bigint not null auto_increment,
         comment varchar(255),
-        date datetime,
-        kickOff datetime,
+        date datetime not null,
+        summary varchar(40) not null,
+        time time not null,
+        kickOff time,
         club_id bigint not null,
-        team_id bigint,
+        team_id bigint not null,
         venue_id bigint,
+        jersey_id bigint,
         opponent_id bigint,
         primary key (id)
     );
 
     create table Invitation (
         id bigint not null auto_increment,
+        body varchar(255) not null,
+        date datetime not null,
+        subject varchar(255) not null,
         event_id bigint,
+        primary key (id)
+    );
+
+    create table Jersey (
+        id bigint not null auto_increment,
+        shirt varchar(255),
+        shorts varchar(255),
+        socks varchar(255),
+        team_id bigint,
+        primary key (id)
+    );
+
+    create table Manager (
+        team_id bigint not null,
+        user_id bigint not null
+    );
+
+    create table Opponent (
+        id bigint not null auto_increment,
+        name varchar(40) not null,
+        url varchar(255),
+        primary key (id)
+    );
+
+    create table Player (
+        id bigint not null auto_increment,
+        optional bit,
+        team_id bigint,
         user_id bigint,
+        primary key (id)
+    );
+
+    create table Response (
+        id bigint not null auto_increment,
+        date datetime not null,
+        guestName varchar(255),
+        status varchar(255) not null,
+        event_id bigint,
+        player_id bigint,
         primary key (id)
     );
 
@@ -40,12 +92,6 @@
         club_id bigint not null,
         primary key (id),
         unique (name, club_id)
-    );
-
-    create table Team_Player (
-        teams_id bigint not null,
-        players_id bigint not null,
-        primary key (teams_id, players_id)
     );
 
     create table Users (
@@ -70,6 +116,18 @@
         primary key (id)
     );
 
+    alter table Comment 
+        add index FK9BDE863FCA54B59A (author_id), 
+        add constraint FK9BDE863FCA54B59A 
+        foreign key (author_id) 
+        references Users (id);
+
+    alter table Comment 
+        add index FK9BDE863F69EFA79A (response_id), 
+        add constraint FK9BDE863F69EFA79A 
+        foreign key (response_id) 
+        references Response (id);
+
     alter table Event 
         add index FK403827A5CB6EDDA (venue_id), 
         add constraint FK403827A5CB6EDDA 
@@ -83,10 +141,10 @@
         references Club (id);
 
     alter table Event 
-        add index FK403827A37C9631A (opponent_id), 
-        add constraint FK403827A37C9631A 
+        add index FK403827ACA4D421A (opponent_id), 
+        add constraint FK403827ACA4D421A 
         foreign key (opponent_id) 
-        references Team (id);
+        references Opponent (id);
 
     alter table Event 
         add index FK403827A1C96621A (team_id), 
@@ -94,21 +152,63 @@
         foreign key (team_id) 
         references Team (id);
 
+    alter table Event 
+        add index FK403827A2B4253A (jersey_id), 
+        add constraint FK403827A2B4253A 
+        foreign key (jersey_id) 
+        references Jersey (id);
+
     alter table Invitation 
-        add index FKBE1153B9E96D79FA (event_id), 
-        add constraint FKBE1153B9E96D79FA 
+        add index FKBE1153B9D1F985A6 (event_id), 
+        add constraint FKBE1153B9D1F985A6 
         foreign key (event_id) 
         references Event (id);
 
-    alter table Invitation 
-        add index FKBE1153B9D0F4C297 (user_id), 
-        add constraint FKBE1153B9D0F4C297 
+    alter table Jersey 
+        add index FK840B72901C96621A (team_id), 
+        add constraint FK840B72901C96621A 
+        foreign key (team_id) 
+        references Team (id);
+
+    alter table Manager 
+        add index FK9501A78D699BC35A (user_id), 
+        add constraint FK9501A78D699BC35A 
         foreign key (user_id) 
         references Users (id);
 
+    alter table Manager 
+        add index FK9501A78D1C96621A (team_id), 
+        add constraint FK9501A78D1C96621A 
+        foreign key (team_id) 
+        references Team (id);
+
+    alter table Player 
+        add index FK8EA38701699BC35A (user_id), 
+        add constraint FK8EA38701699BC35A 
+        foreign key (user_id) 
+        references Users (id);
+
+    alter table Player 
+        add index FK8EA387011C96621A (team_id), 
+        add constraint FK8EA387011C96621A 
+        foreign key (team_id) 
+        references Team (id);
+
+    alter table Response 
+        add index FKEF917861D1F985A6 (event_id), 
+        add constraint FKEF917861D1F985A6 
+        foreign key (event_id) 
+        references Event (id);
+
+    alter table Response 
+        add index FKEF917861E4FF039A (player_id), 
+        add constraint FKEF917861E4FF039A 
+        foreign key (player_id) 
+        references Player (id);
+
     alter table Role 
-        add index FK26F496D0F4C297 (user_id), 
-        add constraint FK26F496D0F4C297 
+        add index FK26F496699BC35A (user_id), 
+        add constraint FK26F496699BC35A 
         foreign key (user_id) 
         references Users (id);
 
@@ -117,18 +217,6 @@
         add constraint FK27B67DA64B977A 
         foreign key (club_id) 
         references Club (id);
-
-    alter table Team_Player 
-        add index FKD4E5F70356B3CF50 (players_id), 
-        add constraint FKD4E5F70356B3CF50 
-        foreign key (players_id) 
-        references Users (id);
-
-    alter table Team_Player 
-        add index FKD4E5F703EF9B021 (teams_id), 
-        add constraint FKD4E5F703EF9B021 
-        foreign key (teams_id) 
-        references Team (id);
 
     alter table Users 
         add index FK4E39DE8A64B977A (club_id), 

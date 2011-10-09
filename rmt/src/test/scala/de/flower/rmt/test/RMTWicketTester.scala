@@ -1,18 +1,11 @@
-package de.flower.test
+package de.flower.rmt.test
 
-import org.apache.wicket.util.tester.{WicketTesterHelper, WicketTester}
-import org.apache.wicket.Component
 import org.apache.wicket.protocol.http.WebApplication
 import scala.collection.JavaConversions._
 import org.apache.wicket.Component
 import org.apache.wicket.util.tester.{FormTester, WicketTester, WicketTesterHelper}
-import org.apache.wicket.serialize.java.JavaSerializer
 import scala.Boolean
-import com.thoughtworks.xstream.XStream
-import de.flower.common.util.xstream.ClassEmittingReflectionConverter
 import org.slf4j.{LoggerFactory, Logger}
-import java.util.regex.{Pattern, Matcher}
-import org.testng.Assert
 import org.apache.wicket.protocol.http.mock.MockHttpServletRequest
 import org.apache.wicket.request.IRequestHandler
 import de.flower.common.ui.serialize.LoggingSerializer

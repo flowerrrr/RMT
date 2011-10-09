@@ -395,7 +395,7 @@
 
             <!-- Write all CREATE statements to a file. -->
             <hbm2ddl drop="false" create="true" export="false"
-                     outputfilename="schema-rmt-pu.ddl" delimiter=";" format="true"/>
+                     outputfilename="schema.ddl" delimiter=";" format="true"/>
 
         </hibernatetool>
         <hibernatetool destdir="${export.dir}">

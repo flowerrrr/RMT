@@ -58,7 +58,7 @@ public class EventsPage extends ManagerBasePage {
         };
         add(newButton);
 
-
+        // extract into own EventsPanel
         final IModel<List<Event>> listModel = getListModel();
         WebMarkupContainer listContainer = new WebMarkupContainer("listContainer");
         add(listContainer);

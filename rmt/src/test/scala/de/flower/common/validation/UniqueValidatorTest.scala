@@ -1,12 +1,13 @@
 package de.flower.common.validation
 
 import org.springframework.beans.factory.annotation.Autowired
-import de.flower.test.AbstractIntegrationTests
 import org.testng.annotations.Test
 import javax.validation.{ConstraintViolation, ConstraintViolationException, Validator}
 import org.testng.Assert._
 import scala.collection.JavaConversions._
 import de.flower.rmt.model.Team
+import de.flower.rmt.test.AbstractIntegrationTests
+
 /**
  *
  * @author flowerrrr

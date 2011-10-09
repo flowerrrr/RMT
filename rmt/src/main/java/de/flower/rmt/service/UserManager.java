@@ -1,9 +1,7 @@
 package de.flower.rmt.service;
 
-import de.flower.rmt.model.Role;
-import de.flower.rmt.model.Team;
-import de.flower.rmt.model.User;
-import de.flower.rmt.model.User_;
+import de.flower.rmt.model.*;
+import de.flower.rmt.model.event.Event;
 import de.flower.rmt.repository.IUserRepo;
 import de.flower.rmt.repository.Specs;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +55,6 @@ public class UserManager extends AbstractService implements IUserManager {
     public List<User> findUnassignedPlayers(final Team team) {
         return userRepo.findUnassignedPlayers(team, getClub());
     }
-
     @Override
     @Transactional(readOnly = false)
     public void delete(User user) {

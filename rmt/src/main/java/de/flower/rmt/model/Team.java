@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.URL;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import javax.validation.groups.Default;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,10 +34,10 @@ public class Team extends AbstractClubRelatedEntity  {
         joinColumns=@JoinColumn(name="team_id"),
         inverseJoinColumns=@JoinColumn(name="user_id")
     )
-    private List<User> managers;
+    private List<User> managers = new ArrayList<User>();
 
     @OneToMany(mappedBy = "team")
-    private List<Player> players;
+    private List<Player> players = new ArrayList<Player>();
 
     @Deprecated
     public Team() {

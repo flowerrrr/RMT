@@ -31,4 +31,5 @@ public class UserRepo extends BaseRepository implements IUserRepoEx {
         return query.getResultList();
 
     }
+
 }

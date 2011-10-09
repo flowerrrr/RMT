@@ -1,10 +1,10 @@
 package de.flower.common.aop
 
-import de.flower.test.AbstractIntegrationTests
 import org.testng.annotations.Test
 import org.testng.Assert._
 import de.flower.rmt.repository.ITeamRepo
 import org.springframework.beans.factory.annotation.{Configurable, Autowired}
+import de.flower.rmt.test.AbstractIntegrationTests
 
 /**
  * 

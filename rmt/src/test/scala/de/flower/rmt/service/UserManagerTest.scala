@@ -1,11 +1,11 @@
 package de.flower.rmt.service
 
-import de.flower.test.AbstractIntegrationTests
 import org.testng.annotations.Test
 import org.testng.Assert._
 import org.hibernate.LazyInitializationException
 import scala.collection.JavaConversions._
 import de.flower.rmt.model.User_
+import de.flower.rmt.test.AbstractIntegrationTests
 
 /**
  * 

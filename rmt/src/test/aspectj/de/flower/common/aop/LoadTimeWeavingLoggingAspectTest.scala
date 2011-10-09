@@ -1,8 +1,7 @@
 package de.flower.common.aop
 
-import de.flower.test.AbstractIntegrationTests
 import org.testng.annotations.Test
-
+import de.flower.rmt.test.AbstractIntegrationTests
 
 /**
  *

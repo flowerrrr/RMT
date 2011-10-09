@@ -1,6 +1,6 @@
-package de.flower.test
+package de.flower.rmt.test
 
-import mock.{IListAppender, LogBackListAppender}
+import de.flower.test.mock.{IListAppender, LogBackListAppender}
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests
 import javax.persistence.{PersistenceContext, EntityManager}
@@ -17,9 +17,10 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.userdetails.UserDetailsService
 import java.util.ArrayList
 import org.apache.commons.lang3.Validate
-import de.flower.rmt.service.{IEventManager, IUserManager, ITeamManager}
 import org.testng.annotations.{AfterMethod, BeforeClass, Listeners, BeforeMethod}
 import org.springframework.test.annotation.DirtiesContext
+import de.flower.test.{Database, TestMethodListener}
+import de.flower.rmt.service._
 
 /**
  *
@@ -60,6 +61,12 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
 
     @Autowired
     protected var eventManager: IEventManager = _
+
+    @Autowired
+    protected var playerManager: IPlayerManager = _
+
+    @Autowired
+    protected var responseManager: IResponseManager = _
 
     @Autowired
     protected var userDetailService: UserDetailsService = _

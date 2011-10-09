@@ -64,9 +64,10 @@ public class TeamManager extends AbstractService implements ITeamManager {
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void addPlayers(Team team, List<User> users) {
-        team = teamRepo.reload(team);
         for (User user : users) {
             Player player = new Player(team, user);
+            player.setOptional(false);
+            team.getPlayers().add(player);
             playerRepo.save(player);
         }
     }

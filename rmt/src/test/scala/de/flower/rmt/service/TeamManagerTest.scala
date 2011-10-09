@@ -1,12 +1,12 @@
 package de.flower.rmt.service
 
-import de.flower.test.AbstractIntegrationTests
 import org.testng.annotations.Test
 import de.flower.rmt.model.Team
 import org.springframework.beans.factory.annotation.Autowired
 import org.testng.Assert._
 import javax.validation.{ConstraintViolation, Validator, ConstraintViolationException}
 import scala.collection.JavaConversions._
+import de.flower.rmt.test.AbstractIntegrationTests
 
 /**
  *
