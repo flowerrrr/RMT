@@ -24,9 +24,9 @@ public class ResponsePanel extends Panel {
     @SpringBean
     private IResponseManager responseManager;
 
-    public ResponsePanel(String id, IModel<Event> model) {
-        super(id, model);
-        Event event = Check.notNull(model.getObject());
+    public ResponsePanel(String id, LoadableDetachableModel<Event> model) {
+        super(id);
+        Check.notNull(model.getObject());
 
         ListView acceptedList = new ListView<Response>("acceptedList", getResponseList(model, RSVPStatus.ACCEPTED)) {
             @Override
