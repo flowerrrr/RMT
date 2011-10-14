@@ -21,7 +21,7 @@ public class Comment extends AbstractBaseEntity {
     @ManyToOne
     private Response response;
 
-    public Comment() {
+    private Comment() {
     }
 
     public Comment(String comment, User author, Response response) {

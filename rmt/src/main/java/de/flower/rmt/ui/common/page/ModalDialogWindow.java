@@ -28,7 +28,8 @@ public class ModalDialogWindow extends ModalWindow {
 */
 
         setWindowClosedCallback(new ModalWindow.WindowClosedCallback() {
-            public void onClose(AjaxRequestTarget target) {
+            @Override
+			public void onClose(AjaxRequestTarget target) {
                 // target.add(result);
             }
         });

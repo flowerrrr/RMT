@@ -61,6 +61,7 @@ public class TeamEditPanel extends BasePanel implements IEntityEditPanel<Team> {
         });
     }
 
+    @Override
     public void init(IModel<Team> model) {
         if (model == null) {
             model = new TeamModel(null);

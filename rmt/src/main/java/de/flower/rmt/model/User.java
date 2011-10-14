@@ -48,9 +48,7 @@ public class User extends AbstractClubRelatedEntity {
     @OneToMany(mappedBy = "user")
     private List<Player> players;
 
-    @Deprecated
-    public User() {
-    }
+    private User() {}
 
     public User(String email, String password, boolean enabled, String fullname, Club club) {
         super(club);

@@ -27,8 +27,7 @@ public class Player extends AbstractBaseEntity {
     @NotNull
     private Boolean optional;
 
-    @Deprecated
-    public Player() {
+    private Player() {
     }
 
     public Player(Team team, User user) {

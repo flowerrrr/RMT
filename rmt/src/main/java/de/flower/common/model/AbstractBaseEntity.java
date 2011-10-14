@@ -16,11 +16,16 @@ public abstract class AbstractBaseEntity implements Serializable, IEntity, Clone
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    protected AbstractBaseEntity() {
+
+    }
+
      /**
      * Gets the id.
      *
      * @return the id
      */
+    @Override
     public  Long getId() {
         return id;
     }
@@ -34,6 +39,7 @@ public abstract class AbstractBaseEntity implements Serializable, IEntity, Clone
 	 *
 	 * @return true, if checks if is transient
 	 */
+	@Override
 	public boolean isTransient() {
 		return (getId() == null);
 	}

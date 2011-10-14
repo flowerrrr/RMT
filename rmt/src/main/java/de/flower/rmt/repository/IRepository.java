@@ -12,11 +12,10 @@ import java.io.Serializable;
 public interface IRepository<T, ID extends Serializable> extends JpaRepository<T, ID> {
 
     /**
-     * Reloads object from database. Used for working with detached objects.
-     * Unpersisted changes are not saved.
+     * Reattaches object to hibernate sesssion. Used for working with detached objects.
+     * Unpersisted changes are lost.
      *
      * @param entity
-     * @return
      */
-    T reload(T entity);
+    void reattach(T entity);
 }

@@ -14,7 +14,6 @@ import java.lang.reflect.Modifier;
  * @NotThreadSafe Uses unsynchronized and not thread context bound stack to
  * trace start time in #logEnter.
  */
-// TODO enable again
 // @NotThreadSafe
 @Aspect
 public abstract class AbstractSlf4JLoggingAspect extends AbstractLoggingAspect {
@@ -34,21 +33,24 @@ public abstract class AbstractSlf4JLoggingAspect extends AbstractLoggingAspect {
             msg = (indent == true) ? indent(depth++, ">>") : indent(depth, ">>") + " new ";
             // msg += "<" + jp.getKind();
             msg += " " + jp.getSignature().toShortString();
-            String args = null;
+            StringBuffer args = new StringBuffer();
             jp.getSignature().toShortString();
             for (Object arg : jp.getArgs()) {
-                args = (args == null) ? "" : args + ", ";
+                if (args.length() != 0) {
+                    args.append(", ");
+                }
                 if (arg != null) {
-                    args += arg.getClass().getSimpleName() + ": [" + arg.toString() + "]";
+                    args.append(arg.getClass().getSimpleName() + ": [" + arg.toString() + "]");
                 } else {
-                    args += "Object: null";
+                    args.append("Object: null");
                 }
             }
             // push start of execution time onto stack
             if (indent) {
                 pushTime();
             }
-            msg += (StringUtils.isEmpty(args)) ? "" : "(" + args + ")";
+            final String argss = args.toString();
+            msg += (StringUtils.isEmpty(argss)) ? "" : "(" + argss + ")";
             if (privateMethod == false && indent /* no debug for constructors */) {
                 log.debug(msg);
             } else {

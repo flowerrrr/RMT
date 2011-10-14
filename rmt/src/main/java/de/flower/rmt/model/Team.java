@@ -39,8 +39,7 @@ public class Team extends AbstractClubRelatedEntity  {
     @OneToMany(mappedBy = "team")
     private List<Player> players = new ArrayList<Player>();
 
-    @Deprecated
-    public Team() {
+    private Team() {
     }
 
     public Team(Club club) {

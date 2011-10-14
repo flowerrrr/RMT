@@ -3,6 +3,9 @@ package de.flower.rmt.repository.impl;
 import de.flower.common.model.AbstractBaseEntity;
 import de.flower.common.util.Check;
 import de.flower.rmt.repository.IRepository;
+import org.hibernate.LockMode;
+import org.hibernate.LockOptions;
+import org.hibernate.Session;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 
@@ -14,15 +17,16 @@ import java.io.Serializable;
  */
 public class BaseRepository<T extends AbstractBaseEntity, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements IRepository<T, ID> {
 
+    private EntityManager em;
+
     public BaseRepository(JpaEntityInformation<T, ?> entityInformation, EntityManager entityManager) {
         super(entityInformation, entityManager);
+        this.em = entityManager;
     }
 
-    @Override
-    public T reload(T entity) {
+    public void reattach(T entity) {
         Check.notNull(entity);
-        T reloaded = findOne((ID) entity.getId());
-        Check.notNull(reloaded);
-        return reloaded;
+        Session session = (Session)em.getDelegate();
+        session.buildLockRequest(LockOptions.NONE).lock(entity);
     }
 }

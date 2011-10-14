@@ -24,4 +24,6 @@ public class Jersey extends AbstractBaseEntity {
     @ManyToOne
     private Team team;
 
+    private Jersey() {
+    }
 }

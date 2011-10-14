@@ -46,7 +46,8 @@ public class UniqueValidator implements ConstraintValidator<Unique, IEntity> {
 
     private boolean initialized = false;
 
-    public void initialize(Unique constraintAnnotation) {
+    @Override
+	public void initialize(Unique constraintAnnotation) {
         this.constraints = UniqueConstraintDetector.convert(constraintAnnotation.constraints());
     }
 

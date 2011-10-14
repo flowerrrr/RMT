@@ -34,9 +34,7 @@ public class Response extends AbstractBaseEntity {
     @ManyToOne
     private Player player;
 
-    @Deprecated
-    public Response() {
-
+    private Response() {
     }
 
     public Response(Player player, Event event) {

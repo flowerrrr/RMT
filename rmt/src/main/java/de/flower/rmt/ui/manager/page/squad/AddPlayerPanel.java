@@ -92,7 +92,6 @@ public class AddPlayerPanel extends GenericPanel<Team> {
      * @return
      */
     private IModel<List<User>> getListModel(final IModel<Team> model) {
-        final Long id = model.getObject().getId(); // to avoid serialization of model and entity object
         return new LoadableDetachableModel<List<User>>() {
             @Override
             protected List<User> load() {

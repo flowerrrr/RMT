@@ -52,7 +52,8 @@ public class EventManager extends AbstractService implements IEventManager {
         eventRepo.delete(entity);
     }
 
-    public Event newInstance(EventType eventType) {
+    @Override
+	public Event newInstance(EventType eventType) {
         try {
             Event event = eventType.getClazz().newInstance();
             event.setClub(getClub());

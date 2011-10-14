@@ -48,7 +48,7 @@ public class Geocoder implements Serializable {
     // TODO add Client Id
     private final String _gMapKey;
 
-    private final String output = OUTPUT_CSV;
+    private static final String output = OUTPUT_CSV;
 
     /**
      * @param gMapKey

@@ -23,6 +23,7 @@ class UserManagerTest extends AbstractIntegrationTests {
         var users = userManager.findAll(User_.roles)
         assertTrue(users.size() > 0)
         var user = users.get(0)
+        log.info(user.toString())
         log.info(user.getRoles().get(0).getAuthority())
     }
 

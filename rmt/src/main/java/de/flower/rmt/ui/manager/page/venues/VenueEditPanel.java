@@ -149,7 +149,8 @@ public class VenueEditPanel extends BasePanel implements IEntityEditPanel<Venue>
         mapPanel.setOutputMarkupId(true);
     }
 
-    public void init(IModel<Venue> model) {
+    @Override
+	public void init(IModel<Venue> model) {
         if (model == null) {
             model = new VenueModel(null);
         }

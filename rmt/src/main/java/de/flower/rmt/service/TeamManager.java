@@ -64,6 +64,7 @@ public class TeamManager extends AbstractService implements ITeamManager {
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void addPlayers(Team team, List<User> users) {
+        teamRepo.reattach(team);
         for (User user : users) {
             Player player = new Player(team, user);
             player.setOptional(false);
@@ -75,14 +76,14 @@ public class TeamManager extends AbstractService implements ITeamManager {
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void removePlayer(Team team, Player player) {
-        team = teamRepo.reload(team);
+        teamRepo.reattach(team);
         Check.isTrue(team.getPlayers().contains(player));
         deletePlayer(player);
     }
 
     @Override
     public List<Player> getPlayers(Team team) {
-        team = teamRepo.reload(team);
+        teamRepo.reattach(team);
         List<Player> players = team.getPlayers();
         // init collection to avoid lazyinitexception
         players.size();

@@ -22,6 +22,7 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
+@Deprecated // TODO extend from ValidatingFormComponent
 public class ValidatedDropDownChoice<T> extends Panel {
 
     private boolean isValidatedAndValid = false;
@@ -113,7 +114,7 @@ public class ValidatedDropDownChoice<T> extends Panel {
      * @param behaviors
      * @return
      */
-    // TODO (flowerrrr - 01.07.11) - might need further tuning.
+    // TODO (flowerrrr - 01.07.11) - is this methdo acutally needed?
     @Override
     public Component add(Behavior... behaviors) {
         for (Behavior behavior : behaviors) {

@@ -27,6 +27,17 @@
     <role id="4" authority="ROLE_MANAGER" user_id="4"/>
     <role id="5" authority="ROLE_PLAYER" user_id="4"/>
     <role id="6" authority="ROLE_MANAGER" user_id="5"/>
+    <role id="7" authority="ROLE_PLAYER" user_id="6"/>
+    <role id="8" authority="ROLE_PLAYER" user_id="7"/>
+    <role id="9" authority="ROLE_PLAYER" user_id="8"/>
+    <role id="10" authority="ROLE_PLAYER" user_id="9"/>
+    <role id="11" authority="ROLE_PLAYER" user_id="10"/>
+    <role id="12" authority="ROLE_PLAYER" user_id="11"/>
+    <role id="13" authority="ROLE_PLAYER" user_id="12"/>
+    <role id="14" authority="ROLE_PLAYER" user_id="13"/>
+    <role id="15" authority="ROLE_PLAYER" user_id="14"/>
+    <role id="16" authority="ROLE_PLAYER" user_id="15"/>
+    <role id="17" authority="ROLE_PLAYER" user_id="16"/>
 
 
     <team id="1" name="Juventus Urin" club_id="1" />

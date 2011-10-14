@@ -64,7 +64,8 @@ public class PlayerEditPanel extends BasePanel implements IEntityEditPanel<User>
         });
     }
 
-    public void init(IModel<User> model) {
+    @Override
+	public void init(IModel<User> model) {
         if (model == null) {
             model = new UserModel(null);
         }

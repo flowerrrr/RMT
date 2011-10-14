@@ -31,4 +31,8 @@ public class Invitation extends AbstractBaseEntity {
     @ManyToOne
     private Event event;
 
+    private Invitation() {
+
+    }
+
 }

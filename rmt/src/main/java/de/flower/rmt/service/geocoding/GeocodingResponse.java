@@ -31,7 +31,8 @@ public class GeocodingResponse {
         return results;
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return json;
     }
 }

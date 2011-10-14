@@ -74,6 +74,7 @@ public final class SpringApplicationContextBridge implements ApplicationContextA
      *
      * @throws BeansException the beans exception
      */
+	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		log.info("Setting application context=" + applicationContext);
 		if(this.applicationContext != null && !this.applicationContext.equals(applicationContext)) {

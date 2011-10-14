@@ -1,6 +1,5 @@
 package de.flower.rmt.service.security;
 
-import de.flower.rmt.model.Club;
 import de.flower.rmt.model.User;
 import de.flower.rmt.service.IUserManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,7 @@ public class UserDetailServiceBean implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("Username {" + username + "} not found");
         }
-        Club c = user.getClub(); // init field cause we need it very often.
+        user.getClub(); // init field cause we need it very often.
         return new UserDetailsBean(user);
     }
 }

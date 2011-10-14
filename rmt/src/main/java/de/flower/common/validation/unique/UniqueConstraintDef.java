@@ -18,7 +18,7 @@ public class UniqueConstraintDef {
         this.name = name;
         this.columnNames = columnNames;
         if (name == null) {
-            name = "uc_" + org.apache.commons.lang3.StringUtils.join(columnNames, "_");
+            this.name = "uc_" + org.apache.commons.lang3.StringUtils.join(columnNames, "_");
         }
     }
 }
