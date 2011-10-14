@@ -15,7 +15,7 @@ class MRUCacheTest extends Assertions {
         intercept[IllegalArgumentException] {
             new MRUCache[String, String](0)
         }
-        val maxSize = 3
+        val maxSize = 2
         var mru = new MRUCache[String, String](maxSize)
 
         // test that max size is respected

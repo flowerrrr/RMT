@@ -155,7 +155,7 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
         db.deleteAll(Database.createDataSet("/data/test_data_delete.xml"))
         db.cleanInsert(Database.createDataSet("/data/test_data.xml"))
 
-        // checkDataConsistency();
+        testData.checkDataConsistency(em);
     }
 
     /**

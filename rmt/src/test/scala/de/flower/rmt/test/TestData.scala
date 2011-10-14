@@ -12,6 +12,8 @@ import org.apache.commons.lang3.{RandomStringUtils, Validate}
 import scala.collection.JavaConversions._
 import collection.mutable.ListBuffer
 import de.flower.rmt.repository.{IPlayerRepo, IEventRepo, ITeamRepo, IClubRepo}
+import javax.persistence.EntityManager
+import org.testng.Assert
 
 /**
  *
@@ -44,6 +46,13 @@ class TestData {
 
     @Autowired
     var userManager: IUserManager = _
+
+    def checkDataConsistency(em: EntityManager) {
+        // check that response->event->team matches response->player->team
+        val query = em.createQuery("from Response r  where r.event.team != r.player.team")
+        val list = query.getResultList()
+        Assert.assertTrue(list.isEmpty(), list.toString())
+    }
 
     def getClub(): Club = {
         // load some often used entities

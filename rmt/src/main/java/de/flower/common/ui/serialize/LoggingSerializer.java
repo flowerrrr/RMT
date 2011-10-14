@@ -32,8 +32,10 @@ public class LoggingSerializer implements ISerializerListener {
     @Override
     public void notify(Object object, byte[] data) {
         final String xml = xstream.toXML(object);
-        long length = data.length;
-        log.info("Size of serialized page: " + (length / 1024) + " KB.");
+        if (data != null) {
+            long length = data.length;
+            log.info("Size of serialized page: " + (length / 1024) + " KB.");
+        }
         xstreamLog.trace(xml);
         checkSerializedString(xml);
     }
