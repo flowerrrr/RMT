@@ -166,22 +166,22 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-web/jars/spring-security-web-3.0.6.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-web/jars/spring-security-web-3.0.7.RELEASE.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-web/sources/spring-security-web-3.0.6.RELEASE-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-web/sources/spring-security-web-3.0.7.RELEASE-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-core/jars/spring-security-core-3.0.6.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-core/jars/spring-security-core-3.0.7.RELEASE.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-core/sources/spring-security-core-3.0.6.RELEASE-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-core/sources/spring-security-core-3.0.7.RELEASE-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -803,11 +803,11 @@
     <orderEntry type="module-library" exported="" scope="RUNTIME">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-config/jars/spring-security-config-3.0.6.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-config/jars/spring-security-config-3.0.7.RELEASE.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-config/sources/spring-security-config-3.0.6.RELEASE-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-config/sources/spring-security-config-3.0.7.RELEASE-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>

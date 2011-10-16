@@ -13,6 +13,7 @@ configurations {
 }
 
 // version properties
+// version_spring = "3.0.6.RELEASE"
 version_spring = "3.0.6.RELEASE"
 version_wicket = "1.5.1"
 version_hibernate = "3.6.7.Final"
