@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.common.page.login;
+package de.flower.rmt.ui.app;
 
 import de.flower.rmt.model.Role;
 import de.flower.rmt.ui.app.Authentication;

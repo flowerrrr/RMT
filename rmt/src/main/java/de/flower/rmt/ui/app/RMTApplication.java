@@ -2,7 +2,6 @@ package de.flower.rmt.ui.app;
 
 import de.flower.common.ui.serialize.LoggingSerializer;
 import de.flower.common.ui.serialize.SerializerWrapper;
-import de.flower.rmt.ui.common.page.login.HomePageResolver;
 import de.flower.rmt.ui.common.page.login.LoginPage;
 import de.flower.rmt.ui.manager.ManagerHomePage;
 import de.flower.rmt.ui.manager.page.events.EventsPage;
