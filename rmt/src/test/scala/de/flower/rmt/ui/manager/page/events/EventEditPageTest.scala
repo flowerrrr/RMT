@@ -9,12 +9,12 @@ import de.flower.rmt.model.event.EventType
  * @author flowerrrr
  */
 
-class EventsEditPageTest extends WicketTests {
+class EventEditPageTest extends WicketTests {
 
     @Test
     def renderPage() {
         val event = eventManager.newInstance(EventType.Training)
-        wicketTester.startPage(new EventsEditPage(event))
+        wicketTester.startPage(new EventEditPage(event))
         wicketTester.dumpPage()
         wicketTester.debugComponentTrees()
         val formId = "eventEditPanel:form"

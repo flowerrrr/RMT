@@ -41,7 +41,7 @@ public class EventsPage extends ManagerBasePage {
             @Override
             public void onSelect(EventType eventType, AjaxRequestTarget target) {
                 Event event = eventManager.newInstance(eventType);
-                setResponsePage(new EventsEditPage(event));
+                setResponsePage(new EventEditPage(event));
             }
         };
         preCreateEventEditPanel.setOutputMarkupPlaceholderTag(true);
@@ -92,7 +92,7 @@ public class EventsPage extends ManagerBasePage {
                 item.add(new Link("editButton") {
                     @Override
                     public void onClick() {
-                        setResponsePage(new EventsEditPage(item.getModelObject()));
+                        setResponsePage(new EventEditPage(item.getModelObject()));
                     }
                 });
                 item.add(new AjaxLinkWithConfirmation("deleteButton", new ResourceModel("manager.events.delete.confirm")) {

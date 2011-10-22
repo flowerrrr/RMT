@@ -1,8 +1,11 @@
 package de.flower.rmt.model.event;
 
+import de.flower.common.util.Check;
 import de.flower.rmt.model.*;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
+import org.joda.time.DateMidnight;
+import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 
 import javax.persistence.*;
@@ -90,7 +93,8 @@ public class Event extends AbstractClubRelatedEntity {
     }
 
     public void setDate(Date date) {
-        this.date = date;
+        // normalize date and reset to 0:00:00
+        this.date = new LocalDate(date).toDate();
     }
 
     public LocalTime getTime() {

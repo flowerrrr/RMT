@@ -63,7 +63,7 @@ class TestData {
         return Validate.notNull(teamRepo.findOne(1L))
     }
 
-    def getTeamWithPlayer(name: String): Team = {
+    def getOrCreateTeamWithPlayer(name: String): Team = {
         var team = teamRepo.findByNameAndClub(name, getClub())
         if (team == null) {
             team = createTeam(name)
@@ -92,12 +92,16 @@ class TestData {
         return users
     }
 
-    def getEvent(): Event = {
+    def createEvent(): Event = {
+        return createEventForTeam("Socca Five 2")
+    }
+
+    def createEventForTeam(teamName: String): Event = {
         val event = eventManager.newInstance(EventType.Training)
         event.setDate(new Date())
         event.setTime(LocalTime.now())
         event.setSummary("Summary")
-        event.setTeam(getTeamWithPlayer("Socca Five 2"))
+        event.setTeam(getOrCreateTeamWithPlayer(teamName))
         eventManager.save(event)
         return event
     }
@@ -105,8 +109,8 @@ class TestData {
     /**
      * Creates an event with some responses.
      */
-    def getEventWithResponses(): Event = {
-        val event = getEvent();
+    def createEventWithResponses(): Event = {
+        val event = createEvent();
         responseManager.respond(event, playerRepo.findByTeam(event.getTeam()).get(15), RSVPStatus.ACCEPTED, "some comment")
         responseManager.respond(event, playerRepo.findByTeam(event.getTeam()).get(1), RSVPStatus.DECLINED, "some comment")
         responseManager.respond(event, playerRepo.findByTeam(event.getTeam()).get(2), RSVPStatus.DECLINED, "some comment")

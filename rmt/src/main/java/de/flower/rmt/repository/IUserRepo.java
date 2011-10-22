@@ -2,15 +2,13 @@ package de.flower.rmt.repository;
 
 import de.flower.rmt.model.Club;
 import de.flower.rmt.model.User;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import java.util.List;
 
 /**
  * @author flowerrrr
  */
-public interface IUserRepo extends JpaRepository<User, Long>, JpaSpecificationExecutor<User>, IUserRepoEx {
+public interface IUserRepo extends IRepository<User, Long>, IUserRepoEx {
 
     User findByEmail(String username);
 

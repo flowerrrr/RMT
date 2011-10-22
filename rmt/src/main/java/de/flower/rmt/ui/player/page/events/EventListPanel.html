@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head></head>
+<body>
+
+<wicket:panel>
+
+    <div wicket:id="listContainer">
+        <div wicket:id="noEntry">
+            <wicket:message key="player.events.noentry">[List is empty]</wicket:message>
+        </div>
+        <ul>
+            <li wicket:id="list">
+                <a wicket:id="eventLink">Goto Event</a>
+                <span wicket:id="date">[Date #1]</span>
+                <span wicket:id="time">[Time #1]</span>
+                <span wicket:id="team">[Team]</span>
+                <span wicket:id="type">[Event Type]</span>
+                <span wicket:id="summary">[Summary]</span>
+                <span wicket:id="rsvpStatus">[RsvpStatus]</span>
+                <a wicket:id="responseButton"><wicket:message key="player.events.respond">[Respond]</wicket:message></a>
+            </li>
+        </ul>
+    </div>
+
+ </wicket:panel>
+
+
+</body>
+</html>

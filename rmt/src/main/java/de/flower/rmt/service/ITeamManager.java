@@ -17,6 +17,8 @@ public interface ITeamManager {
 
     List<Team> findAll();
 
+    List<Team> findByUserPlayer(User user);
+
     void delete(Team entity);
 
     Team newTeamInstance();
@@ -26,7 +28,5 @@ public interface ITeamManager {
     void addPlayers(Team team, List<User> users);
 
     void removePlayer(Team team, Player player);
-
-    List<Player> getPlayers(Team team);
 
 }

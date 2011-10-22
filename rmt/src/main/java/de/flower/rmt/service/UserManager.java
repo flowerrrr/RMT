@@ -2,6 +2,7 @@ package de.flower.rmt.service;
 
 import de.flower.rmt.model.*;
 import de.flower.rmt.model.event.Event;
+import de.flower.rmt.repository.IRoleRepo;
 import de.flower.rmt.repository.IUserRepo;
 import de.flower.rmt.repository.Specs;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class UserManager extends AbstractService implements IUserManager {
     @Autowired
     private IUserRepo userRepo;
 
+    @Autowired
+    private IRoleRepo roleRepo;
+
     @Override
     public User findById(Long id) {
         return userRepo.findOne(id);
@@ -41,6 +45,9 @@ public class UserManager extends AbstractService implements IUserManager {
         // check that a role is assigned
         notEmpty(user.getRoles(), "user has no role(s) assigned");
         userRepo.save(user);
+        for (Role role : user.getRoles()) {
+            roleRepo.save(role);
+        }
     }
 
     @Override

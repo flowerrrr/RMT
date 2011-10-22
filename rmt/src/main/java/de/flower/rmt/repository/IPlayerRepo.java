@@ -2,8 +2,7 @@ package de.flower.rmt.repository;
 
 import de.flower.rmt.model.Player;
 import de.flower.rmt.model.Team;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import de.flower.rmt.model.User;
 
 import java.util.List;
 
@@ -14,7 +13,9 @@ import java.util.List;
  *
  * @author flowerrrr
  */
-public interface IPlayerRepo extends JpaRepository<Player, Long>, JpaSpecificationExecutor<Player>, IPlayerRepoEx {
+public interface IPlayerRepo extends IRepository<Player, Long>, IPlayerRepoEx {
 
     List<Player> findByTeam(Team team);
+
+    Player findByTeamAndUser(Team team, User user);
 }

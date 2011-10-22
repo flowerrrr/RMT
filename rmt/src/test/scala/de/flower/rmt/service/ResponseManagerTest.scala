@@ -18,8 +18,9 @@ class ResponseManagerTest extends AbstractIntegrationTests {
 
     @Test
     def testFindNotResponded() = {
-        var event: Event = testData.getEvent
+        var event: Event = testData.createEvent
         var players: List[Player] = event.getTeam.getPlayers
+        assertTrue(!players.isEmpty)
         var notResponder = playerManager.findNotResponded(event)
         assertEquals(notResponder, players)
 
@@ -30,7 +31,7 @@ class ResponseManagerTest extends AbstractIntegrationTests {
 
     @Test
     def testFindResponder() = {
-        var event: Event = testData.getEvent
+        var event: Event = testData.createEvent
         val players = event.getTeam().getPlayers()
         assertTrue(responseManager.findByEventAndStatus(event, RSVPStatus.ACCEPTED).isEmpty())
         var response = responseManager.respond(event, players.get(1), RSVPStatus.ACCEPTED, "some comment")

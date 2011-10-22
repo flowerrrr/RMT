@@ -10,6 +10,7 @@ import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.common.ui.js.JQuery;
 import de.flower.rmt.model.Player;
 import de.flower.rmt.model.Team;
+import de.flower.rmt.service.IPlayerManager;
 import de.flower.rmt.service.ITeamManager;
 import de.flower.rmt.ui.manager.ManagerBasePage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -31,6 +32,9 @@ public class SquadPage extends ManagerBasePage {
 
     @SpringBean
     private ITeamManager teamManager;
+
+    @SpringBean
+    private IPlayerManager playerManager;
 
     private AjaxSlideTogglePanel addPlayerPanel;
 
@@ -99,7 +103,7 @@ public class SquadPage extends ManagerBasePage {
         return new LoadableDetachableModel<List<Player>>() {
             @Override
             protected List<Player> load() {
-                return teamManager.getPlayers(model.getObject());
+                return playerManager.findByTeam(model.getObject());
             }
         };
     }

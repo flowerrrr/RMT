@@ -32,7 +32,7 @@ public class User extends AbstractClubRelatedEntity {
     @Column
     private boolean enabled;
 
-    @OneToMany(mappedBy = "user", cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+    @OneToMany(mappedBy = "user", cascade = { CascadeType.REMOVE })
     private List<Role> roles = new ArrayList<Role>();
 
     @NotBlank
@@ -46,7 +46,7 @@ public class User extends AbstractClubRelatedEntity {
      * A user can be part of several teams.
      */
     @OneToMany(mappedBy = "user")
-    private List<Player> players;
+    private List<Player> players = new ArrayList<Player>();
 
     private User() {}
 

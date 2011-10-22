@@ -10,6 +10,7 @@ import javax.persistence.metamodel.Attribute;
 import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.PluralAttribute;
 import javax.persistence.metamodel.SingularAttribute;
+import java.util.List;
 
 /**
  * @author flowerrrr
@@ -25,11 +26,20 @@ public class Specs {
         };
     }
 
-    public static <X, T> Specification in(final ListAttribute<X, T> attribute, final T object) {
+    public static <X, T> Specification isMember(final T object, final ListAttribute<X, T> attribute) {
         return  new Specification<X>() {
             @Override
             public Predicate toPredicate(Root<X> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                 return cb.isMember(object, root.get(attribute));
+            }
+        };
+    }
+
+    public static <X, T> Specification in(final SingularAttribute<X, T> attribute, final List<T> collection) {
+        return new Specification<X>() {
+            @Override
+            public Predicate toPredicate(final Root<X> root, final CriteriaQuery<?> query, final CriteriaBuilder cb) {
+                return root.get(attribute).in(collection);
             }
         };
     }
@@ -73,4 +83,5 @@ public class Specs {
     public static Specification not(Specification a) {
         return Specifications.not(a);
     }
+
 }

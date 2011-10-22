@@ -1,18 +1,19 @@
 package de.flower.rmt.service;
 
 import de.flower.common.util.Check;
-import de.flower.rmt.model.Player;
-import de.flower.rmt.model.Team;
-import de.flower.rmt.model.User;
+import de.flower.rmt.model.*;
 import de.flower.rmt.repository.IPlayerRepo;
 import de.flower.rmt.repository.ITeamRepo;
+import de.flower.rmt.repository.IUserRepo;
+import de.flower.rmt.repository.Specs;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
-import java.util.List;
+import javax.persistence.criteria.*;
+import java.util.*;
 
 /**
  * @author flowerrrr
@@ -26,6 +27,9 @@ public class TeamManager extends AbstractService implements ITeamManager {
 
     @Autowired
     private IPlayerRepo playerRepo;
+
+    @Autowired
+    private IUserRepo userRepo;
 
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
@@ -42,6 +46,19 @@ public class TeamManager extends AbstractService implements ITeamManager {
     public List<Team> findAll() {
         return teamRepo.findAllByClub(getClub());
     }
+
+    @Override
+    public List<Team> findByUserPlayer(final User user) {
+        Specification spec = new Specification<Team>() {
+            @Override
+            public Predicate toPredicate(final Root<Team> root, final CriteriaQuery<?> query, final CriteriaBuilder cb) {
+                final ListJoin<Team,Player> join = root.join(Team_.players);
+                return cb.equal(join.get(Player_.user), user);
+            }
+        };
+        return teamRepo.findAll(spec);
+    }
+
 
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
@@ -66,9 +83,12 @@ public class TeamManager extends AbstractService implements ITeamManager {
     public void addPlayers(Team team, List<User> users) {
         teamRepo.reattach(team);
         for (User user : users) {
+            userRepo.reattach(user);
+            // TODO (flowerrrr - 22.10.11) use service call of playerManager
             Player player = new Player(team, user);
             player.setOptional(false);
             team.getPlayers().add(player);
+            user.getPlayers().add(player);
             playerRepo.save(player);
         }
     }
@@ -79,15 +99,6 @@ public class TeamManager extends AbstractService implements ITeamManager {
         teamRepo.reattach(team);
         Check.isTrue(team.getPlayers().contains(player));
         deletePlayer(player);
-    }
-
-    @Override
-    public List<Player> getPlayers(Team team) {
-        teamRepo.reattach(team);
-        List<Player> players = team.getPlayers();
-        // init collection to avoid lazyinitexception
-        players.size();
-        return players;
     }
 
     public void deletePlayer(Player player) {

@@ -1,5 +1,6 @@
 package de.flower.rmt.service;
 
+import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
 
@@ -16,6 +17,8 @@ public interface IEventManager {
     Event findById(Long id, Attribute... attributes);
 
     List<Event> findAll();
+
+    List<Event> findUpcomingByUserPlayer(User user);
 
     void delete(Event entity);
 

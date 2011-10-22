@@ -7,9 +7,9 @@ import org.apache.wicket.model.Model;
 /**
  * @author flowerrrr
  */
-public class EventsEditPage extends ManagerBasePage {
+public class EventEditPage extends ManagerBasePage {
 
-    public EventsEditPage(Event event) {
+    public EventEditPage(Event event) {
         add(new EventEditPanel("eventEditPanel", Model.of(event)));
     }
 }

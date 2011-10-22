@@ -1,5 +1,6 @@
 package de.flower.rmt.repository;
 
+import de.flower.rmt.model.Player;
 import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.Response;
 import de.flower.rmt.model.event.Event;
@@ -17,4 +18,5 @@ public interface IResponseRepo extends IRepository<Response, Long> {
 
     List<Response> findByEventAndStatusOrderByDateAsc(Event event, RSVPStatus rsvpStatus);
 
+    Response findByEventAndPlayer(Event event, Player player);
 }
