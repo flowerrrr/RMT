@@ -16,12 +16,17 @@ public class UserModel extends AbstractEntityModel<User> {
         super(entity);
     }
 
+    public UserModel() {
+        super();
+    }
+
     @Override
     protected User load(Long id) {
-        if (id == null) {
-            return manager.newUserInstance();
-        } else {
-            return manager.findById(id);
-        }
+        return manager.findById(id);
+    }
+
+    @Override
+    protected User newInstance() {
+        return manager.newInstance();
     }
 }

@@ -11,6 +11,11 @@ public abstract class AbstractEntityModel<T extends IEntity> extends LoadableDet
 
     private Long id;
 
+
+    public AbstractEntityModel() {
+        this(null);
+    }
+
     public AbstractEntityModel(T entity) {
         if (entity != null) {
             setObject(entity);
@@ -32,10 +37,16 @@ public abstract class AbstractEntityModel<T extends IEntity> extends LoadableDet
     }
 
     @Override
-    protected T load() {
-        return load(id);
-    }
+     protected T load() {
+         if (id == null) {
+             return newInstance();
+         } else {
+             return load(id);
+         }
+     }
 
     abstract protected T load(Long id);
+
+    abstract protected T newInstance();
 
 }

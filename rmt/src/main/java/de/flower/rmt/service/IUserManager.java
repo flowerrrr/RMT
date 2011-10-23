@@ -29,5 +29,5 @@ public interface IUserManager {
      */
     List<User> findUnassignedPlayers(Team team);
 
-    User newUserInstance();
+    User newInstance();
 }

@@ -4,7 +4,7 @@ import de.flower.common.util.geo.GeoUtil;
 import de.flower.common.util.geo.LatLngEx;
 import de.flower.rmt.model.Venue;
 import de.flower.rmt.service.IVenueManager;
-import org.apache.wicket.markup.html.panel.Panel;
+import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import wicket.contrib.gmap3.GMap;
 import wicket.contrib.gmap3.api.GMarker;
@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class GMapPanel extends Panel {
+public class GMapPanel extends BasePanel {
 
     @SpringBean
     private IVenueManager venueManager;

@@ -68,7 +68,7 @@ public class TeamManager extends AbstractService implements ITeamManager {
     }
 
     @Override
-    public Team newTeamInstance() {
+    public Team newInstance() {
         return new Team(getClub());
     }
 

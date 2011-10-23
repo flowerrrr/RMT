@@ -16,12 +16,17 @@ public class VenueModel extends AbstractEntityModel<Venue> {
         super(entity);
     }
 
+    public VenueModel() {
+       super();
+    }
+
     @Override
     protected Venue load(Long id) {
-        if (id == null) {
-            return manager.newVenueInstance();
-        } else {
-            return manager.findById(id);
-        }
+        return manager.findById(id);
+    }
+
+    @Override
+    protected Venue newInstance() {
+        return manager.newInstance();
     }
 }

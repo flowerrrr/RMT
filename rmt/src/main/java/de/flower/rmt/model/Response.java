@@ -5,6 +5,7 @@ import de.flower.rmt.model.event.Event;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,8 +23,9 @@ public class Response extends AbstractBaseEntity {
     @NotNull
     private Date date;
 
-    @OneToMany(mappedBy = "response")
-    private List<Comment> comments;
+    private String comment;
+
+    private String managerComment;
 
     @Column
     private String guestName;
@@ -59,12 +61,20 @@ public class Response extends AbstractBaseEntity {
         this.date = date;
     }
 
-    public List<Comment> getComments() {
-        return comments;
+    public String getComment() {
+        return comment;
     }
 
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
+    public void setComment(final String comment) {
+        this.comment = comment;
+    }
+
+    public String getManagerComment() {
+        return managerComment;
+    }
+
+    public void setManagerComment(final String managerComment) {
+        this.managerComment = managerComment;
     }
 
     public String getGuestName() {

@@ -33,7 +33,7 @@ public class PlayerEditPanel extends BasePanel implements IEntityEditPanel<User>
     public PlayerEditPanel(String id) {
         super(id);
 
-        form = new EntityForm<User>("form", new UserModel(null));
+        form = new EntityForm<User>("form", new UserModel());
         add(form);
 
         ValidatedTextField fullname = new ValidatedTextField("fullname");
@@ -67,7 +67,7 @@ public class PlayerEditPanel extends BasePanel implements IEntityEditPanel<User>
     @Override
 	public void init(IModel<User> model) {
         if (model == null) {
-            model = new UserModel(null);
+            model = new UserModel();
         }
         form.replaceModel(model);
     }

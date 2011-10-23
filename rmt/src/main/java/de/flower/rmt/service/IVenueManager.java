@@ -18,6 +18,6 @@ public interface IVenueManager {
 
     List<Venue> findAll(Attribute... attributes);
 
-    Venue newVenueInstance();
+    Venue newInstance();
 
 }

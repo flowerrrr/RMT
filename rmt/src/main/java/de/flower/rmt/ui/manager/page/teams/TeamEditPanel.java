@@ -33,7 +33,7 @@ public class TeamEditPanel extends BasePanel implements IEntityEditPanel<Team> {
     public TeamEditPanel(String id) {
         super(id);
 
-        form = new EntityForm<Team>("form", new TeamModel(null));
+        form = new EntityForm<Team>("form", new TeamModel());
         add(form);
 
         ValidatedTextField name;
@@ -64,7 +64,7 @@ public class TeamEditPanel extends BasePanel implements IEntityEditPanel<Team> {
     @Override
     public void init(IModel<Team> model) {
         if (model == null) {
-            model = new TeamModel(null);
+            model = new TeamModel();
         }
         form.replaceModel(model);
     }

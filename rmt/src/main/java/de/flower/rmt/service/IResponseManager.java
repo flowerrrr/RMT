@@ -13,9 +13,13 @@ import java.util.List;
  */
 public interface IResponseManager {
 
+    Response findById(Long id);
+
     List<Response> findByEventAndStatus(Event event, RSVPStatus rsvpStatus);
 
     Response findByEventAndUser(Event event, User user);
 
     Response respond(Event event, Player player, RSVPStatus status, String comment);
+
+    Response respond(Event event, RSVPStatus status, String comment);
 }

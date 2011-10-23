@@ -2,10 +2,10 @@ package de.flower.rmt.ui.manager.page.events;
 
 import de.flower.common.ui.ajax.MyAjaxLink;
 import de.flower.rmt.model.event.EventType;
+import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
-import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.model.util.ListModel;
 
@@ -16,7 +16,7 @@ import java.util.Arrays;
  *
  * @author flowerrrr
  */
-public abstract class PreCreateEventEditPanel extends Panel {
+public abstract class PreCreateEventEditPanel extends BasePanel {
 
     public PreCreateEventEditPanel(String id) {
         super(id);

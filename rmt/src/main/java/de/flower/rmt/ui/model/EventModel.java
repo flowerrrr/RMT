@@ -24,10 +24,11 @@ public class EventModel extends AbstractEntityModel<Event> {
 
     @Override
     protected Event load(Long id) {
-        if (id == null) {
-            return manager.newInstance(type);
-        } else {
-            return manager.findById(id);
-        }
+        return manager.findById(id);
+    }
+
+    @Override
+    protected Event newInstance() {
+        return manager.newInstance(type);
     }
 }

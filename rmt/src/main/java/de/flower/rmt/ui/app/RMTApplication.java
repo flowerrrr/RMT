@@ -1,7 +1,9 @@
 package de.flower.rmt.ui.app;
 
+import de.flower.common.ui.serialize.Filter;
 import de.flower.common.ui.serialize.LoggingSerializer;
 import de.flower.common.ui.serialize.SerializerWrapper;
+import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.ui.common.page.login.LoginPage;
 import de.flower.rmt.ui.manager.ManagerHomePage;
 import de.flower.rmt.ui.manager.page.events.EventsPage;
@@ -46,7 +48,9 @@ public class RMTApplication extends WebApplication {
     private void initSerializer() {
         final ISerializer serializer = getFrameworkSettings().getSerializer();
         SerializerWrapper wrapper = new SerializerWrapper(serializer);
-        wrapper.addListener(new LoggingSerializer("\"de\\.flower\\.rmt\\.model\\.[^-]*?\""));
+        Filter filter = new Filter("\"de\\.flower\\.rmt\\.model\\.[^-]*?\"");
+        filter.addExclusion(RSVPStatus.class.getName());
+        wrapper.addListener(new LoggingSerializer(filter));
         getFrameworkSettings().setSerializer(wrapper);
     }
 

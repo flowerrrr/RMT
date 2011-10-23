@@ -18,4 +18,5 @@ public interface IPlayerManager {
 
     Player findByTeamAndUser(Team team, User user);
 
+    Player findByEventAndUser(Event event, User user);
 }

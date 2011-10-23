@@ -17,9 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired
 class ResponseManagerTest extends AbstractIntegrationTests {
 
     @Test
-    def testFindNotResponded() = {
-        var event: Event = testData.createEvent
-        var players: List[Player] = event.getTeam.getPlayers
+    def testFindNotResponded() {
+        var event: Event = testData.createEvent()
+        var players: List[Player] = event.getTeam.getPlayers()
         assertTrue(!players.isEmpty)
         var notResponder = playerManager.findNotResponded(event)
         assertEquals(notResponder, players)
@@ -30,8 +30,8 @@ class ResponseManagerTest extends AbstractIntegrationTests {
     }
 
     @Test
-    def testFindResponder() = {
-        var event: Event = testData.createEvent
+    def testFindResponder() {
+        var event: Event = testData.createEvent()
         val players = event.getTeam().getPlayers()
         assertTrue(responseManager.findByEventAndStatus(event, RSVPStatus.ACCEPTED).isEmpty())
         var response = responseManager.respond(event, players.get(1), RSVPStatus.ACCEPTED, "some comment")
@@ -39,6 +39,26 @@ class ResponseManagerTest extends AbstractIntegrationTests {
 
         response = responseManager.respond(event, players.get(1), RSVPStatus.ACCEPTED, "some comment")
         assertTrue(responseManager.findByEventAndStatus(event, RSVPStatus.ACCEPTED).size() == 2)
+
+    }
+
+    @Test
+    def testRespond() {
+        val event = testData.createEvent()
+        val player = event.getTeam().getPlayers().get(0)
+        var comment = "Comment #1"
+        var status = RSVPStatus.ACCEPTED
+        // first initial response
+        var response = responseManager.respond(event, player, status, comment)
+        assertEquals(response.getStatus(), status)
+        assertEquals(response.getComment(), comment)
+
+        // update response for player
+        comment = "Comment #2"
+        status = RSVPStatus.DECLINED
+        response = responseManager.respond(event, player, status, comment)
+        assertEquals(response.getStatus(), status)
+        assertEquals(response.getComment(), comment)
 
     }
 

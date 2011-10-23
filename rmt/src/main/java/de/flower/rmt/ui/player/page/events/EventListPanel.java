@@ -7,6 +7,7 @@ import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.service.IResponseManager;
+import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.model.UserModel;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
@@ -15,7 +16,6 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
-import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class EventListPanel extends Panel {
+public class EventListPanel extends BasePanel {
 
     @SpringBean
     private IResponseManager responseManager;

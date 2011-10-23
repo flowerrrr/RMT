@@ -33,6 +33,6 @@ public class ResponsePage extends ManagerBasePage {
          })  ;
          add(noInvitationsPanel);
 
-         add(new ResponsePanel("responsePanel", new EventModel(event)));
+         add(new ResponseListPanel("responseListPanel", new EventModel(event)));
      }
 }

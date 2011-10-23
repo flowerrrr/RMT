@@ -11,6 +11,7 @@ import de.flower.rmt.model.Team;
 import de.flower.rmt.model.User;
 import de.flower.rmt.service.ITeamManager;
 import de.flower.rmt.service.IUserManager;
+import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -19,7 +20,6 @@ import org.apache.wicket.markup.html.form.CheckGroup;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
-import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class AddPlayerPanel extends GenericPanel<Team> {
+public class AddPlayerPanel extends BasePanel<Team> {
 
     @SpringBean
     private IUserManager userManager;

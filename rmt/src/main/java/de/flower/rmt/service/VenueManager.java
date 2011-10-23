@@ -48,7 +48,7 @@ public class VenueManager extends AbstractService implements IVenueManager {
     }
 
     @Override
-    public Venue newVenueInstance() {
+    public Venue newInstance() {
 
         Venue venue = new Venue(getClub());
         return venue;

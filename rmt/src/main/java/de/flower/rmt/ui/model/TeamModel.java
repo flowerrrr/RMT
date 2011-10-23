@@ -16,12 +16,17 @@ public class TeamModel extends AbstractEntityModel<Team> {
         super(entity);
     }
 
+    public TeamModel() {
+        super();
+    }
+
     @Override
     protected Team load(Long id) {
-        if (id == null) {
-            return manager.newTeamInstance();
-        } else {
-            return manager.findById(id);
-        }
+        return manager.findById(id);
+    }
+
+    @Override
+    protected Team newInstance() {
+        return manager.newInstance();
     }
 }

@@ -5,8 +5,7 @@ import de.flower.common.util.xstream.ClassEmittingReflectionConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.List;
 
 /**
  * @author flowerrrr
@@ -19,14 +18,14 @@ public class LoggingSerializer implements ISerializerListener {
 
     private XStream xstream;
 
-    private String pattern;
+    private Filter filter;
 
-    public LoggingSerializer(String pattern) {
+    public LoggingSerializer(Filter filter) {
         xstream = new XStream();
         // by default xstream does not output the classname of serialized fields.
         xstream.registerConverter(new ClassEmittingReflectionConverter(xstream), XStream.PRIORITY_VERY_LOW);
 
-        this.pattern = pattern;
+        this.filter = filter;
     }
 
     @Override
@@ -41,12 +40,11 @@ public class LoggingSerializer implements ISerializerListener {
     }
 
     private void checkSerializedString(String xml) {
-        Matcher m = Pattern.compile(pattern).matcher(xml);
+        List<String> matches = filter.matches(xml);
         boolean error = false;
-        while (m.find()) {
+        for (String match : matches) {
             error = true;
-            String matched = m.group();
-            log.error("Serialized class [" + matched + "].");
+            log.error("Serialized class [" + match + "].");
         }
         if (error) {
             log.error("Turn on TRACE level for 'xstream' logger and check serialized xml output for domain objects.");

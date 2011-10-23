@@ -7,13 +7,13 @@ import de.flower.rmt.model.Response;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IPlayerManager;
 import de.flower.rmt.service.IResponseManager;
+import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.Component;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Fragment;
-import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.Model;
@@ -24,7 +24,8 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class ResponsePanel extends Panel {
+// TODO (flowerrrr - 23.10.11) unite with players ResponseListPanel
+public class ResponseListPanel extends BasePanel {
 
     @SpringBean
     private IResponseManager responseManager;
@@ -32,7 +33,7 @@ public class ResponsePanel extends Panel {
     @SpringBean
     private IPlayerManager playerManager;
 
-    public ResponsePanel(String id, LoadableDetachableModel<Event> model) {
+    public ResponseListPanel(String id, LoadableDetachableModel<Event> model) {
         super(id);
         Check.notNull(model.getObject());
 

@@ -8,8 +8,9 @@ import scala.Boolean
 import org.slf4j.{LoggerFactory, Logger}
 import org.apache.wicket.protocol.http.mock.MockHttpServletRequest
 import org.apache.wicket.request.IRequestHandler
-import de.flower.common.ui.serialize.LoggingSerializer
 import de.flower.common.ui.Css
+import de.flower.common.ui.serialize.{Filter, LoggingSerializer}
+import de.flower.rmt.model.RSVPStatus
 
 /**
  * 
@@ -20,7 +21,11 @@ class RMTWicketTester(application: WebApplication) extends WicketTester(applicat
 
     private val log: Logger = LoggerFactory.getLogger(this.getClass());
 
-    private val loggingSerializer = new LoggingSerializer("\"de\\.flower\\.rmt\\.model\\.[^-]*?\"");
+    private val filter = new Filter("\"de\\.flower\\.rmt\\.model\\.[^-]*?\"")
+
+    filter.addExclusion(classOf[RSVPStatus].getName())
+
+    private val loggingSerializer = new LoggingSerializer(filter);
 
     override def processRequest(forcedRequest: MockHttpServletRequest, forcedRequestHandler: IRequestHandler, redirect: Boolean): Boolean = {
         val b = super.processRequest(forcedRequest, forcedRequestHandler, redirect);

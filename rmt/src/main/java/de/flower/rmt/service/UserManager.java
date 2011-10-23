@@ -73,7 +73,7 @@ public class UserManager extends AbstractService implements IUserManager {
     }
 
     @Override
-    public User newUserInstance() {
+    public User newInstance() {
 
         User user = new User(getClub());
         Role role = new Role(Role.Roles.PLAYER.getRoleName());

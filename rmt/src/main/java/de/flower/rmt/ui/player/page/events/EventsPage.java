@@ -21,7 +21,7 @@ public class EventsPage extends PlayerBasePage {
     public EventsPage() {
 
         final UserModel userModel = new UserModel(getUser());
-        add(new EventListPanel("eventsPanel", userModel, getUpcomingEventList(userModel)));
+        add(new EventListPanel("eventListPanel", userModel, getUpcomingEventList(userModel)));
     }
 
     private IModel<List<Event>> getUpcomingEventList(final UserModel userModel) {

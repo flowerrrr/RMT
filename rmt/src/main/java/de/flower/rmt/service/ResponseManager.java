@@ -25,6 +25,11 @@ public class ResponseManager extends AbstractService implements IResponseManager
     private IPlayerManager playerManager;
 
     @Override
+    public Response findById(final Long id) {
+        return responseRepo.findOne(id);
+    }
+
+    @Override
     public List<Response> findByEventAndStatus(Event event, RSVPStatus rsvpStatus) {
         return responseRepo.findByEventAndStatusOrderByDateAsc(event, rsvpStatus);
     }
@@ -39,14 +44,23 @@ public class ResponseManager extends AbstractService implements IResponseManager
 
     @Override
     @Transactional(readOnly = false)
-    public Response respond(Event event, Player player, RSVPStatus status, String comment) {
-        // do some checking if responding to event is allowed
-        Response response = new Response(player, event);
-        response.setStatus(status);
-        Comment c = new Comment(comment, player.getUser(), response);
-        return responseRepo.save(response);
+    public Response respond(final Event event, final RSVPStatus status, final String comment) {
+        final Player player = playerManager.findByEventAndUser(event, securityService.getCurrentUser());
+        return this.respond(event, player, status, comment);
     }
 
-
+    @Override
+    @Transactional(readOnly = false)
+    public Response respond(Event event, Player player, RSVPStatus status, String comment) {
+        // TODO (flowerrrr - 23.10.11) do some checking if responding to event is allowed
+        // is this a first reponse or an update?
+        Response response = responseRepo.findByEventAndPlayer(event, player);
+        if (response == null) {
+            response = new Response(player, event);
+        }
+        response.setStatus(status);
+        response.setComment(comment);
+        return responseRepo.save(response);
+    }
 
 }

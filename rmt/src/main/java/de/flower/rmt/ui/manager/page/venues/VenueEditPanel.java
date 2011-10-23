@@ -63,7 +63,7 @@ public class VenueEditPanel extends BasePanel implements IEntityEditPanel<Venue>
     public VenueEditPanel(String id) {
         super(id);
 
-        form = new EntityForm<Venue>("form", new VenueModel(null));
+        form = new EntityForm<Venue>("form", new VenueModel());
         add(form);
 
         form.add(new ValidatedTextField("name"));
@@ -152,7 +152,7 @@ public class VenueEditPanel extends BasePanel implements IEntityEditPanel<Venue>
     @Override
 	public void init(IModel<Venue> model) {
         if (model == null) {
-            model = new VenueModel(null);
+            model = new VenueModel();
         }
         form.replaceModel(model);
         mapPanel.init(Model.of(model.getObject().getLatLng()));

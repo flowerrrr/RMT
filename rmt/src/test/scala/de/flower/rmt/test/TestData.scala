@@ -7,13 +7,13 @@ import de.flower.rmt.model.event.{EventType, Event}
 import java.util.Date
 import org.joda.time.LocalTime
 import de.flower.rmt.model._
-import de.flower.rmt.service.{IUserManager, ITeamManager, IResponseManager, IEventManager}
 import org.apache.commons.lang3.{RandomStringUtils, Validate}
 import scala.collection.JavaConversions._
 import collection.mutable.ListBuffer
 import de.flower.rmt.repository.{IPlayerRepo, IEventRepo, ITeamRepo, IClubRepo}
 import javax.persistence.EntityManager
 import org.testng.Assert
+import de.flower.rmt.service._
 
 /**
  *
@@ -45,6 +45,9 @@ class TestData {
     var responseManager: IResponseManager = _
 
     @Autowired
+    var venueManager: IVenueManager = _
+
+    @Autowired
     var userManager: IUserManager = _
 
     def checkDataConsistency(em: EntityManager) {
@@ -74,7 +77,7 @@ class TestData {
     }
 
     def createTeam(name: String): Team = {
-        val team = teamManager.newTeamInstance();
+        val team = teamManager.newInstance();
         team.setName(name)
         teamManager.save(team);
         return team
@@ -83,7 +86,7 @@ class TestData {
     def createUsers(count: Int): ListBuffer[User] = {
         var users = ListBuffer[User]()
         for (i <- 1 until count) {
-            val user = userManager.newUserInstance()
+            val user = userManager.newInstance()
             user.setEmail(RandomStringUtils.randomAlphabetic(8) + "@acme.com")
             user.setFullname(RandomStringUtils.randomAlphabetic(10))
             userManager.save(user)
@@ -102,6 +105,7 @@ class TestData {
         event.setTime(LocalTime.now())
         event.setSummary("Summary")
         event.setTeam(getOrCreateTeamWithPlayer(teamName))
+        event.setVenue(venueManager.findById(1))
         eventManager.save(event)
         return event
     }

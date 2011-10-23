@@ -21,7 +21,7 @@ public interface ITeamManager {
 
     void delete(Team entity);
 
-    Team newTeamInstance();
+    Team newInstance();
 
     void addPlayer(Team team, User user);
 

@@ -1,8 +1,8 @@
 package de.flower.rmt.ui.manager.page.venues.panel;
 
 import de.flower.common.util.geo.LatLngEx;
+import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import wicket.contrib.gmap3.GMap;
 import wicket.contrib.gmap3.api.*;
@@ -15,7 +15,7 @@ import java.io.Serializable;
  *
  * @author flowerrrr
  */
-public class GMapPanel2 extends Panel {
+public class GMapPanel2 extends BasePanel {
 
     private GMap mapNew;
 

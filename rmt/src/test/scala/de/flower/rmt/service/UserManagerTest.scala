@@ -42,7 +42,7 @@ class UserManagerTest extends AbstractIntegrationTests {
 
     @Test
     def testSaveNewUser() {
-        val user = userManager.newUserInstance();
+        val user = userManager.newInstance();
         user.setEmail("foo@bar.com")
         user.setFullname("Foo Bar")
         userManager.save(user)

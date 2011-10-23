@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head></head>
+<body>
+
+<wicket:panel>
+
+    <form wicket:id="form">
+        <ul>
+            <li>
+                <span wicket:id="responseStatusGroup">
+                    <input wicket:id="accepted" type="radio"/> <wicket:message key="response.form.accept"/>
+                    <input wicket:id="declined" type="radio"/> <wicket:message key="response.form.decline"/>
+                    <input wicket:id="unsure" type="radio"/> <wicket:message key="response.form.unsure"/>
+                </span>
+            </li>
+            <li>
+                <textarea wicket:id="commentArea"/>
+            </li>
+            <li>
+                <a wicket:id="respondButton">
+                    <wicket:message key="button.save"/>
+                </a>
+                <a wicket:id="cancelButton">
+                    <wicket:message key="button.cancel"/>
+                </a>
+            </li>
+
+        </ul>
+
+    </form>
+
+</wicket:panel>
+
+
+</body>
+</html>

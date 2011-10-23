@@ -1,16 +1,16 @@
 package de.flower.rmt.ui.manager;
 
+import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.manager.page.events.EventsPage;
 import de.flower.rmt.ui.manager.page.players.PlayersPage;
 import de.flower.rmt.ui.manager.page.teams.TeamsPage;
 import de.flower.rmt.ui.manager.page.venues.VenuesPage;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
-import org.apache.wicket.markup.html.panel.Panel;
 
 /**
  * @author flowerrrr
  */
-public class NavigationPanel extends Panel {
+public class NavigationPanel extends BasePanel {
 
     public NavigationPanel(String id) {
         super(id);
