@@ -56,11 +56,6 @@ public class PlayerEditPanel extends BasePanel implements IEntityEditPanel<User>
                     ModalWindow.closeCurrent(target);
                 }
             }
-
-            @Override
-            protected void onError(AjaxRequestTarget target, Form<?> form) {
-                target.add(form);
-            }
         });
     }
 

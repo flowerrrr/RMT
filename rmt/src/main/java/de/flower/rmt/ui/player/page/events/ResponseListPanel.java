@@ -1,5 +1,8 @@
 package de.flower.rmt.ui.player.page.events;
 
+import de.flower.common.ui.ajax.MyAjaxLink;
+import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
+import de.flower.common.ui.ajax.updatebehavior.events.ShowResponseFormEvent;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.Player;
 import de.flower.rmt.model.RSVPStatus;
@@ -7,8 +10,10 @@ import de.flower.rmt.model.Response;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IPlayerManager;
 import de.flower.rmt.service.IResponseManager;
+import de.flower.rmt.ui.app.RMTSession;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.Component;
+import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -60,11 +65,19 @@ public class ResponseListPanel extends BasePanel {
         return list;
     }
 
-    private Component createResponseFragement(ListItem<Response> item) {
+    private Component createResponseFragement(final ListItem<Response> item) {
         final Response response = item.getModelObject();
         Fragment frag = new Fragment("itemPanel", "itemFragment", this);
         frag.add(new Label("name", response.getName()));
         frag.add(DateLabel.forDateStyle("date", Model.of(response.getDate()), "SS"));
+        MyAjaxLink responseLink = new MyAjaxLink("responseLink") {
+            @Override
+            public void onClick(final AjaxRequestTarget target) {
+                target.registerRespondListener(new AjaxRespondListener(new ShowResponseFormEvent()));
+            }
+        };
+        responseLink.setVisible(isCurrentUser(response.getPlayer()));
+        frag.add(responseLink);
         return frag;
     }
 
@@ -86,4 +99,11 @@ public class ResponseListPanel extends BasePanel {
         };
     }
 
+    private boolean isCurrentUser(Player player) {
+        if (player == null) {
+            return false;
+        } else {
+            return (player.getUser().equals(RMTSession.get().getUser()));
+        }
+    }
 }

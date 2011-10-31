@@ -53,11 +53,6 @@ public class TeamEditPanel extends BasePanel implements IEntityEditPanel<Team> {
                     ModalWindow.closeCurrent(target);
                 }
             }
-
-            @Override
-            protected void onError(AjaxRequestTarget target, Form<?> form) {
-                target.add(form);
-            }
         });
     }
 

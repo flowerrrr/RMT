@@ -1,6 +1,7 @@
 package de.flower.rmt.ui.app;
 
 import de.flower.common.util.geo.LatLngEx;
+import de.flower.rmt.model.User;
 import de.flower.rmt.service.security.ISecurityService;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.protocol.http.WebSession;
@@ -40,5 +41,9 @@ public class RMTSession extends WebSession {
 
     public LatLngEx getLatLng() {
         return latLng;
+    }
+
+    public User getUser() {
+        return securityService.getCurrentUser();
     }
 }

@@ -11,9 +11,8 @@ public abstract class AbstractEntityModel<T extends IEntity> extends LoadableDet
 
     private Long id;
 
-
     public AbstractEntityModel() {
-        this(null);
+        this((T) null);
     }
 
     public AbstractEntityModel(T entity) {

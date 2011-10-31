@@ -77,11 +77,6 @@ public class EventEditPanel extends BasePanel {
                     setResponsePage(new ResponsePage(event.getId()));
                 }
             }
-
-            @Override
-            protected void onError(AjaxRequestTarget target, Form<?> form) {
-                target.add(form);
-            }
         });
     }
 

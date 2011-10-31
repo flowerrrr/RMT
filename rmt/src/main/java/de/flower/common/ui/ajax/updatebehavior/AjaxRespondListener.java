@@ -32,13 +32,7 @@ public class AjaxRespondListener implements AjaxRequestTarget.ITargetRespondList
                 if (!behaviors.isEmpty()) {
                     // only one ajax update behavior allowed per component
                     AjaxUpdateBehavior behavior = behaviors.get(0);
-                    if (behavior.checkForComponentUpdate(events)) {
-                        target.add(component);
-                        // in order to force a re-read of all the model data we detach the component and all it's children
-                        // thereby detaching all models. this could be fine tuned, cause in some cases detaching is not
-                        // necessary and one could save a database lookup.
-                        component.detach();
-                    }
+                    behavior.onEvent(target, component, events);
                 }
             }
         };

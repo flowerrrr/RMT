@@ -19,12 +19,12 @@ public abstract class MyAjaxSubmitLink extends AjaxSubmitLink {
     }
 
     @Override
-    protected IAjaxCallDecorator getAjaxCallDecorator() {
+    protected final IAjaxCallDecorator getAjaxCallDecorator() {
         return new PreventDoubleClickAjaxCallDecorator();
     }
 
     @Override
-    protected void onError(AjaxRequestTarget target, Form<?> form) {
+    protected final void onError(AjaxRequestTarget target, Form<?> form) {
         target.add(form);
     }
 

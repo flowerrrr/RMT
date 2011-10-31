@@ -35,11 +35,11 @@ class FormFieldPanelTestPage extends WebPage {
     override def getAssociatedMarkup: Markup = {
         return Markup.of("<html><body>\n"
                 + "<form wicket:id='form'>\n"
-                // can use whatever tag we like, since it is not rendered
+                // can use whatever tag we like, since only the body is rendered
                 + "<wicket:container wicket:id='name' labelKey='label.name' />\n"
                 + "<rmt:select wicket:id='time' labelKey='label.time' />\n"
-                + "</form>"
-                + "\n</body></html>")
+                + "</form>\n"
+                + "</body></html>")
     }
 }
 

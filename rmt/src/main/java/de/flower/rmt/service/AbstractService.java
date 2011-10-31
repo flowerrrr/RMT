@@ -1,5 +1,6 @@
 package de.flower.rmt.service;
 
+import de.flower.common.model.IEntity;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.AbstractClubRelatedEntity;
 import de.flower.rmt.model.Club;
@@ -8,6 +9,12 @@ import de.flower.rmt.service.security.ISecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+import javax.validation.Validator;
+
+import java.util.Set;
 
 import static de.flower.common.util.Check.*;
 
@@ -20,6 +27,10 @@ public abstract class AbstractService {
 
     @Autowired
     protected ISecurityService securityService;
+
+    @Autowired
+    private Validator validator;
+
 
     /**
      * Returns club of currently logged in user.
@@ -35,6 +46,14 @@ public abstract class AbstractService {
     protected void assertClub(AbstractClubRelatedEntity entity) {
         if (entity != null) {
             Check.isEqual(entity.getClub(), getClub());
+        }
+    }
+
+    protected void validate(IEntity entity) {
+
+        final Set<?> violations = validator.validate(entity);
+        if (!violations.isEmpty()) {
+            throw new ConstraintViolationException((Set<ConstraintViolation<?>>) violations);
         }
     }
 

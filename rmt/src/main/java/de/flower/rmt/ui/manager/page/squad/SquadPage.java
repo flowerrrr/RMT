@@ -49,7 +49,6 @@ public class SquadPage extends ManagerBasePage {
             public void onClick(AjaxRequestTarget target) {
                 // show inline  dialog with squad edit form.
                 addPlayerPanel.show(target);
-                target.appendJavaScript(JQuery.fadeOut(this, "slow"));
             }
        };
         add(addButton);

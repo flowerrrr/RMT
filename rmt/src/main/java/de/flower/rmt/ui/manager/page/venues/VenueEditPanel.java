@@ -153,6 +153,8 @@ public class VenueEditPanel extends BasePanel implements IEntityEditPanel<Venue>
 	public void init(IModel<Venue> model) {
         if (model == null) {
             model = new VenueModel();
+        } else {
+            model = new VenueModel(model.getObject());
         }
         form.replaceModel(model);
         mapPanel.init(Model.of(model.getObject().getLatLng()));

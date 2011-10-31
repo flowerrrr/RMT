@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.Validator;
 import java.util.List;
 
 /**
@@ -60,6 +61,7 @@ public class ResponseManager extends AbstractService implements IResponseManager
         }
         response.setStatus(status);
         response.setComment(comment);
+        validate(response);
         return responseRepo.save(response);
     }
 
