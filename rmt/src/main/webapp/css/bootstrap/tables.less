@@ -11,10 +11,10 @@ table {
   width: 100%;
   margin-bottom: @baseline;
   padding: 0;
-  border-collapse: separate; // Done so we can round those corners!
+  border-collapse: collapse;
   *border-collapse: collapse; /* IE7, collapse table to remove spacing */
   font-size: @basefont;
-  border: 1px solid #ddd;
+  border: 0px solid #ddd;
   .border-radius(4px);
   th, td {
     padding: 10px 10px 9px;
@@ -25,17 +25,17 @@ table {
     padding-top: 9px;
     font-weight: bold;
     vertical-align: middle;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 0px solid #ddd;
   }
   td {
     vertical-align: top;
   }
   th + th,
   td + td {
-    border-left: 1px solid #ddd;
+    border-left: 0px solid #ddd;
   }
   tr + tr td {
-    border-top: 1px solid #ddd;
+    border-top: 0px solid #ddd;
   }
   tbody tr:first-child td:first-child {
     .border-radius(4px 0 0 0);

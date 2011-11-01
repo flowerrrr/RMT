@@ -24,7 +24,6 @@
     right: 0;
 }
 
-
 /*************************************************************************
     taken from twitters base template http://twitter.github.com/bootstrap/examples/container-app.html
     base layout for player pages
@@ -33,16 +32,20 @@ html, body {
     /* needed for border-shadow on content divs */
     background-color: #EEEEEE;
 }
+
 body {
     padding-top: 40px; /* to adjust for usage of fixed topBar */
 }
+
 footer {
     text-align: center;
 }
+
 .container {
     /* smaller width than default 940px. */
     width: 820px;
 }
+
 .content {
     /* defines border shadow and padding, margin of content */
     background-color: #FFFFFF;
@@ -51,6 +54,7 @@ footer {
     margin: 0 -20px;
     padding: 20px;
 }
+
 .page-header {
     background-color: #F5F5F5;
     margin: -20px -20px 20px;
@@ -61,19 +65,35 @@ footer {
     /* let content always have a minimum width. looks nicer on empty pages. */
     min-height: 500px;
 }
-.content .secondary{
+
+.content .secondary {
     border-left: 1px solid #EEEEEE;
     margin-left: 0;
     padding-left: 19px;
 }
 
 /*************************************************************************
+    table styling
+**************************************************************************/
+table .data {
+    border: 1px solid #CCCCCC;
+}
+table .first-row td, table .first-row th {
+    padding-bottom: 2px;
+}
+table .second-row td, table .second-row th {
+    padding-top: 2px;
+}
+table th {
+    vertical-align: top;
+}
+
+/*************************************************************************
     ajax loading
 **************************************************************************/
 #veil .ajax-loader {
-    height:100%;
+    height: 100%;
 }
-
 
 .ajax-loader {
     background: url(../img/ajax-loader.gif) center no-repeat;
@@ -85,12 +105,14 @@ footer {
     google maps
     need to set initial width and height.
 **************************************************************************/
-.venue-map { /* map with one venue on it */
+.venue-map {
+    /* map with one venue on it */
     width: 400px;
     height: 300px;
 }
 
-.venues-map { /* map with all venues on it */
+.venues-map {
+    /* map with all venues on it */
     width: 500px;
     height: 400px;
 }
@@ -100,5 +122,5 @@ footer {
     draw border around all basepanels.
 **************************************************************************/
 .panel {
-    border: 1px solid red;
+    xborder: 1px solid red;
 }

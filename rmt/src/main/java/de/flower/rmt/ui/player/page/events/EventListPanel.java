@@ -52,20 +52,21 @@ public class EventListPanel extends BasePanel {
             protected void populateItem(final ListItem<Event> item) {
                 final Event event = item.getModelObject();
                 final EventModel eventModel = new EventModel(event);
-                item.add(new Link<Event>("eventLink", eventModel) {
+                item.add(DateLabel.forDateStyle("date", Model.of(event.getDate()), "S-"));
+                item.add(DateLabel.forDateStyle("time", Model.of(event.getTime().toDateTimeToday().toDate()), "-S"));
+                item.add(new Label("type", new ResourceModel(EventType.from(event).getResourceKey())));
+                item.add(new Label("team", event.getTeam().getName()));
+                Link link;
+                item.add(link = new Link<Event>("eventLink", eventModel) {
                     @Override
                     public void onClick() {
                         setResponsePage(new EventPage(getModel()));
                     }
                 });
-                item.add(DateLabel.forDateStyle("date", Model.of(event.getDate()), "S-"));
-                item.add(DateLabel.forDateStyle("time", Model.of(event.getTime().toDateTimeToday().toDate()), "-S"));
-                item.add(new Label("type", new ResourceModel(EventType.from(event).getResourceKey())));
-                item.add(new Label("team", event.getTeam().getName()));
-                item.add(new Label("summary", event.getSummary()));
+                link.add(new Label("summary", event.getSummary()));
                 final Response response = getResponse(event, userModel.getObject());
                 item.add(new Label("rsvpStatus", getRsvpStatus(response)));
-                final Link<Event> link = new Link<Event>("responseButton", eventModel) {
+                link = new Link<Event>("responseButton", eventModel) {
                     @Override
                     public void onClick() {
                         setResponsePage(new EventPage(getModel()));
