@@ -15,7 +15,7 @@ public class PlayerBasePage extends AbstractBasePage {
     public PlayerBasePage(final IModel<?> model) {
         super(model);
 
-        add(new NavigationPanel("navPanel"));
+        add(new NavigationPanel("topBar"));
     }
 
 }

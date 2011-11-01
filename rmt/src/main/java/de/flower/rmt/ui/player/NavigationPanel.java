@@ -14,9 +14,12 @@ public class NavigationPanel extends BasePanel {
     public NavigationPanel(String id) {
         super(id);
 
+        // TODO (flowerrrr - 01.11.11) append class=active to currently active link
         add(new BookmarkablePageLink("events", EventsPage.class));
 
         add(new LogoutLink("logoutLink"));
         add(new Label("user", getUser().getFullname()));
+
+        setRenderBodyOnly(true);
     }
 }

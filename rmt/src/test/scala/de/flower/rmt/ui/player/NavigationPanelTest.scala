@@ -1,0 +1,23 @@
+package de.flower.rmt.ui.player
+
+import de.flower.rmt.test.WicketTests
+import org.testng.annotations.Test
+import de.flower.rmt.ui.model.EventModel
+import page.events.EventPage
+import de.flower.rmt.ui.player.NavigationPanel
+
+/**
+ * 
+ * @author flowerrrr
+ */
+
+class NavigationPanelTest extends WicketTests {
+
+    @Test
+    def renderPanel() {
+        wicketTester.startComponentInPage(new NavigationPanel("topBar"))
+        wicketTester.dumpPage()
+    }
+
+
+}

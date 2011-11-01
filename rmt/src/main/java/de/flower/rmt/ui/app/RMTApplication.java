@@ -64,6 +64,7 @@ public class RMTApplication extends WebApplication {
         mountPage("manager/players", PlayersPage.class);
         mountPage("manager/events", EventsPage.class);
         mountPage("manager/venues", VenuesPage.class);
+        mountPage("player/events", de.flower.rmt.ui.player.page.events.EventsPage.class);
         mountPage("login", LoginPage.class);
     }
 

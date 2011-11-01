@@ -1,5 +1,6 @@
 /*************************************************************************
     validation stuff
+    todo: see if we can use bootstrap classes.
 **************************************************************************/
 .error {
     background-color: #ff0000;
@@ -11,14 +12,59 @@
 
 /*************************************************************************
     misc
+    todo: check if can be replaced by bootstrap class
 **************************************************************************/
 .center {
+    /* used by ajax-spinner */
     margin: auto;
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
+}
+
+
+/*************************************************************************
+    taken from twitters base template http://twitter.github.com/bootstrap/examples/container-app.html
+    base layout for player pages
+**************************************************************************/
+html, body {
+    /* needed for border-shadow on content divs */
+    background-color: #EEEEEE;
+}
+body {
+    padding-top: 40px; /* to adjust for usage of fixed topBar */
+}
+footer {
+    text-align: center;
+}
+.container {
+    /* smaller width than default 940px. */
+    width: 820px;
+}
+.content {
+    /* defines border shadow and padding, margin of content */
+    background-color: #FFFFFF;
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    margin: 0 -20px;
+    padding: 20px;
+}
+.page-header {
+    background-color: #F5F5F5;
+    margin: -20px -20px 20px;
+    padding: 20px 20px 10px;
+}
+
+.content {
+    /* let content always have a minimum width. looks nicer on empty pages. */
+    min-height: 500px;
+}
+.content .secondary{
+    border-left: 1px solid #EEEEEE;
+    margin-left: 0;
+    padding-left: 19px;
 }
 
 /*************************************************************************
@@ -51,6 +97,7 @@
 
 /*************************************************************************
     debugging
+    draw border around all basepanels.
 **************************************************************************/
 .panel {
     border: 1px solid red;

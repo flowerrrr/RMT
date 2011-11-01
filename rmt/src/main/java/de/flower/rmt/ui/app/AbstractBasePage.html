@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
 <head>
+    <link href="css/bootstrap/bootstrap.less" rel="stylesheet/less" />
+    <script type="text/javascript" src="js/less-1.1.3.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap-dropdown.js"></script>
+    <!-- must be included after all the less stuff in order to override default styles -->
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.js" ></script>
 </head>
 <body>
-
-<div wicket:id="debugBar" />
 
 <wicket:child/>
 
@@ -14,7 +16,11 @@
 <div id="veil" style="display:none;z-index:99999" class="ajax-loader center"></div>
 
 <!-- Include script at end of page in order to override wicket functions. -->
-<script type="text/javascript" src="js/main.js" ></script>
+<script type="text/javascript" src="js/main.js"></script>
+
+<div wicket:id="debugBar" />
 
 </body>
 </html>
+
+
