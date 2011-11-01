@@ -13,7 +13,7 @@ class EventPageTest extends WicketTests {
 
     @Test
     def renderPage() {
-        val event = testData.createEvent()
+        val event = testData.createEventWithResponses()
         wicketTester.startPage(new EventPage(new EventModel(event)))
         wicketTester.dumpPage()
     }

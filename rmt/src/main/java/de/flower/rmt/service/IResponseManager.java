@@ -13,6 +13,8 @@ import java.util.List;
  */
 public interface IResponseManager {
 
+    Response newInstance(Event event);
+
     Response findById(Long id);
 
     List<Response> findByEventAndStatus(Event event, RSVPStatus rsvpStatus);
@@ -21,5 +23,5 @@ public interface IResponseManager {
 
     Response respond(Event event, Player player, RSVPStatus status, String comment);
 
-    Response respond(Event event, RSVPStatus status, String comment);
+    Response save(Response response);
 }

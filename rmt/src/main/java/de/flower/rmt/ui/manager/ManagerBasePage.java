@@ -16,8 +16,6 @@ public class ManagerBasePage extends AbstractBasePage {
 
     public ManagerBasePage(IModel<?> model) {
         super(model);
-        add(new Label("user", getUser().getFullname()));
-        add(new LogoutLink("logoutLink", this.getClass()));
 
         add(new NavigationPanel("navPanel"));
     }

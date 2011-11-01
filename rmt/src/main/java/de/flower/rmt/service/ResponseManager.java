@@ -1,7 +1,10 @@
 package de.flower.rmt.service;
 
 import de.flower.common.util.Check;
-import de.flower.rmt.model.*;
+import de.flower.rmt.model.Player;
+import de.flower.rmt.model.RSVPStatus;
+import de.flower.rmt.model.Response;
+import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.repository.IResponseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.validation.Validator;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,6 +27,12 @@ public class ResponseManager extends AbstractService implements IResponseManager
 
     @Autowired
     private IPlayerManager playerManager;
+
+    @Override
+    public Response newInstance(final Event event) {
+        Player player = playerManager.findByEventAndUser(event, securityService.getCurrentUser());
+        return new Response(event, player);
+    }
 
     @Override
     public Response findById(final Long id) {
@@ -45,24 +54,30 @@ public class ResponseManager extends AbstractService implements IResponseManager
 
     @Override
     @Transactional(readOnly = false)
-    public Response respond(final Event event, final RSVPStatus status, final String comment) {
-        final Player player = playerManager.findByEventAndUser(event, securityService.getCurrentUser());
-        return this.respond(event, player, status, comment);
+    public Response save(final Response response) {
+        validate(response);
+        // in case the status changes update the date of response.
+        if (!response.isTransient()) {
+            Response origResponse = responseRepo.findOne(response.getId());
+            if (origResponse.getStatus() != response.getStatus()) {
+                response.setDate(new Date());
+            }
+        }
+        return responseRepo.save(response);
     }
 
     @Override
     @Transactional(readOnly = false)
     public Response respond(Event event, Player player, RSVPStatus status, String comment) {
         // TODO (flowerrrr - 23.10.11) do some checking if responding to event is allowed
-        // is this a first reponse or an update?
+        // is this a first response or an update?
         Response response = responseRepo.findByEventAndPlayer(event, player);
         if (response == null) {
-            response = new Response(player, event);
+            response = new Response(event, player);
         }
         response.setStatus(status);
         response.setComment(comment);
-        validate(response);
-        return responseRepo.save(response);
+        return this.save(response);
     }
 
 }

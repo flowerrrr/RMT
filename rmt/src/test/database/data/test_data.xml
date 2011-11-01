@@ -67,11 +67,15 @@
     <event eventType="Training" id="1" summary="Saisonopening" date="2021-10-01 00:00:00.0" time="17:00:00" club_id="1" team_id="3" venue_id="1"/>
     <event eventType="Training" id="2" summary="2. Training" date="2012-10-08 00:00:00.0" time="17:00:00" club_id="1" team_id="1" venue_id="1"/>
     <event eventType="Event" id="4" summary="Weihnachtsfeier" date="2021-12-15 00:00:00.0" time="17:00:00" club_id="1" team_id="1" venue_id="1"/>
+    <event eventType="Training" id="5" summary="Saisonopening" date="2021-10-07 00:00:00.0" time="17:00:00" club_id="1" team_id="3" venue_id="1"/>
+    <event eventType="Training" id="6" summary="Saisonopening" date="2021-10-14 00:00:00.0" time="17:00:00" club_id="1" team_id="3" venue_id="1"/>
+    <event eventType="Training" id="7" summary="Saisonopening" date="2021-10-21 00:00:00.0" time="17:00:00" club_id="1" team_id="3" venue_id="1"/>
+    <event eventType="Training" id="8" summary="Saisonopening" date="2021-10-28 00:00:00.0" time="17:00:00" club_id="1" team_id="3" venue_id="1"/>
 
-    <response id="1" status="ACCEPTED" date="2011-12-15 00:00:00.0" event_id="1" player_id="7" />
-    <response id="2" status="ACCEPTED" date="2011-12-05 00:00:00.0" event_id="1" player_id="8" />
-    <response id="3" status="DECLINED" date="2011-12-11 00:00:00.0" event_id="1" player_id="9" />
-    <response id="4" status="UNSURE" date="2011-12-15 01:00:00.0" event_id="1" player_id="4" />
+    <response id="1" status="ACCEPTED" date="2011-12-15 00:00:00.0" event_id="1" player_id="7" comment="endlich wieder"/>
+    <response id="2" status="ACCEPTED" date="2011-12-05 00:00:00.0" event_id="1" player_id="8" comment="gfrei mi"/>
+    <response id="3" status="DECLINED" date="2011-12-11 00:00:00.0" event_id="1" player_id="9" comment="family"/>
+    <response id="4" status="UNSURE" date="2011-12-15 01:00:00.0" event_id="1" player_id="4" comment="falls wieder nüchtern." />
     <response id="5" status="UNSURE" date="2011-12-15 00:05:00.0" event_id="1" player_id="5" />
     <response id="6" status="ACCEPTED" date="2011-12-15 00:00:20.0" event_id="1" player_id="6" />
     <response id="7" status="ACCEPTED" date="2011-12-14 00:00:20.0" event_id="1" guestname="Gastspieler Bert" />

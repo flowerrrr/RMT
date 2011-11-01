@@ -16,7 +16,7 @@ import java.util.List;
 public class Response extends AbstractBaseEntity {
 
     @Enumerated(EnumType.STRING)
-    @NotNull
+    @NotNull(message = "{validation.rsvpstatus.notnull}")
     private RSVPStatus status;
 
     @Column
@@ -39,7 +39,7 @@ public class Response extends AbstractBaseEntity {
     private Response() {
     }
 
-    public Response(Player player, Event event) {
+    public Response(Event event, Player player) {
         this.player = player;
         this.event = event;
         this.date = new Date();

@@ -1,10 +1,12 @@
 package de.flower.rmt.ui.manager;
 
 import de.flower.rmt.ui.common.panel.BasePanel;
+import de.flower.rmt.ui.common.panel.LogoutLink;
 import de.flower.rmt.ui.manager.page.events.EventsPage;
 import de.flower.rmt.ui.manager.page.players.PlayersPage;
 import de.flower.rmt.ui.manager.page.teams.TeamsPage;
 import de.flower.rmt.ui.manager.page.venues.VenuesPage;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 
 /**
@@ -20,5 +22,8 @@ public class NavigationPanel extends BasePanel {
         add(new BookmarkablePageLink("teams", TeamsPage.class));
         add(new BookmarkablePageLink("players", PlayersPage.class));
         add(new BookmarkablePageLink("venues", VenuesPage.class));
+
+        add(new LogoutLink("logoutLink"));
+        add(new Label("user", getUser().getFullname()));
     }
 }

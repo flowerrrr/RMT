@@ -2,8 +2,14 @@ package de.flower.rmt.ui.player.page.events;
 
 import de.flower.common.ui.ajax.MyAjaxLink;
 import de.flower.common.ui.ajax.MyAjaxSubmitLink;
+import de.flower.common.ui.form.EntityForm;
+import de.flower.common.util.Check;
 import de.flower.rmt.model.RSVPStatus;
+import de.flower.rmt.model.Response;
+import de.flower.rmt.model.event.Event;
+import de.flower.rmt.ui.common.IEntityEditPanel;
 import de.flower.rmt.ui.common.panel.BasePanel;
+import de.flower.rmt.ui.model.ResponseModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.feedback.ComponentFeedbackMessageFilter;
 import org.apache.wicket.markup.html.form.Form;
@@ -11,40 +17,37 @@ import org.apache.wicket.markup.html.form.Radio;
 import org.apache.wicket.markup.html.form.RadioGroup;
 import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.model.PropertyModel;
 import org.wicketstuff.jsr303.BeanValidator;
-import org.wicketstuff.jsr303.PropertyValidation;
-
-import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 
 /**
  * @author flowerrrr
  */
-public abstract class ResponseFormPanel extends BasePanel {
+public abstract class ResponseFormPanel extends BasePanel implements IEntityEditPanel<Response> {
 
-    public ResponseFormPanel(final String id) {
+    private EntityForm<Response> form;
+
+    public ResponseFormPanel(final String id, final IModel<Event> eventModel) {
         super(id);
 
-        final FormResponse formResponse = new FormResponse();
-
-        Form<?> form = new Form("form");
+        form = new EntityForm("form", new ResponseModel(eventModel.getObject()));
         add(form);
-        final RadioGroup group = new RadioGroup("responseStatusGroup", new PropertyModel(formResponse, "status"));
+        final RadioGroup group = new RadioGroup("status");
         form.add(group);
         group.add(new Radio("accepted", Model.of(RSVPStatus.ACCEPTED)));
         group.add(new Radio("declined", Model.of(RSVPStatus.DECLINED)));
         group.add(new Radio("unsure", Model.of(RSVPStatus.UNSURE)));
-        form.add(new FeedbackPanel("feedback", new ComponentFeedbackMessageFilter(group)));
-        form.add(new TextArea("commentArea", new PropertyModel(formResponse, "comment")));
+        group.add(new FeedbackPanel("feedback", new ComponentFeedbackMessageFilter(group)));
+        form.add(new TextArea("comment"));
         form.add(new MyAjaxSubmitLink("respondButton") {
             @Override
             protected void onSubmit(final AjaxRequestTarget target, final Form<?> form) {
-                if (!new BeanValidator(form).isValid(formResponse)) {
+                Response response = (Response) form.getModelObject();
+                if (!new BeanValidator(form).isValid(response)) {
                     onError(target, form);
                 } else {
-                    ResponseFormPanel.this.onSubmit(formResponse, target);
+                    ResponseFormPanel.this.onSubmit(response, target);
                     onClose(target);
                 }
             }
@@ -55,34 +58,15 @@ public abstract class ResponseFormPanel extends BasePanel {
                 onClose(target);
             }
         });
-        form.add(new PropertyValidation());
     }
 
-    protected abstract void onSubmit(FormResponse formResponse, AjaxRequestTarget target);
-
-    // TODO (flowerrrr - 23.10.11) after moving comment field into Response entity this class is rather obsolete.
-    // also, it's redundant to have the constraints declared here.
-    public static class FormResponse implements Serializable {
-
-        @NotNull(message = "{validation.rsvpstatus.notnull}")
-        private RSVPStatus status;
-
-        private String comment;
-
-        public RSVPStatus getStatus() {
-            return status;
-        }
-
-        public void setStatus(final RSVPStatus status) {
-            this.status = status;
-        }
-
-        public String getComment() {
-            return comment;
-        }
-
-        public void setComment(final String comment) {
-            this.comment = comment;
-        }
+    @Override
+	public void init(IModel<Response> model) {
+        Check.notNull(model);
+        form.replaceModel(model);
     }
-}
+
+
+    protected abstract void onSubmit(Response response, AjaxRequestTarget target);
+
+ }

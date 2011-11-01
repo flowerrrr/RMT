@@ -47,9 +47,11 @@ public class ResponseListPanel extends BasePanel {
         add(createListView("declinedList", RSVPStatus.DECLINED, model));
 
         ListView list = new ListView<Player>("noresponseList", getNotResponderList(model)) {
+
             @Override
             protected void populateItem(ListItem<Player> item) {
                 item.add(new Label("name", item.getModelObject().getFullname()));
+                item.add(new ResponseLink("responseLink", item.getModelObject()));
             }
         };
         add(list);
@@ -70,14 +72,8 @@ public class ResponseListPanel extends BasePanel {
         Fragment frag = new Fragment("itemPanel", "itemFragment", this);
         frag.add(new Label("name", response.getName()));
         frag.add(DateLabel.forDateStyle("date", Model.of(response.getDate()), "SS"));
-        MyAjaxLink responseLink = new MyAjaxLink("responseLink") {
-            @Override
-            public void onClick(final AjaxRequestTarget target) {
-                target.registerRespondListener(new AjaxRespondListener(new ShowResponseFormEvent()));
-            }
-        };
-        responseLink.setVisible(isCurrentUser(response.getPlayer()));
-        frag.add(responseLink);
+        frag.add(new Label("comment", response.getComment()));
+        frag.add(new ResponseLink("responseLink", item.getModelObject().getPlayer()));
         return frag;
     }
 
@@ -99,11 +95,25 @@ public class ResponseListPanel extends BasePanel {
         };
     }
 
-    private boolean isCurrentUser(Player player) {
-        if (player == null) {
-            return false;
-        } else {
-            return (player.getUser().equals(RMTSession.get().getUser()));
+
+    private static class ResponseLink extends MyAjaxLink {
+
+        public ResponseLink(String id, final Player player) {
+            super(id);
+            setVisible(isCurrentUser(player));
+        }
+
+        @Override
+        public void onClick(final AjaxRequestTarget target) {
+            target.registerRespondListener(new AjaxRespondListener(new ShowResponseFormEvent()));
+        }
+
+        private boolean isCurrentUser(Player player) {
+            if (player == null) {
+                return false;
+            } else {
+                return (player.getUser().equals(RMTSession.get().getUser()));
+            }
         }
     }
 }

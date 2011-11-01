@@ -7,21 +7,21 @@
     <wicket:message key="response.accepted">[Accepted]</wicket:message>
     <ul>
         <li wicket:id="acceptedList">
-            <span wicket:id="itemPanel"/>
+            <div wicket:id="itemPanel"/>
         </li>
     </ul>
 
     <wicket:message key="response.unsure">[Unsure]</wicket:message>
     <ul>
         <li wicket:id="unsureList">
-            <span wicket:id="itemPanel"/>
+            <div wicket:id="itemPanel"/>
         </li>
     </ul>
 
     <wicket:message key="response.declined">[Declined]</wicket:message>
     <ul>
         <li wicket:id="declinedList">
-            <span wicket:id="itemPanel"/>
+            <div wicket:id="itemPanel"/>
         </li>
     </ul>
 
@@ -29,14 +29,15 @@
     <ul>
         <li wicket:id="noresponseList">
             <span wicket:id="name"/>
+            <a wicket:id="responseLink"><wicket:message key="response.link.add">[Respond]</wicket:message></a>
         </li>
     </ul>
 
     <wicket:fragment wicket:id="itemFragment">
         <span wicket:id="name"/>
         <span wicket:id="date"/>
-        Comments |
-        <a wicket:id="responseLink">Update Response</a>
+        <span wicket:id="comment" />
+        <a wicket:id="responseLink"><wicket:message key="response.link.update">[Update Response]</wicket:message></a>
     </wicket:fragment>
 
 </wicket:panel>

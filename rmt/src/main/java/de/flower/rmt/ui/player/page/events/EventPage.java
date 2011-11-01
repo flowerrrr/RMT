@@ -8,10 +8,10 @@ import de.flower.common.ui.ajax.updatebehavior.events.ShowResponseFormEvent;
 import de.flower.rmt.model.Response;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IResponseManager;
+import de.flower.rmt.ui.model.ResponseModel;
 import de.flower.rmt.ui.player.PlayerBasePage;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -22,19 +22,21 @@ public class EventPage extends PlayerBasePage {
 
     private AjaxSlideTogglePanel responseFormPanelContainer;
 
+    private ResponseFormPanel responseFormPanel;
+
+    @SpringBean
+    private IResponseManager responseManager;
+
     public EventPage(final IModel<Event> model) {
         super(model);
         add(new EventDetailsPanel("eventDetailsPanel", model));
 
-        Panel responseFormPanel = new ResponseFormPanel("responseFormPanel") {
-
-            @SpringBean
-            private IResponseManager responseManager;
+        responseFormPanel = new ResponseFormPanel("responseFormPanel", model) {
 
             @Override
-            protected void onSubmit(final ResponseFormPanel.FormResponse formResponse, final AjaxRequestTarget target) {
+            protected void onSubmit(final Response response, final AjaxRequestTarget target) {
                 // save response and update responselistpanel
-                responseManager.respond(model.getObject(), formResponse.getStatus(), formResponse.getComment());
+                responseManager.save(response);
                 target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityAll(Response.class)));
             }
 
@@ -50,6 +52,12 @@ public class EventPage extends PlayerBasePage {
         responseFormPanelContainer.add(new AjaxUpdateBehavior(new ShowResponseFormEvent()) {
             @Override
             public void addTarget(final AjaxRequestTarget target, final Component component) {
+                final Response response = responseManager.findByEventAndUser(model.getObject(), getUser());
+                if (response == null) {
+                    responseFormPanel.init(new ResponseModel(model.getObject()));
+                } else {
+                    responseFormPanel.init(new ResponseModel(response));
+                }
                 responseFormPanelContainer.show(target);
             }
         });

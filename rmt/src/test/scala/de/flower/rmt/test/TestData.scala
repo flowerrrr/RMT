@@ -118,10 +118,10 @@ class TestData {
         responseManager.respond(event, playerRepo.findByTeam(event.getTeam()).get(15), RSVPStatus.ACCEPTED, "some comment")
         responseManager.respond(event, playerRepo.findByTeam(event.getTeam()).get(1), RSVPStatus.DECLINED, "some comment")
         responseManager.respond(event, playerRepo.findByTeam(event.getTeam()).get(2), RSVPStatus.DECLINED, "some comment")
-        responseManager.respond(event, playerRepo.findByTeam(event.getTeam()).get(3), RSVPStatus.ACCEPTED, "some comment")
+        responseManager.respond(event, playerRepo.findByTeam(event.getTeam()).get(3), RSVPStatus.ACCEPTED, "lore ipsum comment")
         responseManager.respond(event, playerRepo.findByTeam(event.getTeam()).get(4), RSVPStatus.UNSURE, "some comment")
         responseManager.respond(event, playerRepo.findByTeam(event.getTeam()).get(5), RSVPStatus.UNSURE, "some comment")
-        responseManager.respond(event, playerRepo.findByTeam(event.getTeam()).get(10), RSVPStatus.ACCEPTED, "some comment")
+        responseManager.respond(event, playerRepo.findByTeam(event.getTeam()).get(10), RSVPStatus.ACCEPTED, "gfrei mi")
         responseManager.respond(event, playerRepo.findByTeam(event.getTeam()).get(11), RSVPStatus.ACCEPTED, "some comment")
         responseManager.respond(event, playerRepo.findByTeam(event.getTeam()).get(12), RSVPStatus.ACCEPTED, "some comment")
         return event

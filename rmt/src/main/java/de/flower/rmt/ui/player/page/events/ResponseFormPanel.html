@@ -6,17 +6,19 @@
 <wicket:panel>
 
     <form wicket:id="form">
+        <div wicket:id="hasErrors"><wicket:message key="form.haserrors"/></div>
+        <div wicket:id="feedback">[Validation messages]</div>
         <ul>
              <li>
-                <span wicket:id="responseStatusGroup">
+                <span wicket:id="status">
                     <input wicket:id="accepted" type="radio"/> <wicket:message key="response.form.accept"/>
                     <input wicket:id="declined" type="radio"/> <wicket:message key="response.form.decline"/>
                     <input wicket:id="unsure" type="radio"/> <wicket:message key="response.form.unsure"/>
+                    <span wicket:id="feedback"></span>
                 </span>
-                <span wicket:id="feedback"></span>
             </li>
             <li>
-                <textarea wicket:id="commentArea"/>
+                <textarea wicket:id="comment"/>
             </li>
             <li>
                 <a wicket:id="respondButton">
