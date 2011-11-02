@@ -30,7 +30,7 @@
 **************************************************************************/
 html, body {
     /* needed for border-shadow on content divs */
-    background-color: #EEEEEE;
+    background-color: #CCCCCC;
 }
 
 body {
@@ -66,17 +66,25 @@ footer {
     min-height: 500px;
 }
 
+.content .main {
+    width: 560px;
+}
+
 .content .secondary {
-    border-left: 1px solid #EEEEEE;
-    margin-left: 0;
+    border-left: 1px solid #CCCCCC;
+    xmargin-left: 0;
     padding-left: 19px;
+    xwidth: 200px;
 }
 
 /*************************************************************************
     table styling
 **************************************************************************/
+table thead {
+    border-bottom:  2px solid #CCCCCC;
+}
 table .data {
-    border: 1px solid #CCCCCC;
+    border-bottom: 1px solid #CCCCCC;
 }
 table .first-row td, table .first-row th {
     padding-bottom: 2px;
