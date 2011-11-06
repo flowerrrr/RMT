@@ -2,6 +2,8 @@ package de.flower.rmt.ui.manager.page.teams
 
 import de.flower.rmt.test.WicketTests
 import org.testng.annotations.Test
+import de.flower.rmt.ui.model.TeamModel
+
 /**
  * 
  * @author flowerrrr
@@ -11,8 +13,7 @@ class TeamEditPanelTest extends WicketTests {
 
     @Test
     def validateUniquenessConstraint() {
-        val panel: TeamEditPanel = wicketTester.startPanel(classOf[TeamEditPanel]).asInstanceOf[TeamEditPanel]
-        panel.init(null)
+        wicketTester.startComponentInPage(new TeamEditPanel("foobar", new TeamModel()))
         wicketTester.dumpPage()
         wicketTester.debugComponentTrees()
         // input name and validate field

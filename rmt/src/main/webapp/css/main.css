@@ -1,3 +1,5 @@
+@import "bootstrap/bootstrap.less";
+
 /*************************************************************************
     validation stuff
     todo: see if we can use bootstrap classes.
@@ -176,6 +178,55 @@ table tbody[class="thead"] td {
 #responseListTable .thead td {
     text-transform: uppercase;
     font-size: 90%;
+}
+
+/*************************************************************************
+    List styling (same ass table but uses ul/li)
+**************************************************************************/
+.table-header-text {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 90%;
+}
+
+.unstyled {
+  list-style: none;
+  margin-left: 0;
+}
+
+ul.table {
+    /* table rows */
+    li {
+        border-bottom: 1px solid #CCCCCC;
+        .clearfix();
+    }
+
+    li:first-child {
+        border-bottom:  2px solid #CCCCCC;
+        .table-header-text;
+    }
+
+    /* table cells */
+    li > div {
+        float: left;
+        padding: 10px 10px 9px;
+        line-height: @baseline;
+        text-align: left;
+    }
+
+    .unstyled;
+}
+
+/*************************************************************************
+    Players table
+**************************************************************************/
+#playerList {
+    li > div {
+        width: 100px;
+    }
+    li > div + div {
+        width: 200px;
+    }
 }
 
 /*************************************************************************

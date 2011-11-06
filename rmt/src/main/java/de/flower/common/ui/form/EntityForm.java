@@ -9,7 +9,6 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.LoadableDetachableModel;
 import org.wicketstuff.jsr303.PropertyValidation;
 
 /**
@@ -23,7 +22,7 @@ public class EntityForm<T extends IEntity> extends Form<T> {
 
     public EntityForm(String id, IModel<T> model) {
         super(id, new CompoundPropertyModel<T>(model));
-        Check.isInstanceOf(LoadableDetachableModel.class, model);
+        Check.notNull(model);
 
         add(new WebMarkupContainer("hasErrors") {
             @Override
@@ -35,11 +34,6 @@ public class EntityForm<T extends IEntity> extends Form<T> {
         add(feedback = new FeedbackPanel("feedback", new ComponentFeedbackMessageFilter(this)));
         feedback.setOutputMarkupId(true);
         add(new PropertyValidation());
-    }
-
-    public void replaceModel(IModel<T> model) {
-        Check.isInstanceOf(LoadableDetachableModel.class, model);
-        setModel(new CompoundPropertyModel<T>(model));
     }
 
 }

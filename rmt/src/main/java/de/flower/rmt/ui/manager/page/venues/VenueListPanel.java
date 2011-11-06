@@ -9,6 +9,7 @@ import de.flower.rmt.model.Venue;
 import de.flower.rmt.service.IVenueManager;
 import de.flower.rmt.ui.common.page.ModalDialogWindow;
 import de.flower.rmt.ui.common.panel.BasePanel;
+import de.flower.rmt.ui.model.VenueModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -34,8 +35,6 @@ public class VenueListPanel extends BasePanel {
         super(id);
 
         final ModalDialogWindow modal = new ModalDialogWindow("venueDialog");
-        final VenueEditPanel venueEditPanel = new VenueEditPanel(modal.getContentId());
-        modal.setContent(venueEditPanel);
         add(modal);
 
         add(new MyAjaxLink("newButton") {
@@ -43,9 +42,10 @@ public class VenueListPanel extends BasePanel {
             @Override
             public void onClick(AjaxRequestTarget target) {
                 // show modal dialog with venue edit form.
-                venueEditPanel.init(null);
+                final VenueEditPanel panel = new VenueEditPanel(modal.getContentId(), new VenueModel());
+                modal.setContent(panel);
                 modal.show(target);
-                resizeMap(target, venueEditPanel);
+                resizeMap(target, panel);
             }
         });
 
@@ -69,9 +69,10 @@ public class VenueListPanel extends BasePanel {
 
                     @Override
                     public void onClick(AjaxRequestTarget target) {
-                        venueEditPanel.init(item.getModel());
+                        final VenueEditPanel panel = new VenueEditPanel(modal.getContentId(), item.getModel());
+                        modal.setContent(panel);
                         modal.show(target);
-                        resizeMap(target, venueEditPanel);
+                        resizeMap(target, panel);
                     }
                 });
                 item.add(new AjaxLinkWithConfirmation("deleteButton", new ResourceModel("manager.venues.delete.confirm")) {

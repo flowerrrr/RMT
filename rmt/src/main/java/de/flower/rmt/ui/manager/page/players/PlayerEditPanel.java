@@ -8,9 +8,7 @@ import de.flower.common.ui.form.ValidatedTextField;
 import de.flower.common.validation.unique.Unique;
 import de.flower.rmt.model.User;
 import de.flower.rmt.service.IUserManager;
-import de.flower.rmt.ui.common.IEntityEditPanel;
 import de.flower.rmt.ui.common.panel.BasePanel;
-import de.flower.rmt.ui.model.UserModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 import org.apache.wicket.markup.html.form.Form;
@@ -23,17 +21,17 @@ import org.wicketstuff.jsr303.ConstraintFilter;
 /**
  * @author flowerrrr
  */
-public class PlayerEditPanel extends BasePanel implements IEntityEditPanel<User> {
+public class PlayerEditPanel extends BasePanel {
 
     private EntityForm<User> form;
 
     @SpringBean
     private IUserManager playerManager;
 
-    public PlayerEditPanel(String id) {
+    public PlayerEditPanel(String id, IModel<User> model) {
         super(id);
 
-        form = new EntityForm<User>("form", new UserModel());
+        form = new EntityForm<User>("form", model);
         add(form);
 
         ValidatedTextField fullname = new ValidatedTextField("fullname");
@@ -59,11 +57,4 @@ public class PlayerEditPanel extends BasePanel implements IEntityEditPanel<User>
         });
     }
 
-    @Override
-	public void init(IModel<User> model) {
-        if (model == null) {
-            model = new UserModel();
-        }
-        form.replaceModel(model);
-    }
 }

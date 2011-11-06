@@ -12,10 +12,8 @@ import de.flower.rmt.service.geocoding.GeocodingResult;
 import de.flower.rmt.service.geocoding.IGeocodingService;
 import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.ui.app.RMTSession;
-import de.flower.rmt.ui.common.IEntityEditPanel;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.manager.page.venues.panel.GMapPanel2;
-import de.flower.rmt.ui.model.VenueModel;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
@@ -39,7 +37,7 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class VenueEditPanel extends BasePanel implements IEntityEditPanel<Venue> {
+public class VenueEditPanel extends BasePanel  {
 
     private EntityForm<Venue> form;
 
@@ -60,10 +58,10 @@ public class VenueEditPanel extends BasePanel implements IEntityEditPanel<Venue>
     @SpringBean
     private IGeocodingService geocodingService;
 
-    public VenueEditPanel(String id) {
+    public VenueEditPanel(String id, final IModel<Venue> model) {
         super(id);
 
-        form = new EntityForm<Venue>("form", new VenueModel());
+        form = new EntityForm<Venue>("form", model);
         add(form);
 
         form.add(new ValidatedTextField("name"));
@@ -149,24 +147,9 @@ public class VenueEditPanel extends BasePanel implements IEntityEditPanel<Venue>
         mapPanel.setOutputMarkupId(true);
     }
 
-    @Override
-	public void init(IModel<Venue> model) {
-        if (model == null) {
-            model = new VenueModel();
-        } else {
-            model = new VenueModel(model.getObject());
-        }
-        form.replaceModel(model);
-        mapPanel.init(Model.of(model.getObject().getLatLng()));
-        hideGeocodingResults();
-    }
 
     public GMap getGMap() {
         return mapPanel.getGMap();
     }
 
-    private void hideGeocodingResults() {
-        geocodeNoResults.setVisible(false);
-        geocodeResultListContainer.setVisible(false);
-    }
 }

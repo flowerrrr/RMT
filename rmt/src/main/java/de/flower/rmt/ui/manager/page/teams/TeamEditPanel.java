@@ -8,7 +8,6 @@ import de.flower.common.ui.form.ValidatedTextField;
 import de.flower.common.validation.unique.Unique;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.service.ITeamManager;
-import de.flower.rmt.ui.common.IEntityEditPanel;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.model.TeamModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -23,17 +22,17 @@ import org.wicketstuff.jsr303.ConstraintFilter;
 /**
  * @author flowerrrr
  */
-public class TeamEditPanel extends BasePanel implements IEntityEditPanel<Team> {
+public class TeamEditPanel extends BasePanel {
 
     private EntityForm<Team> form;
 
     @SpringBean
     private ITeamManager teamManager;
 
-    public TeamEditPanel(String id) {
+    public TeamEditPanel(String id, final IModel<Team> model) {
         super(id);
 
-        form = new EntityForm<Team>("form", new TeamModel());
+        form = new EntityForm<Team>("form", model);
         add(form);
 
         ValidatedTextField name;
@@ -56,11 +55,4 @@ public class TeamEditPanel extends BasePanel implements IEntityEditPanel<Team> {
         });
     }
 
-    @Override
-    public void init(IModel<Team> model) {
-        if (model == null) {
-            model = new TeamModel();
-        }
-        form.replaceModel(model);
-    }
 }

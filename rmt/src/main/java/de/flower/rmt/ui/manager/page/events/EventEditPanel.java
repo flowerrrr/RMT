@@ -31,8 +31,6 @@ import org.wicketstuff.jsr303.BeanValidator;
  */
 public class EventEditPanel extends BasePanel {
 
-    private EntityForm<Event> form;
-
     @SpringBean
     private IEventManager eventManager;
 
@@ -40,7 +38,7 @@ public class EventEditPanel extends BasePanel {
         super(id);
         Check.notNull(model.getObject());
 
-        form = new EntityForm<Event>("form", new EventModel(model.getObject()));
+        EntityForm<Event> form = new EntityForm<Event>("form", new EventModel(model.getObject()));
         form.setOutputMarkupPlaceholderTag(true);
         add(form);
 

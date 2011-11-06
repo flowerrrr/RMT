@@ -35,8 +35,6 @@ public class TeamsPage extends ManagerBasePage {
     public TeamsPage() {
 
         final ModalDialogWindow modal = new ModalDialogWindow("teamDialog");
-        final TeamEditPanel teamEditPanel = new TeamEditPanel(modal.getContentId());
-        modal.setContent(teamEditPanel);
         add(modal);
 
         add(new MyAjaxLink("newButton") {
@@ -44,7 +42,7 @@ public class TeamsPage extends ManagerBasePage {
             @Override
             public void onClick(AjaxRequestTarget target) {
                 // show modal dialog with team edit form.
-                teamEditPanel.init(null);
+                modal.setContent(new TeamEditPanel(modal.getContentId(), new TeamModel()));
                 modal.show(target);
             }
         });
@@ -66,7 +64,7 @@ public class TeamsPage extends ManagerBasePage {
 
                     @Override
                     public void onClick(AjaxRequestTarget target) {
-                        teamEditPanel.init(item.getModel());
+                        modal.setContent(new TeamEditPanel(modal.getContentId(), item.getModel()));
                         modal.show(target);
                     }
                 });
