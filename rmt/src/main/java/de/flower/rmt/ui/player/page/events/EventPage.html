@@ -5,11 +5,25 @@
 
 <wicket:extend>
 
-    Event Details und Rückmeldungen
+    <div class="container">
 
-    <div wicket:id="eventDetailsPanel" />
-    <div wicket:id="responseFormPanelContainer" />
-    <div wicket:id="responseListPanel" />
+        <div class="content">
+            <div class="page-header">
+                <h1><wicket:message key="player.event.heading" /></h1>
+                <h1><small><wicket:message key="player.event.heading.sub" /></small></h1>
+            </div>
+            <div class="row">
+                <div class="span10 main">
+                    <div wicket:id="responseListPanel" />
+                </div>
+                <div class="span4 secondary">
+                    <div wicket:id="eventDetailsPanel" />
+                    <div wicket:id="responseFormPanel" />
+                </div>
+            </div>
+        </div>
+
+    </div>
 
  </wicket:extend>
 

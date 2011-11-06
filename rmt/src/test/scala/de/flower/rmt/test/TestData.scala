@@ -72,6 +72,8 @@ class TestData {
             team = createTeam(name)
             val users = createUsers(20)
             teamManager.addPlayers(team, users)
+            // add user of security context to team
+            teamManager.addPlayer(team, getTestUser())
         }
         return team;
     }
@@ -125,5 +127,9 @@ class TestData {
         responseManager.respond(event, playerRepo.findByTeam(event.getTeam()).get(11), RSVPStatus.ACCEPTED, "some comment")
         responseManager.respond(event, playerRepo.findByTeam(event.getTeam()).get(12), RSVPStatus.ACCEPTED, "some comment")
         return event
+    }
+
+    def getTestUser(): User = {
+        return userManager.findByUsername(AbstractIntegrationTests.testUserName)
     }
 }

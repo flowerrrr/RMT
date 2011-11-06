@@ -48,7 +48,7 @@ public class ResponseManager extends AbstractService implements IResponseManager
     public Response findByEventAndUser(Event event, User user) {
         // find player instance of this user belonging to the events team
         Player player = playerManager.findByTeamAndUser(event.getTeam(), user);
-        Check.notNull(player, "User [{}] not associated to event [{}]", user.getId(), event.getTeam().getId());
+        Check.notNull(player, "User [%s] not associated to event [%s]", user.getId(), event.getTeam().getId());
         return responseRepo.findByEventAndPlayer(event, player);
     }
 

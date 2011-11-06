@@ -63,7 +63,13 @@ public class ValidatedFormComponent<T> extends Panel {
              }
         });
 
-        add(new FeedbackPanel("feedback", new ComponentFeedbackMessageFilter(c)));
+        add(new FeedbackPanel("feedback", new ComponentFeedbackMessageFilter(c)) {
+            @Override
+            public boolean isVisible() {
+                // don't show to avoid layout bug caused by using twitter bootstrap alerts
+                return anyMessage();
+            }
+        });
 
         // set css class of border according to validation result.
         IModel<String> model = new AbstractReadOnlyModel<String>() {
@@ -98,8 +104,9 @@ public class ValidatedFormComponent<T> extends Panel {
     @Override
     public Markup getAssociatedMarkup() {
         return Markup.of("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><wicket:panel>"
+                + "<div class=\"alert-message error feedback\" wicket:id=\"feedback\" ></div>\n"
                 + getMarkup().toString(true) + "\n"
-                + "    <span wicket:id=\"feedback\" ></span></wicket:panel>");
+                + "</wicket:panel>");
     }
 
     @Override

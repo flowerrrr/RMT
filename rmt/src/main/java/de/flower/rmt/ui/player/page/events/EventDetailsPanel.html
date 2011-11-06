@@ -5,37 +5,39 @@
 
 <wicket:panel>
 
-    <ul>
+    <h4><wicket:message key="player.event.heading.secondary"/></h4>
+
+    <ul class="unstyled details">
         <li>
-            <wicket:message key="manager.event.team"/>
+            <h6><wicket:message key="manager.event.date"/></h6>
+            <span wicket:id="date"/>
+        </li>
+        <li>
+            <h6><wicket:message key="manager.event.time"/></h6>
+            <span wicket:id="time"/>
+        </li>
+        <li>
+            <h6><wicket:message key="manager.event.team"/></h6>
             <span wicket:id="team"/>
         </li>
         <li>
-            <wicket:message key="manager.event.type"/>
+            <h6><wicket:message key="manager.event.type"/></h6>
             <span wicket:id="type"/>
         </li>
          <li>
-             <wicket:message key="manager.event.date"/>
-             <span wicket:id="date"/>
-         </li>
-         <li>
-             <wicket:message key="manager.event.time"/>
-             <span wicket:id="time"/>
-         </li>
-         <li>
-             <wicket:message key="manager.event.venue"/>
+             <h6><wicket:message key="manager.event.venue"/></h6>
              <span wicket:id="venue"/>
          </li>
          <li>
-             <wicket:message key="manager.event.venue.surface"/>
+             <h6><wicket:message key="manager.event.venue.surface"/></h6>
              <span>TBD</span>
          </li>
          <li>
-             <wicket:message key="manager.event.summary"/>
+             <h6><wicket:message key="manager.event.summary"/></h6>
              <span wicket:id="summary"/>
          </li>
          <li>
-             <wicket:message key="manager.event.comment"/>
+             <h6><wicket:message key="manager.event.comment"/></h6>
              <span wicket:id="comment"/>
          </li>
      </ul>

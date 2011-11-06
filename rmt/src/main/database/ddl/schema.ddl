@@ -5,14 +5,6 @@
         primary key (id)
     );
 
-    create table Comment (
-        id bigint not null auto_increment,
-        comment varchar(255),
-        author_id bigint,
-        response_id bigint,
-        primary key (id)
-    );
-
     create table Event (
         eventType varchar(31) not null,
         id bigint not null auto_increment,
@@ -61,7 +53,7 @@
 
     create table Player (
         id bigint not null auto_increment,
-        optional bit,
+        optional bit not null,
         team_id bigint,
         user_id bigint,
         primary key (id)
@@ -69,8 +61,10 @@
 
     create table Response (
         id bigint not null auto_increment,
+        comment varchar(255),
         date datetime not null,
         guestName varchar(255),
+        managerComment varchar(255),
         status varchar(255) not null,
         event_id bigint,
         player_id bigint,
@@ -115,18 +109,6 @@
         club_id bigint not null,
         primary key (id)
     );
-
-    alter table Comment 
-        add index FK9BDE863FCA54B59A (author_id), 
-        add constraint FK9BDE863FCA54B59A 
-        foreign key (author_id) 
-        references Users (id);
-
-    alter table Comment 
-        add index FK9BDE863F69EFA79A (response_id), 
-        add constraint FK9BDE863F69EFA79A 
-        foreign key (response_id) 
-        references Response (id);
 
     alter table Event 
         add index FK403827A5CB6EDDA (venue_id), 

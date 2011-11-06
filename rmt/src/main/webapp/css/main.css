@@ -2,7 +2,7 @@
     validation stuff
     todo: see if we can use bootstrap classes.
 **************************************************************************/
-.error {
+.Xerror {
     background-color: #ff0000;
 }
 
@@ -24,6 +24,24 @@
     right: 0;
 }
 
+* {
+    outline: none;
+}
+/*************************************************************************
+    form feedback
+**************************************************************************/
+.feedback{
+    margin-bottom: 5px;
+}
+.feedbackPanel {
+    display: inline;
+    margin: 0px;
+}
+.feedbackPanel li {
+    display: inline;
+    color: #FFFFFF;
+}
+
 /*************************************************************************
     taken from twitters base template http://twitter.github.com/bootstrap/examples/container-app.html
     base layout for player pages
@@ -39,6 +57,19 @@ body {
 
 footer {
     text-align: center;
+}
+
+li {
+    color: #404040;
+}
+
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* override float:left from bootstrap */
+input[type="checkbox"] + label {
+    float: none;
 }
 
 .container {
@@ -72,15 +103,45 @@ footer {
 
 .content .secondary {
     border-left: 1px solid #CCCCCC;
-    xmargin-left: 0;
     padding-left: 19px;
-    xwidth: 200px;
+}
+
+.secondary h4 {
+    line-height: normal;
+    margin-bottom: 5px;
+}
+
+.secondary > div:not(:last-child) {
+    border-bottom: 1px solid #CCCCCC;
+    margin-bottom: 20px;
+}
+
+/*************************************************************************
+    login form
+**************************************************************************/
+.modal-header {
+    border-bottom: 1px solid #DDDDDD;
+}
+#loginForm .actions, #loginForm, #loginForm fieldset {
+    margin-bottom: 0px;
+}
+#loginForm .alert-message {
+    display: inline-block; /* let div shrink to size of message. */
+}
+
+
+/*************************************************************************
+    topbar
+**************************************************************************/
+.name-icon {
+    padding-top: 11px;
+    padding-right: 3px;
 }
 
 /*************************************************************************
     table styling
 **************************************************************************/
-table thead {
+table thead,  table .thead {
     border-bottom:  2px solid #CCCCCC;
 }
 table .data {
@@ -94,6 +155,56 @@ table .second-row td, table .second-row th {
 }
 table th {
     vertical-align: top;
+    text-transform: uppercase;
+    font-size: 90%;
+}
+table tbody[class="thead"] td {
+    font-weight: bold;
+}
+
+#responseListTable .data td:first-child {
+    width: 50px;
+    font-size: 80%;
+}
+#responseListTable .thead:first-child td {
+    padding-top: 0px;
+}
+#responseListTable .thead:not(:first-child) td {
+    /* put spacer between sections in table */
+    padding-top: 25px;
+}
+#responseListTable .thead td {
+    text-transform: uppercase;
+    font-size: 90%;
+}
+
+/*************************************************************************
+    Event details list
+**************************************************************************/
+.details h6 {
+    font-size: 10px;
+    line-height: normal;
+}
+.details li {
+    margin-bottom: 5px;
+}
+
+.details li:first-child {
+    float: left;
+    width: 50%;
+}
+
+/*************************************************************************
+    Response form
+**************************************************************************/
+.responseForm .radio {
+    display: block;
+}
+.responseForm li {
+    margin-top: 10px;
+}
+textarea {
+    resize: none;
 }
 
 /*************************************************************************
@@ -123,6 +234,10 @@ table th {
     /* map with all venues on it */
     width: 500px;
     height: 400px;
+}
+
+#venue-tabs {
+    float: none;  /* needed to make map work inside tabs. */
 }
 
 /*************************************************************************

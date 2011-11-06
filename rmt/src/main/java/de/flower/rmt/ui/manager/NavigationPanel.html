@@ -4,18 +4,30 @@
 <body>
 <wicket:panel>
 
-    <ul>
-        <li><a wicket:id="home"><wicket:message key="manager.navigation.home">[Home]</wicket:message></a></li>
-        <li><a wicket:id="events"><wicket:message key="manager.navigation.events">[Events]</wicket:message></a></li>
-        <li><a wicket:id="teams"><wicket:message key="manager.navigation.teams">[Teams]</wicket:message></a></li>
-        <li>Opponents</li>
-        <li><a wicket:id="players"><wicket:message key="manager.navigation.players">[Players]</wicket:message></a></li>
-        <li><a wicket:id="venues"><wicket:message key="manager.navigation.venues">[Venues]</wicket:message></a></li>
-
-        <li><span wicket:id="user">[Logged in User]</span></li>
-        <li><a wicket:id="logoutLink" >[Logout]</a></li>
-
-    </ul>
+    <div data-dropdown="dropdown" class="topbar">
+        <div class="topbar-inner">
+            <div class="container">
+                <h3 class="brand"><wicket:message key="project.name">[das tool]</wicket:message></h3>
+                <ul class="nav">
+                    <li><a wicket:id="home"><wicket:message key="manager.navigation.home">[Home]</wicket:message></a></li>
+                    <li><a wicket:id="events"><wicket:message key="manager.navigation.events">[Events]</wicket:message></a></li>
+                    <li><a wicket:id="teams"><wicket:message key="manager.navigation.teams">[Teams]</wicket:message></a></li>
+                    <li><a wicket:id="players"><wicket:message key="manager.navigation.players">[Players]</wicket:message></a></li>
+                    <li><a href="#"><wicket:message key="manager.navigation.opponents">[Opponents]</wicket:message></a></li>
+                    <li><a wicket:id="venues"><wicket:message key="manager.navigation.venues">[Venues]</wicket:message></a></li>
+                </ul>
+                <ul class="nav secondary-nav">
+                    <li class="name-icon"><img src="img/football-small.gif" /></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="#"><span wicket:id="user">[Logged in User]</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a wicket:id="logoutLink">[Logout]</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
 </wicket:panel>
 </body>

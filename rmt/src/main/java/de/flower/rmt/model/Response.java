@@ -5,6 +5,7 @@ import de.flower.rmt.model.event.Event;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,8 +24,12 @@ public class Response extends AbstractBaseEntity {
     @NotNull
     private Date date;
 
+    @Column(length = 255)
+    @Size(max = 255)
     private String comment;
 
+    @Column(length = 255)
+    @Size(max = 255)
     private String managerComment;
 
     @Column

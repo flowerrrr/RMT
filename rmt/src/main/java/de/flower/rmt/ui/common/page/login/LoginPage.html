@@ -6,20 +6,49 @@
 <body>
 <wicket:extend>
 
-    <div wicket:id="loginFailure">
-        <wicket:message key="login.failure" />
-    </div>
+    <div class="modal">
+        <div class="modal-header">
+            <h3>Login</h3>
+        </div>
+        <div class="modal-body">
 
-    <form name="loginForm" action="j_spring_security_check" method="POST">
-        <ul>
-            <li>Username: <input name="j_username" type="text"/></li>
-            <li>Password: <input name="j_password" type="password"/></li>
-            <li><input type="checkbox" name="_spring_security_remember_me" checked="true"/>
-                <wicket:message key="login.rememberme">[Remember me]</wicket:message>
-            </li>
-        </ul>
-        <input type="submit" value="Login"/>
-    </form>
+            <form id="loginForm" action="j_spring_security_check" method="POST">
+                <fieldset>
+                    <div wicket:id="loginFailure">
+                        <div class="input">
+                            <div class="alert-message error">
+                                <wicket:message key="login.failure" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <label for="j_username"><wicket:message key="login.username" />:</label>
+                        <div class="input">
+                            <input id="j_username" name="j_username" type="text"/>
+                            <script>
+                                document.getElementById('j_username').focus();
+                            </script>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <label for="j_password"><wicket:message key="login.password" />:</label>
+                        <div class="input">
+                            <input name="j_password" type="password"/>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="input">
+                            <input id="remember-me" type="checkbox" name="_spring_security_remember_me" checked="true"/>
+                            <label for="remember-me"><wicket:message key="login.rememberme">[Remember me]</wicket:message></label>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <input class="btn primary" type="submit" value="Login"/>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
 
 </wicket:extend>
 </body>

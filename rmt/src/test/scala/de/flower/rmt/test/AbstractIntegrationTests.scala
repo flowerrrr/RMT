@@ -138,9 +138,8 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
      */
     protected def initializeSecurityContextWithTestUser() {
         // set the security context with a test user.
-        var username = "manager-rmt@mailinator.com"
-        Validate.notNull(userRepo.findByEmail(username), "Make sure test user is present in test database.")
-        val principal = userDetailService.loadUserByUsername(username)
+        Validate.notNull(userRepo.findByEmail(AbstractIntegrationTests.testUserName), "Make sure test user is present in test database.")
+        val principal = userDetailService.loadUserByUsername(AbstractIntegrationTests.testUserName)
         val authentication = new TestingAuthenticationToken(principal, principal.getPassword, new ArrayList(principal.getAuthorities))
         securityContextHolderStrategy.getContext.setAuthentication(authentication)
     }
@@ -166,4 +165,8 @@ class AbstractIntegrationTests extends AbstractTestNGSpringContextTests with Ass
             listAppender.reset();
         }
     }
+}
+
+object AbstractIntegrationTests {
+    val testUserName = "manager-rmt@mailinator.com"
 }

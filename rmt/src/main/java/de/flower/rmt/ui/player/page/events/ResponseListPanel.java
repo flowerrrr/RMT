@@ -1,8 +1,5 @@
 package de.flower.rmt.ui.player.page.events;
 
-import de.flower.common.ui.ajax.MyAjaxLink;
-import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
-import de.flower.common.ui.ajax.updatebehavior.events.ShowResponseFormEvent;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.Player;
 import de.flower.rmt.model.RSVPStatus;
@@ -10,18 +7,14 @@ import de.flower.rmt.model.Response;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IPlayerManager;
 import de.flower.rmt.service.IResponseManager;
-import de.flower.rmt.ui.app.RMTSession;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.Component;
-import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Fragment;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import java.util.List;
@@ -42,38 +35,54 @@ public class ResponseListPanel extends BasePanel {
         super(id);
         Check.notNull(model.getObject());
 
-        add(createListView("acceptedList", RSVPStatus.ACCEPTED, model));
-        add(createListView("unsureList", RSVPStatus.UNSURE, model));
-        add(createListView("declinedList", RSVPStatus.DECLINED, model));
+        add(createListView("acceptedList", RSVPStatus.ACCEPTED, model, true));
+        add(createListView("unsureList", RSVPStatus.UNSURE, model, false));
+        add(createListView("declinedList", RSVPStatus.DECLINED, model, false));
 
+/*
         ListView list = new ListView<Player>("noresponseList", getNotResponderList(model)) {
 
             @Override
             protected void populateItem(ListItem<Player> item) {
                 item.add(new Label("name", item.getModelObject().getFullname()));
-                item.add(new ResponseLink("responseLink", item.getModelObject()));
+            }
+
+            @Override
+            public boolean isVisible() {
+                return !this.getList().isEmpty();
             }
         };
         add(list);
+*/
     }
 
-    private Component createListView(String id, RSVPStatus status, IModel<Event> model) {
+    private Component createListView(String id, RSVPStatus status, IModel<Event> model, final boolean printOrder) {
         ListView list = new ListView<Response>(id, getResponseList(model, status)) {
             @Override
             protected void populateItem(ListItem<Response> item) {
-                item.add(createResponseFragement(item));
+                item.add(createResponseFragement(item, printOrder));
+            }
+
+            /**
+             * Needed for wicket:enclosure to work.
+             * @return
+             */
+            @Override
+            public boolean isVisible() {
+                return !this.getList().isEmpty();
             }
         };
         return list;
     }
 
-    private Component createResponseFragement(final ListItem<Response> item) {
+    private Component createResponseFragement(final ListItem<Response> item, final boolean printOrder) {
         final Response response = item.getModelObject();
         Fragment frag = new Fragment("itemPanel", "itemFragment", this);
+        final Label label = new Label("position", "#" + (item.getIndex() + 1));
+        label.setVisible(printOrder);
+        frag.add(label);
         frag.add(new Label("name", response.getName()));
-        frag.add(DateLabel.forDateStyle("date", Model.of(response.getDate()), "SS"));
         frag.add(new Label("comment", response.getComment()));
-        frag.add(new ResponseLink("responseLink", item.getModelObject().getPlayer()));
         return frag;
     }
 
@@ -93,27 +102,5 @@ public class ResponseListPanel extends BasePanel {
                 return playerManager.findNotResponded(model.getObject());
             }
         };
-    }
-
-
-    private static class ResponseLink extends MyAjaxLink {
-
-        public ResponseLink(String id, final Player player) {
-            super(id);
-            setVisible(isCurrentUser(player));
-        }
-
-        @Override
-        public void onClick(final AjaxRequestTarget target) {
-            target.registerRespondListener(new AjaxRespondListener(new ShowResponseFormEvent()));
-        }
-
-        private boolean isCurrentUser(Player player) {
-            if (player == null) {
-                return false;
-            } else {
-                return (player.getUser().equals(RMTSession.get().getUser()));
-            }
-        }
     }
 }
