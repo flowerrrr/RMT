@@ -107,4 +107,10 @@ public class SquadPage extends ManagerBasePage {
         };
     }
 
+    @Override
+    public String getActiveTopBarItem() {
+        return "teams";
+    }
+
+
 }

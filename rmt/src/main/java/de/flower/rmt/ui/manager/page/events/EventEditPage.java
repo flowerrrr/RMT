@@ -12,4 +12,10 @@ public class EventEditPage extends ManagerBasePage {
     public EventEditPage(Event event) {
         add(new EventEditPanel("eventEditPanel", Model.of(event)));
     }
+
+    @Override
+    public String getActiveTopBarItem() {
+        return "events";
+    }
+
 }

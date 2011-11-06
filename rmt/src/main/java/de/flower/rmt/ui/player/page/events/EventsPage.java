@@ -32,4 +32,10 @@ public class EventsPage extends PlayerBasePage {
             }
         };
     }
+
+    @Override
+     public String getActiveTopBarItem() {
+         return "events";
+     }
+
 }

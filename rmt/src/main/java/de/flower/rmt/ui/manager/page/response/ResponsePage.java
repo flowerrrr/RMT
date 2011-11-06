@@ -35,4 +35,10 @@ public class ResponsePage extends ManagerBasePage {
 
          add(new ResponseListPanel("responseListPanel", new EventModel(event)));
      }
+
+    @Override
+    public String getActiveTopBarItem() {
+        return "events";
+    }
+
 }

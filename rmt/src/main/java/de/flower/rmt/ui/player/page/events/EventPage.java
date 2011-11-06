@@ -1,6 +1,5 @@
 package de.flower.rmt.ui.player.page.events;
 
-import de.flower.common.ui.ajax.panel.AjaxSlideTogglePanel;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
@@ -17,8 +16,6 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
  * @author flowerrrr
  */
 public class EventPage extends PlayerBasePage {
-
-    private AjaxSlideTogglePanel responseFormPanelContainer;
 
     private ResponseFormPanel responseFormPanel;
 
@@ -53,4 +50,10 @@ public class EventPage extends PlayerBasePage {
             return new ResponseModel(response);
         }
     }
+
+    @Override
+     public String getActiveTopBarItem() {
+         return "events";
+     }
+
 }

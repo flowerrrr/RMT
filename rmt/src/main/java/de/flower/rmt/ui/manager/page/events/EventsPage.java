@@ -120,4 +120,10 @@ public class EventsPage extends ManagerBasePage {
             }
         };
     }
+
+    @Override
+    public String getActiveTopBarItem() {
+        return "events";
+    }
+
 }

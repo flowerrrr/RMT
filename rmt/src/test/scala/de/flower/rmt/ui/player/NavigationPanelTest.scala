@@ -5,6 +5,7 @@ import org.testng.annotations.Test
 import de.flower.rmt.ui.model.EventModel
 import page.events.EventPage
 import de.flower.rmt.ui.player.NavigationPanel
+import de.flower.rmt.ui.common.page.INavigationPanelAware
 
 /**
  * 
@@ -15,7 +16,9 @@ class NavigationPanelTest extends WicketTests {
 
     @Test
     def renderPanel() {
-        wicketTester.startComponentInPage(new NavigationPanel("topBar"))
+        wicketTester.startComponentInPage(new NavigationPanel("topBar", new INavigationPanelAware {
+            def getActiveTopBarItem = "home"
+        }))
         wicketTester.dumpPage()
     }
 

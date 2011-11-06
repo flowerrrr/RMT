@@ -92,4 +92,10 @@ public class TeamsPage extends ManagerBasePage {
             }
         };
     }
+
+    @Override
+    public String getActiveTopBarItem() {
+        return "teams";
+    }
+
 }

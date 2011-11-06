@@ -9,5 +9,8 @@ public class ManagerHomePage extends ManagerBasePage {
 
      }
 
-
+    @Override
+    public String getActiveTopBarItem() {
+        return "home";
+    }
 }

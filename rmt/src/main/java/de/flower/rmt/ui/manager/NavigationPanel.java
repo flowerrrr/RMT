@@ -1,29 +1,28 @@
 package de.flower.rmt.ui.manager;
 
-import de.flower.rmt.ui.common.panel.BasePanel;
-import de.flower.rmt.ui.common.panel.LogoutLink;
+import de.flower.rmt.ui.common.page.INavigationPanelAware;
+import de.flower.rmt.ui.common.panel.AbstractNavigationPanel;
 import de.flower.rmt.ui.manager.page.events.EventsPage;
+import de.flower.rmt.ui.manager.page.opponents.OpponentsPage;
 import de.flower.rmt.ui.manager.page.players.PlayersPage;
 import de.flower.rmt.ui.manager.page.teams.TeamsPage;
 import de.flower.rmt.ui.manager.page.venues.VenuesPage;
-import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 
 /**
  * @author flowerrrr
  */
-public class NavigationPanel extends BasePanel {
+public class NavigationPanel extends AbstractNavigationPanel {
 
-    public NavigationPanel(String id) {
+    public NavigationPanel(String id, INavigationPanelAware page) {
         super(id);
 
-        add(new BookmarkablePageLink("home", ManagerHomePage.class));
-        add(new BookmarkablePageLink("events", EventsPage.class));
-        add(new BookmarkablePageLink("teams", TeamsPage.class));
-        add(new BookmarkablePageLink("players", PlayersPage.class));
-        add(new BookmarkablePageLink("venues", VenuesPage.class));
+        add(createMenuItem("home", ManagerHomePage.class, page));
+        add(createMenuItem("events", EventsPage.class, page));
+        add(createMenuItem("teams", TeamsPage.class, page));
+        add(createMenuItem("players", PlayersPage.class, page));
+        add(createMenuItem("opponents", OpponentsPage.class, page));
+        add(createMenuItem("venues", VenuesPage.class, page));
 
-        add(new LogoutLink("logoutLink"));
-        add(new Label("user", getUser().getFullname()));
     }
+
 }

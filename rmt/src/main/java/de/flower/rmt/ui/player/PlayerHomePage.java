@@ -15,4 +15,8 @@ public class PlayerHomePage extends PlayerBasePage {
 
     }
 
+    @Override
+    public String getActiveTopBarItem() {
+        return "home";
+    }
 }

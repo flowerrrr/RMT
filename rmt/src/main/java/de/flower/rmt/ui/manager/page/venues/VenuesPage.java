@@ -14,5 +14,9 @@ public class VenuesPage extends ManagerBasePage {
         add(new GMapPanel("mapPanel"));
     }
 
+    @Override
+    public String getActiveTopBarItem() {
+        return "venues";
+    }
 
 }

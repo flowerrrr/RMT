@@ -98,4 +98,10 @@ public class PlayersPage extends ManagerBasePage {
             }
         };
     }
+
+    @Override
+    public String getActiveTopBarItem() {
+        return "players";
+    }
+
 }
