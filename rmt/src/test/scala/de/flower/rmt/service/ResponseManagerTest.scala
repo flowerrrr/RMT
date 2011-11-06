@@ -34,7 +34,7 @@ class ResponseManagerTest extends AbstractIntegrationTests {
         var event: Event = testData.createEvent()
         val players = event.getTeam().getPlayers()
         assertTrue(responseManager.findByEventAndStatus(event, RSVPStatus.ACCEPTED).isEmpty())
-        var response = responseManager.respond(event, players.get(1), RSVPStatus.ACCEPTED, "some comment")
+        var response = responseManager.respond(event, players.get(0), RSVPStatus.ACCEPTED, "some comment")
         assertEquals(response, responseManager.findByEventAndStatus(event, RSVPStatus.ACCEPTED).get(0))
 
         response = responseManager.respond(event, players.get(1), RSVPStatus.ACCEPTED, "some comment")
