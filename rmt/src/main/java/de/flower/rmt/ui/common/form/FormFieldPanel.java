@@ -24,6 +24,8 @@ public class FormFieldPanel extends Panel {
         setRenderBodyOnly(true);
 
         formComponent = fc;
+        // set model of form component
+        formComponent.setModel(new PropertyModel(formComponent.getForm().getModel(), this.getId()));
         add(formComponent);
         add(new FeedbackPanel("feedback", new ComponentFeedbackMessageFilter(formComponent)));
     }
@@ -39,8 +41,6 @@ public class FormFieldPanel extends Panel {
         String labelKey = getLabelKey();
         formComponent.setLabel(new ResourceModel(labelKey));
 
-        // set model of form component
-        formComponent.setModel(new PropertyModel(formComponent.getForm().getModel(), this.getId()));
     }
 
     public String getLabelKey() {

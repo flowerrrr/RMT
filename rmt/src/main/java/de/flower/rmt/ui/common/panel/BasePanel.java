@@ -11,11 +11,15 @@ import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author flowerrrr
  */
 public class BasePanel<T> extends GenericPanel<T> {
+
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     @SpringBean
     private ISecurityService securityService;
@@ -28,12 +32,13 @@ public class BasePanel<T> extends GenericPanel<T> {
         this(null, model);
     }
 
-    private BasePanel(String id) {
+    protected BasePanel(String id) {
         this(id, null);
     }
 
     private BasePanel(String id, IModel<T> model) {
         super(getId(id), model);
+        log.debug("new " + getId());
         setOutputMarkupId(true);
         // always append a css class to the panels
         add(new AttributeAppender("class", Model.of("panel " + getCssClass()), " "));
@@ -67,7 +72,7 @@ public class BasePanel<T> extends GenericPanel<T> {
      * @param id
      * @return
      */
-    private static String getId(String id) {
+    protected static String getId(String id) {
         if (id != null) {
             return id;
         } else {
