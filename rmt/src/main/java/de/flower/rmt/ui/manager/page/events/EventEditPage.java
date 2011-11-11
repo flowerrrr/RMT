@@ -10,7 +10,7 @@ import org.apache.wicket.model.Model;
 public class EventEditPage extends ManagerBasePage {
 
     public EventEditPage(Event event) {
-        add(new EventEditPanel("eventEditPanel", Model.of(event)));
+        add(new EventEditPanel(Model.of(event)));
     }
 
     @Override

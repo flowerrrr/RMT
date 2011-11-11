@@ -14,8 +14,8 @@ import org.apache.wicket.model.ResourceModel;
  */
 public class EventDetailsPanel extends BasePanel {
 
-    public EventDetailsPanel(String id, final IModel<Event> model) {
-        super(id, model);
+    public EventDetailsPanel(final IModel<Event> model) {
+        super(model);
         Event event = model.getObject();
 
         add(new Label("team", event.getTeam().getName()));

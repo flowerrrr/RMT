@@ -13,7 +13,7 @@ class TeamEditPanelTest extends WicketTests {
 
     @Test
     def validateUniquenessConstraint() {
-        wicketTester.startComponentInPage(new TeamEditPanel("foobar", new TeamModel()))
+        wicketTester.startComponentInPage(new TeamEditPanel(new TeamModel()))
         wicketTester.dumpPage()
         wicketTester.debugComponentTrees()
         // input name and validate field

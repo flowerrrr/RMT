@@ -42,7 +42,7 @@ public class TeamsPage extends ManagerBasePage {
             @Override
             public void onClick(AjaxRequestTarget target) {
                 // show modal dialog with team edit form.
-                modal.setContent(new TeamEditPanel(modal.getContentId(), new TeamModel()));
+                modal.setContent(new TeamEditPanel(new TeamModel()));
                 modal.show(target);
             }
         });
@@ -64,7 +64,7 @@ public class TeamsPage extends ManagerBasePage {
 
                     @Override
                     public void onClick(AjaxRequestTarget target) {
-                        modal.setContent(new TeamEditPanel(modal.getContentId(), item.getModel()));
+                        modal.setContent(new TeamEditPanel(item.getModel()));
                         modal.show(target);
                     }
                 });

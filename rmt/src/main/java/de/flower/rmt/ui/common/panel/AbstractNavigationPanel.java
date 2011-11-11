@@ -12,8 +12,8 @@ import org.apache.wicket.markup.html.link.BookmarkablePageLink;
  */
 public class AbstractNavigationPanel extends BasePanel {
 
-    public AbstractNavigationPanel(String id) {
-        super(id);
+    public AbstractNavigationPanel() {
+        super();
 
         add(new LogoutLink("logoutLink"));
         add(new Label("user", getUser().getFullname()));

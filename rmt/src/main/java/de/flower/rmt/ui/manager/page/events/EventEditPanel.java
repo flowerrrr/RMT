@@ -1,12 +1,8 @@
 package de.flower.rmt.ui.manager.page.events;
 
-import de.flower.common.ui.ajax.MyAjaxSubmitLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
-import de.flower.common.ui.form.EntityForm;
-import de.flower.common.ui.form.TimeSelect;
-import de.flower.common.ui.form.ValidatedFormComponent;
-import de.flower.common.ui.form.ValidatedTextField;
+import de.flower.common.ui.form.*;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IEventManager;
@@ -21,7 +17,6 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-import org.wicketstuff.jsr303.BeanValidator;
 
 /**
  * A bit different form other editing panels cause it is always
@@ -34,12 +29,26 @@ public class EventEditPanel extends BasePanel {
     @SpringBean
     private IEventManager eventManager;
 
-    public EventEditPanel(String id, IModel<Event> model) {
-        super(id);
+    public EventEditPanel(IModel<Event> model) {
+        super();
         Check.notNull(model.getObject());
 
-        EntityForm<Event> form = new EntityForm<Event>("form", new EventModel(model.getObject()));
-        form.setOutputMarkupPlaceholderTag(true);
+        EntityForm<Event> form = new CancelableEntityForm<Event>("form", new EventModel(model.getObject())) {
+
+            @Override
+            protected void onSubmit(final AjaxRequestTarget target, final Form<Event> form) {
+                final Event event = form.getModelObject();
+                eventManager.save(event);
+                target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Event.class), AjaxEvent.EntityUpdated(Event.class)));
+                setResponsePage(new ResponsePage(event.getId()));
+                onClose(target);
+            }
+
+            @Override
+            protected void onCancel(final AjaxRequestTarget target) {
+                onClose(target);
+            }
+        };
         add(form);
 
         form.add(new TeamSelect("team"));
@@ -62,20 +71,6 @@ public class EventEditPanel extends BasePanel {
 
         // form.add(participants)
 
-
-        form.add(new MyAjaxSubmitLink("saveButton") {
-            @Override
-            protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-                final Event event = (Event) form.getModelObject();
-                if (!new BeanValidator(form).isValid(event)) {
-                    onError(target, form);
-                } else {
-                    eventManager.save(event);
-                    target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Event.class), AjaxEvent.EntityUpdated(Event.class)));
-                    setResponsePage(new ResponsePage(event.getId()));
-                }
-            }
-        });
     }
 
 

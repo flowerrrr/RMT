@@ -1,5 +1,7 @@
 package de.flower.rmt.ui.common.panel;
 
+import de.flower.common.util.Misc;
+import de.flower.common.util.Strings;
 import de.flower.rmt.model.User;
 import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.ui.model.UserModel;
@@ -18,13 +20,23 @@ public class BasePanel<T> extends GenericPanel<T> {
     @SpringBean
     private ISecurityService securityService;
 
-    public BasePanel(String id) {
+    public BasePanel() {
+        this(null, null);
+    }
+
+    public BasePanel(IModel<T> model) {
+        this(null, model);
+    }
+
+    private BasePanel(String id) {
         this(id, null);
     }
 
-    public BasePanel(String id, IModel<T> model) {
-        super(id, model);
-        add(new AttributeAppender("class", Model.of("panel"), " "));
+    private BasePanel(String id, IModel<T> model) {
+        super(getId(id), model);
+        setOutputMarkupId(true);
+        // always append a css class to the panels
+        add(new AttributeAppender("class", Model.of("panel " + getCssClass()), " "));
     }
 
     /**
@@ -36,6 +48,7 @@ public class BasePanel<T> extends GenericPanel<T> {
 
     }
 
+
     /**
      * Shortcut to get current user from security context.
      * @return
@@ -46,6 +59,25 @@ public class BasePanel<T> extends GenericPanel<T> {
 
     protected UserModel getUserModel() {
         return new UserModel(securityService.getCurrentUser());
+    }
+
+    /**
+     * Most panels let the basepanel determine the id. using default id provides a
+     * good naming strategy in your code.
+     * @param id
+     * @return
+     */
+    private static String getId(String id) {
+        if (id != null) {
+            return id;
+        } else {
+            String className = Misc.getCallingClassStatic().getSimpleName();
+            return Strings.uncapitalize(className);
+        }
+    }
+
+    private String getCssClass() {
+        return Strings.camelCaseToHyphen(getClass().getSimpleName());
     }
 
 }

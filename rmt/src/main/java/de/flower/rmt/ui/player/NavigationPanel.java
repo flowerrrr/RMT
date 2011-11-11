@@ -10,8 +10,8 @@ import de.flower.rmt.ui.player.page.events.EventsPage;
  */
 public class NavigationPanel extends AbstractNavigationPanel {
 
-    public NavigationPanel(String id, INavigationPanelAware page) {
-        super(id);
+    public NavigationPanel(INavigationPanelAware page) {
+        super();
 
         add(createMenuItem("events", EventsPage.class, page));
         add(createMenuItem("account", AccountPage.class, page));

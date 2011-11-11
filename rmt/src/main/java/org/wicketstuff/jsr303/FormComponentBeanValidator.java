@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.validation.ConstraintViolation;
 import java.io.Serializable;
-import java.util.Iterator;
 import java.util.Set;
 
 
@@ -26,14 +25,11 @@ import java.util.Set;
  *
  * @author flowerrrr
  */
-public class ComponentBeanValidator<T> extends Behavior implements INullAcceptingValidator<String>, Serializable {
+public class FormComponentBeanValidator<T> extends Behavior implements INullAcceptingValidator<String>, Serializable {
 
-    private final static Logger log = LoggerFactory.getLogger(ComponentBeanValidator.class);
+    private final static Logger log = LoggerFactory.getLogger(FormComponentBeanValidator.class);
 
     private Class<?>[] groups;
-
-    /** This filter restricts the validation messages to the one that are related to the property. */
-    private ConstraintFilter filter;
 
     private IModel<T> beanModel;
 
@@ -41,13 +37,12 @@ public class ComponentBeanValidator<T> extends Behavior implements INullAcceptin
 
     private Form form;
 
-    public ComponentBeanValidator(Class<?>[] groups, ConstraintFilter filter) {
+    public FormComponentBeanValidator(Class<?>[] groups) {
         this.groups = groups;
-        this.filter = filter;
     }
 
-    public ComponentBeanValidator(Class<?> group, ConstraintFilter filter) {
-        this(new Class<?>[]{group}, filter);
+    public FormComponentBeanValidator(Class<?> group) {
+        this(new Class<?>[]{group});
     }
 
     @Override
@@ -74,20 +69,9 @@ public class ComponentBeanValidator<T> extends Behavior implements INullAcceptin
         log.debug("Validating bean[{}]", bean);
         Set<ConstraintViolation<T>> violations = JSR303Validation.getValidator().validate(bean, groups);
 
-        filterViolations(violations);
-
         for (ConstraintViolation<T> v : violations) {
             log.debug("Constraint violation: " + v);
             validatable.error(new ViolationErrorBuilder.Property<T>(v).createError());
-        }
-    }
-
-    private void filterViolations(Set<ConstraintViolation<T>> violations) {
-        for (Iterator<ConstraintViolation<T>> iterator = violations.iterator(); iterator.hasNext(); ) {
-            ConstraintViolation<?> violation = iterator.next();
-            if (!filter.matches(violation)) {
-                iterator.remove();
-            }
         }
     }
 

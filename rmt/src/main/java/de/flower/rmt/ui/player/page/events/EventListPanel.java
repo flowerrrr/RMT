@@ -31,8 +31,8 @@ public class EventListPanel extends BasePanel {
     @SpringBean
     private IResponseManager responseManager;
 
-    public EventListPanel(String id, final UserModel userModel, final IModel<List<Event>> listModel) {
-        super(id);
+    public EventListPanel(final UserModel userModel, final IModel<List<Event>> listModel) {
+        super();
 
         WebMarkupContainer listContainer = new WebMarkupContainer("listContainer");
         add(listContainer);

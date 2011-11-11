@@ -1,7 +1,6 @@
 package de.flower.rmt.ui.manager.page.players;
 
 import de.flower.common.ui.ajax.AjaxLinkWithConfirmation;
-import de.flower.common.ui.ajax.MyAjaxLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
@@ -14,6 +13,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
@@ -34,8 +34,8 @@ public class PlayerListPanel extends BasePanel {
     @SpringBean
     private ISecurityService securityService;
 
-    public PlayerListPanel(String id) {
-        super(id);
+    public PlayerListPanel() {
+        super();
 
         WebMarkupContainer playerListContainer = new WebMarkupContainer("listContainer");
         add(playerListContainer);
@@ -50,11 +50,11 @@ public class PlayerListPanel extends BasePanel {
                 Component manager;
                 item.add(manager = new WebMarkupContainer("manager"));
                 manager.setVisible(player.isManager());
-                item.add(new MyAjaxLink("editButton") {
+                item.add(new Link("editButton") {
 
                     @Override
-                    public void onClick(AjaxRequestTarget target) {
-                        onEdit(target, item.getModel());
+                    public void onClick() {
+                        onEdit(null, item.getModel());
                     }
                 });
                 AjaxLinkWithConfirmation deleteButton;

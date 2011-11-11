@@ -1,11 +1,9 @@
 package de.flower.rmt.ui.manager.page.players;
 
-import de.flower.common.ui.ajax.MyAjaxLink;
 import de.flower.rmt.model.User;
-import de.flower.rmt.ui.common.page.ModalDialogWindow;
 import de.flower.rmt.ui.manager.ManagerBasePage;
-import de.flower.rmt.ui.model.UserModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IModel;
 
 /**
@@ -15,23 +13,18 @@ public class PlayersPage extends ManagerBasePage {
 
     public PlayersPage() {
 
-        final ModalDialogWindow modal = new ModalDialogWindow("playerDialog");
-        add(modal);
-        add(new MyAjaxLink("newButton") {
+        add(new Link("newButton") {
 
             @Override
-            public void onClick(AjaxRequestTarget target) {
-                // show modal dialog with edit form.
-                modal.setContent(new PlayerEditPanel(modal.getContentId(), new UserModel()));
-                modal.show(target);
+            public void onClick() {
+                setResponsePage(new PlayerEditPage());
             }
         });
 
-        add(new PlayerListPanel("playerListPanel") {
+        add(new PlayerListPanel() {
             @Override
             protected void onEdit(final AjaxRequestTarget target, final IModel<User> model) {
-                modal.setContent(new PlayerEditPanel(modal.getContentId(), model));
-                modal.show(target);
+                setResponsePage(new PlayerEditPage(model));
             }
         });
 

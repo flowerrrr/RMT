@@ -16,7 +16,7 @@ public abstract class PlayerBasePage extends AbstractBasePage implements INaviga
     public PlayerBasePage(final IModel<?> model) {
         super(model);
 
-        add(new NavigationPanel("topBar", this));
+        add(new NavigationPanel(this));
     }
 
 }

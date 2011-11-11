@@ -24,9 +24,9 @@ public class EventPage extends PlayerBasePage {
 
     public EventPage(final IModel<Event> model) {
         super(model);
-        add(new EventDetailsPanel("eventDetailsPanel", model));
+        add(new EventDetailsPanel(model));
 
-        responseFormPanel = new ResponseFormPanel("responseFormPanel", getResponseModel(model)) {
+        responseFormPanel = new ResponseFormPanel(getResponseModel(model)) {
 
             @Override
             protected void onSubmit(final Response response, final AjaxRequestTarget target) {
@@ -37,7 +37,7 @@ public class EventPage extends PlayerBasePage {
         };
         add(responseFormPanel);
 
-        final ResponseListPanel responseListPanel = new ResponseListPanel("responseListPanel", model);
+        final ResponseListPanel responseListPanel = new ResponseListPanel(model);
         responseListPanel.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Response.class)));
         add(responseListPanel);
     }

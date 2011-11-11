@@ -23,10 +23,17 @@ public abstract class ResponseFormPanel extends BasePanel {
 
     private EntityForm<Response> form;
 
-    public ResponseFormPanel(final String id, final IModel<Response> model) {
-        super(id);
+    public ResponseFormPanel(final IModel<Response> model) {
+        super();
 
-        form = new EntityForm<Response>("form", model);
+        form = new EntityForm<Response>("form", model) {
+
+            @Override
+            protected void onSubmit(final AjaxRequestTarget target, final Form<Response> form) {
+                ResponseFormPanel.this.onSubmit(form.getModelObject(), target);
+                onClose(target);
+            }
+        };
         add(form);
         final RadioGroup group = new RadioGroup("status");
         form.add(group);

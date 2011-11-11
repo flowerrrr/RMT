@@ -3,6 +3,7 @@ package de.flower.rmt.ui.manager.page.venues;
 import de.flower.common.ui.ajax.MyAjaxSubmitLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
+import de.flower.common.ui.form.CancelableEntityForm;
 import de.flower.common.ui.form.EntityForm;
 import de.flower.common.ui.form.ValidatedTextField;
 import de.flower.common.util.geo.LatLngEx;
@@ -13,12 +14,11 @@ import de.flower.rmt.service.geocoding.IGeocodingService;
 import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.ui.app.RMTSession;
 import de.flower.rmt.ui.common.panel.BasePanel;
-import de.flower.rmt.ui.manager.page.venues.panel.GMapPanel2;
+import de.flower.rmt.ui.manager.page.venues.panel.VenueMapPanel;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
-import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
@@ -28,7 +28,6 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-import org.wicketstuff.jsr303.BeanValidator;
 import wicket.contrib.gmap3.GMap;
 
 import java.util.ArrayList;
@@ -41,7 +40,7 @@ public class VenueEditPanel extends BasePanel  {
 
     private EntityForm<Venue> form;
 
-    private GMapPanel2 mapPanel;
+    private VenueMapPanel mapPanel;
 
     private WebMarkupContainer geocodeNoResults;
 
@@ -58,10 +57,28 @@ public class VenueEditPanel extends BasePanel  {
     @SpringBean
     private IGeocodingService geocodingService;
 
-    public VenueEditPanel(String id, final IModel<Venue> model) {
-        super(id);
+    public VenueEditPanel(final IModel<Venue> model) {
+        super();
 
-        form = new EntityForm<Venue>("form", model);
+        form = new CancelableEntityForm<Venue>("form", model) {
+
+            @Override
+            protected void onBeforeValidation(final Venue entity) {
+                entity.setLatLng(latLng);
+            }
+
+            @Override
+            protected void onSubmit(final AjaxRequestTarget target, final Form<Venue> form) {
+                venueManager.save(form.getModelObject());
+                target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Venue.class), AjaxEvent.EntityUpdated(Venue.class)));
+                onClose(target);
+            }
+
+            @Override
+            protected void onCancel(final AjaxRequestTarget target) {
+                onClose(target);
+            }
+        };
         add(form);
 
         form.add(new ValidatedTextField("name"));
@@ -123,22 +140,7 @@ public class VenueEditPanel extends BasePanel  {
         });
         geocodeButton.setDefaultFormProcessing(false);
 
-        form.add(new MyAjaxSubmitLink("saveButton") {
-            @Override
-            protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-                Venue venue = (Venue) form.getModelObject();
-                venue.setLatLng(latLng);
-                if (!new BeanValidator(form).isValid(venue)) {
-                    onError(target, form);
-                } else {
-                    venueManager.save(venue);
-                    target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Venue.class), AjaxEvent.EntityUpdated(Venue.class)));
-                    ModalWindow.closeCurrent(target);
-                }
-            }
-        });
-
-        form.add(mapPanel = new GMapPanel2("mapPanel", RMTSession.get().getLatLng()) {
+        form.add(mapPanel = new VenueMapPanel(RMTSession.get().getLatLng()) {
             @Override
             public void onUpdateMarker(LatLngEx latLng) {
                 VenueEditPanel.this.latLng = latLng;

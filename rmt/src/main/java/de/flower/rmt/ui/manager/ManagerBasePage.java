@@ -16,7 +16,7 @@ public abstract class ManagerBasePage extends AbstractBasePage implements INavig
     public ManagerBasePage(IModel<?> model) {
         super(model);
 
-        add(new NavigationPanel("navPanel", this));
+        add(new NavigationPanel(this));
     }
 
 

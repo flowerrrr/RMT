@@ -16,7 +16,7 @@ class NavigationPanelTest extends WicketTests {
 
     @Test
     def renderPanel() {
-        wicketTester.startComponentInPage(new NavigationPanel("topBar", new INavigationPanelAware {
+        wicketTester.startComponentInPage(new NavigationPanel(new INavigationPanelAware {
             def getActiveTopBarItem = "home"
         }))
         wicketTester.dumpPage()

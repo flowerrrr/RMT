@@ -16,13 +16,13 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class GMapPanel extends BasePanel {
+public class VenuesMapPanel extends BasePanel {
 
     @SpringBean
     private IVenueManager venueManager;
 
-    public GMapPanel(String id) {
-        super(id);
+    public VenuesMapPanel() {
+        super();
 
         final GMap map = new GMap("map");
         add(map);

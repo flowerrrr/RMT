@@ -1,5 +1,6 @@
 package de.flower.rmt.model;
 
+import de.flower.common.validation.groups.INameUnique;
 import de.flower.common.validation.unique.Unique;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
@@ -15,7 +16,7 @@ import java.util.List;
  */
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(name = "name", columnNames = {"name", "club_id"}))
-@Unique(groups = { Unique.class, Default.class })
+@Unique(name = "name", clazz = Team.class, groups = { INameUnique.class, Default.class })
 public class Team extends AbstractClubRelatedEntity  {
 
     @NotBlank

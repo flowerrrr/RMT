@@ -13,7 +13,7 @@ class VenueEditPanelTest extends WicketTests {
 
     @Test
     def testGeocoding() {
-        val panel = new VenueEditPanel("foobar", new VenueModel())
+        val panel = new VenueEditPanel(new VenueModel())
 
         wicketTester.startComponentInPage(panel)
         wicketTester.dumpPage()

@@ -17,7 +17,7 @@ class PlayerEditPanelTest extends WicketTests {
 
     @Test
     def validateConstraints() {
-        wicketTester.startComponentInPage(new PlayerEditPanel("foobar", new UserModel()))
+        wicketTester.startComponentInPage(new PlayerEditPanel(new UserModel()))
         // get user under test
         val form = wicketTester.getComponentFromLastRenderedPage("form")
         val userUnderTest = form.getDefaultModelObject().asInstanceOf[User]

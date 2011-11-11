@@ -15,7 +15,7 @@ import java.io.Serializable;
  *
  * @author flowerrrr
  */
-public class GMapPanel2 extends BasePanel {
+public class VenueMapPanel extends BasePanel {
 
     private GMap mapNew;
 
@@ -25,8 +25,8 @@ public class GMapPanel2 extends BasePanel {
      * @param id
      * @param latLng position of gMarker
      */
-    public GMapPanel2(String id, LatLngEx defaultCenter) {
-        super(id);
+    public VenueMapPanel(LatLngEx defaultCenter) {
+        super();
 
         mapNew = initMap("mapNew");
         mapNew.setCenter(defaultCenter);

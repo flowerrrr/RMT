@@ -41,7 +41,7 @@ public class AddPlayerPanel extends BasePanel<Team> {
     private List<User> selectedPlayers = new ArrayList<User>();
 
     public AddPlayerPanel(final IModel<Team> model) {
-        super("panel");
+        super();
 
         Form form = new Form("form");
         add(form);

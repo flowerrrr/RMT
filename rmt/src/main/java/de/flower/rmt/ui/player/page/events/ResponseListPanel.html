@@ -3,58 +3,70 @@
 <head></head>
 <body>
 <wicket:panel>
-    
-    <table id="responseListTable">
-        <tbody class="thead">
-            <tr>
-                <td colspan="3"><wicket:message key="response.accepted">[Accepted]</wicket:message></td>
-            </tr>
+
+    <h4><wicket:message key="player.event.heading.main"/></h4>
+
+    <table class="responseListTable">
+        <thead>
+        <tr>
+            <th colspan="3">
+                <wicket:message key="response.accepted">[Accepted]</wicket:message>
+            </th>
+        </tr>
+        </thead>
+        <tbody wicket:enclosure="">
+        <tr wicket:id="acceptedList">
+            <wicket:container wicket:id="itemPanel"/>
+        </tr>
         </tbody>
-        <tbody class="tbody" wicket:enclosure="">
-            <tr class="data" wicket:id="acceptedList">
-                <wicket:container wicket:id="itemPanel"/>
-            </tr>
-        </tbody>
-        <tbody class="thead">
-            <tr>
-                <td colspan="3"><wicket:message key="response.unsure">[Unsure]</wicket:message></td>
-            </tr>
-        </tbody>
-        <tbody class="tbody" wicket:enclosure="">
-            <tr class="data" wicket:id="unsureList">
-                <wicket:container wicket:id="itemPanel"/>
-            </tr>
-        </tbody>
-        <tbody class="thead">
-             <tr>
-                 <td colspan="3"><wicket:message key="response.declined">[Declined]</wicket:message></td>
-             </tr>
-         </tbody>
-         <tbody class="tbody" wicket:enclosure="">
-             <tr class="data" wicket:id="declinedList">
-                 <wicket:container wicket:id="itemPanel"/>
-             </tr>
-         </tbody>
-<!--
-        <tbody class="thead">
-             <tr>
-                 <td colspan="3"><wicket:message key="response.noresponse">[No Response]</wicket:message></td>
-             </tr>
-         </tbody>
-         <tbody class="tbody" wicket:enclosure="">
-             <tr class="data" wicket:id="noresponseList">
-                 <td></td>
-                 <td><span wicket:id="name"/></td>
-                 <td></td>
-             </tr>
-         </tbody>
--->
     </table>
+    <table class="responseListTable">
+        <thead>
+        <tr>
+            <th colspan="3">
+                <wicket:message key="response.unsure">[Unsure]</wicket:message>
+            </th>
+        </tr>
+        </thead>
+        <tbody wicket:enclosure="">
+        <tr class="data" wicket:id="unsureList">
+            <wicket:container wicket:id="itemPanel"/>
+        </tr>
+        </tbody>
+    </table>
+    <table class="responseListTable">
+        <thead>
+        <tr>
+            <th colspan="3">
+                <wicket:message key="response.declined">[Declined]</wicket:message>
+            </th>
+        </tr>
+        </thead>
+        <tbody wicket:enclosure="">
+        <tr class="data" wicket:id="declinedList">
+            <wicket:container wicket:id="itemPanel"/>
+        </tr>
+        </tbody>
+    </table>
+    <!--
+            <tbody class="thead">
+                 <tr>
+                     <td colspan="3"><wicket:message key="response.noresponse">[No Response]</wicket:message></td>
+                 </tr>
+             </tbody>
+             <tbody class="tbody" wicket:enclosure="">
+                 <tr class="data" wicket:id="noresponseList">
+                     <td></td>
+                     <td><span wicket:id="name"/></td>
+                     <td></td>
+                 </tr>
+             </tbody>
+    -->
 
     <wicket:fragment wicket:id="itemFragment">
         <td><span wicket:id="position"/></td>
         <td><span wicket:id="name"/></td>
-        <td><span wicket:id="comment" /></td>
+        <td><span wicket:id="comment"/></td>
     </wicket:fragment>
 
 </wicket:panel>

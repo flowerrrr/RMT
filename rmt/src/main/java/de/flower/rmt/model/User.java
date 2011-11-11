@@ -1,5 +1,7 @@
 package de.flower.rmt.model;
 
+import de.flower.common.validation.groups.IEmailUnique;
+import de.flower.common.validation.groups.INameUnique;
 import de.flower.common.validation.unique.Unique;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
@@ -14,14 +16,21 @@ import java.util.List;
  * @author flowerrrr
  */
 @Entity
-@Table(name = "Users", uniqueConstraints = @UniqueConstraint(name = "fullname", columnNames = {"fullname", "club_id"}))
-@Unique(groups = { Unique.class, Default.class }) // need group Unique to be able to restrict bean validation to this validator
+@Table(name = "Users", uniqueConstraints = {
+        @UniqueConstraint(name = "fullname", columnNames = {"fullname", "club_id"}),
+        @UniqueConstraint(name = "email", columnNames = {"username"})
+})
+@Unique.List({
+        @Unique(name = "fullname", clazz = User.class, groups = {INameUnique.class, Default.class}), // need group Unique to be able to restrict bean validation to this validator
+        @Unique(name = "email", attributeNames = {"email"}, clazz = User.class, groups = {IEmailUnique.class, Default.class})
+})
+
 public class User extends AbstractClubRelatedEntity {
 
     @NotBlank
     @Email
     // need to be  named username to satisfy spring security
-    @Column(unique = true, name = "username")
+    @Column(name = "username")
     private String email;
 
     // @NotBlank
@@ -32,7 +41,7 @@ public class User extends AbstractClubRelatedEntity {
     @Column
     private boolean enabled;
 
-    @OneToMany(mappedBy = "user", cascade = { CascadeType.REMOVE })
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE})
     private List<Role> roles = new ArrayList<Role>();
 
     @NotBlank
@@ -48,7 +57,8 @@ public class User extends AbstractClubRelatedEntity {
     @OneToMany(mappedBy = "user")
     private List<Player> players = new ArrayList<Player>();
 
-    private User() {}
+    private User() {
+    }
 
     public User(String email, String password, boolean enabled, String fullname, Club club) {
         super(club);

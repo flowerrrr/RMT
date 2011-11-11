@@ -16,10 +16,10 @@ import java.util.Arrays;
  *
  * @author flowerrrr
  */
-public abstract class PreCreateEventEditPanel extends BasePanel {
+public abstract class EventTypeSelectPanel extends BasePanel {
 
-    public PreCreateEventEditPanel(String id) {
-        super(id);
+    public EventTypeSelectPanel() {
+        super();
 
         add(new ListView<EventType>("eventTypes", getEventTypeListModel()) {
 

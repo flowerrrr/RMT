@@ -11,37 +11,53 @@
         </div>
         <table>
             <thead>
-                <tr class="first-row">
-                    <th><wicket:message key="manager.event.date"/></th>
-                    <th><wicket:message key="manager.event.team"/></th>
-                    <th rowspan="2"><wicket:message key="manager.event.summary"/></th>
-                    <th rowspan="2"><wicket:message key="player.events.status"/></th>
-                </tr>
-                <tr class="second-row">
-                    <th><wicket:message key="manager.event.time"/></th>
-                    <th><wicket:message key="manager.event.type"/></th>
-                </tr>
+            <tr>
+                <th>
+                    <div>
+                        <wicket:message key="manager.event.date"/>
+                    </div>
+                    <div>
+                        <wicket:message key="manager.event.time"/>
+                    </div>
+                </th>
+                <th>
+                    <div>
+                        <wicket:message key="manager.event.team"/>
+                    </div>
+                    <div>
+                        <wicket:message key="manager.event.type"/>
+                    </div>
+                </th>
+                <th>
+                    <wicket:message key="manager.event.summary"/>
+                </th>
+                <th>
+                    <wicket:message key="player.events.status"/>
+                </th>
+            </tr>
             </thead>
-            <wicket:container wicket:id="list">
-            <tbody class="data">
-                <tr class="first-row">
-                    <td><span wicket:id="date">[Date #1]</span></td>
-                    <td><span wicket:id="team">[Team]</span></td>
-                    <td rowspan="2"><a wicket:id="eventLink"><span wicket:id="summary">[Summary]</span></a></td>
-                    <td rowspan="2">
-                        <span wicket:id="rsvpStatus">[RsvpStatus]</span>
-                        <a class="btn primary" wicket:id="responseButton"><wicket:message key="player.events.respond">[Respond]</wicket:message></a>                    </td>
-                </tr>
-                <tr class="second-row">
-                    <td><span wicket:id="time">[Time #1]</span></td>
-                    <td><span wicket:id="type">[Event Type]</span></td>
-                </tr>
+            <tbody>
+            <tr wicket:id="list">
+                <td>
+                    <div wicket:id="date">[Date #1]</div>
+                    <div wicket:id="time">[Time #1]</div>
+                </td>
+                <td>
+                    <div wicket:id="team">[Team]</div>
+                    <div wicket:id="type">[Event Type]</div>
+                </td>
+                <td><a wicket:id="eventLink"><span wicket:id="summary">[Summary]</span></a></td>
+                <td><span wicket:id="rsvpStatus">[RsvpStatus]</span>
+                    <a class="btn primary" wicket:id="responseButton">
+                        <wicket:message key="player.events.respond">[Respond]</wicket:message>
+                    </a>
+                </td>
+            </tr>
             </tbody>
-            </wicket:container>
         </table>
     </div>
 
- </wicket:panel>
+</wicket:panel>
 
 
 </body>

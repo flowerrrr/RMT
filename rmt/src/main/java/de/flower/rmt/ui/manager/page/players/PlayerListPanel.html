@@ -6,30 +6,52 @@
 <wicket:panel>
 
     <div wicket:id="listContainer">
-        <ul id="playerList" class="table">
-            <li>
-                <div><wicket:message key="manager.player.fullname" /></div>
-                <div><wicket:message key="manager.player.email" /></div>
-                <div>tbd</div>
-                <div></div>
-            </li>
-            <li wicket:id="playerList">
-                <div wicket:id="fullname">Gerd Müller</div>
-                <div wicket:id="email">gerd@mueller.de</div>
-                <div wicket:id="manager">x</div>
-                <div>
-                    <a wicket:id="editButton">
-                        <wicket:message key="manager.players.edit">[Edit]</wicket:message>
-                    </a>
-                    <a wicket:id="deleteButton">
-                        <wicket:message key="manager.players.delete">[Delete]</wicket:message>
-                    </a>
-                </div>
-            </li>
-        </ul>
+        <table id="playerList">
+            <thead>
+            <tr>
+                <th>
+                    <wicket:message key="manager.player.fullname"/>
+                </th>
+                <th>
+                    <wicket:message key="manager.player.email"/>
+                </th>
+                <th>???</th>
+                <th>???</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr wicket:id="playerList">
+                <td>
+                    <div wicket:id="fullname">Gerd Müller</div>
+                </td>
+                <td>
+                    <div wicket:id="email">gerd@mueller.de</div>
+                </td>
+                <td>
+                    <div wicket:id="manager">x</div>
+                </td>
+                <td>
+                    <ul class="dropdown">
+                        <li class="dropdown" data-dropdown="dropdown">
+                            <a class="dropdown-toggle" href="#"><img class="dropdown-icon"
+                                                                     src="img/football-small.gif"/></a>
+                            <ul class="dropdown-menu">
+                                <li><a wicket:id="editButton">
+                                    <wicket:message key="manager.players.edit">[Edit]</wicket:message>
+                                </a></li>
+                                <li><a wicket:id="deleteButton">
+                                    <wicket:message key="manager.players.delete">[Delete]</wicket:message>
+                                </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 
- </wicket:panel>
+</wicket:panel>
 
 
 </body>

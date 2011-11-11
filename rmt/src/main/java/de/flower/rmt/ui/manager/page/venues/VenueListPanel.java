@@ -31,8 +31,8 @@ public class VenueListPanel extends BasePanel {
     @SpringBean
     private IVenueManager venueManager;
 
-    public VenueListPanel(String id) {
-        super(id);
+    public VenueListPanel() {
+        super();
 
         final ModalDialogWindow modal = new ModalDialogWindow("venueDialog");
         add(modal);
@@ -42,7 +42,7 @@ public class VenueListPanel extends BasePanel {
             @Override
             public void onClick(AjaxRequestTarget target) {
                 // show modal dialog with venue edit form.
-                final VenueEditPanel panel = new VenueEditPanel(modal.getContentId(), new VenueModel());
+                final VenueEditPanel panel = new VenueEditPanel(new VenueModel());
                 modal.setContent(panel);
                 modal.show(target);
                 resizeMap(target, panel);
@@ -69,7 +69,7 @@ public class VenueListPanel extends BasePanel {
 
                     @Override
                     public void onClick(AjaxRequestTarget target) {
-                        final VenueEditPanel panel = new VenueEditPanel(modal.getContentId(), item.getModel());
+                        final VenueEditPanel panel = new VenueEditPanel(item.getModel());
                         modal.setContent(panel);
                         modal.show(target);
                         resizeMap(target, panel);

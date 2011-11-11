@@ -31,8 +31,8 @@ public class ResponseListPanel extends BasePanel {
     @SpringBean
     private IPlayerManager playerManager;
 
-    public ResponseListPanel(String id, IModel<Event> model) {
-        super(id);
+    public ResponseListPanel(IModel<Event> model) {
+        super();
         Check.notNull(model.getObject());
 
         add(createListView("acceptedList", RSVPStatus.ACCEPTED, model, true));

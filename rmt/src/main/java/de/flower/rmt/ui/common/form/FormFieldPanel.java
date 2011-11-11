@@ -9,6 +9,7 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.ResourceModel;
+import org.apache.wicket.validation.IValidator;
 
 /**
  * @author flowerrrr
@@ -54,6 +55,9 @@ public class FormFieldPanel extends Panel {
         return formComponent;
     }
 
+    public void addValidator(final IValidator<?> validator) {
+        formComponent.add(validator);
+    }
 
 
 }

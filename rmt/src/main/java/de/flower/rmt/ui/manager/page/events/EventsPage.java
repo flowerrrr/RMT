@@ -37,7 +37,7 @@ public class EventsPage extends ManagerBasePage {
     public EventsPage() {
 
         // fade in panel to preselect event-type before opening the event edit page.
-        final PreCreateEventEditPanel preCreateEventEditPanel = new PreCreateEventEditPanel("selectEventType") {
+        final EventTypeSelectPanel preCreateEventEditPanel = new EventTypeSelectPanel() {
             @Override
             public void onSelect(EventType eventType, AjaxRequestTarget target) {
                 Event event = eventManager.newInstance(eventType);

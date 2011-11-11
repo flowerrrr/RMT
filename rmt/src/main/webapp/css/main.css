@@ -61,6 +61,12 @@ footer {
     text-align: center;
 }
 
+// ul are unstyled by default
+ul {
+    list-style: none;
+    margin-left: 0;
+}
+
 li {
     color: #404040;
 }
@@ -108,9 +114,9 @@ input[type="checkbox"] + label {
     padding-left: 19px;
 }
 
-.secondary h4 {
+.secondary h4, .main h4 {
     line-height: normal;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .secondary > div:not(:last-child) {
@@ -135,99 +141,71 @@ input[type="checkbox"] + label {
 /*************************************************************************
     topbar
 **************************************************************************/
-.name-icon {
-    padding-top: 11px;
-    padding-right: 3px;
+// remove down arrow from dropdown-toggle
+a.menu:after, .dropdown-toggle:after {
+    content: none;
+}
+
+.dropdown-icon {
+    margin-bottom: -6px;
+    padding-left: 5px;
+}
+
+/*************************************************************************
+    football icon with dropdown menu on white background
+**************************************************************************/
+ul.dropdown {
+    float: right;
+    margin-bottom: 0px; // override default setting.
+
+    .dropdown-menu {
+        right: 0px;
+        // make it have top rounded corners
+        border-radius: 6px;
+        border-width: 1px;
+        top: 25px;
+        min-width: 120px;
+    }
+
+    .dropdown-toggle {
+        padding-right: 5px;
+    }
+
+    // disable default hightlighted background when menu is open
+    .dropdown.open .dropdown-toggle {
+        // background: none repeat scroll 0 0 rgba(0, 0, 0, 0.3);
+        background: none;
+        color: #FFFFFF;
+    }
+    .dropdown-icon {
+        margin-bottom: -6px;
+    }
 }
 
 /*************************************************************************
     table styling
 **************************************************************************/
-table thead,  table .thead {
+thead {
     border-bottom:  2px solid #CCCCCC;
 }
-table .data {
-    border-bottom: 1px solid #CCCCCC;
+
+// add some highlight for mouseover
+/*
+tbody tr:hover {
+    #gradient > .vertical(#eeeeee, #dddddd);
 }
-table .first-row td, table .first-row th {
-    padding-bottom: 2px;
-}
-table .second-row td, table .second-row th {
-    padding-top: 2px;
-}
+*/
+
 table th {
     vertical-align: top;
     text-transform: uppercase;
     font-size: 90%;
 }
-table tbody[class="thead"] td {
-    font-weight: bold;
+
+td {
+    border-bottom: 1px solid #CCCCCC;
 }
 
-#responseListTable .data td:first-child {
-    width: 50px;
-    font-size: 80%;
-}
-#responseListTable .thead:first-child td {
-    padding-top: 0px;
-}
-#responseListTable .thead:not(:first-child) td {
-    /* put spacer between sections in table */
-    padding-top: 25px;
-}
-#responseListTable .thead td {
-    text-transform: uppercase;
-    font-size: 90%;
-}
-
-/*************************************************************************
-    List styling (same ass table but uses ul/li)
-**************************************************************************/
-.table-header-text {
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 90%;
-}
-
-.unstyled {
-  list-style: none;
-  margin-left: 0;
-}
-
-ul.table {
-    /* table rows */
-    li {
-        border-bottom: 1px solid #CCCCCC;
-        .clearfix();
-    }
-
-    li:first-child {
-        border-bottom:  2px solid #CCCCCC;
-        .table-header-text;
-    }
-
-    /* table cells */
-    li > div {
-        float: left;
-        padding: 10px 10px 9px;
-        line-height: @baseline;
-        text-align: left;
-    }
-
-    .unstyled;
-}
-
-/*************************************************************************
-    Players table
-**************************************************************************/
-#playerList {
-    li > div {
-        width: 100px;
-    }
-    li > div + div {
-        width: 200px;
-    }
-}
 
 /*************************************************************************
     Event details list
@@ -244,6 +222,18 @@ ul.table {
     float: left;
     width: 50%;
 }
+
+/*************************************************************************
+    Response list
+**************************************************************************/
+.responseListTable td:first-child {
+    width: 50px;
+    font-size: 80%;
+}
+.responseListTable td:first-child + td {
+    width: 150px;
+}
+
 
 /*************************************************************************
     Response form
