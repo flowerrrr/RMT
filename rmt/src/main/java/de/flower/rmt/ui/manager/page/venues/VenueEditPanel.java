@@ -3,9 +3,6 @@ package de.flower.rmt.ui.manager.page.venues;
 import de.flower.common.ui.ajax.MyAjaxSubmitLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
-import de.flower.common.ui.form.CancelableEntityForm;
-import de.flower.common.ui.form.EntityForm;
-import de.flower.common.ui.form.ValidatedTextField;
 import de.flower.common.util.geo.LatLngEx;
 import de.flower.rmt.model.Venue;
 import de.flower.rmt.service.IVenueManager;
@@ -13,6 +10,9 @@ import de.flower.rmt.service.geocoding.GeocodingResult;
 import de.flower.rmt.service.geocoding.IGeocodingService;
 import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.ui.app.RMTSession;
+import de.flower.rmt.ui.common.form.CancelableEntityForm;
+import de.flower.rmt.ui.common.form.EntityForm;
+import de.flower.rmt.ui.common.form.TextFieldPanel;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.manager.page.venues.panel.VenueMapPanel;
 import org.apache.commons.lang3.StringUtils;
@@ -81,7 +81,7 @@ public class VenueEditPanel extends BasePanel  {
         };
         add(form);
 
-        form.add(new ValidatedTextField("name"));
+        form.add(new TextFieldPanel("name"));
         final TextArea address;
         form.add(address = new TextArea("address"));
 

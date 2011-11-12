@@ -6,22 +6,30 @@
 <wicket:panel>
 
     <form wicket:id="form">
-        <div wicket:id="hasErrors"><wicket:message key="form.haserrors"/></div>
-        <div wicket:id="feedback">[Validation messages]</div>
-        <ul>
-            <li>
-                <rmt:input wicket:id="fullname" labelKey="manager.player.fullname" />
-            </li>
-            <li>
-                <rmt:input wicket:id="email" labelKey="manager.player.email" />
-            </li>
-        </ul>
-        <a class="btn primary" wicket:id="saveButton">
-            <wicket:message key="button.save"/>
-        </a>
-        <a class="btn" wicket:id="cancelButton">
-            <wicket:message key="button.cancel"/>
-        </a>
+
+        <fieldset>
+            <div class="clearfix" wicket:id="hasErrors">
+                <div class="input">
+                    <div class="alert-message error">
+                        <wicket:message key="form.haserrors"/>
+                    </div>
+                </div>
+            </div>
+
+            <div wicket:id="feedback">[Validation messages]</div>
+            <rmt:input wicket:id="fullname" labelKey="manager.player.fullname"/>
+            <rmt:input wicket:id="email" labelKey="manager.player.email"/>
+
+            <div class="actions">
+                <a class="btn primary" wicket:id="saveButton">
+                    <wicket:message key="button.save"/>
+                </a>
+                <a class="btn" wicket:id="cancelButton">
+                    <wicket:message key="button.cancel"/>
+                </a>
+            </div>
+        </fieldset>
+
     </form>
 
 </wicket:panel>

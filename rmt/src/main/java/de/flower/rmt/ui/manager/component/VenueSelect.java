@@ -1,8 +1,8 @@
 package de.flower.rmt.ui.manager.component;
 
-import de.flower.common.ui.form.ValidatedDropDownChoice;
 import de.flower.rmt.model.Venue;
 import de.flower.rmt.service.IVenueManager;
+import de.flower.rmt.ui.common.form.DropDownChoicePanel;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class VenueSelect extends ValidatedDropDownChoice<Venue> {
+public class VenueSelect extends DropDownChoicePanel<Venue> {
 
     @SpringBean
     private IVenueManager venueManager;

@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.player.page.events;
+package de.flower.rmt.ui.player.page.event;
 
 import de.flower.common.util.Check;
 import de.flower.rmt.model.Player;

@@ -4,7 +4,6 @@ import de.flower.rmt.test.WicketTests
 import org.testng.annotations.Test
 import org.testng.Assert._
 import de.flower.rmt.model.User
-import de.flower.rmt.ui.manager.page.players.PlayerEditPanel
 import de.flower.rmt.ui.model.UserModel
 
 /**

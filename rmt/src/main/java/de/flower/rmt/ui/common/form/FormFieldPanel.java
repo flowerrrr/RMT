@@ -14,7 +14,10 @@ import org.apache.wicket.markup.MarkupElement;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.*;
+import org.apache.wicket.model.AbstractReadOnlyModel;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.validation.IValidator;
 
 /**
@@ -25,13 +28,31 @@ public class FormFieldPanel extends Panel {
     // must match the wicket:for attribute of the label
     protected final static String ID = "input";
 
+    public static final String LABEL_KEY = "labelKey";
+
     private boolean isValidated = false;
 
-    final FormComponent formComponent;
+    private final FormComponent formComponent;
 
     public FormFieldPanel(String id, FormComponent fc) {
         super(id);
         setOutputMarkupId(true);
+
+        // set css class of border according to validation result.
+        IModel<String> cssClassModel = new AbstractReadOnlyModel<String>() {
+            @Override
+            public String getObject() {
+                if (formComponent.getFeedbackMessage() != null) {
+                    return Css.ERROR;
+                } else if (isValidated) {
+                    return Css.VALID;
+                } else {
+                    return "";
+                }
+            }
+        };
+
+        add(new AttributeAppender("class", cssClassModel, " "));
 
         formComponent = fc;
         add(formComponent);
@@ -49,7 +70,7 @@ public class FormFieldPanel extends Panel {
                 if (e != null) {
                     throw e;
                 }
-                isValidated = false;
+                isValidated = true;
                 target.add(FormFieldPanel.this);
             }
 
@@ -66,22 +87,6 @@ public class FormFieldPanel extends Panel {
             }
         });
 
-        // set css class of border according to validation result.
-        IModel<String> model = new AbstractReadOnlyModel<String>() {
-            @Override
-            public String getObject() {
-                if (formComponent.getFeedbackMessage() != null) {
-                    return Css.ERROR;
-                } else if (isValidated) {
-                    return Css.VALID;
-                } else {
-                    return "";
-                }
-
-            }
-        };
-        add(new AttributeAppender("class", model, " "));
-
         // set model of form component. form.getForm not available at constructor time, so we have
         // to use wrapping model to defer lookup of form.
         IModel formModelWrapperModel = new AbstractReadOnlyModel() {
@@ -92,6 +97,13 @@ public class FormFieldPanel extends Panel {
             }
         };
         formComponent.setModel(new PropertyModel(formModelWrapperModel, this.getId()));
+
+        formComponent.setLabel(new AbstractReadOnlyModel<String>() {
+            @Override
+            public String getObject() {
+                return new ResourceModel(getLabelKey()).getObject();
+            }
+        });
     }
 
     @Override
@@ -101,33 +113,23 @@ public class FormFieldPanel extends Panel {
         super.onDetach();
     }
 
-
-
-    /**
-     * Do some initialization stuff that cannot be done inside constructor call.
-     */
-    @Override
-    protected void onConfigure() {
-        // retrieving the 'calling' markup cannot be done in constructor.
-        String labelKey = getLabelKey();
-        formComponent.setLabel(new ResourceModel(labelKey));
-
-    }
-
     @Override
     protected void onComponentTag(ComponentTag tag) {
         // replace whatever tag the user has given.
         // user can still write <input wicket:id="name" /> and it will be replaced with a div tag.
         tag.setName("div");
+        // need to set twitter-bootstrap class 'clearfix'
+        tag.put("class", "clearfix");
+        tag.remove(LABEL_KEY);
+        tag.setNamespace(null);
         super.onComponentTag(tag);
     }
-
 
     public String getLabelKey() {
         String labelKey;
         final IMarkupFragment markup = getMarkup();
         final MarkupElement markupElement = markup.get(0);
-        labelKey = ((ComponentTag) markupElement).getAttribute("labelKey");
+        labelKey = ((ComponentTag) markupElement).getAttribute(LABEL_KEY);
         return labelKey;
     }
 
@@ -138,6 +140,4 @@ public class FormFieldPanel extends Panel {
     public void addValidator(final IValidator<?> validator) {
         formComponent.add(validator);
     }
-
-
 }

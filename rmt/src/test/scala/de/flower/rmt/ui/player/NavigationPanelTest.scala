@@ -2,9 +2,6 @@ package de.flower.rmt.ui.player
 
 import de.flower.rmt.test.WicketTests
 import org.testng.annotations.Test
-import de.flower.rmt.ui.model.EventModel
-import page.events.EventPage
-import de.flower.rmt.ui.player.NavigationPanel
 import de.flower.rmt.ui.common.page.INavigationPanelAware
 
 /**

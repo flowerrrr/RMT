@@ -5,25 +5,31 @@
 
 <wicket:extend>
 
+    <div wicket:id="navigationPanel">[List of menu items]</div>
+
+
     <div class="container">
 
         <div class="content">
             <div class="page-header">
-                <h1><wicket:message key="player.event.heading" /></h1>
-                <h1><small><wicket:message key="player.event.heading.sub" /></small></h1>
+                <h1><span wicket:id="heading" /></h1>
+                <wicket:enclosure><h1><small><span wicket:id="subheading" /></small></h1></wicket:enclosure>
             </div>
             <div class="row">
                 <div class="span10 main">
-                    <div wicket:id="responseListPanel" />
+                    <div wicket:id="mainPanel" />
                 </div>
                 <div class="span4 secondary">
-                    <div wicket:id="eventDetailsPanel" />
-                    <div wicket:id="responseFormPanel" />
+                    <div wicket:id="secondaryPanel" />
                 </div>
             </div>
         </div>
 
     </div>
+
+    <footer>
+        <p>&copy; flower 2011</p>
+    </footer>
 
  </wicket:extend>
 

@@ -1,10 +1,10 @@
-package de.flower.rmt.ui.player.page.events;
+package de.flower.rmt.ui.player.page.event;
 
 import de.flower.common.ui.ajax.MyAjaxSubmitLink;
-import de.flower.common.ui.form.EntityForm;
-import de.flower.common.ui.form.ValidatedTextArea;
 import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.Response;
+import de.flower.rmt.ui.common.form.EntityForm;
+import de.flower.rmt.ui.common.form.TextAreaPanel;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.feedback.ComponentFeedbackMessageFilter;
@@ -46,7 +46,7 @@ public abstract class ResponseFormPanel extends BasePanel {
                 return anyMessage();
             }
         });
-        form.add(new ValidatedTextArea("comment"));
+        form.add(new TextAreaPanel("comment"));
         form.add(new MyAjaxSubmitLink("respondButton") {
             @Override
             protected void onSubmit(final AjaxRequestTarget target, final Form<?> form) {

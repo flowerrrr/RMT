@@ -1,6 +1,5 @@
 package de.flower.common.validation.unique.impl;
 
-import de.flower.common.validation.unique.impl.UniqueConstraintDetector;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

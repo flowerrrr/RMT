@@ -1,11 +1,8 @@
 package de.flower.rmt.service
 
 import de.flower.rmt.test.AbstractIntegrationTests
-import de.flower.rmt.model.event.Event
 import org.testng.Assert._
 import org.testng.annotations.Test
-import de.flower.rmt.model.{Player, RSVPStatus}
-import java.util.List
 /**
  *
  * @author flowerrrr

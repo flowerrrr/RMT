@@ -2,7 +2,6 @@ package de.flower.rmt.service
 
 import org.testng.annotations.Test
 import de.flower.rmt.test.AbstractIntegrationTests
-import java.util.Date
 import org.joda.time.DateTime
 import org.testng.Assert._
 

@@ -1,7 +1,7 @@
 package de.flower.common.validation.unique.impl;
 
-import de.flower.common.validation.unique.impl.NamingConventionColumnResolver;
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 public class NamingConventionColumnResolverTest {

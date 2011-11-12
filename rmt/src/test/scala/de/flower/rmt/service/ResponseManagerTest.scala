@@ -4,11 +4,8 @@ import de.flower.rmt.test.AbstractIntegrationTests
 import de.flower.rmt.model.event.Event
 import org.testng.Assert._
 import org.testng.annotations.Test
-import de.flower.rmt.model.{Response, Player, RSVPStatus}
+import de.flower.rmt.model.{Player, RSVPStatus}
 import java.util.List
-import scala.collection.JavaConversions._
-import org.springframework.beans.factory.annotation.Autowired
-
 /**
  *
  * @author flowerrrr

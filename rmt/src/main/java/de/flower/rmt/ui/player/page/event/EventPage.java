@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.player.page.events;
+package de.flower.rmt.ui.player.page.event;
 
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
@@ -17,16 +17,16 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
  */
 public class EventPage extends PlayerBasePage {
 
-    private ResponseFormPanel responseFormPanel;
-
     @SpringBean
     private IResponseManager responseManager;
 
     public EventPage(final IModel<Event> model) {
         super(model);
-        add(new EventDetailsPanel(model));
+        addHeading("player.event.heading");
 
-        responseFormPanel = new ResponseFormPanel(getResponseModel(model)) {
+        addMainPanel(new EventDetailsPanel(model));
+
+        ResponseFormPanel responseFormPanel = new ResponseFormPanel(getResponseModel(model)) {
 
             @Override
             protected void onSubmit(final Response response, final AjaxRequestTarget target) {
@@ -35,11 +35,11 @@ public class EventPage extends PlayerBasePage {
                 target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityAll(Response.class)));
             }
         };
-        add(responseFormPanel);
 
         final ResponseListPanel responseListPanel = new ResponseListPanel(model);
         responseListPanel.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Response.class)));
-        add(responseListPanel);
+
+        addSecondaryPanel(responseFormPanel, responseListPanel);
     }
 
     private IModel<Response> getResponseModel(final IModel<Event> model) {

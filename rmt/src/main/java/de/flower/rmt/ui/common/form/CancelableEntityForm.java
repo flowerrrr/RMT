@@ -1,4 +1,4 @@
-package de.flower.common.ui.form;
+package de.flower.rmt.ui.common.form;
 
 import de.flower.common.model.IEntity;
 import org.apache.wicket.ajax.AjaxRequestTarget;

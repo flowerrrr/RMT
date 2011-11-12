@@ -4,12 +4,14 @@
 <body>
 <wicket:panel>
 
-        <label wicket:for="input">
-            <wicket:label>[Form Component Label]</wicket:label>
-        </label>
-        <a onclick="alert('info help');">(?)</a>
-        <wicket:child />
-        <span wicket:id="feedback">[Feedback Message]</span>
+    <label wicket:for="input">
+        <wicket:label>[Form Component Label]</wicket:label>
+    </label>
+
+    <div class="input">
+        <div class="field"><wicket:child/></div>
+        <div class="help-inline" wicket:id="feedback"/>
+    </div>
 
 </wicket:panel>
 </body>

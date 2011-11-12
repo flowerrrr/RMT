@@ -11,6 +11,10 @@ import java.util.List;
  */
 public class DropDownChoicePanel<T> extends FormFieldPanel {
 
+    public DropDownChoicePanel(String id) {
+        super(id, new DropDownChoice(ID));
+    }
+
     public DropDownChoicePanel(String id, final List<? extends T> choices) {
         super(id, new DropDownChoice(ID, choices));
     }

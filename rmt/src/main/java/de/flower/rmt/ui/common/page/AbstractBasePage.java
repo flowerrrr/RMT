@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.app;
+package de.flower.rmt.ui.common.page;
 
 import de.flower.rmt.model.User;
 import de.flower.rmt.service.security.ISecurityService;

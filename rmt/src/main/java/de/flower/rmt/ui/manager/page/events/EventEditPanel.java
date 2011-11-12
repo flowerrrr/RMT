@@ -2,10 +2,11 @@ package de.flower.rmt.ui.manager.page.events;
 
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
-import de.flower.common.ui.form.*;
+import de.flower.common.ui.form.TimeSelect;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IEventManager;
+import de.flower.rmt.ui.common.form.*;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.manager.component.TeamSelect;
 import de.flower.rmt.ui.manager.component.VenueSelect;
@@ -14,7 +15,6 @@ import de.flower.rmt.ui.model.EventModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.datetime.markup.html.form.DateTextField;
 import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -55,19 +55,19 @@ public class EventEditPanel extends BasePanel {
 
         DateTextField dateField = DateTextField.forDateStyle("date", "S-");
         // dateField.add(new DatePicker());
-        form.add(new ValidatedFormComponent(dateField));
+        form.add(new FormFieldPanel("date", dateField));
 
         TimeSelect timeField = new TimeSelect("time");
-        form.add(new ValidatedFormComponent(timeField));
+        form.add(new FormFieldPanel("time", timeField));
 
         VenueSelect venueSelect = new VenueSelect("venue");
         form.add(venueSelect);
 
         // form.add(surface label)
 
-        form.add(new ValidatedTextField("summary"));
+        form.add(new TextFieldPanel("summary"));
 
-        form.add(new TextArea("comment"));
+        form.add(new TextAreaPanel("comment"));
 
         // form.add(participants)
 

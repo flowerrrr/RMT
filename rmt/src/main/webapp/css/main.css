@@ -1,16 +1,5 @@
 @import "bootstrap/bootstrap.less";
 
-/*************************************************************************
-    validation stuff
-    todo: see if we can use bootstrap classes.
-**************************************************************************/
-.Xerror {
-    background-color: #ff0000;
-}
-
-.valid {
-    background-color: #00cd00;
-}
 
 /*************************************************************************
     misc
@@ -28,20 +17,6 @@
 
 * {
     outline: none;
-}
-/*************************************************************************
-    form feedback
-**************************************************************************/
-.feedback{
-    margin-bottom: 5px;
-}
-.feedbackPanel {
-    display: inline;
-    margin: 0px;
-}
-.feedbackPanel li {
-    display: inline;
-    color: #FFFFFF;
 }
 
 /*************************************************************************
@@ -125,6 +100,52 @@ input[type="checkbox"] + label {
 }
 
 /*************************************************************************
+   form styling
+**************************************************************************/
+form .alert-message {
+    display: inline-block; /* let div shrink to size of message. */
+    margin-bottom: 0px;
+}
+// for displaying validation messages in a div and not a span like in twitter
+form .field {
+    float: left;
+    margin-right: 10px;
+}
+form .help-inline {
+    padding-top: 5px;
+}
+.error input {
+    background: url(../img/error.png) no-repeat scroll 98%;
+}
+.valid input {
+    background: url(../img/valid.png) no-repeat scroll 98%;
+}
+// no background-color when error
+form div.clearfix.error {
+    background: none;
+    margin: 0 0 18px 0;
+    padding: 0;
+}
+
+/*************************************************************************
+    form feedback
+**************************************************************************/
+.feedback{
+    margin-bottom: 5px;
+}
+.feedbackPanel {
+    display: inline;
+    margin: 0px;
+}
+.feedbackPanel li {
+    display: inline;
+}
+
+.alert-message li {
+    color: #FFFFFF;
+}
+
+/*************************************************************************
     login form
 **************************************************************************/
 .modal-header {
@@ -132,9 +153,6 @@ input[type="checkbox"] + label {
 }
 #loginForm .actions, #loginForm, #loginForm fieldset {
     margin-bottom: 0px;
-}
-#loginForm .alert-message {
-    display: inline-block; /* let div shrink to size of message. */
 }
 
 

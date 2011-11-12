@@ -10,6 +10,7 @@ import de.flower.rmt.service.IResponseManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.model.UserModel;
+import de.flower.rmt.ui.player.page.event.EventPage;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;

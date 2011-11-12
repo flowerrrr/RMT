@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.player.page.events;
+package de.flower.rmt.ui.player.page.event;
 
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;

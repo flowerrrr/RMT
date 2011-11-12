@@ -82,7 +82,7 @@ public class BasePanel<T> extends GenericPanel<T> {
     }
 
     private String getCssClass() {
-        return Strings.camelCaseToHyphen(getClass().getSimpleName());
+        return Strings.camelCaseToHyphen(getClass().getSimpleName()).toLowerCase();
     }
 
 }
