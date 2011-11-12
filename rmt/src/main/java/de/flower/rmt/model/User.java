@@ -24,7 +24,6 @@ import java.util.List;
         @Unique(name = "fullname", clazz = User.class, groups = {INameUnique.class, Default.class}), // need group Unique to be able to restrict bean validation to this validator
         @Unique(name = "email", attributeNames = {"email"}, clazz = User.class, groups = {IEmailUnique.class, Default.class})
 })
-
 public class User extends AbstractClubRelatedEntity {
 
     @NotBlank

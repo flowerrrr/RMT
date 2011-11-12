@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd"
+      xmlns:rmt="http://www.w3.org/1999/xhtml">
 <head></head>
 <body>
 <wicket:panel>
@@ -9,12 +10,10 @@
         <div wicket:id="feedback">[Validation messages]</div>
         <ul>
             <li>
-                <wicket:message key="manager.player.fullname" />
-                <input wicket:id="fullname" />
+                <rmt:input wicket:id="fullname" labelKey="manager.player.fullname" />
             </li>
             <li>
-                <wicket:message key="manager.player.email" />
-                <input wicket:id="email" />
+                <rmt:input wicket:id="email" labelKey="manager.player.email" />
             </li>
         </ul>
         <a class="btn primary" wicket:id="saveButton">

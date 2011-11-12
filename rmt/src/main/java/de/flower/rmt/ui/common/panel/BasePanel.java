@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
  */
 public class BasePanel<T> extends GenericPanel<T> {
 
-    private final Logger log = LoggerFactory.getLogger(getClass());
+    private static final Logger log = LoggerFactory.getLogger(BasePanel.class);
 
     @SpringBean
     private ISecurityService securityService;

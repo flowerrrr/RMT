@@ -48,7 +48,12 @@ public abstract class EntityForm<T extends IEntity> extends Form<T> {
                 }
             }
         });
-         add(new PropertyValidation());
+    }
+
+    @Override
+    protected void onConfigure() {
+        super.onConfigure();
+        add(new PropertyValidation());
     }
 
     protected void onBeforeValidation(T entity) {

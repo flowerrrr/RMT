@@ -24,17 +24,17 @@ class PlayerEditPanelTest extends WicketTests {
         wicketTester.dumpPage()
         wicketTester.debugComponentTrees()
         // input email and validate field
-        var email = wicketTester.getComponentFromLastRenderedPage("form:email:email")
+        var email = wicketTester.getComponentFromLastRenderedPage("form:email:input")
         wicketTester.assertValidation(email, "", false) // field cannot be empty
         wicketTester.assertValidation(email, "foo@bar.com", true)
         wicketTester.assertValidation(email, "not-an-email-address", false) // invalid email format
-        // set email to existing user and revalidate field  -> not unique validator must fire
+        // set email to existing user and re-validate field  -> not unique validator must fire
         var user = userRepo.findOne(1)
         assertEquals(user.getClub(), userUnderTest.getClub)
         wicketTester.assertValidation(email, user.getEmail(), false)
         wicketTester.assertValidation(email, "foo@bar.com", true)
         // test fullname field
-        var fullname = wicketTester.getComponentFromLastRenderedPage("form:fullname:fullname")
+        var fullname = wicketTester.getComponentFromLastRenderedPage("form:fullname:input")
         wicketTester.assertValidation(fullname, "", false) // cannot be blank
         wicketTester.assertValidation(fullname, "foo bar", true)
         wicketTester.assertValidation(fullname, user.getFullname(), false) // must be unique per club

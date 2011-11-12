@@ -12,7 +12,7 @@ import java.util.List;
 public class DropDownChoicePanel<T> extends FormFieldPanel {
 
     public DropDownChoicePanel(String id, final List<? extends T> choices) {
-        super(id, new DropDownChoice("input", choices));
+        super(id, new DropDownChoice(ID, choices));
     }
 
     public void setChoiceRenderer(IChoiceRenderer<T> iChoiceRenderer) {

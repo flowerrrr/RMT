@@ -47,6 +47,6 @@ public class PlayerEditPanel extends BasePanel {
         fullname.addValidator(new FormComponentBeanValidator(INameUnique.class));
         TextFieldPanel email = new TextFieldPanel("email");
         form.add(email);
-        fullname.addValidator(new FormComponentBeanValidator(IEmailUnique.class));
+        email.addValidator(new FormComponentBeanValidator(IEmailUnique.class));
     }
 }
