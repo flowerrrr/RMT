@@ -7,8 +7,8 @@ import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.rmt.model.Venue;
 import de.flower.rmt.service.IVenueManager;
-import de.flower.rmt.ui.common.page.ModalDialogWindow;
 import de.flower.rmt.ui.common.panel.BasePanel;
+import de.flower.rmt.ui.common.panel.DropDownMenuPanel;
 import de.flower.rmt.ui.model.VenueModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -19,7 +19,6 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-import wicket.contrib.gmap3.GMap;
 
 import java.util.List;
 
@@ -33,21 +32,6 @@ public class VenueListPanel extends BasePanel {
 
     public VenueListPanel() {
         super();
-
-        final ModalDialogWindow modal = new ModalDialogWindow("venueDialog");
-        add(modal);
-
-        add(new MyAjaxLink("newButton") {
-
-            @Override
-            public void onClick(AjaxRequestTarget target) {
-                // show modal dialog with venue edit form.
-                final VenueEditPanel panel = new VenueEditPanel(new VenueModel());
-                modal.setContent(panel);
-                modal.show(target);
-                resizeMap(target, panel);
-            }
-        });
 
         final IModel<List<Venue>> listModel = getVenueListModel();
 
@@ -65,17 +49,15 @@ public class VenueListPanel extends BasePanel {
             @Override
             protected void populateItem(final ListItem<Venue> item) {
                 item.add(new Label("name", item.getModelObject().getName()));
-                item.add(new MyAjaxLink("editButton") {
+                DropDownMenuPanel menuPanel = new DropDownMenuPanel();
+                menuPanel.add(new MyAjaxLink("editButton") {
 
                     @Override
                     public void onClick(AjaxRequestTarget target) {
-                        final VenueEditPanel panel = new VenueEditPanel(item.getModel());
-                        modal.setContent(panel);
-                        modal.show(target);
-                        resizeMap(target, panel);
+                        setResponsePage(new VenueEditPage(new VenueModel(item.getModelObject())));
                     }
                 });
-                item.add(new AjaxLinkWithConfirmation("deleteButton", new ResourceModel("manager.venues.delete.confirm")) {
+                menuPanel.add(new AjaxLinkWithConfirmation("deleteButton", new ResourceModel("manager.venues.delete.confirm")) {
 
                     @Override
                     public void onClick(AjaxRequestTarget target) {
@@ -83,26 +65,11 @@ public class VenueListPanel extends BasePanel {
                         target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(Venue.class)));
                     }
                 });
+                item.add(menuPanel);
             }
         });
         listContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Venue.class)));
     }
-
-    /**
-     * Fix for layout bug when map is loaded in hidden div (like in modal window).
-     * See http://code.google.com/p/gmaps-api-issues/issues/detail?id=1448.
-     * @param target
-     * @param venueEditPanel
-     */
-    private void resizeMap(AjaxRequestTarget target, VenueEditPanel venueEditPanel) {
-        GMap map = venueEditPanel.getGMap();
-        String js = "google.maps.event.trigger(" + map.getJsReference() + ".map, 'resize');";
-        js += map.getJSinvoke("reCenter()");
-        // js += map.getJsReference() + ".setZoom(" + map.getJsReference() + ".map.getZoom());";
-        target.appendJavaScript(js);
-    }
-
-
 
     private IModel<List<Venue>> getVenueListModel() {
         return new LoadableDetachableModel<List<Venue>>() {

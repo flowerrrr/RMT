@@ -2,7 +2,7 @@ package de.flower.rmt.ui.manager.component;
 
 import de.flower.rmt.model.Venue;
 import de.flower.rmt.service.IVenueManager;
-import de.flower.rmt.ui.common.form.DropDownChoicePanel;
+import de.flower.rmt.ui.common.form.field.DropDownChoicePanel;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;

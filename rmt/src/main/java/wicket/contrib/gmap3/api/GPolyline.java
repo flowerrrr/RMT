@@ -27,12 +27,12 @@ import wicket.contrib.gmap3.js.Constructor;
 public class GPolyline extends GOverlay {
     private static final long serialVersionUID = 1L;
 
-    private final LatLng[] _gLatLngs;
+    private final GLatLng[] _gLatLngs;
     private final String _color;
     private final int _weight;
     private final float _opacity;
 
-    public GPolyline( String color, int weight, float opacity, LatLng... gLatLngs ) {
+    public GPolyline( String color, int weight, float opacity, GLatLng... gLatLngs ) {
         super();
 
         _gLatLngs = gLatLngs;
@@ -46,7 +46,7 @@ public class GPolyline extends GOverlay {
         Constructor constructor = new Constructor( "GPolyline" );
 
         Array array = new Array();
-        for ( LatLng gLatLng : _gLatLngs ) {
+        for ( GLatLng gLatLng : _gLatLngs ) {
             array.add( gLatLng.getJSconstructor() );
         }
         constructor.add( array.toJS() );

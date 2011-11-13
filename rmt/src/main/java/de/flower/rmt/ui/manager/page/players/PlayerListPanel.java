@@ -9,6 +9,8 @@ import de.flower.rmt.model.User_;
 import de.flower.rmt.service.IUserManager;
 import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.ui.common.panel.BasePanel;
+import de.flower.rmt.ui.common.panel.DropDownMenuPanel;
+import de.flower.rmt.ui.model.UserModel;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -50,15 +52,15 @@ public class PlayerListPanel extends BasePanel {
                 Component manager;
                 item.add(manager = new WebMarkupContainer("manager"));
                 manager.setVisible(player.isManager());
-                item.add(new Link("editButton") {
-
+                DropDownMenuPanel menuPanel = new DropDownMenuPanel();
+                menuPanel.add(new Link("editButton") {
                     @Override
                     public void onClick() {
-                        onEdit(null, item.getModel());
+                        setResponsePage(new PlayerEditPage(new UserModel(item.getModelObject())));
                     }
                 });
                 AjaxLinkWithConfirmation deleteButton;
-                item.add(deleteButton = new AjaxLinkWithConfirmation("deleteButton", new ResourceModel("manager.players.delete.confirm")) {
+                menuPanel.add(deleteButton = new AjaxLinkWithConfirmation("deleteButton", new ResourceModel("manager.players.delete.confirm")) {
 
                     @Override
                     public void onClick(AjaxRequestTarget target) {
@@ -68,19 +70,13 @@ public class PlayerListPanel extends BasePanel {
 
                 });
                 deleteButton.setVisible(!securityService.isCurrentUser(player));
+                item.add(menuPanel);
             }
         });
         playerListContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(User.class)));
     }
 
-    /**
-     * Implement this method if you want to respond to a click on the edit button.
-     */
-    protected void onEdit(AjaxRequestTarget target, IModel<User> model) {
-        throw new UnsupportedOperationException("Subclasses must override this method!");
-    }
-
-    private IModel<List<User>> getPlayerListModel() {
+     private IModel<List<User>> getPlayerListModel() {
         return new LoadableDetachableModel<List<User>>() {
             @Override
             protected List<User> load() {

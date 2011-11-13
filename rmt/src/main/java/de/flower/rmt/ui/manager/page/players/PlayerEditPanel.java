@@ -2,13 +2,13 @@ package de.flower.rmt.ui.manager.page.players;
 
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
-import de.flower.rmt.ui.common.form.CancelableEntityForm;
-import de.flower.rmt.ui.common.form.EntityForm;
 import de.flower.common.validation.groups.IEmailUnique;
 import de.flower.common.validation.groups.INameUnique;
 import de.flower.rmt.model.User;
 import de.flower.rmt.service.IUserManager;
-import de.flower.rmt.ui.common.form.TextFieldPanel;
+import de.flower.rmt.ui.common.form.CancelableEntityForm;
+import de.flower.rmt.ui.common.form.EntityForm;
+import de.flower.rmt.ui.common.form.field.TextFieldPanel;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;

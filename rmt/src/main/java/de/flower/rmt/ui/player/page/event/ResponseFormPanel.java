@@ -4,7 +4,7 @@ import de.flower.common.ui.ajax.MyAjaxSubmitLink;
 import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.Response;
 import de.flower.rmt.ui.common.form.EntityForm;
-import de.flower.rmt.ui.common.form.TextAreaPanel;
+import de.flower.rmt.ui.common.form.field.TextAreaPanel;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.feedback.ComponentFeedbackMessageFilter;

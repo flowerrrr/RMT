@@ -21,7 +21,7 @@ package wicket.contrib.gmap3.event;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.cycle.RequestCycle;
-import wicket.contrib.gmap3.api.LatLng;
+import wicket.contrib.gmap3.api.GLatLng;
 
 /**
  * See "dblclick" in the event section of <a
@@ -41,11 +41,11 @@ public abstract class DblClickListener extends GEventListenerBehavior {
     protected final void onEvent( AjaxRequestTarget target ) {
         Request request = RequestCycle.get().getRequest();
 
-        LatLng latLng = null;
+        GLatLng latLng = null;
 
         String latLngParameter = request.getRequestParameters().getParameterValue( "argument1" ).toString();
         if ( latLngParameter != null ) {
-            latLng = LatLng.parse( latLngParameter );
+            latLng = GLatLng.parse(latLngParameter);
         }
 
         onDblClick( target, latLng );
@@ -59,5 +59,5 @@ public abstract class DblClickListener extends GEventListenerBehavior {
      * @param target
      *            the target that initiated the click
      */
-    protected abstract void onDblClick( AjaxRequestTarget target, LatLng latLng );
+    protected abstract void onDblClick( AjaxRequestTarget target, GLatLng latLng );
 }

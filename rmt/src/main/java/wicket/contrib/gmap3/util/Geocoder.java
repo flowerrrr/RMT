@@ -15,7 +15,7 @@
  */
 package wicket.contrib.gmap3.util;
 
-import wicket.contrib.gmap3.api.LatLng;
+import wicket.contrib.gmap3.api.GLatLng;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -64,7 +64,7 @@ public class Geocoder implements Serializable {
         this._gMapKey = gMapKey;
     }
 
-    public LatLng decode( String response ) throws GeocoderException {
+    public GLatLng decode( String response ) throws GeocoderException {
 
         StringTokenizer gLatLng = new StringTokenizer( response, "," );
 
@@ -77,7 +77,7 @@ public class Geocoder implements Serializable {
             throw new GeocoderException( Integer.parseInt( status ) );
         }
 
-        return new LatLng( Double.parseDouble( latitude ), Double.parseDouble( longitude ) );
+        return new GLatLng( Double.parseDouble( latitude ), Double.parseDouble( longitude ) );
     }
 
     /**
@@ -95,7 +95,7 @@ public class Geocoder implements Serializable {
      * @return
      * @throws IOException
      */
-    public LatLng geocode( final String address ) throws IOException {
+    public GLatLng geocode( final String address ) throws IOException {
         InputStream is = invokeService( encode( address ) );
         if ( is != null ) {
             try {

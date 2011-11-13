@@ -22,7 +22,7 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.cycle.RequestCycle;
 import wicket.contrib.gmap3.api.GOverlay;
-import wicket.contrib.gmap3.api.LatLng;
+import wicket.contrib.gmap3.api.GLatLng;
 
 /**
  * See "click" in the event section of <a
@@ -43,7 +43,7 @@ public abstract class ClickListener extends GEventListenerBehavior {
         Request request = RequestCycle.get().getRequest();
 
         GOverlay overlay = null;
-        LatLng latLng = null;
+        GLatLng latLng = null;
 
         String markerParameter = request.getRequestParameters().getParameterValue( "argument0" ).toString();
         if ( markerParameter != null ) {
@@ -57,7 +57,7 @@ public abstract class ClickListener extends GEventListenerBehavior {
 
         String latLngParameter = request.getRequestParameters().getParameterValue( "latLng" ).toString();
         if ( latLngParameter != null ) {
-            latLng = LatLng.parse( latLngParameter );
+            latLng = GLatLng.parse(latLngParameter);
         }
 
         onClick( target, latLng, overlay );
@@ -76,5 +76,5 @@ public abstract class ClickListener extends GEventListenerBehavior {
      * @param target
      *            The target that initiated the click.
      */
-    protected abstract void onClick( AjaxRequestTarget target, LatLng latLng, GOverlay overlay );
+    protected abstract void onClick( AjaxRequestTarget target, GLatLng latLng, GOverlay overlay );
 }

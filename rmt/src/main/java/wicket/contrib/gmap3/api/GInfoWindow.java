@@ -21,7 +21,7 @@ public class GInfoWindow extends WebMarkupContainer {
 
     private GInfoWindowContent _infoWindowContent;
 
-    private LatLng _latLng;
+    private GLatLng _latLng;
 
     private GMarker _marker;
 
@@ -59,7 +59,7 @@ public class GInfoWindow extends WebMarkupContainer {
      *            content to open in info window
      * @return This
      */
-    public GInfoWindow open( LatLng latLng, Component content ) {
+    public GInfoWindow open( GLatLng latLng, Component content ) {
         return open( latLng, new GInfoWindowContent( content ) );
     }
 
@@ -76,7 +76,7 @@ public class GInfoWindow extends WebMarkupContainer {
         return open( marker, new GInfoWindowContent( content ) );
     }
 
-    public GInfoWindow open( LatLng latLng, GInfoWindowContent tab ) {
+    public GInfoWindow open( GLatLng latLng, GInfoWindowContent tab ) {
 
         this._latLng = latLng;
         this._marker = null;
@@ -117,7 +117,7 @@ public class GInfoWindow extends WebMarkupContainer {
         }
     }
 
-    private String getJSopen( LatLng latLng, GInfoWindowContent tab ) {
+    private String getJSopen( GLatLng latLng, GInfoWindowContent tab ) {
         StringBuffer buffer = new StringBuffer();
         buffer.append( " var info =  " + tab.getJSconstructor( latLng ) + " ;\n" );
         buffer.append( "info.open(" );

@@ -1,22 +1,21 @@
 package de.flower.rmt.ui.manager.page.venues;
 
 import de.flower.rmt.ui.manager.ManagerBasePage;
-import de.flower.rmt.ui.manager.page.venues.panel.VenuesMapPanel;
 
 /**
  * @author flowerrrr
  */
 public class VenuesPage extends ManagerBasePage {
 
-     public VenuesPage() {
+    public VenuesPage() {
 
-        add(new VenueListPanel());
-        add(new VenuesMapPanel());
+        addHeading("manager.venues.heading", null);
+        addMainPanel(new VenueMainPanel());
+        addSecondaryPanel(new VenuesSecondaryPanel());
     }
 
     @Override
     public String getActiveTopBarItem() {
         return "venues";
     }
-
 }

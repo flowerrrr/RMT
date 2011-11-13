@@ -24,7 +24,7 @@ import java.util.StringTokenizer;
  * "http://code.google.com/apis/maps/documentation/javascript/reference.html#LatLng"
  * >LatLng</a>.
  */
-public class LatLng implements GValue {
+public class GLatLng implements GValue {
     /**
      * Default serialVersionUID.
      */
@@ -39,7 +39,7 @@ public class LatLng implements GValue {
      * @param lat
      * @param lng
      */
-    public LatLng( double lat, double lng ) {
+    public GLatLng(double lat, double lng) {
         this( lat, lng, false );
     }
 
@@ -50,7 +50,7 @@ public class LatLng implements GValue {
      * @param lng
      * @param unbounded
      */
-    public LatLng( double lat, double lng, boolean unbounded ) {
+    public GLatLng(double lat, double lng, boolean unbounded) {
         _lat = lat;
         _lng = lng;
         _unbounded = unbounded;
@@ -101,7 +101,7 @@ public class LatLng implements GValue {
             return true;
         if ( getClass() != obj.getClass() )
             return false;
-        final LatLng other = (LatLng) obj;
+        final GLatLng other = (GLatLng) obj;
         if ( Double.doubleToLongBits( _lat ) != Double.doubleToLongBits( other._lat ) )
             return false;
         if ( Double.doubleToLongBits( _lng ) != Double.doubleToLongBits( other._lng ) )
@@ -116,13 +116,13 @@ public class LatLng implements GValue {
     /**
      * (37.34068368469045, -122.48519897460936)
      */
-    public static LatLng parse( String value ) {
+    public static GLatLng parse( String value ) {
         try {
             StringTokenizer tokenizer = new StringTokenizer( value, "(, )" );
 
             float lat = Float.valueOf( tokenizer.nextToken() );
             float lng = Float.valueOf( tokenizer.nextToken() );
-            return new LatLng( lat, lng );
+            return new GLatLng( lat, lng );
         } catch ( Exception e ) {
             return null;
         }

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd"
+      xmlns:rmt="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<wicket:panel>
+
+    <ul class="dropdown">
+        <li class="dropdown" data-dropdown="dropdown">
+            <a class="dropdown-toggle" href="#"><img class="dropdown-icon"
+                                                     src="img/football-small.gif"/></a>
+            <ul class="dropdown-menu">
+                <li><a wicket:id="editButton">
+                    <wicket:message key="button.edit">[Edit]</wicket:message>
+                </a></li>
+                <li><a wicket:id="deleteButton">
+                    <wicket:message key="button.delete">[Delete]</wicket:message>
+                </a></li>
+            </ul>
+        </li>
+    </ul>
+
+</wicket:panel>
+</body>
+</html>

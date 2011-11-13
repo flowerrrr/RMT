@@ -1,7 +1,6 @@
 package de.flower.rmt.ui.app;
 
 import de.flower.rmt.model.Role;
-import de.flower.rmt.ui.app.Authentication;
 import de.flower.rmt.ui.common.page.HomePage;
 import de.flower.rmt.ui.manager.ManagerHomePage;
 import de.flower.rmt.ui.player.page.events.EventsPage;

@@ -2,7 +2,7 @@ package de.flower.rmt.service.geocoding
 
 import org.testng.annotations.Test
 import org.testng.Assert._
-import de.flower.common.util.geo.LatLngEx
+import de.flower.common.util.geo.LatLng
 import org.slf4j.{LoggerFactory, Logger}
 
 /**
@@ -21,7 +21,7 @@ class GeocodingServiceTest {
         val results = geocodingService.geocode("Werner-Heisenberg-Allee 25\n 80939 München", "de", "de")
         log.info(results.toString())
         assertEquals(results.size(), 1)
-        assertEquals(results.get(0).getLatLng(), new LatLngEx(48.2186, 11.62362))
+        assertEquals(results.get(0).getLatLng(), new LatLng(48.2186, 11.62362))
     }
 
 }

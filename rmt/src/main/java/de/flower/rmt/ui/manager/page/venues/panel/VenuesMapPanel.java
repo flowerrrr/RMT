@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.manager.page.venues.panel;
 
 import de.flower.common.util.geo.GeoUtil;
-import de.flower.common.util.geo.LatLngEx;
+import de.flower.common.util.geo.LatLng;
 import de.flower.rmt.model.Venue;
 import de.flower.rmt.service.IVenueManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
@@ -27,7 +27,7 @@ public class VenuesMapPanel extends BasePanel {
         final GMap map = new GMap("map");
         add(map);
 
-        List<LatLngEx> latLngs = new ArrayList<LatLngEx>();
+        List<LatLng> latLngs = new ArrayList<LatLng>();
         for (final Venue venue : venueManager.findAll()) {
             if (venue.getLatLng() != null) {
                 final GMarker marker = new GMarker(new GMarkerOptions(map,
@@ -38,7 +38,7 @@ public class VenuesMapPanel extends BasePanel {
             }
         }
 
-        LatLngEx center = GeoUtil.centerOf(latLngs);
+        LatLng center = GeoUtil.centerOf(latLngs);
         map.setCenter(center);
         map.setZoom(10);
 

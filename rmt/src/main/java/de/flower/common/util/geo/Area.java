@@ -10,7 +10,7 @@ public class Area {
     public double bottom;
     public double left;
 
-    public LatLngEx getCenter() {
-        return new LatLngEx((top + bottom) / 2, (right + left) / 2);
+    public LatLng getCenter() {
+        return new LatLng((top + bottom) / 2, (right + left) / 2);
     }
 }

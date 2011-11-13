@@ -3,7 +3,7 @@ package de.flower.rmt.ui.manager.page.venues;
 import de.flower.common.ui.ajax.MyAjaxSubmitLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
-import de.flower.common.util.geo.LatLngEx;
+import de.flower.common.util.geo.LatLng;
 import de.flower.rmt.model.Venue;
 import de.flower.rmt.service.IVenueManager;
 import de.flower.rmt.service.geocoding.GeocodingResult;
@@ -12,7 +12,8 @@ import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.ui.app.RMTSession;
 import de.flower.rmt.ui.common.form.CancelableEntityForm;
 import de.flower.rmt.ui.common.form.EntityForm;
-import de.flower.rmt.ui.common.form.TextFieldPanel;
+import de.flower.rmt.ui.common.form.field.TextAreaPanel;
+import de.flower.rmt.ui.common.form.field.TextFieldPanel;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.manager.page.venues.panel.VenueMapPanel;
 import org.apache.commons.lang3.StringUtils;
@@ -22,13 +23,10 @@ import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-import wicket.contrib.gmap3.GMap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +44,7 @@ public class VenueEditPanel extends BasePanel  {
 
     private WebMarkupContainer geocodeResultListContainer;
 
-    private LatLngEx latLng;
+    private LatLng latLng;
 
     @SpringBean
     private IVenueManager venueManager;
@@ -82,8 +80,8 @@ public class VenueEditPanel extends BasePanel  {
         add(form);
 
         form.add(new TextFieldPanel("name"));
-        final TextArea address;
-        form.add(address = new TextArea("address"));
+        final TextAreaPanel address;
+        form.add(address = new TextAreaPanel("address"));
 
 
         form.add(geocodeNoResults = new WebMarkupContainer("geocodeNoResult"));
@@ -103,8 +101,9 @@ public class VenueEditPanel extends BasePanel  {
                     public void onClick(AjaxRequestTarget target) {
                         latLng = geocodingResult.getLatLng();
                         // update marker on map
-                        mapPanel.init(Model.of(latLng));
-                        target.add(mapPanel);
+                        throw new UnsupportedOperationException("Feature not implemented!");
+                        // mapPanel.init(Model.of(latLng));
+                        // target.add(mapPanel);
                     }
                 });
             }
@@ -118,7 +117,7 @@ public class VenueEditPanel extends BasePanel  {
         form.add(geocodeButton = new MyAjaxSubmitLink("geocodeButton") {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-                String value = address.getValue();
+                String value = address.getFormComponent().getValue();
                 if (StringUtils.isBlank(value)) {
                     return;
                 }
@@ -140,18 +139,18 @@ public class VenueEditPanel extends BasePanel  {
         });
         geocodeButton.setDefaultFormProcessing(false);
 
-        form.add(mapPanel = new VenueMapPanel(RMTSession.get().getLatLng()) {
+        if (model.getObject().getLatLng() != null) {
+            this.latLng = model.getObject().getLatLng();
+        } else {
+            this.latLng = RMTSession.get().getLatLng();
+        }
+
+        form.add(mapPanel = new VenueMapPanel(this.latLng) {
             @Override
-            public void onUpdateMarker(LatLngEx latLng) {
+            public void onUpdateMarker(LatLng latLng) {
                 VenueEditPanel.this.latLng = latLng;
             }
         });
-        mapPanel.setOutputMarkupId(true);
-    }
-
-
-    public GMap getGMap() {
-        return mapPanel.getGMap();
     }
 
 }

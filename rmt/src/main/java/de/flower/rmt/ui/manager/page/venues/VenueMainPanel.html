@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+    <script src="http://cdn.jquerytools.org/1.2.6/jquery.tools.min.js"></script>
+</wicket:head>
+<body>
+
+<wicket:panel>
+
+    <!-- the tabs -->
+    <ul id="venue-tabs" class="tabs">
+        <li><a href="#">
+            <wicket:message key="manager.venues.listview"/>
+        </a></li>
+        <li><a href="#">
+            <wicket:message key="manager.venues.mapview"/>
+        </a></li>
+    </ul>
+
+    <!-- tab "panes" -->
+    <div class="panes">
+        <div wicket:id="venueListPanel"/>
+        <div wicket:id="venuesMapPanel" class="venues-map">[Map with venues]</div>
+    </div>
+    <script>
+        // have to do some work to make map display correctly after it was rendered in a hidden div.
+        // hook into jquery tools callback to resize the map when it is shown.
+        $(document).ready(function() {
+            $("ul.tabs").tabs("div.panes > div", {
+                onClick: function(e, index) {
+                    if (index == 1) {
+                        VenuesMap.repaint();
+                    }
+                }
+            });
+        });
+        VenuesMap = {};
+        VenuesMap.repaint = function() {
+            google.maps.event.trigger(Wicket.maps[VenuesMap.getMapKey()].map, 'resize');
+            Wicket.maps[VenuesMap.getMapKey()].reCenter();
+        }
+        VenuesMap.getMapKey = function() {
+            for (key in Wicket.maps) {
+                return key;
+            }
+        }
+    </script>
+
+
+</wicket:panel>
+
+
+</body>
+</html>

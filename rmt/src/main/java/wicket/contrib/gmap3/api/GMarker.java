@@ -35,7 +35,7 @@ public class GMarker extends GOverlay {
         _options = options;
     }
 
-    public LatLng getLatLng() {
+    public GLatLng getLatLng() {
         return _options.getLatLng();
     }
 
@@ -52,6 +52,6 @@ public class GMarker extends GOverlay {
     @Override
     protected void updateOnAjaxCall( AjaxRequestTarget target, GEvent overlayEvent ) {
         Request request = RequestCycle.get().getRequest();
-        _options.setLatLng( LatLng.parse( request.getRequestParameters().getParameterValue( "overlay.latLng" ).toString() ) );
+        _options.setLatLng( GLatLng.parse(request.getRequestParameters().getParameterValue("overlay.latLng").toString()) );
     }
 }

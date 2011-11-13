@@ -40,7 +40,7 @@ public class GMarkerOptions implements GValue, Cloneable {
     private MarkerImage _icon = null;
     private final GMap _gmap;
     private String _title;
-    private LatLng _latLng;
+    private GLatLng _latLng;
 
     private boolean _bouncy = true;
 
@@ -48,18 +48,18 @@ public class GMarkerOptions implements GValue, Cloneable {
 
     private MarkerImage _shadow = null;
 
-    public GMarkerOptions( GMap gmap, LatLng latLng ) {
+    public GMarkerOptions( GMap gmap, GLatLng latLng ) {
         _latLng = latLng;
         _gmap = gmap;
     }
 
-    public GMarkerOptions( GMap gmap, LatLng latLng, String title ) {
+    public GMarkerOptions( GMap gmap, GLatLng latLng, String title ) {
         this( gmap, latLng );
         _title = title;
 
     }
 
-    public GMarkerOptions( GMap gmap, LatLng latLng, String title, MarkerImage icon, MarkerImage shadow ) {
+    public GMarkerOptions( GMap gmap, GLatLng latLng, String title, MarkerImage icon, MarkerImage shadow ) {
         this( gmap, latLng );
         _title = title;
         _icon = icon;
@@ -169,11 +169,11 @@ public class GMarkerOptions implements GValue, Cloneable {
         return _flat;
     }
 
-    public void setLatLng( LatLng latLng ) {
+    public void setLatLng( GLatLng latLng ) {
         _latLng = latLng;
     }
 
-    public LatLng getLatLng() {
+    public GLatLng getLatLng() {
         return _latLng;
     }
 

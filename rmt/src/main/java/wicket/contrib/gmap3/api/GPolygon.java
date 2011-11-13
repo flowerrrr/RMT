@@ -27,7 +27,7 @@ import wicket.contrib.gmap3.js.Constructor;
 public class GPolygon extends GOverlay {
     private static final long serialVersionUID = 1L;
 
-    private final LatLng[] _gLatLngs;
+    private final GLatLng[] _gLatLngs;
     private final String _strokeColor;
     private final int _strokeWeight;
     private final float _strokeOpacity;
@@ -35,7 +35,7 @@ public class GPolygon extends GOverlay {
     private final float _fillOpacity;
 
     public GPolygon( String strokeColor, int strokeWeight, float strokeOpacity, String fillColor, float fillOpacity,
-            LatLng... gLatLngs ) {
+            GLatLng... gLatLngs ) {
         super();
 
         _gLatLngs = gLatLngs;
@@ -52,7 +52,7 @@ public class GPolygon extends GOverlay {
         Constructor constructor = new Constructor( "GPolygon" );
 
         Array array = new Array();
-        for ( LatLng gLatLng : _gLatLngs ) {
+        for ( GLatLng gLatLng : _gLatLngs ) {
             array.add( gLatLng.getJSconstructor() );
         }
         constructor.add( array.toJS() );

@@ -2,12 +2,12 @@ package de.flower.rmt.ui.manager.page.teams;
 
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
-import de.flower.rmt.ui.common.form.CancelableEntityForm;
-import de.flower.rmt.ui.common.form.EntityForm;
 import de.flower.common.validation.groups.INameUnique;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.service.ITeamManager;
-import de.flower.rmt.ui.common.form.TextFieldPanel;
+import de.flower.rmt.ui.common.form.CancelableEntityForm;
+import de.flower.rmt.ui.common.form.EntityForm;
+import de.flower.rmt.ui.common.form.field.TextFieldPanel;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;

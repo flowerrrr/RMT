@@ -1,6 +1,7 @@
 package de.flower.rmt.ui.common.form
 
 import de.flower.rmt.test.WicketTests
+import field.{TextFieldPanel, FormFieldPanelTestPage}
 import org.apache.wicket.markup.Markup
 import org.testng.annotations.Test
 import org.apache.wicket.markup.html.form.Form

@@ -1,41 +1,42 @@
 <!DOCTYPE html>
-<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd"
+      xmlns:rmt="http://www.w3.org/1999/xhtml">
 <head></head>
 <body>
 <wicket:panel>
 
     <form wicket:id="form">
-        <div wicket:id="hasErrors"><wicket:message key="form.haserrors"/></div>
-        <div wicket:id="feedback">[Validation messages]</div>
-        <ul>
-            <li>
-                <wicket:message key="manager.venue.name" />
-                <input wicket:id="name" />
-            </li>
-            <li>
-                <wicket:message key="manager.venue.address" />
-                <textarea wicket:id="address" />
-                <a wicket:id="geocodeButton">[Find on map]</a>
-            </li>
-            <li wicket:id="geocodeNoResult">
-                <wicket:message key="manager.venue.geocode.noresult"/>
-            </li>
-            <li wicket:id="geocodeResultListContainer">
-                <ul>
-                    <li wicket:id="geocodeResultList">
-                        <span wicket:id="address">[Werner-Heisenberg-Allee 25, 80939 München]</span>
-                        <a wicket:id="chooseButton">[Select this location]</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <div wicket:id="mapPanel" class="venue-map" >[Map with venues]</div>
-            </li>
-        </ul>
 
-        <a wicket:id="saveButton">
-            <wicket:message key="button.save"/>
-        </a>
+        <fieldset>
+            <wicket:container wicket:id="formFeedbackPanel"/>
+            <rmt:input wicket:id="name" labelKey="manager.venue.name"/>
+            <rmt:textarea wicket:id="address" labelKey="manager.venue.address"/>
+            <a wicket:id="geocodeButton">[Find on map]</a>
+            <ul>
+                <li wicket:id="geocodeNoResult">
+                    <wicket:message key="manager.venue.geocode.noresult"/>
+                </li>
+                <li wicket:id="geocodeResultListContainer">
+                    <ul>
+                        <li wicket:id="geocodeResultList">
+                            <span wicket:id="address">[Werner-Heisenberg-Allee 25, 80939 München]</span>
+                            <a wicket:id="chooseButton">[Select this location]</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <div wicket:id="venueMapPanel" class="venue-map">[Map with venues]</div>
+                </li>
+            </ul>
+            <div class="actions">
+                <a class="btn primary" wicket:id="saveButton">
+                    <wicket:message key="button.save"/>
+                </a>
+                <a class="btn" wicket:id="cancelButton">
+                    <wicket:message key="button.cancel"/>
+                </a>
+            </div>
+        </fieldset>
     </form>
 
 </wicket:panel>

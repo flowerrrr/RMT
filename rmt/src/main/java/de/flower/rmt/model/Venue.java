@@ -1,6 +1,6 @@
 package de.flower.rmt.model;
 
-import de.flower.common.util.geo.LatLngEx;
+import de.flower.common.util.geo.LatLng;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Column;
@@ -35,7 +35,7 @@ public class Venue extends AbstractClubRelatedEntity {
         super(club);
     }
 
-    public Venue(String name, String address, LatLngEx gLatLng, Club club) {
+    public Venue(String name, String address, LatLng gLatLng, Club club) {
         super(club);
         this.name = name;
         this.address = address;
@@ -58,15 +58,15 @@ public class Venue extends AbstractClubRelatedEntity {
         this.address = address;
     }
 
-    public LatLngEx getLatLng() {
+    public LatLng getLatLng() {
         if (this.lat == null || this.lng == null) {
             return null;
         } else {
-            return new LatLngEx(this.lat, this.lng);
+            return new LatLng(this.lat, this.lng);
         }
     }
 
-    public void setLatLng(LatLngEx latLng) {
+    public void setLatLng(LatLng latLng) {
         this.lat = latLng.getLat();
         this.lng = latLng.getLng();
     }

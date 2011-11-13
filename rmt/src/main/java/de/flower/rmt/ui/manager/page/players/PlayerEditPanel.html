@@ -8,18 +8,9 @@
     <form wicket:id="form">
 
         <fieldset>
-            <div class="clearfix" wicket:id="hasErrors">
-                <div class="input">
-                    <div class="alert-message error">
-                        <wicket:message key="form.haserrors"/>
-                    </div>
-                </div>
-            </div>
-
-            <div wicket:id="feedback">[Validation messages]</div>
+            <wicket:container wicket:id="formFeedbackPanel" />
             <rmt:input wicket:id="fullname" labelKey="manager.player.fullname"/>
             <rmt:input wicket:id="email" labelKey="manager.player.email"/>
-
             <div class="actions">
                 <a class="btn primary" wicket:id="saveButton">
                     <wicket:message key="button.save"/>

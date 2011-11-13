@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.common.form;
+package de.flower.rmt.ui.common.form.field;
 
 import de.flower.common.ui.Css;
 import org.apache.wicket.Component;
