@@ -32,6 +32,11 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
         });
     }
 
+    protected void addHeadingText(String text) {
+        add(new Label("heading", text));
+        add(new Label("subheading", "").setVisible(false)); // currently not used
+    }
+
     protected void addMainPanel(Component ... components) {
         add(new WrappingPanel("mainPanel", components));
     }

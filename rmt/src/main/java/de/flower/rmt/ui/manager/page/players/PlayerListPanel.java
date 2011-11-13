@@ -43,7 +43,6 @@ public class PlayerListPanel extends BasePanel {
         add(playerListContainer);
         playerListContainer.add(new ListView<User>("playerList", getPlayerListModel()) {
 
-
             @Override
             protected void populateItem(final ListItem<User> item) {
                 User player = item.getModelObject();

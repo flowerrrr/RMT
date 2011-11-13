@@ -287,6 +287,11 @@ textarea {
     google maps
     need to set initial width and height.
 **************************************************************************/
+.map label {
+    // must override bootstrap settings that would be applied to google maps elements to fix layout bug
+    float: none;
+    padding-top: none;
+}
 .venue-map {
     /* map with one venue on it */
     width: 400px;

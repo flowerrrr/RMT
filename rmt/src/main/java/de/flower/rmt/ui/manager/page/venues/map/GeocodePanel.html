@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head></head>
+<body>
+<wicket:panel>
+
+    <div class="clearfix">
+        <div class="input">
+            <a class="btn" wicket:id="geocodeButton"><wicket:message key="button.geocode" /></a>
+        </div>
+    </div>
+    <div class="clearfix">
+        <div class="input" wicket:id="geocodeNoResult">
+            <div class="alert-message danger">
+                <wicket:message key="manager.venue.geocode.noresult"/>
+            </div>
+        </div>
+        <div class="input" wicket:id="geocodeResultListContainer">
+            <table wicket:enclosure="">
+                <thead>
+                    <tr>
+                        <th colspan="2"><wicket:message key="manager.venue.geocode.heading" /></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr wicket:id="geocodeResultList" >
+                        <td>
+                            <span wicket:id="address">[Werner-Heisenberg-Allee 25, 80939 München]</span>
+                        </td>
+                        <td>
+                            <a class="btn" wicket:id="chooseButton"><wicket:message key="manager.venue.geocode.result.button.select" /></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</wicket:panel>
+</body>
+</html>

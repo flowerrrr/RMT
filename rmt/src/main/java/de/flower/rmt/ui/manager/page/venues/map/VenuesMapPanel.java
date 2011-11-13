@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.manager.page.venues.panel;
+package de.flower.rmt.ui.manager.page.venues.map;
 
 import de.flower.common.util.geo.GeoUtil;
 import de.flower.common.util.geo.LatLng;
@@ -26,6 +26,7 @@ public class VenuesMapPanel extends BasePanel {
 
         final GMap map = new GMap("map");
         add(map);
+        map.setDoubleClickZoomEnabled(true);
 
         List<LatLng> latLngs = new ArrayList<LatLng>();
         for (final Venue venue : venueManager.findAll()) {

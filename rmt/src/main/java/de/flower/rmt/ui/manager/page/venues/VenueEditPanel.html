@@ -11,23 +11,12 @@
             <wicket:container wicket:id="formFeedbackPanel"/>
             <rmt:input wicket:id="name" labelKey="manager.venue.name"/>
             <rmt:textarea wicket:id="address" labelKey="manager.venue.address"/>
-            <a wicket:id="geocodeButton">[Find on map]</a>
-            <ul>
-                <li wicket:id="geocodeNoResult">
-                    <wicket:message key="manager.venue.geocode.noresult"/>
-                </li>
-                <li wicket:id="geocodeResultListContainer">
-                    <ul>
-                        <li wicket:id="geocodeResultList">
-                            <span wicket:id="address">[Werner-Heisenberg-Allee 25, 80939 München]</span>
-                            <a wicket:id="chooseButton">[Select this location]</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
+            <div wicket:id="geocodePanel" />
+            <div class="clearfix">
+                <div class="input">
                     <div wicket:id="venueMapPanel" class="venue-map">[Map with venues]</div>
-                </li>
-            </ul>
+                </div>
+            </div>
             <div class="actions">
                 <a class="btn primary" wicket:id="saveButton">
                     <wicket:message key="button.save"/>

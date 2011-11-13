@@ -1,7 +1,6 @@
 package de.flower.rmt.ui.manager.page.venues;
 
 import de.flower.common.ui.ajax.AjaxLinkWithConfirmation;
-import de.flower.common.ui.ajax.MyAjaxLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
@@ -13,6 +12,7 @@ import de.flower.rmt.ui.model.VenueModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
@@ -50,10 +50,9 @@ public class VenueListPanel extends BasePanel {
             protected void populateItem(final ListItem<Venue> item) {
                 item.add(new Label("name", item.getModelObject().getName()));
                 DropDownMenuPanel menuPanel = new DropDownMenuPanel();
-                menuPanel.add(new MyAjaxLink("editButton") {
-
+                menuPanel.add(new Link("editButton") {
                     @Override
-                    public void onClick(AjaxRequestTarget target) {
+                    public void onClick() {
                         setResponsePage(new VenueEditPage(new VenueModel(item.getModelObject())));
                     }
                 });

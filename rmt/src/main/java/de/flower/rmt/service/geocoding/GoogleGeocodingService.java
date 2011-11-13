@@ -64,7 +64,7 @@ public class GoogleGeocodingService implements IGeocodingService {
             if ("INVALID_REQUEST".equals(gr.getStatus())) {
                 throw new RuntimeException("Invalid request [" + httpGet.getURI() + "]");
             } else if ("ZERO_RESULTS".equals(gr.getStatus())) {
-                throw new RuntimeException("Zero results [" + httpGet.getURI() + "]");
+                gr.getResultList();
             } else if (!"OK".equals(gr.getStatus())) {
                 throw new RuntimeException("Invalid geocode response: " + gr.toString());
             }

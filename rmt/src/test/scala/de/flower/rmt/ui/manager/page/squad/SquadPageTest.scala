@@ -16,7 +16,8 @@ class SquadPageTest extends WicketTests {
         val team = testData.getJuveAmateure();
         wicketTester.startPage(new SquadPage(new TeamModel(team)))
         wicketTester.dumpPage()
-        wicketTester.clickLink("addButton")
+        // wicketTester.debugComponentTrees()
+        wicketTester.clickLink("mainPanel:playerListPanel:addButton")
         wicketTester.dumpPage()
     }
 

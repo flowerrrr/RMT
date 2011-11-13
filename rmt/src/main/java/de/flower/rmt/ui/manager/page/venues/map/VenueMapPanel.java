@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.manager.page.venues.panel;
+package de.flower.rmt.ui.manager.page.venues.map;
 
 import de.flower.common.util.geo.LatLng;
 import de.flower.rmt.ui.common.panel.BasePanel;
@@ -15,7 +15,7 @@ import java.io.Serializable;
  */
 public class VenueMapPanel extends BasePanel {
 
-    private GMap map;
+    private LatLng latLng;
 
     /**
      * @param latLng position of gMarker
@@ -25,6 +25,7 @@ public class VenueMapPanel extends BasePanel {
 
         GMap map = new GMap("map");
         add(map);
+        map.setDoubleClickZoomEnabled(true);
 
         // put draggable marker on map.
         DraggableMarker marker = new DraggableMarker(map, latLng);
@@ -32,6 +33,10 @@ public class VenueMapPanel extends BasePanel {
         map.setCenter(latLng);
 
         map.setZoom(14);
+    }
+
+    public void setMarker(final LatLng latLng) {
+        throw new UnsupportedOperationException("Feature not implemented!");
     }
 
     private class DraggableMarker implements Serializable {

@@ -9,7 +9,7 @@
 
     <!-- the tabs -->
     <ul id="venue-tabs" class="tabs">
-        <li><a href="#">
+        <li class="active"><a href="#">
             <wicket:message key="manager.venues.listview"/>
         </a></li>
         <li><a href="#">
@@ -31,6 +31,9 @@
                     if (index == 1) {
                         VenuesMap.repaint();
                     }
+                    // set class attr of li to active to use bootstrap styling
+                    $("ul.tabs > li")[index].className = "active";
+                    $("ul.tabs > li")[1 - index].className = "";
                 }
             });
         });
