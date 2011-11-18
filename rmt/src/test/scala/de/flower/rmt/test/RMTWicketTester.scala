@@ -11,9 +11,14 @@ import org.apache.wicket.request.IRequestHandler
 import de.flower.common.ui.Css
 import de.flower.common.ui.serialize.{Filter, LoggingSerializer}
 import de.flower.rmt.model.RSVPStatus
+import junit.framework.AssertionFailedError
+import java.util.ArrayList
+import org.apache.wicket.util.tester.WicketTesterHelper.ComponentData
+import junit.framework.Assert._
+import org.apache.wicket.util.lang.Classes
 
 /**
- * 
+ *
  * @author flowerrrr
  */
 
@@ -37,10 +42,10 @@ class RMTWicketTester(application: WebApplication) extends WicketTester(applicat
     }
 
     /**
-  * Get the text document that was written as part of this response.
-  *
-  * @return html markup
-  */
+     * Get the text document that was written as part of this response.
+     *
+     * @return html markup
+     */
     def getPageDump: String = {
         return getLastResponse.getDocument
     }
@@ -83,13 +88,12 @@ class RMTWicketTester(application: WebApplication) extends WicketTester(applicat
         throw new IllegalArgumentException("No behavior of class [" + behaviourClass + "] found in component [" + component + "].")
     }
 
-
     def assertValidation(field: Component, value: String, assertion: Boolean) {
         var formTester = getFormTester();
         formTester.setValue(field, value)
         executeAjaxEvent(field, "onblur")
         dumpPage()
-        val cssClass = if (assertion)  Css.VALID else Css.ERROR
+        val cssClass = if (assertion) Css.VALID else Css.ERROR
         assertContains("class=\"" + cssClass)
     }
 
@@ -102,4 +106,40 @@ class RMTWicketTester(application: WebApplication) extends WicketTester(applicat
         return formTester;
     }
 
+    /**
+     * If component cannot be found the component tree is logged out. helps to
+     * determine the right path for a component.
+     */
+    override def getComponentFromLastRenderedPage(path: String, wantVisibleInHierarchy: Boolean): Component = {
+        try {
+            return super.getComponentFromLastRenderedPage(path, wantVisibleInHierarchy)
+        }
+        catch {
+            case e: AssertionFailedError => {
+                return findComponent(path, wantVisibleInHierarchy);
+            }
+        };
+    }
+
+    /**
+     * Iterates through all components and looks for one with given name
+     */
+    def findComponent(name: String, wantVisibleInHierarchy: Boolean): Component = {
+        val list = new ArrayList[ComponentData]();
+        for (c <- WicketTesterHelper.getComponentData(getLastRenderedPage())) {
+            if (c.path.endsWith(name)) {
+                list.add(c);
+            }
+        }
+        if (list.isEmpty()) {
+            debugComponentTrees();
+            fail("name: '" + name + "' does not exist for page: " + Classes.simpleName(getLastRenderedPage.getClass))
+            return null;
+        }
+        if (list.size() > 1) {
+            debugComponentTrees();
+            fail("name: '" + name + "' is ambiguous for page: " + Classes.simpleName(getLastRenderedPage.getClass))
+        }
+        return super.getComponentFromLastRenderedPage(list.get(0).path, wantVisibleInHierarchy);
+    }
 }

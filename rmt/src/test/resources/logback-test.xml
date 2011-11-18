@@ -44,7 +44,7 @@
     <logger name="trace.de.flower.common.model.AbstractBaseEntity" level="INFO" />
     <logger name="trace.de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener" level="INFO" />
     <logger name="trace.de.flower.common.util.xstream.ClassEmittingReflectionConverter" level="INFO" />
-    <logger name="trace.de.flower.common.ui.serialize.LoggingSerializer" level="INFO" />
+    <logger name="trace.de.flower.common.ui.serialize" level="INFO" />
 
     <logger name="de.flower" level="DEBUG" />
 

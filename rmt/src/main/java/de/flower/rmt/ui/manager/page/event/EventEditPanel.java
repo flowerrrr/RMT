@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.manager.page.events;
+package de.flower.rmt.ui.manager.page.event;
 
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;

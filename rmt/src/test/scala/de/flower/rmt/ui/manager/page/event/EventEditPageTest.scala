@@ -1,9 +1,8 @@
-package de.flower.rmt.ui.manager.page.events
+package de.flower.rmt.ui.manager.page.event
 
 import de.flower.rmt.test.WicketTests
 import org.testng.annotations.Test
 import de.flower.rmt.model.event.EventType
-
 /**
  * 
  * @author flowerrrr

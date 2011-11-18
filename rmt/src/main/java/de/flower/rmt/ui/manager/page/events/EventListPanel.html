@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head></head>
+<body>
+
+<wicket:panel>
+
+    <div wicket:id="listContainer">
+        <div wicket:id="noEntry">
+            <wicket:message key="player.events.noentry">[List is empty]</wicket:message>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>
+                    <div>
+                        <wicket:message key="manager.event.date"/>
+                    </div>
+                    <div>
+                        <wicket:message key="manager.event.time"/>
+                    </div>
+                </th>
+                <th>
+                    <div>
+                        <wicket:message key="manager.event.team"/>
+                    </div>
+                    <div>
+                        <wicket:message key="manager.event.type"/>
+                    </div>
+                </th>
+                <th>
+                    <wicket:message key="manager.event.summary"/>
+                </th>
+                <th>
+                    <wicket:message key="manager.events.responses"/>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr wicket:id="list">
+                <td>
+                    <div wicket:id="date">[Date #1]</div>
+                    <div wicket:id="time">[Time #1]</div>
+                </td>
+                <td>
+                    <div wicket:id="team">[Team]</div>
+                    <div wicket:id="type">[Event Type]</div>
+                </td>
+                <td><span wicket:id="summary">[Summary]</span></td>
+                <td><span wicket:id="responses">[Responses]</span></td>
+                <td>
+                    <a wicket:id="responsesButton">
+                        <wicket:message key="manager.events.responses">[Responses]</wicket:message>
+                    </a>
+                    <a wicket:id="editButton">
+                        <wicket:message key="button.edit">[Edit]</wicket:message>
+                    </a>
+                    <a wicket:id="deleteButton">
+                        <wicket:message key="button.delete">[Delete]</wicket:message>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</wicket:panel>
+
+
+</body>
+</html>

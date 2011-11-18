@@ -5,6 +5,29 @@
 <wicket:panel>
 
     <form wicket:id="form">
+
+        <fieldset>
+            <wicket:container wicket:id="formFeedbackPanel"/>
+            <rmt:input wicket:id="name" labelKey="manager.venue.name"/>
+            <rmt:textarea wicket:id="address" labelKey="manager.venue.address"/>
+            <div wicket:id="geocodePanel" />
+            <div class="clearfix">
+                <div class="input">
+                    <div wicket:id="venueMapPanel" class="venue-map">[Map with venues]</div>
+                </div>
+            </div>
+            <div class="actions">
+                <a class="btn primary" wicket:id="saveButton">
+                    <wicket:message key="button.save"/>
+                </a>
+                <a class="btn" wicket:id="cancelButton">
+                    <wicket:message key="button.cancel"/>
+                </a>
+            </div>
+        </fieldset>
+    </form>
+
+    <form wicket:id="form">
         <div wicket:id="hasErrors">
             <wicket:message key="form.haserrors"/>
         </div>
