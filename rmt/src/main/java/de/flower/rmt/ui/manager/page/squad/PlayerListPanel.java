@@ -1,12 +1,9 @@
 package de.flower.rmt.ui.manager.page.squad;
 
 import de.flower.common.ui.ajax.AjaxLinkWithConfirmation;
-import de.flower.common.ui.ajax.MyAjaxLink;
-import de.flower.common.ui.ajax.panel.AjaxSlideTogglePanel;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
-import de.flower.common.ui.js.JQuery;
 import de.flower.rmt.model.Player;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.service.IPlayerManager;
@@ -39,30 +36,10 @@ public class PlayerListPanel extends BasePanel<Team> {
     @SpringBean
     private IPlayerManager playerManager;
 
-    private AjaxSlideTogglePanel addPlayerPanel;
-
     public PlayerListPanel(IModel<Team> model) {
         super(model);
 
-        final MyAjaxLink addButton = new MyAjaxLink("addButton") {
-
-            @Override
-            public void onClick(AjaxRequestTarget target) {
-                // show inline  dialog with squad edit form.
-                addPlayerPanel.show(target);
-            }
-        };
-        add(addButton);
-
-        addPlayerPanel = new AjaxSlideTogglePanel("addPlayerPanel", new AddPlayerPanel(model)) {
-            @Override
-            public void onHide(AjaxRequestTarget target) {
-                target.prependJavaScript(JQuery.fadeIn(addButton, "slow"));
-            }
-        };
-        add(addPlayerPanel);
-
-        final IModel<List<Player>> listModel = getListModel(model);
+         final IModel<List<Player>> listModel = getListModel(model);
 
         WebMarkupContainer playerListContainer = new WebMarkupContainer("listContainer");
         add(playerListContainer);

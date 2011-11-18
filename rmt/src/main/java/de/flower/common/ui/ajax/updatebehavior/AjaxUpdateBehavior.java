@@ -4,11 +4,15 @@ import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.behavior.Behavior;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author flowerrrr
  */
 public class AjaxUpdateBehavior extends Behavior {
+
+    private final static Logger log = LoggerFactory.getLogger(AjaxUpdateBehavior.class);
 
     private AjaxEvent registeredEvent;
 
@@ -18,6 +22,7 @@ public class AjaxUpdateBehavior extends Behavior {
 
     /**
      * Called immediately after attaching the behavior. Helps to make the constructor leaner.
+     *
      * @param component
      */
     @Override
@@ -28,6 +33,10 @@ public class AjaxUpdateBehavior extends Behavior {
     public void onEvent(final AjaxRequestTarget target, final Component component, final AjaxEvent[] events) {
 
         if (checkForComponentUpdate(events)) {
+            if (!component.isVisible()) {
+                log.warn("Trying to add invisibile component [{}] to ajax-response", component.getId());
+                return;
+            }
             addTarget(target, component);
         }
     }
@@ -61,5 +70,4 @@ public class AjaxUpdateBehavior extends Behavior {
         }
         return false;
     }
-
 }

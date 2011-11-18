@@ -2,7 +2,6 @@ package de.flower.rmt.ui.manager.page.squad;
 
 import de.flower.rmt.model.Team;
 import de.flower.rmt.ui.manager.ManagerBasePage;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
 
 /**
@@ -14,7 +13,7 @@ public class SquadPage extends ManagerBasePage {
         super();
         addHeadingText(model.getObject().getName());
         addMainPanel(new PlayerListPanel(model));
-        addSecondaryPanel(new Label("foobar", "Put some useful stuff here"));
+        addSecondaryPanel(new SquadSecondaryPanel(model));
 
    }
 

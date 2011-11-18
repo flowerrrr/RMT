@@ -44,11 +44,7 @@ public class PlayerManager extends AbstractService implements IPlayerManager {
      */
     @Override
     public List<Player> findByTeam(Team team) {
-        teamRepo.reattach(team);
-        List<Player> players = team.getPlayers();
-        // init collection to avoid lazyinitexception
-        players.size();
-        return players;
+        return playerRepo.findByTeam(team);
     }
 
     @Override

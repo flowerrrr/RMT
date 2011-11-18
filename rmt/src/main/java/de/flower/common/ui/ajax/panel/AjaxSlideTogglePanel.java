@@ -56,7 +56,7 @@ public class AjaxSlideTogglePanel extends Panel {
 
     @Override
     public Markup getAssociatedMarkup() {
-        return Markup.of("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><wicket:panel><div wicket:id=\"" + contentId + "\" /></wicket:panel>");
+        return Markup.of("<wicket:panel><div wicket:id=\"" + contentId + "\" /></wicket:panel>");
     }
 
     public static void hideCurrent(Component component, AjaxRequestTarget target) {

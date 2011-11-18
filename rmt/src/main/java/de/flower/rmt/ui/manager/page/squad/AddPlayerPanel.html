@@ -4,6 +4,7 @@
 <body>
 <wicket:panel>
 
+    <div class="info-text"><wicket:message key="manager.squad.add.heading" /></div>
     <form wicket:id="form">
         <div wicket:id="playerListContainer">
             <span wicket:id="group">
@@ -15,10 +16,10 @@
             </ul>
             </span>
         </div>
-        <a wicket:id="addButton">
+        <a class="btn primary" wicket:id="addButton">
             <wicket:message key="button.add"/>
         </a>
-        <a wicket:id="cancelButton">
+        <a class="btn" wicket:id="cancelButton">
             <wicket:message key="button.cancel"/>
         </a>
     </form>
