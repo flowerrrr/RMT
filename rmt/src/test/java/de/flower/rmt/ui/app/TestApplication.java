@@ -20,6 +20,11 @@ public class TestApplication extends RMTApplication {
      */
     public TestApplication(final ApplicationContext ctx) {
         appCtx = ctx;
+    }
+
+    @Override
+    protected void init() {
+        super.init();
         // override default settings. no problem cause we don't worry about layout bugs in unit-tests.
         getMarkupSettings().setStripWicketTags(false);
     }

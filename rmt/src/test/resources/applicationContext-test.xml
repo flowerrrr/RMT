@@ -7,7 +7,7 @@
 
     <!-- append test properties file. properties in this file will override
          properties in above file. -->
-    <context:property-placeholder location="classpath:application.properties,classpath:application-test.properties"/>
+    <context:property-placeholder location="classpath:application.properties,classpath:localhost.properties,classpath:application-test.properties"/>
 
     <import resource="applicationContext-base.xml"/>
     <import resource="applicationContext-dao.xml"/>
