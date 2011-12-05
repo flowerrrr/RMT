@@ -17,7 +17,7 @@ class EventEditPageTest extends WicketTests {
         wicketTester.dumpPage()
         wicketTester.debugComponentTrees()
         val formId = "eventEditPanel:form"
-        val formTester = wicketTester.getFormTester(formId)
+        val formTester = wicketTester.newFormTester(formId)
         formTester.select("team:team", 1)
         formTester.setValue("date:date", "1.12.2011")
         formTester.select("time:time", 4) // select some arbitrary value

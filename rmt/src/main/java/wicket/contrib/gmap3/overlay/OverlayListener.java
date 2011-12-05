@@ -1,13 +1,13 @@
 package wicket.contrib.gmap3.overlay;
 
-import com.bosch.cbs.ui.web.common.map.gmap3.GMap;
-import com.bosch.cbs.ui.web.common.map.gmap3.ReviewPending;
 import org.apache.wicket.ajax.AbstractDefaultAjaxBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import wicket.contrib.gmap3.GMap;
+import wicket.contrib.gmap3.ReviewPending;
 
 @ReviewPending
 // remove when class is tested

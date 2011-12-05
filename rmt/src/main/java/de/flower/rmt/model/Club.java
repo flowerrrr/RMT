@@ -22,6 +22,10 @@ public class Club extends AbstractBaseEntity {
     private Club() {
     }
 
+    public Club(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }

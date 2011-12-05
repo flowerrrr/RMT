@@ -4,12 +4,12 @@ import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.filter.Filter
 import ch.qos.logback.core.spi.FilterReply
-import de.flower.test.mock.IListAppender
-import de.flower.test.mock.LogBackListAppender
+import de.flower.common.test.mock.LogBackListAppender
 import org.slf4j.LoggerFactory
 import org.testng.annotations.BeforeMethod
 import org.testng.Assert._
 import de.flower.rmt.model.{Club, Team}
+import de.flower.common.test.mock.IListAppender
 
 /**
  * Test written in java cause aspectj will not work with scala classes when using
@@ -49,10 +49,10 @@ class LoggingAspectTest {
     }
 
     def testAspect: Unit = {
-        var team: Team = new Team(new Club)
+        var team: Team = new Team(new Club("foo club"))
         team.setName("foobar")
         team.getUrl
-        team == new Team(new Club)
+        team == new Team(new Club("foo club 2"))
         assertTrue(listAppender.getList.isEmpty == false, "No tracing log output found.")
     }
 

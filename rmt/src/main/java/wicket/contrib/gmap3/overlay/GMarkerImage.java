@@ -18,7 +18,7 @@
  */
 package wicket.contrib.gmap3.overlay;
 
-import com.bosch.cbs.ui.web.common.map.gmap3.ReviewPending;
+import wicket.contrib.gmap3.ReviewPending;
 import wicket.contrib.gmap3.api.GPoint;
 import wicket.contrib.gmap3.api.GSize;
 import wicket.contrib.gmap3.api.GValue;

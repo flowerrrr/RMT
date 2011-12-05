@@ -18,7 +18,7 @@
  */
 package wicket.contrib.gmap3.overlay;
 
-import com.bosch.cbs.ui.web.common.map.gmap3.GMap;
+import wicket.contrib.gmap3.GMap;
 import wicket.contrib.gmap3.api.GLatLng;
 import wicket.contrib.gmap3.api.GValue;
 import wicket.contrib.gmap3.js.ObjectLiteral;

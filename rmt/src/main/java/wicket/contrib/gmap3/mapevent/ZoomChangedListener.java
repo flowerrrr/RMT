@@ -18,10 +18,10 @@
  */
 package wicket.contrib.gmap3.mapevent;
 
-import com.bosch.cbs.ui.web.common.map.gmap3.GMap;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.cycle.RequestCycle;
+import wicket.contrib.gmap3.GMap;
 
 /**
  * See "zoomend" in the event section of <a

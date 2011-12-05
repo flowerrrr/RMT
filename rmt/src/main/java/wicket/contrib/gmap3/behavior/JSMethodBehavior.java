@@ -1,9 +1,9 @@
 package wicket.contrib.gmap3.behavior;
 
-import com.bosch.cbs.ui.web.common.map.gmap3.ReviewPending;
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.ComponentTag;
+import wicket.contrib.gmap3.ReviewPending;
 
 /**
  * The Class JSMethodBehavior.

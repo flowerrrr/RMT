@@ -1,7 +1,7 @@
 package wicket.contrib.gmap3.behavior;
 
-import com.bosch.cbs.ui.web.common.map.gmap3.GMap;
-import com.bosch.cbs.ui.web.common.map.gmap3.ReviewPending;
+import wicket.contrib.gmap3.GMap;
+import wicket.contrib.gmap3.ReviewPending;
 
 
 /**

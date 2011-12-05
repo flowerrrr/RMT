@@ -18,10 +18,10 @@
  */
 package wicket.contrib.gmap3.mapevent;
 
-import com.bosch.cbs.ui.web.common.map.gmap3.GMap;
-import com.bosch.cbs.ui.web.common.map.gmap3.ReviewPending;
 import org.apache.wicket.ajax.AbstractDefaultAjaxBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import wicket.contrib.gmap3.GMap;
+import wicket.contrib.gmap3.ReviewPending;
 
 /**
  * This behavior is used for map-events.

@@ -24,23 +24,23 @@ class PlayerEditPanelTest extends WicketTests {
         wicketTester.debugComponentTrees()
         // input email and validate field
         var email = wicketTester.getComponentFromLastRenderedPage("form:email:input")
-        wicketTester.assertValidation(email, "", false) // field cannot be empty
-        wicketTester.assertValidation(email, "foo@bar.com", true)
-        wicketTester.assertValidation(email, "not-an-email-address", false) // invalid email format
+        wicketTester.assertAjaxValidationError(email, "") // field cannot be empty
+        wicketTester.assertNoAjaxValidationError(email, "foo@bar.com")
+        wicketTester.assertAjaxValidationError(email, "not-an-email-address") // invalid email format
         // set email to existing user and re-validate field  -> not unique validator must fire
         var user = userRepo.findOne(1)
         assertEquals(user.getClub(), userUnderTest.getClub)
-        wicketTester.assertValidation(email, user.getEmail(), false)
-        wicketTester.assertValidation(email, "foo@bar.com", true)
+        wicketTester.assertAjaxValidationError(email, user.getEmail())
+        wicketTester.assertNoAjaxValidationError(email, "foo@bar.com")
         // test fullname field
         var fullname = wicketTester.getComponentFromLastRenderedPage("form:fullname:input")
-        wicketTester.assertValidation(fullname, "", false) // cannot be blank
-        wicketTester.assertValidation(fullname, "foo bar", true)
-        wicketTester.assertValidation(fullname, user.getFullname(), false) // must be unique per club
+        wicketTester.assertAjaxValidationError(fullname, "") // cannot be blank
+        wicketTester.assertNoAjaxValidationError(fullname, "foo bar")
+        wicketTester.assertAjaxValidationError(fullname, user.getFullname()) // must be unique per club
         // but fullname must not be unique across different clubs
         user = userRepo.findOne(5)
         assertNotEquals(user.getClub(), userUnderTest.getClub)
-        wicketTester.assertValidation(fullname, user.getFullname(), true)
+        wicketTester.assertNoAjaxValidationError(fullname, user.getFullname())
 
      }
 

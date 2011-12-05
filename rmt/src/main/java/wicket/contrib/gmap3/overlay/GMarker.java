@@ -15,10 +15,10 @@
  */
 package wicket.contrib.gmap3.overlay;
 
-import com.bosch.cbs.ui.web.common.map.gmap3.ReviewPending;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.cycle.RequestCycle;
+import wicket.contrib.gmap3.ReviewPending;
 import wicket.contrib.gmap3.api.GLatLng;
 import wicket.contrib.gmap3.js.Constructor;
 

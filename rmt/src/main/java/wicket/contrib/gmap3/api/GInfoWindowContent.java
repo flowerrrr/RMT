@@ -15,9 +15,9 @@
  */
 package wicket.contrib.gmap3.api;
 
-import com.bosch.cbs.ui.web.common.map.gmap3.ReviewPending;
-import com.bosch.cbs.ui.web.common.map.gmap3.js.Constructor;
 import org.apache.wicket.Component;
+import wicket.contrib.gmap3.ReviewPending;
+import wicket.contrib.gmap3.js.Constructor;
 
 /**
  * Represents an Google Maps API's <a href=

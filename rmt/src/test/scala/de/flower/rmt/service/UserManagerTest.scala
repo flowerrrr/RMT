@@ -6,13 +6,14 @@ import org.hibernate.LazyInitializationException
 import scala.collection.JavaConversions._
 import de.flower.rmt.model.User_
 import de.flower.rmt.test.AbstractIntegrationTests
+import org.scalatest.Assertions
 
 /**
  * 
  * @author flowerrrr
  */
 
-class UserManagerTest extends AbstractIntegrationTests {
+class UserManagerTest extends AbstractIntegrationTests with Assertions {
 
     /**
      * Test if clients of service layer can specify

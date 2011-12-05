@@ -18,9 +18,9 @@ class TeamEditPanelTest extends WicketTests {
         wicketTester.debugComponentTrees()
         // input name and validate field
         val field = wicketTester.getComponentFromLastRenderedPage("form:name:name")
-        wicketTester.assertValidation(field, "teamname", true)
+        wicketTester.assertNoAjaxValidationError(field, "teamname")
         // set teamname to existing team and revalidate field
-        wicketTester.assertValidation(field, "Juve Amateure", false)
+        wicketTester.assertAjaxValidationError(field, "Juve Amateure")
     }
 
 

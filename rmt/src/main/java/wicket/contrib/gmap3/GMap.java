@@ -15,10 +15,6 @@
  */
 package wicket.contrib.gmap3;
 
-import com.bosch.cbs.ui.web.common.map.gmap3.api.*;
-import com.bosch.cbs.ui.web.common.map.gmap3.mapevent.GMapEventListenerBehavior;
-import com.bosch.cbs.ui.web.common.map.gmap3.overlay.GOverlay;
-import com.bosch.cbs.ui.web.common.map.gmap3.overlay.OverlayListener;
 import org.apache.wicket.Application;
 import org.apache.wicket.Component;
 import org.apache.wicket.RuntimeConfigurationType;
@@ -32,6 +28,10 @@ import org.apache.wicket.request.Request;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import wicket.contrib.gmap3.api.*;
+import wicket.contrib.gmap3.mapevent.GMapEventListenerBehavior;
+import wicket.contrib.gmap3.overlay.GOverlay;
+import wicket.contrib.gmap3.overlay.OverlayListener;
 
 import java.util.*;
 

@@ -18,8 +18,8 @@
  */
 package wicket.contrib.gmap3.api;
 
-import com.bosch.cbs.ui.web.common.map.gmap3.ReviewPending;
-import com.bosch.cbs.ui.web.common.map.gmap3.js.Constructor;
+import wicket.contrib.gmap3.ReviewPending;
+import wicket.contrib.gmap3.js.Constructor;
 
 /**
  * Represents an Maps API's GSize that contains width and height.

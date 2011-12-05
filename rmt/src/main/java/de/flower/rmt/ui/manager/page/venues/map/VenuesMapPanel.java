@@ -7,8 +7,8 @@ import de.flower.rmt.service.IVenueManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import wicket.contrib.gmap3.GMap;
-import wicket.contrib.gmap3.api.GMarker;
-import wicket.contrib.gmap3.api.GMarkerOptions;
+import wicket.contrib.gmap3.overlay.GMarker;
+import wicket.contrib.gmap3.overlay.GMarkerOptions;
 
 import java.util.ArrayList;
 import java.util.List;

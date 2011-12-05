@@ -15,8 +15,8 @@
  */
 package wicket.contrib.gmap3.api;
 
-import com.bosch.cbs.ui.web.common.map.gmap3.GMap;
-import com.bosch.cbs.ui.web.common.map.gmap3.ReviewPending;
+import wicket.contrib.gmap3.GMap;
+import wicket.contrib.gmap3.ReviewPending;
 
 /**
  * Represents an Google Maps API's <a href= "http://www.google.com/apis/maps/documentation/reference.html#GMapType"

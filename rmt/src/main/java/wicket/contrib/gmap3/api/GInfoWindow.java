@@ -1,14 +1,14 @@
 package wicket.contrib.gmap3.api;
 
-import com.bosch.cbs.ui.web.common.map.gmap3.GMap;
-import com.bosch.cbs.ui.web.common.map.gmap3.ReviewPending;
-import com.bosch.cbs.ui.web.common.map.gmap3.overlay.GMarker;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.cycle.RequestCycle;
+import wicket.contrib.gmap3.GMap;
+import wicket.contrib.gmap3.ReviewPending;
+import wicket.contrib.gmap3.overlay.GMarker;
 
 /**
  * Represents an Google Maps API's <a href= "http://www.google.com/apis/maps/documentation/reference.html#GInfoWindow"

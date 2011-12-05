@@ -15,7 +15,7 @@
  */
 package wicket.contrib.gmap3.api;
 
-import com.bosch.cbs.ui.web.common.map.gmap3.js.Constructor;
+import wicket.contrib.gmap3.js.Constructor;
 
 import java.util.List;
 import java.util.StringTokenizer;

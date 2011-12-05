@@ -4,7 +4,11 @@ import de.flower.common.util.geo.LatLng;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import wicket.contrib.gmap3.GMap;
-import wicket.contrib.gmap3.api.*;
+import wicket.contrib.gmap3.api.GLatLng;
+import wicket.contrib.gmap3.overlay.GMarker;
+import wicket.contrib.gmap3.overlay.GMarkerOptions;
+import wicket.contrib.gmap3.overlay.GOverlayEvent;
+import wicket.contrib.gmap3.overlay.GOverlayEventHandler;
 
 import java.io.Serializable;
 
@@ -49,7 +53,7 @@ public class VenueMapPanel extends BasePanel {
             gMarker = new GMarker(options);
             map.addOverlay(gMarker);
             // add drag listener
-            gMarker.addListener(GEvent.dragend, new GEventHandler() {
+            gMarker.addListener(GOverlayEvent.DRAGEND, new GOverlayEventHandler() {
                 @Override
                 public void onEvent(AjaxRequestTarget target) {
                     onUpdateMarker(new LatLng(gMarker.getLatLng()));

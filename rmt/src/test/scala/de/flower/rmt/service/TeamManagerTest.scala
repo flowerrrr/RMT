@@ -7,13 +7,14 @@ import org.testng.Assert._
 import javax.validation.{ConstraintViolation, Validator, ConstraintViolationException}
 import scala.collection.JavaConversions._
 import de.flower.rmt.test.AbstractIntegrationTests
+import org.scalatest.Assertions
 
 /**
  *
  * @author flowerrrr
  */
 
-class TeamManagerTest extends AbstractIntegrationTests {
+class TeamManagerTest extends AbstractIntegrationTests with Assertions {
 
     @Autowired
     var validator: Validator = _
