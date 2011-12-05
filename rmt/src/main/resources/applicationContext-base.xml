@@ -11,6 +11,6 @@
     <bean id="springApplicationContextBridge" factory-method="getInstance"
     	class="de.flower.common.spring.SpringApplicationContextBridge" />
 
-    <context:property-placeholder location="classpath:application.properties"/>
+    <context:property-placeholder location="classpath:application.properties,classpath:localhost.properties"/>
 
 </beans>

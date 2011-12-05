@@ -61,7 +61,20 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/../caraboides-wicket-gmap3-0dd501d/pom.xml" />
+        <option value="C:/Temp/proj/bosch/cbs-root/cbs.parent/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="C:/Temp/proj/bosch/cbs-root/cbs.application/pom.xml" />
+        <option value="C:/Temp/proj/bosch/cbs-root/cbs.dao/pom.xml" />
+        <option value="C:/Temp/proj/bosch/cbs-root/cbs.device/pom.xml" />
+        <option value="C:/Temp/proj/bosch/cbs-root/cbs.init/pom.xml" />
+        <option value="C:/Temp/proj/bosch/cbs-root/cbs.model/pom.xml" />
+        <option value="C:/Temp/proj/bosch/cbs-root/cbs.parent/pom.xml" />
+        <option value="C:/Temp/proj/bosch/cbs-root/cbs.ui.mobile/pom.xml" />
+        <option value="C:/Temp/proj/bosch/cbs-root/cbs.ui.web/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="NullableNotNullManager">

@@ -1,11 +1,12 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="rmt:Web exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/rmt_Web_exploded</output-path>
+  <artifact type="exploded-war" build-on-make="true" name="rmt-dev:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/rmt_dev_Web_exploded</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="rmt" />
           <element id="jpa-descriptors" facet="rmt/jpa/JPA" />
+          <element id="dir-copy" path="$PROJECT_DIR$/src/main/resources-target/dev" />
         </element>
         <element id="directory" name="lib">
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/antlr/antlr/jars/antlr-2.7.6.jar" />

@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="rmt:Web">
-    <output-path>$PROJECT_DIR$/out/artifacts/rmt_Web</output-path>
-    <root id="archive" name="rmt_Web.war">
-      <element id="artifact" artifact-name="rmt:Web exploded" />
-    </root>
-  </artifact>
-</component>
