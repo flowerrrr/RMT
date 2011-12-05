@@ -41,6 +41,7 @@
 
     <!-- Tracing loggers -->
     <logger name="trace.de.flower" level="TRACE"/>
+    <logger name="trace.de.flower.common.test" level="INFO" />
     <logger name="trace.de.flower.common.model.AbstractBaseEntity" level="INFO" />
     <logger name="trace.de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener" level="INFO" />
     <logger name="trace.de.flower.common.util.xstream.ClassEmittingReflectionConverter" level="INFO" />

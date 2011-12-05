@@ -139,7 +139,7 @@ public class RMTWicketTester extends WicketTester {
         executeAjaxEvent(c, "onchange");
         dumpPage();
         final String cssClass = expectError ? Css.ERROR : Css.VALID;
-        assertContains("class=\"" + cssClass);
+        assertContains("class=\"[^\"]*" + cssClass);
     }
 
     /**
@@ -218,9 +218,8 @@ public class RMTWicketTester extends WicketTester {
     public Component getComponentFromLastRenderedPage(final String path, final boolean wantVisibleInHierarchy) {
         try {
             return super.getComponentFromLastRenderedPage(path, wantVisibleInHierarchy);
-        } catch (final Error e) {
-            log.info(getDebugComponentTrees());
-            throw e;
+        } catch (final AssertionFailedError e) {
+            return findComponent(path, wantVisibleInHierarchy);
         }
     }
 

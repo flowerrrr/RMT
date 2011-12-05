@@ -58,7 +58,7 @@ public class FormFieldPanel extends Panel {
         add(formComponent);
         add(new FeedbackPanel("feedback", new ComponentFeedbackMessageFilter(formComponent)));
 
-        formComponent.add(new AjaxFormComponentUpdatingBehavior("onblur") {
+        formComponent.add(new AjaxFormComponentUpdatingBehavior("onchange") {
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
                 isValidated = true;
