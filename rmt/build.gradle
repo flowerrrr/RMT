@@ -84,6 +84,9 @@ sourceSets.test.resources.srcDirs('/src/test/scala')
 
 // add directory with db-unit files to test-classpath
 sourceSets.test.resources.srcDirs('/src/test/database')
+
+// seems to be necessary to pick up the java base test classes
+sourceSets.test.scala.srcDirs('/src/test/java')
 /**
  * It's currently not possible to capture the console output of the tests.
  * Until it is fixed (http://issues.gradle.org/browse/GRADLE-1009) use the
