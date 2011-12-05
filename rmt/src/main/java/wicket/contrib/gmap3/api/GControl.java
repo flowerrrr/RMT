@@ -1,12 +1,12 @@
 /*
- * 
+ *
  * ==============================================================================
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -15,27 +15,29 @@
  */
 package wicket.contrib.gmap3.api;
 
-import wicket.contrib.gmap3.GMap;
+import com.bosch.cbs.ui.web.common.map.gmap3.GMap;
+import com.bosch.cbs.ui.web.common.map.gmap3.ReviewPending;
 
 /**
- * Represents an Google Maps API's <a href=
- * "http://www.google.com/apis/maps/documentation/reference.html#GControl"
+ * Represents an Google Maps API's <a href= "http://www.google.com/apis/maps/documentation/reference.html#GControl"
  * >GControl</a>.
  */
+@ReviewPending
+// Remove if class is tested.
 public enum GControl {
-        GSmallMapControl,
-        GLargeMapControl,
-        GSmallZoomControl,
-        GScaleControl,
-        GMapTypeControl,
-        GLargeMapControl3D,
-        GSmallZoomControl3D;
+    GSmallMapControl,
+    GLargeMapControl,
+    GSmallZoomControl,
+    GScaleControl,
+    GMapTypeControl,
+    GLargeMapControl3D,
+    GSmallZoomControl3D;
 
-    public String getJSadd( GMap map ) {
-        return map.getJSinvoke( "addControl('" + name() + "', new " + name() + "())" );
+    public String getJSadd(final GMap map) {
+        return map.getJSinvoke("addControl('" + name() + "', new " + name() + "())");
     }
 
-    public String getJSremove( GMap map ) {
-        return map.getJSinvoke( "removeControl('" + name() + "')" );
+    public String getJSremove(final GMap map) {
+        return map.getJSinvoke("removeControl('" + name() + "')");
     }
 }

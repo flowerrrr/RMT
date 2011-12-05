@@ -15,14 +15,13 @@
  */
 package wicket.contrib.gmap3.api;
 
-import wicket.contrib.gmap3.js.Constructor;
+import com.bosch.cbs.ui.web.common.map.gmap3.js.Constructor;
 
 import java.util.StringTokenizer;
 
 /**
  * Represents an Google Maps API's <a href=
- * "http://code.google.com/apis/maps/documentation/javascript/reference.html#LatLng"
- * >LatLng</a>.
+ * "http://code.google.com/apis/maps/documentation/javascript/reference.html#LatLng" >LatLng</a>.
  */
 public class GLatLng implements GValue {
     /**
@@ -40,7 +39,7 @@ public class GLatLng implements GValue {
      * @param lng
      */
     public GLatLng(double lat, double lng) {
-        this( lat, lng, false );
+        this(lat, lng, false);
     }
 
     /**
@@ -74,8 +73,8 @@ public class GLatLng implements GValue {
      */
     @Override
     public String getJSconstructor() {
-        return new Constructor( "google.maps.LatLng" ).add( Double.valueOf( _lat ) ).add( Double.valueOf( _lng ) ).add(
-                Boolean.valueOf( _unbounded ) ).toJS();
+        return new Constructor("google.maps.LatLng").add(Double.valueOf(_lat)).add(Double.valueOf(_lng))
+                .add(Boolean.valueOf(_unbounded)).toJS();
     }
 
     @Override
@@ -83,47 +82,49 @@ public class GLatLng implements GValue {
         final int PRIME = 31;
         int result = super.hashCode();
         long temp;
-        temp = Double.doubleToLongBits( _lat );
-        result = PRIME * result + (int) ( temp ^ ( temp >>> 32 ) );
-        temp = Double.doubleToLongBits( _lng );
-        result = PRIME * result + (int) ( temp ^ ( temp >>> 32 ) );
-        result = PRIME * result + ( _unbounded
-            ? 1231
-            : 1237 );
+        temp = Double.doubleToLongBits(_lat);
+        result = PRIME * result + (int)(temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(_lng);
+        result = PRIME * result + (int)(temp ^ (temp >>> 32));
+        result = PRIME * result + (_unbounded ? 1231 : 1237);
         return result;
     }
 
     @Override
-    public boolean equals( Object obj ) {
-        if ( this == obj )
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
-        if (super.equals( obj ) )
+        }
+        if (super.equals(obj)) {
             return true;
-        if ( getClass() != obj.getClass() )
+        }
+        if (getClass() != obj.getClass()) {
             return false;
-        final GLatLng other = (GLatLng) obj;
-        if ( Double.doubleToLongBits( _lat ) != Double.doubleToLongBits( other._lat ) )
+        }
+        final GLatLng other = (GLatLng)obj;
+        if (Double.doubleToLongBits(_lat) != Double.doubleToLongBits(other._lat)) {
             return false;
-        if ( Double.doubleToLongBits( _lng ) != Double.doubleToLongBits( other._lng ) )
+        }
+        if (Double.doubleToLongBits(_lng) != Double.doubleToLongBits(other._lng)) {
             return false;
-        if ( _unbounded != other._unbounded )
+        }
+        if (_unbounded != other._unbounded) {
             return false;
+        }
         return true;
     }
-
-
 
     /**
      * (37.34068368469045, -122.48519897460936)
      */
-    public static GLatLng parse( String value ) {
+    public static GLatLng parse(String value) {
         try {
-            StringTokenizer tokenizer = new StringTokenizer( value, "(, )" );
+            StringTokenizer tokenizer = new StringTokenizer(value, "(, )");
 
-            float lat = Float.valueOf( tokenizer.nextToken() );
-            float lng = Float.valueOf( tokenizer.nextToken() );
-            return new GLatLng( lat, lng );
-        } catch ( Exception e ) {
+            float lat = Float.valueOf(tokenizer.nextToken());
+            float lng = Float.valueOf(tokenizer.nextToken());
+            return new GLatLng(lat, lng);
+        } catch (Exception e) {
             return null;
         }
     }

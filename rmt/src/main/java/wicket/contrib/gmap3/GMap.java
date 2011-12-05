@@ -15,42 +15,48 @@
  */
 package wicket.contrib.gmap3;
 
+import com.bosch.cbs.ui.web.common.map.gmap3.api.*;
+import com.bosch.cbs.ui.web.common.map.gmap3.mapevent.GMapEventListenerBehavior;
+import com.bosch.cbs.ui.web.common.map.gmap3.overlay.GOverlay;
+import com.bosch.cbs.ui.web.common.map.gmap3.overlay.OverlayListener;
 import org.apache.wicket.Application;
 import org.apache.wicket.Component;
 import org.apache.wicket.RuntimeConfigurationType;
-import org.apache.wicket.ajax.AbstractDefaultAjaxBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.behavior.AbstractBehavior;
 import org.apache.wicket.behavior.Behavior;
-import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.IHeaderResponse;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import wicket.contrib.gmap3.api.*;
-import wicket.contrib.gmap3.event.GEventListenerBehavior;
 
 import java.util.*;
 
 /**
- * Wicket component to embed <a href="http://maps.google.com">Google Maps</a>
- * into your pages.
- * <p>
- * The Google Maps API requires an API key to use it. You will need to generate
- * one for each deployment context you have. See the <a
- * href="http://www.google.com/apis/maps/signup.html">Google Maps API sign up
- * page</a> for more information.
+ * Wicket component to embed <a href="http://maps.google.com">Google Maps</a> into your pages.
+ *
+ * Understanding ajax-updates with GMap:
+ * There are two situations that are handled by GMap:
+ * <pre>
+ * - map is fully reloaded in ajax-request
+ *    -> use methods without AjaxRequestTarget parameter.
+ * - map is not reloaded but should change its state after an ajax-call
+ *    -> use methods with AjaxRequestTarget parameter.
+ * </pre>
  */
-public class GMap extends Panel implements GOverlayContainer {
+public class GMap extends Panel {
     /** log. */
-    private static final Logger log = LoggerFactory.getLogger( GMap.class );
+    static final Logger log = LoggerFactory.getLogger(GMap.class);
 
     private static final long serialVersionUID = 1L;
 
-    private GLatLng _center = new GLatLng( 37.4419, -122.1419 );
+    /**
+     * default map center.
+     */
+    private GLatLng _center = new GLatLng(0, 0);
 
     private boolean _draggingEnabled = true;
 
@@ -62,387 +68,625 @@ public class GMap extends Panel implements GOverlayContainer {
 
     private int _zoom = 13;
 
+    private Integer _maxZoom = null;
+
     private final Set<GControl> _controls = new HashSet<GControl>();
 
-    private final List<GOverlay> _overlays = new ArrayList<GOverlay>();
+    final List<GOverlay> _overlays = new ArrayList<GOverlay>();
 
     private final WebMarkupContainer _map;
 
     private final GInfoWindow _infoWindow;
 
-    private GLatLngBounds _bounds;
+    /**
+     * Bounds as retrieved from map.getBounds()
+     */
+    private GLatLngBounds _getBounds;
 
-    private OverlayListener _overlayListener = null;
+    /**
+     * Bounds used in map.fitBounds(). Be ware of this behavior:
+     * http://code.google.com/p/gmaps-api-issues/issues/detail?id=3117
+     */
+    private GLatLngBounds _fitBounds;
+
+    /* max zoomlevel to use when using fitMarkers. */
+    private int _boundsMaxZoom = 0;
+
+    private final OverlayListener _overlayListener;
 
     /**
      * Construct.
-     * 
-     * @param id
+     *
+     * @param id the id
      */
-    public GMap( final String id ) {
-        this( id, new GMapHeaderContributor(), new ArrayList<GOverlay>() );
+    public GMap(final String id) {
+        this(id, null, new GMapHeaderContributor());
     }
 
     /**
      * Construct.
-     * 
-     * @param id
-     * @param overlays
-     * @deprecated The usage is discouraged. Use this(String, String) instead
-     *             and add the overlays later on.
+     *
+     * @param id the id
+     * @param model the model
+     * @param headerContrib the header contrib
      */
-    @Deprecated
-    public GMap( final String id, final List<GOverlay> overlays ) {
-        this( id, new GMapHeaderContributor(), overlays );
-    }
+    public GMap(final String id, final IModel<?> model, final Behavior headerContrib) {
+        super(id, model);
 
-    /**
-     * Construct.
-     * 
-     * @param id
-     * @param headerContrib
-     */
-    public GMap( final String id, final Behavior headerContrib ) {
-        super( id );
-
-        add( headerContrib );
-        add( new AbstractBehavior() {
+        add(headerContrib);
+        add(new Behavior() {
 
             @Override
-            public void renderHead(Component component, final IHeaderResponse response ) {
-                response.renderOnDomReadyJavaScript( getJSinit() );
+            public void renderHead(final Component component, final IHeaderResponse response) {
+                response.renderOnDomReadyJavaScript(getJSinit());
             }
-        } );
+        });
 
         _infoWindow = new GInfoWindow();
-        add( _infoWindow );
+        add(_infoWindow);
 
-        _map = new WebMarkupContainer( "map" );
-        _map.setOutputMarkupId( true );
-        add( _map );
+        _map = new WebMarkupContainer("map");
+        _map.setOutputMarkupId(true);
+        add(_map);
 
-        if ( activateOverlayListener() ) {
-            _overlayListener = new OverlayListener();
-            add( _overlayListener );
-        }
+        _overlayListener = new OverlayListener();
+        add(_overlayListener);
+    }
+
+    /**
+     * Instantiates a new g map.
+     *
+     * @param id the id
+     * @param model the model
+     */
+    public GMap(final String id, final IModel<?> model) {
+        this(id, model, new GMapHeaderContributor());
     }
 
     public String getMapId() {
         return _map.getMarkupId();
     }
 
-    protected boolean activateOverlayListener() {
-        return true;
-    }
-
     /**
-     * Construct.
-     * 
-     * @param id
-     * @param headerContrib
-     * @param overlays
-     * @deprecated The usage is discouraged. Use this(String, String) instead
-     *             and add the overlays later on.
-     */
-    @Deprecated
-    public GMap( final String id, final GMapHeaderContributor headerContrib, final List<GOverlay> overlays ) {
-        this( id, headerContrib );
-
-        for ( final GOverlay overlay : overlays ) {
-            addOverlay( overlay );
-        }
-    }
-
-    /**
+     * On render.
+     *
      * @see org.apache.wicket.MarkupContainer#onRender(org.apache.wicket.markup.MarkupStream)
      */
     @Override
     protected void onRender() {
         super.onRender();
-        if (RuntimeConfigurationType.DEVELOPMENT.equals( Application.get().getConfigurationType() )
-                && !Application.get().getMarkupSettings().getStripWicketTags() ) {
-            log.warn( "Application is in DEVELOPMENT mode && Wicket tags are not stripped,"
+        if (RuntimeConfigurationType.DEVELOPMENT.equals(Application.get().getConfigurationType())
+                && !Application.get().getMarkupSettings().getStripWicketTags()) {
+            log.warn("Application is in DEVELOPMENT mode && Wicket tags are not stripped,"
                     + "Some Chrome Versions will not render the GMap."
                     + " Change to DEPLOYMENT mode  || turn on Wicket tags stripping." + " See:"
-                    + " http://www.nabble.com/Gmap2-problem-with-Firefox-3.0-to18137475.html." );
+                    + " http://www.nabble.com/Gmap2-problem-with-Firefox-3.0-to18137475.html.");
+        }
+    }
+
+    /**
+     * Fix for layout bug when map is loaded in hidden div (like in modal window). See
+     * http://code.google.com/p/gmaps-api-issues/issues/detail?id=1448. Clients should call this method in
+     * onBeforeRender.
+     *
+     */
+    public void repaintMap() {
+        if (AjaxRequestTarget.get() != null) {
+            String js = "google.maps.event.trigger(" + getJsReference() + ".map, 'resize');";
+            js += getJSsetCenter(getCenter());
+            if (_fitBounds != null) {
+                // if not using fit bounds you must call setZoom to force correct zoom level
+                js += getJSfitBounds(getFitBounds(), _boundsMaxZoom);
+            } else {
+                js += getJSsetZoom(getZoom());
+            }
+            AjaxRequestTarget.get().appendJavaScript(js);
         }
     }
 
     /**
      * Add a control.
-     * 
-     * @param control
-     *            control to add
+     *
+     * @param control control to add
      * @return This
      */
-    public GMap addControl( final GControl control ) {
-        _controls.add( control );
+    @ReviewPending
+    // remove when method is tested
+    public GMap addControl(final GControl control) {
+        _controls.add(control);
+        return this;
+    }
 
-        if ( AjaxRequestTarget.get() != null && findPage() != null ) {
-            AjaxRequestTarget.get().appendJavaScript(control.getJSadd(GMap.this));
-        }
-
+    /**
+     * Adds the control.
+     *
+     * Call this method inside ajax request when the map itself is not added to the target.
+     *
+     * @param control the control
+     * @param target the target
+     * @return the g map
+     */
+    public GMap addControl(final GControl control, final AjaxRequestTarget target) {
+        addControl(control);
+        target.appendJavaScript(control.getJSadd(this));
         return this;
     }
 
     /**
      * Remove a control.
-     * 
-     * @param control
-     *            control to remove
+     *
+     * @param control control to remove
      * @return This
      */
-    public GMap removeControl( final GControl control ) {
-        _controls.remove( control );
+    @ReviewPending
+    // remove when method is tested
+    public GMap removeControl(final GControl control) {
+        _controls.remove(control);
+        return this;
+    }
 
-        if ( AjaxRequestTarget.get() != null && findPage() != null ) {
-            AjaxRequestTarget.get().appendJavaScript(control.getJSremove(GMap.this));
-        }
-
+    /**
+     * Remove a control.
+     *
+     * Call this method inside ajax request when the map itself is not added to the target.
+     *
+     * @param control control to remove
+     * @param target the target
+     * @return This
+     */
+    @ReviewPending
+    // remove when method is tested
+    public GMap removeControl(final GControl control, final AjaxRequestTarget target) {
+        removeControl(control);
+        target.appendJavaScript(control.getJSremove(this));
         return this;
     }
 
     /**
      * Add an overlay.
-     * 
-     * @param overlay
-     *            overlay to add
+     *
+     * @param overlay overlay to add
      * @return This
      */
-    @Override
-    public GMap addOverlay( final GOverlay overlay ) {
-        _overlays.add( overlay );
-        overlay.setParent( this );
-
-        if ( AjaxRequestTarget.get() != null && findPage() != null ) {
-            AjaxRequestTarget.get().appendJavaScript(overlay.getJS());
-        }
-
+    public GMap addOverlay(final GOverlay overlay) {
+        _overlays.add(overlay);
+        overlay.setParent(this);
         return this;
     }
-    
-    
- 
-	/**
-     * Remove an overlay.
-     * 
-     * @param overlay
-     *            overlay to remove
+
+    /**
+     * Add an overlay.
+     *
+     * Call this method inside ajax request when the map itself is not added to the target.
+     *
+     * @param overlay overlay to add
+     * @param target the target
      * @return This
      */
-    @Override
-    public GMap removeOverlay( final GOverlay overlay ) {
-        while ( _overlays.contains( overlay ) ) {
-            _overlays.remove( overlay );
+    public GMap addOverlay(final GOverlay overlay, final AjaxRequestTarget target) {
+        addOverlay(overlay);
+        target.appendJavaScript(overlay.getJS());
+        return this;
+    }
+
+    /**
+     * Remove an overlay.
+     *
+     * @param overlay overlay to remove
+     * @return This
+     */
+    @ReviewPending
+    // remove when method is tested
+    public GMap removeOverlay(final GOverlay overlay) {
+        while (_overlays.contains(overlay)) {
+            _overlays.remove(overlay);
         }
+        overlay.setParent(null);
+        return this;
+    }
 
-        if ( AjaxRequestTarget.get() != null && findPage() != null ) {
-            AjaxRequestTarget.get().appendJavaScript(overlay.getJSremove());
+    /**
+     * Remove an overlay.
+     *
+     * Call this method inside ajax request when the map itself is not added to the target.
+     *
+     * @param overlay overlay to remove
+     * @param target the target
+     * @return This
+     */
+    @ReviewPending
+    // remove when method is tested
+    public GMap removeOverlay(final GOverlay overlay, final AjaxRequestTarget target) {
+        while (_overlays.contains(overlay)) {
+            _overlays.remove(overlay);
         }
-
-        overlay.setParent( null );
-
+        target.appendJavaScript(overlay.getJSremove());
+        overlay.setParent(null);
         return this;
     }
 
     /**
      * Clear all overlays.
-     * 
+     *
      * @return This
      */
-    @Override
     public GMap removeAllOverlays() {
-        for ( final GOverlay overlay : _overlays ) {
-            overlay.setParent( null );
+        for (final GOverlay overlay : _overlays) {
+            overlay.setParent(null);
         }
         _overlays.clear();
-        if ( AjaxRequestTarget.get() != null && findPage() != null ) {
-            AjaxRequestTarget.get().appendJavaScript(getJSinvoke("clearOverlays()"));
-        }
         return this;
     }
 
-    @Override
+    /**
+     * Clear all overlays.
+     *
+     * Call this method inside ajax request when the map itself is not added to the target.
+     *
+     * @param target the target
+     * @return This
+     */
+    public GMap removeAllOverlays(final AjaxRequestTarget target) {
+        removeAllOverlays();
+        target.appendJavaScript(getJSinvoke("clearOverlays()"));
+        return this;
+    }
+
+    @ReviewPending
+    // remove when method is tested
     public List<GOverlay> getOverlays() {
-        return Collections.unmodifiableList( _overlays );
+        return Collections.unmodifiableList(_overlays);
     }
 
-    public GMap clearAllListeners() {
 
-        if ( AjaxRequestTarget.get() != null && findPage() != null ) {
-            AjaxRequestTarget.get().appendJavaScript(getJSinvoke("clearInstanceListeners()"));
-        }
+     /**
+     * Clear all listeners.
+     *
+     * @param target the target
+     * @return the g map
+     */
+    @ReviewPending
+    // remove when method is tested
+    public GMap clearAllListeners(final AjaxRequestTarget target) {
+        target.appendJavaScript(getJSclearAllListeners());
         return this;
     }
 
+    @ReviewPending
+    // remove when method is tested
     public Set<GControl> getControls() {
-        return Collections.unmodifiableSet( _controls );
+        return Collections.unmodifiableSet(_controls);
+    }
+
+    public GLatLngBounds getBounds() {
+        return _getBounds;
+    }
+
+    public GLatLngBounds getFitBounds() {
+        return _fitBounds;
+    }
+
+    /**
+     * <p>
+     * Makes the map zoom out and centre around all the GLatLng points in markersToShow.
+     * <p>
+     * Big ups to Doug Leeper for the code.
+     *
+     * @param markersToShow the points to centre around.
+     * @param maximumZoomLevel the maximum zoom level
+     * @see <a href= "http://www.nabble.com/Re%3A-initial-GMap2-bounds-question-p19886673.html" >Doug's Nabble post</a>
+     */
+    public void fitMarkers(final List<GLatLng> markersToShow, final int maximumZoomLevel) {
+        if (markersToShow.isEmpty()) {
+            log.warn("Empty list provided to GMap.fitMarkers method.");
+            return;
+        }
+        fitBounds(new GLatLngBounds(markersToShow), maximumZoomLevel);
+    }
+
+
+    /**
+     * Be careful. map.fitBounds(map.getBounds()) will actually zoom out. See here:
+     * http://code.google.com/p/gmaps-api-issues/issues/detail?id=3117
+     *
+     * @param bounds the bounds
+     * @param maximumZoomLevel the maximum zoom level, set to 0 if no max level is to be used
+     */
+    public void fitBounds(final GLatLngBounds bounds, final int maximumZoomLevel) {
+        _fitBounds = bounds;
+
+        // set Center so that map will be placed at correct position (avoids short display of Palo Alto location)
+        setCenter(_fitBounds.getCenter());
+        _boundsMaxZoom = maximumZoomLevel;
+    }
+
+    /**
+     * Be careful. map.fitBounds(map.getBounds()) will actually zoom out. See here:
+     * http://code.google.com/p/gmaps-api-issues/issues/detail?id=3117
+     *
+     * Call this method inside ajax request when the map itself is not added to the target.
+     *
+     * @param bounds the bounds
+     * @param maximumZoomLevel the maximum zoom level, set to 0 if no max level is to be used
+     * @param target the target
+     */
+    public void fitBounds(final GLatLngBounds bounds, final int maximumZoomLevel, final AjaxRequestTarget target) {
+        fitBounds(bounds, maximumZoomLevel);
+        target.appendJavaScript(getJSfitBounds(_fitBounds, _boundsMaxZoom));
+    }
+
+    /**
+     * Sets the dragging enabled.
+     *
+     * @param enabled the new dragging enabled
+     */
+    @ReviewPending
+    // remove when method is tested
+    public void setDraggingEnabled(final boolean enabled) {
+        _draggingEnabled = enabled;
+    }
+
+    /**
+     * Sets the dragging enabled.
+     *
+     * Call this method inside ajax request when the map itself is not added to the target.
+     *
+     * @param enabled the enabled
+     * @param target the target
+     */
+    @ReviewPending
+    // remove when method is tested
+    public void setDraggingEnabled(final boolean enabled, final AjaxRequestTarget target) {
+        setDraggingEnabled(enabled);
+        target.appendJavaScript(getJSsetDraggingEnabled(enabled));
+    }
+
+    /**
+     * Checks if is dragging enabled.
+     *
+     * @return true, if is dragging enabled
+     */
+    public boolean isDraggingEnabled() {
+        return _draggingEnabled;
+    }
+
+    /**
+     * Sets the double click zoom enabled.
+     *
+     * @param enabled the new double click zoom enabled
+     */
+    public void setDoubleClickZoomEnabled(final boolean enabled) {
+        _doubleClickZoomEnabled = enabled;
+    }
+
+    /**
+     * Sets the double click zoom enabled.
+     *
+     * Call this method inside ajax request when the map itself is not added to the target.
+     *
+     * @param enabled the enabled
+     * @param target the target
+     */
+    public void setDoubleClickZoomEnabled(final boolean enabled, final AjaxRequestTarget target) {
+        setDoubleClickZoomEnabled(enabled);
+        target.appendJavaScript(getJSsetDoubleClickZoomEnabled(enabled));
+    }
+
+    /**
+     * Checks if is double click zoom enabled.
+     *
+     * @return true, if is double click zoom enabled
+     */
+    public boolean isDoubleClickZoomEnabled() {
+        return _doubleClickZoomEnabled;
+    }
+
+    /**
+     * Sets the scroll wheel zoom enabled.
+     *
+     * @param enabled the new scroll wheel zoom enabled
+     */
+    public void setScrollWheelZoomEnabled(final boolean enabled) {
+        _scrollWheelZoomEnabled = enabled;
+    }
+
+    /**
+     * Sets the scroll wheel zoom enabled.
+     *
+     * Call this method inside ajax request when the map itself is not added to the target.
+     *
+     * @param enabled the enabled
+     * @param target the target
+     */
+    public void setScrollWheelZoomEnabled(final boolean enabled, final AjaxRequestTarget target) {
+        setScrollWheelZoomEnabled(enabled);
+        target.appendJavaScript(getJSsetScrollWheelZoomEnabled(enabled));
+    }
+
+    /**
+     * Checks if is scroll wheel zoom enabled.
+     *
+     * @return true, if is scroll wheel zoom enabled
+     */
+    public boolean isScrollWheelZoomEnabled() {
+        return _scrollWheelZoomEnabled;
+    }
+
+    /**
+     * Gets the map type.
+     *
+     * @return the map type
+     */
+    public GMapType getMapType() {
+        return _mapType;
+    }
+
+    /**
+     * Sets the map type.
+     *
+     * @param mapType the new map type
+     */
+    public void setMapType(final GMapType mapType) {
+        _mapType = mapType;
+    }
+
+    /**
+     * Sets the map type.
+     *
+     * Call this method inside ajax request when the map itself is not added to the target.
+     *
+     * @param mapType the map type
+     * @param target the target
+     */
+    public void setMapType(final GMapType mapType, final AjaxRequestTarget target) {
+        setMapType(mapType);
+        target.appendJavaScript(mapType.getJSsetMapType(GMap.this));
+    }
+
+    /**
+     * Gets the zoom.
+     *
+     * @return the zoom
+     */
+    public int getZoom() {
+        return _zoom;
+    }
+
+    /**
+     * Sets the zoom.
+     *
+     * @param level the new zoom
+     */
+    public void setZoom(final int level) {
+        _zoom = level;
+    }
+
+    /**
+     * Sets the zoom.
+     *
+     * Call this method inside ajax request when the map itself is not added to the target.
+     *
+     * @param level the level
+     * @param target the target
+     */
+    public void setZoom(final int level, final AjaxRequestTarget target) {
+        setZoom(level);
+        target.appendJavaScript(getJSsetZoom(_zoom));
+    }
+
+    public void setMaxZoom(final int level) {
+        _maxZoom = level;
+    }
+
+    /**
+     * Sets the max zoom.
+     *
+     * Call this method inside ajax request when the map itself is not added to the target.
+     *
+     * @param level the level
+     * @param target the target
+     */
+    public void setMaxZoom(final int level, final AjaxRequestTarget target) {
+        setMaxZoom(level);
+        target.appendJavaScript(getJSsetMaxZoom(_maxZoom));
     }
 
     public GLatLng getCenter() {
         return _center;
     }
 
-    public GLatLngBounds getBounds() {
-        return _bounds;
-    }
-
-    public void setDraggingEnabled( final boolean enabled ) {
-        if ( this._draggingEnabled != enabled ) {
-            _draggingEnabled = enabled;
-
-            if ( AjaxRequestTarget.get() != null && findPage() != null ) {
-                AjaxRequestTarget.get().appendJavaScript(getJSsetDraggingEnabled(enabled));
-            }
-        }
-    }
-
-    public boolean isDraggingEnabled() {
-        return _draggingEnabled;
-    }
-
-    public void setDoubleClickZoomEnabled( final boolean enabled ) {
-        if ( this._doubleClickZoomEnabled != enabled ) {
-            _doubleClickZoomEnabled = enabled;
-
-            if ( AjaxRequestTarget.get() != null && findPage() != null ) {
-                AjaxRequestTarget.get().appendJavaScript(getJSsetDoubleClickZoomEnabled(enabled));
-            }
-        }
-    }
-
-    public boolean isDoubleClickZoomEnabled() {
-        return _doubleClickZoomEnabled;
-    }
-
-    public void setScrollWheelZoomEnabled( final boolean enabled ) {
-        if ( this._scrollWheelZoomEnabled != enabled ) {
-            _scrollWheelZoomEnabled = enabled;
-
-            if ( AjaxRequestTarget.get() != null && findPage() != null ) {
-                AjaxRequestTarget.get().appendJavaScript(getJSsetScrollWheelZoomEnabled(enabled));
-            }
-        }
-    }
-
-    public boolean isScrollWheelZoomEnabled() {
-        return _scrollWheelZoomEnabled;
-    }
-
-    public GMapType getMapType() {
-        return _mapType;
-    }
-
-    public void setMapType( final GMapType mapType ) {
-        if ( this._mapType != mapType ) {
-            this._mapType = mapType;
-
-            if ( AjaxRequestTarget.get() != null && findPage() != null ) {
-                AjaxRequestTarget.get().appendJavaScript(mapType.getJSsetMapType(GMap.this));
-            }
-        }
-    }
-
-    public int getZoom() {
-        return _zoom;
-    }
-
-    public void setZoom( final int level ) {
-        if ( this._zoom != level ) {
-            this._zoom = level;
-
-            if ( AjaxRequestTarget.get() != null && findPage() != null ) {
-                AjaxRequestTarget.get().appendJavaScript(getJSsetZoom(_zoom));
-            }
-        }
+    /**
+     * Set the center.
+     *
+     * @param center center to set
+     */
+    public void setCenter(final GLatLng center) {
+        _center = center;
     }
 
     /**
      * Set the center.
-     * 
-     * @param center
-     *            center to set
+     *
+     * Call this method inside ajax request when the map itself is not added to the target.
+     *
+     * @param center center to set
+     * @param target the target
      */
-    public void setCenter( final GLatLng center ) {
-        if ( !this._center.equals( center ) ) {
-            this._center = center;
-
-            if ( AjaxRequestTarget.get() != null && findPage() != null ) {
-                AjaxRequestTarget.get().appendJavaScript(getJSsetCenter(center));
-            }
-        }
+    public void setCenter(final GLatLng center, final AjaxRequestTarget target) {
+        setCenter(center);
+        target.appendJavaScript(getJSsetCenter(center));
     }
 
     /**
-     * Changes the center point of the map to the given point. If the point is
-     * already visible in the current map view, change the center in a smooth
-     * animation.
-     * 
-     * @param center
-     *            the new center of the map
+     * Changes the center point of the map to the given point. If the point is already visible in the current map view,
+     * change the center in a smooth animation.
+     *
+     * @param center the new center of the map
+     * @param target the target
      */
-    public void panTo( final GLatLng center ) {
-        if ( !this._center.equals( center ) ) {
-            this._center = center;
-
-            if ( AjaxRequestTarget.get() != null && findPage() != null ) {
-                AjaxRequestTarget.get().appendJavaScript(getJSpanTo(center));
-            }
-        }
+    @ReviewPending
+    // remove when method is tested
+    public void panTo(final GLatLng center, final AjaxRequestTarget target) {
+        setCenter(center);
+        target.appendJavaScript(getJSpanTo(center));
     }
 
+    /**
+     * Gets the info window.
+     *
+     * @return the info window
+     */
+    @ReviewPending
+    // remove when method is tested
     public GInfoWindow getInfoWindow() {
         return _infoWindow;
     }
 
     /**
-     * Generates the JavaScript used to instantiate this GMap3 as an JavaScript
-     * class on the client side.
-     * 
+     * Generates the JavaScript used to instantiate this GMap as an JavaScript class on the client side.
+     *
      * @return The generated JavaScript
      */
     private String getJSinit() {
-        final StringBuffer js = new StringBuffer( "new WicketMap('" + _map.getMarkupId() + "');\n" );
+        final StringBuffer js = new StringBuffer("new WicketMap('" + _map.getMarkupId() + "');\n");
 
-        if ( activateOverlayListener() ) {
-            js.append( _overlayListener.getJSinit() );
-        }
-        js.append( getJSsetCenter( getCenter() ) );
-        js.append( getJSsetZoom( getZoom() ) );
-        js.append( getJSsetDraggingEnabled( _draggingEnabled ) );
-        js.append( getJSsetDoubleClickZoomEnabled( _doubleClickZoomEnabled ) );
-        js.append( getJSsetScrollWheelZoomEnabled( _scrollWheelZoomEnabled ) );
+        // js.append(getJSclearAllListeners());
+        js.append(_overlayListener.getJSinit());
 
-        js.append( _mapType.getJSsetMapType( this ) );
+        js.append(getJSsetCenter(getCenter()));
+        js.append(getJSsetZoom(getZoom()));
+        js.append(getJSsetDraggingEnabled(_draggingEnabled));
+        js.append(getJSsetDoubleClickZoomEnabled(_doubleClickZoomEnabled));
+        js.append(getJSsetScrollWheelZoomEnabled(_scrollWheelZoomEnabled));
+        js.append(getJSsetMaxZoom(_maxZoom));
+        js.append(_mapType.getJSsetMapType(this));
+        js.append(getJSfitBounds(_fitBounds, _boundsMaxZoom));
 
         // Add the controls.
-        //        for ( final GControl control : controls ) {
-        //            js.append( control.getJSadd( this ) );
-        //        }
+        // for ( final GControl control : controls ) {
+        // js.append( control.getJSadd( this ) );
+        // }
 
         // Add the overlays.
-        for ( final GOverlay overlay : _overlays ) {
-            js.append( overlay.getJS() );
+        for (final GOverlay overlay : _overlays) {
+            js.append(overlay.getJS());
         }
 
-        for ( final Object behavior : getBehaviors( GEventListenerBehavior.class ) ) {
-            js.append( ( (GEventListenerBehavior) behavior ).getJSaddListener() );
+        for (final Object behavior : getBehaviors(GMapEventListenerBehavior.class)) {
+            js.append(((GMapEventListenerBehavior)behavior).getJSaddListener());
         }
 
         return js.toString();
     }
 
     /**
-     * Convenience method for generating a JavaScript call on this GMap2 with
-     * the given invocation.
-     * 
-     * @param invocation
-     *            The JavaScript call to invoke on this GMap2.
+     * Convenience method for generating a JavaScript call on this GMap with the given invocation.
+     *
+     * @param invocation The JavaScript call to invoke on this GMap.
      * @return The generated JavaScript.
      */
-    // TODO Could this become default or protected?
-    public String getJSinvoke( final String invocation ) {
-        return getJsReference() + "." + invocation + ";\n";
+    public String getJSinvoke(final String invocation) {
+        return getJsReference() + "" + invocation + ";\n";
     }
 
     /**
@@ -453,278 +697,179 @@ public class GMap extends Panel implements GOverlayContainer {
     }
 
     /**
-     * @see #fitMarkers(List, boolean, double)
+     * Gets the javascript to call google.map.fitBounds().
+     *
+     * @param bounds the bounds
+     * @param boundsMaxZoom the bounds max zoom
+     * @return the j sfit markers
      */
-    public void fitMarkers( final List<GLatLng> markersToShow ) {
-        fitMarkers( markersToShow, false, 0.0 );
-    }
+    public String getJSfitBounds(final GLatLngBounds bounds, final int boundsMaxZoom) {
+        if (bounds != null) {
+            final StringBuffer buf = new StringBuffer();
+            if (boundsMaxZoom != 0) {
+                // reading the actual zoom level immediately after fitBounds will not work. it will show false results.
+                // so we use a callback on the bounds_changed event to update the zoom level.
+                final String setZoom = getJsReference() + ".map.setZoom(Math.min(" + getJsReference()
+                        + ".map.getZoom()," + boundsMaxZoom + "));\n";
+                buf.append("google.maps.event.addListenerOnce(" + getJsReference()
+                        + ".map, 'bounds_changed', function(evt) { console.log('bounds_changed callback'); "
+                        + setZoom + " });");
 
-    /**
-     * @see #fitMarkers(List, boolean, double)
-     */
-    public void fitMarkers( final List<GLatLng> markersToShow, final boolean showMarkersForPoints ) {
-        fitMarkers( markersToShow, showMarkersForPoints, 0.0 );
-    }
-
-    /**
-     * <p>
-     * Makes the map zoom out and centre around all the GLatLng points in
-     * markersToShow.
-     * <p>
-     * Big ups to Doug Leeper for the code.
-     * 
-     * @see <a href=
-     *      "http://www.nabble.com/Re%3A-initial-GMap2-bounds-question-p19886673.html"
-     *      >Doug's Nabble post</a>
-     * @param markersToShow
-     *            the points to centre around.
-     * @param showMarkersForPoints
-     *            if true, will also add basic markers to the map for each point
-     *            focused on. Just a simple convenience method - you will
-     *            probably want to turn this off so that you can show more
-     *            information with each marker when clicked etc.
-     */
-    public void fitMarkers( final List<GLatLng> markersToShow, final boolean showMarkersForPoints, final double zoomAdjustment ) {
-        if ( markersToShow.isEmpty() ) {
-            log.warn( "Empty list provided to GMap2.fitMarkers method." );
-            return;
-        }
-
-        this.add(new AbstractBehavior() {
-
-            @Override
-            public void renderHead(Component component, final IHeaderResponse response ) {
-                final StringBuffer buf = new StringBuffer();
-                buf.append( "var bounds = new google.maps.LatLngBounds();\n" );
-                buf.append( "var map = " + GMap.this.getJSinvoke( "map" ) );
-
-                // Ask google maps to keep extending the bounds to include each
-                // point
-                for ( final GLatLng point : markersToShow ) {
-                    buf.append( "bounds.extend( " + point.getJSconstructor() + " );\n" );
-                }
-
-                buf.append( "map.fitBounds( bounds  );\n" );
-
-                response.renderOnDomReadyJavaScript(buf.toString());
             }
-        });
-
-        // show the markers
-        if ( showMarkersForPoints ) {
-            for ( final GLatLng location : markersToShow ) {
-                this.addOverlay( new GMarker( new GMarkerOptions( this, location ) ) );
-            }
-        }
-    }
-
-    private String getJSsetDraggingEnabled( final boolean enabled ) {
-        return getJSinvoke( "setDraggingEnabled(" + enabled + ")" );
-    }
-
-    private String getJSsetDoubleClickZoomEnabled( final boolean enabled ) {
-        return getJSinvoke( "setDoubleClickZoomEnabled(" + enabled + ")" );
-    }
-
-    private String getJSsetScrollWheelZoomEnabled( final boolean enabled ) {
-        return getJSinvoke( "setScrollWheelZoomEnabled(" + enabled + ")" );
-    }
-
-    private String getJSsetZoom( final int zoom ) {
-        return getJSinvoke( "setZoom(" + zoom + ")" );
-    }
-
-    private String getJSsetCenter( final GLatLng center ) {
-        if ( center != null ) {
-            return getJSinvoke( "setCenter(" + center.getJSconstructor() + ")" );
+            buf.append(getJsReference() + ".bounds = new google.maps.LatLngBounds("
+                    + bounds.getSW().getJSconstructor() + "," + bounds.getNE().getJSconstructor() + ");\n");
+            buf.append(getJsReference() + ".map.fitBounds(" + getJsReference() + ".bounds);\n");
+            return buf.toString();
         }
         return "";
     }
 
-    private String getJSpanDirection( final int dx, final int dy ) {
-        return getJSinvoke( "panDirection(" + dx + "," + dy + ")" );
+    /**
+     * Gets the j sset dragging enabled.
+     *
+     * @param enabled the enabled
+     * @return the j sset dragging enabled
+     */
+    private String getJSsetDraggingEnabled(final boolean enabled) {
+        return getJSinvoke("setDraggingEnabled(" + enabled + ")");
     }
 
-    private String getJSpanTo( final GLatLng center ) {
-        return getJSinvoke( "panTo(" + center.getJSconstructor() + ")" );
+    /**
+     * Gets the j sset double click zoom enabled.
+     *
+     * @param enabled the enabled
+     * @return the j sset double click zoom enabled
+     */
+    private String getJSsetDoubleClickZoomEnabled(final boolean enabled) {
+        return getJSinvoke("setDoubleClickZoomEnabled(" + enabled + ")");
     }
 
-    private String getJSzoomOut() {
-        return getJSinvoke( "zoomOut()" );
+    /**
+     * Gets the j sset scroll wheel zoom enabled.
+     *
+     * @param enabled the enabled
+     * @return the j sset scroll wheel zoom enabled
+     */
+    private String getJSsetScrollWheelZoomEnabled(final boolean enabled) {
+        return getJSinvoke("setScrollWheelZoomEnabled(" + enabled + ")");
     }
 
-    private String getJSzoomIn() {
-        return getJSinvoke( "zoomIn()" );
+    /**
+     * Gets the j sset zoom.
+     *
+     * @param zoom the zoom
+     * @return the j sset zoom
+     */
+    public String getJSsetZoom(final int zoom) {
+        return getJSinvoke("setZoom(" + zoom + ")");
     }
+
+    /**
+     * Gets the j sset max zoom.
+     *
+     * @param maxZoom the max zoom
+     * @return the j sset max zoom
+     */
+    private String getJSsetMaxZoom(final Integer maxZoom) {
+        if (maxZoom != null) {
+            return getJSinvoke("setMaxZoom(" + maxZoom + ")");
+        }
+        return "";
+    }
+
+    /**
+     * Gets the j sset center.
+     *
+     * @param center the center
+     * @return the j sset center
+     */
+    public String getJSsetCenter(final GLatLng center) {
+        if (center != null) {
+            return getJSinvoke("setCenter(" + center.getJSconstructor() + ")");
+        }
+        return "";
+    }
+
+    /**
+     * Gets the j span direction.
+     *
+     * @param dx the dx
+     * @param dy the dy
+     * @return the j span direction
+     */
+    @ReviewPending
+    // remove when method is tested
+    public String getJSpanDirection(final int dx, final int dy) {
+        return getJSinvoke("panDirection(" + dx + "," + dy + ")");
+    }
+
+    /**
+     * Gets the j span to.
+     *
+     * @param center the center
+     * @return the j span to
+     */
+    @ReviewPending
+    // remove when method is tested
+    private String getJSpanTo(final GLatLng center) {
+        return getJSinvoke("panTo(" + center.getJSconstructor() + ")");
+    }
+
+    @ReviewPending
+    // remove when method is tested
+    public String getJSzoomOut() {
+        return getJSinvoke("zoomOut()");
+    }
+
+    @ReviewPending
+    // remove when method is tested
+    public String getJSzoomIn() {
+        return getJSinvoke("zoomIn()");
+    }
+
+    /**
+     * Clear all listeners.
+     *
+     * @param target the target
+     * @return the g map
+     */
+    @ReviewPending
+    // remove when method is tested
+    public String getJSclearAllListeners() {
+        return getJSinvoke("clearInstanceListeners()");
+    }
+
 
     /**
      * Update state from a request to an AJAX target.
      */
+    @ReviewPending
+    // remove when method is tested
     public void update() {
         final Request request = RequestCycle.get().getRequest();
 
-        // Attention: don't use setters as this will result in an endless
-        // AJAX request loop
-        _bounds = GLatLngBounds.parse( request.getRequestParameters().getParameterValue( "bounds" ).toString() );
+        // Attention: don't use setters as this will result in an endless AJAX request loop
+        _getBounds = GLatLngBounds.parse(request.getRequestParameters().getParameterValue("bounds").toString());
         _center = GLatLng.parse(request.getRequestParameters().getParameterValue("center").toString());
-        _zoom = Integer.parseInt( request.getRequestParameters().getParameterValue( "zoom" ).toString() );
-        _mapType = GMapType.valueOf( request.getRequestParameters().getParameterValue( "currentMapType" ).toString() );
+        _zoom = Integer.parseInt(request.getRequestParameters().getParameterValue("zoom").toString());
+        _mapType = GMapType.valueOf(request.getRequestParameters().getParameterValue("currentMapType").toString());
+
+        // _getBounds != _fitBounds, we have to use workaround for this mismatch
+        // see http://code.google.com/p/gmaps-api-issues/issues/detail?id=3117
+        _fitBounds = GLatLngBounds.mapToFitBounds(_getBounds);
+
+        log.debug("update(bounds=[{}], fitBounds=[{}], center=[{}], zoom=[{}], mapType=[{}])",
+                new Object[] { _getBounds, _fitBounds, _center, _zoom, _mapType });
 
         _infoWindow.update();
     }
 
-    public void setOverlays( final List<GOverlay> overlays ) {
+    @ReviewPending
+    // remove when method is tested
+    public void setOverlays(final List<GOverlay> overlays) {
         removeAllOverlays();
-        for ( final GOverlay overlay : overlays ) {
-            addOverlay( overlay );
-        }
-    }
-
-    private abstract class JSMethodBehavior extends AbstractBehavior {
-
-        private static final long serialVersionUID = 1L;
-
-        private final String _attribute;
-
-        public JSMethodBehavior( final String attribute ) {
-            _attribute = attribute;
-        }
-
-        /**
-         * @see org.apache.wicket.behavior.AbstractBehavior#onComponentTag(org.apache.wicket.Component,
-         *      org.apache.wicket.markup.ComponentTag)
-         */
-        @Override
-        public void onComponentTag( final Component component, final ComponentTag tag ) {
-            String invoke = getJSinvoke();
-
-            if ( _attribute.equalsIgnoreCase( "href" ) ) {
-                invoke = "javascript:" + invoke;
-            }
-
-            tag.put( _attribute, invoke );
-        }
-
-        protected abstract String getJSinvoke();
-    }
-
-    public class ZoomOutBehavior extends JSMethodBehavior {
-        private static final long serialVersionUID = 1L;
-
-        public ZoomOutBehavior( final String event ) {
-            super( event );
-        }
-
-        @Override
-        protected String getJSinvoke() {
-            return getJSzoomOut();
-        }
-    }
-
-    public class ZoomInBehavior extends JSMethodBehavior {
-        private static final long serialVersionUID = 1L;
-
-        public ZoomInBehavior( final String event ) {
-            super( event );
-        }
-
-        @Override
-        protected String getJSinvoke() {
-            return getJSzoomIn();
-        }
-    }
-
-    public class PanDirectionBehavior extends JSMethodBehavior {
-        private static final long serialVersionUID = 1L;
-
-        private final int _dx;
-
-        private final int _dy;
-
-        public PanDirectionBehavior( final String event, final int dx, final int dy ) {
-            super( event );
-            _dx = dx;
-            _dy = dy;
-        }
-
-        @Override
-        protected String getJSinvoke() {
-            return getJSpanDirection( _dx, _dy );
-        }
-    }
-
-    public class SetZoomBehavior extends JSMethodBehavior {
-        private static final long serialVersionUID = 1L;
-
-        private final int _zoomBehavior;
-
-        public SetZoomBehavior( final String event, final int zoom ) {
-            super( event );
-            _zoomBehavior = zoom;
-        }
-
-        @Override
-        protected String getJSinvoke() {
-            return getJSsetZoom( _zoomBehavior );
-        }
-    }
-
-    public class SetCenterBehavior extends JSMethodBehavior {
-        private static final long serialVersionUID = 1L;
-
-        private final GLatLng _gLatLng;
-
-        public SetCenterBehavior( final String event, final GLatLng gLatLng ) {
-            super( event );
-            _gLatLng = gLatLng;
-        }
-
-        @Override
-        protected String getJSinvoke() {
-            return getJSsetCenter( _gLatLng );
-        }
-    }
-
-    public class SetMapTypeBehavior extends JSMethodBehavior {
-        private static final long serialVersionUID = 1L;
-
-        private final GMapType _mapTypeBehavior;
-
-        public SetMapTypeBehavior( final String event, final GMapType mapType ) {
-            super( event );
-            _mapTypeBehavior = mapType;
-        }
-
-        @Override
-        protected String getJSinvoke() {
-            return _mapTypeBehavior.getJSsetMapType( GMap.this );
-        }
-    }
-
-    public class OverlayListener extends AbstractDefaultAjaxBehavior {
-        private static final long serialVersionUID = 1L;
-
-        @Override
-        protected void respond( final AjaxRequestTarget target ) {
-            final Request request = RequestCycle.get().getRequest();
-
-            final String overlayId = request.getRequestParameters().getParameterValue( "overlay.overlayId" ).toString();
-            final String event = request.getRequestParameters().getParameterValue( "overlay.event" ).toString();
-            // final String latLng = request.getRequestParameters().getParameterValue("overlay.latLng").toString();
-            // TODO this is ugly
-            // the id's of the Overlays are unique within the ArrayList
-            // maybe we should change that collection
-            for ( final GOverlay overlay : _overlays ) {
-                if ( overlay.getId().equals( overlayId ) ) {
-                    overlay.onEvent( target, GEvent.valueOf( event ) );
-                    break;
-                }
-            }
-        }
-
-        public Object getJSinit() {
-            return GMap.this.getJSinvoke( "overlayListenerCallbackUrl = '" + this.getCallbackUrl() + "'" );
-
+        for (final GOverlay overlay : overlays) {
+            addOverlay(overlay);
         }
     }
 }

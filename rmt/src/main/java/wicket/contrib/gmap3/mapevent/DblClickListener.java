@@ -2,21 +2,21 @@
  * $Id: org.eclipse.jdt.ui.prefs 5004 2006-03-17 20:47:08 -0800 (Fri, 17 Mar 2006) eelco12 $
  * $Revision: 5004 $
  * $Date: 2006-03-17 20:47:08 -0800 (Fri, 17 Mar 2006) $
- * 
+ *
  * ==============================================================================
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package wicket.contrib.gmap3.event;
+package wicket.contrib.gmap3.mapevent;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.request.Request;
@@ -28,24 +28,24 @@ import wicket.contrib.gmap3.api.GLatLng;
  * href="http://www.google.com/apis/maps/documentation/reference.html#GMap2"
  * >GMap2</a>.
  */
-public abstract class DblClickListener extends GEventListenerBehavior {
+public abstract class DblClickListener extends GMapEventListenerBehavior {
 
     private static final long serialVersionUID = -6193218322346599432L;
 
     @Override
     protected String getEvent() {
-        return "dblclick";
+        return Event.DBL_CLICK.toString();
     }
 
     @Override
-    protected final void onEvent( AjaxRequestTarget target ) {
-        Request request = RequestCycle.get().getRequest();
+    protected final void onEvent( final AjaxRequestTarget target ) {
+        final Request request = RequestCycle.get().getRequest();
 
         GLatLng latLng = null;
 
-        String latLngParameter = request.getRequestParameters().getParameterValue( "argument1" ).toString();
+        final String latLngParameter = request.getRequestParameters().getParameterValue( "argument1" ).toString();
         if ( latLngParameter != null ) {
-            latLng = GLatLng.parse(latLngParameter);
+            latLng = GLatLng.parse( latLngParameter );
         }
 
         onDblClick( target, latLng );
@@ -53,9 +53,9 @@ public abstract class DblClickListener extends GEventListenerBehavior {
 
     /**
      * Override this method to provide handling of a click on the map.
-     * 
+     *
      * @param latLng
-     *            the clicked GLatLng
+     *            the clicked GGLatLng
      * @param target
      *            the target that initiated the click
      */

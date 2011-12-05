@@ -17,5 +17,26 @@
 <html>
 <body>
 This package contains wicket gmap3 implementation.
+
+History:
+Original version of this lib is http://mvnrepository.com/artifact/org.wicketstuff/gmap2
+Then there is a partial port of this lib to Google Maps V3: https://github.com/caraboides/wicket-gmap3 (but still Wicket 1.4)
+And we have to lift this partial port to work with Wicket 1.5
+
+Most of the code is copied and updated to compile against Wicket 1.5. 
+Not all parts are fully tested. So before using a feature of this lib
+check for the @ReviewPending annotation. Every class or method with this marker
+has to be verified and checked, if it is stable and fully ported.
+
+The code does not conform to checkstyle formatting rules. Reason: After reformatting it is very difficult to patch the code 
+with new versions of this library
+
+Event-Handling:
+Event-handling is split into map-events and overlay-events. Don't know why they have been split. Maybe due to version2 design.
+In version 3 it does not seem to be necessary. The code looks like it could be unified into one event processing unit.
+
+Map-Events: package mapevent
+Overlay-Events: package overlay
+ 
 </body>
 </html>

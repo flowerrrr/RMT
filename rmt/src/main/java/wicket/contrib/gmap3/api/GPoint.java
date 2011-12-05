@@ -18,13 +18,16 @@
  */
 package wicket.contrib.gmap3.api;
 
-import wicket.contrib.gmap3.js.Constructor;
+import com.bosch.cbs.ui.web.common.map.gmap3.ReviewPending;
+import com.bosch.cbs.ui.web.common.map.gmap3.js.Constructor;
 
 /**
  * Represents an Maps API's GPoint that contains x and y coordinates.
- * 
+ *
  * @author Iulian-Corneliu Costan
  */
+@ReviewPending
+// Remove if class is tested.
 public class GPoint implements GValue {
     /**
      * Default serialVersionUID.
@@ -34,7 +37,7 @@ public class GPoint implements GValue {
     private final float _longitude;
     private final float _latitude;
 
-    public GPoint( float longitude, float latitude ) {
+    public GPoint(final float longitude, final float latitude) {
         _longitude = longitude;
         _latitude = latitude;
     }
@@ -49,31 +52,36 @@ public class GPoint implements GValue {
 
     @Override
     public String getJSconstructor() {
-        return new Constructor( "google.maps.Point" ).add( _longitude ).add( _latitude ).toJS();
+        return new Constructor("google.maps.Point").add(_longitude).add(_latitude).toJS();
     }
 
     @Override
     public int hashCode() {
         final int PRIME = 31;
         int result = 1;
-        result = PRIME * result + Float.floatToIntBits( _latitude );
-        result = PRIME * result + Float.floatToIntBits( _longitude );
+        result = PRIME * result + Float.floatToIntBits(_latitude);
+        result = PRIME * result + Float.floatToIntBits(_longitude);
         return result;
     }
 
     @Override
-    public boolean equals( Object obj ) {
-        if ( this == obj )
+    public boolean equals(final Object obj) {
+        if (this == obj) {
             return true;
-        if ( !super.equals( obj ) )
+        }
+        if (!super.equals(obj)) {
             return false;
-        if ( getClass() != obj.getClass() )
+        }
+        if (getClass() != obj.getClass()) {
             return false;
-        final GPoint other = (GPoint) obj;
-        if ( Float.floatToIntBits( _latitude ) != Float.floatToIntBits( other._latitude ) )
+        }
+        final GPoint other = (GPoint)obj;
+        if (Float.floatToIntBits(_latitude) != Float.floatToIntBits(other._latitude)) {
             return false;
-        if ( Float.floatToIntBits( _longitude ) != Float.floatToIntBits( other._longitude ) )
+        }
+        if (Float.floatToIntBits(_longitude) != Float.floatToIntBits(other._longitude)) {
             return false;
+        }
         return true;
     }
 }

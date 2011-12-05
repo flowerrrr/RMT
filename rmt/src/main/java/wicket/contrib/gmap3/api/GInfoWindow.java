@@ -1,18 +1,21 @@
 package wicket.contrib.gmap3.api;
 
+import com.bosch.cbs.ui.web.common.map.gmap3.GMap;
+import com.bosch.cbs.ui.web.common.map.gmap3.ReviewPending;
+import com.bosch.cbs.ui.web.common.map.gmap3.overlay.GMarker;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.cycle.RequestCycle;
-import wicket.contrib.gmap3.GMap;
 
 /**
- * Represents an Google Maps API's <a href=
- * "http://www.google.com/apis/maps/documentation/reference.html#GInfoWindow"
+ * Represents an Google Maps API's <a href= "http://www.google.com/apis/maps/documentation/reference.html#GInfoWindow"
  * >GInfoWindow</a>.
  */
+@ReviewPending
+// Remove if class is tested.
 public class GInfoWindow extends WebMarkupContainer {
     /**
      * Default serialVersionUID.
@@ -25,12 +28,12 @@ public class GInfoWindow extends WebMarkupContainer {
 
     private GMarker _marker;
 
-    private final RepeatingView _content = new RepeatingView( "content" );
+    private final RepeatingView _content = new RepeatingView("content");
 
     public GInfoWindow() {
-        super( "infoWindow" );
-        setOutputMarkupId( true );
-        add( _content );
+        super("infoWindow");
+        setOutputMarkupId(true);
+        add(_content);
 
     }
 
@@ -38,9 +41,9 @@ public class GInfoWindow extends WebMarkupContainer {
      * Update state from a request to an AJAX target.
      */
     public void update() {
-        Request request = RequestCycle.get().getRequest();
+        final Request request = RequestCycle.get().getRequest();
 
-        if ( Boolean.parseBoolean( request.getRequestParameters().getParameterValue( "infoWindow.hidden" ).toString() ) ) {
+        if (Boolean.parseBoolean(request.getRequestParameters().getParameterValue("infoWindow.hidden").toString())) {
             // Attention: don't use close() as this might result in an
             // endless AJAX request loop
             _marker = null;
@@ -54,104 +57,96 @@ public class GInfoWindow extends WebMarkupContainer {
 
     /**
      * Open an info window.
-     * 
-     * @param content
-     *            content to open in info window
+     *
+     * @param content content to open in info window
      * @return This
      */
-    public GInfoWindow open( GLatLng latLng, Component content ) {
-        return open( latLng, new GInfoWindowContent( content ) );
+    public GInfoWindow open(final GLatLng latLng, final Component content, final AjaxRequestTarget target) {
+        return open(latLng, new GInfoWindowContent(content), target);
     }
 
     /**
      * Open an info window.
-     * 
+     *
      * @param map
-     * 
-     * @param content
-     *            content to open in info window
+     *
+     * @param content content to open in info window
      * @return This
      */
-    public GInfoWindow open( GMarker marker, Component content ) {
-        return open( marker, new GInfoWindowContent( content ) );
+    public GInfoWindow open(final GMarker marker, final Component content, final AjaxRequestTarget target) {
+        return open(marker, new GInfoWindowContent(content), target);
     }
 
-    public GInfoWindow open( GLatLng latLng, GInfoWindowContent tab ) {
+    public GInfoWindow open(final GLatLng latLng, final GInfoWindowContent tab, final AjaxRequestTarget target) {
 
-        this._latLng = latLng;
-        this._marker = null;
-        _content.add( tab.getContent() );
-        if ( AjaxRequestTarget.get() != null ) {
-            AjaxRequestTarget.get().appendJavaScript(getJSopen(latLng, tab));
-            AjaxRequestTarget.get().addComponent( this );
-        }
+        _latLng = latLng;
+        _marker = null;
+        _content.add(tab.getContent());
+        target.appendJavaScript(getJSopen(latLng, tab));
+        target.add(this);
 
         return this;
     }
 
-    public GInfoWindow open( GMarker marker, GInfoWindowContent tab ) {
+    public GInfoWindow open(final GMarker marker, final GInfoWindowContent tab, final AjaxRequestTarget target) {
 
-        this._latLng = null;
-        this._marker = marker;
+        _latLng = null;
+        _marker = marker;
 
-        if ( AjaxRequestTarget.get() != null ) {
-            AjaxRequestTarget.get().appendJavaScript(getJSopen(marker, tab));
-            AjaxRequestTarget.get().addComponent( this );
-        }
+        target.appendJavaScript(getJSopen(marker, tab));
+        target.add(this);
 
         return this;
     }
 
     public boolean isOpen() {
-        return ( _latLng != null || _marker != null );
+        return (_latLng != null || _marker != null);
     }
 
-    public void close() {
+    public void close(final AjaxRequestTarget target) {
 
         _marker = null;
         _latLng = null;
 
-        if ( AjaxRequestTarget.get() != null ) {
-            AjaxRequestTarget.get().appendJavaScript(getJSclose());
-            AjaxRequestTarget.get().addComponent( this );
-        }
+        target.appendJavaScript(getJSclose());
+        target.add(this);
     }
 
-    private String getJSopen( GLatLng latLng, GInfoWindowContent tab ) {
-        StringBuffer buffer = new StringBuffer();
-        buffer.append( " var info =  " + tab.getJSconstructor( latLng ) + " ;\n" );
-        buffer.append( "info.open(" );
-        buffer.append( getGMap2().getJsReference() + ".map" );
-        buffer.append( ");" );
+    private String getJSopen(final GLatLng latLng, final GInfoWindowContent tab) {
+        final StringBuffer buffer = new StringBuffer();
+        buffer.append(" var info =  " + tab.getJSconstructor(latLng) + " ;\n");
+        buffer.append("info.open(");
+        buffer.append(getGMap2().getJsReference() + ".map");
+        buffer.append(");");
         return buffer.toString();
     }
 
-    public static String getJSopenFunction( GMap map, String content, GMarker overlay ) {
-        StringBuffer openFunction = new StringBuffer();
-        openFunction.append( "function() {" );
-        openFunction.append( map.getJsReference() + ".openSingleInfoWindowOn(overlay" + overlay.getId() + ", \""
-                + content.toString() + "\");}" );
+    public static String getJSopenFunction(final GMap map, final String content, final GMarker overlay) {
+        final StringBuffer openFunction = new StringBuffer();
+        openFunction.append("function() {");
+        openFunction.append(map.getJsReference() + ".openSingleInfoWindowOn(overlay" + overlay.getId() + ", \""
+                + content.toString() + "\");}");
         return openFunction.toString();
     }
 
-    private String getJSopen( GMarker marker, GInfoWindowContent tab ) {
-        StringBuffer buffer = new StringBuffer();
-        buffer.append( " var infoWin =  " + tab.getJSconstructor() + " ;\n" );
+    private String getJSopen(final GMarker marker, final GInfoWindowContent tab) {
+        final StringBuffer buffer = new StringBuffer();
+        buffer.append(" var infoWin =  " + tab.getJSconstructor() + " ;\n");
 
-        buffer.append( "infoWin.open(" );
-        buffer.append( getGMap2().getJsReference() + ".map," );
-        buffer.append( marker.getId() );
-        buffer.append( ");" );
+        buffer.append("infoWin.open(");
+        buffer.append(getGMap2().getJsReference() + ".map,");
+        buffer.append(marker.getId());
+        buffer.append(");");
 
         return buffer.toString();
     }
 
     private String getJSclose() {
-        return getGMap2().getJSinvoke( "closeInfoWindow()" );
+        return getGMap2().getJSinvoke("closeInfoWindow()");
     }
 
     private GMap getGMap2() {
-        return findParent( GMap.class );
+        return findParent(GMap.class);
     }
 
 }

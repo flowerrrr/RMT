@@ -8,6 +8,9 @@ import org.apache.wicket.markup.html.WicketEventReference;
 import org.apache.wicket.request.resource.JavaScriptResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
 
+/**
+ * The Class GMapHeaderContributor.
+ */
 public class GMapHeaderContributor extends Behavior {
     private static final long serialVersionUID = 1L;
 
@@ -17,41 +20,28 @@ public class GMapHeaderContributor extends Behavior {
     private static final String HTTP = "http";
 
     // We have some custom Javascript.
-    private static final ResourceReference WICKET_GMAP_JS = new JavaScriptResourceReference( GMap.class, "wicket-gmap.js" );
-
-    protected static final String EMPTY = "";
+    private static final ResourceReference WICKET_GMAP_JS = new JavaScriptResourceReference(GMap.class,
+            "wicket-gmap.js");
 
     String _schema;
 
-    String _clientId;
-
+    /**
+     * Instantiates a new g map header contributor.
+     */
     public GMapHeaderContributor() {
-        this( HTTP, null );
+        _schema = HTTP;
     }
 
-    public GMapHeaderContributor( final String schema, final String clientId ) {
-        this._schema = schema;
-        this._clientId = clientId;
-    }
-
+    /* (non-Javadoc)
+     * @see org.apache.wicket.behavior.Behavior#renderHead(org.apache.wicket.Component, org.apache.wicket.markup.html.IHeaderResponse)
+     */
     @Override
-    public void renderHead(Component component, IHeaderResponse response ) {
-        final String clientParm;
-        if ( _clientId != null && !EMPTY.equals( _clientId ) ) {
-            clientParm = "&client=" + _clientId;
-        } else {
-            clientParm = EMPTY;
-        }
-        response.renderJavaScriptReference(_schema + GMAP_API_URL + clientParm);
+    public void renderHead(final Component component, final IHeaderResponse response) {
+        response.renderJavaScriptReference(_schema + GMAP_API_URL);
         response.renderJavaScriptReference(WicketEventReference.INSTANCE);
         response.renderJavaScriptReference(WicketAjaxReference.INSTANCE);
+
         response.renderJavaScriptReference(WICKET_GMAP_JS);
-
     }
 
-
-
-    String getClientId() {
-        return _clientId;
-    }
 }
