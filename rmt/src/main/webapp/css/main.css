@@ -118,7 +118,7 @@ input[type="checkbox"] + label {
 **************************************************************************/
 form .alert-message {
     display: inline-block; /* let div shrink to size of message. */
-    margin-bottom: 0px;
+    // margin-bottom: 0px;  // do not re-enable without testing login form.
 }
 // for displaying validation messages in a div and not a span like in twitter
 form .field {
