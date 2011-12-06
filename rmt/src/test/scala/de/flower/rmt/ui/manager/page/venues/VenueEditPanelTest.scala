@@ -11,7 +11,7 @@ import de.flower.rmt.ui.model.VenueModel
 
 class VenueEditPanelTest extends WicketTests {
 
-    @Test
+    @Test(enabled = false /* geocoding currently deactivated */)
     def testGeocoding() {
         val panel = new VenueEditPanel(new VenueModel())
 
