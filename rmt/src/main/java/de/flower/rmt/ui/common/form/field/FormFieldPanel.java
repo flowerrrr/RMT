@@ -1,10 +1,7 @@
 package de.flower.rmt.ui.common.form.field;
 
 import de.flower.common.ui.Css;
-import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.IAjaxCallDecorator;
-import org.apache.wicket.ajax.calldecorator.AjaxCallDecorator;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.feedback.ComponentFeedbackMessageFilter;
@@ -74,17 +71,6 @@ public class FormFieldPanel extends Panel {
                 target.add(FormFieldPanel.this);
             }
 
-            @Override
-            protected IAjaxCallDecorator getAjaxCallDecorator() {
-                // to avoid triggering validation when input c is empty.
-                // // TODO (flowerrrr - 24.09.11) - could be extended to avoid validation when c value has not changed
-                return new AjaxCallDecorator() {
-                    @Override
-                    public CharSequence decorateScript(Component c, CharSequence script) {
-                        return "if(jQuery.trim(this.value)=='')return false; " + script;
-                    }
-                };
-            }
         });
 
         // set model of form component. form.getForm not available at constructor time, so we have

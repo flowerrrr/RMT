@@ -52,8 +52,7 @@ public class EventPage extends PlayerBasePage {
     }
 
     @Override
-     public String getActiveTopBarItem() {
-         return "events";
-     }
-
+    public String getActiveTopBarItem() {
+        return "events";
+    }
 }
