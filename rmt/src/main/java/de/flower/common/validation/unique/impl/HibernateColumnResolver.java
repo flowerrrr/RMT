@@ -10,7 +10,7 @@ import javax.persistence.metamodel.ManagedType;
 /**
  */
 @Service
-public class NamingConventionColumnResolver implements IColumnResolver {
+public class HibernateColumnResolver implements IColumnResolver {
 
     @Autowired
     private EntityManagerFactory emFactory;
