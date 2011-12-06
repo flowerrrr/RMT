@@ -34,9 +34,20 @@ public class TeamListPanel extends BasePanel {
     public TeamListPanel() {
         super();
 
-        WebMarkupContainer teamListContainer = new WebMarkupContainer("listContainer");
-        add(teamListContainer);
-        teamListContainer.add(new ListView<Team>("teamList", getTeamListModel()) {
+        final IModel<List<Team>> listModel = getListModel();
+        WebMarkupContainer listContainer = new WebMarkupContainer("listContainer");
+        add(listContainer);
+        listContainer.add(new WebMarkupContainer("noEntry") {
+            @Override
+            public boolean isVisible() {
+                return listModel.getObject().isEmpty();
+            }
+        });
+        listContainer.add(new ListView<Team>("list", listModel) {
+            @Override
+            public boolean isVisible() {
+                return !getList().isEmpty();
+            }
 
             @Override
             protected void populateItem(final ListItem<Team> item) {
@@ -64,10 +75,10 @@ public class TeamListPanel extends BasePanel {
                 });
             }
         });
-        teamListContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Team.class)));
+        listContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Team.class)));
     }
 
-    private IModel<List<Team>> getTeamListModel() {
+    private IModel<List<Team>> getListModel() {
         return new LoadableDetachableModel<List<Team>>() {
             @Override
             protected List<Team> load() {

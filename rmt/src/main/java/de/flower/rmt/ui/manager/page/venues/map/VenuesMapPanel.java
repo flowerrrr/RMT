@@ -3,9 +3,8 @@ package de.flower.rmt.ui.manager.page.venues.map;
 import de.flower.common.util.geo.GeoUtil;
 import de.flower.common.util.geo.LatLng;
 import de.flower.rmt.model.Venue;
-import de.flower.rmt.service.IVenueManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
-import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.apache.wicket.model.IModel;
 import wicket.contrib.gmap3.GMap;
 import wicket.contrib.gmap3.overlay.GMarker;
 import wicket.contrib.gmap3.overlay.GMarkerOptions;
@@ -18,18 +17,15 @@ import java.util.List;
  */
 public class VenuesMapPanel extends BasePanel {
 
-    @SpringBean
-    private IVenueManager venueManager;
-
-    public VenuesMapPanel() {
-        super();
+    public VenuesMapPanel(IModel<List<Venue>> listModel) {
 
         final GMap map = new GMap("map");
         add(map);
         map.setDoubleClickZoomEnabled(true);
 
+        // NOTE (flowerrrr - 06.12.11) move this code to onbeforeRender if ajax-updates should work
         List<LatLng> latLngs = new ArrayList<LatLng>();
-        for (final Venue venue : venueManager.findAll()) {
+        for (final Venue venue : listModel.getObject()) {
             if (venue.getLatLng() != null) {
                 final GMarker marker = new GMarker(new GMarkerOptions(map,
                         venue.getLatLng(),

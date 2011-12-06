@@ -7,8 +7,9 @@
 
     <div wicket:id="listContainer">
         <div wicket:id="noEntry">
-            <wicket:message key="player.events.noentry">[List is empty]</wicket:message>
+            <wicket:message key="manager.events.noentry">[List is empty]</wicket:message>
         </div>
+        <wicket:enclosure child="list">
         <table>
             <thead>
             <tr>
@@ -62,6 +63,7 @@
             </tr>
             </tbody>
         </table>
+        </wicket:enclosure>
     </div>
 
 </wicket:panel>

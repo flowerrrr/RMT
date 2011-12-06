@@ -16,7 +16,6 @@ import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -30,22 +29,13 @@ public class VenueListPanel extends BasePanel {
     @SpringBean
     private IVenueManager venueManager;
 
-    public VenueListPanel() {
+    public VenueListPanel(IModel<List<Venue>> listModel) {
         super();
-
-        final IModel<List<Venue>> listModel = getVenueListModel();
 
         WebMarkupContainer listContainer = new WebMarkupContainer("listContainer");
         add(listContainer);
-        listContainer.add(new WebMarkupContainer("noEntry") {
-            @Override
-            public boolean isVisible() {
-                return listModel.getObject().isEmpty();
-            }
-        });
 
-        listContainer.add(new ListView<Venue>("venueList", listModel) {
-
+        listContainer.add(new ListView<Venue>("list", listModel) {
             @Override
             protected void populateItem(final ListItem<Venue> item) {
                 item.add(new Label("name", item.getModelObject().getName()));
@@ -70,12 +60,4 @@ public class VenueListPanel extends BasePanel {
         listContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Venue.class)));
     }
 
-    private IModel<List<Venue>> getVenueListModel() {
-        return new LoadableDetachableModel<List<Venue>>() {
-            @Override
-            protected List<Venue> load() {
-                return venueManager.findAll();
-            }
-        };
-    }
 }

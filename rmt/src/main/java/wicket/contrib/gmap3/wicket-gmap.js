@@ -150,7 +150,7 @@ function WicketMap(id, options) {
 	}
 
 	this.setDoubleClickZoomEnabled = function(enabled) {
-       this.options.disableDoubleClickZoom = enabled;
+       this.options.disableDoubleClickZoom = !enabled;
        this.map.setOptions(this.options);
 	}
 
@@ -195,8 +195,13 @@ function WicketMap(id, options) {
 	}
 
 	this.setCenter = function(center) {
+        this.options.center = center;
 		this.map.setCenter(center);
 	}
+
+    this.reCenter = function() {
+        this.map.setCenter(this.options.center);
+    }
 
 	this.openInfoWindowHtml = function(latlng, myHtml) {
 		this.map.openInfoWindowHtml(latlng, myHtml);

@@ -168,7 +168,6 @@ public class GMap extends Panel {
      * Fix for layout bug when map is loaded in hidden div (like in modal window). See
      * http://code.google.com/p/gmaps-api-issues/issues/detail?id=1448. Clients should call this method in
      * onBeforeRender.
-     *
      */
     public void repaintMap() {
         if (AjaxRequestTarget.get() != null) {
@@ -686,7 +685,7 @@ public class GMap extends Panel {
      * @return The generated JavaScript.
      */
     public String getJSinvoke(final String invocation) {
-        return getJsReference() + "" + invocation + ";\n";
+        return getJsReference() + "." + invocation + ";\n";
     }
 
     /**
