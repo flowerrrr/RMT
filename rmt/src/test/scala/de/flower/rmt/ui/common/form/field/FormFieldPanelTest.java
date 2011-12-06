@@ -12,7 +12,7 @@ import java.util.Arrays;
 /**
  * @author flowerrrr
  */
-class FormFieldPanelTest extends AbstractWicketTests {
+public class FormFieldPanelTest extends AbstractWicketTests {
 
     @Test
     public void testRender() {

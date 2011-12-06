@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
  * @author flowerrrr
  */
 
-class ManagerHomePageTest extends AbstractWicketTests {
+public class ManagerHomePageTest extends AbstractWicketTests {
 
     @Test
     public void testRender() {

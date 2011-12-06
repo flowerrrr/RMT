@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
  * @author flowerrrr
  */
 
-class PlayerEditPageTest extends AbstractWicketTests {
+public class PlayerEditPageTest extends AbstractWicketTests {
 
     @Test
     public void testRender() {
