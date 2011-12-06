@@ -13,12 +13,12 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class TeamSelect extends DropDownChoicePanel<Team> {
+public class TeamDropDownChoicePanel extends DropDownChoicePanel<Team> {
 
     @SpringBean
     private ITeamManager teamManager;
 
-    public TeamSelect(String id) {
+    public TeamDropDownChoicePanel(String id) {
         super(id);
         setChoices(getEntityChoices());
         setChoiceRenderer(new IChoiceRenderer<Team>() {

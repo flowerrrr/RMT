@@ -12,14 +12,14 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class TimeSelect extends DropDownChoice<LocalTime> {
+public class TimeDropDownChoice extends DropDownChoice<LocalTime> {
 
     /**
      * DateTimeFormatter is not serializable. Use lazy-init to load it.
      */
     private transient DateTimeFormatter formatter;
 
-    public TimeSelect(String id) {
+    public TimeDropDownChoice(String id) {
         super(id);
         setChoices(getTimeChoices());
         setChoiceRenderer(new IChoiceRenderer<LocalTime>() {

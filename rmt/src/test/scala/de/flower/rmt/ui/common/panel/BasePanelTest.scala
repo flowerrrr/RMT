@@ -2,14 +2,12 @@ package de.flower.rmt.ui.common.panel
 
 import org.testng.annotations.Test
 import org.testng.Assert._
-import de.flower.rmt.test.WicketTests
-
 /**
  * 
  * @author flowerrrr
  */
 
-class BasePanelTest extends WicketTests {
+class BasePanelTest  {
 
     @Test
     def testDefaultId() {

@@ -55,7 +55,7 @@ public class PlayerListPanel extends BasePanel {
                 menuPanel.add(new Link("editButton") {
                     @Override
                     public void onClick() {
-                        setResponsePage(new PlayerEditPage(new UserModel(item.getModelObject())));
+                        setResponsePage(new PlayerEditPage(new UserModel(item.getModel())));
                     }
                 });
                 AjaxLinkWithConfirmation deleteButton;

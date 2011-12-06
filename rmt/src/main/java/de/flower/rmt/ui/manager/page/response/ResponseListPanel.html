@@ -4,38 +4,69 @@
 <body>
 <wicket:panel>
 
-    <wicket:message key="response.accepted">[Accepted]</wicket:message>
-    <ul>
-        <li wicket:id="acceptedList">
-            <span wicket:id="itemPanel"/>
-        </li>
-    </ul>
-
-    <wicket:message key="response.unsure">[Unsure]</wicket:message>
-    <ul>
-        <li wicket:id="unsureList">
-            <span wicket:id="itemPanel"/>
-        </li>
-    </ul>
-
-    <wicket:message key="response.declined">[Declined]</wicket:message>
-    <ul>
-        <li wicket:id="declinedList">
-            <span wicket:id="itemPanel"/>
-        </li>
-    </ul>
-
-    <wicket:message key="response.noresponse">[Declined]</wicket:message>
-    <ul>
-        <li wicket:id="noresponseList">
-            <span wicket:id="name"/>
-        </li>
-    </ul>
+    <table class="responseListTable manager">
+        <thead>
+        <tr>
+            <th colspan="3">
+                <wicket:message key="response.accepted">[Accepted]</wicket:message>
+            </th>
+        </tr>
+        </thead>
+        <tbody wicket:enclosure="">
+        <tr wicket:id="acceptedList">
+            <wicket:container wicket:id="itemPanel"/>
+        </tr>
+        </tbody>
+    </table>
+    <table class="responseListTable manager">
+        <thead>
+        <tr>
+            <th colspan="3">
+                <wicket:message key="response.unsure">[Unsure]</wicket:message>
+            </th>
+        </tr>
+        </thead>
+        <tbody wicket:enclosure="">
+        <tr wicket:id="unsureList">
+            <wicket:container wicket:id="itemPanel"/>
+        </tr>
+        </tbody>
+    </table>
+    <table class="responseListTable manager">
+        <thead>
+        <tr>
+            <th colspan="3">
+                <wicket:message key="response.declined">[Declined]</wicket:message>
+            </th>
+        </tr>
+        </thead>
+        <tbody wicket:enclosure="">
+        <tr wicket:id="declinedList">
+            <wicket:container wicket:id="itemPanel"/>
+        </tr>
+        </tbody>
+    </table>
+    <table class="responseListTable manager">
+        <thead>
+        <tr>
+            <th colspan="3">
+                <wicket:message key="response.noresponse">[No Response]</wicket:message>
+            </th>
+        </tr>
+        </thead>
+        <tbody wicket:enclosure="">
+        <tr wicket:id="noresponseList">
+            <td></td>
+            <td><span wicket:id="name"/></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
 
     <wicket:fragment wicket:id="itemFragment">
-        <span wicket:id="name"/>
-        <span wicket:id="date"/>
-        Comments | Link to update response
+        <td><span wicket:id="date"/></td>
+        <td><span wicket:id="name"/></td>
+        <td><span wicket:id="comment"/></td>
     </wicket:fragment>
 
 </wicket:panel>

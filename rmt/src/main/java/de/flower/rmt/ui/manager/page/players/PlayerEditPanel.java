@@ -32,12 +32,7 @@ public class PlayerEditPanel extends BasePanel {
             protected void onSubmit(AjaxRequestTarget target, Form<User> form) {
                 playerManager.save(form.getModelObject());
                 target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(User.class), AjaxEvent.EntityUpdated(User.class)));
-                onClose(target);
-            }
-
-            @Override
-            protected void onCancel(AjaxRequestTarget target) {
-                onClose(null);
+                onClose();
             }
         };
         add(form);

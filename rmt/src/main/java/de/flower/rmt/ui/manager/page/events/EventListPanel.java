@@ -9,7 +9,8 @@ import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.manager.page.event.EventEditPage;
-import de.flower.rmt.ui.manager.page.response.ResponsePage;
+import de.flower.rmt.ui.manager.page.response.ResponsesPage;
+import de.flower.rmt.ui.model.EventModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -63,7 +64,7 @@ public class EventListPanel extends BasePanel {
                 item.add(new Link("responsesButton") {
                     @Override
                     public void onClick() {
-                        setResponsePage(new ResponsePage(item.getModelObject().getId()));
+                        setResponsePage(new ResponsesPage(new EventModel(item.getModel())));
                     }
                 });
                 item.add(new Link("editButton") {

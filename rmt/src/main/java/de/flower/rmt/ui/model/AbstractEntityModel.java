@@ -1,7 +1,9 @@
 package de.flower.rmt.ui.model;
 
 import de.flower.common.model.IEntity;
+import de.flower.common.util.Check;
 import org.apache.wicket.injection.Injector;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 
 /**
@@ -10,6 +12,8 @@ import org.apache.wicket.model.LoadableDetachableModel;
 public abstract class AbstractEntityModel<T extends IEntity> extends LoadableDetachableModel<T> {
 
     private Long id;
+
+    private IModel<T> wrappedModel;
 
     public AbstractEntityModel() {
         this((T) null);
@@ -20,7 +24,20 @@ public abstract class AbstractEntityModel<T extends IEntity> extends LoadableDet
             setObject(entity);
             this.id = entity.getId();
         }
+        init();
+    }
+
+    /**
+     * Allow overwriting for unit tests
+     */
+    protected void init() {
         Injector.get().inject(this);
+    }
+
+    public AbstractEntityModel(IModel<T> model) {
+        this((T) null);
+        Check.notNull(model);
+        wrappedModel = model;
     }
 
     /**
@@ -33,19 +50,31 @@ public abstract class AbstractEntityModel<T extends IEntity> extends LoadableDet
         if (getObject() != null) {
             this.id = getObject().getId();
         }
+        // once we detach this model we discard any wrapped model. the call to getObject() will have
+        // initialized the id of the entity so we can reload it next time.
+        if (wrappedModel != null) {
+            wrappedModel = null;
+        }
     }
 
     @Override
-     protected T load() {
-         if (id == null) {
-             return newInstance();
-         } else {
-             return load(id);
-         }
-     }
+    protected T load() {
+        // if we have a model then try to get the object from there.
+        T object = null;
+        if (wrappedModel != null) {
+            object = wrappedModel.getObject();
+        } else {
+            if (id == null) {
+                object = newInstance();
+            } else {
+                object = load(id);
+            }
+        }
+        Check.notNull(object);
+        return object;
+    }
 
     abstract protected T load(Long id);
 
     abstract protected T newInstance();
-
 }

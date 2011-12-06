@@ -4,6 +4,7 @@ import de.flower.common.util.Check;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.service.IEventManager;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
@@ -20,6 +21,10 @@ public class EventModel extends AbstractEntityModel<Event> {
         super(entity);
         Check.notNull(entity);
         this.type = EventType.from(entity);
+    }
+
+    public EventModel(final IModel<Event> model) {
+        super(model);
     }
 
     @Override

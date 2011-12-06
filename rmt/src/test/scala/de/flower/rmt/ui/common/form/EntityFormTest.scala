@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.common.form
 
-import de.flower.rmt.test.WicketTests
+import de.flower.rmt.test.AbstractWicketTests
 import field.TextFieldPanel
 import org.apache.wicket.markup.Markup
 import org.testng.annotations.Test
@@ -15,10 +15,10 @@ import de.flower.rmt.ui.model.EventModel
 /**
  * @author flowerrrr
  */
-class EntityFormTest extends WicketTests {
+class EntityFormTest extends AbstractWicketTests {
 
     @Test
-    def testPanelRenders {
+    def testRender {
         wicketTester.startPage(new EntityFormTestPage)
         wicketTester.dumpPage()
         wicketTester.debugComponentTrees()

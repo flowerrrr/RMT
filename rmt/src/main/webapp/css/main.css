@@ -29,7 +29,7 @@
 **************************************************************************/
 html, body {
     /* needed for border-shadow on content divs */
-    background-color: #CCCCCC;
+    background-color: #DDDDDD;
 }
 
 body {
@@ -259,13 +259,20 @@ td {
     Response list
 **************************************************************************/
 .responseListTable td:first-child {
-    width: 50px;
     font-size: 80%;
 }
+
+.responseListTable.manager td:first-child {
+    width: 100px;
+}
+
+.responseListTable.player td:first-child {
+    width: 50px;
+}
+
 .responseListTable td:first-child + td {
     width: 150px;
 }
-
 
 /*************************************************************************
     Response form

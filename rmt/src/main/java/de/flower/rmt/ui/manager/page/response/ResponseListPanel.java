@@ -33,10 +33,8 @@ public class ResponseListPanel extends BasePanel {
     @SpringBean
     private IPlayerManager playerManager;
 
-    public ResponseListPanel(LoadableDetachableModel<Event> model) {
-        super();
-        Check.notNull(model.getObject());
-
+    public ResponseListPanel(IModel<Event> model) {
+        Check.notNull(model);
         add(createListView("acceptedList", RSVPStatus.ACCEPTED, model));
         add(createListView("unsureList", RSVPStatus.UNSURE, model));
         add(createListView("declinedList", RSVPStatus.DECLINED, model));
@@ -65,6 +63,7 @@ public class ResponseListPanel extends BasePanel {
         Fragment frag = new Fragment("itemPanel", "itemFragment", this);
         frag.add(new Label("name", response.getName()));
         frag.add(DateLabel.forDateStyle("date", Model.of(response.getDate()), "SS"));
+        frag.add(new Label("comment", response.getComment()));
         return frag;
     }
 

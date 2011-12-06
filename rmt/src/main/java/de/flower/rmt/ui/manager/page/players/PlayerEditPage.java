@@ -3,7 +3,6 @@ package de.flower.rmt.ui.manager.page.players;
 import de.flower.rmt.model.User;
 import de.flower.rmt.ui.manager.ManagerBasePage;
 import de.flower.rmt.ui.model.UserModel;
-import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
 
@@ -21,7 +20,7 @@ public class PlayerEditPage extends ManagerBasePage {
         addHeading("manager.player.edit.heading", null);
         addMainPanel(new PlayerEditPanel(model) {
             @Override
-            protected void onClose(final AjaxRequestTarget target) {
+            protected void onClose() {
                 setResponsePage(PlayersPage.class);
             }
         });

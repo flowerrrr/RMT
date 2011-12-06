@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd"
+      xmlns:rmt="http://www.w3.org/1999/xhtml">
 <head></head>
 <body>
 <wicket:panel>
@@ -8,14 +9,16 @@
 
         <fieldset>
             <wicket:container wicket:id="formFeedbackPanel"/>
-            <rmt:input wicket:id="name" labelKey="manager.venue.name"/>
-            <rmt:textarea wicket:id="address" labelKey="manager.venue.address"/>
-            <div wicket:id="geocodePanel" />
-            <div class="clearfix">
-                <div class="input">
-                    <div wicket:id="venueMapPanel" class="venue-map">[Map with venues]</div>
-                </div>
-            </div>
+
+            <rmt:select wicket:id="team" labelKey="manager.event.team"/>
+            <rmt:input wicket:id="date" labelKey="manager.event.date"/>
+            <rmt:select wicket:id="time" labelKey="manager.event.time"/>
+            <rmt:select wicket:id="venue" labelKey="manager.event.venue"/>
+            <!-- surface select box -->
+            <rmt:input wicket:id="summary" labelKey="manager.event.summary"/>
+            <rmt:input wicket:id="comment" labelKey="manager.event.comment"/>
+            <!-- participants -->
+
             <div class="actions">
                 <a class="btn primary" wicket:id="saveButton">
                     <wicket:message key="button.save"/>
@@ -25,51 +28,6 @@
                 </a>
             </div>
         </fieldset>
-    </form>
-
-    <form wicket:id="form">
-        <div wicket:id="hasErrors">
-            <wicket:message key="form.haserrors"/>
-        </div>
-        <div wicket:id="feedback">[Validation messages]</div>
-        <ul>
-            <li>
-                <wicket:message key="manager.event.team"/>
-                <select wicket:id="team"/>
-            </li>
-            <li>
-                <wicket:message key="manager.event.date"/>
-                <input wicket:id="date"/>
-            </li>
-            <li>
-                <wicket:message key="manager.event.time"/>
-                <select wicket:id="time"/>
-            </li>
-            <li>
-                <wicket:message key="manager.event.venue"/>
-                <select wicket:id="venue"/>
-            </li>
-            <li>
-                <wicket:message key="manager.event.venue.surface"/>
-                <span>TBD</span>
-            </li>
-            <li>
-                <wicket:message key="manager.event.summary"/>
-                <input wicket:id="summary"/>
-            </li>
-            <li>
-                <wicket:message key="manager.event.comment"/>
-                <input wicket:id="comment"/>
-            </li>
-            <li>
-                <wicket:message key="manager.event.participants"/>
-                <span>TBD</span>
-            </li>
-        </ul>
-        <a wicket:id="saveButton">
-            <wicket:message key="button.save"/>
-        </a>
-
     </form>
 
 </wicket:panel>

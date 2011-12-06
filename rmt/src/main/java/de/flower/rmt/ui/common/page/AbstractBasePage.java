@@ -4,7 +4,6 @@ import de.flower.rmt.model.User;
 import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.ui.model.UserModel;
 import org.apache.wicket.ajax.IAjaxIndicatorAware;
-import org.apache.wicket.devutils.debugbar.DebugBar;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -23,7 +22,6 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
 
     public AbstractBasePage(IModel<?> model) {
         super(model);
-        add(new DebugBar("debugBar"));
     }
 
     /**

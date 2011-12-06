@@ -19,6 +19,10 @@ public class DropDownChoicePanel<T> extends FormFieldPanel {
         super(id, new DropDownChoice(ID, choices));
     }
 
+    public DropDownChoicePanel(final String id, final DropDownChoice<?> dropDownChoice) {
+        super(id, dropDownChoice);
+    }
+
     public void setChoiceRenderer(IChoiceRenderer<T> iChoiceRenderer) {
         getDropDownChoice().setChoiceRenderer(iChoiceRenderer);
     }

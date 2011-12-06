@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.manager.page.squad
 
-import de.flower.rmt.test.WicketTests
+import de.flower.rmt.test.AbstractWicketTests
 import org.testng.annotations.Test
 import de.flower.rmt.ui.model.TeamModel
 
@@ -9,10 +9,10 @@ import de.flower.rmt.ui.model.TeamModel
  * @author flowerrrr
  */
 
-class SquadPageTest extends WicketTests {
+class SquadPageTest extends AbstractWicketTests {
 
     @Test
-    def renderPage() {
+    def testRender() {
         val team = testData.getJuveAmateure();
         wicketTester.startPage(new SquadPage(new TeamModel(team)))
         wicketTester.dumpPage()

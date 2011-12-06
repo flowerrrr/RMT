@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.manager.page.players
 
-import de.flower.rmt.test.WicketTests
+import de.flower.rmt.test.AbstractWicketTests
 import org.testng.annotations.Test
 import org.testng.Assert._
 import de.flower.rmt.model.User
@@ -11,8 +11,13 @@ import de.flower.rmt.ui.model.UserModel
  * @author flowerrrr
  */
 
-class PlayerEditPanelTest extends WicketTests {
+class PlayerEditPanelTest extends AbstractWicketTests {
 
+    @Test
+    def testRender() {
+        wicketTester.startComponentInPage(new PlayerEditPanel(new UserModel()))
+        wicketTester.dumpComponentWithPage()
+    }
 
     @Test
     def validateConstraints() {

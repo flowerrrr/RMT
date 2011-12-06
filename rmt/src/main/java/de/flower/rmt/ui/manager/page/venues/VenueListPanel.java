@@ -43,7 +43,7 @@ public class VenueListPanel extends BasePanel {
                 menuPanel.add(new Link("editButton") {
                     @Override
                     public void onClick() {
-                        setResponsePage(new VenueEditPage(new VenueModel(item.getModelObject())));
+                        setResponsePage(new VenueEditPage(new VenueModel(item.getModel())));
                     }
                 });
                 menuPanel.add(new AjaxLinkWithConfirmation("deleteButton", new ResourceModel("manager.venues.delete.confirm")) {

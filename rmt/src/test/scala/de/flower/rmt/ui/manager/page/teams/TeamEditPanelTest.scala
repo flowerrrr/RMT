@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.manager.page.teams
 
-import de.flower.rmt.test.WicketTests
+import de.flower.rmt.test.AbstractWicketTests
 import org.testng.annotations.Test
 import de.flower.rmt.ui.model.TeamModel
 
@@ -9,7 +9,14 @@ import de.flower.rmt.ui.model.TeamModel
  * @author flowerrrr
  */
 
-class TeamEditPanelTest extends WicketTests {
+class TeamEditPanelTest extends AbstractWicketTests {
+
+
+    @Test
+    def testRender() {
+        wicketTester.startComponentInPage(new TeamEditPanel(new TeamModel()))
+        wicketTester.dumpComponentWithPage()
+    }
 
     @Test
     def validateUniquenessConstraint() {

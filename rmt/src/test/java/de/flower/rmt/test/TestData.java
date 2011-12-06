@@ -1,9 +1,6 @@
 package de.flower.rmt.test;
 
-import de.flower.rmt.model.Club;
-import de.flower.rmt.model.RSVPStatus;
-import de.flower.rmt.model.Team;
-import de.flower.rmt.model.User;
+import de.flower.rmt.model.*;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.repository.IClubRepo;
@@ -139,5 +136,10 @@ public class TestData {
 
     public User getTestUser() {
         return userManager.findByUsername(AbstractIntegrationTests.testUserName);
+    }
+
+    public Response createResponse() {
+        Event event = createEvent();
+        return new Response(event, playerRepo.findByTeam(event.getTeam()).get(1));
     }
 }

@@ -52,7 +52,7 @@ public class EventListPanel extends BasePanel {
             @Override
             protected void populateItem(final ListItem<Event> item) {
                 final Event event = item.getModelObject();
-                final EventModel eventModel = new EventModel(event);
+                final EventModel eventModel = new EventModel(item.getModel());
                 item.add(DateLabel.forDateStyle("date", Model.of(event.getDate()), "S-"));
                 item.add(DateLabel.forDateStyle("time", Model.of(event.getTime().toDateTimeToday().toDate()), "-S"));
                 item.add(new Label("type", new ResourceModel(EventType.from(event).getResourceKey())));

@@ -39,8 +39,9 @@
     <logger name="org.dbunit" level="INFO"/>
     <logger name="org.apache.commons" level="INFO"/>
 
-    <!-- Tracing loggers -->
-    <logger name="trace.de.flower" level="TRACE"/>
+    <!-- Tracing loggers. Set to INFO to disable. DEBUG: method calls, TRACE: constructor calls -->
+    <logger name="trace.de.flower" level="INFO"/>
+    <!-- exceptions to avoid too many output -->
     <logger name="trace.de.flower.common.test" level="INFO" />
     <logger name="trace.de.flower.common.model.AbstractBaseEntity" level="INFO" />
     <logger name="trace.de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener" level="INFO" />

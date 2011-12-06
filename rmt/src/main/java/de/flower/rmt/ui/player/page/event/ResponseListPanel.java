@@ -32,9 +32,7 @@ public class ResponseListPanel extends BasePanel {
     private IPlayerManager playerManager;
 
     public ResponseListPanel(IModel<Event> model) {
-        super();
-        Check.notNull(model.getObject());
-
+        Check.notNull(model);
         add(createListView("acceptedList", RSVPStatus.ACCEPTED, model, true));
         add(createListView("unsureList", RSVPStatus.UNSURE, model, false));
         add(createListView("declinedList", RSVPStatus.DECLINED, model, false));

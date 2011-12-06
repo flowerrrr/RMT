@@ -11,4 +11,8 @@ public class TextFieldPanel extends FormFieldPanel {
         super(id, new TextField(ID));
     }
 
+    public TextFieldPanel(String id, TextField c) {
+        super(id, c);
+    }
+
 }

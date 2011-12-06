@@ -5,7 +5,6 @@ import de.flower.common.util.Strings;
 import de.flower.rmt.model.User;
 import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.ui.model.UserModel;
-import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
@@ -47,9 +46,8 @@ public class BasePanel<T> extends GenericPanel<T> {
     /**
      * Should be called by a panel that can be dismissed/closed, like in modal windows or panels that should be hidden
      * when editing is finished.
-     * @param target
      */
-    protected void onClose(final AjaxRequestTarget target) {
+    protected void onClose() {
 
     }
 

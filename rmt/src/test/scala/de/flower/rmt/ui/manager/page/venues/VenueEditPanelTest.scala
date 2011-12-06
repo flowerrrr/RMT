@@ -1,15 +1,21 @@
 package de.flower.rmt.ui.manager.page.venues
 
-import de.flower.rmt.test.WicketTests
+import de.flower.rmt.test.AbstractWicketTests
 import org.testng.annotations.Test
 import de.flower.rmt.ui.model.VenueModel
-
 /**
  *
  * @author flowerrrr
  */
 
-class VenueEditPanelTest extends WicketTests {
+class VenueEditPanelTest extends AbstractWicketTests {
+
+    @Test
+    def testRender() {
+        wicketTester.startComponentInPage(new VenueEditPanel(new VenueModel()))
+        wicketTester.dumpComponentWithPage()
+    }
+
 
     @Test(enabled = false /* geocoding currently deactivated */)
     def testGeocoding() {

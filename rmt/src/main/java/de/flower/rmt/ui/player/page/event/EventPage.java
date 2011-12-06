@@ -24,8 +24,6 @@ public class EventPage extends PlayerBasePage {
         super(model);
         addHeading("player.event.heading");
 
-        addMainPanel(new EventDetailsPanel(model));
-
         ResponseFormPanel responseFormPanel = new ResponseFormPanel(getResponseModel(model)) {
 
             @Override
@@ -39,13 +37,14 @@ public class EventPage extends PlayerBasePage {
         final ResponseListPanel responseListPanel = new ResponseListPanel(model);
         responseListPanel.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Response.class)));
 
-        addSecondaryPanel(responseFormPanel, responseListPanel);
+        addMainPanel(responseListPanel);
+        addSecondaryPanel(new EventDetailsPanel(model), responseFormPanel);
     }
 
     private IModel<Response> getResponseModel(final IModel<Event> model) {
         final Response response = responseManager.findByEventAndUser(model.getObject(), getUser());
         if (response == null) {
-            return new ResponseModel(model.getObject());
+            return new ResponseModel(model);
         } else {
             return new ResponseModel(response);
         }

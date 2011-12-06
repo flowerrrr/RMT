@@ -13,12 +13,12 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class VenueSelect extends DropDownChoicePanel<Venue> {
+public class VenueDropDownChoicePanel extends DropDownChoicePanel<Venue> {
 
     @SpringBean
     private IVenueManager venueManager;
 
-    public VenueSelect(String id) {
+    public VenueDropDownChoicePanel(String id) {
         super(id);
         setChoices(getVenueChoices());
         setChoiceRenderer(new IChoiceRenderer<Venue>() {

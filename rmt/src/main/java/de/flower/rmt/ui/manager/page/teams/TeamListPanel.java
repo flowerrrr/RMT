@@ -55,7 +55,7 @@ public class TeamListPanel extends BasePanel {
                 item.add(new Link("squadButton") {
                     @Override
                     public void onClick() {
-                        setResponsePage(new SquadPage(new TeamModel(item.getModelObject())));
+                        setResponsePage(new SquadPage(new TeamModel(item.getModel())));
                     }
                 });
                 DropDownMenuPanel menuPanel = new DropDownMenuPanel();
@@ -63,7 +63,7 @@ public class TeamListPanel extends BasePanel {
                 menuPanel.add(new Link("editButton") {
                     @Override
                     public void onClick() {
-                        setResponsePage(new TeamEditPage(new TeamModel(item.getModelObject())));
+                        setResponsePage(new TeamEditPage(new TeamModel(item.getModel())));
                     }
                 });
                 menuPanel.add(new AjaxLinkWithConfirmation("deleteButton", new ResourceModel("manager.teams.delete.confirm")) {

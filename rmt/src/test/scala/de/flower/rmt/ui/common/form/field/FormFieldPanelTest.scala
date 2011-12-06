@@ -1,19 +1,18 @@
 package de.flower.rmt.ui.common.form.field
 
-import de.flower.rmt.test.WicketTests
+import de.flower.rmt.test.AbstractWicketTests
 import org.apache.wicket.markup.Markup
 import org.apache.wicket.markup.html.WebPage
 import org.testng.annotations.Test
 import org.apache.wicket.markup.html.form.Form
 import org.apache.wicket.model.CompoundPropertyModel
-import scala.collection.JavaConversions._
 /**
  * @author flowerrrr
  */
-class FormFieldPanelTest extends WicketTests {
+class FormFieldPanelTest extends AbstractWicketTests {
 
     @Test
-    def testPanelRenders {
+    def testRender {
         wicketTester.startPage(new FormFieldPanelTestPage)
         wicketTester.dumpPage()
         wicketTester.assertContains("fooName")
