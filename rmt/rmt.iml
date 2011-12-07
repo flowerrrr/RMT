@@ -68,6 +68,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/database" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/aspectj" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/sandbox" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/tools" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
     </content>
@@ -166,22 +167,22 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-web/jars/spring-security-web-3.0.7.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-web/jars/spring-security-web-3.0.6.RELEASE.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-web/sources/spring-security-web-3.0.7.RELEASE-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-web/sources/spring-security-web-3.0.6.RELEASE-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-core/jars/spring-security-core-3.0.7.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-core/jars/spring-security-core-3.0.6.RELEASE.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-core/sources/spring-security-core-3.0.7.RELEASE-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-core/sources/spring-security-core-3.0.6.RELEASE-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -752,6 +753,19 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/cache/org.jasypt/jasypt/jars/jasypt-1.8.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$USER_HOME$/.gradle/cache/org.jasypt/jasypt/javadocs/jasypt-1.8-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/cache/org.jasypt/jasypt/sources/jasypt-1.8-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
     <orderEntry type="module-library" exported="" scope="RUNTIME">
       <library>
         <CLASSES>
@@ -803,11 +817,11 @@
     <orderEntry type="module-library" exported="" scope="RUNTIME">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-config/jars/spring-security-config-3.0.7.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-config/jars/spring-security-config-3.0.6.RELEASE.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-config/sources/spring-security-config-3.0.7.RELEASE-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-config/sources/spring-security-config-3.0.6.RELEASE-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>

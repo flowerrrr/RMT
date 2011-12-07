@@ -28,13 +28,24 @@ public class User extends AbstractClubRelatedEntity {
 
     @NotBlank
     @Email
-    // need to be  named username to satisfy spring security
+    // need to be  named 'username' to satisfy spring security
     @Column(name = "username")
     private String email;
 
-    // @NotBlank
+    /**
+     * Encrypted password.
+     */
+    @NotBlank
+    // need to be named 'password' to satisfy spring security
+    @Column(name = "password")
+    private String encryptedPassword;
+
+    /**
+     * Initial password set by system when user is created (or password is reset).
+     * When the user changes his password this value is cleared.
+     */
     @Column
-    private String password;
+    private String initialPassword;
 
     @NotNull
     @Column
@@ -51,6 +62,12 @@ public class User extends AbstractClubRelatedEntity {
     private Status status;
 
     /**
+     * Flag indicating whether invitation mail has been sent.
+     */
+    @Column
+    private Boolean invitationSent;
+
+    /**
      * A user can be part of several teams.
      */
     @OneToMany(mappedBy = "user")
@@ -59,10 +76,10 @@ public class User extends AbstractClubRelatedEntity {
     private User() {
     }
 
-    public User(String email, String password, boolean enabled, String fullname, Club club) {
+    public User(String email, String encryptedPassword, boolean enabled, String fullname, Club club) {
         super(club);
         this.email = email;
-        this.password = password;
+        this.encryptedPassword = encryptedPassword;
         this.enabled = enabled;
         this.fullname = fullname;
     }
@@ -83,12 +100,12 @@ public class User extends AbstractClubRelatedEntity {
         return getEmail();
     }
 
-    public String getPassword() {
-        return password;
+    public String getEncryptedPassword() {
+        return encryptedPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setEncryptedPassword(final String encryptedPassword) {
+        this.encryptedPassword = encryptedPassword;
     }
 
     public String getFullname() {
@@ -138,6 +155,26 @@ public class User extends AbstractClubRelatedEntity {
 
     public List<Player> getPlayers() {
         return players;
+    }
+
+    public String getInitialPassword() {
+        return initialPassword;
+    }
+
+    public void setInitialPassword(final String initialPassword) {
+        this.initialPassword = initialPassword;
+    }
+
+    public boolean isInvitationSent() {
+        return invitationSent;
+    }
+
+    public void setInvitationSent(final boolean invitationSent) {
+        this.invitationSent = invitationSent;
+    }
+
+    public boolean mustChangePassword() {
+        return initialPassword != null;
     }
 
     public enum Status {

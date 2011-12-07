@@ -4,22 +4,22 @@
     <club id="1" name="Juventus Urin"/>
     <club id="2" name="FC Bayern" />
 
-    <users id="1" enabled="true" password="admin" username="admin-rmt@mailinator.com" fullname="Flowerrrr" club_id="1"/>
-    <users id="2" enabled="true" password="manager" username="manager-rmt@mailinator.com" fullname="Sepp" club_id="1"/>
-    <users id="3" enabled="true" password="player" username="player-rmt@mailinator.com" fullname="Ingo" club_id="1"/>
-    <users id="4" enabled="true" password="both" username="both-rmt@mailinator.com" fullname="Maik" club_id="1"/>
-    <users id="5" enabled="true" password="foo" username="bayern-rmt@mailinator.com" fullname="Uli Hoeneß" club_id="2"/>
-    <users id="6" enabled="true" password="player" username="player1-rmt@mailinator.com" fullname="Hansi" club_id="1"/>
-    <users id="7" enabled="true" password="player" username="player2-rmt@mailinator.com" fullname="Horst" club_id="1"/>
-    <users id="8" enabled="true" password="player" username="player3-rmt@mailinator.com" fullname="Thorsten" club_id="1"/>
-    <users id="9" enabled="true" password="player" username="player4-rmt@mailinator.com" fullname="Michi" club_id="1"/>
-    <users id="10" enabled="true" password="player" username="player5-rmt@mailinator.com" fullname="Paul" club_id="1"/>
-    <users id="11" enabled="true" password="player" username="player6-rmt@mailinator.com" fullname="Hugo" club_id="1"/>
-    <users id="12" enabled="true" password="player" username="player7-rmt@mailinator.com" fullname="Alder" club_id="1"/>
-    <users id="13" enabled="true" password="player" username="player8-rmt@mailinator.com" fullname="Dragan" club_id="1"/>
-    <users id="14" enabled="true" password="player" username="player9-rmt@mailinator.com" fullname="Stefan" club_id="1"/>
-    <users id="15" enabled="true" password="player" username="player10-rmt@mailinator.com" fullname="Erkan" club_id="1"/>
-    <users id="16" enabled="true" password="player" username="player11-rmt@mailinator.com" fullname="Süpür" club_id="1"/>
+    <users id="1" enabled="true" password="acbd18db4cc2f85cedef654fccc4a4d8" username="admin-rmt@mailinator.com" fullname="Flowerrrr" club_id="1"/>
+    <users id="2" enabled="true" password="acbd18db4cc2f85cedef654fccc4a4d8" username="manager-rmt@mailinator.com" fullname="Sepp" club_id="1"/>
+    <users id="3" enabled="true" password="acbd18db4cc2f85cedef654fccc4a4d8" username="player-rmt@mailinator.com" fullname="Ingo" club_id="1"/>
+    <users id="4" enabled="true" password="acbd18db4cc2f85cedef654fccc4a4d8" username="both-rmt@mailinator.com" fullname="Maik" club_id="1"/>
+    <users id="5" enabled="true" password="acbd18db4cc2f85cedef654fccc4a4d8" username="bayern-rmt@mailinator.com" fullname="Uli Hoeneß" club_id="2"/>
+    <users id="6" enabled="true" password="acbd18db4cc2f85cedef654fccc4a4d8" username="player1-rmt@mailinator.com" fullname="Hansi" club_id="1"/>
+    <users id="7" enabled="true" password="acbd18db4cc2f85cedef654fccc4a4d8" username="player2-rmt@mailinator.com" fullname="Horst" club_id="1"/>
+    <users id="8" enabled="true" password="acbd18db4cc2f85cedef654fccc4a4d8" username="player3-rmt@mailinator.com" fullname="Thorsten" club_id="1"/>
+    <users id="9" enabled="true" password="acbd18db4cc2f85cedef654fccc4a4d8" username="player4-rmt@mailinator.com" fullname="Michi" club_id="1"/>
+    <users id="10" enabled="true" password="acbd18db4cc2f85cedef654fccc4a4d8" username="player5-rmt@mailinator.com" fullname="Paul" club_id="1"/>
+    <users id="11" enabled="true" password="acbd18db4cc2f85cedef654fccc4a4d8" username="player6-rmt@mailinator.com" fullname="Hugo" club_id="1"/>
+    <users id="12" enabled="true" password="acbd18db4cc2f85cedef654fccc4a4d8" username="player7-rmt@mailinator.com" fullname="Alder" club_id="1"/>
+    <users id="13" enabled="true" password="acbd18db4cc2f85cedef654fccc4a4d8" username="player8-rmt@mailinator.com" fullname="Dragan" club_id="1"/>
+    <users id="14" enabled="true" password="acbd18db4cc2f85cedef654fccc4a4d8" username="player9-rmt@mailinator.com" fullname="Stefan" club_id="1"/>
+    <users id="15" enabled="true" password="acbd18db4cc2f85cedef654fccc4a4d8" username="player10-rmt@mailinator.com" fullname="Erkan" club_id="1"/>
+    <users id="16" enabled="true" password="acbd18db4cc2f85cedef654fccc4a4d8" username="player11-rmt@mailinator.com" fullname="Süpür" club_id="1"/>
 
     <role id="1" authority="ROLE_ADMIN" user_id="1"/>
     <role id="2" authority="ROLE_MANAGER" user_id="2"/>

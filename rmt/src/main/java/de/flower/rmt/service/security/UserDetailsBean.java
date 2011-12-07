@@ -16,7 +16,7 @@ public class UserDetailsBean extends org.springframework.security.core.userdetai
     private User user;
 
     public UserDetailsBean(User user) {
-        super(user.getUsername(), user.getPassword(), user.isEnabled(), true, true, true, getGrantedAuthorities(user));
+        super(user.getUsername(), user.getEncryptedPassword(), user.isEnabled(), true, true, true, getGrantedAuthorities(user));
         this.user = user;
     }
 

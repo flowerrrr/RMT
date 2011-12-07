@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Custom implementation of spring's UserDetailService in order to use User domain entity as principal.
+ * Custom implementation of spring's UserDetailService in order to use our own User domain entity as principal.
  *
  * @author flowerrrr
  */

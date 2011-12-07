@@ -24,6 +24,7 @@
 
     <security:authentication-manager alias="authenticationManager">
         <security:authentication-provider user-service-ref="userDetailService">
+            <security:password-encoder ref="passwordEncoder"/>
         </security:authentication-provider>
     </security:authentication-manager>
 
@@ -31,6 +32,9 @@
 
     <bean id="securityContextHolderStrategy" class="org.springframework.security.core.context.SecurityContextHolder"
           factory-method="getContextHolderStrategy">
+    </bean>
+
+    <bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" >
     </bean>
 
 

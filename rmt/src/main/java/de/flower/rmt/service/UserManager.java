@@ -1,12 +1,16 @@
 package de.flower.rmt.service;
 
-import de.flower.rmt.model.*;
-import de.flower.rmt.model.event.Event;
+import de.flower.common.service.security.IPasswordGenerator;
+import de.flower.rmt.model.Role;
+import de.flower.rmt.model.Team;
+import de.flower.rmt.model.User;
+import de.flower.rmt.model.User_;
 import de.flower.rmt.repository.IRoleRepo;
 import de.flower.rmt.repository.IUserRepo;
 import de.flower.rmt.repository.Specs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +32,12 @@ public class UserManager extends AbstractService implements IUserManager {
 
     @Autowired
     private IRoleRepo roleRepo;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private IPasswordGenerator passwordGenerator;
 
     @Override
     public User findById(Long id) {
@@ -79,6 +89,9 @@ public class UserManager extends AbstractService implements IUserManager {
         Role role = new Role(Role.Roles.PLAYER.getRoleName());
         user.getRoles().add(role);
         role.setUser(user);
+        String initialPassword = passwordGenerator.generatePassword();
+        user.setInitialPassword(initialPassword);
+        user.setEncryptedPassword(passwordEncoder.encodePassword(initialPassword, null));
         return user;
     }
 }

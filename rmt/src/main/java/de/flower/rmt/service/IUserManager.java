@@ -29,5 +29,11 @@ public interface IUserManager {
      */
     List<User> findUnassignedPlayers(Team team);
 
+    /**
+     * Initialized the password fields with a
+     * fresh password.
+     *
+     * @return
+     */
     User newInstance();
 }
