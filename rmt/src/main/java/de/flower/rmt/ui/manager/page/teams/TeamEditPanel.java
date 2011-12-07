@@ -24,7 +24,6 @@ public class TeamEditPanel extends BasePanel {
     private ITeamManager teamManager;
 
     public TeamEditPanel(final IModel<Team> model) {
-        super();
 
         EntityForm<Team> form = new CancelableEntityForm<Team>("form", model) {
             @Override

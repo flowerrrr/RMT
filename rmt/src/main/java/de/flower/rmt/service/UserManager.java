@@ -1,6 +1,8 @@
 package de.flower.rmt.service;
 
 import de.flower.common.service.security.IPasswordGenerator;
+import de.flower.common.util.Check;
+import de.flower.common.validation.util.Validation;
 import de.flower.rmt.model.Role;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.model.User;
@@ -8,6 +10,7 @@ import de.flower.rmt.model.User_;
 import de.flower.rmt.repository.IRoleRepo;
 import de.flower.rmt.repository.IUserRepo;
 import de.flower.rmt.repository.Specs;
+import de.flower.rmt.service.type.Password;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
@@ -16,6 +19,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.metamodel.Attribute;
+import javax.validation.Validator;
 import java.util.List;
 
 import static de.flower.common.util.Check.*;
@@ -39,9 +43,12 @@ public class UserManager extends AbstractService implements IUserManager {
     @Autowired
     private IPasswordGenerator passwordGenerator;
 
+    @Autowired
+    private Validator validator;
+
     @Override
     public User findById(Long id) {
-        return userRepo.findOne(id);
+        return Check.notNull(userRepo.findOne(id));
     }
 
     @Override
@@ -89,9 +96,34 @@ public class UserManager extends AbstractService implements IUserManager {
         Role role = new Role(Role.Roles.PLAYER.getRoleName());
         user.getRoles().add(role);
         role.setUser(user);
-        String initialPassword = passwordGenerator.generatePassword();
-        user.setInitialPassword(initialPassword);
-        user.setEncryptedPassword(passwordEncoder.encodePassword(initialPassword, null));
+        initPassword(user);
         return user;
     }
+
+    @Override
+    @Transactional(readOnly = false)
+    public void resetPassword(final User user) {
+        initPassword(user);
+        userRepo.save(user);
+    }
+
+    private void initPassword(User user) {
+        String initialPassword = passwordGenerator.generatePassword();
+        user.setInitialPassword(initialPassword);
+        user.setEncryptedPassword(encodePassword(initialPassword));
+    }
+
+    @Override
+    public void updatePassword(final Long userId, Password password) {
+        Check.notNull(userId);
+        User user = findById(userId);
+        Validation.validate(validator, password);
+        user.setInitialPassword(null);
+        user.setEncryptedPassword(encodePassword(password.getNewPassword()));
+    }
+
+    private String encodePassword(String password) {
+        return passwordEncoder.encodePassword(password, null);
+    }
+
 }

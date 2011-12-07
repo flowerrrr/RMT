@@ -2,6 +2,7 @@ package de.flower.rmt.service;
 
 import de.flower.rmt.model.Team;
 import de.flower.rmt.model.User;
+import de.flower.rmt.service.type.Password;
 
 import javax.persistence.metamodel.Attribute;
 import java.util.List;
@@ -36,4 +37,8 @@ public interface IUserManager {
      * @return
      */
     User newInstance();
+
+    void resetPassword(User user);
+
+    void updatePassword(Long userId, Password password);
 }

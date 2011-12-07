@@ -17,16 +17,16 @@ import java.io.Serializable;
 import java.util.Set;
 
 /**
- * Validator that can be bound to a input field but does a bean validation.
+ * Validator that can be bound to a input field and does a property validation.
  * Requires that the form uses a CompoundPropertyModel containing the bean
  * to validate.
  * Must be added after the component is added to a form.
  *
  * @author flowerrrr
  */
-public class FormComponentBeanValidator<T> extends Behavior implements INullAcceptingValidator<String>, Serializable {
+public class FormComponentPropertyValidator<T> extends Behavior implements INullAcceptingValidator<String>, Serializable {
 
-    private final static Logger log = LoggerFactory.getLogger(FormComponentBeanValidator.class);
+    private final static Logger log = LoggerFactory.getLogger(FormComponentPropertyValidator.class);
 
     private Class<?>[] groups;
 
@@ -34,11 +34,11 @@ public class FormComponentBeanValidator<T> extends Behavior implements INullAcce
 
     private Form form;
 
-    public FormComponentBeanValidator(Class<?>[] groups) {
+    public FormComponentPropertyValidator(Class<?>[] groups) {
         this.groups = groups;
     }
 
-    public FormComponentBeanValidator(Class<?> group) {
+    public FormComponentPropertyValidator(Class<?> group) {
         this(new Class<?>[]{group});
     }
 
@@ -66,7 +66,7 @@ public class FormComponentBeanValidator<T> extends Behavior implements INullAcce
         setProperty(bean, propertyExpression, validatable.getValue());
 
         log.debug("Validating bean[{}]", bean);
-        Set<ConstraintViolation<T>> violations = JSR303Validation.getValidator().validate(bean, groups);
+        Set<ConstraintViolation<T>> violations = JSR303Validation.getValidator().validateProperty(bean, propertyExpression, groups);
 
         for (ConstraintViolation<T> v : violations) {
             log.debug("Constraint violation: " + v);

@@ -19,7 +19,6 @@ import java.util.Arrays;
 public abstract class EventTypeSelectPanel extends BasePanel {
 
     public EventTypeSelectPanel() {
-        super();
 
         add(new ListView<EventType>("eventTypes", getEventTypeListModel()) {
 

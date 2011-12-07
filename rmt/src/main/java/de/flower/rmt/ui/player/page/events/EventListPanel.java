@@ -33,7 +33,6 @@ public class EventListPanel extends BasePanel {
     private IResponseManager responseManager;
 
     public EventListPanel(final UserModel userModel, final IModel<List<Event>> listModel) {
-        super();
 
         WebMarkupContainer listContainer = new WebMarkupContainer("listContainer");
         add(listContainer);

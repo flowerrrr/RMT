@@ -37,7 +37,6 @@ public class PlayerListPanel extends BasePanel {
     private ISecurityService securityService;
 
     public PlayerListPanel() {
-        super();
 
         WebMarkupContainer playerListContainer = new WebMarkupContainer("listContainer");
         add(playerListContainer);

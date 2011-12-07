@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+    <script src="http://cdn.jquerytools.org/1.2.6/jquery.tools.min.js"></script>
+</wicket:head>
+<body>
+
+<wicket:panel>
+
+    <!-- the tabs -->
+    <ul id="tabs" class="tabs">
+        <li class="active"><a href="#">
+            <wicket:message key="player.account.general"/>
+        </a></li>
+        <li><a href="#">
+            <wicket:message key="player.account.password"/>
+        </a></li>
+    </ul>
+
+    <!-- tab "panes" -->
+    <div class="panes">
+        <div wicket:id="accountGeneralPanel"/>
+        <div wicket:id="accountPasswordPanel"/>
+    </div>
+
+</wicket:panel>
+
+
+</body>
+</html>

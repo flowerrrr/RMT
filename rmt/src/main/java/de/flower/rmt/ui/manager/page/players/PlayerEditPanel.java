@@ -25,7 +25,6 @@ public class PlayerEditPanel extends BasePanel {
     private IUserManager playerManager;
 
     public PlayerEditPanel(IModel<User> model) {
-        super();
 
         EntityForm<User> form = new CancelableEntityForm<User>("form", model) {
             @Override

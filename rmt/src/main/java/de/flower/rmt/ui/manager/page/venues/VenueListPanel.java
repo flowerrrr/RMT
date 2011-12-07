@@ -30,7 +30,6 @@ public class VenueListPanel extends BasePanel {
     private IVenueManager venueManager;
 
     public VenueListPanel(IModel<List<Venue>> listModel) {
-        super();
 
         WebMarkupContainer listContainer = new WebMarkupContainer("listContainer");
         add(listContainer);

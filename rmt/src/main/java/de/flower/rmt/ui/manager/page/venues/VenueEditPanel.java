@@ -31,7 +31,6 @@ public class VenueEditPanel extends BasePanel  {
     private IVenueManager venueManager;
 
     public VenueEditPanel(final IModel<Venue> model) {
-        super();
 
         form = new CancelableEntityForm<Venue>("form", model) {
 

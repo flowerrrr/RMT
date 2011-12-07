@@ -32,7 +32,6 @@ public class TeamListPanel extends BasePanel {
     private ITeamManager teamManager;
 
     public TeamListPanel() {
-        super();
 
         final IModel<List<Team>> listModel = getListModel();
         WebMarkupContainer listContainer = new WebMarkupContainer("listContainer");

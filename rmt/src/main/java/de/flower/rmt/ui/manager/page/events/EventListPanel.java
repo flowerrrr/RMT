@@ -35,7 +35,6 @@ public class EventListPanel extends BasePanel {
     private IEventManager eventManager;
 
     public EventListPanel() {
-        super();
 
         final IModel<List<Event>> listModel = getListModel();
         WebMarkupContainer listContainer = new WebMarkupContainer("listContainer");

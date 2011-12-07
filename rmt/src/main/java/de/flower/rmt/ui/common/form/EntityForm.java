@@ -1,6 +1,5 @@
 package de.flower.rmt.ui.common.form;
 
-import de.flower.common.model.IEntity;
 import de.flower.common.ui.ajax.MyAjaxSubmitLink;
 import de.flower.common.util.Check;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -17,7 +16,7 @@ import org.wicketstuff.jsr303.PropertyValidation;
  * serializing domain objects to the page store.
  * @author flowerrrr
  */
-public abstract class EntityForm<T extends IEntity> extends Form<T> {
+public abstract class EntityForm<T> extends Form<T> {
 
     public EntityForm(String id, IModel<T> model) {
         super(id, new CompoundPropertyModel<T>(model));

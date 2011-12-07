@@ -10,7 +10,7 @@ public class AccountPage extends PlayerBasePage {
 
     public AccountPage() {
         addHeading("tbd", "tbd");
-        addMainPanel(new Label("foobar", "Player profile"));
+        addMainPanel(new AccountMainPanel());
         addSecondaryPanel(new Label("foobar", "Put some useful stuff here"));
     }
 

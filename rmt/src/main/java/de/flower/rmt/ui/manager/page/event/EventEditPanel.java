@@ -32,7 +32,6 @@ public class EventEditPanel extends BasePanel {
     private IEventManager eventManager;
 
     public EventEditPanel(IModel<Event> model) {
-        super();
         Check.notNull(model.getObject());
 
         EntityForm<Event> form = new CancelableEntityForm<Event>("form", new EventModel(model)) {

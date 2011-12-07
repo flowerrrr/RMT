@@ -9,11 +9,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import javax.validation.ConstraintValidatorContext;
-import javax.validation.ConstraintValidatorContext.ConstraintViolationBuilder;
-import javax.validation.ConstraintValidatorContext.ConstraintViolationBuilder.NodeBuilderDefinedContext;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
+import static org.testng.Assert.*;
 
 public class UniqueValidatorTest {
 
@@ -31,7 +30,7 @@ public class UniqueValidatorTest {
         entity = mock(IEntity.class);
         context = mock(ConstraintValidatorContext.class);
 
-        constraintDef = new UniqueDef("foo", new String[] { "name" });
+        constraintDef = new UniqueDef("foo", new String[] { "id" });
         validator = new UniqueValidator(columnResolver, rowCountChecker);
         ReflectionTestUtils.setField(validator, "constraintDef", constraintDef);
     }
@@ -40,21 +39,27 @@ public class UniqueValidatorTest {
     public final void testIsValidTrue() {
         when(rowCountChecker.rowCount(any(IEntity.class), (List<String>)any())).thenReturn(0L);
         final boolean valid = validator.isValid(entity, context);
-        verify(context, never()).buildConstraintViolationWithTemplate(anyString());
+        assertTrue(valid);
     }
 
     @Test
     public final void testIsValidFalse() {
         // some mockup needed
         when(rowCountChecker.rowCount(any(IEntity.class), (List<String>)any())).thenReturn(10L);
-        final ConstraintViolationBuilder violationBuilder = mock(ConstraintViolationBuilder.class);
-        when(context.buildConstraintViolationWithTemplate(anyString())).thenReturn(violationBuilder);
-        final NodeBuilderDefinedContext nbdc = mock(NodeBuilderDefinedContext.class);
-        when(violationBuilder.addNode(anyString())).thenReturn(nbdc);
-        when(nbdc.addConstraintViolation()).thenReturn(context);
-
         // now finally we can call the method under test
         final boolean valid = validator.isValid(entity, context);
-        verify(context, times(1)).buildConstraintViolationWithTemplate("{de.flower.common.validation.constraints.unique.message." + constraintDef.getName() + "}");
+        assertFalse(valid);
     }
+
+    /**
+     * Test for null values.
+     */
+    @Test
+    public final void testValidateNull() {
+        when(entity.getId()).thenReturn(null);
+        final boolean valid = validator.isValid(entity, context);
+        assertTrue(valid);
+        verify(rowCountChecker, never()).rowCount(any(IEntity.class), anyList());
+    }
+
 }

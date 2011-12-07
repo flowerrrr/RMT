@@ -5,6 +5,7 @@ package de.flower.rmt.test;
  */
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
+import de.flower.common.service.security.IPasswordGenerator;
 import de.flower.common.test.mock.IListAppender;
 import de.flower.common.test.mock.LogBackListAppender;
 import de.flower.rmt.repository.IClubRepo;
@@ -33,6 +34,7 @@ import org.testng.annotations.Listeners;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
+import javax.validation.Validator;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -97,6 +99,12 @@ public class AbstractIntegrationTests extends AbstractTestNGSpringContextTests {
 
     @Autowired
     protected SecurityContextHolderStrategy securityContextHolderStrategy;
+
+    @Autowired
+    protected Validator validator;
+
+    @Autowired
+    protected IPasswordGenerator passwordGenerator;
 
     @PersistenceContext
     protected EntityManager em;
