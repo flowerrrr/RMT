@@ -9,7 +9,7 @@ import org.apache.wicket.model.IModel;
  */
 public class AccountGeneralPanel extends BasePanel {
 
-    public AccountGeneralPanel(final IModel<User> model) {
-        super(model);
+    public AccountGeneralPanel(String id, final IModel<User> model) {
+        super(id, model);
     }
 }

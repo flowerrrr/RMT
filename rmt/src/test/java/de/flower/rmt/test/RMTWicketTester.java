@@ -266,12 +266,16 @@ public class RMTWicketTester extends WicketTester {
         if (list.isEmpty()) {
             debugComponentTrees();
             fail("name: '" + name + "' does not exist for page: " + Classes.simpleName(getLastRenderedPage().getClass()));
-            return null;
         }
         if (list.size() > 1) {
             debugComponentTrees();
             fail("name: '" + name + "' is ambiguous for page: " + Classes.simpleName(getLastRenderedPage().getClass()));
         }
-        return super.getComponentFromLastRenderedPage(list.get(0).path, wantVisibleInHierarchy);
+        String path = list.get(0).path;
+        // strip prefix if startComponent is set
+        if (path.indexOf(":") != -1) {
+            path = path.substring(path.indexOf(":") + 1);
+        }
+        return super.getComponentFromLastRenderedPage(path, wantVisibleInHierarchy);
     }
 }

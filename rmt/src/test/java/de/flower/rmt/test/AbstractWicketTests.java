@@ -6,7 +6,6 @@ import org.mockito.Mockito;
 import org.springframework.context.ApplicationContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 /**
  * @author flowerrrr
@@ -35,6 +34,5 @@ public abstract class AbstractWicketTests extends AbstractIntegrationTests {
         wicketTester = new RMTWicketTester(webApp);
     }
 
-    @Test
     public abstract void testRender();
 }

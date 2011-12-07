@@ -35,7 +35,7 @@ public class BasePanel<T> extends GenericPanel<T> {
         this(id, null);
     }
 
-    private BasePanel(String id, IModel<T> model) {
+    protected BasePanel(String id, IModel<T> model) {
         super(getId(id), model);
         log.debug("new " + getId());
         setOutputMarkupId(true);

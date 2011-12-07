@@ -20,8 +20,8 @@ public class AccountPasswordPanel extends BasePanel {
     @SpringBean
     private IUserManager userManager;
 
-    public AccountPasswordPanel(final IModel<User> model) {
-        super(model);
+    public AccountPasswordPanel(String id, final IModel<User> model) {
+        super(id, model);
 
         EntityForm<Password> form = new EntityForm<Password>("form", Model.of(new Password(model.getObject().getId()))) {
             @Override
@@ -31,9 +31,13 @@ public class AccountPasswordPanel extends BasePanel {
         };
         add(form);
 
-        form.add(new TextFieldPanel("oldPassword"));
+        TextFieldPanel oldPassword = new TextFieldPanel("oldPassword");
+        // oldPassword.addValidator(new FormComponentBeanValidator(IOldPassword.class));
+        form.add(oldPassword);
         form.add(new TextFieldPanel("newPassword"));
-        form.add(new TextFieldPanel("newPasswordRepeat"));
+        TextFieldPanel newPasswordRepeat = new TextFieldPanel("newPasswordRepeat");
+        // newPasswordRepeat.addValidator(new FormCompon);
+        form.add(newPasswordRepeat);
     }
 
 }
