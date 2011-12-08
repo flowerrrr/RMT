@@ -16,6 +16,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.validation.IValidator;
+import org.wicketstuff.jsr303.PropertyValidator;
 
 /**
  * @author flowerrrr
@@ -26,6 +27,8 @@ public class FormFieldPanel extends Panel {
     protected final static String ID = "input";
 
     public static final String LABEL_KEY = "labelKey";
+
+    private boolean instantValidationEnabled = true;
 
     private boolean isValidated = false;
 
@@ -55,23 +58,26 @@ public class FormFieldPanel extends Panel {
         add(formComponent);
         add(new FeedbackPanel("feedback", new ComponentFeedbackMessageFilter(formComponent)));
 
-        formComponent.add(new AjaxFormComponentUpdatingBehavior("onchange") {
-            @Override
-            protected void onUpdate(AjaxRequestTarget target) {
-                isValidated = true;
-                target.add(FormFieldPanel.this);
-            }
-
-            @Override
-            protected void onError(AjaxRequestTarget target, RuntimeException e) {
-                if (e != null) {
-                    throw e;
+        // add validation
+        if (isInstantValidationEnabled()) {
+            formComponent.add(new PropertyValidator(formComponent));
+            formComponent.add(new AjaxFormComponentUpdatingBehavior("onchange") {
+                @Override
+                protected void onUpdate(AjaxRequestTarget target) {
+                    isValidated = true;
+                    target.add(FormFieldPanel.this);
                 }
-                isValidated = true;
-                target.add(FormFieldPanel.this);
-            }
 
-        });
+                @Override
+                protected void onError(AjaxRequestTarget target, RuntimeException e) {
+                    if (e != null) {
+                        throw e;
+                    }
+                    isValidated = true;
+                    target.add(FormFieldPanel.this);
+                }
+            });
+        }
 
         // set model of form component. form.getForm not available at constructor time, so we have
         // to use wrapping model to defer lookup of form.
@@ -125,5 +131,13 @@ public class FormFieldPanel extends Panel {
 
     public void addValidator(final IValidator<?> validator) {
         formComponent.add(validator);
+    }
+
+    public boolean isInstantValidationEnabled() {
+        return instantValidationEnabled;
+    }
+
+    public void setInstantValidationEnabled(final boolean instantValidationEnabled) {
+        this.instantValidationEnabled = instantValidationEnabled;
     }
 }

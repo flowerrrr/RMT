@@ -11,6 +11,7 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.wicketstuff.jsr303.FormComponentBeanValidator;
 
 /**
  * @author flowerrrr
@@ -32,12 +33,12 @@ public class AccountPasswordPanel extends BasePanel {
         add(form);
 
         TextFieldPanel oldPassword = new TextFieldPanel("oldPassword");
-        // oldPassword.addValidator(new FormComponentBeanValidator(IOldPassword.class));
         form.add(oldPassword);
+        oldPassword.addValidator(new FormComponentBeanValidator(Password.IPasswordMatches.class));
         form.add(new TextFieldPanel("newPassword"));
         TextFieldPanel newPasswordRepeat = new TextFieldPanel("newPasswordRepeat");
-        // newPasswordRepeat.addValidator(new FormCompon);
         form.add(newPasswordRepeat);
+        newPasswordRepeat.addValidator(new FormComponentBeanValidator(Password.IPasswordEquals.class));
     }
 
 }

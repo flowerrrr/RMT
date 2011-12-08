@@ -8,7 +8,6 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.wicketstuff.jsr303.BeanValidator;
-import org.wicketstuff.jsr303.PropertyValidation;
 
 /**
  * Form for editing domain objects.
@@ -47,12 +46,6 @@ public abstract class EntityForm<T> extends Form<T> {
                 }
             }
         });
-    }
-
-    @Override
-    protected void onConfigure() {
-        super.onConfigure();
-        add(new PropertyValidation());
     }
 
     protected void onBeforeValidation(T entity) {

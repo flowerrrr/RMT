@@ -157,7 +157,7 @@ public class RMTWicketTester extends WicketTester {
         for (final String errorMesssagePart : errorMessagesParts) {
             if (!de.flower.rmt.test.StringUtils.containedInAny(errorMesssagePart, actualMessages)) {
                 log.info(actualMessages.toString());
-                fail("Error message part [" + errorMesssagePart + "] not found in any of the error messages.");
+                fail("Error message part [" + errorMesssagePart + "] not found in any of the error messages["+ actualMessages.toString() + "].");
             }
         }
     }

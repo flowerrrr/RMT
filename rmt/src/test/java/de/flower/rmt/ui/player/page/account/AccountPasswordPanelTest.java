@@ -32,7 +32,8 @@ public class AccountPasswordPanelTest extends AbstractWicketTests {
         wicketTester.dumpComponentWithPage();
         String message = "Ungültiges Passwort";
         wicketTester.assertErrorMessagesContains(new String[] {message});
-        wicketTester.assertVisible("form:formFeedbackPanel:feedback:feedbackul:messages");
+        wicketTester.assertInvisible("form:formFeedbackPanel:feedback:feedbackul:messages");
+        wicketTester.assertVisible("form:oldPassword:feedback:feedbackul:messages");
         wicketTester.assertContains(message);
     }
 }

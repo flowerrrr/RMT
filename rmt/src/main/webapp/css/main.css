@@ -144,15 +144,25 @@ form div.clearfix.error {
 /*************************************************************************
     form feedback
 **************************************************************************/
-.feedback{
-    margin-bottom: 5px;
+.field-feedback {
+    .feedback{
+        margin-bottom: 5px;
+    }
+    .feedbackPanel {
+        display: inline;
+        margin: 0px;
+    }
+    .feedbackPanel li {
+        display: inline;
+    }
 }
-.feedbackPanel {
-    display: inline;
-    margin: 0px;
-}
-.feedbackPanel li {
-    display: inline;
+
+.form-feedback {
+    ul {
+        list-style: disc;
+        margin-left: 25px;
+        margin-bottom: 0px;
+    }
 }
 
 .alert-message li {

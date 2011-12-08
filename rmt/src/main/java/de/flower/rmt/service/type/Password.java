@@ -6,14 +6,25 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.ScriptAssert;
 
 import javax.validation.constraints.Size;
+import javax.validation.groups.Default;
 import java.io.Serializable;
 
 /**
  * @author flowerrrr
  */
-@ScriptAssert(script = "_this.isEqualPasswords()", message = "{validation.password.new.notequal}", lang = "javascript")
-@BeanAssert(beanClass = PasswordValidator.class, message = "{validation.password.old.invalid}")
+@ScriptAssert(script = "_this.isEqualPasswords()",
+        message = "{validation.password.new.notequal}", lang = "javascript",
+        groups = { Password.IPasswordEquals.class, Default.class}
+)
+@BeanAssert(beanClass = PasswordValidator.class,
+        message = "{validation.password.old.invalid}",
+        groups = { Password.IPasswordMatches.class, Default.class }
+)
 public class Password implements Serializable {
+
+    public interface IPasswordEquals {}
+
+    public interface IPasswordMatches {}
 
     @NotBlank
     private String oldPassword;
