@@ -1,8 +1,10 @@
 package de.flower.rmt.ui.player.page.account;
 
 import de.flower.rmt.model.User;
+import de.flower.rmt.service.type.Password;
 import de.flower.rmt.test.AbstractWicketTests;
 import de.flower.rmt.ui.model.UserModel;
+import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.util.tester.FormTester;
 import org.testng.annotations.Test;
 
@@ -30,7 +32,8 @@ public class AccountPasswordPanelTest extends AbstractWicketTests {
         formTester.setValue("newPasswordRepeat:input", "jkalsjdkfldsjf");
         wicketTester.clickLink("submitButton");
         wicketTester.dumpComponentWithPage();
-        String message = "Ungültiges Passwort";
+        String key = Password.Validation.passwordNotValidMessage.replace("{", "").replace("}", "");
+        String message = new ResourceModel(key).getObject();
         wicketTester.assertErrorMessagesContains(new String[] {message});
         wicketTester.assertInvisible("form:formFeedbackPanel:feedback:feedbackul:messages");
         wicketTester.assertVisible("form:oldPassword:feedback:feedbackul:messages");

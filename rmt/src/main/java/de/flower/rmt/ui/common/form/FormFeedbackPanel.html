@@ -5,6 +5,13 @@
 <wicket:panel>
 
 
+    <div class="clearfix" wicket:id="submitSuccess">
+        <div class="input">
+            <div class="alert-message info">
+                <wicket:message key="form.success"/>
+            </div>
+        </div>
+    </div>
     <div class="clearfix" wicket:id="hasErrors">
         <div class="input">
             <div class="alert-message error">
@@ -17,6 +24,7 @@
             <div wicket:id="feedback" class="form-feedback">[Validation messages]</div>
         </div>
     </div>
+
 
 </wicket:panel>
 </body>

@@ -28,17 +28,18 @@ public class AccountPasswordPanel extends BasePanel {
             @Override
             protected void onSubmit(final AjaxRequestTarget target, final Form<Password> form) {
                 userManager.updatePassword(model.getObject().getId(), form.getModelObject());
+                target.add(form);
             }
         };
         add(form);
 
         TextFieldPanel oldPassword = new TextFieldPanel("oldPassword");
         form.add(oldPassword);
-        oldPassword.addValidator(new FormComponentBeanValidator(Password.IPasswordMatches.class));
+        oldPassword.addValidator(new FormComponentBeanValidator(Password.Validation.IPasswordMatches.class));
         form.add(new TextFieldPanel("newPassword"));
         TextFieldPanel newPasswordRepeat = new TextFieldPanel("newPasswordRepeat");
         form.add(newPasswordRepeat);
-        newPasswordRepeat.addValidator(new FormComponentBeanValidator(Password.IPasswordEquals.class));
+        newPasswordRepeat.addValidator(new FormComponentBeanValidator(Password.Validation.IPasswordEquals.class));
     }
 
 }

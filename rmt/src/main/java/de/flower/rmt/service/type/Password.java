@@ -13,18 +13,26 @@ import java.io.Serializable;
  * @author flowerrrr
  */
 @ScriptAssert(script = "_this.isEqualPasswords()",
-        message = "{validation.password.new.notequal}", lang = "javascript",
-        groups = { Password.IPasswordEquals.class, Default.class}
+        message = Password.Validation.passwordNotEqualMessage, lang = "javascript",
+        groups = { Password.Validation.IPasswordEquals.class, Default.class}
 )
 @BeanAssert(beanClass = PasswordValidator.class,
-        message = "{validation.password.old.invalid}",
-        groups = { Password.IPasswordMatches.class, Default.class }
+        message = Password.Validation.passwordNotValidMessage,
+        groups = { Password.Validation.IPasswordMatches.class, Default.class }
 )
 public class Password implements Serializable {
 
-    public interface IPasswordEquals {}
+    public static class Validation {
 
-    public interface IPasswordMatches {}
+        public interface IPasswordEquals {}
+
+        public interface IPasswordMatches {}
+
+        public final static String passwordNotEqualMessage = "{validation.password.new.notequal}";
+
+        public final static String passwordNotValidMessage = "{validation.password.old.invalid}";
+
+    }
 
     @NotBlank
     private String oldPassword;
@@ -34,7 +42,7 @@ public class Password implements Serializable {
     private String newPassword;
 
     @NotBlank
-    @Size(min = 4, max = 50)
+    // no additional constraints cause it must match #newPassword anyway.
     private String newPasswordRepeat;
 
     private Long userId;
