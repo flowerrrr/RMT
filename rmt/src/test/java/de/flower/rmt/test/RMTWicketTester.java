@@ -60,7 +60,7 @@ public class RMTWicketTester extends WicketTester {
 
     public String getDebugComponentTrees(final String filter) {
         final StringBuilder s = new StringBuilder();
-        for (final WicketTesterHelper.ComponentData obj : WicketTesterHelper.getComponentData(getLastRenderedPage())) {
+        for (final WicketTesterHelper.ComponentData obj : RMTWicketTesterHelper.getComponentData(getLastRenderedPage(), false)) {
             if (obj.path.matches(".*" + filter + ".*")) {
                 s.append("path\t").append(obj.path).append(" \t").append(obj.type).append(" \t[").append(obj.value)
                         .append("]\n");
