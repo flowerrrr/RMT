@@ -2,15 +2,19 @@ package de.flower.rmt.ui.common.form;
 
 import de.flower.common.ui.ajax.MyAjaxSubmitLink;
 import de.flower.rmt.test.AbstractWicketTests;
+import de.flower.rmt.test.StringUtils;
 import de.flower.rmt.ui.common.form.field.TextFieldPanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.Markup;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.Form;
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.ScriptAssert;
 import org.testng.annotations.Test;
 
 import java.io.Serializable;
+
+import static org.testng.AssertJUnit.assertEquals;
 
 /**
  * @author flowerrrr
@@ -26,16 +30,27 @@ public class EntityFormTest extends AbstractWicketTests {
         wicketTester.assertComponent("submitButton", MyAjaxSubmitLink.class);
     }
 
-    @Test
-    public void testRenderError() {
-        wicketTester.startPage(new EntityFormTestPage());
-        wicketTester.dumpPage();
-        wicketTester.clickLink("submitButton");
-        wicketTester.dumpPage();
-        wicketTester.assertVisible("hasErrors");
-        wicketTester.assertErrorMessages(TestEntity.message);
-        wicketTester.assertContains(TestEntity.message);
-    }
+    /**
+      *  Submit empty form.
+      *  Verify that feedback messages are not duplicated in global feebackpanel and field level feedback panels.
+      */
+     @Test
+     public void testRenderError() {
+         wicketTester.startPage(new EntityFormTestPage());
+         wicketTester.dumpPage();
+         wicketTester.clickLink("submitButton");
+         wicketTester.dumpPage();
+         wicketTester.assertVisible("hasErrors");
+         wicketTester.assertErrorMessagesContains(TestEntity.notBlankAssertMessage);
+         wicketTester.assertContains(TestEntity.notBlankAssertMessage);
+         wicketTester.assertVisible("form:name:feedback:feedbackul");
+         // does not work well here, cause it might give false positive
+         wicketTester.assertInvisible("form:formFeedbackPanel:feedback:feedbackul");
+         // must check by analyzing the page dump.
+         int matches = StringUtils.countMatches(wicketTester.getLastResponseAsString(), TestEntity.notBlankAssertMessage);
+         assertEquals(1, matches);
+         wicketTester.debugComponentTrees();
+     }
 
     /**
      * This test verifies that the implementation of debugComponentTrees
@@ -47,7 +62,7 @@ public class EntityFormTest extends AbstractWicketTests {
         wicketTester.startPage(new EntityFormTestPage());
         wicketTester.clickLink("submitButton");
         wicketTester.dumpPage();
-        wicketTester.assertContains(TestEntity.message);
+        wicketTester.assertContains(TestEntity.scriptAssertMessage);
 
         // now same thing again but this time with call of debugComponentTrees
         wicketTester.startPage(new EntityFormTestPage());
@@ -57,7 +72,7 @@ public class EntityFormTest extends AbstractWicketTests {
         wicketTester.debugComponentTrees();
         wicketTester.clickLink("submitButton");
         wicketTester.dumpPage();
-        wicketTester.assertContains(TestEntity.message);
+        wicketTester.assertContains(TestEntity.scriptAssertMessage);
     }
 
     private static class EntityFormTestPage extends WebPage {
@@ -87,11 +102,13 @@ public class EntityFormTest extends AbstractWicketTests {
         }
     }
 
-    @ScriptAssert(script = "false;", lang = "javascript", message = TestEntity.message)
+    @ScriptAssert(script = "false;", lang = "javascript", message = TestEntity.scriptAssertMessage)
     private static class TestEntity implements Serializable {
 
-        public final static String message = "__messsage__";
+        public final static String scriptAssertMessage = "__scriptAssertMesssage__";
+        public final static String notBlankAssertMessage = "__notBlankMesssage__";
 
+        @NotBlank(message = TestEntity.notBlankAssertMessage)
         private String name;
 
         public String getName() {

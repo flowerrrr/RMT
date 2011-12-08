@@ -11,7 +11,7 @@ public class FormFeedbackPanelTest extends AbstractWicketTests {
     @Override
     @Test
     public void testRender() {
-        wicketTester.startComponentInPage(new FormFeedbackPanel());
+        wicketTester.startComponentInPage(new FormFeedbackPanel(null));
         wicketTester.dumpComponentWithPage();
         wicketTester.assertInvisible("hasErrors");
     }
@@ -20,7 +20,7 @@ public class FormFeedbackPanelTest extends AbstractWicketTests {
     public void testRenderError() {
         String message = "jöksdifuwe9823hkldhf";
         wicketTester.getSession().getFeedbackMessages().error(null, message);
-        wicketTester.startComponentInPage(new FormFeedbackPanel());
+        wicketTester.startComponentInPage(new FormFeedbackPanel(null));
         wicketTester.dumpComponentWithPage();
         wicketTester.assertVisible("hasErrors");
         wicketTester.assertContains(message);

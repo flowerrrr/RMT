@@ -2,6 +2,7 @@ package de.flower.rmt.ui.common.form;
 
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.Session;
+import org.apache.wicket.feedback.IFeedbackMessageFilter;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 
@@ -10,7 +11,7 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
  */
 public class FormFeedbackPanel extends BasePanel {
 
-    public FormFeedbackPanel() {
+    public FormFeedbackPanel(final IFeedbackMessageFilter filter) {
         add(new WebMarkupContainer("hasErrors") {
             @Override
             public boolean isVisible() {
@@ -18,8 +19,10 @@ public class FormFeedbackPanel extends BasePanel {
             }
         });
         final FeedbackPanel feedback;
-        add(feedback = new FeedbackPanel("feedback"));
+        add(feedback = new FeedbackPanel("feedback", filter));
         feedback.setOutputMarkupId(true);
-    }
+     }
+
+
 }
 
