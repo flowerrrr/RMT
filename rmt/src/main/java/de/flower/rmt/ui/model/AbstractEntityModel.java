@@ -5,11 +5,15 @@ import de.flower.common.util.Check;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author flowerrrr
  */
 public abstract class AbstractEntityModel<T extends IEntity> extends LoadableDetachableModel<T> {
+
+    private final static Logger log = LoggerFactory.getLogger(AbstractEntityModel.class);
 
     private Long id;
 
@@ -61,14 +65,19 @@ public abstract class AbstractEntityModel<T extends IEntity> extends LoadableDet
     protected T load() {
         // if we have a model then try to get the object from there.
         T object = null;
-        if (wrappedModel != null) {
-            object = wrappedModel.getObject();
-        } else {
-            if (id == null) {
-                object = newInstance();
+        try {
+            if (wrappedModel != null) {
+                object = wrappedModel.getObject();
             } else {
-                object = load(id);
+                if (id == null) {
+                    object = newInstance();
+                } else {
+                    object = load(id);
+                }
             }
+        } catch (RuntimeException e) {
+            log.error("load(): " + e.getMessage(), e);
+            throw e;
         }
         Check.notNull(object);
         return object;

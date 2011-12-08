@@ -29,6 +29,7 @@ public class PasswordValidatorTest extends AbstractIntegrationTests {
         // now validate with invalid password
         password.setOldPassword("klaöjsaf");
         violations = validator.validate(password);
+        log.info(violations.toString());
         assertTrue(violations.size() == 1);
     }
 

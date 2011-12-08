@@ -28,6 +28,16 @@ public class EventModel extends AbstractEntityModel<Event> {
     }
 
     @Override
+    protected void onDetach() {
+        // if entity is transient we must save the event type in order to recreate event
+        if (type == null) {
+            Event entity = getObject();
+            type = EventType.from(entity);
+        }
+        super.onDetach();
+    }
+
+    @Override
     protected Event load(Long id) {
         return manager.findById(id);
     }

@@ -27,14 +27,14 @@ public class EventEditPanelTest extends AbstractWicketTests {
         wicketTester.debugComponentTrees();
         String formId = "eventEditPanel:form";
         FormTester formTester = wicketTester.newFormTester(formId);
-        formTester.select("team:team", 1);
-        formTester.setValue("date:date", "1.12.2011");
-        formTester.select("time:time", 4); // select some arbitrary value
-        formTester.select("venue:venue", 1);
-        formTester.setValue("summary:summary", "New training next sunday");
-        formTester.setValue("comment", "Hope you bastards are all coming");
+        formTester.select("team:input", 1);
+        formTester.setValue("date:input", "1.12.2011");
+        formTester.select("time:input", 4); // select some arbitrary value
+        formTester.select("venue:input", 1);
+        formTester.setValue("summary:input", "New training next sunday");
+        formTester.setValue("comment:input", "Hope you bastards are all coming");
         // save form
-        wicketTester.clickLink(formId + ":saveButton");
+        wicketTester.clickLink("submitButton");
         wicketTester.dumpPage();
         wicketTester.assertContainsNot("Fehler bei");
     }

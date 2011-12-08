@@ -11,8 +11,8 @@ import java.io.Serializable;
 /**
  * @author flowerrrr
  */
-@ScriptAssert(script = "_this.isEqualPasswords()", message = "{validation.password.notequal}", lang = "javascript")
-@BeanAssert(beanClass = PasswordValidator.class, message = "{validation.password.invalid}")
+@ScriptAssert(script = "_this.isEqualPasswords()", message = "{validation.password.new.notequal}", lang = "javascript")
+@BeanAssert(beanClass = PasswordValidator.class, message = "{validation.password.old.invalid}")
 public class Password implements Serializable {
 
     @NotBlank

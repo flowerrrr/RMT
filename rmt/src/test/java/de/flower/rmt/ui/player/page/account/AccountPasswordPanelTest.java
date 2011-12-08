@@ -26,8 +26,13 @@ public class AccountPasswordPanelTest extends AbstractWicketTests {
         wicketTester.dumpComponentWithPage();
         FormTester formTester = wicketTester.newFormTester("form");
         formTester.setValue("oldPassword:input", "uifaöjsdkflöajdsf");
-        wicketTester.clickLink("saveButton");
-        wicketTester.assertErrorMessagesContains(new String[] { "foo" });
-
+        formTester.setValue("newPassword:input", "jkalsjdkfldsjf");
+        formTester.setValue("newPasswordRepeat:input", "jkalsjdkfldsjf");
+        wicketTester.clickLink("submitButton");
+        wicketTester.dumpComponentWithPage();
+        String message = "Ungültiges Passwort";
+        wicketTester.assertErrorMessagesContains(new String[] {message});
+        wicketTester.assertVisible("form:formFeedbackPanel:feedback:feedbackul:messages");
+        wicketTester.assertContains(message);
     }
 }

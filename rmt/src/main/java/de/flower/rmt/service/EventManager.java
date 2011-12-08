@@ -81,6 +81,7 @@ public class EventManager extends AbstractService implements IEventManager {
 
     @Override
 	public Event newInstance(EventType eventType) {
+        Check.notNull(eventType);
         try {
             Event event = eventType.getClazz().newInstance();
             event.setClub(getClub());

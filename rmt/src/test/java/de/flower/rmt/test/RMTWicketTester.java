@@ -7,6 +7,7 @@ import de.flower.common.ui.serialize.LoggingSerializer;
 import de.flower.rmt.model.RSVPStatus;
 import junit.framework.AssertionFailedError;
 import org.apache.wicket.Component;
+import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.Page;
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.protocol.http.WebApplication;
@@ -16,6 +17,9 @@ import org.apache.wicket.util.lang.Classes;
 import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.tester.WicketTester;
 import org.apache.wicket.util.tester.WicketTesterHelper;
+import org.apache.wicket.util.visit.IVisit;
+import org.apache.wicket.util.visit.IVisitor;
+import org.apache.wicket.util.visit.Visits;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -152,6 +156,7 @@ public class RMTWicketTester extends WicketTester {
         final List<String> actualMessages = getMessagesAsString(FeedbackMessage.ERROR);
         for (final String errorMesssagePart : errorMessagesParts) {
             if (!de.flower.rmt.test.StringUtils.containedInAny(errorMesssagePart, actualMessages)) {
+                log.info(actualMessages.toString());
                 fail("Error message part [" + errorMesssagePart + "] not found in any of the error messages.");
             }
         }
@@ -257,9 +262,9 @@ public class RMTWicketTester extends WicketTester {
      * Iterates through all components and looks for one with given name
      */
     protected Component findComponent(String name, boolean wantVisibleInHierarchy) {
-        ArrayList<WicketTesterHelper.ComponentData> list = new ArrayList<WicketTesterHelper.ComponentData>();
-        for (WicketTesterHelper.ComponentData c : WicketTesterHelper.getComponentData(getLastRenderedPage())) {
-            if (c.path.endsWith(name)) {
+        ArrayList<Component> list = new ArrayList<Component>();
+        for (Component c : getAllComponents(getLastRenderedPage())) {
+            if (c.getId().equals(name)) {
                 list.add(c);
             }
         }
@@ -271,11 +276,21 @@ public class RMTWicketTester extends WicketTester {
             debugComponentTrees();
             fail("name: '" + name + "' is ambiguous for page: " + Classes.simpleName(getLastRenderedPage().getClass()));
         }
-        String path = list.get(0).path;
-        // strip prefix if startComponent is set
-        if (path.indexOf(":") != -1) {
-            path = path.substring(path.indexOf(":") + 1);
+        Component c = list.get(0);
+        if (!wantVisibleInHierarchy || c.isVisibleInHierarchy()) {
+            return c;
+        } else {
+            return null;
         }
-        return super.getComponentFromLastRenderedPage(path, wantVisibleInHierarchy);
+    }
+
+    protected List<Component> getAllComponents(MarkupContainer parent) {
+        final List<Component> list = new ArrayList<Component>();
+        Visits.visitChildren(parent, new IVisitor<Component, Void>() {
+            public void component(final Component component, final IVisit<Void> visit) {
+                list.add(component);
+            }
+        });
+        return list;
     }
 }

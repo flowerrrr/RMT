@@ -14,17 +14,28 @@ import org.wicketstuff.jsr303.PropertyValidation;
  * Assumes:
  * - model containing domain object is a LoadableDetachableModel. Needed to avoid
  * serializing domain objects to the page store.
+ *
  * @author flowerrrr
  */
 public abstract class EntityForm<T> extends Form<T> {
 
+    public EntityForm(String id, T entity) {
+        super(id, new CompoundPropertyModel<T>(entity));
+        Check.notNull(entity);
+        init();
+    }
+
     public EntityForm(String id, IModel<T> model) {
         super(id, new CompoundPropertyModel<T>(model));
         Check.notNull(model);
+        init();
+    }
+
+    private void init() {
 
         add(new FormFeedbackPanel());
 
-        add(new MyAjaxSubmitLink("saveButton") {
+        add(new MyAjaxSubmitLink("submitButton") {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 onBeforeValidation((T) form.getModelObject());
@@ -48,5 +59,4 @@ public abstract class EntityForm<T> extends Form<T> {
     }
 
     protected abstract void onSubmit(AjaxRequestTarget target, Form<T> form);
-
 }
