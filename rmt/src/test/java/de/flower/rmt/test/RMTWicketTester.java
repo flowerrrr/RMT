@@ -262,10 +262,12 @@ public class RMTWicketTester extends WicketTester {
      * Iterates through all components and looks for one with given name
      */
     protected Component findComponent(String name, boolean wantVisibleInHierarchy) {
-        ArrayList<Component> list = new ArrayList<Component>();
-        for (Component c : getAllComponents(getLastRenderedPage())) {
-            if (c.getId().equals(name)) {
-                list.add(c);
+        ArrayList<RMTWicketTesterHelper.ComponentData> list = new ArrayList<RMTWicketTesterHelper.ComponentData>();
+        for (final RMTWicketTesterHelper.ComponentData obj : RMTWicketTesterHelper.getComponentData(getLastRenderedPage(), false)) {
+            if (obj.component.getId().equals(name)) {
+                list.add(obj);
+            } else if (obj.path.endsWith(name)) {
+                list.add(obj);
             }
         }
         if (list.isEmpty()) {
@@ -276,9 +278,9 @@ public class RMTWicketTester extends WicketTester {
             debugComponentTrees();
             fail("name: '" + name + "' is ambiguous for page: " + Classes.simpleName(getLastRenderedPage().getClass()));
         }
-        Component c = list.get(0);
-        if (!wantVisibleInHierarchy || c.isVisibleInHierarchy()) {
-            return c;
+        RMTWicketTesterHelper.ComponentData c = list.get(0);
+        if (!wantVisibleInHierarchy || c.component.isVisibleInHierarchy()) {
+            return c.component;
         } else {
             return null;
         }

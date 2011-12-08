@@ -19,23 +19,28 @@ import java.util.List;
  */
 public class RMTWicketTesterHelper {
 
+    public static class ComponentData extends WicketTesterHelper.ComponentData {
+
+        public Component component;
+    }
+
     /**
      * Gets recursively all <code>Component</code>s of a given <code>Page</code>, extracts the
      * information relevant to us, and adds them to a <code>List</code>.
      *
-     * @param page the <code>Page</code> to analyze
+     * @param page            the <code>Page</code> to analyze
      * @param readModelValues if true the model values of the components are accessed.
-     *          WARNING: might lead to unexpected sideeffects. Method should only be called at end of unit tests
-     *          when this flag is set.
+     *                        WARNING: might lead to unexpected sideeffects. Method should only be called at end of unit tests
+     *                        when this flag is set.
      * @return a <code>List</code> of <code>Component</code> data objects
      */
-    public static List<WicketTesterHelper.ComponentData> getComponentData(final Page page, final boolean readModelValues) {
-        final List<WicketTesterHelper.ComponentData> data = new ArrayList<WicketTesterHelper.ComponentData>();
+    public static List<ComponentData> getComponentData(final Page page, final boolean readModelValues) {
+        final List<ComponentData> data = new ArrayList<ComponentData>();
 
         if (page != null) {
             page.visitChildren(new IVisitor<Component, Void>() {
                 public void component(final Component component, final IVisit<Void> visit) {
-                    final WicketTesterHelper.ComponentData object = new WicketTesterHelper.ComponentData();
+                    final ComponentData object = new ComponentData();
 
                     // anonymous class? Get the parent's class name
                     String name = component.getClass().getName();
@@ -49,17 +54,15 @@ public class RMTWicketTesterHelper {
                     object.path = component.getPageRelativePath();
                     object.type = name;
                     if (readModelValues) {
-                        try
-                        {
+                        try {
                             object.value = component.getDefaultModelObjectAsString();
-                        }
-                        catch (Exception e)
-                        {
+                        } catch (Exception e) {
                             object.value = e.getMessage();
                         }
                     } else {
                         object.value = "<not read>";
                     }
+                    object.component = component;
                     data.add(object);
                 }
             });
