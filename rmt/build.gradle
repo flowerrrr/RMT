@@ -13,9 +13,9 @@ configurations {
 }
 
 // version properties
-// version_spring = "3.0.6.RELEASE"
 version_spring = "3.0.6.RELEASE"
-version_wicket = "1.5.1"
+version_spring_security = "3.0.7.RELEASE"
+version_wicket = "1.5.3"
 version_hibernate = "3.6.7.Final"
 version_scala = "2.9.1"
 
@@ -24,7 +24,7 @@ dependencies {
     compile(
             'org.springframework:spring-core:' + version_spring,
             'org.springframework:spring-context:' + version_spring,
-            'org.springframework.security:spring-security-web:' + version_spring,
+            'org.springframework.security:spring-security-web:' + version_spring_security,
             'org.apache.wicket:wicket-core:' + version_wicket,
             'org.apache.wicket:wicket-extensions:' + version_wicket,
             'org.apache.wicket:wicket-spring:' + version_wicket,
@@ -33,7 +33,7 @@ dependencies {
             'org.wicketstuff:wicketstuff-jsr303:1.5.0',
             'org.hibernate:hibernate-validator:4.2.0.Final',
             'org.hibernate:hibernate-entitymanager:' + version_hibernate,
-            'org.springframework.data:spring-data-jpa:1.0.1.RELEASE',
+            'org.springframework.data:spring-data-jpa:1.0.2.RELEASE',
             'org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final',
             'org.hibernate:hibernate-core:' + version_hibernate,
             'commons-beanutils:commons-beanutils:1.8.3',
@@ -54,8 +54,8 @@ dependencies {
             'commons-dbcp:commons-dbcp:1.4',
             'org.hibernate:hibernate-core:' + version_hibernate,
             'mysql:mysql-connector-java:5.1.16',
-            'org.springframework.security:spring-security-web:' + version_spring,
-            'org.springframework.security:spring-security-config:' + version_spring
+            'org.springframework.security:spring-security-web:' + version_spring_security,
+            'org.springframework.security:spring-security-config:' + version_spring_security
     )
     provided(
 

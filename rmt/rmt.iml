@@ -167,22 +167,22 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-web/jars/spring-security-web-3.0.6.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-web/jars/spring-security-web-3.0.7.RELEASE.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-web/sources/spring-security-web-3.0.6.RELEASE-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-web/sources/spring-security-web-3.0.7.RELEASE-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-core/jars/spring-security-core-3.0.6.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-core/jars/spring-security-core-3.0.7.RELEASE.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-core/sources/spring-security-core-3.0.6.RELEASE-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-core/sources/spring-security-core-3.0.7.RELEASE-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -233,26 +233,26 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-core/jars/wicket-core-1.5.1.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-core/jars/wicket-core-1.5.3.jar!/" />
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-core/javadocs/wicket-core-1.5.1-javadoc.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-core/javadocs/wicket-core-1.5.3-javadoc.jar!/" />
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-core/sources/wicket-core-1.5.1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-core/sources/wicket-core-1.5.3-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-util/jars/wicket-util-1.5.1.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-util/jars/wicket-util-1.5.3.jar!/" />
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-util/javadocs/wicket-util-1.5.1-javadoc.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-util/javadocs/wicket-util-1.5.3-javadoc.jar!/" />
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-util/sources/wicket-util-1.5.1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-util/sources/wicket-util-1.5.3-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -272,52 +272,52 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-request/jars/wicket-request-1.5.1.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-request/jars/wicket-request-1.5.3.jar!/" />
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-request/javadocs/wicket-request-1.5.1-javadoc.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-request/javadocs/wicket-request-1.5.3-javadoc.jar!/" />
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-request/sources/wicket-request-1.5.1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-request/sources/wicket-request-1.5.3-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-extensions/jars/wicket-extensions-1.5.1.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-extensions/jars/wicket-extensions-1.5.3.jar!/" />
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-extensions/javadocs/wicket-extensions-1.5.1-javadoc.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-extensions/javadocs/wicket-extensions-1.5.3-javadoc.jar!/" />
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-extensions/sources/wicket-extensions-1.5.1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-extensions/sources/wicket-extensions-1.5.3-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-spring/jars/wicket-spring-1.5.1.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-spring/jars/wicket-spring-1.5.3.jar!/" />
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-spring/javadocs/wicket-spring-1.5.1-javadoc.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-spring/javadocs/wicket-spring-1.5.3-javadoc.jar!/" />
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-spring/sources/wicket-spring-1.5.1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-spring/sources/wicket-spring-1.5.3-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-ioc/jars/wicket-ioc-1.5.1.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-ioc/jars/wicket-ioc-1.5.3.jar!/" />
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-ioc/javadocs/wicket-ioc-1.5.1-javadoc.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-ioc/javadocs/wicket-ioc-1.5.3-javadoc.jar!/" />
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-ioc/sources/wicket-ioc-1.5.1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-ioc/sources/wicket-ioc-1.5.3-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -346,13 +346,13 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-datetime/jars/wicket-datetime-1.5.1.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-datetime/jars/wicket-datetime-1.5.3.jar!/" />
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-datetime/javadocs/wicket-datetime-1.5.1-javadoc.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-datetime/javadocs/wicket-datetime-1.5.3-javadoc.jar!/" />
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-datetime/sources/wicket-datetime-1.5.1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-datetime/sources/wicket-datetime-1.5.3-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -372,13 +372,13 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-devutils/jars/wicket-devutils-1.5.1.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-devutils/jars/wicket-devutils-1.5.3.jar!/" />
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-devutils/javadocs/wicket-devutils-1.5.1-javadoc.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-devutils/javadocs/wicket-devutils-1.5.3-javadoc.jar!/" />
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-devutils/sources/wicket-devutils-1.5.1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-devutils/sources/wicket-devutils-1.5.3-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -525,11 +525,11 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.data/spring-data-jpa/jars/spring-data-jpa-1.0.1.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.data/spring-data-jpa/jars/spring-data-jpa-1.0.2.RELEASE.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.data/spring-data-jpa/sources/spring-data-jpa-1.0.1.RELEASE-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.data/spring-data-jpa/sources/spring-data-jpa-1.0.2.RELEASE-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -753,19 +753,6 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.jasypt/jasypt/jars/jasypt-1.8.jar!/" />
-        </CLASSES>
-        <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.jasypt/jasypt/javadocs/jasypt-1.8-javadoc.jar!/" />
-        </JAVADOC>
-        <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.jasypt/jasypt/sources/jasypt-1.8-sources.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
     <orderEntry type="module-library" exported="" scope="RUNTIME">
       <library>
         <CLASSES>
@@ -817,11 +804,11 @@
     <orderEntry type="module-library" exported="" scope="RUNTIME">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-config/jars/spring-security-config-3.0.6.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-config/jars/spring-security-config-3.0.7.RELEASE.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-config/sources/spring-security-config-3.0.6.RELEASE-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-config/sources/spring-security-config-3.0.7.RELEASE-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
