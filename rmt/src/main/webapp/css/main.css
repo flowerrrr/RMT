@@ -114,6 +114,30 @@ input[type="checkbox"] + label {
 }
 
 /*************************************************************************
+   tabbed panel
+   use bootstrap styling on wicket tabbed panels
+**************************************************************************/
+.tab-row {
+    clear: both;
+    ul {
+        .tabs;
+    }
+    .selected > a, .selected > a:hover {
+        -moz-border-bottom-colors: none;
+        -moz-border-image: none;
+        -moz-border-left-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-top-colors: none;
+        background-color: #FFFFFF;
+        border-color: #DDDDDD #DDDDDD transparent;
+        border-style: solid;
+        border-width: 1px;
+        color: #808080;
+        cursor: default;
+    }
+}
+
+/*************************************************************************
    form styling
 **************************************************************************/
 form .alert-message {
