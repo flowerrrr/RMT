@@ -13,7 +13,7 @@ public interface ITeamManager {
 
     void save(Team entity);
 
-    Team findById(Long id);
+    Team loadById(Long id);
 
     List<Team> findAll();
 

@@ -27,7 +27,7 @@ public class VenueModel extends AbstractEntityModel<Venue> {
 
     @Override
     protected Venue load(Long id) {
-        return manager.findById(id);
+        return manager.loadById(id);
     }
 
     @Override

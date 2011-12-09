@@ -2,7 +2,6 @@ package de.flower.rmt.service;
 
 import de.flower.common.service.security.IPasswordGenerator;
 import de.flower.common.util.Check;
-import de.flower.common.validation.util.Validation;
 import de.flower.rmt.model.Role;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.model.User;
@@ -47,7 +46,7 @@ public class UserManager extends AbstractService implements IUserManager {
     private Validator validator;
 
     @Override
-    public User findById(Long id) {
+    public User loadById(Long id) {
         return Check.notNull(userRepo.findOne(id));
     }
 
@@ -116,8 +115,8 @@ public class UserManager extends AbstractService implements IUserManager {
     @Override
     public void updatePassword(final Long userId, Password password) {
         Check.notNull(userId);
-        User user = findById(userId);
-        Validation.validate(validator, password);
+        User user = loadById(userId);
+        validate(password);
         user.setInitialPassword(null);
         user.setEncryptedPassword(encodePassword(password.getNewPassword()));
     }

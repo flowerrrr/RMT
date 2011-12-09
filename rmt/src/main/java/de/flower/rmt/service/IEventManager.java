@@ -14,7 +14,7 @@ public interface IEventManager {
 
     void save(Event entity);
 
-    Event findById(Long id, Attribute... attributes);
+    Event loadById(Long id, Attribute... attributes);
 
     List<Event> findAll();
 

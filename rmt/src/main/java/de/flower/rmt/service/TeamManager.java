@@ -5,7 +5,6 @@ import de.flower.rmt.model.*;
 import de.flower.rmt.repository.IPlayerRepo;
 import de.flower.rmt.repository.ITeamRepo;
 import de.flower.rmt.repository.IUserRepo;
-import de.flower.rmt.repository.Specs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -13,7 +12,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.criteria.*;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author flowerrrr
@@ -38,8 +38,8 @@ public class TeamManager extends AbstractService implements ITeamManager {
     }
 
     @Override
-    public Team findById(Long id) {
-        return teamRepo.findOne(id);
+    public Team loadById(Long id) {
+        return Check.notNull(teamRepo.findOne(id));
     }
 
     @Override

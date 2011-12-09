@@ -31,12 +31,12 @@ public class ResponseManager extends AbstractService implements IResponseManager
     @Override
     public Response newInstance(final Event event) {
         Player player = playerManager.findByEventAndUser(event, securityService.getCurrentUser());
-        return new Response(event, player);
+        return new Response(event, Check.notNull(player));
     }
 
     @Override
-    public Response findById(final Long id) {
-        return responseRepo.findOne(id);
+    public Response loadById(final Long id) {
+        return Check.notNull(responseRepo.findOne(id));
     }
 
     @Override

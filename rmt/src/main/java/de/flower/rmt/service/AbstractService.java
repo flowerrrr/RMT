@@ -1,6 +1,5 @@
 package de.flower.rmt.service;
 
-import de.flower.common.model.IEntity;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.AbstractClubRelatedEntity;
 import de.flower.rmt.model.Club;
@@ -13,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
-
 import java.util.Set;
 
 import static de.flower.common.util.Check.*;
@@ -49,7 +47,7 @@ public abstract class AbstractService {
         }
     }
 
-    protected void validate(IEntity entity) {
+    protected void validate(Object entity) {
 
         final Set<?> violations = validator.validate(entity);
         if (!violations.isEmpty()) {

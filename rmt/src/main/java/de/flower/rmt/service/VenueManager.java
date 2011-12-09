@@ -1,5 +1,6 @@
 package de.flower.rmt.service;
 
+import de.flower.common.util.Check;
 import de.flower.rmt.model.Venue;
 import de.flower.rmt.model.Venue_;
 import de.flower.rmt.repository.IVenueRepo;
@@ -30,8 +31,8 @@ public class VenueManager extends AbstractService implements IVenueManager {
     }
 
     @Override
-    public Venue findById(Long id) {
-        return venueRepo.findOne(id);
+    public Venue loadById(Long id) {
+        return Check.notNull(venueRepo.findOne(id));
     }
 
     @Override

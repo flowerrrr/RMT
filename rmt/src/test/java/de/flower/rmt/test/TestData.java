@@ -112,7 +112,7 @@ public class TestData {
         event.setTime(LocalTime.now());
         event.setSummary("Summary");
         event.setTeam(getOrCreateTeamWithPlayer(teamName));
-        event.setVenue(venueManager.findById(1L));
+        event.setVenue(venueManager.loadById(1L));
         eventManager.save(event);
         return event;
     }

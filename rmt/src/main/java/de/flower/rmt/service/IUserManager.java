@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface IUserManager {
 
-    User findById(Long id);
+    User loadById(Long id);
 
     User findByUsername(String username);
 

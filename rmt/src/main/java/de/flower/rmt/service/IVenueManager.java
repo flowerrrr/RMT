@@ -14,7 +14,7 @@ public interface IVenueManager {
 
     void delete(Venue venue);
 
-    Venue findById(Long id);
+    Venue loadById(Long id);
 
     List<Venue> findAll(Attribute... attributes);
 

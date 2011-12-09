@@ -23,7 +23,7 @@ public class PasswordValidator implements IBeanValidator {
     @Override
     public boolean isValid(final Object bean) {
         Password password = (Password) bean;
-        User user = userManager.findById(password.getUserId());
+        User user = userManager.loadById(password.getUserId());
         return passwordEncoder.isPasswordValid(user.getEncryptedPassword(), password.getOldPassword(), null);
     }
 }

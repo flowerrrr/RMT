@@ -32,7 +32,7 @@ public class ResponseModel extends AbstractEntityModel<Response> {
 
     @Override
     protected Response load(Long id) {
-        return manager.findById(id);
+        return manager.loadById(id);
     }
 
     @Override

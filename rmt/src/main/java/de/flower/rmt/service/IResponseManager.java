@@ -15,7 +15,7 @@ public interface IResponseManager {
 
     Response newInstance(Event event);
 
-    Response findById(Long id);
+    Response loadById(Long id);
 
     List<Response> findByEventAndStatus(Event event, RSVPStatus rsvpStatus);
 

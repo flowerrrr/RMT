@@ -39,7 +39,7 @@ public class EventModel extends AbstractEntityModel<Event> {
 
     @Override
     protected Event load(Long id) {
-        return manager.findById(id);
+        return manager.loadById(id);
     }
 
     @Override

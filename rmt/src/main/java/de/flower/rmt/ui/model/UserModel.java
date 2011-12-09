@@ -27,7 +27,7 @@ public class UserModel extends AbstractEntityModel<User> {
 
     @Override
     protected User load(Long id) {
-        return manager.findById(id);
+        return manager.loadById(id);
     }
 
     @Override

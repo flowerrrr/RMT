@@ -27,7 +27,7 @@ public class TeamModel extends AbstractEntityModel<Team> {
 
     @Override
     protected Team load(Long id) {
-        return manager.findById(id);
+        return manager.loadById(id);
     }
 
     @Override
