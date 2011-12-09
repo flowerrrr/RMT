@@ -1,7 +1,7 @@
 package de.flower.rmt.service.validation;
 
 import de.flower.rmt.model.User;
-import de.flower.rmt.service.type.Password;
+import de.flower.rmt.model.type.Password;
 import de.flower.rmt.test.AbstractIntegrationTests;
 import org.testng.annotations.Test;
 

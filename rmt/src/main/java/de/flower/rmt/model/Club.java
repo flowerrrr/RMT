@@ -1,10 +1,12 @@
 package de.flower.rmt.model;
 
 import de.flower.common.model.AbstractBaseEntity;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 /**
@@ -14,6 +16,8 @@ import java.util.List;
 public class Club extends AbstractBaseEntity {
 
     @Column
+    @NotBlank
+    @Size(max = 50)
     private String name;
 
     @OneToMany(mappedBy = "club")

@@ -1,4 +1,4 @@
-package de.flower.rmt.service.type;
+package de.flower.rmt.model.type;
 
 import de.flower.common.validation.spring.BeanAssert;
 import de.flower.rmt.service.validation.PasswordValidator;
@@ -10,6 +10,8 @@ import javax.validation.groups.Default;
 import java.io.Serializable;
 
 /**
+ * Model class for usage in password-change form.
+ *
  * @author flowerrrr
  */
 @ScriptAssert(script = "_this.isEqualPasswords()",

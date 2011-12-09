@@ -6,9 +6,7 @@ import de.flower.rmt.model.event.Event;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @author flowerrrr
@@ -33,6 +31,7 @@ public class Response extends AbstractBaseEntity {
     private String managerComment;
 
     @Column
+    @Size(max = 50)
     private String guestName;
 
     @ManyToOne

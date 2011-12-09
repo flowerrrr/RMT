@@ -1,8 +1,8 @@
 package de.flower.rmt.ui.player.page.account;
 
 import de.flower.rmt.model.User;
+import de.flower.rmt.model.type.Password;
 import de.flower.rmt.service.IUserManager;
-import de.flower.rmt.service.type.Password;
 import de.flower.rmt.ui.common.form.EntityForm;
 import de.flower.rmt.ui.common.form.field.TextFieldPanel;
 import de.flower.rmt.ui.common.panel.BasePanel;

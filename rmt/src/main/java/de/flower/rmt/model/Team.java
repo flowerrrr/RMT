@@ -20,7 +20,7 @@ import java.util.List;
 public class Team extends AbstractClubRelatedEntity  {
 
     @NotBlank
-    @Size(max = 40)
+    @Size(max = 50)
     @Column
     private String name;
 

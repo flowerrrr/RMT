@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.player.page.account;
 
 import de.flower.rmt.model.User;
-import de.flower.rmt.service.type.Password;
+import de.flower.rmt.model.type.Password;
 import de.flower.rmt.test.AbstractWicketTests;
 import de.flower.rmt.ui.model.UserModel;
 import org.apache.wicket.model.ResourceModel;

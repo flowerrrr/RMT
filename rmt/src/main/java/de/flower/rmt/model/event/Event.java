@@ -1,10 +1,8 @@
 package de.flower.rmt.model.event;
 
-import de.flower.common.util.Check;
 import de.flower.rmt.model.*;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
-import org.joda.time.DateMidnight;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 
@@ -51,7 +49,7 @@ public class Event extends AbstractClubRelatedEntity {
     private LocalTime time;
 
     @Column
-    @NotBlank @Size(max = 40)
+    @NotBlank @Size(max = 50)
     private String summary;
 
     @Column @Size(max = 255)

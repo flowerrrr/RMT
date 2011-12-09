@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.validation.groups.Default;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,7 @@ import java.util.List;
 public class User extends AbstractClubRelatedEntity {
 
     @NotBlank
+    @Size(max = 80)
     @Email
     // need to be  named 'username' to satisfy spring security
     @Column(name = "username")
@@ -36,6 +38,7 @@ public class User extends AbstractClubRelatedEntity {
      * Encrypted password.
      */
     @NotBlank
+    @Size(max = 50)
     // need to be named 'password' to satisfy spring security
     @Column(name = "password")
     private String encryptedPassword;
@@ -44,6 +47,8 @@ public class User extends AbstractClubRelatedEntity {
      * Initial password set by system when user is created (or password is reset).
      * When the user changes his password this value is cleared.
      */
+    @NotBlank
+    @Size(max = 50)
     @Column
     private String initialPassword;
 
@@ -55,6 +60,7 @@ public class User extends AbstractClubRelatedEntity {
     private List<Role> roles = new ArrayList<Role>();
 
     @NotBlank
+    @Size(max = 50)
     @Column
     private String fullname;
 

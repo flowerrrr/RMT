@@ -19,7 +19,7 @@ import javax.validation.constraints.Size;
 public class Opponent extends AbstractBaseEntity {
 
     @NotBlank
-    @Size(max = 40)
+    @Size(max = 50)
     @Column
     private String name;
 
