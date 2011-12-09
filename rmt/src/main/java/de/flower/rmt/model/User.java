@@ -47,7 +47,6 @@ public class User extends AbstractClubRelatedEntity {
      * Initial password set by system when user is created (or password is reset).
      * When the user changes his password this value is cleared.
      */
-    @NotBlank
     @Size(max = 50)
     @Column
     private String initialPassword;

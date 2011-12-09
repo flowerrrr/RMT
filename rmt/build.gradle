@@ -24,6 +24,7 @@ dependencies {
     compile(
             'org.springframework:spring-core:' + version_spring,
             'org.springframework:spring-context:' + version_spring,
+            'org.springframework:spring-context-support:' + version_spring,
             'org.springframework.security:spring-security-web:' + version_spring_security,
             'org.apache.wicket:wicket-core:' + version_wicket,
             'org.apache.wicket:wicket-extensions:' + version_wicket,
@@ -48,6 +49,7 @@ dependencies {
             'joda-time:joda-time-hibernate:1.3',
             'org.joda:joda-convert:1.1',
             'com.thoughtworks.xstream:xstream:1.4.1',
+            'javax.mail:mail:1.4.4',
     )
     runtime(
             'org.slf4j:jcl-over-slf4j:1.6.2',
@@ -94,6 +96,7 @@ sourceSets.test.scala.srcDirs('/src/test/java')
  */
 test {
     useTestNG()
+    exclude '**/*ManualTest.*'
 }
 
 /**

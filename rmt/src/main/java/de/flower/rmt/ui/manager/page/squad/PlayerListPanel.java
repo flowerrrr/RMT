@@ -10,7 +10,7 @@ import de.flower.rmt.service.IPlayerManager;
 import de.flower.rmt.service.ITeamManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.common.panel.DropDownMenuPanel;
-import de.flower.rmt.ui.manager.page.players.PlayerEditPage;
+import de.flower.rmt.ui.manager.page.player.PlayerEditPage;
 import de.flower.rmt.ui.model.UserModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;

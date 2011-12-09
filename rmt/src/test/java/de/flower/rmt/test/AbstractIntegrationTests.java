@@ -13,6 +13,7 @@ import de.flower.rmt.repository.ITeamRepo;
 import de.flower.rmt.repository.IUserRepo;
 import de.flower.rmt.service.*;
 import de.flower.rmt.service.geocoding.IGeocodingService;
+import de.flower.rmt.service.mail.IMailService;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -96,6 +97,9 @@ public class AbstractIntegrationTests extends AbstractTestNGSpringContextTests {
 
     @Autowired
     protected IGeocodingService geocodingService;
+
+    @Autowired
+    protected IMailService mailService;
 
     @Autowired
     protected SecurityContextHolderStrategy securityContextHolderStrategy;

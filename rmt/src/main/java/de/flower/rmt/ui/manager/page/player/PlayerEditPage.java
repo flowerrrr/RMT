@@ -1,7 +1,8 @@
-package de.flower.rmt.ui.manager.page.players;
+package de.flower.rmt.ui.manager.page.player;
 
 import de.flower.rmt.model.User;
 import de.flower.rmt.ui.manager.ManagerBasePage;
+import de.flower.rmt.ui.manager.page.players.PlayersPage;
 import de.flower.rmt.ui.model.UserModel;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;

@@ -167,6 +167,17 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-context-support/jars/spring-context-support-3.0.6.RELEASE.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-context-support/sources/spring-context-support-3.0.6.RELEASE-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
           <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-web/jars/spring-security-web-3.0.7.RELEASE.jar!/" />
         </CLASSES>
         <JAVADOC />
@@ -340,7 +351,9 @@
           <root url="jar://$USER_HOME$/.gradle/cache/asm/asm/jars/asm-3.1.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/cache/asm/asm/sources/asm-3.1-sources.jar!/" />
+        </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
@@ -750,6 +763,28 @@
         </JAVADOC>
         <SOURCES>
           <root url="jar://$USER_HOME$/.gradle/cache/xpp3/xpp3_min/sources/xpp3_min-1.1.4c-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/cache/javax.mail/mail/jars/mail-1.4.4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/cache/javax.mail/mail/sources/mail-1.4.4-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/cache/javax.activation/activation/jars/activation-1.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/cache/javax.activation/activation/sources/activation-1.1-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>

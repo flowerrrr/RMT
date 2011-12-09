@@ -71,6 +71,9 @@
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/xmlpull/xmlpull/jars/xmlpull-1.1.3.1.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/xpp3/xpp3_min/jars/xpp3_min-1.1.4c.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/com.thoughtworks.xstream/xstream/jars/xstream-1.4.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/javax.activation/activation/jars/activation-1.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/javax.mail/mail/jars/mail-1.4.4.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-context-support/jars/spring-context-support-3.0.6.RELEASE.jar" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="rmt/web/Web" />
