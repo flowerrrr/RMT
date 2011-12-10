@@ -18,6 +18,7 @@
       <entry name="?*.tld" />
       <entry name="?*.ftl" />
       <entry name="?*.js" />
+      <entry name="!?*.java" />
     </wildcardResourcePatterns>
     <annotationProcessing enabled="true" useClasspath="true">
       <processor name="org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor" options="" />

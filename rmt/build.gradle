@@ -50,6 +50,7 @@ dependencies {
             'org.joda:joda-convert:1.1',
             'com.thoughtworks.xstream:xstream:1.4.1',
             'javax.mail:mail:1.4.4',
+            'org.apache.velocity:velocity:1.7',
     )
     runtime(
             'org.slf4j:jcl-over-slf4j:1.6.2',

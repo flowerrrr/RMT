@@ -4,7 +4,6 @@ import de.flower.rmt.model.User;
 import de.flower.rmt.ui.manager.ManagerBasePage;
 import de.flower.rmt.ui.manager.page.players.PlayersPage;
 import de.flower.rmt.ui.model.UserModel;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
 
 /**
@@ -25,7 +24,7 @@ public class PlayerEditPage extends ManagerBasePage {
                 setResponsePage(PlayersPage.class);
             }
         });
-        addSecondaryPanel(new Label("foobar", "Put something useful here"));
+        addSecondaryPanel(new ResetPasswordPanel(model));
     }
 
     @Override

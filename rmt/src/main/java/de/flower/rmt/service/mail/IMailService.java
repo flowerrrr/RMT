@@ -5,6 +5,6 @@ package de.flower.rmt.service.mail;
  */
 public interface IMailService {
 
-    void sendMail(String replyTo, String receiver, String subject, String body);
+    void sendMail(String receiver, String subject, String body);
 
 }

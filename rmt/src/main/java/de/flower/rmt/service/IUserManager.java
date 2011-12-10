@@ -38,7 +38,7 @@ public interface IUserManager {
      */
     User newInstance();
 
-    void resetPassword(User user);
+    void resetPassword(User user, final boolean sendMail);
 
     void updatePassword(Long userId, Password password);
 }

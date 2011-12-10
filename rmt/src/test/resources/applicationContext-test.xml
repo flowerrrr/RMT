@@ -15,10 +15,13 @@
     <import resource="applicationContext-security.xml"/>
 
 
-    <context:component-scan base-package="de.flower.test" />
+    <context:component-scan base-package="de.flower.common.test" />
     <context:component-scan base-package="de.flower.rmt.test" />
-    <!--  &lt;!&ndash; for detecting wicketApplication &ndash;&gt;
-        <context:annotation-config/>
-        <context:component-scan base-package="de.flower.rmt.ui"/>
-    -->
+
+    <!-- overriding mailsender to avoid sending mails by unit tests -->
+    <bean id="mailSender" class="de.flower.common.test.mock.MockMailSender" >
+
+    </bean>
+
+
 </beans>

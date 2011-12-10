@@ -1,0 +1,10 @@
+This is a test template.
+Time: $u.time
+Date: $u.date
+Hostname: $u.hostname
+
+AppTitle: $u.appTitle
+AppUrl: $u.appUrl
+Admin: $u.adminAddress
+
+Foo: $bar

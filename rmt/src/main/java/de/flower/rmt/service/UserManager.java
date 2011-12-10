@@ -10,6 +10,7 @@ import de.flower.rmt.model.type.Password;
 import de.flower.rmt.repository.IRoleRepo;
 import de.flower.rmt.repository.IUserRepo;
 import de.flower.rmt.repository.Specs;
+import de.flower.rmt.service.mail.INotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
@@ -41,6 +42,9 @@ public class UserManager extends AbstractService implements IUserManager {
 
     @Autowired
     private IPasswordGenerator passwordGenerator;
+
+    @Autowired
+    private INotificationService notificationService;
 
     @Autowired
     private Validator validator;
@@ -101,8 +105,11 @@ public class UserManager extends AbstractService implements IUserManager {
 
     @Override
     @Transactional(readOnly = false)
-    public void resetPassword(final User user) {
+    public void resetPassword(final User user, final boolean sendMail) {
         initPassword(user);
+        if (sendMail) {
+            notificationService.sendResetPasswordMail(user);
+        }
         userRepo.save(user);
     }
 

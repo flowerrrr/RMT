@@ -2,7 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:annotation-config/>
@@ -13,20 +15,43 @@
     <!-- Spring Mail support -->
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
         <property name="host" value="${mail.smtp.host}"/>
-        <property name="username" value="${mail.smtp.username}" />
-        <property name="password" value="${mail.smtp.password}" />
+        <property name="username" value="${mail.smtp.username}"/>
+        <property name="password" value="${mail.smtp.password}"/>
         <property name="javaMailProperties">
-             <props>
-                 <!-- required for using authentication. simply setting username is not sufficient. -->
-                 <prop key="mail.smtp.auth">true</prop>
-             </props>
+            <props>
+                <!-- required for using authentication. simply setting username is not sufficient. -->
+                <prop key="mail.smtp.auth">true</prop>
+            </props>
         </property>
     </bean>
 
     <!-- this is a template message that we can pre-load with default state -->
     <bean id="templateMessage" class="org.springframework.mail.SimpleMailMessage">
         <property name="from" value="${mail.default.sender}"/>
-        <property name="replyTo" value="no-reply@flower.de" />
+        <property name="replyTo" value="${mail.default.replyto}"/>
     </bean>
+
+    <!--  velocity engine for rendering emails, sms. -->
+    <bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+        <property name="resourceLoaderPath"
+                  value="classpath:/de/flower/rmt/service/mail/templates"/>
+        <!-- needed for testing with classpath templates that reside in different file locations but same package. -->
+        <property name="preferFileSystemAccess" value="false" />
+        <property name="velocityProperties">
+            <!-- specify the file encodiing used in our templates. -->
+            <props>
+                <prop key="input.encoding">UTF-8</prop>
+                <prop key="runtime.references.strict">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- defaults for template service -->
+    <util:map id="templateDefaults">
+        <entry key="appTitle" value="${app.title}" />
+        <entry key="adminAddress" value="${admin.address}" />
+        <entry key="appUrl" value="${app.url}" />
+    </util:map>
+
 
 </beans>

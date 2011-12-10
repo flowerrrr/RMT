@@ -14,6 +14,9 @@ import de.flower.rmt.repository.IUserRepo;
 import de.flower.rmt.service.*;
 import de.flower.rmt.service.geocoding.IGeocodingService;
 import de.flower.rmt.service.mail.IMailService;
+import de.flower.rmt.service.mail.INotificationService;
+import de.flower.rmt.service.mail.ITemplateService;
+import de.flower.rmt.service.security.ISecurityService;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -100,6 +103,15 @@ public class AbstractIntegrationTests extends AbstractTestNGSpringContextTests {
 
     @Autowired
     protected IMailService mailService;
+
+    @Autowired
+    protected ITemplateService templateService;
+
+    @Autowired
+    protected INotificationService notificationService;
+
+    @Autowired
+    protected ISecurityService securityService;
 
     @Autowired
     protected SecurityContextHolderStrategy securityContextHolderStrategy;

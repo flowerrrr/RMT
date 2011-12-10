@@ -17,7 +17,7 @@ public class PasswordValidatorTest extends AbstractIntegrationTests {
 
     @Test
     public void testValidation() {
-        User user = testData.createUsers(1).get(0);
+        User user = testData.createUser();
         Password password = new Password(user.getId());
         String newPassword = "foobar";
         password.setNewPassword(newPassword);

@@ -1,5 +1,7 @@
 package de.flower.rmt.service.mail;
 
+import de.flower.rmt.model.User;
+import de.flower.rmt.service.security.ISecurityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +27,12 @@ public class MailService implements IMailService {
     @Autowired
     private MailSender mailSender;
 
+    @Autowired
+    private ISecurityService securityService;
+
     @Override
-    public void sendMail(final String replyTo, final String receiver, final String subject, final String content) {
-        sendMail(null, replyTo, Arrays.asList(new String[]{receiver}), null, subject, content, null);
+    public void sendMail(final String receiver, final String subject, final String content) {
+        sendMail(null, getReplyTo(), Arrays.asList(new String[]{receiver}), null, subject, content, null);
     }
 
     /**
@@ -59,13 +64,24 @@ public class MailService implements IMailService {
         }
         msg.setSubject(subject);
         msg.setText(content);
-        try{
+        try {
             this.mailSender.send(msg);
-        }
-        catch(MailException e) {
+        } catch (MailException e) {
             log.error("Error sending mail.", e);
             throw new RuntimeException(e);
         }
     }
 
+    /**
+     * Preset reply-to address with email of user that is triggering the email.
+     * @return
+     */
+    private String getReplyTo() {
+        User user = securityService.getCurrentUser();
+        if (user != null) {
+            return user.getEmail();
+        } else {
+            return null;
+        }
+    }
 }

@@ -59,6 +59,17 @@ class UserManagerTest extends AbstractIntegrationTests with Assertions {
         assertTrue(users.isEmpty())
     }
 
+    @Test
+    def testResetPassword() {
+        var user = testData.createUser();
+        user.setInitialPassword(null);
+        userRepo.save(user);
+        userManager.resetPassword(user, true);
+        // now reload user and assert that new password has been generated
+        user = userManager.loadById(user.getId());
+        assertNotNull(user.getInitialPassword());
+    }
+
 
 
 }

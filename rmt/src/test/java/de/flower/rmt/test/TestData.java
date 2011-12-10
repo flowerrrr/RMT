@@ -90,6 +90,10 @@ public class TestData {
         return team;
     }
 
+    public User createUser() {
+        return createUsers(1).get(0);
+    }
+
     public List<User> createUsers(int count) {
         List<User> users=new ArrayList<User>();
         for (int i = 0; i < count; i++) {

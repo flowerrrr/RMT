@@ -23,7 +23,7 @@ public class AccountPasswordPanelTest extends AbstractWicketTests {
 
     @Test
     public void testValidation() {
-        User user = testData.createUsers(1).get(0);
+        User user = testData.createUser();
         wicketTester.startComponentInPage(new AccountPasswordPanel("panel", new UserModel(user)));
         wicketTester.dumpComponentWithPage();
         FormTester formTester = wicketTester.newFormTester("form");
