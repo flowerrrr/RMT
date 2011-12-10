@@ -1,0 +1,14 @@
+Der Club-Manager $manager.getName() hat für Sie ein Benutzerkonto
+im Rückmelde-Tool erstellt. Sie sind nun Spieler des Clubs $club und
+können sich für die Veranstaltungen des Clubs eintragen.
+
+Ihre Zugangsdaten lauten:
+
+Username: $user.getUsername()
+Password: $user.getInitialPassword()
+
+URL: $u.appUrl
+
+Hinweis: Bitte ändern Sie das Passwort unmittelbar nach der Anmeldung.
+
+#parse('Footer.vm')

@@ -8,4 +8,6 @@ import de.flower.rmt.model.User;
 public interface INotificationService {
 
     void sendResetPasswordMail(User user);
+
+    void sendInvitationNewUser(User user);
 }

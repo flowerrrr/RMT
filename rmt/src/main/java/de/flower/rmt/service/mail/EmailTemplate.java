@@ -5,22 +5,14 @@ package de.flower.rmt.service.mail;
  */
 public enum EmailTemplate {
 
-    PASSWORD_RESET("PasswordReset.content.vm", "PasswordReset.subject.vm");
-
-    private String content;
-
-    private String subject;
-
-    EmailTemplate(final String content, String subject) {
-        this.content = content;
-        this.subject = subject;
-    }
+    PASSWORD_RESET,
+    INVITATION_NEWUSER;
 
     public String getContent() {
-        return content;
+        return (this.name() + ".content.vm").toLowerCase()  ;
     }
 
    public String getSubject() {
-        return subject;
+       return (this.name() + ".subject.vm").toLowerCase()  ;
     }
 }
