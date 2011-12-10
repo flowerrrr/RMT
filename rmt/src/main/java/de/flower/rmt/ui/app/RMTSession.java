@@ -8,12 +8,18 @@ import org.apache.wicket.protocol.http.WebSession;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author flowerrrr
  */
 public class RMTSession extends WebSession {
 
     private LatLng latLng;
+
+    private Map<String, Serializable> sessionMap = new HashMap<String, Serializable>();
 
     @SpringBean
     private ISecurityService securityService;
@@ -45,5 +51,9 @@ public class RMTSession extends WebSession {
 
     public User getUser() {
         return securityService.getCurrentUser();
+    }
+
+    public Map<String, Serializable> getSessionMap() {
+        return sessionMap;
     }
 }

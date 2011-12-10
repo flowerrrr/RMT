@@ -15,6 +15,8 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
 
     public AbstractBaseLayoutPage(final IModel<?> model) {
         super(model);
+
+        add(new WelcomeMessagesPanel());
     }
 
     protected void addHeading(String headingResourceKey) {

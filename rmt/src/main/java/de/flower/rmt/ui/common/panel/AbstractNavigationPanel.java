@@ -1,6 +1,7 @@
 package de.flower.rmt.ui.common.panel;
 
 import de.flower.rmt.ui.common.page.INavigationPanelAware;
+import de.flower.rmt.ui.common.page.account.AccountPage;
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -15,6 +16,7 @@ public class AbstractNavigationPanel extends BasePanel {
     public AbstractNavigationPanel() {
         super("navigationPanel");
 
+        add(new BookmarkablePageLink("account", AccountPage.class));
         add(new LogoutLink("logoutLink"));
         add(new Label("user", getUser().getFullname()));
 

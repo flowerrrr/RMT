@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.player.page.account;
+package de.flower.rmt.ui.common.page.account;
 
 import de.flower.rmt.test.AbstractWicketTests;
 import org.testng.annotations.Test;

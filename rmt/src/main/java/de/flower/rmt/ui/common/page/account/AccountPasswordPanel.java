@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.player.page.account;
+package de.flower.rmt.ui.common.page.account;
 
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.type.Password;

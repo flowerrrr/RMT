@@ -4,6 +4,7 @@ import de.flower.common.ui.serialize.Filter;
 import de.flower.common.ui.serialize.LoggingSerializer;
 import de.flower.common.ui.serialize.SerializerWrapper;
 import de.flower.rmt.model.RSVPStatus;
+import de.flower.rmt.ui.common.page.account.AccountPage;
 import de.flower.rmt.ui.common.page.login.LoginPage;
 import de.flower.rmt.ui.manager.ManagerHomePage;
 import de.flower.rmt.ui.manager.page.events.EventsPage;
@@ -66,8 +67,9 @@ public class RMTApplication extends WebApplication {
         mountPage("manager/events", EventsPage.class);
         mountPage("manager/opponents", OpponentsPage.class);
         mountPage("manager/venues", VenuesPage.class);
+        mountPage("player", de.flower.rmt.ui.player.page.events.EventsPage.class);
         mountPage("player/events", de.flower.rmt.ui.player.page.events.EventsPage.class);
-        mountPage("player/account", de.flower.rmt.ui.player.page.account.AccountPage.class);
+        mountPage("common/account", AccountPage.class);
         mountPage("login", LoginPage.class);
     }
 

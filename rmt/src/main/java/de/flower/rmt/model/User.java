@@ -174,6 +174,10 @@ public class User extends AbstractClubRelatedEntity {
         this.initialPassword = initialPassword;
     }
 
+    public boolean hasInitialPassword() {
+        return initialPassword != null;
+    }
+
     public boolean isInvitationSent() {
         return invitationSent;
     }
