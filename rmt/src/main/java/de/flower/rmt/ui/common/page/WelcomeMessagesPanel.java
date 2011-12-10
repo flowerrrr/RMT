@@ -4,6 +4,8 @@ import de.flower.rmt.ui.app.RMTSession;
 import de.flower.rmt.ui.common.page.account.AccountPage;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.Component;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.link.Link;
 
@@ -28,6 +30,13 @@ public class WelcomeMessagesPanel extends BasePanel {
                         // dismiss message for this session
                         setHideMessage(PASSWORD_CHANGE_MESSAGE, true);
                         setResponsePage(AccountPage.class);
+                    }
+                });
+                add(new AjaxLink("closeButton") {
+                    @Override
+                    public void onClick(final AjaxRequestTarget target) {
+                        setHideMessage(PASSWORD_CHANGE_MESSAGE, true);
+                        target.add(WelcomeMessagesPanel.this);
                     }
                 });
             }

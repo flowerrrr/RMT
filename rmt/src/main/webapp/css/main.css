@@ -217,6 +217,24 @@ a.menu:after, .dropdown-toggle:after {
     padding-left: 5px;
 }
 
+/*************************************************************************
+    welcome messages
+**************************************************************************/
+.welcome-message {
+    overflow: auto;
+
+    div:first-child {
+        float: left;
+    }
+    div:last-child {
+        float: right;
+    }
+
+    .close {
+        margin-left: 10px;
+        line-height: normal;
+    }
+}
 
 /*************************************************************************
     football icon with dropdown menu on white background
