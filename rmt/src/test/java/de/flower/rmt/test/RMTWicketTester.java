@@ -5,6 +5,7 @@ import de.flower.common.ui.Css;
 import de.flower.common.ui.serialize.Filter;
 import de.flower.common.ui.serialize.LoggingSerializer;
 import de.flower.rmt.model.RSVPStatus;
+import de.flower.rmt.model.type.Password;
 import junit.framework.AssertionFailedError;
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
@@ -46,6 +47,7 @@ public class RMTWicketTester extends WicketTester {
     public RMTWicketTester(final WebApplication application) {
         super(application);
         filter.addExclusion(RSVPStatus.class.getName());
+        filter.addExclusion(Password.class.getName());
     }
 
     /**

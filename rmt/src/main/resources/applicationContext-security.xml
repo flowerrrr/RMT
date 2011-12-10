@@ -17,7 +17,7 @@
     <security:http create-session="ifRequired" auto-config="true">
         <security:remember-me key="remember-me-key-v-1"/>
         <security:intercept-url pattern="/manager/**" access="ROLE_MANAGER"/>
-        <security:intercept-url pattern="/player/**" access="ROLE_PLAYER"/>
+        <security:intercept-url pattern="/player/**" access="ROLE_MANAGER,ROLE_PLAYER"/>
         <security:form-login login-page="/login" authentication-failure-url="/login?error=1"/>
         <security:logout logout-success-url="/"/>
     </security:http>

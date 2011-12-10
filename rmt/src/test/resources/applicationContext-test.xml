@@ -11,7 +11,6 @@
             location="classpath:application.properties,
     classpath:credentials.properties,
     classpath:application-test.properties"
-            ignore-resource-not-found="true"
             />
 
     <import resource="applicationContext-base.xml"/>
