@@ -19,33 +19,49 @@ public class ResetPasswordPanel extends BasePanel<User> {
     @SpringBean
     private IUserManager userManager;
 
-    private boolean success = false;
+    private boolean showFeedbackContainer = false;
 
     public ResetPasswordPanel(final IModel<User> model) {
         super(model);
-        add(new AjaxLink("resetButton") {
+
+        final WebMarkupContainer resetContainer = new WebMarkupContainer("resetContainer") {
+            @Override
+            public boolean isVisible() {
+                return !showFeedbackContainer;
+            }
+        };
+        add(resetContainer);
+        resetContainer.add(new AjaxLink("resetButton") {
 
             @Override
             public void onClick(final AjaxRequestTarget target) {
                 userManager.resetPassword(model.getObject(), true);
-                success = true;
+                showFeedbackContainer = true;
                 target.add(ResetPasswordPanel.this);
             }
         });
-        WebMarkupContainer container = new WebMarkupContainer("feedbackContainer") {
+
+        final WebMarkupContainer feedbackContainer = new WebMarkupContainer("feedbackContainer") {
             @Override
             public boolean isVisible() {
-                return success;
+                return showFeedbackContainer;
             }
         };
-        add(container);
-        container.add(new Label("emailAddress", model.getObject().getEmail()));
-        container.add(new Label("newPassword", new AbstractReadOnlyModel<String>() {
+        add(feedbackContainer);
+        feedbackContainer.add(new Label("emailAddress", model.getObject().getEmail()));
+        feedbackContainer.add(new Label("newPassword", new AbstractReadOnlyModel<String>() {
             @Override
             public String getObject() {
                 return model.getObject().getInitialPassword();
             }
         }));
-
+        feedbackContainer.add(new AjaxLink("okButton") {
+            @Override
+            public void onClick(final AjaxRequestTarget target) {
+                // hide feedbackContainer
+                showFeedbackContainer = false;
+                target.add(ResetPasswordPanel.this);
+            }
+        });
     }
 }

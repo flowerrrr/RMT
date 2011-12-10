@@ -20,6 +20,7 @@ public class ResetPasswordPanelTest extends AbstractWicketTests {
         wicketTester.dumpComponentWithPage();
         wicketTester.assertVisible("feedbackContainer");
         wicketTester.assertContains(user.getEmail());
-
+        wicketTester.clickLink("okButton");
+        wicketTester.assertInvisible("feedbackContainer");
     }
 }
