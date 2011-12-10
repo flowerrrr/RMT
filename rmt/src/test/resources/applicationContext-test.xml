@@ -7,7 +7,12 @@
 
     <!-- append test properties file. properties in this file will override
          properties in above file. -->
-    <context:property-placeholder location="classpath:application.properties,classpath:localhost.properties,classpath:application-test.properties"/>
+    <context:property-placeholder
+            location="classpath:application.properties,
+    classpath:credentials.properties,
+    classpath:application-test.properties"
+            ignore-resource-not-found="true"
+            />
 
     <import resource="applicationContext-base.xml"/>
     <import resource="applicationContext-dao.xml"/>
@@ -15,11 +20,11 @@
     <import resource="applicationContext-security.xml"/>
 
 
-    <context:component-scan base-package="de.flower.common.test" />
-    <context:component-scan base-package="de.flower.rmt.test" />
+    <context:component-scan base-package="de.flower.common.test"/>
+    <context:component-scan base-package="de.flower.rmt.test"/>
 
     <!-- overriding mailsender to avoid sending mails by unit tests -->
-    <bean id="mailSender" class="de.flower.common.test.mock.MockMailSender" >
+    <bean id="mailSender" class="de.flower.common.test.mock.MockMailSender">
 
     </bean>
 

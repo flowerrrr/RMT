@@ -15,3 +15,5 @@
 /rmt/src/test/database/data/export.xml
 /.metadata
 /twitter-bootstrap
+/rmt/src/main/resources-target/dev/credentials.properties
+/rmt/src/main/resources-target/prod/credentials.properties
