@@ -15,12 +15,9 @@ public class ResetPasswordPanelTest extends AbstractWicketTests {
         User user = testData.createUser();
         wicketTester.startComponentInPage(new ResetPasswordPanel(new UserModel(user)));
         wicketTester.dumpComponentWithPage();
-        wicketTester.assertInvisible("feedbackContainer");
         wicketTester.clickLink("resetButton");
         wicketTester.dumpComponentWithPage();
-        wicketTester.assertVisible("feedbackContainer");
+        wicketTester.assertVisible("feedbackul");
         wicketTester.assertContains(user.getEmail());
-        wicketTester.clickLink("okButton");
-        wicketTester.assertInvisible("feedbackContainer");
     }
 }

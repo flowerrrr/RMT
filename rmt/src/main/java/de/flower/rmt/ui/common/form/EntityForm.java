@@ -41,8 +41,10 @@ public abstract class EntityForm<T> extends Form<T> {
                 onBeforeValidation((T) form.getModelObject());
                 if (!new BeanValidator(form).isValid(form.getModelObject())) {
                     onError(target, form);
+                    target.add(EntityForm.this);
                 } else {
                     EntityForm.this.onSubmit(target, (Form<T>) form);
+                    target.add(EntityForm.this);
                 }
             }
         });

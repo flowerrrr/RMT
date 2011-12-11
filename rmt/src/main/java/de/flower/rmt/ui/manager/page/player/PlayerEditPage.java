@@ -5,7 +5,6 @@ import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.rmt.model.User;
 import de.flower.rmt.service.IUserManager;
 import de.flower.rmt.ui.manager.ManagerBasePage;
-import de.flower.rmt.ui.manager.page.players.PlayersPage;
 import de.flower.rmt.ui.model.UserModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -26,18 +25,12 @@ public class PlayerEditPage extends ManagerBasePage {
         super(model);
         // initialize model object if it is not set
         addHeading("manager.player.edit.heading", null);
-        addMainPanel(new PlayerEditPanel(model) {
-            @Override
-            protected void onClose() {
-                setResponsePage(PlayersPage.class);
-            }
-        });
+        addMainPanel(new PlayerEditPanel(model));
 
         final SendInvitationPanel sendInvitationPanel = new SendInvitationPanel(model) {
             @Override
             public boolean isVisible() {
-                return isShowFeedbackContainer() ||
-                        (!model.getObject().isNew()
+                return (!model.getObject().isNew()
                         && !model.getObject().isInvitationSent()
                         && model.getObject().getInitialPassword() != null);
             }
@@ -48,7 +41,7 @@ public class PlayerEditPage extends ManagerBasePage {
             public boolean isVisible() {
                 // only show if existing user is edited.
                 // never show no invitation mail has been sent. doesn't make sense to display both panels.
-                return !model.getObject().isNew() && !sendInvitationPanel.isVisible();
+                return !model.getObject().isNew();
             }
         };
         addSecondaryPanel(sendInvitationPanel, resetPasswordPanel);

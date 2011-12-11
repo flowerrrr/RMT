@@ -111,6 +111,7 @@ input[type="checkbox"] + label {
 .secondary > div:not(:last-child) {
     border-bottom: 1px solid #CCCCCC;
     margin-bottom: 20px;
+    padding-bottom: 20px;
 }
 
 /*************************************************************************
@@ -191,6 +192,14 @@ form div.clearfix.error {
 
 .alert-message li {
     color: #FFFFFF;
+}
+
+// non-form feedback message
+.simple-feedback-panel {
+    ul {
+        // correct default bootstrap margin
+        margin-bottom: 0px;
+    }
 }
 
 /*************************************************************************

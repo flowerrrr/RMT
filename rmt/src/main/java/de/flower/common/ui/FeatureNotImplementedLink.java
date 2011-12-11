@@ -17,5 +17,6 @@ public class FeatureNotImplementedLink extends Link {
     @Override
     public void onClick() {
         // will never be called
+        throw new IllegalStateException();
     }
 }

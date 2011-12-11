@@ -16,10 +16,7 @@ public class SendInvitationPanelTest extends AbstractWicketTests {
         User user = testData.createUser();
         wicketTester.startComponentInPage(new SendInvitationPanel(new UserModel(user)));
         wicketTester.dumpComponentWithPage();
-        wicketTester.assertVisible("invitationContainer");
-        wicketTester.assertInvisible("feedbackContainer");
         wicketTester.clickLink("sendButton");
-        wicketTester.assertInvisible("invitationContainer");
-        wicketTester.assertVisible("feedbackContainer");
+        wicketTester.assertVisible("feedbackul");
     }
 }

@@ -9,26 +9,15 @@
         <wicket:message key="manager.player.invitation.heading"/>
     </h4>
 
-    <div wicket:id="invitationContainer">
-        <p>
-            <wicket:message key="manager.player.invitation.text"/>
-        </p>
+    <div wicket:id="simpleFeedbackPanel">[Your action has been performed.]</div>
 
-        <a wicket:id="sendButton" class="btn primary">
-            <wicket:message key="button.send.invitation"/>
-        </a>
-    </div>
+    <p>
+        <wicket:message key="manager.player.invitation.text"/>
+    </p>
 
-    <div wicket:id="feedbackContainer">
-        <p>
-            <wicket:message key="manager.player.invitation.success">
-                [An invitation mail has been send to the user]
-            </wicket:message>
-        </p>
-        <a wicket:id="okButton" class="btn primary">
-            <wicket:message key="button.ok"/>
-        </a>
-    </div>
+    <a wicket:id="sendButton" class="btn primary">
+        <wicket:message key="button.send.invitation"/>
+    </a>
 
 </wicket:panel>
 </body>

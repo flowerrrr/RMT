@@ -28,7 +28,6 @@ public class AccountPasswordPanel extends BasePanel {
             @Override
             protected void onSubmit(final AjaxRequestTarget target, final Form<Password> form) {
                 userManager.updatePassword(model.getObject().getId(), form.getModelObject());
-                target.add(form);
             }
         };
         add(form);

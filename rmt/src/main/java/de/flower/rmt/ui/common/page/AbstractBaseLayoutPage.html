@@ -11,20 +11,24 @@
     <div class="container">
 
         <div class="content">
+
             <div wicket:id="welcomeMessagesPanel">
                 Welcome to the Rückmelde-Tool. Please change your password as soon as possible.
             </div>
 
             <div class="page-header">
-                <h1><span wicket:id="heading" /></h1>
-                <wicket:enclosure><h1><small><span wicket:id="subheading" /></small></h1></wicket:enclosure>
+                <h1><span wicket:id="heading"/></h1>
+                <wicket:enclosure>
+                    <h1>
+                        <small><span wicket:id="subheading"/></small>
+                    </h1>
+                </wicket:enclosure>
             </div>
             <div class="row">
                 <div class="span10 main">
-                    <div wicket:id="mainPanel" />
+                    <div wicket:id="mainPanel"/>
                 </div>
-                <div class="span4 secondary">
-                    <div wicket:id="secondaryPanel" />
+                <div wicket:id="secondaryPanel" class="span4 secondary">
                 </div>
             </div>
         </div>
@@ -35,7 +39,7 @@
         <p>&copy; flower 2011</p>
     </footer>
 
- </wicket:extend>
+</wicket:extend>
 
 
 </body>

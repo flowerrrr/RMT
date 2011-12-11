@@ -4,7 +4,6 @@ import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.rmt.model.User;
 import de.flower.rmt.service.IUserManager;
-import de.flower.rmt.ui.common.form.CancelableEntityForm;
 import de.flower.rmt.ui.common.form.EntityForm;
 import de.flower.rmt.ui.common.form.field.TextFieldPanel;
 import de.flower.rmt.ui.common.panel.BasePanel;
@@ -24,18 +23,13 @@ public class PlayerEditPanel extends BasePanel {
 
     public PlayerEditPanel(IModel<User> model) {
 
-        EntityForm<User> form = new CancelableEntityForm<User>("form", model) {
+        EntityForm<User> form = new EntityForm<User>("form", model) {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<User> form) {
                 User user = form.getModelObject();
                 boolean isNew = user.isNew();
                 playerManager.save(user);
                 target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(User.class), AjaxEvent.EntityUpdated(User.class)));
-                if (isNew) {
-                    // stay on page and display invitation panel
-                } else {
-                    onClose();
-                }
             }
         };
         add(form);
