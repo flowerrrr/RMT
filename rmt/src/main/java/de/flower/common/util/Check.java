@@ -7,11 +7,11 @@ import org.apache.commons.lang3.Validate;
  */
 public class Check extends Validate {
 
-    public static void isEqual(Object actual, Object expected) {
+    public static void isEqual(Object actual, Object expected, String message) {
         notNull(expected);
         notNull(actual);
         if (!expected.equals(actual)) {
-            throw new IllegalArgumentException(format(actual, expected, null));
+            throw new IllegalArgumentException(format(actual, expected, message));
         }
     }
 

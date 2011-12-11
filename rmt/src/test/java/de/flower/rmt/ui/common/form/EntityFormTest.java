@@ -1,9 +1,10 @@
 package de.flower.rmt.ui.common.form;
 
+import de.flower.common.test.StringUtils;
+import de.flower.common.test.wicket.WicketTesterHelper;
 import de.flower.common.ui.ajax.AjaxSubmitLink;
 import de.flower.rmt.test.AbstractWicketTests;
 import de.flower.rmt.test.Assert;
-import de.flower.rmt.test.StringUtils;
 import de.flower.rmt.ui.common.form.field.TextFieldPanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.feedback.FeedbackMessage;
@@ -119,7 +120,7 @@ public class EntityFormTest extends AbstractWicketTests {
 
         @Override
         public Markup getAssociatedMarkup() {
-            return Markup.of("<html><body>\n"
+            return WicketTesterHelper.creatPageMarkup("<html><body>\n"
                     + "<form wicket:id='form'>\n"
                     + "<div wicket:id='formFeedbackPanel' />"
                     // can use whatever tag we like, since only the body is rendered
@@ -127,7 +128,7 @@ public class EntityFormTest extends AbstractWicketTests {
                     + "<wicket:container wicket:id='password' labelKey='label.name' />\n"
                     + "<a wicket:id='submitButton' >save</a>"
                     + "</form>\n"
-                    + "</body></html>");
+                    + "</body></html>", this);
         }
     }
 

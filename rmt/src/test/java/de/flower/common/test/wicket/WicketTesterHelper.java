@@ -1,9 +1,14 @@
-package de.flower.rmt.test;
+package de.flower.common.test.wicket;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.Page;
+import org.apache.wicket.markup.ContainerInfo;
+import org.apache.wicket.markup.Markup;
+import org.apache.wicket.markup.MarkupParser;
+import org.apache.wicket.markup.MarkupResourceStream;
+import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.util.resource.StringResourceStream;
 import org.apache.wicket.util.string.Strings;
-import org.apache.wicket.util.tester.WicketTesterHelper;
 import org.apache.wicket.util.visit.IVisit;
 import org.apache.wicket.util.visit.IVisitor;
 
@@ -17,9 +22,9 @@ import java.util.List;
  *
  * @author flowerrrr
  */
-public class RMTWicketTesterHelper {
+public class WicketTesterHelper {
 
-    public static class ComponentData extends WicketTesterHelper.ComponentData {
+    public static class ComponentData extends org.apache.wicket.util.tester.WicketTesterHelper.ComponentData {
 
         public Component component;
     }
@@ -69,4 +74,32 @@ public class RMTWicketTesterHelper {
         }
         return data;
     }
+
+    /**
+     * Create markup based on a string.
+     *
+     * Replacement for Markup.of(string). Markup.of(string) has issues with header contribution,
+     * the markup parser does not add HtmlHeaderSectionHandler to the parsers filter list.
+     *
+     * @param html
+     * @param testPage
+     * @return
+     */
+    public static Markup creatPageMarkup(final String html, final WebPage page) {
+
+        final ContainerInfo containerInfo = new ContainerInfo(page);
+        MarkupResourceStream markupResourceStream = new MarkupResourceStream(
+                new StringResourceStream(html), containerInfo, page.getClass());
+        MarkupParser markupParser = page.getApplication().getMarkupSettings()
+            .getMarkupFactory()
+            .newMarkupParser(markupResourceStream);
+        try {
+            Markup markup = markupParser.parse();
+            return markup;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }

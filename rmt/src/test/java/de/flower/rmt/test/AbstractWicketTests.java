@@ -1,5 +1,8 @@
 package de.flower.rmt.test;
 
+import de.flower.common.test.wicket.WicketTester;
+import de.flower.rmt.model.RSVPStatus;
+import de.flower.rmt.model.type.Password;
 import de.flower.rmt.ui.app.TestApplication;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.mockito.Mockito;
@@ -13,7 +16,7 @@ import org.testng.annotations.BeforeMethod;
 
 public abstract class AbstractWicketTests extends AbstractIntegrationTests {
 
-    protected RMTWicketTester wicketTester = null;
+    protected WicketTester wicketTester = null;
 
     protected WebApplication createWebApp(ApplicationContext ctx) {
         return new TestApplication(ctx);
@@ -31,7 +34,11 @@ public abstract class AbstractWicketTests extends AbstractIntegrationTests {
 
     private void createTester(ApplicationContext ctx) {
         WebApplication webApp = createWebApp(ctx);
-        wicketTester = new RMTWicketTester(webApp);
+        wicketTester = new WicketTester(webApp);
+        wicketTester.getLoggingSerializerFilter().addInclusion("\"de\\.flower\\.rmt\\.model\\.[^-]*?\"");
+        wicketTester.getLoggingSerializerFilter().addExclusion(RSVPStatus.class.getName());
+        wicketTester.getLoggingSerializerFilter().addExclusion(Password.class.getName());
+
     }
 
     public abstract void testRender();

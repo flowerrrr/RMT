@@ -4,6 +4,7 @@ import de.flower.common.ui.ajax.AjaxLinkWithConfirmation;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
+import de.flower.common.ui.tooltips.TwipsyBehavior;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.User_;
 import de.flower.rmt.service.IUserManager;
@@ -51,6 +52,18 @@ public class PlayerListPanel extends BasePanel {
                 Component manager;
                 item.add(manager = new WebMarkupContainer("manager"));
                 manager.setVisible(player.isManager());
+
+                Link sendInvitiationLink = new Link("sendInvitationLink") {
+                    @Override
+                    public void onClick() {
+                        setResponsePage(new PlayerEditPage(new UserModel(item.getModel())));
+                    }
+                };
+                sendInvitiationLink.setVisible(!player.isInvitationSent());
+                item.add(sendInvitiationLink);
+                sendInvitiationLink.add(new TwipsyBehavior(new ResourceModel("manager.players.tooltip.invitiation.not.send")));
+
+                // now the dropdown menu
                 DropDownMenuPanel menuPanel = new DropDownMenuPanel();
                 menuPanel.add(new Link("editButton") {
                     @Override
@@ -66,7 +79,6 @@ public class PlayerListPanel extends BasePanel {
                         playerManager.delete(item.getModelObject());
                         target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(User.class)));
                     }
-
                 });
                 deleteButton.setVisible(!securityService.isCurrentUser(player));
                 item.add(menuPanel);
@@ -75,7 +87,7 @@ public class PlayerListPanel extends BasePanel {
         playerListContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(User.class)));
     }
 
-     private IModel<List<User>> getPlayerListModel() {
+    private IModel<List<User>> getPlayerListModel() {
         return new LoadableDetachableModel<List<User>>() {
             @Override
             protected List<User> load() {
@@ -83,5 +95,4 @@ public class PlayerListPanel extends BasePanel {
             }
         };
     }
-
 }

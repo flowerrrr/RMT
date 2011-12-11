@@ -1,5 +1,6 @@
 package de.flower.rmt.ui.common.form.field;
 
+import de.flower.common.test.wicket.WicketTesterHelper;
 import de.flower.rmt.test.AbstractWicketTests;
 import org.apache.wicket.markup.Markup;
 import org.apache.wicket.markup.html.WebPage;
@@ -32,13 +33,13 @@ public class FormFieldPanelTest extends AbstractWicketTests {
         }
 
         public Markup getAssociatedMarkup() {
-            return Markup.of("<html><body>\n"
+            return WicketTesterHelper.creatPageMarkup("<html><body>\n"
                     + "<form wicket:id='form'>\n"
                     // can use whatever tag we like, since the tag is rewritten by the panel
                     + "<foobar wicket:id='name' labelKey='label.name' />\n"
                     + "<rmt:select wicket:id='time' labelKey='label.time' />\n"
                     + "</form>\n"
-                    + "</body></html>");
+                    + "</body></html>", this);
         }
     }
 

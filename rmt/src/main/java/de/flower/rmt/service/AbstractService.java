@@ -43,7 +43,7 @@ public abstract class AbstractService {
 
     protected void assertClub(AbstractClubRelatedEntity entity) {
         if (entity != null) {
-            Check.isEqual(entity.getClub(), getClub());
+            Check.isEqual(entity.getClub(), getClub(), null);
         }
     }
 

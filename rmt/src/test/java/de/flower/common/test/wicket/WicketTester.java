@@ -1,11 +1,10 @@
-package de.flower.rmt.test;
+package de.flower.common.test.wicket;
 
 import com.thoughtworks.xstream.converters.ConversionException;
+import de.flower.common.test.StringUtils;
 import de.flower.common.ui.Css;
 import de.flower.common.ui.serialize.Filter;
 import de.flower.common.ui.serialize.LoggingSerializer;
-import de.flower.rmt.model.RSVPStatus;
-import de.flower.rmt.model.type.Password;
 import junit.framework.AssertionFailedError;
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
@@ -16,8 +15,6 @@ import org.apache.wicket.protocol.http.mock.MockHttpServletRequest;
 import org.apache.wicket.request.IRequestHandler;
 import org.apache.wicket.util.lang.Classes;
 import org.apache.wicket.util.tester.FormTester;
-import org.apache.wicket.util.tester.WicketTester;
-import org.apache.wicket.util.tester.WicketTesterHelper;
 import org.apache.wicket.util.visit.IVisit;
 import org.apache.wicket.util.visit.IVisitor;
 import org.apache.wicket.util.visit.Visits;
@@ -34,24 +31,30 @@ import static org.testng.Assert.*;
  * @author flowerrrr
  */
 
-public class RMTWicketTester extends WicketTester {
+public class WicketTester extends org.apache.wicket.util.tester.WicketTester {
 
-    private final static Logger log = LoggerFactory.getLogger(RMTWicketTester.class);
+    private final static Logger log = LoggerFactory.getLogger(WicketTester.class);
 
-    private Filter filter = new Filter("\"de\\.flower\\.rmt\\.model\\.[^-]*?\"");
+    private Filter filter = new Filter();
 
     private LoggingSerializer loggingSerializer = new LoggingSerializer(filter);
 
     private boolean serializationCheck = true;
 
-    public RMTWicketTester(final WebApplication application) {
+    public WicketTester() {
+        super();
+    }
+
+    public WicketTester(final WebApplication application) {
         super(application);
-        filter.addExclusion(RSVPStatus.class.getName());
-        filter.addExclusion(Password.class.getName());
+    }
+
+    public Filter getLoggingSerializerFilter() {
+        return filter;
     }
 
     /**
-     * Gets the debug component trees. Same as {@link WicketTester#debugComponentTrees()}, only does not log output,
+     * Gets the debug component trees. Same as {@link org.apache.wicket.util.tester.WicketTester#debugComponentTrees()}, only does not log output,
      * rather returns it as a string.
      *
      * @return the debug component trees
@@ -62,7 +65,7 @@ public class RMTWicketTester extends WicketTester {
 
     public String getDebugComponentTrees(final String filter) {
         final StringBuilder s = new StringBuilder();
-        for (final WicketTesterHelper.ComponentData obj : RMTWicketTesterHelper.getComponentData(getLastRenderedPage(), false)) {
+        for (final org.apache.wicket.util.tester.WicketTesterHelper.ComponentData obj : WicketTesterHelper.getComponentData(getLastRenderedPage(), false)) {
             if (obj.path.matches(".*" + filter + ".*")) {
                 s.append("path\t").append(obj.path).append(" \t").append(obj.type).append(" \t[").append(obj.value)
                         .append("]\n");
@@ -157,7 +160,7 @@ public class RMTWicketTester extends WicketTester {
     public void assertErrorMessagesContains(final String... errorMessagesParts) {
         final List<String> actualMessages = getMessagesAsString(FeedbackMessage.ERROR);
         for (final String errorMesssagePart : errorMessagesParts) {
-            if (!de.flower.rmt.test.StringUtils.containedInAny(errorMesssagePart, actualMessages)) {
+            if (!StringUtils.containedInAny(errorMesssagePart, actualMessages)) {
                 log.info(actualMessages.toString());
                 fail("Error message part [" + errorMesssagePart + "] not found in any of the error messages["+ actualMessages.toString() + "].");
             }
@@ -264,8 +267,8 @@ public class RMTWicketTester extends WicketTester {
      * Iterates through all components and looks for one with given name
      */
     protected Component findComponent(String name, boolean wantVisibleInHierarchy) {
-        ArrayList<RMTWicketTesterHelper.ComponentData> list = new ArrayList<RMTWicketTesterHelper.ComponentData>();
-        for (final RMTWicketTesterHelper.ComponentData obj : RMTWicketTesterHelper.getComponentData(getLastRenderedPage(), false)) {
+        ArrayList<WicketTesterHelper.ComponentData> list = new ArrayList<WicketTesterHelper.ComponentData>();
+        for (final WicketTesterHelper.ComponentData obj : WicketTesterHelper.getComponentData(getLastRenderedPage(), false)) {
             if (obj.component.getId().equals(name)) {
                 list.add(obj);
             } else if (obj.path.endsWith(name)) {
@@ -280,7 +283,7 @@ public class RMTWicketTester extends WicketTester {
             debugComponentTrees();
             fail("name: '" + name + "' is ambiguous for page: " + Classes.simpleName(getLastRenderedPage().getClass()));
         }
-        RMTWicketTesterHelper.ComponentData c = list.get(0);
+        WicketTesterHelper.ComponentData c = list.get(0);
         if (!wantVisibleInHierarchy || c.component.isVisibleInHierarchy()) {
             return c.component;
         } else {

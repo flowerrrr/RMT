@@ -1,4 +1,4 @@
-package de.flower.rmt.test;
+package de.flower.common.test;
 
 import java.util.List;
 
