@@ -57,7 +57,7 @@ public class ResponseManager extends AbstractService implements IResponseManager
     public Response save(final Response response) {
         validate(response);
         // in case the status changes update the date of response.
-        if (!response.isTransient()) {
+        if (!response.isNew()) {
             Response origResponse = responseRepo.findOne(response.getId());
             if (origResponse.getStatus() != response.getStatus()) {
                 response.setDate(new Date());

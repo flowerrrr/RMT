@@ -2,6 +2,7 @@ package de.flower.rmt.ui.common.page;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 
@@ -12,6 +13,8 @@ import org.apache.wicket.model.ResourceModel;
  * @author flowerrrr
  */
 public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
+
+    private Panel secondaryPanel;
 
     public AbstractBaseLayoutPage(final IModel<?> model) {
         super(model);
@@ -44,7 +47,11 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
     }
 
     protected void addSecondaryPanel(Component ... components) {
-        add(new WrappingPanel("secondaryPanel", components));
+        secondaryPanel = new WrappingPanel("secondaryPanel", components);
+        add(secondaryPanel);
     }
 
+    public Panel getSecondaryPanel() {
+        return secondaryPanel;
+    }
 }

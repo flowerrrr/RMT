@@ -63,7 +63,7 @@ public final class RowCountChecker implements IRowCountChecker {
             condition = (condition == null) ? tmp : cb.and(condition, tmp);
         }
         // update on existing element? exclude the element itself
-        if (!entity.isTransient()) {
+        if (!entity.isNew()) {
             condition = cb.and(condition, cb.notEqual(root.<Long>get("id"), "" + entity.getId()));
         }
         query.where(condition);

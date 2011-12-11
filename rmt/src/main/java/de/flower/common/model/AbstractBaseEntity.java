@@ -40,7 +40,7 @@ public abstract class AbstractBaseEntity implements Serializable, IEntity, Clone
 	 * @return true, if checks if is transient
 	 */
 	@Override
-	public boolean isTransient() {
+	public boolean isNew() {
 		return (getId() == null);
 	}
 

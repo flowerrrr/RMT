@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd"
+      xmlns:rmt="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<wicket:panel>
+
+    <h4>
+        <wicket:message key="manager.player.invitation.heading"/>
+    </h4>
+
+    <div wicket:id="invitationContainer">
+        <p>
+            <wicket:message key="manager.player.invitation.text"/>
+        </p>
+
+        <a wicket:id="sendButton" class="btn primary">
+            <wicket:message key="button.send.invitation"/>
+        </a>
+    </div>
+
+    <div wicket:id="feedbackContainer">
+        <p>
+            <wicket:message key="manager.player.invitation.success">
+                [An invitation mail has been send to the user]
+            </wicket:message>
+        </p>
+        <a wicket:id="okButton" class="btn primary">
+            <wicket:message key="button.ok"/>
+        </a>
+    </div>
+
+</wicket:panel>
+</body>
+</html>

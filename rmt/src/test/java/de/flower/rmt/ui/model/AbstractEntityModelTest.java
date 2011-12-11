@@ -131,7 +131,7 @@ public class AbstractEntityModelTest {
         }
 
         @Override
-        public boolean isTransient() {
+        public boolean isNew() {
             return id == null;
         }
 

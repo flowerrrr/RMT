@@ -29,9 +29,15 @@ public class PlayerEditPanel extends BasePanel {
         EntityForm<User> form = new CancelableEntityForm<User>("form", model) {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<User> form) {
-                playerManager.save(form.getModelObject());
+                User user = form.getModelObject();
+                boolean isNew = user.isNew();
+                playerManager.save(user);
                 target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(User.class), AjaxEvent.EntityUpdated(User.class)));
-                onClose();
+                if (isNew) {
+                    // stay on page and display invitation panel
+                } else {
+                    onClose();
+                }
             }
         };
         add(form);

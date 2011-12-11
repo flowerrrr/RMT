@@ -179,7 +179,7 @@ public class User extends AbstractClubRelatedEntity {
     }
 
     public boolean isInvitationSent() {
-        return invitationSent;
+        return invitationSent != null && invitationSent;
     }
 
     public void setInvitationSent(final boolean invitationSent) {

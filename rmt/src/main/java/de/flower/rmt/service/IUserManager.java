@@ -41,4 +41,6 @@ public interface IUserManager {
     void resetPassword(User user, final boolean sendMail);
 
     void updatePassword(Long userId, Password password);
+
+    void sendInvitation(Long userId);
 }

@@ -63,7 +63,11 @@ public class UserManager extends AbstractService implements IUserManager {
     @Transactional(readOnly = false)
     public void save(User user) {
         // check that a role is assigned
-        notEmpty(user.getRoles(), "user has no role(s) assigned");
+        if (user.isNew()) {
+            notEmpty(user.getRoles(), "user has no role(s) assigned");
+        } else {
+            userRepo.reattach(user);
+        }
         userRepo.save(user);
         for (Role role : user.getRoles()) {
             roleRepo.save(role);
@@ -132,4 +136,12 @@ public class UserManager extends AbstractService implements IUserManager {
         return passwordEncoder.encodePassword(password, null);
     }
 
+    @Override
+    @Transactional(readOnly = false)
+    public void sendInvitation(Long userId) {
+        User user = loadById(userId);
+        notificationService.sendInvitationNewUser(user, securityService.getCurrentUser());
+        user.setInvitationSent(true);
+        userRepo.save(user);
+    }
 }

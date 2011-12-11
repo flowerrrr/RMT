@@ -27,4 +27,15 @@ public class NotificationService implements INotificationService {
         String content = templateService.mergeTemplate(EmailTemplate.PASSWORD_RESET.getContent(), model);
         mailService.sendMail(user.getEmail(), subject, content);
     }
+
+    @Override
+    public void sendInvitationNewUser(final User user, final User manager) {
+        Map<String, Object> model = new HashMap<String, Object>();
+        model.put("user", user);
+        model.put("manager", manager);
+        model.put("club", user.getClub());
+        String subject = templateService.mergeTemplate(EmailTemplate.INVITATION_NEWUSER.getSubject(), model);
+        String content = templateService.mergeTemplate(EmailTemplate.INVITATION_NEWUSER.getContent(), model);
+        mailService.sendMail(user.getEmail(), subject, content);
+    }
 }

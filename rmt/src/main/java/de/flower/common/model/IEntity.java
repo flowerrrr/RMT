@@ -6,7 +6,7 @@ package de.flower.common.model;
  */
 public interface IEntity {
 
-    boolean isTransient();
+    boolean isNew();
 
     Long getId();
 }
