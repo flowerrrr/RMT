@@ -2,8 +2,6 @@ package de.flower.rmt.ui.manager.page.player;
 
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
-import de.flower.common.validation.groups.IEmailUnique;
-import de.flower.common.validation.groups.INameUnique;
 import de.flower.rmt.model.User;
 import de.flower.rmt.service.IUserManager;
 import de.flower.rmt.ui.common.form.CancelableEntityForm;
@@ -44,9 +42,9 @@ public class PlayerEditPanel extends BasePanel {
 
         TextFieldPanel fullname = new TextFieldPanel("fullname");
         form.add(fullname);
-        fullname.addValidator(new FormComponentBeanValidator(INameUnique.class));
+        fullname.addValidator(new FormComponentBeanValidator(User.Validation.INameUnique.class));
         TextFieldPanel email = new TextFieldPanel("email");
         form.add(email);
-        email.addValidator(new FormComponentBeanValidator(IEmailUnique.class));
+        email.addValidator(new FormComponentBeanValidator(User.Validation.IEmailUnique.class));
     }
 }

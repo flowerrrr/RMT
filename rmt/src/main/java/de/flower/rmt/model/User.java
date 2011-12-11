@@ -1,7 +1,5 @@
 package de.flower.rmt.model;
 
-import de.flower.common.validation.groups.IEmailUnique;
-import de.flower.common.validation.groups.INameUnique;
 import de.flower.common.validation.unique.Unique;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
@@ -23,13 +21,25 @@ import java.util.List;
 })
 @Unique.List({
         @Unique(name = "fullname", clazz = User.class,
-                message = "{validation.unique.name}",
-                groups = {INameUnique.class, Default.class}), // need group Unique to be able to restrict bean validation to this validator
+                message = User.Validation.nameNotUniqueMessage,
+                groups = {User.Validation.INameUnique.class, Default.class}), // need group Unique to be able to restrict bean validation to this validator
         @Unique(name = "email", attributeNames = {"email"}, clazz = User.class,
-                message = "{validation.unique.email}",
-                groups = {IEmailUnique.class, Default.class})
+                message = User.Validation.emailNotUniqueMessage,
+                groups = {User.Validation.IEmailUnique.class, Default.class})
 })
 public class User extends AbstractClubRelatedEntity {
+
+    public static class Validation {
+
+        public interface INameUnique {}
+
+        public interface IEmailUnique {}
+
+        public final static String nameNotUniqueMessage = "{validation.unique.name}";
+
+        public final static String emailNotUniqueMessage = "{validation.unique.email}";
+
+    }
 
     @NotBlank
     @Size(max = 80)

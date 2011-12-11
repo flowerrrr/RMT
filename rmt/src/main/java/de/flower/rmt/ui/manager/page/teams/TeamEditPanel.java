@@ -2,7 +2,6 @@ package de.flower.rmt.ui.manager.page.teams;
 
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
-import de.flower.common.validation.groups.INameUnique;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.service.ITeamManager;
 import de.flower.rmt.ui.common.form.CancelableEntityForm;
@@ -39,7 +38,7 @@ public class TeamEditPanel extends BasePanel {
         TextFieldPanel name;
         form.add(name = new TextFieldPanel("name"));
         // add a class level validator to this property
-        name.addValidator(new FormComponentBeanValidator(INameUnique.class));
+        name.addValidator(new FormComponentBeanValidator(Team.Validation.INameUnique.class));
         form.add(new TextFieldPanel("url"));
     }
 

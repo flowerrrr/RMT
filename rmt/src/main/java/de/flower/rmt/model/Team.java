@@ -1,6 +1,5 @@
 package de.flower.rmt.model;
 
-import de.flower.common.validation.groups.INameUnique;
 import de.flower.common.validation.unique.Unique;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
@@ -16,8 +15,18 @@ import java.util.List;
  */
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(name = "name", columnNames = {"name", "club_id"}))
-@Unique(name = "name", clazz = Team.class, groups = { INameUnique.class, Default.class })
+@Unique(name = "name",
+        clazz = Team.class,
+        message = Team.Validation.nameNotUniqueMessage,
+        groups = { Team.Validation.INameUnique.class, Default.class })
 public class Team extends AbstractClubRelatedEntity  {
+
+    public static class Validation {
+
+        public interface INameUnique {}
+
+        public final static String nameNotUniqueMessage = "{validation.unique.name}";
+    }
 
     @NotBlank
     @Size(max = 50)
