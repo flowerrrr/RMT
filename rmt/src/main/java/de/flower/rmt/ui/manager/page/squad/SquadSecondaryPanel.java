@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.manager.page.squad;
 
-import de.flower.common.ui.ajax.MyAjaxLink;
+import de.flower.common.ui.ajax.AjaxLink;
 import de.flower.common.ui.ajax.panel.AjaxSlideTogglePanel;
 import de.flower.common.ui.js.JQuery;
 import de.flower.rmt.model.Team;
@@ -17,7 +17,7 @@ public class SquadSecondaryPanel extends BasePanel {
 
     public SquadSecondaryPanel(IModel<Team> model) {
 
-        final MyAjaxLink addButton = new MyAjaxLink("addButton") {
+        final AjaxLink addButton = new AjaxLink("addButton") {
 
             @Override
             public void onClick(AjaxRequestTarget target) {

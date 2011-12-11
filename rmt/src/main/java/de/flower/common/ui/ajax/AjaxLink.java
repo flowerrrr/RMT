@@ -1,19 +1,18 @@
 package de.flower.common.ui.ajax;
 
 import org.apache.wicket.ajax.IAjaxCallDecorator;
-import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.model.IModel;
 
 /**
  * @author flowerrrr
  */
-public abstract class MyAjaxLink<T> extends AjaxLink<T> {
+public abstract class AjaxLink<T> extends org.apache.wicket.ajax.markup.html.AjaxLink<T> {
 
-    public MyAjaxLink(String id) {
+    public AjaxLink(String id) {
         super(id);
     }
 
-    protected MyAjaxLink(String id, IModel<T> model) {
+    protected AjaxLink(String id, IModel<T> model) {
         super(id, model);
     }
 

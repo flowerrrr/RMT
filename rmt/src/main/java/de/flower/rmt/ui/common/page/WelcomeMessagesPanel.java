@@ -1,12 +1,12 @@
 package de.flower.rmt.ui.common.page;
 
+import de.flower.common.ui.ajax.AjaxLink;
 import de.flower.rmt.ui.app.RMTSession;
 import de.flower.rmt.ui.common.page.account.AccountMainPanel;
 import de.flower.rmt.ui.common.page.account.AccountPage;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.request.mapper.parameter.PageParameters;

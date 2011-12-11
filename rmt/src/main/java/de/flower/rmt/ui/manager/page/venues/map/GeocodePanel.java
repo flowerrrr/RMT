@@ -1,13 +1,12 @@
 package de.flower.rmt.ui.manager.page.venues.map;
 
-import de.flower.common.ui.ajax.MyAjaxSubmitLink;
+import de.flower.common.ui.ajax.AjaxLink;
+import de.flower.common.ui.ajax.AjaxSubmitLink;
 import de.flower.rmt.service.geocoding.GeocodingResult;
 import de.flower.rmt.service.geocoding.IGeocodingService;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.markup.html.AjaxLink;
-import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
@@ -77,8 +76,8 @@ public abstract class GeocodePanel extends BasePanel {
        // component to translate address into latlng
         // if multiple results are returned list them and let user choose. after choosing the marker
         // is set on the map. user can still choose other result.
-        AjaxSubmitLink geocodeButton;
-        add(geocodeButton = new MyAjaxSubmitLink("geocodeButton") {
+        org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink geocodeButton;
+        add(geocodeButton = new AjaxSubmitLink("geocodeButton") {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 String value = getAddress();

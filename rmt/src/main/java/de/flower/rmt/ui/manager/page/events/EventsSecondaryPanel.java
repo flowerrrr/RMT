@@ -1,13 +1,12 @@
 package de.flower.rmt.ui.manager.page.events;
 
-import de.flower.common.ui.ajax.MyAjaxLink;
+import de.flower.common.ui.ajax.AjaxLink;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.manager.page.event.EventEditPage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
@@ -32,7 +31,7 @@ public class EventsSecondaryPanel extends BasePanel {
         eventTypeSelectPanel.setOutputMarkupId(true);
         add(eventTypeSelectPanel);
 
-        final AjaxLink newButton = new MyAjaxLink("newButton") {
+        final org.apache.wicket.ajax.markup.html.AjaxLink newButton = new AjaxLink("newButton") {
            @Override
             public void onClick(AjaxRequestTarget target) {
                eventTypeSelectPanel.setVisible(true);

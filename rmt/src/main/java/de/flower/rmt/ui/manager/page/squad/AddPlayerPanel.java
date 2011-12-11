@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.manager.page.squad;
 
-import de.flower.common.ui.ajax.MyAjaxLink;
-import de.flower.common.ui.ajax.MyAjaxSubmitLink;
+import de.flower.common.ui.ajax.AjaxLink;
+import de.flower.common.ui.ajax.AjaxSubmitLink;
 import de.flower.common.ui.ajax.panel.AjaxSlideTogglePanel;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
@@ -64,7 +64,7 @@ public class AddPlayerPanel extends BasePanel<Team> {
 
         // add and cancel buttons
 
-        form.add(new MyAjaxSubmitLink("addButton") {
+        form.add(new AjaxSubmitLink("addButton") {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 teamManager.addPlayers(model.getObject(), selectedPlayers);
@@ -74,7 +74,7 @@ public class AddPlayerPanel extends BasePanel<Team> {
         });
 
 
-        form.add(new MyAjaxLink("cancelButton") {
+        form.add(new AjaxLink("cancelButton") {
             @Override
             public void onClick(AjaxRequestTarget target) {
                 close(target);

@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.common.form;
 
-import de.flower.common.ui.ajax.MyAjaxSubmitLink;
+import de.flower.common.ui.ajax.AjaxSubmitLink;
 import de.flower.common.util.Check;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.feedback.ComponentFeedbackMessageFilter;
@@ -35,7 +35,7 @@ public abstract class EntityForm<T> extends Form<T> {
 
         add(new FormFeedbackPanel(new ComponentFeedbackMessageFilter(this)));
 
-        add(new MyAjaxSubmitLink("submitButton") {
+        add(new AjaxSubmitLink("submitButton") {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 onBeforeValidation((T) form.getModelObject());

@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.common.form;
 
-import de.flower.common.ui.ajax.MyAjaxSubmitLink;
+import de.flower.common.ui.ajax.AjaxSubmitLink;
 import de.flower.rmt.test.AbstractWicketTests;
 import de.flower.rmt.test.Assert;
 import de.flower.rmt.test.StringUtils;
@@ -34,7 +34,7 @@ public class EntityFormTest extends AbstractWicketTests {
         wicketTester.dumpPage();
         wicketTester.debugComponentTrees();
         wicketTester.assertInvisible("hasErrors");
-        wicketTester.assertComponent("submitButton", MyAjaxSubmitLink.class);
+        wicketTester.assertComponent("submitButton", AjaxSubmitLink.class);
     }
 
     /**

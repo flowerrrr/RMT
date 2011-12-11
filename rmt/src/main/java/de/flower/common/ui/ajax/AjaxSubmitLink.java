@@ -2,19 +2,18 @@ package de.flower.common.ui.ajax;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.IAjaxCallDecorator;
-import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
 import org.apache.wicket.markup.html.form.Form;
 
 /**
  * @author flowerrrr
  */
-public abstract class MyAjaxSubmitLink extends AjaxSubmitLink {
+public abstract class AjaxSubmitLink extends org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink {
 
-    public MyAjaxSubmitLink(String id) {
+    public AjaxSubmitLink(String id) {
         super(id);
     }
 
-    public MyAjaxSubmitLink(String id, Form<?> form) {
+    public AjaxSubmitLink(String id, Form<?> form) {
         super(id, form);
     }
 
