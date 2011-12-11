@@ -246,6 +246,24 @@ a.menu:after, .dropdown-toggle:after {
 }
 
 /*************************************************************************
+    icons and labels
+**************************************************************************/
+.info-icon {
+    .label;
+    font-weight: 900; // as thick as possible
+    padding: 1px 4px 0px 4px;
+    line-height: 12px;
+}
+.info-icon:before {
+    content: '!';
+}
+
+// inside tables alogn with football icon
+td .info-icon {
+    margin: 4px 4px 0px 0px;
+}
+
+/*************************************************************************
     football icon with dropdown menu on white background
 **************************************************************************/
 ul.dropdown {
