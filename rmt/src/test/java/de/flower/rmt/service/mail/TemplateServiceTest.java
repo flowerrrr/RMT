@@ -28,7 +28,7 @@ public class TemplateServiceTest extends AbstractIntegrationTests {
         final Map<String, Object> model = new HashMap<String, Object>();
 
         model.put("bar", "bar");
-        String text = templateService.mergeTemplate("test-template.vm", model);
+        String text = templateService.mergeTemplate("test_template.vm", model);
         log.info(text);
         assertContains(text, appTitle);
         assertContains(text, appUrl);
