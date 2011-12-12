@@ -1,5 +1,6 @@
 package de.flower.rmt.ui.app ;
 
+import org.apache.wicket.devutils.inspector.RenderPerformanceListener;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.springframework.context.ApplicationContext;
 
@@ -27,6 +28,8 @@ public class TestApplication extends RMTApplication {
         super.init();
         // override default settings. no problem cause we don't worry about layout bugs in unit-tests.
         getMarkupSettings().setStripWicketTags(false);
+        // trace rendering time of components.
+        getComponentInstantiationListeners().add(new RenderPerformanceListener());
     }
 
     @Override

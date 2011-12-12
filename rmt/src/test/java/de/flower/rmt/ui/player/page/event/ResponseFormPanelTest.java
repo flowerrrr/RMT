@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.player.page.event;
 
 import de.flower.rmt.model.Response;
-import de.flower.rmt.test.AbstractWicketTests;
+import de.flower.rmt.test.AbstractWicketIntegrationTests;
 import de.flower.rmt.ui.model.ResponseModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 /**
  * @author flowerrrr
  */
-public class ResponseFormPanelTest extends AbstractWicketTests {
+public class ResponseFormPanelTest extends AbstractWicketIntegrationTests {
 
     @Test
     public void testRender() {

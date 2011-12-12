@@ -2,7 +2,7 @@ package de.flower.rmt.ui.manager.page.event;
 
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
-import de.flower.rmt.test.AbstractWicketTests;
+import de.flower.rmt.test.AbstractWicketIntegrationTests;
 import de.flower.rmt.ui.model.EventModel;
 import org.apache.wicket.util.tester.FormTester;
 import org.testng.annotations.Test;
@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 /**
  * @author flowerrrr
  */
-public class EventEditPanelTest extends AbstractWicketTests {
+public class EventEditPanelTest extends AbstractWicketIntegrationTests {
 
     @Test
     public void testRender() {

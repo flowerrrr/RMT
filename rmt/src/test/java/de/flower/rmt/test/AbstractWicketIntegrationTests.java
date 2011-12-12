@@ -14,7 +14,7 @@ import org.testng.annotations.BeforeMethod;
  * @author flowerrrr
  */
 
-public abstract class AbstractWicketTests extends AbstractIntegrationTests {
+public abstract class AbstractWicketIntegrationTests extends AbstractIntegrationTests {
 
     protected WicketTester wicketTester = null;
 

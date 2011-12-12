@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.player
 
-import de.flower.rmt.test.AbstractWicketTests
+import de.flower.rmt.test.AbstractWicketIntegrationTests
 import org.testng.annotations.Test
 import de.flower.rmt.ui.common.page.INavigationPanelAware
 
@@ -9,7 +9,7 @@ import de.flower.rmt.ui.common.page.INavigationPanelAware
  * @author flowerrrr
  */
 
-class NavigationPanelTest extends AbstractWicketTests {
+class NavigationPanelTest extends AbstractWicketIntegrationTests {
 
     @Test
     def testRender() {

@@ -1,13 +1,13 @@
 package de.flower.rmt.ui.manager;
 
-import de.flower.rmt.test.AbstractWicketTests;
+import de.flower.rmt.test.AbstractWicketIntegrationTests;
 import org.testng.annotations.Test;
 
 /**
  * @author flowerrrr
  */
 
-public class ManagerHomePageTest extends AbstractWicketTests {
+public class ManagerHomePageTest extends AbstractWicketIntegrationTests {
 
     @Test
     public void testRender() {

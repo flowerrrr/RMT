@@ -1,13 +1,13 @@
 package de.flower.rmt.ui.manager.page.venues
 
-import de.flower.rmt.test.AbstractWicketTests
+import de.flower.rmt.test.AbstractWicketIntegrationTests
 import org.testng.annotations.Test
 /**
  * 
  * @author flowerrrr
  */
 
-class VenuesPageTest extends AbstractWicketTests {
+class VenuesPageTest extends AbstractWicketIntegrationTests {
 
     @Test
     def testRender() {

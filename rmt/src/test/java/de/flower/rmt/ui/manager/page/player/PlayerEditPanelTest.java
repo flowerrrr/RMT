@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.manager.page.player;
 
 import de.flower.rmt.model.User;
-import de.flower.rmt.test.AbstractWicketTests;
+import de.flower.rmt.test.AbstractWicketIntegrationTests;
 import de.flower.rmt.ui.model.UserModel;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.Form;
@@ -13,7 +13,7 @@ import static org.testng.Assert.*;
  * @author flowerrrr
  */
 
-public class PlayerEditPanelTest extends AbstractWicketTests {
+public class PlayerEditPanelTest extends AbstractWicketIntegrationTests {
 
     @Test
     public void testRender() {

@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.manager.page.teams
 
-import de.flower.rmt.test.AbstractWicketTests
+import de.flower.rmt.test.AbstractWicketIntegrationTests
 import org.testng.annotations.Test
 
 /**
@@ -8,7 +8,7 @@ import org.testng.annotations.Test
  * @author flowerrrr
  */
 
-class TeamsPageTest extends AbstractWicketTests {
+class TeamsPageTest extends AbstractWicketIntegrationTests {
 
     @Test
     def testRender() {

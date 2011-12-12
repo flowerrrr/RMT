@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.common.page.account;
 
-import de.flower.rmt.test.AbstractWicketTests;
+import de.flower.rmt.test.AbstractWicketIntegrationTests;
 import org.apache.wicket.Component;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.testng.annotations.Test;
@@ -10,7 +10,7 @@ import static org.testng.Assert.*;
 /**
  * @author flowerrrr
  */
-public class AccountMainPanelTest extends AbstractWicketTests {
+public class AccountMainPanelTest extends AbstractWicketIntegrationTests {
 
     @Override
     @Test

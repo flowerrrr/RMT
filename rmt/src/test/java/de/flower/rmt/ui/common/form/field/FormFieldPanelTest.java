@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.common.form.field;
 
+import de.flower.common.test.wicket.AbstractWicketUnitTests;
 import de.flower.common.test.wicket.WicketTesterHelper;
-import de.flower.rmt.test.AbstractWicketTests;
 import org.apache.wicket.markup.Markup;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.Form;
@@ -13,7 +13,7 @@ import java.util.Arrays;
 /**
  * @author flowerrrr
  */
-public class FormFieldPanelTest extends AbstractWicketTests {
+public class FormFieldPanelTest extends AbstractWicketUnitTests {
 
     @Test
     public void testRender() {

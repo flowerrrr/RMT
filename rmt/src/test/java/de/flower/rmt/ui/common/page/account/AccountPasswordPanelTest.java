@@ -2,7 +2,7 @@ package de.flower.rmt.ui.common.page.account;
 
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.type.Password;
-import de.flower.rmt.test.AbstractWicketTests;
+import de.flower.rmt.test.AbstractWicketIntegrationTests;
 import de.flower.rmt.ui.model.UserModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.util.tester.FormTester;
@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 /**
  * @author flowerrrr
  */
-public class AccountPasswordPanelTest extends AbstractWicketTests {
+public class AccountPasswordPanelTest extends AbstractWicketIntegrationTests {
 
     @Override
     @Test

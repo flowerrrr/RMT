@@ -27,6 +27,11 @@
     outline: none;
 }
 
+// for links that should not underline when hovering
+a.no-hover:hover {
+    text-decoration: none;
+}
+
 /*************************************************************************
     taken from twitters base template http://twitter.github.com/bootstrap/examples/container-app.html
     base layout for player pages
@@ -257,7 +262,6 @@ a.menu:after, .dropdown-toggle:after {
     font-weight: 900; // as thick as possible
     padding: 1px 4px 0px 4px;
     line-height: 12px;
-    text-decoration: none;
 }
 
 .info-icon:before {
@@ -278,9 +282,6 @@ td .info-icon {
     margin: 4px 4px 0px 0px;
 }
 
-a.no-hover:hover {
-    text-decoration: none;
-}
 
 /*************************************************************************
     football icon with dropdown menu on white background

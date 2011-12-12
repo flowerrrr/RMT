@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.common.form;
 
-import de.flower.rmt.test.AbstractWicketTests;
+import de.flower.common.test.wicket.AbstractWicketUnitTests;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.markup.Markup;
 import org.apache.wicket.markup.html.form.Form;
@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 /**
  * @author flowerrrr
  */
-public class FormFeedbackPanelTest extends AbstractWicketTests {
+public class FormFeedbackPanelTest extends AbstractWicketUnitTests {
 
     @Override
     @Test

@@ -1,13 +1,13 @@
 package de.flower.rmt.ui.common.page;
 
 import de.flower.rmt.model.User;
-import de.flower.rmt.test.AbstractWicketTests;
+import de.flower.rmt.test.AbstractWicketIntegrationTests;
 import org.testng.annotations.Test;
 
 /**
  * @author flowerrrr
  */
-public class WelcomeMessagesPanelTest extends AbstractWicketTests {
+public class WelcomeMessagesPanelTest extends AbstractWicketIntegrationTests {
 
     @Override
     @Test

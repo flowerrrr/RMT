@@ -1,35 +1,23 @@
 package de.flower.common.ui.tooltips;
 
-import de.flower.common.test.wicket.WicketTester;
+import de.flower.common.test.wicket.AbstractWicketUnitTests;
 import de.flower.common.test.wicket.WicketTesterHelper;
 import org.apache.wicket.markup.Markup;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.Model;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
  * @author flowerrrr
  */
-public class TwipsyBehaviorTest {
-
-    private final static Logger log = LoggerFactory.getLogger(TwipsyBehaviorTest.class);
-
-    private WicketTester wicketTester;
+public class TwipsyBehaviorTest extends AbstractWicketUnitTests {
 
     private static String tooltip = "this is a tooltip";
 
-    @BeforeMethod
-    public void init() {
-        wicketTester = new WicketTester();
-    }
-
     @Test
-    public void testTwipsy() {
+    public void testRender() {
         wicketTester.startPage(new TestPage());
         wicketTester.dumpPage();
         wicketTester.debugComponentTrees();
