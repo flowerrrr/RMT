@@ -12,6 +12,8 @@ import org.testng.annotations.BeforeMethod;
  * Test subclassing this class will get mockito mocks injected whenever
  * a @SpringBean annotation is evaluated.
  *
+ * @SpringBean can also be used in the test classes itself (as a replacement for @Autowired).
+ *
  * @author flowerrrr
  */
 public abstract class AbstractWicketMockitoTests {
@@ -25,8 +27,10 @@ public abstract class AbstractWicketMockitoTests {
         mockCtx = new MockitoFactoryApplicationContext();
         wicketTester = createWicketTester(mockCtx);
         WebApplication webApp = wicketTester.getApplication();
-        webApp.getComponentInstantiationListeners().add(new SpringComponentInjector(webApp, mockCtx));
-
+        SpringComponentInjector injector = new SpringComponentInjector(webApp, mockCtx);
+        webApp.getComponentInstantiationListeners().add(injector);
+        // and inject spring beans into test classes
+        injector.inject(this);
     }
 
     protected WicketTester createWicketTester(final ApplicationContext mockCtx) {

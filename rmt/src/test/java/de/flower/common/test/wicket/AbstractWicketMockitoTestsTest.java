@@ -11,10 +11,18 @@ import static org.testng.Assert.*;
  */
 public class AbstractWicketMockitoTestsTest extends AbstractWicketMockitoTests {
 
+    @SpringBean
+    private ITestManager testManager;
+
     @Test
-    public void testInjection() {
+    public void testInjectionInComponent() {
         TestLink link = new TestLink("foo");
         assertNotNull(link.testManager);
+    }
+
+    @Test
+    public void testInjectionInTestClass() {
+        assertNotNull(testManager);
     }
 
     @Override
@@ -41,5 +49,4 @@ public class AbstractWicketMockitoTestsTest extends AbstractWicketMockitoTests {
             testManager.save(new Object());
         }
     }
-
 }
