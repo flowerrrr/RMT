@@ -1,5 +1,6 @@
 package de.flower.rmt.ui.manager;
 
+import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.common.page.INavigationPanelAware;
 import de.flower.rmt.ui.common.panel.AbstractNavigationPanel;
 import de.flower.rmt.ui.manager.page.events.EventsPage;
@@ -14,7 +15,7 @@ import de.flower.rmt.ui.manager.page.venues.VenuesPage;
 public class NavigationPanel extends AbstractNavigationPanel {
 
     public NavigationPanel(INavigationPanelAware page) {
-        super();
+        super(View.MANAGER);
 
         add(createMenuItem("home", ManagerHomePage.class, page));
         add(createMenuItem("events", EventsPage.class, page));

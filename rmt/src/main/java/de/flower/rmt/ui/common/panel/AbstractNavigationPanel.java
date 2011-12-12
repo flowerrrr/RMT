@@ -1,26 +1,53 @@
 package de.flower.rmt.ui.common.panel;
 
+import de.flower.rmt.model.User;
+import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.common.page.INavigationPanelAware;
 import de.flower.rmt.ui.common.page.account.AccountPage;
+import de.flower.rmt.ui.manager.ManagerHomePage;
+import de.flower.rmt.ui.player.PlayerHomePage;
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.wicket.markup.html.link.Link;
+
 
 /**
  * @author flowerrrr
  */
 public class AbstractNavigationPanel extends BasePanel {
 
-    public AbstractNavigationPanel() {
+    public AbstractNavigationPanel(View view) {
         super("navigationPanel");
 
         add(new BookmarkablePageLink("account", AccountPage.class));
+        add(createSwitchViewLink("switchView", view));
         add(new LogoutLink("logoutLink"));
         add(new Label("user", getUser().getFullname()));
 
         setRenderBodyOnly(true);
+    }
+
+    /**
+     * Depending on user role (manager or player) a link is generated that
+     * allows the user to switch beetween both views.
+     *
+     * @return
+     */
+    private Link createSwitchViewLink(String id, View view) {
+        User user = getUser();
+        Link link;
+        if (view == View.MANAGER) {
+            // manager can always switch to player view.
+            link = new BookmarkablePageLink(id, PlayerHomePage.class);
+        } else {
+            // player can only switch to manager mode if he has MANAGER role
+            link = new BookmarkablePageLink(id, ManagerHomePage.class);
+            link.setVisible(user.isManager());
+        }
+        return link;
     }
 
     protected Component createMenuItem(String pageName, Class<?> pageClass, final INavigationPanelAware page) {

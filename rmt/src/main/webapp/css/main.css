@@ -56,7 +56,7 @@ ul {
 }
 
 li {
-    color: #404040;
+    color: @grayDark;
 }
 
 input[type="checkbox"] {
@@ -338,6 +338,32 @@ td {
     border-bottom: 1px solid #CCCCCC;
 }
 
+/*************************************************************************
+    Inline editing
+**************************************************************************/
+.inline-edit {
+    .inline-label {
+        // align with text of checkbox
+        padding-left: 5px;
+        color: @grayDark;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+    select {
+        width: auto;
+        height: auto;
+        padding: 0px;
+    }
+}
+
+/*************************************************************************
+    Event list
+**************************************************************************/
+
+td.rsvpstatus {
+    width: 100px;
+}
 
 /*************************************************************************
     Event details list
@@ -373,6 +399,7 @@ td {
 .responseListTable td:first-child + td {
     width: 150px;
 }
+
 
 /*************************************************************************
     Response form

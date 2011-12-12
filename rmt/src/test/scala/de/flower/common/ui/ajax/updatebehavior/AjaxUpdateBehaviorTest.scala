@@ -13,11 +13,11 @@ class AjaxUpdateBehaviorTest extends AbstractWicketUnitTests {
     @Test
     def testRender() {
         wicketTester.startPage(new AjaxUpdateBehaviorTestPage)
-        log.info(wicketTester.getLastResponse.getDocument)
+        AbstractWicketUnitTests.log.info(wicketTester.getLastResponse.getDocument)
         wicketTester.debugComponentTrees
         wicketTester.clickLink("link1")
         var document: String = wicketTester.getLastResponse.getDocument
-        log.info(document)
+        AbstractWicketUnitTests.log.info(document)
         assertTrue(document.contains(">bar<"))
     }
 

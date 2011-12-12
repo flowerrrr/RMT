@@ -12,6 +12,7 @@ import org.apache.wicket.model.IModel;
  *
  * @author flowerrrr
  */
+@Deprecated
 public abstract class CancelableEntityForm<T extends IEntity> extends EntityForm<T> {
 
     public CancelableEntityForm(String id, IModel<T> model) {

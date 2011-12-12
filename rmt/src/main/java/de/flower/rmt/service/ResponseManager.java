@@ -28,6 +28,12 @@ public class ResponseManager extends AbstractService implements IResponseManager
     @Autowired
     private IPlayerManager playerManager;
 
+    @Autowired
+    private IEventManager eventManager;
+
+    @Autowired
+    private IUserManager userManager;
+
     @Override
     public Response newInstance(final Event event) {
         Player player = playerManager.findByEventAndUser(event, securityService.getCurrentUser());
@@ -76,8 +82,19 @@ public class ResponseManager extends AbstractService implements IResponseManager
             response = new Response(event, player);
         }
         response.setStatus(status);
-        response.setComment(comment);
+        if (comment != null) {
+            response.setComment(comment);
+        }
         return this.save(response);
     }
 
+    @Override
+    public Response respond(final Long eventId, final Long userId, final RSVPStatus status) {
+        Check.notNull(eventId);
+        Check.notNull(userId);
+        Event event = eventManager.loadById(eventId);
+        User user = userManager.loadById(userId);
+        Player player = playerManager.findByEventAndUser(event, user);
+        return respond(event, player, status, null);
+    }
 }

@@ -23,5 +23,7 @@ public interface IResponseManager {
 
     Response respond(Event event, Player player, RSVPStatus status, String comment);
 
+    Response respond(Long eventId, Long userId, RSVPStatus status);
+
     Response save(Response response);
 }

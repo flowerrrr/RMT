@@ -2,12 +2,14 @@ package de.flower.rmt.ui.player.page.events;
 
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
+import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.Response;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.service.IResponseManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
+import de.flower.rmt.ui.common.panel.QuickResponseLabel;
 import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.model.UserModel;
 import de.flower.rmt.ui.player.page.event.EventPage;
@@ -65,15 +67,12 @@ public class EventListPanel extends BasePanel {
                 });
                 link.add(new Label("summary", event.getSummary()));
                 final Response response = getResponse(event, userModel.getObject());
-                item.add(new Label("rsvpStatus", getRsvpStatus(response)));
-                link = new Link<Event>("responseButton", eventModel) {
+                item.add(new QuickResponseLabel("rsvpStatus", response != null ? response.getStatus() : null) {
                     @Override
-                    public void onClick() {
-                        setResponsePage(new EventPage(getModel()));
+                    protected void submitStatus(final RSVPStatus status) {
+                        responseManager.respond(eventModel.getId(), userModel.getId(), status);
                     }
-                };
-                link.setVisible(response == null);
-                item.add(link);
+                });
             }
 
             private Response getResponse(final Event event, final User user) {
@@ -91,4 +90,5 @@ public class EventListPanel extends BasePanel {
         });
         listContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Event.class)));
     }
+
 }

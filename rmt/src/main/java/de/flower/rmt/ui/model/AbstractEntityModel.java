@@ -44,6 +44,13 @@ public abstract class AbstractEntityModel<T extends IEntity> extends LoadableDet
         wrappedModel = model;
     }
 
+    public Long getId() {
+        if (id == null) {
+            id = getObject().getId();
+        }
+        return id;
+    }
+
     /**
      * If the entity was transient when the modal was created, but has been persisted
      * in the meantime, set the id of the entity so that the persisted entity will be loaded the

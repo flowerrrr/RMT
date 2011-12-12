@@ -47,10 +47,8 @@
                     <div wicket:id="type">[Event Type]</div>
                 </td>
                 <td><a wicket:id="eventLink"><span wicket:id="summary">[Summary]</span></a></td>
-                <td><span wicket:id="rsvpStatus">[RsvpStatus]</span>
-                    <a class="btn primary" wicket:id="responseButton">
-                        <wicket:message key="player.events.respond">[Respond]</wicket:message>
-                    </a>
+                <td class="rsvpstatus">
+                    <span wicket:id="rsvpStatus" class="inline-edit">[RsvpStatus]</span>
                 </td>
             </tr>
             </tbody>

@@ -17,7 +17,7 @@ import java.util.Locale;
  */
 public abstract class AbstractWicketUnitTests {
 
-    protected final Logger log = LoggerFactory.getLogger(getClass());
+    public final static Logger log = LoggerFactory.getLogger(AbstractWicketUnitTests.class);
 
     protected WicketTester wicketTester;
 
@@ -27,12 +27,12 @@ public abstract class AbstractWicketUnitTests {
         wicketTester.getApplication().getResourceSettings().getStringResourceLoaders().add(new IStringResourceLoader() {
             @Override
             public String loadStringResource(final Class<?> clazz, final String key, final Locale locale, final String style, final String variation) {
-                return key;
+                return "resource-for(" + key + ")";
             }
 
             @Override
             public String loadStringResource(final Component component, final String key, final Locale locale, final String style, final String variation) {
-                return key;
+                return "resource-for(" + key + ")";
             }
         });
 
@@ -41,6 +41,6 @@ public abstract class AbstractWicketUnitTests {
         SpringApplicationContextBridge.getInstance().setApplicationContext(new MockitoFactoryApplicationContext());
     }
 
-    abstract protected void testRender();
+    abstract public void testRender();
 
 }

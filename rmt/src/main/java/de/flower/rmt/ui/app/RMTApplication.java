@@ -12,6 +12,7 @@ import de.flower.rmt.ui.manager.page.opponents.OpponentsPage;
 import de.flower.rmt.ui.manager.page.players.PlayersPage;
 import de.flower.rmt.ui.manager.page.teams.TeamsPage;
 import de.flower.rmt.ui.manager.page.venues.VenuesPage;
+import de.flower.rmt.ui.player.PlayerHomePage;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
@@ -67,7 +68,7 @@ public class RMTApplication extends WebApplication {
         mountPage("manager/events", EventsPage.class);
         mountPage("manager/opponents", OpponentsPage.class);
         mountPage("manager/venues", VenuesPage.class);
-        mountPage("player", de.flower.rmt.ui.player.page.events.EventsPage.class);
+        mountPage("player", PlayerHomePage.class);
         mountPage("player/events", de.flower.rmt.ui.player.page.events.EventsPage.class);
         mountPage("common/account", AccountPage.class);
         mountPage("login", LoginPage.class);
