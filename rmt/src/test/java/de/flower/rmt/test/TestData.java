@@ -67,6 +67,11 @@ public class TestData {
         return Validate.notNull(clubRepo.findOne(1L));
     }
 
+    public static Club newClub() {
+        Club club = new Club("Foo FC");
+        return club;
+    }
+
     public Team getJuveAmateure() {
         return Validate.notNull(teamRepo.findOne(1L));
     }
@@ -88,6 +93,18 @@ public class TestData {
         team.setName(name);
         teamManager.save(team);
         return team;
+    }
+
+    public static User newUser() {
+        User user = new User(newClub());
+        user.setEmail(RandomStringUtils.randomAlphabetic(8) + "@acme.com");
+        user.setFullname(RandomStringUtils.randomAlphabetic(10));
+        user.setInitialPassword("1234");
+        user.setEncryptedPassword("io8ujalöjdfkalsöj");
+        Role role = new Role(Role.Roles.MANAGER.getRoleName());
+        user.getRoles().add(role);
+        role.setUser(user);
+        return user;
     }
 
     public User createUser() {

@@ -26,6 +26,7 @@ public abstract class AbstractWicketMockitoTests {
         wicketTester = createWicketTester(mockCtx);
         WebApplication webApp = wicketTester.getApplication();
         webApp.getComponentInstantiationListeners().add(new SpringComponentInjector(webApp, mockCtx));
+
     }
 
     protected WicketTester createWicketTester(final ApplicationContext mockCtx) {

@@ -1,21 +1,21 @@
 package de.flower.rmt.ui.player.page.event;
 
+import de.flower.common.test.wicket.AbstractWicketUnitTests;
 import de.flower.rmt.model.Response;
-import de.flower.rmt.test.AbstractWicketIntegrationTests;
-import de.flower.rmt.ui.model.ResponseModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 import org.testng.annotations.Test;
 
 /**
  * @author flowerrrr
  */
-public class ResponseFormPanelTest extends AbstractWicketIntegrationTests {
+public class ResponseFormPanelTest extends AbstractWicketUnitTests {
 
     @Test
     public void testRender() {
-        Response response = testData.createResponse();
-        wicketTester.startComponentInPage(new ResponseFormTestPanel(new ResponseModel(response)));
+        Response response = new Response(null, null);
+        wicketTester.startComponentInPage(new ResponseFormTestPanel(Model.of(response)));
         wicketTester.dumpComponentWithPage();
     }
 

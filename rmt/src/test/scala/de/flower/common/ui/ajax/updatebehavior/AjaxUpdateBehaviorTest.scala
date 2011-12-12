@@ -1,27 +1,17 @@
 package de.flower.common.ui.ajax.updatebehavior
 
-import org.apache.wicket.util.tester.WicketTester
 import org.testng.Assert._
-import org.slf4j.{LoggerFactory, Logger}
-import org.testng.annotations.{BeforeMethod, Test}
+import org.testng.annotations.Test
+import de.flower.common.test.wicket.AbstractWicketUnitTests
 
 /**
  * @author flowerrrr
  */
 
-class AjaxUpdateBehaviorTest {
-
-    private final val log: Logger = LoggerFactory.getLogger(this.getClass)
-
-    private var wicketTester: WicketTester = _
-
-    @BeforeMethod
-    def init() {
-        wicketTester = new WicketTester
-    }
+class AjaxUpdateBehaviorTest extends AbstractWicketUnitTests {
 
     @Test
-    def testFooBar() {
+    def testRender() {
         wicketTester.startPage(new AjaxUpdateBehaviorTestPage)
         log.info(wicketTester.getLastResponse.getDocument)
         wicketTester.debugComponentTrees
