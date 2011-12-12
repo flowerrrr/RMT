@@ -19,6 +19,10 @@
     float: right;
 }
 
+.align-right {
+    text-align: right;
+}
+
 * {
     outline: none;
 }
@@ -253,14 +257,29 @@ a.menu:after, .dropdown-toggle:after {
     font-weight: 900; // as thick as possible
     padding: 1px 4px 0px 4px;
     line-height: 12px;
+    text-decoration: none;
 }
+
 .info-icon:before {
     content: '!';
 }
 
-// inside tables alogn with football icon
+// custom tailor twipsy
+.twipsy {
+    // make it fully opaque
+    &.fade.in {
+        .opacity(100);
+    }
+}
+
+
+// inside tables align with football icon
 td .info-icon {
     margin: 4px 4px 0px 0px;
+}
+
+a.no-hover:hover {
+    text-decoration: none;
 }
 
 /*************************************************************************
