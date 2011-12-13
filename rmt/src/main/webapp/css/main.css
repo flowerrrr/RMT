@@ -262,10 +262,14 @@ a.menu:after, .dropdown-toggle:after {
     font-weight: 900; // as thick as possible
     padding: 1px 4px 0px 4px;
     line-height: 12px;
+    &:before {
+        content: '!';
+    }
 }
 
-.info-icon:before {
-    content: '!';
+.checked-icon {
+    background: url(../img/checked.png) no-repeat;
+    padding: 0px 7px;
 }
 
 // custom tailor twipsy

@@ -15,20 +15,20 @@
                 <th>
                     <wicket:message key="manager.player.email"/>
                 </th>
-                <th>???</th>
-                <th>???</th>
+                <th><wicket:message key="manager.players.manager.role"/></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
             <tr wicket:id="playerList">
                 <td>
-                    <div wicket:id="fullname">Gerd Müller</div>
+                    <a wicket:id="editLink"><span wicket:id="fullname">Gerd Müller</span></a>
                 </td>
                 <td>
-                    <div wicket:id="email">gerd@mueller.de</div>
+                    <span wicket:id="email">gerd@mueller.de</span>
                 </td>
                 <td>
-                    <div wicket:id="manager">x</div>
+                    <span wicket:id="manager" class="checked-icon"/>
                 </td>
                 <td class="align-right">
                     <a wicket:id="sendInvitationLink" class="no-hover"><span class="info-icon"/></a>

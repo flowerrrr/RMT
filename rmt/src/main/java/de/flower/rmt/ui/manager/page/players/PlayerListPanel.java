@@ -51,7 +51,9 @@ public class PlayerListPanel extends BasePanel {
             @Override
             protected void populateItem(final ListItem<User> item) {
                 User player = item.getModelObject();
-                item.add(new Label("fullname", player.getFullname()));
+                Link editLink = createEditLink("editLink", item);
+                editLink.add(new Label("fullname", player.getFullname()));
+                item.add(editLink);
                 item.add(new Label("email", player.getEmail()));
                 Component manager;
                 item.add(manager = new WebMarkupContainer("manager"));
@@ -69,12 +71,7 @@ public class PlayerListPanel extends BasePanel {
 
                 // now the dropdown menu
                 DropDownMenuPanel menuPanel = new DropDownMenuPanel();
-                menuPanel.add(new Link("editButton") {
-                    @Override
-                    public void onClick() {
-                        setResponsePage(new PlayerEditPage(new UserModel(item.getModel())));
-                    }
-                });
+                menuPanel.add(createEditLink("editButton", item));
                 AjaxLinkWithConfirmation deleteButton;
                 menuPanel.add(deleteButton = new AjaxLinkWithConfirmation("deleteButton", new ResourceModel("manager.players.delete.confirm")) {
 
@@ -87,6 +84,7 @@ public class PlayerListPanel extends BasePanel {
                 deleteButton.setVisible(!securityService.isCurrentUser(player));
                 item.add(menuPanel);
             }
+
         });
         playerListContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(User.class)));
     }
@@ -96,6 +94,15 @@ public class PlayerListPanel extends BasePanel {
             @Override
             protected List<User> load() {
                 return playerManager.findAll(User_.roles);
+            }
+        };
+    }
+
+    private Link createEditLink(String id, final ListItem<User> item) {
+        return new Link(id) {
+            @Override
+            public void onClick() {
+                setResponsePage(new PlayerEditPage(new UserModel(item.getModel())));
             }
         };
     }
