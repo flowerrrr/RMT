@@ -95,6 +95,11 @@ public class TestData {
         return team;
     }
 
+    public static Team newTeam() {
+        return new Team(newClub());
+    }
+
+
     public static User newUser() {
         User user = new User(newClub());
         user.setEmail(RandomStringUtils.randomAlphabetic(8) + "@acme.com");
@@ -121,6 +126,10 @@ public class TestData {
             users.add(user);
         }
         return users;
+    }
+
+    public static Event newEvent() {
+        return new Event(newTeam());
     }
 
     public Event createEvent() {

@@ -71,16 +71,16 @@ public class PlayerListPanel extends BasePanel {
 
                 // now the dropdown menu
                 DropDownMenuPanel menuPanel = new DropDownMenuPanel();
-                menuPanel.add(createEditLink("editButton", item));
+                menuPanel.addLink(createEditLink("link", item), "button.edit");
                 AjaxLinkWithConfirmation deleteButton;
-                menuPanel.add(deleteButton = new AjaxLinkWithConfirmation("deleteButton", new ResourceModel("manager.players.delete.confirm")) {
+                menuPanel.addLink(deleteButton = new AjaxLinkWithConfirmation("link", new ResourceModel("manager.players.delete.confirm")) {
 
                     @Override
                     public void onClick(AjaxRequestTarget target) {
                         playerManager.delete(item.getModelObject());
                         target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(User.class)));
                     }
-                });
+                }, "button.delete");
                 deleteButton.setVisible(!securityService.isCurrentUser(player));
                 item.add(menuPanel);
             }

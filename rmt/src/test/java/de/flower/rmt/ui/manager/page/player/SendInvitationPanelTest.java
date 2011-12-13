@@ -11,7 +11,6 @@ import org.testng.annotations.Test;
  */
 public class SendInvitationPanelTest extends AbstractRMTWicketMockitoTests {
 
-    @Override
     @Test
     public void testRender() {
         User user = TestData.newUser();

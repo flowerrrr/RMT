@@ -40,25 +40,17 @@
             <tbody>
             <tr wicket:id="list">
                 <td>
-                    <div wicket:id="date">[Date #1]</div>
-                    <div wicket:id="time">[Time #1]</div>
+                    <a wicket:id="responsesLink"><div wicket:id="date">[Date #1]</div>
+                    <div wicket:id="time">[Time #1]</div></a>
                 </td>
                 <td>
                     <div wicket:id="team">[Team]</div>
                     <div wicket:id="type">[Event Type]</div>
                 </td>
                 <td><span wicket:id="summary">[Summary]</span></td>
-                <td><span wicket:id="responses">[Responses]</span></td>
+                <td><div wicket:id="responseSummaryPanel">[Responses]</div></td>
                 <td>
-                    <a wicket:id="responsesButton">
-                        <wicket:message key="manager.events.responses">[Responses]</wicket:message>
-                    </a>
-                    <a wicket:id="editButton">
-                        <wicket:message key="button.edit">[Edit]</wicket:message>
-                    </a>
-                    <a wicket:id="deleteButton">
-                        <wicket:message key="button.delete">[Delete]</wicket:message>
-                    </a>
+                    <div wicket:id="dropDownMenuPanel" />
                 </td>
             </tr>
             </tbody>

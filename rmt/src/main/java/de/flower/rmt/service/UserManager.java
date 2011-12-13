@@ -123,6 +123,8 @@ public class UserManager extends AbstractService implements IUserManager {
         user.getRoles().add(role);
         role.setUser(user);
         initPassword(user);
+        // by default a new user is assumed to be fit.
+        user.setStatus(User.Status.FIT);
         return user;
     }
 

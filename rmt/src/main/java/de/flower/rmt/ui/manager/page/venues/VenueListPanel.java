@@ -37,26 +37,31 @@ public class VenueListPanel extends BasePanel {
         listContainer.add(new ListView<Venue>("list", listModel) {
             @Override
             protected void populateItem(final ListItem<Venue> item) {
-                item.add(new Label("name", item.getModelObject().getName()));
+                Link editLink = createEditLink("editLink", item);
+                editLink.add(new Label("name", item.getModelObject().getName()));
+                item.add(editLink);
                 DropDownMenuPanel menuPanel = new DropDownMenuPanel();
-                menuPanel.add(new Link("editButton") {
-                    @Override
-                    public void onClick() {
-                        setResponsePage(new VenueEditPage(new VenueModel(item.getModel())));
-                    }
-                });
-                menuPanel.add(new AjaxLinkWithConfirmation("deleteButton", new ResourceModel("manager.venues.delete.confirm")) {
-
+                menuPanel.addLink(createEditLink("link", item), "button.edit");
+                menuPanel.addLink(new AjaxLinkWithConfirmation("link", new ResourceModel("manager.venues.delete.confirm")) {
                     @Override
                     public void onClick(AjaxRequestTarget target) {
                         venueManager.delete(item.getModelObject());
                         target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(Venue.class)));
                     }
-                });
+                }, "button.delete");
                 item.add(menuPanel);
             }
+
         });
         listContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Venue.class)));
     }
 
+    private Link createEditLink(String id, final ListItem<Venue> item) {
+        return new Link(id) {
+            @Override
+            public void onClick() {
+                setResponsePage(new VenueEditPage(new VenueModel(item.getModel())));
+            }
+        };
+    }
 }

@@ -13,6 +13,7 @@ import de.flower.rmt.ui.manager.page.players.PlayersPage;
 import de.flower.rmt.ui.manager.page.teams.TeamsPage;
 import de.flower.rmt.ui.manager.page.venues.VenuesPage;
 import de.flower.rmt.ui.player.PlayerHomePage;
+import org.apache.wicket.devutils.inspector.RenderPerformanceListener;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
@@ -35,9 +36,9 @@ public class RMTApplication extends WebApplication {
         // google maps have problems when wicket tags are rendered in development mode, so strip those tags
         getMarkupSettings().setStripWicketTags(true);
 
-        getDebugSettings().setDevelopmentUtilitiesEnabled(true);
-
         if (usesDevelopmentConfig()) {
+            getDebugSettings().setDevelopmentUtilitiesEnabled(true);
+            getComponentInstantiationListeners().add(new RenderPerformanceListener());
             initSerializer();
         }
 

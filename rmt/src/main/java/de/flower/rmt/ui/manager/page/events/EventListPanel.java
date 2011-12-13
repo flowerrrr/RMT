@@ -8,6 +8,7 @@ import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
+import de.flower.rmt.ui.common.panel.DropDownMenuPanel;
 import de.flower.rmt.ui.manager.page.event.EventEditPage;
 import de.flower.rmt.ui.manager.page.response.ResponsesPage;
 import de.flower.rmt.ui.model.EventModel;
@@ -54,36 +55,26 @@ public class EventListPanel extends BasePanel {
             @Override
             protected void populateItem(final ListItem<Event> item) {
                 final Event event = item.getModelObject();
-                item.add(DateLabel.forDateStyle("date", Model.of(event.getDate()), "S-"));
-                item.add(DateLabel.forDateStyle("time", Model.of(event.getTime().toDateTimeToday().toDate()), "-S"));
+                Link link = createResponsesLink("responsesLink", item);
+                link.add(DateLabel.forDateStyle("date", Model.of(event.getDate()), "S-"));
+                link.add(DateLabel.forDateStyle("time", Model.of(event.getTime().toDateTimeToday().toDate()), "-S"));
+                item.add(link);
                 item.add(new Label("type", new ResourceModel(EventType.from(event).getResourceKey())));
                 item.add(new Label("team", event.getTeam().getName()));
                 item.add(new Label("summary", event.getSummary()));
-                item.add(new Label("responses", getResponses(event)));
-                item.add(new Link("responsesButton") {
-                    @Override
-                    public void onClick() {
-                        setResponsePage(new ResponsesPage(new EventModel(item.getModel())));
-                    }
-                });
-                item.add(new Link("editButton") {
-                    @Override
-                    public void onClick() {
-                        setResponsePage(new EventEditPage(item.getModelObject()));
-                    }
-                });
-                item.add(new AjaxLinkWithConfirmation("deleteButton", new ResourceModel("manager.events.delete.confirm")) {
+                item.add(new ResponseSummaryPanel(new EventModel(event)));
+                // now the dropdown menu
+                DropDownMenuPanel menuPanel = new DropDownMenuPanel();
+                menuPanel.addLink(createResponsesLink("link", item), "button.responses");
+                menuPanel.addLink(createEditLink("link", item), "button.edit");
+                menuPanel.addLink(new AjaxLinkWithConfirmation("link", new ResourceModel("manager.events.delete.confirm")) {
                     @Override
                     public void onClick(AjaxRequestTarget target) {
                         eventManager.delete(item.getModelObject());
                         target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(Event.class)));
                     }
-                });
-            }
-
-            // TODO (flowerrrr - 11.09.11) use 'Converter'
-            private String getResponses(Event event) {
-                return "Zusagen / Absagen / offen";
+                }, "button.delete");
+                item.add(menuPanel);
             }
         });
         listContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Event.class)));
@@ -94,6 +85,25 @@ public class EventListPanel extends BasePanel {
             @Override
             protected List<Event> load() {
                 return eventManager.findAll();
+            }
+        };
+    }
+
+    private Link createResponsesLink(String id, final ListItem<Event> item) {
+        return new Link(id) {
+            @Override
+            public void onClick() {
+                setResponsePage(new ResponsesPage(new EventModel(item.getModel())));
+            }
+        };
+    }
+
+
+    private Link createEditLink(String id, final ListItem<Event> item) {
+        return new Link(id) {
+            @Override
+            public void onClick() {
+                setResponsePage(new EventEditPage(item.getModelObject()));
             }
         };
     }

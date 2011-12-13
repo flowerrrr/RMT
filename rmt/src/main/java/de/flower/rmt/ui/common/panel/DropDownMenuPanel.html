@@ -10,12 +10,10 @@
             <a class="dropdown-toggle" href="#"><img class="dropdown-icon"
                                                      src="img/football-small.gif"/></a>
             <ul class="dropdown-menu">
-                <li><a wicket:id="editButton">
-                    <wicket:message key="button.edit">[Edit]</wicket:message>
-                </a></li>
-                <li><a wicket:id="deleteButton">
-                    <wicket:message key="button.delete">[Delete]</wicket:message>
-                </a></li>
+                <li wicket:id="linkList">
+                    <a wicket:id="link">
+                        <span wicket:id="label" />
+                    </a></li>
             </ul>
         </li>
     </ul>

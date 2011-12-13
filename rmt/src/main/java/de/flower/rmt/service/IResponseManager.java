@@ -19,6 +19,8 @@ public interface IResponseManager {
 
     List<Response> findByEventAndStatus(Event event, RSVPStatus rsvpStatus);
 
+    Long numByEventAndStatus(Event event, RSVPStatus rsvpStatus);
+
     Response findByEventAndUser(Event event, User user);
 
     Response respond(Event event, Player player, RSVPStatus status, String comment);
@@ -26,4 +28,5 @@ public interface IResponseManager {
     Response respond(Long eventId, Long userId, RSVPStatus status);
 
     Response save(Response response);
+
 }

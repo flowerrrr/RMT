@@ -51,6 +51,11 @@ public class ResponseManager extends AbstractService implements IResponseManager
     }
 
     @Override
+    public Long numByEventAndStatus(final Event event, final RSVPStatus rsvpStatus) {
+        return responseRepo.numByEventAndStatus(event, rsvpStatus);
+    }
+
+    @Override
     public Response findByEventAndUser(Event event, User user) {
         // find player instance of this user belonging to the events team
         Player player = playerManager.findByTeamAndUser(event.getTeam(), user);

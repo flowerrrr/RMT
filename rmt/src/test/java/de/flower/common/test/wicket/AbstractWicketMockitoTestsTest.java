@@ -25,11 +25,6 @@ public class AbstractWicketMockitoTestsTest extends AbstractWicketMockitoTests {
         assertNotNull(testManager);
     }
 
-    @Override
-    public void testRender() {
-        ; // only to satisfy compiler
-    }
-
     public static interface ITestManager {
 
         void save(Object o);

@@ -42,5 +42,4 @@ public abstract class AbstractWicketMockitoTests {
         Mockito.validateMockitoUsage();
     }
 
-    public abstract void testRender();
 }

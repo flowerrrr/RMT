@@ -1,13 +1,17 @@
 package de.flower.rmt.ui.manager.page.events;
 
-import de.flower.common.ui.ajax.AjaxLink;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.manager.page.event.EventEditPage;
-import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.markup.html.form.DropDownChoice;
+import org.apache.wicket.markup.html.form.IChoiceRenderer;
+import org.apache.wicket.model.Model;
+import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+
+import java.util.Arrays;
 
 /**
  * @author flowerrrr
@@ -18,27 +22,31 @@ public class EventsSecondaryPanel extends BasePanel {
     private IEventManager eventManager;
 
     public EventsSecondaryPanel() {
-       // fade in panel to preselect event-type before opening the event edit page.
-        final EventTypeSelectPanel eventTypeSelectPanel = new EventTypeSelectPanel() {
+
+        IChoiceRenderer<EventType> renderer = new IChoiceRenderer<EventType>() {
+
             @Override
-            public void onSelect(EventType eventType, AjaxRequestTarget target) {
+            public Object getDisplayValue(final EventType object) {
+                return new ResourceModel(object.getResourceKey()).getObject();
+            }
+
+            @Override
+            public String getIdValue(final EventType object, final int index) {
+                return "" + index;
+            }
+        };
+        DropDownChoice<EventType> eventTypeSelect = new DropDownChoice<EventType>("select", new Model(), Arrays.asList(EventType.values()), renderer) {
+            @Override
+            protected boolean wantOnSelectionChangedNotifications() {
+                return true;
+            }
+
+            @Override
+            protected void onSelectionChanged(final EventType eventType) {
                 Event event = eventManager.newInstance(eventType);
                 setResponsePage(new EventEditPage(event));
             }
         };
-        eventTypeSelectPanel.setOutputMarkupPlaceholderTag(true);
-        eventTypeSelectPanel.setVisible(false);
-        eventTypeSelectPanel.setOutputMarkupId(true);
-        add(eventTypeSelectPanel);
-
-        final org.apache.wicket.ajax.markup.html.AjaxLink newButton = new AjaxLink("newButton") {
-           @Override
-            public void onClick(AjaxRequestTarget target) {
-               eventTypeSelectPanel.setVisible(true);
-               target.add(eventTypeSelectPanel);
-           }
-        };
-        add(newButton);
-
-     }
+        add(eventTypeSelect);
+    }
 }

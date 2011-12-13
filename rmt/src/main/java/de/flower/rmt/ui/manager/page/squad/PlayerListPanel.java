@@ -63,19 +63,19 @@ public class PlayerListPanel extends BasePanel<Team> {
                 item.add(new Label("status", new ResourceModel("player.status." + player.getStatus().toString().toLowerCase())));
                 DropDownMenuPanel menuPanel = new DropDownMenuPanel();
                 item.add(menuPanel);
-                menuPanel.add(new Link("editButton") {
+                menuPanel.addLink(new Link("link") {
                     @Override
                     public void onClick() {
                         setResponsePage(new PlayerEditPage(new UserModel(item.getModelObject().getUser())));
                     }
-                });
-                menuPanel.add(new AjaxLinkWithConfirmation("deleteButton", new ResourceModel("manager.squad.remove.confirm")) {
+                }, "button.edit");
+                menuPanel.addLink(new AjaxLinkWithConfirmation("link", new ResourceModel("manager.squad.remove.confirm")) {
                     @Override
                     public void onClick(AjaxRequestTarget target) {
                         teamManager.removePlayer(PlayerListPanel.this.getModelObject(), item.getModelObject());
                         target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(Player.class)));
                     }
-                });
+                }, "button.delete");
             }
         });
         playerListContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Player.class)));

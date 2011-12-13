@@ -34,7 +34,12 @@ public class PlayerManager extends AbstractService implements IPlayerManager {
     @Override
     @Transactional
     public List<Player> findNotResponded(Event event) {
-        return playerRepo.findNotResponded(event);
+        return playerRepo.findNotResponded(event, event.getTeam());
+    }
+
+    @Override
+    public Long numNotResponded(final Event event) {
+        return playerRepo.numNotResponded(event, event.getTeam());
     }
 
     /**

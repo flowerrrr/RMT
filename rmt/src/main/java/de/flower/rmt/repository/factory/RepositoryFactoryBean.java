@@ -1,10 +1,6 @@
 package de.flower.rmt.repository.factory;
 
-import de.flower.rmt.repository.IPlayerRepo;
-import de.flower.rmt.repository.IUserRepo;
 import de.flower.rmt.repository.impl.BaseRepository;
-import de.flower.rmt.repository.impl.PlayerRepo;
-import de.flower.rmt.repository.impl.UserRepo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
@@ -38,24 +34,12 @@ public class RepositoryFactoryBean<T extends JpaRepository<S, ID>, S, ID extends
             JpaEntityInformation<?, Serializable> entityInformation =
                     getEntityInformation(metadata.getDomainClass());
             Assert.notNull(entityInformation);
-            if (metadata.getRepositoryInterface().equals(IUserRepo.class)) {
-                return new UserRepo(entityInformation, entityManager);
-            } else if (metadata.getRepositoryInterface().equals(IPlayerRepo.class)) {
-                return new PlayerRepo(entityInformation, entityManager);
-            } else {
-                return new BaseRepository(entityInformation, entityManager);
-            }
+            return new BaseRepository(entityInformation, entityManager);
         }
 
         @Override
         public Class<?> getRepositoryBaseClass(RepositoryMetadata metadata) {
-            if (metadata.getRepositoryInterface().equals(IUserRepo.class)) {
-                return UserRepo.class;
-            } else if (metadata.getRepositoryInterface().equals(IPlayerRepo.class)) {
-                return PlayerRepo.class;
-            } else {
-                return BaseRepository.class;
-            }
+            return BaseRepository.class;
         }
     }
 }
