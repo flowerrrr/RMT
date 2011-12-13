@@ -4,6 +4,7 @@ import de.flower.common.test.wicket.AbstractWicketMockitoTests;
 import de.flower.common.test.wicket.WicketTester;
 import de.flower.rmt.model.User;
 import de.flower.rmt.service.security.ISecurityService;
+import de.flower.rmt.service.security.UserDetailsBean;
 import de.flower.rmt.ui.app.TestApplication;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.springframework.context.ApplicationContext;
@@ -35,6 +36,9 @@ public abstract class AbstractRMTWicketMockitoTests extends AbstractWicketMockit
         ISecurityService securityService = mockCtx.getMock(ISecurityService.class);
         User user = TestData.newUser();
         when(securityService.getUser()).thenReturn(user);
+
+        UserDetailsBean userDetails = new UserDetailsBean(user);
+        when(securityService.getCurrentUser()).thenReturn(userDetails);
     }
 
 
