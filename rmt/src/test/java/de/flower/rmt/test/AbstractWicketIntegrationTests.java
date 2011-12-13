@@ -41,5 +41,4 @@ public abstract class AbstractWicketIntegrationTests extends AbstractIntegration
 
     }
 
-    public abstract void testRender();
 }

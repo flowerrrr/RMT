@@ -22,7 +22,7 @@ public class EventsPage extends PlayerBasePage {
     public EventsPage() {
         addHeading("player.events.heading");
 
-        final UserModel userModel = new UserModel(getUser());
+        final UserModel userModel = new UserModel(getUserDetails().getUser());
         addMainPanel(new EventListPanel(userModel, getUpcomingEventList(userModel)));
 
         addSecondaryPanel(new Label("foobar", "<h3>Letzte Rückmeldungen</h3>\n" +

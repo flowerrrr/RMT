@@ -41,6 +41,7 @@
     <logger name="trace.de.flower.common.model" level="INFO" />
     <logger name="trace.de.flower.common.ui.ajax.updatebehavior" level="INFO" />
     <logger name="trace.de.flower.common.util.xstream.ClassEmittingReflectionConverter" level="INFO" />
+    <logger name="trace.de.flower.rmt.service" level="INFO" />
 
     <logger name="xstream" additivity="false" level="TRACE" >
         <appender-ref ref="XSTREAM_FILE" />

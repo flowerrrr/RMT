@@ -36,7 +36,7 @@ public abstract class AbstractService {
      * @return
      */
     protected Club getClub() {
-        User currentUser = securityService.getCurrentUser();
+        User currentUser = securityService.getUser();
         notNull(currentUser, "Security Context must be filled with a user");
         return currentUser.getClub();
     }

@@ -2,8 +2,8 @@ package de.flower.rmt.ui.common.panel;
 
 import de.flower.common.util.Misc;
 import de.flower.common.util.Strings;
-import de.flower.rmt.model.User;
 import de.flower.rmt.service.security.ISecurityService;
+import de.flower.rmt.service.security.UserDetailsBean;
 import de.flower.rmt.ui.model.UserModel;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.panel.GenericPanel;
@@ -56,12 +56,12 @@ public class BasePanel<T> extends GenericPanel<T> {
      * Shortcut to get current user from security context.
      * @return
      */
-    protected User getUser() {
+    protected UserDetailsBean getUserDetails() {
         return securityService.getCurrentUser();
     }
 
     protected UserModel getUserModel() {
-        return new UserModel(securityService.getCurrentUser());
+        return new UserModel(securityService.getCurrentUser().getUser());
     }
 
     /**

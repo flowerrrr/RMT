@@ -18,6 +18,6 @@ public class NotificationServiceTest extends AbstractIntegrationTests {
     @Test
     public void testSendInvitationNewUserMail() {
         User user = testData.createUser();
-        notificationService.sendInvitationNewUser(user, securityService.getCurrentUser());
+        notificationService.sendInvitationNewUser(user, securityService.getUser());
     }
 }

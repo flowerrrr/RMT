@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.common.panel;
 
-import de.flower.rmt.model.User;
+import de.flower.rmt.service.security.UserDetailsBean;
 import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.common.page.INavigationPanelAware;
 import de.flower.rmt.ui.common.page.account.AccountPage;
@@ -25,7 +25,7 @@ public class AbstractNavigationPanel extends BasePanel {
         add(new BookmarkablePageLink("account", AccountPage.class));
         add(createSwitchViewLink("switchView", view));
         add(new LogoutLink("logoutLink"));
-        add(new Label("user", getUser().getFullname()));
+        add(new Label("user", getUserDetails().getUser().getFullname()));
 
         setRenderBodyOnly(true);
     }
@@ -37,7 +37,7 @@ public class AbstractNavigationPanel extends BasePanel {
      * @return
      */
     private Link createSwitchViewLink(String id, View view) {
-        User user = getUser();
+        UserDetailsBean userDetails = getUserDetails();
         Link link;
         if (view == View.MANAGER) {
             // manager can always switch to player view.
@@ -45,7 +45,7 @@ public class AbstractNavigationPanel extends BasePanel {
         } else {
             // player can only switch to manager mode if he has MANAGER role
             link = new BookmarkablePageLink(id, ManagerHomePage.class);
-            link.setVisible(user.isManager());
+            link.setVisible(userDetails.isManager());
         }
         return link;
     }

@@ -13,7 +13,6 @@ import org.testng.annotations.Test;
  */
 public class AccountPasswordPanelTest extends AbstractWicketIntegrationTests {
 
-    @Override
     @Test
     public void testRender() {
         User user = testData.getTestUser();

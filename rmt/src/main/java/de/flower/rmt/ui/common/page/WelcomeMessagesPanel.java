@@ -48,7 +48,7 @@ public class WelcomeMessagesPanel extends BasePanel {
 
             @Override
             public boolean isVisible() {
-                return !isHideMessage(PASSWORD_CHANGE_MESSAGE) && getUser().hasInitialPassword();
+                return !isHideMessage(PASSWORD_CHANGE_MESSAGE) && getUserDetails().getUser().hasInitialPassword();
             }
         };
         return container;

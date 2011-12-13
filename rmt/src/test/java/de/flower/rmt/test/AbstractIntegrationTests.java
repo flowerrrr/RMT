@@ -87,6 +87,9 @@ public class AbstractIntegrationTests extends AbstractTestNGSpringContextTests {
     protected IUserManager userManager;
 
     @Autowired
+    protected IRoleManager roleManager;
+
+    @Autowired
     protected IEventManager eventManager;
 
     @Autowired

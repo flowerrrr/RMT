@@ -15,7 +15,7 @@ import static org.mockito.Mockito.when;
  * @author flowerrrr
  */
 
-public abstract class AbstractRMTWicketMokitoTests extends AbstractWicketMockitoTests {
+public abstract class AbstractRMTWicketMockitoTests extends AbstractWicketMockitoTests {
 
 
     @Override
@@ -34,7 +34,7 @@ public abstract class AbstractRMTWicketMokitoTests extends AbstractWicketMockito
     public void initSecurityService() {
         ISecurityService securityService = mockCtx.getMock(ISecurityService.class);
         User user = TestData.newUser();
-        when(securityService.getCurrentUser()).thenReturn(user);
+        when(securityService.getUser()).thenReturn(user);
     }
 
 

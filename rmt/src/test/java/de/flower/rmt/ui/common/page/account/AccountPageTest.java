@@ -8,7 +8,6 @@ import org.testng.annotations.Test;
  */
 public class AccountPageTest extends AbstractWicketIntegrationTests {
 
-    @Override
     @Test
     public void testRender() {
         wicketTester.startPage(new AccountPage());

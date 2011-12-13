@@ -9,7 +9,6 @@ import org.testng.annotations.Test;
  */
 public class WelcomeMessagesPanelTest extends AbstractWicketIntegrationTests {
 
-    @Override
     @Test
     public void testRender() {
         wicketTester.startComponentInPage(new WelcomeMessagesPanel());
@@ -19,7 +18,7 @@ public class WelcomeMessagesPanelTest extends AbstractWicketIntegrationTests {
     @Test
     public void testPasswordChangeMessage() {
         // first with user that has no initialPassword
-        User user = securityService.getCurrentUser();
+        User user = securityService.getUser();
         user.setInitialPassword(null);
         wicketTester.startComponentInPage(new WelcomeMessagesPanel());
         wicketTester.dumpComponentWithPage();

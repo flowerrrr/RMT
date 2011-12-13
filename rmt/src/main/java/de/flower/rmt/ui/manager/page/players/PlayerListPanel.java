@@ -7,6 +7,7 @@ import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.common.ui.tooltips.TwipsyBehavior;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.User_;
+import de.flower.rmt.service.IRoleManager;
 import de.flower.rmt.service.IUserManager;
 import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.ui.common.panel.BasePanel;
@@ -36,6 +37,9 @@ public class PlayerListPanel extends BasePanel {
     private IUserManager playerManager;
 
     @SpringBean
+    private IRoleManager roleManager;
+
+    @SpringBean
     private ISecurityService securityService;
 
     public PlayerListPanel() {
@@ -51,7 +55,7 @@ public class PlayerListPanel extends BasePanel {
                 item.add(new Label("email", player.getEmail()));
                 Component manager;
                 item.add(manager = new WebMarkupContainer("manager"));
-                manager.setVisible(player.isManager());
+                manager.setVisible(roleManager.isManager(player));
 
                 Link sendInvitiationLink = new Link("sendInvitationLink") {
                     @Override

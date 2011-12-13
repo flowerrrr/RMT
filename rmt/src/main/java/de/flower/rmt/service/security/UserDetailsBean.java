@@ -31,4 +31,21 @@ public class UserDetailsBean extends org.springframework.security.core.userdetai
     public User getUser() {
         return user;
     }
+
+    public boolean isManager() {
+        return hasRole(Role.Roles.MANAGER.getRoleName());
+    }
+
+    private boolean hasRole(final String roleName) {
+        return findRole(roleName) != null;
+    }
+
+    private Role findRole(final String roleName) {
+        for (Role r : user.getRoles()) {
+            if (r.getAuthority().equals(roleName)) {
+                return r;
+            }
+        }
+        return null;
+    }
 }

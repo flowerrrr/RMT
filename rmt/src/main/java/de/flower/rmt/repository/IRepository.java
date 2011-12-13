@@ -18,5 +18,6 @@ public interface IRepository<T, ID extends Serializable> extends JpaRepository<T
      *
      * @param entity
      */
+    @Deprecated
     void reattach(T entity);
 }

@@ -7,7 +7,9 @@ import de.flower.rmt.model.User;
  */
 public interface ISecurityService {
 
-    User getCurrentUser();
+    UserDetailsBean getCurrentUser();
 
     boolean isCurrentUser(User user);
+
+    User getUser();
 }

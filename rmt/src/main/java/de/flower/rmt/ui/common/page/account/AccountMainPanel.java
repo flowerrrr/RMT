@@ -26,7 +26,7 @@ public class AccountMainPanel extends BasePanel {
     private AjaxTabbedPanel tabbedPanel;
 
     public AccountMainPanel() {
-        final IModel<User> model = new UserModel(getUser());
+        final IModel<User> model = new UserModel(getUserDetails().getUser());
 
         // create a list of ITab objects used to feed the tabbed panel
         List<ITab> tabs = new ArrayList<ITab>();

@@ -47,11 +47,18 @@ public class UserManager extends AbstractService implements IUserManager {
     private INotificationService notificationService;
 
     @Autowired
+    private IRoleManager roleManager;
+
+    @Autowired
     private Validator validator;
 
     @Override
-    public User loadById(Long id) {
-        return Check.notNull(userRepo.findOne(id));
+    public User loadById(Long id, final Attribute... attributes) {
+        Specification fetch = Specs.fetch(attributes);
+        User entity = userRepo.findOne(Specs.and(Specs.eq(User_.id, id), fetch));
+        Check.notNull(entity);
+        assertClub(entity);
+        return entity;
     }
 
     @Override
@@ -65,12 +72,23 @@ public class UserManager extends AbstractService implements IUserManager {
         // check that a role is assigned
         if (user.isNew()) {
             notEmpty(user.getRoles(), "user has no role(s) assigned");
-        } else {
-            userRepo.reattach(user);
         }
         userRepo.save(user);
-        for (Role role : user.getRoles()) {
-            roleRepo.save(role);
+        if (user.isNew()) {
+            for (Role role : user.getRoles()) {
+                roleRepo.save(role);
+            }
+        }
+    }
+
+    @Override
+    @Transactional(readOnly = false)
+    public void save(final User user, final boolean isManager) {
+        save(user);
+        if (isManager) {
+            roleManager.addRole(user.getId(), Role.Roles.MANAGER.getRoleName());
+        } else {
+            roleManager.removeRole(user.getId(), Role.Roles.MANAGER.getRoleName());
         }
     }
 
@@ -86,6 +104,7 @@ public class UserManager extends AbstractService implements IUserManager {
     public List<User> findUnassignedPlayers(final Team team) {
         return userRepo.findUnassignedPlayers(team, getClub());
     }
+
     @Override
     @Transactional(readOnly = false)
     public void delete(User user) {
@@ -140,7 +159,7 @@ public class UserManager extends AbstractService implements IUserManager {
     @Transactional(readOnly = false)
     public void sendInvitation(Long userId) {
         User user = loadById(userId);
-        notificationService.sendInvitationNewUser(user, securityService.getCurrentUser());
+        notificationService.sendInvitationNewUser(user, securityService.getUser());
         user.setInvitationSent(true);
         userRepo.save(user);
     }

@@ -1,6 +1,7 @@
 package de.flower.rmt.ui.common.form.field;
 
 import de.flower.common.ui.Css;
+import de.flower.common.util.Check;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.behavior.AttributeAppender;
@@ -11,10 +12,7 @@ import org.apache.wicket.markup.MarkupElement;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.AbstractReadOnlyModel;
-import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.PropertyModel;
-import org.apache.wicket.model.ResourceModel;
+import org.apache.wicket.model.*;
 import org.apache.wicket.validation.IValidator;
 import org.wicketstuff.jsr303.PropertyValidator;
 
@@ -38,6 +36,9 @@ public class FormFieldPanel extends Panel {
         super(id);
         setOutputMarkupId(true);
 
+        formComponent = fc;
+        add(formComponent);
+
         // set css class of border according to validation result.
         IModel<String> cssClassModel = new AbstractReadOnlyModel<String>() {
             @Override
@@ -54,10 +55,34 @@ public class FormFieldPanel extends Panel {
 
         add(new AttributeAppender("class", cssClassModel, " "));
 
-        formComponent = fc;
-        add(formComponent);
         add(new FeedbackPanel("feedback", new ComponentFeedbackMessageFilter(formComponent)));
 
+        // set model of form component. form.getForm not available at constructor time, so we have
+        // to use wrapping model to defer lookup of form.
+        IModel formModelWrapperModel = new AbstractReadOnlyModel() {
+
+            @Override
+            public Object getObject() {
+                return formComponent.getForm().getModel();
+            }
+        };
+        formComponent.setModel(new PropertyModel(formModelWrapperModel, this.getId()));
+
+        formComponent.setLabel(new LoadableDetachableModel<String> () {
+            /**
+             * Have to delay lookup of resourceKey until component is rendered.
+             */
+            @Override
+            protected String load() {
+                String resourceKey = Check.notNull(getLabelKey());
+                return new ResourceModel(resourceKey).getObject();
+            }
+        });
+    }
+
+    @Override
+    protected void onInitialize() {
+        super.onInitialize();
         // add validation
         if (isInstantValidationEnabled()) {
             formComponent.add(new PropertyValidator(formComponent));
@@ -78,24 +103,6 @@ public class FormFieldPanel extends Panel {
                 }
             });
         }
-
-        // set model of form component. form.getForm not available at constructor time, so we have
-        // to use wrapping model to defer lookup of form.
-        IModel formModelWrapperModel = new AbstractReadOnlyModel() {
-
-            @Override
-            public Object getObject() {
-                return formComponent.getForm().getModel();
-            }
-        };
-        formComponent.setModel(new PropertyModel(formModelWrapperModel, this.getId()));
-
-        formComponent.setLabel(new AbstractReadOnlyModel<String>() {
-            @Override
-            public String getObject() {
-                return new ResourceModel(getLabelKey()).getObject();
-            }
-        });
     }
 
     @Override

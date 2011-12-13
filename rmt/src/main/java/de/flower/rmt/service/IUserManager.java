@@ -12,11 +12,13 @@ import java.util.List;
  */
 public interface IUserManager {
 
-    User loadById(Long id);
+    User loadById(Long id, final Attribute... attributes);
 
     User findByUsername(String username);
 
     void save(User user);
+
+    void save(User user, boolean isManager);
 
     void delete(User user);
 

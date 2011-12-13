@@ -18,7 +18,7 @@ import org.testng.annotations.BeforeMethod;
  */
 public abstract class AbstractWicketMockitoTests {
 
-    protected WicketTester wicketTester = null;
+    protected WicketTester wicketTester;
 
     protected MockitoFactoryApplicationContext mockCtx;
 

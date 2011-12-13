@@ -30,6 +30,7 @@ public class FormFieldPanelTest extends AbstractWicketUnitTests {
             add(form);
             form.add(new TextFieldPanel("name"));
             form.add(new DropDownChoicePanel<String>("time", Arrays.asList("a", "b", "c")));
+            form.add(new CheckBoxPanel("flag"));
         }
 
         public Markup getAssociatedMarkup() {
@@ -38,6 +39,7 @@ public class FormFieldPanelTest extends AbstractWicketUnitTests {
                     // can use whatever tag we like, since the tag is rewritten by the panel
                     + "<foobar wicket:id='name' labelKey='label.name' />\n"
                     + "<rmt:select wicket:id='time' labelKey='label.time' />\n"
+                    + "<rmt:checkbox wicket:id='flag' labelKey='label.flag' />\n"
                     + "</form>\n"
                     + "</body></html>", this);
         }
@@ -48,6 +50,8 @@ public class FormFieldPanelTest extends AbstractWicketUnitTests {
         private String name;
 
         private String time;
+
+        private Boolean flag;
 
         private TestEntity(final String name, final String time) {
             this.name = name;
@@ -68,6 +72,14 @@ public class FormFieldPanelTest extends AbstractWicketUnitTests {
 
         public void setTime(final String time) {
             this.time = time;
+        }
+
+        public Boolean getFlag() {
+            return flag;
+        }
+
+        public void setFlag(final Boolean flag) {
+            this.flag = flag;
         }
     }
 }

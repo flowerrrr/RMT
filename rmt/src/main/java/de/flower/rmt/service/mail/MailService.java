@@ -77,7 +77,7 @@ public class MailService implements IMailService {
      * @return
      */
     private String getReplyTo() {
-        User user = securityService.getCurrentUser();
+        User user = securityService.getUser();
         if (user != null) {
             return user.getEmail();
         } else {

@@ -15,11 +15,11 @@ public class SecurityService implements ISecurityService {
     private SecurityContextHolderStrategy schs;
 
     @Override
-    public User getCurrentUser() {
+    public UserDetailsBean getCurrentUser() {
         Object o = schs.getContext().getAuthentication().getPrincipal();
         if (o instanceof UserDetailsBean) {
             UserDetailsBean principal = (UserDetailsBean) o;
-            return principal.getUser();
+            return principal;
         } else {
             // anonymous user.
             return null;
@@ -28,6 +28,11 @@ public class SecurityService implements ISecurityService {
 
     @Override
     public boolean isCurrentUser(User user) {
-        return getCurrentUser().equals(user);
+        return getCurrentUser().getUser().equals(user);
+    }
+
+    @Override
+    public User getUser() {
+        return getCurrentUser().getUser();
     }
 }

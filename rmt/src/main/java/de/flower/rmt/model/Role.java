@@ -31,6 +31,15 @@ public class Role extends AbstractBaseEntity {
         public String getRoleName() {
             return roleName;
         }
+
+        public static Roles fromRoleName(String roleName) {
+            for (Roles r : values()) {
+                if (r.getRoleName().equals(roleName)) {
+                    return r;
+                }
+            }
+            throw new IllegalArgumentException("Unknown roleName [" + roleName + "].");
+        }
     }
 
     @NotNull

@@ -42,7 +42,7 @@ public class EventPage extends PlayerBasePage {
     }
 
     private IModel<Response> getResponseModel(final IModel<Event> model) {
-        final Response response = responseManager.findByEventAndUser(model.getObject(), getUser());
+        final Response response = responseManager.findByEventAndUser(model.getObject(), getUserDetails().getUser());
         if (response == null) {
             return new ResponseModel(model);
         } else {

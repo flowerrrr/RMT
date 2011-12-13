@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.manager.page.player;
 
 import de.flower.rmt.model.User;
-import de.flower.rmt.test.AbstractRMTWicketMokitoTests;
+import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
 import de.flower.rmt.test.TestData;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 /**
  * @author flowerrrr
  */
-public class ResetPasswordPanelTest extends AbstractRMTWicketMokitoTests {
+public class ResetPasswordPanelTest extends AbstractRMTWicketMockitoTests {
 
     @Test
     public void testRender() {

@@ -12,7 +12,6 @@ import static org.testng.Assert.*;
  */
 public class AccountMainPanelTest extends AbstractWicketIntegrationTests {
 
-    @Override
     @Test
     public void testRender() {
         wicketTester.startComponentInPage(new AccountMainPanel());

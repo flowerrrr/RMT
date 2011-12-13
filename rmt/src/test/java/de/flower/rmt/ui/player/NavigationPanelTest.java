@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.player;
 
-import de.flower.rmt.test.AbstractRMTWicketMokitoTests;
+import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
 import de.flower.rmt.ui.common.page.INavigationPanelAware;
 import org.testng.annotations.Test;
 
@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
  * @author flowerrrr
  */
 
-public class NavigationPanelTest extends AbstractRMTWicketMokitoTests {
+public class NavigationPanelTest extends AbstractRMTWicketMockitoTests {
 
     @Test
     public void testRender() {

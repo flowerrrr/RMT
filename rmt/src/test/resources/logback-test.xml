@@ -42,11 +42,12 @@
     <!-- Tracing loggers. Set to INFO to disable. DEBUG: method calls, TRACE: constructor calls -->
     <logger name="trace.de.flower" level="INFO"/>
     <!-- exceptions to avoid too many output -->
-    <logger name="trace.de.flower.common.test" level="DEBUG" />
+    <logger name="trace.de.flower.common.test" level="INFO" />
     <logger name="trace.de.flower.common.model.AbstractBaseEntity" level="INFO" />
     <logger name="trace.de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener" level="INFO" />
     <logger name="trace.de.flower.common.util.xstream.ClassEmittingReflectionConverter" level="INFO" />
     <logger name="trace.de.flower.common.ui.serialize" level="INFO" />
+    <logger name="trace.de.flower.rmt.service" level="DEBUG" />
 
     <logger name="de.flower" level="DEBUG" />
 

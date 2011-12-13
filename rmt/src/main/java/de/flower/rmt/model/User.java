@@ -31,14 +31,17 @@ public class User extends AbstractClubRelatedEntity {
 
     public static class Validation {
 
-        public interface INameUnique {}
+        public interface INameUnique {
 
-        public interface IEmailUnique {}
+        }
+
+        public interface IEmailUnique {
+
+        }
 
         public final static String nameNotUniqueMessage = "{validation.unique.name}";
 
         public final static String emailNotUniqueMessage = "{validation.unique.email}";
-
     }
 
     @NotBlank
@@ -145,23 +148,6 @@ public class User extends AbstractClubRelatedEntity {
 
     public List<Role> getRoles() {
         return roles;
-    }
-
-    public void setRoles(List<Role> authorities) {
-        this.roles = authorities;
-    }
-
-    public boolean isManager() {
-        return hasRole(Role.Roles.MANAGER.getRoleName());
-    }
-
-    public boolean hasRole(String role) {
-        for (Role r : roles) {
-            if (r.getAuthority().equals(role)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public Status getStatus() {
