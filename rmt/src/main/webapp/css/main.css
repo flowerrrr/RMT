@@ -288,6 +288,7 @@ td .info-icon {
 **************************************************************************/
 ul.dropdown {
     float: right;
+    text-align: left; // in case parent container defines different alignment
     margin-bottom: 0px; // override default setting.
 
     .dropdown-menu {

@@ -186,6 +186,26 @@ public class User extends AbstractClubRelatedEntity {
         return initialPassword != null;
     }
 
+       public boolean isManager() {
+        return hasRole(Role.Roles.MANAGER.getRoleName());
+    }
+
+    public boolean hasRole(String roleName) {
+        return findRole(roleName) != null;
+    }
+
+
+    public  Role findRole(String roleName) {
+        for (Role r : getRoles()) {
+            if (r.getAuthority().equals(roleName)) {
+                return r;
+            }
+        }
+        return null;
+    }
+
+
+
     public enum Status {
         UNKNOWN,
         FIT,

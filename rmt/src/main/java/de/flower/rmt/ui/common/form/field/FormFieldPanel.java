@@ -22,11 +22,9 @@ import org.wicketstuff.jsr303.PropertyValidator;
 public class FormFieldPanel extends Panel {
 
     // must match the wicket:for attribute of the label
-    protected final static String ID = "input";
+    public final static String ID = "input";
 
     public static final String LABEL_KEY = "labelKey";
-
-    private boolean instantValidationEnabled = true;
 
     private boolean isValidated = false;
 
@@ -57,18 +55,21 @@ public class FormFieldPanel extends Panel {
 
         add(new FeedbackPanel("feedback", new ComponentFeedbackMessageFilter(formComponent)));
 
-        // set model of form component. form.getForm not available at constructor time, so we have
-        // to use wrapping model to defer lookup of form.
-        IModel formModelWrapperModel = new AbstractReadOnlyModel() {
+        // use form's compoundpropertymodel by default but let component override it if desired.
+        if (formComponent.getModel() == null) {
+            // set model of form component. form.getForm not available at constructor time, so we have
+            // to use wrapping model to defer lookup of form.
+            IModel formModelWrapperModel = new AbstractReadOnlyModel() {
 
-            @Override
-            public Object getObject() {
-                return formComponent.getForm().getModel();
-            }
-        };
-        formComponent.setModel(new PropertyModel(formModelWrapperModel, this.getId()));
+                @Override
+                public Object getObject() {
+                    return formComponent.getForm().getModel();
+                }
+            };
+            formComponent.setModel(new PropertyModel(formModelWrapperModel, this.getId()));
+        }
 
-        formComponent.setLabel(new LoadableDetachableModel<String> () {
+        formComponent.setLabel(new LoadableDetachableModel<String>() {
             /**
              * Have to delay lookup of resourceKey until component is rendered.
              */
@@ -78,12 +79,8 @@ public class FormFieldPanel extends Panel {
                 return new ResourceModel(resourceKey).getObject();
             }
         });
-    }
 
-    @Override
-    protected void onInitialize() {
-        super.onInitialize();
-        // add validation
+         // add validation
         if (isInstantValidationEnabled()) {
             formComponent.add(new PropertyValidator(formComponent));
             formComponent.add(new AjaxFormComponentUpdatingBehavior("onchange") {
@@ -140,11 +137,12 @@ public class FormFieldPanel extends Panel {
         formComponent.add(validator);
     }
 
-    public boolean isInstantValidationEnabled() {
-        return instantValidationEnabled;
+    /**
+     * Override this method to disable standard validation behavior.
+     * @return
+     */
+    protected boolean isInstantValidationEnabled() {
+        return true;
     }
 
-    public void setInstantValidationEnabled(final boolean instantValidationEnabled) {
-        this.instantValidationEnabled = instantValidationEnabled;
-    }
-}
+ }

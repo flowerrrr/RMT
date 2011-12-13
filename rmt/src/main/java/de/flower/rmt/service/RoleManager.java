@@ -3,6 +3,7 @@ package de.flower.rmt.service;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.Role;
 import de.flower.rmt.model.User;
+import de.flower.rmt.model.User_;
 import de.flower.rmt.repository.IRoleRepo;
 import de.flower.rmt.repository.IUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,15 +20,19 @@ public class RoleManager implements IRoleManager {
 
     @Autowired
     private IRoleRepo roleRepo;
+
     @Autowired
     private IUserRepo userRepo;
+
+    @Autowired
+    private IUserManager userManager;
 
     @Transactional(readOnly = false)
     public void addRole(Long userId, String roleName) {
         Check.notNull(userId);
         Check.notNull(roleName);
-        User user = userRepo.findOne(userId);
-        if (!hasRole(userId, roleName)) {
+        User user = userManager.loadById(userId, User_.roles);
+        if (!user.hasRole(roleName)) {
             Role role = new Role(roleName);
             role.setUser(user);
             user.getRoles().add(role);
@@ -40,33 +45,13 @@ public class RoleManager implements IRoleManager {
     public void removeRole(Long userId, String roleName) {
         Check.notNull(userId);
         Check.notNull(roleName);
-        User user = userRepo.findOne(userId);
-        Role role = findRole(userId, roleName);
+        User user = userManager.loadById(userId, User_.roles);
+        Role role = user.findRole(roleName);
         if (role != null) {
             roleRepo.delete(role);
             Check.isTrue(user.getRoles().remove(role));
             userRepo.save(user);
         }
-    }
-
-    @Override
-    public boolean isManager(final User user) {
-        return hasRole(user.getId(), Role.Roles.MANAGER.getRoleName());
-    }
-
-    public boolean hasRole(Long userId, String roleName) {
-        return findRole(userId, roleName) != null;
-    }
-
-
-    private  Role findRole(Long userId, String roleName) {
-        User user = userRepo.findOne(userId);
-        for (Role r : user.getRoles()) {
-            if (r.getAuthority().equals(roleName)) {
-                return r;
-            }
-        }
-        return null;
     }
 
 

@@ -18,9 +18,9 @@ public class RoleManagerTest extends AbstractIntegrationTests {
         user = userManager.loadById(user.getId());
 
         userManager.save(user, true);
-        assertTrue(roleManager.isManager(user));
+        assertTrue(user.isManager());
 
         userManager.save(user, false);
-        assertFalse(roleManager.isManager(user));
+        assertFalse(user.isManager());
     }
 }

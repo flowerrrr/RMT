@@ -55,7 +55,7 @@ public class PlayerListPanel extends BasePanel {
                 item.add(new Label("email", player.getEmail()));
                 Component manager;
                 item.add(manager = new WebMarkupContainer("manager"));
-                manager.setVisible(roleManager.isManager(player));
+                manager.setVisible(player.isManager());
 
                 Link sendInvitiationLink = new Link("sendInvitationLink") {
                     @Override

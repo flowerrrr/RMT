@@ -1,7 +1,6 @@
 package de.flower.rmt.ui.manager.page.player;
 
 import de.flower.rmt.model.User;
-import de.flower.rmt.model.type.UserDto;
 import de.flower.rmt.test.AbstractWicketIntegrationTests;
 import de.flower.rmt.ui.model.UserModel;
 import org.apache.wicket.Component;
@@ -20,12 +19,12 @@ public class PlayerEditPanelITest extends AbstractWicketIntegrationTests {
     public void validateConstraints() {
         wicketTester.startComponentInPage(new PlayerEditPanel(new UserModel()));
         // get user under test
-        Form<UserDto> form = (Form<UserDto>) wicketTester.getComponentFromLastRenderedPage("form");
-        User userUnderTest = form.getModelObject().getUser();
+        Form<User> form = (Form<User>) wicketTester.getComponentFromLastRenderedPage("form");
+        User userUnderTest = form.getModelObject();
         wicketTester.dumpPage();
         wicketTester.debugComponentTrees();
         // input email and validate field
-        Component email = wicketTester.getComponentFromLastRenderedPage("user.email:input");
+        Component email = wicketTester.getComponentFromLastRenderedPage("email:input");
         wicketTester.assertAjaxValidationError(email, ""); // field cannot be empty
         wicketTester.assertNoAjaxValidationError(email, "foo@bar.com");
         wicketTester.assertAjaxValidationError(email, "not-an-email-address"); // invalid email format
@@ -35,7 +34,7 @@ public class PlayerEditPanelITest extends AbstractWicketIntegrationTests {
         wicketTester.assertAjaxValidationError(email, user.getEmail());
         wicketTester.assertNoAjaxValidationError(email, "foo@bar.com");
         // test fullname field
-        Component fullname = wicketTester.getComponentFromLastRenderedPage("user.fullname:input");
+        Component fullname = wicketTester.getComponentFromLastRenderedPage("fullname:input");
         wicketTester.assertAjaxValidationError(fullname, "");// cannot be blank
         wicketTester.assertNoAjaxValidationError(fullname, "foo bar");
         wicketTester.assertAjaxValidationError(fullname, user.getFullname()); // must be unique per club

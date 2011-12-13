@@ -21,7 +21,7 @@ public class BasePanel<T> extends GenericPanel<T> {
     protected static final Logger log = LoggerFactory.getLogger(BasePanel.class);
 
     @SpringBean
-    private ISecurityService securityService;
+    protected ISecurityService securityService;
 
     public BasePanel() {
         this(null, null);
