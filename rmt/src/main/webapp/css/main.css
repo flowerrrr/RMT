@@ -257,7 +257,7 @@ a.menu:after, .dropdown-toggle:after {
 /*************************************************************************
     icons and labels
 **************************************************************************/
-.info-icon {
+.icon-info {
     .label;
     font-weight: 900; // as thick as possible
     padding: 1px 4px 0px 4px;
@@ -267,11 +267,34 @@ a.menu:after, .dropdown-toggle:after {
     }
 }
 
-.checked-icon {
-    background: url(../img/checked.png) no-repeat;
+.icon-abstract {
     padding: 0px 7px;
+    vertical-align: middle;
 }
 
+.icon-checked, .icon-unsure {
+    .icon-abstract;
+    background: url(../img/checked.png) no-repeat;
+}
+
+.icon-accepted {
+    .icon-abstract;
+    background: url(../img/valid.png) no-repeat;
+}
+
+.icon-declined {
+    .icon-abstract;
+    background: url(../img/error.png) no-repeat;
+}
+
+.icon-noresponse {
+    .icon-abstract;
+    background: url(../img/question.png) no-repeat;
+}
+
+/*************************************************************************
+    twipsy tooltips
+**************************************************************************/
 // custom tailor twipsy
 .twipsy {
     // make it fully opaque
@@ -368,6 +391,15 @@ td {
 
 td.rsvpstatus {
     width: 100px;
+}
+
+.num-response {
+    padding-left: 3px;
+    &:not(:last-child) {
+        padding-right: 3px;
+        width: 14px; // both single and double digits should fit into
+        display: inline-block;
+    }
 }
 
 /*************************************************************************

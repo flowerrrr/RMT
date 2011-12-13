@@ -41,7 +41,7 @@ public abstract class QuickResponseLabel extends AjaxEditableChoiceLabel<RSVPSta
      */
     @Override
     protected String defaultNullLabel() {
-        return "<span class=\"info-icon\"/>";
+        return "<span class=\"icon-info\"/>";
     }
 
     @Override

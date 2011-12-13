@@ -26,7 +26,7 @@ public class ResponseSummaryPanel extends BasePanel {
         add(new Label("accepted", createModel(model, RSVPStatus.ACCEPTED)));
         add(new Label("unsure", createModel(model, RSVPStatus.UNSURE)));
         add(new Label("declined", createModel(model, RSVPStatus.DECLINED)));
-        add(new Label("noresponse", createModel(model, RSVPStatus.ACCEPTED)));
+        add(new Label("noresponse", getNotResponderList(model)));
     }
 
     private IModel<Long> createModel(final IModel<Event> model, final RSVPStatus rsvpStatus) {
