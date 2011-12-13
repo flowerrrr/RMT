@@ -29,6 +29,12 @@ public abstract class ResponseFormPanel extends BasePanel {
                 ResponseFormPanel.this.onSubmit(form.getModelObject(), target);
                 onClose();
             }
+
+            @Override
+            protected boolean isShowSuccessFeedbackPanel() {
+                // don't to have success message. not necessary on this form.
+                return false;
+            }
         };
         add(form);
         final RadioGroup group = new RadioGroup("status");

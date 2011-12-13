@@ -13,8 +13,6 @@ class EventsPageTest extends AbstractWicketIntegrationTests {
     def testRender() {
         wicketTester.startPage(new EventsPage())
         wicketTester.dumpPage()
-        wicketTester.clickLink("newButton")
-        wicketTester.dumpPage()
     }
 
 

@@ -18,6 +18,13 @@ public interface IUserManager {
 
     void save(User user);
 
+    /**
+     * Saves user and assigns or removes manager role.
+     * User object passed into this method should be
+     * refreshed after this method call to reflect changes.
+     * @param user
+     * @param isManager
+     */
     void save(User user, boolean isManager);
 
     void delete(User user);

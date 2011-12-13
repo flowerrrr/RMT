@@ -33,7 +33,12 @@ public abstract class EntityForm<T> extends Form<T> {
 
     private void init() {
 
-        add(new FormFeedbackPanel(new ComponentFeedbackMessageFilter(this)));
+        add(new FormFeedbackPanel(new ComponentFeedbackMessageFilter(this)) {
+            @Override
+            public boolean isShowSuccessFeedbackPanel() {
+                return EntityForm.this.isShowSuccessFeedbackPanel();
+            }
+        });
 
         add(new AjaxSubmitLink("submitButton") {
             @Override
@@ -48,6 +53,14 @@ public abstract class EntityForm<T> extends Form<T> {
                 }
             }
         });
+    }
+
+    /**
+     * Override this method to hide feedback panel after submit.
+     * @return
+     */
+    protected boolean isShowSuccessFeedbackPanel() {
+        return true;
     }
 
     protected void onBeforeValidation(T entity) {

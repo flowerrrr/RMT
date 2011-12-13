@@ -18,7 +18,7 @@ public class FormFeedbackPanel extends BasePanel {
             @Override
             public boolean isVisible() {
                 Form form = Check.notNull(findParent(Form.class));
-                return form.isSubmitted() && Session.get().getFeedbackMessages().isEmpty();
+                return isShowSuccessFeedbackPanel() && form.isSubmitted() && Session.get().getFeedbackMessages().isEmpty();
             }
         });
         add(new WebMarkupContainer("hasErrors") {
@@ -30,8 +30,10 @@ public class FormFeedbackPanel extends BasePanel {
         final FeedbackPanel feedback;
         add(feedback = new FeedbackPanel("feedback", filter));
         feedback.setOutputMarkupId(true);
-     }
+    }
 
-
+    protected boolean isShowSuccessFeedbackPanel() {
+        return true;
+    }
 }
 

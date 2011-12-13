@@ -30,6 +30,7 @@
     </appender>
 
     <logger name="org.apache.wicket" level="INFO" />
+    <logger name="org.apache.wicket.devutils" level="DEBUG" />
     <logger name="org.wicketstuff" level="DEBUG" />
     <logger name="org.springframework" level="INFO" />
 
