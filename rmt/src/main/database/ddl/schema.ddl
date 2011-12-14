@@ -1,7 +1,7 @@
 
     create table Club (
         id bigint not null auto_increment,
-        name varchar(255),
+        name varchar(50) not null,
         primary key (id)
     );
 
@@ -10,7 +10,7 @@
         id bigint not null auto_increment,
         comment varchar(255),
         date datetime not null,
-        summary varchar(40) not null,
+        summary varchar(50) not null,
         time time not null,
         kickOff time,
         club_id bigint not null,
@@ -25,28 +25,23 @@
         id bigint not null auto_increment,
         body varchar(255) not null,
         date datetime not null,
-        subject varchar(255) not null,
+        subject varchar(50) not null,
         event_id bigint,
         primary key (id)
     );
 
     create table Jersey (
         id bigint not null auto_increment,
-        shirt varchar(255),
-        shorts varchar(255),
-        socks varchar(255),
+        shirt varchar(50) not null,
+        shorts varchar(50) not null,
+        socks varchar(50) not null,
         team_id bigint,
         primary key (id)
     );
 
-    create table Manager (
-        team_id bigint not null,
-        user_id bigint not null
-    );
-
     create table Opponent (
         id bigint not null auto_increment,
-        name varchar(40) not null,
+        name varchar(50) not null,
         url varchar(255),
         primary key (id)
     );
@@ -63,7 +58,7 @@
         id bigint not null auto_increment,
         comment varchar(255),
         date datetime not null,
-        guestName varchar(255),
+        guestName varchar(50),
         managerComment varchar(255),
         status varchar(255) not null,
         event_id bigint,
@@ -81,7 +76,7 @@
 
     create table Team (
         id bigint not null auto_increment,
-        name varchar(40) not null,
+        name varchar(50) not null,
         url varchar(255),
         club_id bigint not null,
         primary key (id),
@@ -90,13 +85,16 @@
 
     create table Users (
         id bigint not null auto_increment,
-        username varchar(255) not null unique,
+        username varchar(80) not null,
         enabled bit not null,
-        fullname varchar(255) not null,
-        password varchar(255),
+        password varchar(50) not null,
+        fullname varchar(50) not null,
+        initialPassword varchar(50),
+        invitationSent bit,
         status integer,
         club_id bigint not null,
         primary key (id),
+        unique (username),
         unique (fullname, club_id)
     );
 
@@ -109,6 +107,8 @@
         club_id bigint not null,
         primary key (id)
     );
+
+    create index ix_club on Event (club_id);
 
     alter table Event 
         add index FK403827A5CB6EDDA (venue_id), 
@@ -140,11 +140,15 @@
         foreign key (jersey_id) 
         references Jersey (id);
 
+    create index ix_event on Invitation (event_id);
+
     alter table Invitation 
         add index FKBE1153B9D1F985A6 (event_id), 
         add constraint FKBE1153B9D1F985A6 
         foreign key (event_id) 
         references Event (id);
+
+    create index ix_team on Jersey (team_id);
 
     alter table Jersey 
         add index FK840B72901C96621A (team_id), 
@@ -152,17 +156,11 @@
         foreign key (team_id) 
         references Team (id);
 
-    alter table Manager 
-        add index FK9501A78D699BC35A (user_id), 
-        add constraint FK9501A78D699BC35A 
-        foreign key (user_id) 
-        references Users (id);
+    create index ix_user on Player (user_id);
 
-    alter table Manager 
-        add index FK9501A78D1C96621A (team_id), 
-        add constraint FK9501A78D1C96621A 
-        foreign key (team_id) 
-        references Team (id);
+    create index ix_team on Player (team_id);
+
+    create index ix_optional on Player (optional);
 
     alter table Player 
         add index FK8EA38701699BC35A (user_id), 
@@ -176,6 +174,12 @@
         foreign key (team_id) 
         references Team (id);
 
+    create index ix_player on Response (player_id);
+
+    create index ix_event on Response (event_id);
+
+    create index ix_status on Response (status);
+
     alter table Response 
         add index FKEF917861D1F985A6 (event_id), 
         add constraint FKEF917861D1F985A6 
@@ -188,11 +192,15 @@
         foreign key (player_id) 
         references Player (id);
 
+    create index ix_user on Role (user_id);
+
     alter table Role 
         add index FK26F496699BC35A (user_id), 
         add constraint FK26F496699BC35A 
         foreign key (user_id) 
         references Users (id);
+
+    create index ix_club on Team (club_id);
 
     alter table Team 
         add index FK27B67DA64B977A (club_id), 
@@ -200,11 +208,21 @@
         foreign key (club_id) 
         references Club (id);
 
+    create index ix_club on Users (club_id);
+
+    create index ix_status on Users (status);
+
+    create index ix_enabled on Users (enabled);
+
+    create index ix_username on Users (username);
+
     alter table Users 
         add index FK4E39DE8A64B977A (club_id), 
         add constraint FK4E39DE8A64B977A 
         foreign key (club_id) 
         references Club (id);
+
+    create index ix_club on Venue (club_id);
 
     alter table Venue 
         add index FK4EB7A4FA64B977A (club_id), 

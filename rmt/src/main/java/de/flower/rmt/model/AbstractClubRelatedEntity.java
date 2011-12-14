@@ -1,6 +1,7 @@
 package de.flower.rmt.model;
 
 import de.flower.common.model.AbstractBaseEntity;
+import org.hibernate.annotations.Index;
 
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
@@ -14,6 +15,7 @@ public abstract class AbstractClubRelatedEntity extends AbstractBaseEntity {
 
     @NotNull
     @ManyToOne
+    @Index(name = "ix_club")
     private Club club;
 
     protected AbstractClubRelatedEntity() {

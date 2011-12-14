@@ -2,6 +2,7 @@ package de.flower.rmt.model;
 
 import de.flower.common.model.AbstractBaseEntity;
 import de.flower.rmt.model.event.Event;
+import org.hibernate.annotations.Index;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Column;
@@ -32,6 +33,7 @@ public class Invitation extends AbstractBaseEntity {
     private String body;
 
     @ManyToOne
+    @Index(name = "ix_event")
     private Event event;
 
     private Invitation() {

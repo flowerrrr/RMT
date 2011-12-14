@@ -16,5 +16,6 @@ public interface ITeamRepo extends IRepository<Team, Long> {
 
     List<Team> findAllByClub(Club club);
 
+    @Deprecated // currently only used for testing
     Team findByNameAndClub(String name, Club club);
 }

@@ -1,6 +1,7 @@
 package de.flower.rmt.model;
 
 import de.flower.common.validation.unique.Unique;
+import org.hibernate.annotations.Index;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -49,6 +50,7 @@ public class User extends AbstractClubRelatedEntity {
     @Email
     // need to be  named 'username' to satisfy spring security
     @Column(name = "username")
+    @Index(name = "ix_username")
     private String email;
 
     /**
@@ -70,6 +72,7 @@ public class User extends AbstractClubRelatedEntity {
 
     @NotNull
     @Column
+    @Index(name = "ix_enabled")
     private boolean enabled;
 
     @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE})
@@ -81,6 +84,7 @@ public class User extends AbstractClubRelatedEntity {
     private String fullname;
 
     @Column
+    @Index(name = "ix_status")
     private Status status;
 
     /**

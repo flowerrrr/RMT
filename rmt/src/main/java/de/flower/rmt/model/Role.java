@@ -1,6 +1,7 @@
 package de.flower.rmt.model;
 
 import de.flower.common.model.AbstractBaseEntity;
+import org.hibernate.annotations.Index;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -48,6 +49,7 @@ public class Role extends AbstractBaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @Index(name = "ix_user")
     private User user;
 
     private Role() {

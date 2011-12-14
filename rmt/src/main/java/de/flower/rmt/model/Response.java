@@ -2,6 +2,7 @@ package de.flower.rmt.model;
 
 import de.flower.common.model.AbstractBaseEntity;
 import de.flower.rmt.model.event.Event;
+import org.hibernate.annotations.Index;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,6 +17,7 @@ public class Response extends AbstractBaseEntity {
 
     @Enumerated(EnumType.STRING)
     @NotNull(message = "{validation.rsvpstatus.notnull}")
+    @Index(name = "ix_status")
     private RSVPStatus status;
 
     @Column
@@ -35,9 +37,11 @@ public class Response extends AbstractBaseEntity {
     private String guestName;
 
     @ManyToOne
+    @Index(name = "ix_event")
     private Event event;
 
     @ManyToOne
+    @Index(name = "ix_player")
     private Player player;
 
     private Response() {

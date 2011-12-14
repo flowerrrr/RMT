@@ -1,6 +1,7 @@
 package de.flower.rmt.model;
 
 import de.flower.common.model.AbstractBaseEntity;
+import org.hibernate.annotations.Index;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Column;
@@ -30,6 +31,7 @@ public class Jersey extends AbstractBaseEntity {
     private String socks;
 
     @ManyToOne
+    @Index(name = "ix_team")
     private Team team;
 
     private Jersey() {

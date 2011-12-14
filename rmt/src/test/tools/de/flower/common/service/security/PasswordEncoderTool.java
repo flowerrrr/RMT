@@ -18,7 +18,7 @@ public class PasswordEncoderTool extends AbstractIntegrationTests {
 
     @Test
     public void encodePassword() {
-        String password = "foo";
+        String password = "1234";
         String encryptedPassword = passwordEncoder.encodePassword(password, null);
         log.info("[" + password + "] -> [" + encryptedPassword + "].");
     }

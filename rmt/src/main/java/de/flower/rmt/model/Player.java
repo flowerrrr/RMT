@@ -1,6 +1,7 @@
 package de.flower.rmt.model;
 
 import de.flower.common.model.AbstractBaseEntity;
+import org.hibernate.annotations.Index;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,9 +16,11 @@ import javax.validation.constraints.NotNull;
 public class Player extends AbstractBaseEntity {
 
     @ManyToOne
+    @Index(name = "ix_team")
     private Team team;
 
     @ManyToOne
+    @Index(name = "ix_user")
     private User user;
 
     /**
@@ -25,6 +28,7 @@ public class Player extends AbstractBaseEntity {
      */
     @Column
     @NotNull
+    @Index(name = "ix_optional")
     private Boolean optional;
 
     private Player() {
