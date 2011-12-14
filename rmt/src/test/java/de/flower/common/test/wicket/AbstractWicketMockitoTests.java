@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeMethod;
 
 /**
  * Base class for wicket test that need @SpringBean to work.
- * Test subclassing this class will get mockito mocks injected whenever
+ * Wicket components will get mockito mocks injected whenever
  * a @SpringBean annotation is evaluated.
  *
  * @SpringBean can also be used in the test classes itself (as a replacement for @Autowired).

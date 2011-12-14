@@ -1045,6 +1045,7 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" name="jquery.min" level="application" />
   </component>
   <component name="org.twodividedbyzero.idea.findbugs">
     <option name="_basePreferences">

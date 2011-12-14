@@ -1,6 +1,5 @@
 @import "bootstrap/bootstrap.less";
 
-
 /*************************************************************************
     misc
     todo: check if can be replaced by bootstrap class
@@ -59,15 +58,6 @@ li {
     color: @grayDark;
 }
 
-input[type="checkbox"] {
-    margin-right: 5px;
-}
-
-/* override float:left from bootstrap */
-input[type="checkbox"] + label {
-    float: none;
-}
-
 .container {
     /* smaller width than default 940px. */
     width: 820px;
@@ -122,6 +112,37 @@ input[type="checkbox"] + label {
     margin-bottom: 20px;
     padding-bottom: 20px;
 }
+
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/*************************************************************************
+   form field tweaking
+**************************************************************************/
+
+/* override float:left from bootstrap */
+input[type="checkbox"] + label {
+    float: none;
+}
+
+select {
+    width: 220px;
+}
+
+// use default bootstrap settings for input-fields (datepicker is readonly but should look like normal input)
+input[readonly].reset {
+    background-color: #fff;
+    border-color: #ccc;
+    cursor: auto;
+    &:focus {
+        outline: 0;
+        border-color: rgba(82,168,236,.8);
+        @shadow: inset 0 1px 3px rgba(0,0,0,.1), 0 0 8px rgba(82,168,236,.6);
+        .box-shadow(@shadow);
+    }
+}
+
 
 /*************************************************************************
    tabbed panel

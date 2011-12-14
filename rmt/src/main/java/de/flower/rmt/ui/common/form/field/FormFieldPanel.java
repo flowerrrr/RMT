@@ -80,25 +80,27 @@ public class FormFieldPanel extends Panel {
             }
         });
 
-         // add validation
-        if (isInstantValidationEnabled()) {
+        // add validation
+        if (isValidationEnabled()) {
             formComponent.add(new PropertyValidator(formComponent));
-            formComponent.add(new AjaxFormComponentUpdatingBehavior("onchange") {
-                @Override
-                protected void onUpdate(AjaxRequestTarget target) {
-                    isValidated = true;
-                    target.add(FormFieldPanel.this);
-                }
-
-                @Override
-                protected void onError(AjaxRequestTarget target, RuntimeException e) {
-                    if (e != null) {
-                        throw e;
+            if (isInstantValidationEnabled()) {
+                formComponent.add(new AjaxFormComponentUpdatingBehavior("onchange") {
+                    @Override
+                    protected void onUpdate(AjaxRequestTarget target) {
+                        isValidated = true;
+                        target.add(FormFieldPanel.this);
                     }
-                    isValidated = true;
-                    target.add(FormFieldPanel.this);
-                }
-            });
+
+                    @Override
+                    protected void onError(AjaxRequestTarget target, RuntimeException e) {
+                        if (e != null) {
+                            throw e;
+                        }
+                        isValidated = true;
+                        target.add(FormFieldPanel.this);
+                    }
+                });
+            }
         }
     }
 
@@ -138,11 +140,20 @@ public class FormFieldPanel extends Panel {
     }
 
     /**
-     * Override this method to disable standard validation behavior.
+     * Override this method to disable standard instant validation behavior.
+     *
      * @return
      */
     protected boolean isInstantValidationEnabled() {
         return true;
     }
 
- }
+    /**
+     * Override this method to fully disable validation for this component.
+     *
+     * @return
+     */
+    protected boolean isValidationEnabled() {
+        return true;
+    }
+}

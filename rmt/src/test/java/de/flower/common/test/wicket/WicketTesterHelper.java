@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Duplicates WicketTesterHelper#getComponentData but avoids reading out model values.
  * Using the original version of the method inside unit tests might lead to
- * error logs and even test failure cause model-objects are messed up.
+ * error logs and even test failure cause model-objects are messed up when they are read.
  *
  * @author flowerrrr
  */

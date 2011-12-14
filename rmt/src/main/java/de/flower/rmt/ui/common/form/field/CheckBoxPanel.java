@@ -18,7 +18,7 @@ public class CheckBoxPanel extends FormFieldPanel {
     }
 
     @Override
-    protected boolean isInstantValidationEnabled() {
+    protected boolean isValidationEnabled() {
         return false;
     }
 }
