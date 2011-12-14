@@ -289,28 +289,31 @@ a.menu:after, .dropdown-toggle:after {
 }
 
 .icon-abstract {
-    padding: 0px 7px;
-    vertical-align: middle;
+    padding: 1px 8px;
+    border: 1px solid #ccc;
+    .border-radius(3px);
+    background-position: center center;
+    background-repeat: no-repeat;
 }
 
 .icon-checked, .icon-unsure {
     .icon-abstract;
-    background: url(../img/checked.png) no-repeat;
+    background-image: url(../img/checked.png);
 }
 
 .icon-accepted {
     .icon-abstract;
-    background: url(../img/valid.png) no-repeat;
+    background-image: url(../img/valid.png);
 }
 
 .icon-declined {
     .icon-abstract;
-    background: url(../img/error.png) no-repeat;
+    background-image: url(../img/error.png);
 }
 
 .icon-noresponse {
     .icon-abstract;
-    background: url(../img/question.png) no-repeat;
+    background-image: url(../img/question.png);
 }
 
 /*************************************************************************
@@ -415,7 +418,7 @@ td.rsvpstatus {
 }
 
 .num-response {
-    padding-left: 3px;
+    padding-left: 4px;
     &:not(:last-child) {
         padding-right: 3px;
         width: 14px; // both single and double digits should fit into
