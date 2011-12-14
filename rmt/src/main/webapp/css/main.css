@@ -1,4 +1,33 @@
-@import "bootstrap/bootstrap.less";
+// @import "bootstrap/bootstrap.less";
+
+/*************************************************************************
+    copied from bootstrap.less.
+    these functions/variables are not available if using precompiled bootstrap css.
+**************************************************************************/
+@black:             #000;
+@grayDark:          lighten(@black, 25%);
+
+// Border Radius
+.border-radius(@radius: 5px) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+
+// Drop shadows
+.box-shadow(@shadow: 0 1px 3px rgba(0,0,0,.25)) {
+  -webkit-box-shadow: @shadow;
+     -moz-box-shadow: @shadow;
+          box-shadow: @shadow;
+}
+
+// Opacity
+.opacity(@opacity: 100) {
+	filter: e(%("alpha(opacity=%d)", @opacity));
+	-khtml-opacity: @opacity / 100;
+	  -moz-opacity: @opacity / 100;
+	       opacity: @opacity / 100;
+}
 
 /*************************************************************************
     misc
@@ -151,7 +180,7 @@ input[readonly].reset {
 .tab-row {
     clear: both;
     ul {
-        .tabs;
+        // todo: add .tabs to tabs-markup .tabs;
     }
     .selected > a, .selected > a:hover {
         -moz-border-bottom-colors: none;
@@ -278,15 +307,6 @@ a.menu:after, .dropdown-toggle:after {
 /*************************************************************************
     icons and labels
 **************************************************************************/
-.icon-info {
-    .label;
-    font-weight: 900; // as thick as possible
-    padding: 1px 4px 0px 4px;
-    line-height: 12px;
-    &:before {
-        content: '!';
-    }
-}
 
 .icon-abstract {
     padding: 1px 8px;
@@ -316,6 +336,25 @@ a.menu:after, .dropdown-toggle:after {
     background-image: url(../img/question.png);
 }
 
+.icon-info {
+    .icon-abstract;
+    // todo add class to html markup .label;
+    font-weight: 900; // as thick as possible
+    padding: 1px 6px 0px 6px;
+    line-height: 12px;
+    &:before {
+        content: '!';
+    }
+}
+
+td .drop-down-menu-panel {
+    // give space to preceding info icon
+    margin-left: 5px;
+    ul {
+        margin-top: -1px; // to vertically align with info-icon
+    }
+}
+
 /*************************************************************************
     twipsy tooltips
 **************************************************************************/
@@ -327,11 +366,6 @@ a.menu:after, .dropdown-toggle:after {
     }
 }
 
-
-// inside tables align with football icon
-td .info-icon {
-    margin: 4px 4px 0px 0px;
-}
 
 
 /*************************************************************************
