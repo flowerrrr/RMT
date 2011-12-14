@@ -24,4 +24,11 @@ public interface IEventManager {
 
     Event newInstance(EventType eventType);
 
+    /**
+     * Used for deep links. Loads event and checks if user has access rights to this event.
+     * @param id
+     * @param user
+     * @return
+     */
+    Event loadByIdAndUser(Long id, User user);
 }

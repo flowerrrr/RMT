@@ -134,6 +134,8 @@ public class UserManager extends AbstractService implements IUserManager {
         initPassword(user);
         if (sendMail) {
             notificationService.sendResetPasswordMail(user);
+            // even if user hasen't received invitation mail yet
+            user.setInvitationSent(true);
         }
         userRepo.save(user);
     }

@@ -4,7 +4,6 @@ import de.flower.common.util.Misc;
 import de.flower.common.util.Strings;
 import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.service.security.UserDetailsBean;
-import de.flower.rmt.ui.model.UserModel;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
@@ -58,10 +57,6 @@ public class BasePanel<T> extends GenericPanel<T> {
      */
     protected UserDetailsBean getUserDetails() {
         return securityService.getCurrentUser();
-    }
-
-    protected UserModel getUserModel() {
-        return new UserModel(securityService.getCurrentUser().getUser());
     }
 
     /**

@@ -8,11 +8,11 @@ import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.service.IResponseManager;
+import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.common.panel.QuickResponseLabel;
 import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.model.UserModel;
-import de.flower.rmt.ui.player.page.event.EventPage;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -54,13 +54,8 @@ public class EventListPanel extends BasePanel {
             protected void populateItem(final ListItem<Event> item) {
                 final Event event = item.getModelObject();
                 final EventModel eventModel = new EventModel(item.getModel());
-                Link link;
-                item.add(link = new Link<Event>("responsesLink", eventModel) {
-                    @Override
-                    public void onClick() {
-                        setResponsePage(new EventPage(getModel()));
-                    }
-                });
+                Link link = Links.eventLink("responsesLink", event.getId());
+                item.add(link);
                 link.add(DateLabel.forDateStyle("date", Model.of(event.getDate()), "S-"));
                 link.add(DateLabel.forDateStyle("time", Model.of(event.getTime().toDateTimeToday().toDate()), "-S"));
                 item.add(new Label("type", new ResourceModel(EventType.from(event).getResourceKey())));

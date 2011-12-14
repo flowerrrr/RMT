@@ -65,7 +65,8 @@ public class PlayerListPanel extends BasePanel {
                         setResponsePage(new PlayerEditPage(new UserModel(item.getModel())));
                     }
                 };
-                sendInvitiationLink.setVisible(!player.isInvitationSent());
+                // RMT-426
+                sendInvitiationLink.setVisible(!player.isInvitationSent() && player.hasInitialPassword());
                 item.add(sendInvitiationLink);
                 sendInvitiationLink.add(new TwipsyBehavior(new ResourceModel("manager.players.tooltip.invitiation.not.send")));
 

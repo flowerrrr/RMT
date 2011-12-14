@@ -1,6 +1,7 @@
 package de.flower.rmt.service;
 
 import de.flower.common.util.Check;
+import de.flower.rmt.model.Player;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
@@ -34,6 +35,9 @@ public class EventManager extends AbstractService implements IEventManager {
 
     @Autowired
     private ITeamManager teamManager;
+
+    @Autowired
+    private IPlayerManager playerManager;
 
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
@@ -90,5 +94,16 @@ public class EventManager extends AbstractService implements IEventManager {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public Event loadByIdAndUser(final Long id, final User user) {
+        Event event = loadById(id);
+        // is this event related to the club of the user?
+        Check.isEqual(event.getClub(), user.getClub());
+        // is this event related to any of the teams of the user?
+        Player player = playerManager.findByEventAndUser(event, user);
+        Check.notNull(player);
+        return event;
     }
 }
