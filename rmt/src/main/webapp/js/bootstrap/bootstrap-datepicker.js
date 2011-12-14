@@ -207,7 +207,7 @@
 
         this.$picker.css({
           top: offset.top + this.$el.outerHeight() + 2,
-          left: offset.left
+          left: offset.left - 2
         }).show();
 
         $('html').on('keydown', this.keyHandler);

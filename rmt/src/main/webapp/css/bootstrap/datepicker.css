@@ -21,6 +21,12 @@
   margin-bottom: 18px;
   padding-bottom: 4px;
   width: 218px;
+    /*
+    make it a little bit wider and shift a few pixels left (done in js-code) so that form fields
+    are completely hidden (otherwise border shines through on edges)
+    */
+    padding-left: 2px;
+    padding-right: 2px;
 }
 .datepicker .nav {
   font-weight: bold;
