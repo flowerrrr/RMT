@@ -5,7 +5,20 @@
 <body>
 <wicket:panel>
 
-    TBD: Display form to edit user data.
+    <form wicket:id="form">
+
+        <fieldset>
+            <wicket:container wicket:id="formFeedbackPanel" />
+            <rmt:input wicket:id="fullname" labelKey="manager.player.fullname"/>
+            <rmt:input wicket:id="email" labelKey="manager.player.email"/>
+            <div class="actions">
+                <a class="btn primary" wicket:id="submitButton">
+                    <wicket:message key="button.save"/>
+                </a>
+            </div>
+        </fieldset>
+
+    </form>
 
 </wicket:panel>
 </body>

@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 /**
  * @author flowerrrr
  */
-class InvitationListPanelTest extends AbstractWicketIntegrationTests {
+public class InvitationListPanelTest extends AbstractWicketIntegrationTests {
 
     @Test
     public void testRender() {
