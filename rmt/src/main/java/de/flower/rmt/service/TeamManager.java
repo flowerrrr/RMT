@@ -87,6 +87,8 @@ public class TeamManager extends AbstractService implements ITeamManager {
             // TODO (flowerrrr - 22.10.11) use service call of playerManager
             Player player = new Player(team, user);
             player.setOptional(false);
+            player.setNotification(true);
+            player.setRetired(false);
             team.getPlayers().add(player);
             user.getPlayers().add(player);
             playerRepo.save(player);

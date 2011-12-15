@@ -50,17 +50,17 @@
     <venue id="2" lat="48.193399" lng="11.612356" name="EDV Freimann" club_id="1"/>
     <venue id="3" address="St. Martin-Stra&#223;e, M&#252;nchen" lat="48.12075424194336" lng="11.603121757507324" name="Rote Erde" club_id="1"/>
 
-    <player id="1" team_id="1" user_id="2" optional="0"/>
-    <player id="2" team_id="2" user_id="2" optional="0"/>
-    <player id="3" team_id="2" user_id="1" optional="0"/>
-    <player id="4" team_id="3" user_id="6" optional="0"/>
-    <player id="5" team_id="3" user_id="7" optional="0"/>
-    <player id="6" team_id="3" user_id="8" optional="0"/>
-    <player id="7" team_id="3" user_id="9" optional="0"/>
-    <player id="8" team_id="3" user_id="10" optional="0"/>
-    <player id="9" team_id="3" user_id="11" optional="0"/>
-    <player id="10" team_id="3" user_id="12" optional="0"/>
-    <player id="11" team_id="3" user_id="13" optional="0"/>
+    <player id="1" team_id="1" user_id="2" optional="0" notification="1" retired="0"/>
+    <player id="2" team_id="2" user_id="2" optional="0" notification="1" retired="0"/>
+    <player id="3" team_id="2" user_id="1" optional="0" notification="1" retired="0"/>
+    <player id="4" team_id="3" user_id="6" optional="0" notification="1" retired="0"/>
+    <player id="5" team_id="3" user_id="7" optional="0" notification="1" retired="0"/>
+    <player id="6" team_id="3" user_id="8" optional="0" notification="1" retired="0"/>
+    <player id="7" team_id="3" user_id="9" optional="0" notification="1" retired="0"/>
+    <player id="8" team_id="3" user_id="10" optional="0" notification="1" retired="0"/>
+    <player id="9" team_id="3" user_id="11" optional="0" notification="1" retired="0"/>
+    <player id="10" team_id="3" user_id="12" optional="0" notification="1" retired="0"/>
+    <player id="11" team_id="3" user_id="13" optional="0" notification="1" retired="0"/>
 
     <!-- use far away future dates so that tests of event dates againts now() yield always same results. -->
     <event eventType="Match" id="3" summary="Spiel im November" date="2021-11-01 00:00:00.0" time="17:00:00" kickoff="12:00:00" club_id="1" team_id="1" venue_id="1"/>

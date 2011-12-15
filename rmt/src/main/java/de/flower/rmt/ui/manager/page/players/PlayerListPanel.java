@@ -12,7 +12,7 @@ import de.flower.rmt.service.IUserManager;
 import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.common.panel.DropDownMenuPanel;
-import de.flower.rmt.ui.manager.page.player.PlayerEditPage;
+import de.flower.rmt.ui.manager.page.player.PlayerPage;
 import de.flower.rmt.ui.model.UserModel;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -62,7 +62,7 @@ public class PlayerListPanel extends BasePanel {
                 Link sendInvitiationLink = new Link("sendInvitationLink") {
                     @Override
                     public void onClick() {
-                        setResponsePage(new PlayerEditPage(new UserModel(item.getModel())));
+                        setResponsePage(new PlayerPage(new UserModel(item.getModel())));
                     }
                 };
                 // RMT-426
@@ -103,7 +103,7 @@ public class PlayerListPanel extends BasePanel {
         return new Link(id) {
             @Override
             public void onClick() {
-                setResponsePage(new PlayerEditPage(new UserModel(item.getModel())));
+                setResponsePage(new PlayerPage(new UserModel(item.getModel())));
             }
         };
     }

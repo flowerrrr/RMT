@@ -19,4 +19,5 @@ public interface IPlayerRepo extends IRepository<Player, Long> {
 
     Player findByTeamAndUser(Team team, User user);
 
+    List<Player> findByUser(User user);
 }

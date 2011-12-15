@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd"
+      xmlns:rmt="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<wicket:panel>
+
+    <div wicket:id="noTeam">
+        <wicket:message key="manager.player.teams.noteam" />
+    </div>
+    <div wicket:id="list">
+        <h4 wicket:id="name" />
+        <form wicket:id="form">
+            <fieldset>
+                <rmt:select wicket:id="notification" labelKey="manager.player.teams.notification" />
+                <rmt:select wicket:id="optional" labelKey="manager.player.teams.optional" />
+                <rmt:select wicket:id="retired" labelKey="manager.player.teams.status" />
+            </fieldset>
+        </form>
+    </div>
+
+</wicket:panel>
+</body>
+</html>

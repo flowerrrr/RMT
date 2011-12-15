@@ -92,12 +92,11 @@ public class TestData {
         return team;
     }
 
-    public static Team newTeam() {
+    public Team newTeam() {
         return new Team(newClub());
     }
 
-
-    public static User newUser() {
+    public User newUser() {
         User user = new User(newClub());
         user.setEmail(RandomStringUtils.randomAlphabetic(8) + "@acme.com");
         user.setFullname(RandomStringUtils.randomAlphabetic(10));
@@ -109,12 +108,35 @@ public class TestData {
         return user;
     }
 
+    public User newUserWithTeams() {
+        Club club = newClub();
+        Team team1 = new Team(club);
+        Team team2 = new Team(club);
+        Team team3 = new Team(club);
+        User user = newUser();
+        // add user to teams
+        addPlayer(team1, user);
+        addPlayer(team2, user);
+        addPlayer(team3, user);
+        return user;
+    }
+
+    private Player addPlayer(final Team team, final User user) {
+        Player player = new Player(team, user);
+        player.setRetired(false);
+        player.setOptional(false);
+        player.setNotification(true);
+        team.getPlayers().add(player);
+        user.getPlayers().add(player);
+        return player;
+    }
+
     public User createUser() {
         return createUsers(1).get(0);
     }
 
     public List<User> createUsers(int count) {
-        List<User> users=new ArrayList<User>();
+        List<User> users = new ArrayList<User>();
         for (int i = 0; i < count; i++) {
             User user = userManager.newInstance();
             user.setEmail(RandomStringUtils.randomAlphabetic(8) + "@acme.com");
@@ -125,7 +147,7 @@ public class TestData {
         return users;
     }
 
-    public static Event newEvent() {
+    public Event newEvent() {
         return new Event(newTeam());
     }
 
@@ -173,5 +195,4 @@ public class TestData {
     public User getTestUser() {
         return userManager.findByUsername(AbstractIntegrationTests.testUserName);
     }
-
 }

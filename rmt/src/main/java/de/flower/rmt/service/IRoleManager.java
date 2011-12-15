@@ -9,4 +9,6 @@ public interface IRoleManager {
 
     public void removeRole(Long userId, String roleName);
 
+    public boolean isManager(Long userId);
+
 }

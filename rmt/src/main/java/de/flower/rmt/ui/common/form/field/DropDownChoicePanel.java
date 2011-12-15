@@ -34,4 +34,16 @@ public class DropDownChoicePanel<T> extends FormFieldPanel {
     private DropDownChoice getDropDownChoice() {
         return (DropDownChoice) getFormComponent();
     }
+
+    public static class NonValidatingDropDownChoicePanel extends DropDownChoicePanel {
+
+        public NonValidatingDropDownChoicePanel(final String id, final DropDownChoice<?> dropDownChoice) {
+            super(id, dropDownChoice);
+        }
+
+        @Override
+        protected boolean isValidationEnabled() {
+            return false;
+        }
+    }
 }

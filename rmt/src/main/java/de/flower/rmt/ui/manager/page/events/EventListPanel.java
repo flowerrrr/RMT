@@ -10,7 +10,7 @@ import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.common.panel.DropDownMenuPanel;
 import de.flower.rmt.ui.manager.page.event.EventEditPage;
-import de.flower.rmt.ui.manager.page.response.InvitationsPage;
+import de.flower.rmt.ui.manager.page.invitations.InvitationsPage;
 import de.flower.rmt.ui.model.EventModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;

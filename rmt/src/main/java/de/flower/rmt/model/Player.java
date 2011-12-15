@@ -31,6 +31,22 @@ public class Player extends AbstractBaseEntity {
     @Index(name = "ix_optional")
     private Boolean optional;
 
+    /**
+     * If false, the player does not receive email-invitations (but can still respond to an event).
+     */
+    @Column
+    @NotNull
+    @Index(name = "ix_notification")
+    private Boolean notification;
+
+    /**
+     * If true, the player will not be invited to any future events.
+     */
+    @Column
+    @NotNull
+    @Index(name = "ix_retired")
+    private Boolean retired;
+
     private Player() {
     }
 
@@ -53,6 +69,7 @@ public class Player extends AbstractBaseEntity {
      *
      * @return
      */
+    @Deprecated // might throw LIE
     public User.Status getStatus() {
         return this.user.getStatus();
     }
@@ -79,5 +96,21 @@ public class Player extends AbstractBaseEntity {
 
     public void setOptional(Boolean optional) {
         this.optional = optional;
+    }
+
+    public Boolean getNotification() {
+        return notification;
+    }
+
+    public void setNotification(final Boolean notification) {
+        this.notification = notification;
+    }
+
+    public Boolean getRetired() {
+        return retired;
+    }
+
+    public void setRetired(final Boolean retired) {
+        this.retired = retired;
     }
 }

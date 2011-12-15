@@ -27,14 +27,14 @@ public class PlayerManager extends AbstractService implements IPlayerManager {
     private IEventRepo eventRepo;
 
 
-    /**
-     * Shitty implementation using jpa association to retrieve list of teams.
-     * @param team
-     * @return
-     */
     @Override
     public List<Player> findByTeam(Team team) {
         return playerRepo.findByTeam(team);
+    }
+
+    @Override
+    public List<Player> findByUser(User user) {
+        return playerRepo.findByUser(user);
     }
 
     @Override
@@ -46,5 +46,11 @@ public class PlayerManager extends AbstractService implements IPlayerManager {
     public Player findByEventAndUser(final Event event, final User user) {
         eventRepo.reattach(event);
         return findByTeamAndUser(event.getTeam(), user);
+    }
+
+    @Override
+    public void save(final Player entity) {
+        validate(entity);
+        playerRepo.save(entity);
     }
 }

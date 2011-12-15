@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.manager.page.response;
+package de.flower.rmt.ui.manager.page.invitations;
 
 import de.flower.common.ui.ajax.AjaxLink;
 import de.flower.rmt.model.event.Event;

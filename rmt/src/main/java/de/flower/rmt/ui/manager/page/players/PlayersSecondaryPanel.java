@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.manager.page.players;
 
 import de.flower.rmt.ui.common.panel.BasePanel;
-import de.flower.rmt.ui.manager.page.player.PlayerEditPage;
+import de.flower.rmt.ui.manager.page.player.PlayerPage;
 import org.apache.wicket.markup.html.link.Link;
 
 /**
@@ -14,7 +14,7 @@ public class PlayersSecondaryPanel extends BasePanel {
 
             @Override
             public void onClick() {
-                setResponsePage(new PlayerEditPage());
+                setResponsePage(new PlayerPage());
             }
         });
     }

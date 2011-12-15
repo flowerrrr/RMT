@@ -7,11 +7,11 @@ import org.testng.annotations.Test;
  * @author flowerrrr
  */
 
-public class PlayerEditPageTest extends AbstractWicketIntegrationTests {
+public class PlayerPageTest extends AbstractWicketIntegrationTests {
 
     @Test
     public void testRender() {
-        wicketTester.startPage(new PlayerEditPage());
+        wicketTester.startPage(new PlayerPage());
         wicketTester.dumpPage();
         wicketTester.assertInvisible("sendInvitationPanel");
         wicketTester.assertInvisible("resetPasswordPanel");

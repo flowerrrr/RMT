@@ -14,7 +14,11 @@ public interface IPlayerManager {
 
     List<Player> findByTeam(Team team);
 
+    List<Player> findByUser(User user);
+
     Player findByTeamAndUser(Team team, User user);
 
     Player findByEventAndUser(Event event, User user);
+
+    void save(Player entity);
 }

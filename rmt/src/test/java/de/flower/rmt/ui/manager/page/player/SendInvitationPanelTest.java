@@ -2,7 +2,6 @@ package de.flower.rmt.ui.manager.page.player;
 
 import de.flower.rmt.model.User;
 import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
-import de.flower.rmt.test.TestData;
 import org.apache.wicket.model.Model;
 import org.testng.annotations.Test;
 
@@ -13,7 +12,7 @@ public class SendInvitationPanelTest extends AbstractRMTWicketMockitoTests {
 
     @Test
     public void testRender() {
-        User user = TestData.newUser();
+        User user = testData.newUser();
         wicketTester.startComponentInPage(new SendInvitationPanel(Model.of(user)));
         wicketTester.dumpComponentWithPage();
         wicketTester.clickLink("sendButton");

@@ -54,6 +54,10 @@ public class RoleManager implements IRoleManager {
         }
     }
 
-
-
+    @Override
+    public boolean isManager(final Long userId) {
+        Check.notNull(userId);
+        User user = userManager.loadById(userId, User_.roles);
+        return user.isManager();
+    }
 }

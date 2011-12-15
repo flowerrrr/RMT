@@ -13,11 +13,11 @@ import static org.testng.Assert.*;
  * @author flowerrrr
  */
 
-public class PlayerEditPanelITest extends AbstractWicketIntegrationTests {
+public class PlayerGeneralPanelITest extends AbstractWicketIntegrationTests {
 
     @Test
     public void validateConstraints() {
-        wicketTester.startComponentInPage(new PlayerEditPanel(new UserModel()));
+        wicketTester.startComponentInPage(new PlayerGeneralPanel("panel", new UserModel()));
         // get user under test
         Form<User> form = (Form<User>) wicketTester.getComponentFromLastRenderedPage("form");
         User userUnderTest = form.getModelObject();

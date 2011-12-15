@@ -3,6 +3,7 @@ package de.flower.rmt.ui.manager.page.player;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.rmt.model.User;
+import de.flower.rmt.service.IRoleManager;
 import de.flower.rmt.service.IUserManager;
 import de.flower.rmt.ui.common.form.EntityForm;
 import de.flower.rmt.ui.common.form.field.CheckBoxPanel;
@@ -20,16 +21,20 @@ import org.wicketstuff.jsr303.FormComponentBeanValidator;
 /**
  * @author flowerrrr
  */
-public class PlayerEditPanel extends BasePanel {
+public class PlayerGeneralPanel extends BasePanel<User> {
 
     @SpringBean
     private IUserManager userManager;
 
+    @SpringBean
+    private IRoleManager roleManager;
+
     private IModel<Boolean> managerModel;
 
-    public PlayerEditPanel(IModel<User> model) {
+    public PlayerGeneralPanel(String id, IModel<User> model) {
+        super(id, model);
 
-        managerModel = Model.of(model.getObject().isManager());
+        managerModel = getManagerModel(model);
         EntityForm<User> form = new EntityForm<User>("form", model) {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<User> form) {
@@ -51,5 +56,12 @@ public class PlayerEditPanel extends BasePanel {
         form.add(manager);
     }
 
-
+    private Model<Boolean> getManagerModel(final IModel<User> model) {
+        User user = model.getObject();
+        if (user.isNew()) {
+            return Model.of(false);
+        } else {
+            return Model.of(roleManager.isManager(user.getId()));
+        }
+    }
 }

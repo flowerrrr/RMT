@@ -1,8 +1,8 @@
-package de.flower.rmt.ui.common.page.account;
+package de.flower.rmt.ui.manager.page.player;
 
+import de.flower.common.util.Check;
 import de.flower.rmt.model.User;
 import de.flower.rmt.ui.common.panel.AbstractAjaxTabbedPanel;
-import de.flower.rmt.ui.model.UserModel;
 import org.apache.wicket.extensions.markup.html.tabs.AbstractTab;
 import org.apache.wicket.extensions.markup.html.tabs.ITab;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -14,28 +14,26 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class AccountMainPanel extends AbstractAjaxTabbedPanel<User> {
+public class PlayerMainPanel extends AbstractAjaxTabbedPanel<User> {
 
-    public static final int PASSWORD_RESET_PANEL_INDEX = 1;
-
-    public AccountMainPanel() {
+    public PlayerMainPanel(final IModel<User> model) {
+        super(Check.notNull(model));
     }
 
     @Override
     protected void addTabs(final List<ITab> tabs) {
-        final IModel<User> model = new UserModel(getUserDetails().getUser());
-        tabs.add(new AbstractTab(new ResourceModel("player.account.general")) {
+        final IModel<User> model = Check.notNull(getModel());
+        tabs.add(new AbstractTab(new ResourceModel("manager.player.edit.general")) {
             @Override
             public Panel getPanel(String panelId) {
-                return new AccountGeneralPanel(panelId, model);
+                return new PlayerGeneralPanel(panelId, model);
             }
         });
-        tabs.add(new AbstractTab(new ResourceModel("player.account.password")) {
+        tabs.add(new AbstractTab(new ResourceModel("manager.player.edit.team")) {
             @Override
             public Panel getPanel(String panelId) {
-                return new AccountPasswordPanel(panelId, model);
+                return new PlayerTeamsPanel(panelId, model);
             }
         });
-
     }
 }

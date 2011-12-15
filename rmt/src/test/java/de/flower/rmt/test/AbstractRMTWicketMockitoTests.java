@@ -18,23 +18,19 @@ import static org.mockito.Mockito.when;
 
 public abstract class AbstractRMTWicketMockitoTests extends AbstractWicketMockitoTests {
 
+    protected TestData testData = new TestData();
 
     @Override
     protected WicketTester createWicketTester(final ApplicationContext mockCtx) {
         WebApplication webApp = new TestApplication(mockCtx);
         WicketTester wicketTester = new WicketTester(webApp);
-/*
-        wicketTester.getLoggingSerializerFilter().addInclusion("\"de\\.flower\\.rmt\\.model\\.[^-]*?\"");
-        wicketTester.getLoggingSerializerFilter().addExclusion(RSVPStatus.class.getName());
-        wicketTester.getLoggingSerializerFilter().addExclusion(Password.class.getName());
-*/
         return wicketTester;
     }
 
     @BeforeMethod
     public void initSecurityService() {
         ISecurityService securityService = mockCtx.getMock(ISecurityService.class);
-        User user = TestData.newUser();
+        User user = testData.newUser();
         when(securityService.getUser()).thenReturn(user);
 
         UserDetailsBean userDetails = new UserDetailsBean(user);

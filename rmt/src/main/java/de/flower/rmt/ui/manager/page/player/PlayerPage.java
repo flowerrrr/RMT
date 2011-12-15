@@ -12,20 +12,21 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 /**
  * @author flowerrrr
  */
-public class PlayerEditPage extends ManagerBasePage {
+public class PlayerPage extends ManagerBasePage {
 
     @SpringBean
     private IUserManager userManager;
 
-    public PlayerEditPage() {
+    public PlayerPage() {
+        // for creating new player
         this(new UserModel());
     }
 
-    public PlayerEditPage(final IModel<User> model) {
+    public PlayerPage(final IModel<User> model) {
         super(model);
         // initialize model object if it is not set
         addHeading("manager.player.edit.heading", null);
-        addMainPanel(new PlayerEditPanel(model));
+        addMainPanel(new PlayerMainPanel(model));
 
         final SendInvitationPanel sendInvitationPanel = new SendInvitationPanel(model) {
             @Override

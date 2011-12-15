@@ -12,7 +12,7 @@ import org.testng.annotations.BeforeMethod;
  * Wicket components will get mockito mocks injected whenever
  * a @SpringBean annotation is evaluated.
  *
- * @SpringBean can also be used in the test classes itself (as a replacement for @Autowired).
+ * @SpringBean can also be used in the test classes.
  *
  * @author flowerrrr
  */
@@ -20,17 +20,18 @@ public abstract class AbstractWicketMockitoTests {
 
     protected WicketTester wicketTester;
 
-    protected MockitoFactoryApplicationContext mockCtx;
+    protected MockitoFactoryApplicationContext mockCtx = new MockitoFactoryApplicationContext();
 
     @BeforeMethod
     public void init() {
-        mockCtx = new MockitoFactoryApplicationContext();
         wicketTester = createWicketTester(mockCtx);
         WebApplication webApp = wicketTester.getApplication();
         SpringComponentInjector injector = new SpringComponentInjector(webApp, mockCtx);
         webApp.getComponentInstantiationListeners().add(injector);
-        // and inject spring beans into test classes
-        injector.inject(this);
+        // support for @SpringBean and inject mock beans into test classes.
+        // need pass paramater wrapInProxy 'false', cause mockito complains about proxied mocks (SpringComponentInjector wraps
+        // a proxy around the inject bean by default).
+        new SpringComponentInjector(webApp, mockCtx, false).inject(this);
     }
 
     protected WicketTester createWicketTester(final ApplicationContext mockCtx) {

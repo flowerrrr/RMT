@@ -10,7 +10,7 @@ import de.flower.rmt.service.IPlayerManager;
 import de.flower.rmt.service.ITeamManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.common.panel.DropDownMenuPanel;
-import de.flower.rmt.ui.manager.page.player.PlayerEditPage;
+import de.flower.rmt.ui.manager.page.player.PlayerPage;
 import de.flower.rmt.ui.model.UserModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -60,13 +60,13 @@ public class PlayerListPanel extends BasePanel<Team> {
             protected void populateItem(final ListItem<Player> item) {
                 final Player player = item.getModelObject();
                 item.add(new Label("name", player.getFullname()));
-                item.add(new Label("status", new ResourceModel("player.status." + player.getStatus().toString().toLowerCase())));
+                item.add(new Label("status", new ResourceModel("player.status." + player.getUser().getStatus().toString().toLowerCase())));
                 DropDownMenuPanel menuPanel = new DropDownMenuPanel();
                 item.add(menuPanel);
                 menuPanel.addLink(new Link("link") {
                     @Override
                     public void onClick() {
-                        setResponsePage(new PlayerEditPage(new UserModel(item.getModelObject().getUser())));
+                        setResponsePage(new PlayerPage(new UserModel(item.getModelObject().getUser())));
                     }
                 }, "button.edit");
                 menuPanel.addLink(new AjaxLinkWithConfirmation("link", new ResourceModel("manager.squad.remove.confirm")) {
