@@ -3,7 +3,6 @@ package de.flower.rmt.ui.manager.page.venues;
 import de.flower.rmt.model.Venue;
 import de.flower.rmt.ui.manager.ManagerBasePage;
 import de.flower.rmt.ui.model.VenueModel;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
 
 /**
@@ -24,7 +23,7 @@ public class VenueEditPage extends ManagerBasePage {
                 setResponsePage(VenuesPage.class);
             }
         });
-        addSecondaryPanel(new Label("foobar", "Put something useful here"));
+        // addSecondaryPanel(new Label("foobar", "Put something useful here"));
     }
 
     @Override

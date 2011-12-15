@@ -1,7 +1,6 @@
 package de.flower.rmt.ui.common.page.account;
 
 import de.flower.rmt.ui.common.page.CommonBasePage;
-import org.apache.wicket.markup.html.basic.Label;
 
 /**
  * @author flowerrrr
@@ -9,9 +8,9 @@ import org.apache.wicket.markup.html.basic.Label;
 public class AccountPage extends CommonBasePage {
 
     public AccountPage() {
-        addHeading("tbd", "tbd");
+        addHeading("account.heading", "account.heading.sub");
         addMainPanel(new AccountMainPanel());
-        addSecondaryPanel(new Label("foobar", "Put some useful stuff here"));
+        // addSecondaryPanel(new Label("foobar", "Put some useful stuff here"));
     }
 
     @Override

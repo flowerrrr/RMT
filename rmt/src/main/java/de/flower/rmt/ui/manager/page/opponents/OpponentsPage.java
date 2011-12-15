@@ -9,9 +9,8 @@ import org.apache.wicket.markup.html.basic.Label;
 public class OpponentsPage extends ManagerBasePage {
 
     public OpponentsPage() {
-        addHeading("tbd", "tbd");
-        addMainPanel(new Label("foobar", "Opponents"));
-        addSecondaryPanel(new Label("foobar", "Put some useful stuff here"));
+        addHeading("manager.opponents.heading");
+        addMainPanel(new Label("foobar", "Hier werden Sie in Kürze Ihre Gegner verwalten können."));
      }
 
     @Override

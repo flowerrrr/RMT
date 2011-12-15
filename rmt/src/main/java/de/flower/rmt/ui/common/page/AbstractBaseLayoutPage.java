@@ -22,6 +22,17 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
         add(new WelcomeMessagesPanel());
     }
 
+    /**
+     * In case no secondary panel was added use default panel.
+     */
+    @Override
+    protected void onInitialize() {
+        super.onInitialize();
+        if (secondaryPanel == null) {
+            addSecondaryPanel(new DefaultSecondaryPanel());
+        }
+    }
+
     protected void addHeading(String headingResourceKey) {
         add(new Label("heading", new ResourceModel(headingResourceKey)));
         add(new Label("subheading", new ResourceModel(headingResourceKey + ".sub")));

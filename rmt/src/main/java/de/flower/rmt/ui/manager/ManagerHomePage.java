@@ -8,9 +8,8 @@ import org.apache.wicket.markup.html.basic.Label;
 public class ManagerHomePage extends ManagerBasePage {
 
     public ManagerHomePage() {
-        addHeading("tbd", "tbd");
-        addMainPanel(new Label("foobar", "Hello world"));
-        addSecondaryPanel(new Label("foobar", "Hello world"));
+        addHeading("manager.home.heading", "manager.home.heading.sub");
+        addMainPanel(new Label("foobar", "Diese Seite zeigt in Zukunft die wichtigsten Daten und Ereignisse rund um Ihren Club an."));
     }
 
     @Override

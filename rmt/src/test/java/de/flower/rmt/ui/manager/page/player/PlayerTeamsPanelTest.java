@@ -25,6 +25,7 @@ public class PlayerTeamsPanelTest extends AbstractRMTWicketMockitoTests {
     @Test
     public void testRender() {
         final User user = testData.newUserWithTeams();
+        user.setId(1L); // make it act persisted
         when(playerManager.findByUser(user)).thenReturn(user.getPlayers());
         wicketTester.startComponentInPage(new PlayerTeamsPanel("panel", Model.of(user)));
         wicketTester.dumpComponentWithPage();

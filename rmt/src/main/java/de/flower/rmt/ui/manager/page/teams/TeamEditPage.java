@@ -3,7 +3,6 @@ package de.flower.rmt.ui.manager.page.teams;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.ui.manager.ManagerBasePage;
 import de.flower.rmt.ui.model.TeamModel;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
 
 /**
@@ -23,7 +22,7 @@ public class TeamEditPage extends ManagerBasePage {
                 setResponsePage(TeamsPage.class);
             }
         });
-        addSecondaryPanel(new Label("foobar", "Put some useful stuff here."));
+        // addSecondaryPanel(new Label("foobar", "Put some useful stuff here."));
     }
 
     @Override
