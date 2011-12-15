@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-// TODO (flowerrrr - 23.10.11) unite with players ResponseListPanel
+// TODO (flowerrrr - 23.10.11) unite with players InviteeListPanel
 public class InviteeListPanel extends BasePanel {
 
     @SpringBean

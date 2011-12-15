@@ -21,12 +21,15 @@
         primary key (id)
     );
 
-    create table Invitation (
+    create table Invitee (
         id bigint not null auto_increment,
-        body varchar(255) not null,
-        date datetime not null,
-        subject varchar(50) not null,
-        event_id bigint,
+        comment varchar(255),
+        date datetime,
+        guestName varchar(50),
+        managerComment varchar(255),
+        status varchar(255) not null,
+        event_id bigint not null,
+        user_id bigint,
         primary key (id)
     );
 
@@ -51,18 +54,6 @@
         optional bit not null,
         team_id bigint,
         user_id bigint,
-        primary key (id)
-    );
-
-    create table Response (
-        id bigint not null auto_increment,
-        comment varchar(255),
-        date datetime not null,
-        guestName varchar(50),
-        managerComment varchar(255),
-        status varchar(255) not null,
-        event_id bigint,
-        player_id bigint,
         primary key (id)
     );
 
@@ -140,13 +131,23 @@
         foreign key (jersey_id) 
         references Jersey (id);
 
-    create index ix_event on Invitation (event_id);
+    create index ix_event on Invitee (event_id);
 
-    alter table Invitation 
-        add index FKBE1153B9D1F985A6 (event_id), 
-        add constraint FKBE1153B9D1F985A6 
+    create index ix_user on Invitee (user_id);
+
+    create index ix_status on Invitee (status);
+
+    alter table Invitee 
+        add index FKD80C4A5CD1F985A6 (event_id), 
+        add constraint FKD80C4A5CD1F985A6 
         foreign key (event_id) 
         references Event (id);
+
+    alter table Invitee 
+        add index FKD80C4A5C699BC35A (user_id), 
+        add constraint FKD80C4A5C699BC35A 
+        foreign key (user_id) 
+        references Users (id);
 
     create index ix_team on Jersey (team_id);
 
@@ -173,24 +174,6 @@
         add constraint FK8EA387011C96621A 
         foreign key (team_id) 
         references Team (id);
-
-    create index ix_player on Response (player_id);
-
-    create index ix_event on Response (event_id);
-
-    create index ix_status on Response (status);
-
-    alter table Response 
-        add index FKEF917861D1F985A6 (event_id), 
-        add constraint FKEF917861D1F985A6 
-        foreign key (event_id) 
-        references Event (id);
-
-    alter table Response 
-        add index FKEF917861E4FF039A (player_id), 
-        add constraint FKEF917861E4FF039A 
-        foreign key (player_id) 
-        references Player (id);
 
     create index ix_user on Role (user_id);
 
