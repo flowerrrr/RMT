@@ -45,13 +45,13 @@ public class Invitation extends AbstractBaseEntity {
 
     @ManyToOne
     @Index(name = "ix_user")
-    private User invitee;
+    private User user;
 
     private Invitation() {
     }
 
-    public Invitation(Event event, User invitee) {
-        this.invitee = invitee;
+    public Invitation(Event event, User user) {
+        this.user = user;
         this.event = event;
     }
 
@@ -108,19 +108,19 @@ public class Invitation extends AbstractBaseEntity {
         this.event = event;
     }
 
-    public User getInvitee() {
-        return invitee;
+    public User getUser() {
+        return user;
     }
 
-    public void setInvitee(final User user) {
-        this.invitee = user;
+    public void setUser(final User user) {
+        this.user = user;
     }
 
     public String getName() {
-        if (invitee == null) {
+        if (user == null) {
             return guestName;
         } else {
-            return invitee.getFullname();
+            return user.getFullname();
         }
     }
 }

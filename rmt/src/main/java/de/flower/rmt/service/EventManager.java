@@ -76,7 +76,7 @@ public class EventManager extends AbstractService implements IEventManager {
     public List<Event> findUpcomingByUser(final User user) {
         Check.notNull(user);
         Date date = new LocalDate().toDate();
-        return eventRepo.findUpcomingByUser(user, date);
+        return eventRepo.findUpcomingByInvitee(user, date);
     }
 
     @Override
