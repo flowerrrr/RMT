@@ -1,7 +1,7 @@
 package de.flower.rmt.model.event;
 
 import de.flower.rmt.model.AbstractClubRelatedEntity;
-import de.flower.rmt.model.Invitee;
+import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.model.Venue;
 import org.hibernate.annotations.Type;
@@ -59,7 +59,7 @@ public class Event extends AbstractClubRelatedEntity {
     private String comment;
 
     @OneToMany(mappedBy = "event")
-    private List<Invitee> invitees;
+    private List<Invitation> invitations;
 
     @Deprecated
     public Event() {

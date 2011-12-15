@@ -20,6 +20,6 @@ public interface IEventRepo extends IRepository<Event, Long> {
 
     List<Event> findAllByClub(Club club);
 
-    @Query("select e from Event e join e.invitees i where i.user = :user and e.date >= :date")
+    @Query("select e from Event e join e.invitations i where i.user = :user and e.date >= :date")
     List<Event> findUpcomingByUser(@Param("user") User user, @Param("date") Date date);
 }

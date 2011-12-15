@@ -99,7 +99,7 @@ public class AbstractIntegrationTests extends AbstractTestNGSpringContextTests {
     protected IResponseManager responseManager;
 
     @Autowired
-    protected IInviteeManager inviteeManager;
+    protected IInvitationManager invitationManager;
 
     @Autowired
     protected UserDetailsService userDetailService;

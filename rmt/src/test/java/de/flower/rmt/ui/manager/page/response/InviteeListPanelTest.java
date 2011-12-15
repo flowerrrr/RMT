@@ -8,12 +8,12 @@ import org.testng.annotations.Test;
 /**
  * @author flowerrrr
  */
-public class InviteeListPanelTest extends AbstractWicketIntegrationTests {
+class InvitationListPanelTest extends AbstractWicketIntegrationTests {
 
     @Test
     public void testRender() {
         Event event = testData.createEventWithResponses();
-        wicketTester.startComponentInPage(new InviteeListPanel(new EventModel(event)));
+        wicketTester.startComponentInPage(new InvitationListPanel(new EventModel(event)));
         wicketTester.dumpComponentWithPage();
     }
 }

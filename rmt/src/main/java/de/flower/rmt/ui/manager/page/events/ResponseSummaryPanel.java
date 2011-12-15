@@ -2,7 +2,7 @@ package de.flower.rmt.ui.manager.page.events;
 
 import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.event.Event;
-import de.flower.rmt.service.IInviteeManager;
+import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
@@ -15,7 +15,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public class ResponseSummaryPanel extends BasePanel {
 
     @SpringBean
-    private IInviteeManager inviteeManager;
+    private IInvitationManager invitationManager;
 
     public ResponseSummaryPanel(IModel<Event> model) {
 
@@ -29,7 +29,7 @@ public class ResponseSummaryPanel extends BasePanel {
          return new LoadableDetachableModel<Long>() {
              @Override
              protected Long load() {
-                 return inviteeManager.numByEventAndStatus(model.getObject(), rsvpStatus);
+                 return invitationManager.numByEventAndStatus(model.getObject(), rsvpStatus);
              }
          };
      }

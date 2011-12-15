@@ -1,6 +1,6 @@
 package de.flower.rmt.repository;
 
-import de.flower.rmt.model.Invitee;
+import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
@@ -16,14 +16,14 @@ import java.util.List;
  *
  * @author flowerrrr
  */
-public interface IInviteeRepo extends IRepository<Invitee, Long> {
+public interface IInvitationRepo extends IRepository<Invitation, Long> {
 
-    List<Invitee> findByEventAndStatusOrderByDateAsc(Event event, RSVPStatus rsvpStatus);
+    List<Invitation> findByEventAndStatusOrderByDateAsc(Event event, RSVPStatus rsvpStatus);
 
-    @Query("select count(r) from Invitee r where r.event = :event and r.status = :status")
+    @Query("select count(r) from Invitation r where r.event = :event and r.status = :status")
     Long numByEventAndStatus(@Param("event") Event event, @Param("status") RSVPStatus rsvpStatus);
 
-    Invitee findByEventAndUser(Event event, User user);
+    Invitation findByEventAndUser(Event event, User user);
 
-    List<Invitee> findByEvent(Event event);
+    List<Invitation> findByEvent(Event event);
 }

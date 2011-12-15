@@ -2,12 +2,12 @@ package de.flower.rmt.ui.player.page.events;
 
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
-import de.flower.rmt.model.Invitee;
+import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
-import de.flower.rmt.service.IInviteeManager;
+import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.service.IResponseManager;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.common.panel.BasePanel;
@@ -36,7 +36,7 @@ public class EventListPanel extends BasePanel {
     private IResponseManager responseManager;
 
     @SpringBean
-    private IInviteeManager inviteeManager;
+    private IInvitationManager invitationManager;
 
     public EventListPanel(final UserModel userModel, final IModel<List<Event>> listModel) {
 
@@ -65,8 +65,8 @@ public class EventListPanel extends BasePanel {
                 item.add(new Label("type", new ResourceModel(EventType.from(event).getResourceKey())));
                 item.add(new Label("team", event.getTeam().getName()));
                 item.add(new Label("summary", event.getSummary()));
-                final Invitee invitee = getResponse(event, userModel.getObject());
-                item.add(new QuickResponseLabel("rsvpStatus", invitee.getStatus()) {
+                final Invitation invitation = getResponse(event, userModel.getObject());
+                item.add(new QuickResponseLabel("rsvpStatus", invitation.getStatus()) {
                     @Override
                     protected void submitStatus(final RSVPStatus status) {
                         responseManager.respond(eventModel.getId(), userModel.getId(), status);
@@ -74,8 +74,8 @@ public class EventListPanel extends BasePanel {
                 });
             }
 
-            private Invitee getResponse(final Event event, final User user) {
-                return inviteeManager.loadByEventAndUser(event, user);
+            private Invitation getResponse(final Event event, final User user) {
+                return invitationManager.loadByEventAndUser(event, user);
             }
 
          });

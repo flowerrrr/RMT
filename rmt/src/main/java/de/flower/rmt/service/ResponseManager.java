@@ -1,7 +1,7 @@
 package de.flower.rmt.service;
 
 import de.flower.common.util.Check;
-import de.flower.rmt.model.Invitee;
+import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
@@ -24,23 +24,23 @@ public class ResponseManager extends AbstractService implements IResponseManager
     private IUserManager userManager;
 
     @Autowired
-    private IInviteeManager inviteeManager;
+    private IInvitationManager invitationManager;
 
     @Override
     @Transactional(readOnly = false)
-    public Invitee respond(Event event, User user, RSVPStatus status, String comment) {
+    public Invitation respond(Event event, User user, RSVPStatus status, String comment) {
         // TODO (flowerrrr - 23.10.11) do some checking if responding to event is allowed
-        Invitee invitee = inviteeManager.loadByEventAndUser(event, user);
-        Check.notNull(invitee, "No invitation found.");
-        invitee.setStatus(status);
+        Invitation invitation = invitationManager.loadByEventAndUser(event, user);
+        Check.notNull(invitation, "No invitation found.");
+        invitation.setStatus(status);
         if (comment != null) {
-            invitee.setComment(comment);
+            invitation.setComment(comment);
         }
-        return inviteeManager.save(invitee);
+        return invitationManager.save(invitation);
     }
 
     @Override
-    public Invitee respond(final Long eventId, final Long userId, final RSVPStatus status) {
+    public Invitation respond(final Long eventId, final Long userId, final RSVPStatus status) {
         Check.notNull(eventId);
         Check.notNull(userId);
         Event event = eventManager.loadById(eventId);

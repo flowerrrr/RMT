@@ -72,13 +72,13 @@
     <event eventType="Training" id="7" summary="Saisonopening" date="2021-10-21 00:00:00.0" time="17:00:00" club_id="1" team_id="3" venue_id="1"/>
     <event eventType="Training" id="8" summary="Saisonopening" date="2021-10-28 00:00:00.0" time="17:00:00" club_id="1" team_id="3" venue_id="1"/>
 
-    <invitee id="1" status="ACCEPTED" date="2011-12-15 00:00:00.0" event_id="1" user_id="7" comment="endlich wieder"/>
-    <invitee id="2" status="ACCEPTED" date="2011-12-05 00:00:00.0" event_id="1" user_id="8" comment="gfrei mi"/>
-    <invitee id="3" status="DECLINED" date="2011-12-11 00:00:00.0" event_id="1" user_id="9" comment="family"/>
-    <invitee id="4" status="UNSURE" date="2011-12-15 01:00:00.0" event_id="1" user_id="10" comment="falls wieder nüchtern." />
-    <invitee id="5" status="UNSURE" date="2011-12-15 00:05:00.0" event_id="1" user_id="11" />
-    <invitee id="6" status="ACCEPTED" date="2011-12-15 00:00:20.0" event_id="1" user_id="12" />
-    <invitee id="7" status="ACCEPTED" date="2011-12-14 00:00:20.0" event_id="1" guestname="Gastspieler Bert" />
+    <invitation id="1" status="ACCEPTED" date="2011-12-15 00:00:00.0" event_id="1" user_id="7" comment="endlich wieder"/>
+    <invitation id="2" status="ACCEPTED" date="2011-12-05 00:00:00.0" event_id="1" user_id="8" comment="gfrei mi"/>
+    <invitation id="3" status="DECLINED" date="2011-12-11 00:00:00.0" event_id="1" user_id="9" comment="family"/>
+    <invitation id="4" status="UNSURE" date="2011-12-15 01:00:00.0" event_id="1" user_id="10" comment="falls wieder nüchtern." />
+    <invitation id="5" status="UNSURE" date="2011-12-15 00:05:00.0" event_id="1" user_id="11" />
+    <invitation id="6" status="ACCEPTED" date="2011-12-15 00:00:20.0" event_id="1" user_id="12" />
+    <invitation id="7" status="ACCEPTED" date="2011-12-14 00:00:20.0" event_id="1" guestname="Gastspieler Bert" />
 
 
 </dataset>

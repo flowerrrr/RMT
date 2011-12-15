@@ -6,6 +6,6 @@ import de.flower.rmt.test.AbstractIntegrationTests;
  * @author flowerrrr
  */
 
-public class InviteeManagerTest extends AbstractIntegrationTests {
+public class InvitationManagerTest extends AbstractIntegrationTests {
 
 }

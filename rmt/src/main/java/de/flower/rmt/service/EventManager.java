@@ -1,7 +1,7 @@
 package de.flower.rmt.service;
 
 import de.flower.common.util.Check;
-import de.flower.rmt.model.Invitee;
+import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
@@ -30,7 +30,7 @@ public class EventManager extends AbstractService implements IEventManager {
     private IEventRepo eventRepo;
 
     @Autowired
-    private IInviteeManager inviteeManager;
+    private IInvitationManager invitationManager;
 
     @Autowired
     private IUserManager userManager;
@@ -44,16 +44,16 @@ public class EventManager extends AbstractService implements IEventManager {
 
     @Override
     @Transactional(readOnly = false)
-    public void create(final Event entity, final boolean createInvitees) {
+    public void create(final Event entity, final boolean createInvitations) {
         Check.notNull(entity);
         save(entity);
-        if (createInvitees) {
-            // for every user that is a player of the team of this event a invitee will be created
+        if (createInvitations) {
+            // for every user that is a player of the team of this event a invitation will be created
             List<User> users = userManager.findByTeam(entity.getTeam());
             for (User user : users) {
-                // TODO (flowerrrr - 15.12.11) replace by one call to inviteeManager
-                Invitee invitee = inviteeManager.newInstance(entity, user);
-                inviteeManager.save(invitee);
+                // TODO (flowerrrr - 15.12.11) replace by one call to invitationManager
+                Invitation invitation = invitationManager.newInstance(entity, user);
+                invitationManager.save(invitation);
             }
         }
     }
@@ -104,9 +104,9 @@ public class EventManager extends AbstractService implements IEventManager {
         Event event = loadById(id);
         // is this event related to the club of the user?
         Check.isEqual(event.getClub(), user.getClub());
-        // is user an invitee of this event
-        Invitee invitee = inviteeManager.loadByEventAndUser(event, user);
-        Check.notNull(invitee);
+        // is user an invitation of this event
+        Invitation invitation = invitationManager.loadByEventAndUser(event, user);
+        Check.notNull(invitation);
         return event;
     }
 }

@@ -3,12 +3,12 @@ package de.flower.rmt.ui.player.page.event;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
-import de.flower.rmt.model.Invitee;
+import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IEventManager;
-import de.flower.rmt.service.IInviteeManager;
+import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.ui.model.EventModel;
-import de.flower.rmt.ui.model.InviteeModel;
+import de.flower.rmt.ui.model.InvitationModel;
 import de.flower.rmt.ui.player.PlayerBasePage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
@@ -24,7 +24,7 @@ public class EventPage extends PlayerBasePage {
     public final static String PARAM_EVENTID = "event";
 
     @SpringBean
-    private IInviteeManager inviteeManager;
+    private IInvitationManager invitationManager;
 
     @SpringBean
     private IEventManager eventManager;
@@ -57,23 +57,23 @@ public class EventPage extends PlayerBasePage {
         ResponseFormPanel responseFormPanel = new ResponseFormPanel(getResponseModel(model)) {
 
             @Override
-            protected void onSubmit(final Invitee invitee, final AjaxRequestTarget target) {
+            protected void onSubmit(final Invitation invitation, final AjaxRequestTarget target) {
                 // save response and update responselistpanel
-                inviteeManager.save(invitee);
-                target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityAll(Invitee.class)));
+                invitationManager.save(invitation);
+                target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityAll(Invitation.class)));
             }
         };
 
-        final InviteeListPanel responseListPanel = new InviteeListPanel(model);
-        responseListPanel.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Invitee.class)));
+        final InvitationListPanel responseListPanel = new InvitationListPanel(model);
+        responseListPanel.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Invitation.class)));
 
         addMainPanel(responseListPanel);
         addSecondaryPanel(new EventDetailsPanel(model), responseFormPanel);
     }
 
-    private IModel<Invitee> getResponseModel(final IModel<Event> model) {
-        final Invitee invitee = inviteeManager.loadByEventAndUser(model.getObject(), getUserDetails().getUser());
-        return new InviteeModel(invitee);
+    private IModel<Invitation> getResponseModel(final IModel<Event> model) {
+        final Invitation invitation = invitationManager.loadByEventAndUser(model.getObject(), getUserDetails().getUser());
+        return new InvitationModel(invitation);
     }
 
     @Override

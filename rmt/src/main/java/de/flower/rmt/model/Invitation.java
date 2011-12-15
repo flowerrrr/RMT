@@ -13,7 +13,7 @@ import java.util.Date;
  * @author flowerrrr
  */
 @Entity
-public class Invitee extends AbstractBaseEntity {
+public class Invitation extends AbstractBaseEntity {
 
     @Enumerated(EnumType.STRING)
     @NotNull(message = "{validation.rsvpstatus.notnull}")
@@ -45,17 +45,17 @@ public class Invitee extends AbstractBaseEntity {
 
     @ManyToOne
     @Index(name = "ix_user")
-    private User user;
+    private User invitee;
 
-    private Invitee() {
+    private Invitation() {
     }
 
-    public Invitee(Event event, User user) {
-        this.user = user;
+    public Invitation(Event event, User invitee) {
+        this.invitee = invitee;
         this.event = event;
     }
 
-    public Invitee(final Event event, final String guestName) {
+    public Invitation(final Event event, final String guestName) {
         this.event = event;
         this.guestName = guestName;
     }
@@ -108,19 +108,19 @@ public class Invitee extends AbstractBaseEntity {
         this.event = event;
     }
 
-    public User getUser() {
-        return user;
+    public User getInvitee() {
+        return invitee;
     }
 
-    public void setUser(final User user) {
-        this.user = user;
+    public void setInvitee(final User user) {
+        this.invitee = user;
     }
 
     public String getName() {
-        if (user == null) {
+        if (invitee == null) {
             return guestName;
         } else {
-            return user.getFullname();
+            return invitee.getFullname();
         }
     }
 }

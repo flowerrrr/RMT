@@ -1,10 +1,10 @@
 package de.flower.rmt.ui.manager.page.response;
 
 import de.flower.common.util.Check;
-import de.flower.rmt.model.Invitee;
+import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.event.Event;
-import de.flower.rmt.service.IInviteeManager;
+import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.Component;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
@@ -22,13 +22,13 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-// TODO (flowerrrr - 23.10.11) unite with players InviteeListPanel
-public class InviteeListPanel extends BasePanel {
+// TODO (flowerrrr - 23.10.11) unite with players InvitationListPanel
+public class InvitationListPanel extends BasePanel {
 
     @SpringBean
-    private IInviteeManager inviteeManager;
+    private IInvitationManager invitationManager;
 
-    public InviteeListPanel(IModel<Event> model) {
+    public InvitationListPanel(IModel<Event> model) {
         Check.notNull(model);
         add(createListView("acceptedList", RSVPStatus.ACCEPTED, model));
         add(createListView("unsureList", RSVPStatus.UNSURE, model));
@@ -37,29 +37,29 @@ public class InviteeListPanel extends BasePanel {
     }
 
     private Component createListView(String id, RSVPStatus status, IModel<Event> model) {
-        ListView list = new ListView<Invitee>(id, getResponseList(model, status)) {
+        ListView list = new ListView<Invitation>(id, getResponseList(model, status)) {
             @Override
-            protected void populateItem(ListItem<Invitee> item) {
+            protected void populateItem(ListItem<Invitation> item) {
                 item.add(createResponseFragement(item));
             }
         };
         return list;
     }
 
-    private Component createResponseFragement(ListItem<Invitee> item) {
-        final Invitee invitee = item.getModelObject();
+    private Component createResponseFragement(ListItem<Invitation> item) {
+        final Invitation invitation = item.getModelObject();
         Fragment frag = new Fragment("itemPanel", "itemFragment", this);
-        frag.add(new Label("name", invitee.getName()));
-        frag.add(DateLabel.forDateStyle("date", Model.of(invitee.getDate()), "SS"));
-        frag.add(new Label("comment", invitee.getComment()));
+        frag.add(new Label("name", invitation.getName()));
+        frag.add(DateLabel.forDateStyle("date", Model.of(invitation.getDate()), "SS"));
+        frag.add(new Label("comment", invitation.getComment()));
         return frag;
     }
 
-    private IModel<List<Invitee>> getResponseList(final IModel<Event> model, final RSVPStatus rsvpStatus) {
-        return new LoadableDetachableModel<List<Invitee>>() {
+    private IModel<List<Invitation>> getResponseList(final IModel<Event> model, final RSVPStatus rsvpStatus) {
+        return new LoadableDetachableModel<List<Invitation>>() {
             @Override
-            protected List<Invitee> load() {
-                return inviteeManager.findByEventAndStatus(model.getObject(), rsvpStatus);
+            protected List<Invitation> load() {
+                return invitationManager.findByEventAndStatus(model.getObject(), rsvpStatus);
             }
         };
     }

@@ -1,30 +1,30 @@
 package de.flower.rmt.ui.model;
 
 import de.flower.common.util.Check;
-import de.flower.rmt.model.Invitee;
-import de.flower.rmt.service.IInviteeManager;
+import de.flower.rmt.model.Invitation;
+import de.flower.rmt.service.IInvitationManager;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
  * @author flowerrrr
  */
-public class InviteeModel extends AbstractEntityModel<Invitee> {
+public class InvitationModel extends AbstractEntityModel<Invitation> {
 
     @SpringBean
-    private IInviteeManager manager;
+    private IInvitationManager manager;
 
-    public InviteeModel(Invitee entity) {
+    public InvitationModel(Invitation entity) {
         super(entity);
         Check.notNull(entity);
     }
 
      @Override
-    protected Invitee load(Long id) {
+    protected Invitation load(Long id) {
         return manager.loadById(id);
     }
 
     @Override
-    protected Invitee newInstance() {
+    protected Invitation newInstance() {
         throw new UnsupportedOperationException("Model only supports persisted objects!");
     }
 

@@ -19,12 +19,12 @@ public interface IEventManager {
     void save(Event entity);
 
     /**
-     * Creates a new event an also creates invitees for all players of the
+     * Creates a new event an also creates invitations for all players of the
      * team of the event.
      * @param entity
-     * @param createInvitees
+     * @param createInvitations
      */
-    void create(Event entity, boolean createInvitees);
+    void create(Event entity, boolean createInvitations);
 
     Event loadById(Long id, Attribute... attributes);
 

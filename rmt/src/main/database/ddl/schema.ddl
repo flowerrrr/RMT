@@ -21,7 +21,7 @@
         primary key (id)
     );
 
-    create table Invitee (
+    create table Invitation (
         id bigint not null auto_increment,
         comment varchar(255),
         date datetime,
@@ -131,19 +131,19 @@
         foreign key (jersey_id) 
         references Jersey (id);
 
-    create index ix_event on Invitee (event_id);
+    create index ix_event on Invitation (event_id);
 
-    create index ix_user on Invitee (user_id);
+    create index ix_user on Invitation (user_id);
 
-    create index ix_status on Invitee (status);
+    create index ix_status on Invitation (status);
 
-    alter table Invitee 
+    alter table Invitation
         add index FKD80C4A5CD1F985A6 (event_id), 
         add constraint FKD80C4A5CD1F985A6 
         foreign key (event_id) 
         references Event (id);
 
-    alter table Invitee 
+    alter table Invitation
         add index FKD80C4A5C699BC35A (user_id), 
         add constraint FKD80C4A5C699BC35A 
         foreign key (user_id) 

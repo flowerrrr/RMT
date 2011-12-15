@@ -45,7 +45,7 @@ public class TestData {
     private IEventManager eventManager;
 
     @Autowired
-    protected IInviteeManager inviteeManager;
+    protected IInvitationManager invitationManager;
 
     @Autowired
     private IVenueManager venueManager;
@@ -55,7 +55,7 @@ public class TestData {
 
     public void checkDataConsistency(EntityManager em) {
 /*
-        // check that invitee->event->team matches invittee->user->team
+        // check that invitation->event->team matches invittee->user->team
         Query query = em.createQuery("from Response r  where r.event.team != r.player.team");
         List list = query.getResultList();
         Assert.assertTrue(list.isEmpty(), list.toString());
@@ -129,14 +129,14 @@ public class TestData {
         return new Event(newTeam());
     }
 
-    public Event createEvent(Team team, boolean createInvitees) {
+    public Event createEvent(Team team, boolean createInvitations) {
         Event event = eventManager.newInstance(EventType.Training);
         event.setDate(new Date());
         event.setTime(LocalTime.now());
         event.setSummary("Summary");
         event.setTeam(team);
         event.setVenue(venueManager.loadById(1L));
-        eventManager.create(event, createInvitees);
+        eventManager.create(event, createInvitations);
         return event;
     }
 
@@ -151,23 +151,23 @@ public class TestData {
      */
     public Event createEventWithResponses() {
         Event event = createEventWithoutResponses();
-        List<Invitee> invitees = inviteeManager.findByEvent(event);
-        respond(invitees.get(0), RSVPStatus.ACCEPTED, "some comment");
-        respond(invitees.get(2), RSVPStatus.DECLINED, "some comment");
-        respond(invitees.get(3), RSVPStatus.ACCEPTED, "some comment");
-        respond(invitees.get(5), RSVPStatus.UNSURE, "some comment");
-        respond(invitees.get(7), RSVPStatus.ACCEPTED, "some comment");
-        respond(invitees.get(8), RSVPStatus.DECLINED, "some comment");
-        respond(invitees.get(9), RSVPStatus.DECLINED, "some comment");
-        respond(invitees.get(11), RSVPStatus.ACCEPTED, "some comment");
-        respond(invitees.get(12), RSVPStatus.ACCEPTED, "some comment");
+        List<Invitation> invitations = invitationManager.findByEvent(event);
+        respond(invitations.get(0), RSVPStatus.ACCEPTED, "some comment");
+        respond(invitations.get(2), RSVPStatus.DECLINED, "some comment");
+        respond(invitations.get(3), RSVPStatus.ACCEPTED, "some comment");
+        respond(invitations.get(5), RSVPStatus.UNSURE, "some comment");
+        respond(invitations.get(7), RSVPStatus.ACCEPTED, "some comment");
+        respond(invitations.get(8), RSVPStatus.DECLINED, "some comment");
+        respond(invitations.get(9), RSVPStatus.DECLINED, "some comment");
+        respond(invitations.get(11), RSVPStatus.ACCEPTED, "some comment");
+        respond(invitations.get(12), RSVPStatus.ACCEPTED, "some comment");
         return event;
     }
 
-    private void respond(Invitee invitee, RSVPStatus status, String comment) {
-        invitee.setStatus(status);
-        invitee.setComment(comment);
-        inviteeManager.save(invitee);
+    private void respond(Invitation invitation, RSVPStatus status, String comment) {
+        invitation.setStatus(status);
+        invitation.setComment(comment);
+        invitationManager.save(invitation);
     }
 
     public User getTestUser() {
