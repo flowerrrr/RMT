@@ -11,23 +11,23 @@ import org.testng.annotations.Test;
 /**
  * @author flowerrrr
  */
-public class ResponseFormPanelTest extends AbstractWicketUnitTests {
+public class InvitationFormPanelTest extends AbstractWicketUnitTests {
 
     @Test
     public void testRender() {
         Invitation invitation = new Invitation(null, (User) null);
-        wicketTester.startComponentInPage(new ResponseFormTestPanel(Model.of(invitation)));
+        wicketTester.startComponentInPage(new InvitationFormTestPanel(Model.of(invitation)));
         wicketTester.dumpComponentWithPage();
     }
 
-    private static class ResponseFormTestPanel extends ResponseFormPanel {
+    private static class InvitationFormTestPanel extends InvitationFormPanel {
 
-        public ResponseFormTestPanel(final IModel<Invitation> model) {
+        public InvitationFormTestPanel(final IModel<Invitation> model) {
             super(model);
         }
 
         @Override
-        protected void onSubmit(final Invitation response, final AjaxRequestTarget target) {
+        protected void onSubmit(final Invitation invitation, final AjaxRequestTarget target) {
         }
     }
 

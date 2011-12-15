@@ -11,6 +11,6 @@ public enum RSVPStatus {
     NORESPONSE;
 
     public String getResourceKey() {
-        return "response.status." + this.name().toLowerCase();
+        return "invitation.status." + this.name().toLowerCase();
     }
 }

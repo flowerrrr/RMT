@@ -9,12 +9,12 @@ import org.testng.annotations.Test;
  * @author flowerrrr
  */
 
-public class ResponsesPageTest extends AbstractWicketIntegrationTests {
+public class InvitationsPageTest extends AbstractWicketIntegrationTests {
 
     @Test
     public void testRender() {
         Event event = testData.createEventWithResponses();
-        wicketTester.startPage(new ResponsesPage(new EventModel(event)));
+        wicketTester.startPage(new InvitationsPage(new EventModel(event)));
         wicketTester.dumpPage();
     }
 }

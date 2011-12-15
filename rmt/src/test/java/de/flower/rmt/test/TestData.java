@@ -56,7 +56,7 @@ public class TestData {
     public void checkDataConsistency(EntityManager em) {
 /*
         // check that invitation->event->team matches invittee->user->team
-        Query query = em.createQuery("from Response r  where r.event.team != r.player.team");
+        Query query = em.createQuery("from Invitation r  where r.event.team != r.player.team");
         List list = query.getResultList();
         Assert.assertTrue(list.isEmpty(), list.toString());
 */

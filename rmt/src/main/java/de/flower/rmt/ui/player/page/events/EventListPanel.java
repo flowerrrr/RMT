@@ -58,14 +58,14 @@ public class EventListPanel extends BasePanel {
             protected void populateItem(final ListItem<Event> item) {
                 final Event event = item.getModelObject();
                 final EventModel eventModel = new EventModel(item.getModel());
-                Link link = Links.eventLink("responsesLink", event.getId());
+                Link link = Links.eventLink("invitationsLink", event.getId());
                 item.add(link);
                 link.add(DateLabel.forDateStyle("date", Model.of(event.getDate()), "S-"));
                 link.add(DateLabel.forDateStyle("time", Model.of(event.getTime().toDateTimeToday().toDate()), "-S"));
                 item.add(new Label("type", new ResourceModel(EventType.from(event).getResourceKey())));
                 item.add(new Label("team", event.getTeam().getName()));
                 item.add(new Label("summary", event.getSummary()));
-                final Invitation invitation = getResponse(event, userModel.getObject());
+                final Invitation invitation = getInvitation(event, userModel.getObject());
                 item.add(new QuickResponseLabel("rsvpStatus", invitation.getStatus()) {
                     @Override
                     protected void submitStatus(final RSVPStatus status) {
@@ -74,7 +74,7 @@ public class EventListPanel extends BasePanel {
                 });
             }
 
-            private Invitation getResponse(final Event event, final User user) {
+            private Invitation getInvitation(final Event event, final User user) {
                 return invitationManager.loadByEventAndUser(event, user);
             }
 

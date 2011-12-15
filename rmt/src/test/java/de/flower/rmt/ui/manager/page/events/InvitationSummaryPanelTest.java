@@ -9,12 +9,12 @@ import org.testng.annotations.Test;
 /**
  * @author flowerrrr
  */
-public class ResponseSummaryPanelTest extends AbstractRMTWicketMockitoTests {
+public class InvitationSummaryPanelTest extends AbstractRMTWicketMockitoTests {
 
     @Test
     public void testRender() {
         Event event = TestData.newEvent();
-        wicketTester.startComponentInPage(new ResponseSummaryPanel(Model.of(event)));
+        wicketTester.startComponentInPage(new InvitationSummaryPanel(Model.of(event)));
         wicketTester.dumpComponentWithPage();
     }
 

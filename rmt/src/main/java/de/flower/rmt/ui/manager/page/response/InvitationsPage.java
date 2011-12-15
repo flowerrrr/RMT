@@ -9,13 +9,13 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 /**
  * @author flowerrrr
  */
-public class ResponsesPage extends ManagerBasePage {
+public class InvitationsPage extends ManagerBasePage {
 
     @SpringBean
     private IEventManager eventManager;
 
-     public ResponsesPage(IModel<Event> model) {
-         addHeading("manager.responses.heading", null);
+     public InvitationsPage(IModel<Event> model) {
+         addHeading("manager.invitations.heading", null);
 
          final InvitationListPanel invitationListPanel = new InvitationListPanel(model);
          addMainPanel(invitationListPanel);

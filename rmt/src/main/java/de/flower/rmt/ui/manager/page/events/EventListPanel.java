@@ -10,7 +10,7 @@ import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.common.panel.DropDownMenuPanel;
 import de.flower.rmt.ui.manager.page.event.EventEditPage;
-import de.flower.rmt.ui.manager.page.response.ResponsesPage;
+import de.flower.rmt.ui.manager.page.response.InvitationsPage;
 import de.flower.rmt.ui.model.EventModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
@@ -55,17 +55,17 @@ public class EventListPanel extends BasePanel {
             @Override
             protected void populateItem(final ListItem<Event> item) {
                 final Event event = item.getModelObject();
-                Link link = createResponsesLink("responsesLink", item);
+                Link link = createInvitationsLink("invitationsLink", item);
                 link.add(DateLabel.forDateStyle("date", Model.of(event.getDate()), "S-"));
                 link.add(DateLabel.forDateStyle("time", Model.of(event.getTime().toDateTimeToday().toDate()), "-S"));
                 item.add(link);
                 item.add(new Label("type", new ResourceModel(EventType.from(event).getResourceKey())));
                 item.add(new Label("team", event.getTeam().getName()));
                 item.add(new Label("summary", event.getSummary()));
-                item.add(new ResponseSummaryPanel(new EventModel(event)));
+                item.add(new InvitationSummaryPanel(new EventModel(event)));
                 // now the dropdown menu
                 DropDownMenuPanel menuPanel = new DropDownMenuPanel();
-                menuPanel.addLink(createResponsesLink("link", item), "button.responses");
+                menuPanel.addLink(createInvitationsLink("link", item), "button.invitations");
                 menuPanel.addLink(createEditLink("link", item), "button.edit");
                 menuPanel.addLink(new AjaxLinkWithConfirmation("link", new ResourceModel("manager.events.delete.confirm")) {
                     @Override
@@ -89,11 +89,11 @@ public class EventListPanel extends BasePanel {
         };
     }
 
-    private Link createResponsesLink(String id, final ListItem<Event> item) {
+    private Link createInvitationsLink(String id, final ListItem<Event> item) {
         return new Link(id) {
             @Override
             public void onClick() {
-                setResponsePage(new ResponsesPage(new EventModel(item.getModel())));
+                setResponsePage(new InvitationsPage(new EventModel(item.getModel())));
             }
         };
     }

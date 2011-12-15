@@ -451,7 +451,7 @@ td.rsvpstatus {
     width: 100px;
 }
 
-.num-response {
+.num-invitation {
     padding-left: 4px;
     &:not(:last-child) {
         padding-right: 3px;
@@ -477,32 +477,32 @@ td.rsvpstatus {
 }
 
 /*************************************************************************
-    Response list
+    Invitation list
 **************************************************************************/
-.responseListTable td:first-child {
+.invitationListTable td:first-child {
     font-size: 80%;
 }
 
-.responseListTable.manager td:first-child {
+.invitationListTable.manager td:first-child {
     width: 100px;
 }
 
-.responseListTable.player td:first-child {
+.invitationListTable.player td:first-child {
     width: 50px;
 }
 
-.responseListTable td:first-child + td {
+.invitationListTable td:first-child + td {
     width: 150px;
 }
 
 
 /*************************************************************************
-    Response form
+    Invitation form
 **************************************************************************/
-.responseForm .radio {
+.invitationForm .radio {
     display: block;
 }
-.responseForm li {
+.invitationForm li {
     margin-top: 10px;
 }
 textarea {

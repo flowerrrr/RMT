@@ -37,16 +37,16 @@ public class InvitationListPanel extends BasePanel {
     }
 
     private Component createListView(String id, RSVPStatus status, IModel<Event> model) {
-        ListView list = new ListView<Invitation>(id, getResponseList(model, status)) {
+        ListView list = new ListView<Invitation>(id, getInvitationList(model, status)) {
             @Override
             protected void populateItem(ListItem<Invitation> item) {
-                item.add(createResponseFragement(item));
+                item.add(createInvitationFragement(item));
             }
         };
         return list;
     }
 
-    private Component createResponseFragement(ListItem<Invitation> item) {
+    private Component createInvitationFragement(ListItem<Invitation> item) {
         final Invitation invitation = item.getModelObject();
         Fragment frag = new Fragment("itemPanel", "itemFragment", this);
         frag.add(new Label("name", invitation.getName()));
@@ -55,7 +55,7 @@ public class InvitationListPanel extends BasePanel {
         return frag;
     }
 
-    private IModel<List<Invitation>> getResponseList(final IModel<Event> model, final RSVPStatus rsvpStatus) {
+    private IModel<List<Invitation>> getInvitationList(final IModel<Event> model, final RSVPStatus rsvpStatus) {
         return new LoadableDetachableModel<List<Invitation>>() {
             @Override
             protected List<Invitation> load() {

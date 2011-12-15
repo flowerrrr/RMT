@@ -175,7 +175,7 @@ public class AbstractIntegrationTests extends AbstractTestNGSpringContextTests {
         try {
             // dump database to disk
             // full database export (cannot export users table: always a dbunit error wiht this table.)
-            String[] tables = new String[]{"club", "team", "venue", "player", "event", "response", "invitation"};
+            String[] tables = new String[]{"club", "team", "venue", "player", "event", "invitation"};
             db.export("src/test/database/data/export.xml", tables);
         } catch (Exception e) {
             log.error(e.getMessage(), e);

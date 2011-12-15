@@ -13,7 +13,7 @@ import de.flower.rmt.ui.common.form.field.TextFieldPanel;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.manager.component.TeamDropDownChoicePanel;
 import de.flower.rmt.ui.manager.component.VenueDropDownChoicePanel;
-import de.flower.rmt.ui.manager.page.response.ResponsesPage;
+import de.flower.rmt.ui.manager.page.response.InvitationsPage;
 import de.flower.rmt.ui.model.EventModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
@@ -45,7 +45,7 @@ public class EventEditPanel extends BasePanel {
                     eventManager.save(event);
                 }
                 // target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Event.class), AjaxEvent.EntityUpdated(Event.class)));
-                setResponsePage(new ResponsesPage(form.getModel()));
+                setResponsePage(new InvitationsPage(form.getModel()));
                 // onClose(target);
             }
         };

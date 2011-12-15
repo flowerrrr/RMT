@@ -17,16 +17,16 @@ import org.apache.wicket.model.Model;
 /**
  * @author flowerrrr
  */
-public abstract class ResponseFormPanel extends BasePanel {
+public abstract class InvitationFormPanel extends BasePanel {
 
     private EntityForm<Invitation> form;
 
-    public ResponseFormPanel(final IModel<Invitation> model) {
+    public InvitationFormPanel(final IModel<Invitation> model) {
         form = new EntityForm<Invitation>("form", model) {
 
             @Override
             protected void onSubmit(final AjaxRequestTarget target, final Form<Invitation> form) {
-                ResponseFormPanel.this.onSubmit(form.getModelObject(), target);
+                InvitationFormPanel.this.onSubmit(form.getModelObject(), target);
                 onClose();
             }
 
@@ -51,6 +51,6 @@ public abstract class ResponseFormPanel extends BasePanel {
         form.add(new TextArea("comment"));
     }
 
-    protected abstract void onSubmit(Invitation response, AjaxRequestTarget target);
+    protected abstract void onSubmit(Invitation invitation, AjaxRequestTarget target);
 
  }

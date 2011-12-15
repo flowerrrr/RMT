@@ -12,12 +12,12 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 /**
  * @author flowerrrr
  */
-public class ResponseSummaryPanel extends BasePanel {
+public class InvitationSummaryPanel extends BasePanel {
 
     @SpringBean
     private IInvitationManager invitationManager;
 
-    public ResponseSummaryPanel(IModel<Event> model) {
+    public InvitationSummaryPanel(IModel<Event> model) {
 
         add(new Label("accepted", createModel(model, RSVPStatus.ACCEPTED)));
         add(new Label("unsure", createModel(model, RSVPStatus.UNSURE)));

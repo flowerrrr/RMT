@@ -54,24 +54,24 @@ public class EventPage extends PlayerBasePage {
         setDefaultModel(model);
         addHeading("player.event.heading");
 
-        ResponseFormPanel responseFormPanel = new ResponseFormPanel(getResponseModel(model)) {
+        InvitationFormPanel invitationFormPanel = new InvitationFormPanel(getInvitationModel(model)) {
 
             @Override
             protected void onSubmit(final Invitation invitation, final AjaxRequestTarget target) {
-                // save response and update responselistpanel
+                // save invitation and update invitationlistpanel
                 invitationManager.save(invitation);
                 target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityAll(Invitation.class)));
             }
         };
 
-        final InvitationListPanel responseListPanel = new InvitationListPanel(model);
-        responseListPanel.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Invitation.class)));
+        final InvitationListPanel invitationListPanel = new InvitationListPanel(model);
+        invitationListPanel.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Invitation.class)));
 
-        addMainPanel(responseListPanel);
-        addSecondaryPanel(new EventDetailsPanel(model), responseFormPanel);
+        addMainPanel(invitationListPanel);
+        addSecondaryPanel(new EventDetailsPanel(model), invitationFormPanel);
     }
 
-    private IModel<Invitation> getResponseModel(final IModel<Event> model) {
+    private IModel<Invitation> getInvitationModel(final IModel<Event> model) {
         final Invitation invitation = invitationManager.loadByEventAndUser(model.getObject(), getUserDetails().getUser());
         return new InvitationModel(invitation);
     }
