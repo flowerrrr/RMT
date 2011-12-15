@@ -13,15 +13,17 @@ import java.util.Date;
  * @author flowerrrr
  */
 @Entity
-public class Response extends AbstractBaseEntity {
+public class Invitee extends AbstractBaseEntity {
 
     @Enumerated(EnumType.STRING)
     @NotNull(message = "{validation.rsvpstatus.notnull}")
     @Index(name = "ix_status")
-    private RSVPStatus status;
+    private RSVPStatus status = RSVPStatus.NORESPONSE;
 
+    /**
+     * Date of response. Might be updated when user changes his status.
+     */
     @Column
-    @NotNull
     private Date date;
 
     @Column(length = 255)
@@ -36,21 +38,26 @@ public class Response extends AbstractBaseEntity {
     @Size(max = 50)
     private String guestName;
 
+    @NotNull
     @ManyToOne
     @Index(name = "ix_event")
     private Event event;
 
     @ManyToOne
-    @Index(name = "ix_player")
-    private Player player;
+    @Index(name = "ix_user")
+    private User user;
 
-    private Response() {
+    private Invitee() {
     }
 
-    public Response(Event event, Player player) {
-        this.player = player;
+    public Invitee(Event event, User user) {
+        this.user = user;
         this.event = event;
-        this.date = new Date();
+    }
+
+    public Invitee(final Event event, final String guestName) {
+        this.event = event;
+        this.guestName = guestName;
     }
 
     public RSVPStatus getStatus() {
@@ -101,19 +108,19 @@ public class Response extends AbstractBaseEntity {
         this.event = event;
     }
 
-    public Player getPlayer() {
-        return player;
+    public User getUser() {
+        return user;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
+    public void setUser(final User user) {
+        this.user = user;
     }
 
     public String getName() {
-        if (player == null) {
+        if (user == null) {
             return guestName;
         } else {
-            return player.getFullname();
+            return user.getFullname();
         }
     }
 }

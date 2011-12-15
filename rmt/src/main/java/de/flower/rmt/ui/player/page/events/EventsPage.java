@@ -34,7 +34,7 @@ public class EventsPage extends PlayerBasePage {
         return new LoadableDetachableModel<List<Event>>() {
             @Override
             protected List<Event> load() {
-                return eventManager.findUpcomingByUserPlayer(userModel.getObject());
+                return eventManager.findUpcomingByUser(userModel.getObject());
             }
         };
     }

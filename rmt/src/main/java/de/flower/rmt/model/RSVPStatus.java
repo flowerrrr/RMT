@@ -7,7 +7,8 @@ public enum RSVPStatus {
 
     ACCEPTED,
     DECLINED,
-    UNSURE;
+    UNSURE,
+    NORESPONSE;
 
     public String getResourceKey() {
         return "response.status." + this.name().toLowerCase();

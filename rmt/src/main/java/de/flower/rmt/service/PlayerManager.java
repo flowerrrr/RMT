@@ -6,7 +6,6 @@ import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.repository.IEventRepo;
 import de.flower.rmt.repository.IPlayerRepo;
-import de.flower.rmt.repository.ITeamRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -25,22 +24,8 @@ public class PlayerManager extends AbstractService implements IPlayerManager {
     private IPlayerRepo playerRepo;
 
     @Autowired
-    private ITeamRepo teamRepo;
-
-    @Autowired
     private IEventRepo eventRepo;
 
-
-    @Override
-    @Transactional
-    public List<Player> findNotResponded(Event event) {
-        return playerRepo.findNotResponded(event, event.getTeam());
-    }
-
-    @Override
-    public Long numNotResponded(final Event event) {
-        return playerRepo.numNotResponded(event, event.getTeam());
-    }
 
     /**
      * Shitty implementation using jpa association to retrieve list of teams.

@@ -2,11 +2,12 @@ package de.flower.rmt.ui.player.page.events;
 
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
+import de.flower.rmt.model.Invitee;
 import de.flower.rmt.model.RSVPStatus;
-import de.flower.rmt.model.Response;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
+import de.flower.rmt.service.IInviteeManager;
 import de.flower.rmt.service.IResponseManager;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.common.panel.BasePanel;
@@ -33,6 +34,9 @@ public class EventListPanel extends BasePanel {
 
     @SpringBean
     private IResponseManager responseManager;
+
+    @SpringBean
+    private IInviteeManager inviteeManager;
 
     public EventListPanel(final UserModel userModel, final IModel<List<Event>> listModel) {
 
@@ -61,8 +65,8 @@ public class EventListPanel extends BasePanel {
                 item.add(new Label("type", new ResourceModel(EventType.from(event).getResourceKey())));
                 item.add(new Label("team", event.getTeam().getName()));
                 item.add(new Label("summary", event.getSummary()));
-                final Response response = getResponse(event, userModel.getObject());
-                item.add(new QuickResponseLabel("rsvpStatus", response != null ? response.getStatus() : null) {
+                final Invitee invitee = getResponse(event, userModel.getObject());
+                item.add(new QuickResponseLabel("rsvpStatus", invitee.getStatus()) {
                     @Override
                     protected void submitStatus(final RSVPStatus status) {
                         responseManager.respond(eventModel.getId(), userModel.getId(), status);
@@ -70,19 +74,11 @@ public class EventListPanel extends BasePanel {
                 });
             }
 
-            private Response getResponse(final Event event, final User user) {
-                return responseManager.findByEventAndUser(event, user);
+            private Invitee getResponse(final Event event, final User user) {
+                return inviteeManager.loadByEventAndUser(event, user);
             }
 
-            private String getRsvpStatus(Response response) {
-                if (response != null) {
-                    return new ResourceModel(response.getStatus().getResourceKey()).getObject();
-                } else {
-                    // user hasn't responded to this event yet
-                    return "";
-                }
-            }
-        });
+         });
         listContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Event.class)));
     }
 

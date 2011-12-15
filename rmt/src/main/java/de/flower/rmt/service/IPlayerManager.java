@@ -12,10 +12,6 @@ import java.util.List;
  */
 public interface IPlayerManager {
 
-    List<Player> findNotResponded(Event event);
-
-    Long numNotResponded(Event event);
-
     List<Player> findByTeam(Team team);
 
     Player findByTeamAndUser(Team team, User user);

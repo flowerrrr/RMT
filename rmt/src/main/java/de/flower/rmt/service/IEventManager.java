@@ -12,13 +12,25 @@ import java.util.List;
  */
 public interface IEventManager {
 
+    /**
+     * Saves or updates an event.
+     * @param entity
+     */
     void save(Event entity);
+
+    /**
+     * Creates a new event an also creates invitees for all players of the
+     * team of the event.
+     * @param entity
+     * @param createInvitees
+     */
+    void create(Event entity, boolean createInvitees);
 
     Event loadById(Long id, Attribute... attributes);
 
     List<Event> findAll();
 
-    List<Event> findUpcomingByUserPlayer(User user);
+    List<Event> findUpcomingByUser(User user);
 
     void delete(Event entity);
 

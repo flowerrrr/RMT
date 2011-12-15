@@ -39,7 +39,11 @@ public class EventEditPanel extends BasePanel {
             @Override
             protected void onSubmit(final AjaxRequestTarget target, final Form<Event> form) {
                 final Event event = form.getModelObject();
-                eventManager.save(event);
+                if (event.isNew()) {
+                    eventManager.create(event, true);
+                } else {
+                    eventManager.save(event);
+                }
                 // target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Event.class), AjaxEvent.EntityUpdated(Event.class)));
                 setResponsePage(new ResponsesPage(form.getModel()));
                 // onClose(target);
@@ -60,6 +64,4 @@ public class EventEditPanel extends BasePanel {
         // form.add(participants)
 
     }
-
-
 }

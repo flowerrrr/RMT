@@ -13,7 +13,7 @@ public class ResponseListPanelTest extends AbstractWicketIntegrationTests {
     @Test
     public void testRender() {
         Event event = testData.createEventWithResponses();
-        wicketTester.startComponentInPage(new ResponseListPanel(new EventModel(event)));
+        wicketTester.startComponentInPage(new InviteeListPanel(new EventModel(event)));
         wicketTester.dumpComponentWithPage();
     }
 }

@@ -3,15 +3,16 @@ package de.flower.rmt.ui.player.page.event;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
-import de.flower.rmt.model.Response;
+import de.flower.rmt.model.Invitee;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IEventManager;
-import de.flower.rmt.service.IResponseManager;
+import de.flower.rmt.service.IInviteeManager;
 import de.flower.rmt.ui.model.EventModel;
-import de.flower.rmt.ui.model.ResponseModel;
+import de.flower.rmt.ui.model.InviteeModel;
 import de.flower.rmt.ui.player.PlayerBasePage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.request.http.flow.AbortWithHttpErrorCodeException;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -23,7 +24,7 @@ public class EventPage extends PlayerBasePage {
     public final static String PARAM_EVENTID = "event";
 
     @SpringBean
-    private IResponseManager responseManager;
+    private IInviteeManager inviteeManager;
 
     @SpringBean
     private IEventManager eventManager;
@@ -34,9 +35,13 @@ public class EventPage extends PlayerBasePage {
      * @param params
      */
     public EventPage(PageParameters params) {
-        // TODO (flowerrrr - 14.12.11) handle invalid parameter and redirect to some error page (eventnotfound)
-        Long eventId = params.get(PARAM_EVENTID).toLong();
-        Event event = eventManager.loadByIdAndUser(eventId, getUserDetails().getUser());
+        Event event = null;
+        try {
+            Long eventId = params.get(PARAM_EVENTID).toLong();
+            event = eventManager.loadByIdAndUser(eventId, getUserDetails().getUser());
+        } catch (Exception e) {
+            throw new AbortWithHttpErrorCodeException(404, "Invalid page parameter.");
+        }
         init(new EventModel(event));
     }
 
@@ -52,27 +57,23 @@ public class EventPage extends PlayerBasePage {
         ResponseFormPanel responseFormPanel = new ResponseFormPanel(getResponseModel(model)) {
 
             @Override
-            protected void onSubmit(final Response response, final AjaxRequestTarget target) {
+            protected void onSubmit(final Invitee invitee, final AjaxRequestTarget target) {
                 // save response and update responselistpanel
-                responseManager.save(response);
-                target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityAll(Response.class)));
+                inviteeManager.save(invitee);
+                target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityAll(Invitee.class)));
             }
         };
 
-        final ResponseListPanel responseListPanel = new ResponseListPanel(model);
-        responseListPanel.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Response.class)));
+        final InviteeListPanel responseListPanel = new InviteeListPanel(model);
+        responseListPanel.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Invitee.class)));
 
         addMainPanel(responseListPanel);
         addSecondaryPanel(new EventDetailsPanel(model), responseFormPanel);
     }
 
-    private IModel<Response> getResponseModel(final IModel<Event> model) {
-        final Response response = responseManager.findByEventAndUser(model.getObject(), getUserDetails().getUser());
-        if (response == null) {
-            return new ResponseModel(model);
-        } else {
-            return new ResponseModel(response);
-        }
+    private IModel<Invitee> getResponseModel(final IModel<Event> model) {
+        final Invitee invitee = inviteeManager.loadByEventAndUser(model.getObject(), getUserDetails().getUser());
+        return new InviteeModel(invitee);
     }
 
     @Override

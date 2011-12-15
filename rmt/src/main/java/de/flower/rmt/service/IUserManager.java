@@ -31,6 +31,8 @@ public interface IUserManager {
 
     List<User> findAll(Attribute... attributes);
 
+    List<User> findByTeam(Team team);
+
     /**
      * Returns all players of the club that are not assigned to the given team.
      *
@@ -52,4 +54,5 @@ public interface IUserManager {
     void updatePassword(Long userId, Password password);
 
     void sendInvitation(Long userId);
+
 }

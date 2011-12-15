@@ -17,7 +17,7 @@ public class ResponsesPage extends ManagerBasePage {
      public ResponsesPage(IModel<Event> model) {
          addHeading("manager.responses.heading", null);
 
-         final ResponseListPanel responseListPanel = new ResponseListPanel(model);
+         final InviteeListPanel responseListPanel = new InviteeListPanel(model);
          addMainPanel(responseListPanel);
          addSecondaryPanel(new InvitationPanel(model));
      }

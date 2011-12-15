@@ -17,7 +17,7 @@ public class PlayerManagerTest extends AbstractIntegrationTests {
 
     @Test
     public void testFindByEventAndUser() {
-        Event event = testData.createEvent();
+        Event event = testData.createEventWithResponses();
         Player player = event.getTeam().getPlayers().get(0);
         User user = player.getUser();
         assertEquals(playerManager.findByEventAndUser(event, user), player);

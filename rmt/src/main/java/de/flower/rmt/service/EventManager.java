@@ -1,8 +1,7 @@
 package de.flower.rmt.service;
 
 import de.flower.common.util.Check;
-import de.flower.rmt.model.Player;
-import de.flower.rmt.model.Team;
+import de.flower.rmt.model.Invitee;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
@@ -16,11 +15,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 import javax.persistence.metamodel.Attribute;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,16 +30,32 @@ public class EventManager extends AbstractService implements IEventManager {
     private IEventRepo eventRepo;
 
     @Autowired
-    private ITeamManager teamManager;
+    private IInviteeManager inviteeManager;
 
     @Autowired
-    private IPlayerManager playerManager;
+    private IUserManager userManager;
 
     @Override
-    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+    @Transactional(readOnly = false)
     public void save(Event entity) {
-        assertClub(entity);
+        validate(entity);
         eventRepo.save(entity);
+    }
+
+    @Override
+    @Transactional(readOnly = false)
+    public void create(final Event entity, final boolean createInvitees) {
+        Check.notNull(entity);
+        save(entity);
+        if (createInvitees) {
+            // for every user that is a player of the team of this event a invitee will be created
+            List<User> users = userManager.findByTeam(entity.getTeam());
+            for (User user : users) {
+                // TODO (flowerrrr - 15.12.11) replace by one call to inviteeManager
+                Invitee invitee = inviteeManager.newInstance(entity, user);
+                inviteeManager.save(invitee);
+            }
+        }
     }
 
     @Override
@@ -61,23 +73,14 @@ public class EventManager extends AbstractService implements IEventManager {
     }
 
     @Override
-    public List<Event> findUpcomingByUserPlayer(final User player) {
-        Check.notNull(player);
-        // instead of one complicated query we use two separate
-        // find teams that player is part of
-        List<Team> teams = teamManager.findByUserPlayer(player);
-        // find events for these teams
-        final Specification dateBeforeNowSpec = new Specification<Event>() {
-            @Override
-            public Predicate toPredicate(final Root<Event> root, final CriteriaQuery<?> query, final CriteriaBuilder cb) {
-                return cb.greaterThanOrEqualTo(root.get(Event_.date), cb.literal(new LocalDate().toDate()));
-            }
-        };
-        return eventRepo.findAll(Specs.and(Specs.in(Event_.team, teams), dateBeforeNowSpec));
+    public List<Event> findUpcomingByUser(final User user) {
+        Check.notNull(user);
+        Date date = new LocalDate().toDate();
+        return eventRepo.findUpcomingByUser(user, date);
     }
 
     @Override
-    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+    @Transactional(readOnly = false)
     public void delete(Event entity) {
         // TODO (flowerrrr - 11.06.11) decide whether to soft or hard delete entity.
         assertClub(entity);
@@ -85,7 +88,7 @@ public class EventManager extends AbstractService implements IEventManager {
     }
 
     @Override
-	public Event newInstance(EventType eventType) {
+    public Event newInstance(EventType eventType) {
         Check.notNull(eventType);
         try {
             Event event = eventType.getClazz().newInstance();
@@ -101,9 +104,9 @@ public class EventManager extends AbstractService implements IEventManager {
         Event event = loadById(id);
         // is this event related to the club of the user?
         Check.isEqual(event.getClub(), user.getClub());
-        // is this event related to any of the teams of the user?
-        Player player = playerManager.findByEventAndUser(event, user);
-        Check.notNull(player);
+        // is user an invitee of this event
+        Invitee invitee = inviteeManager.loadByEventAndUser(event, user);
+        Check.notNull(invitee);
         return event;
     }
 }

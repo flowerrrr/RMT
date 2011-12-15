@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.player.page.event;
 
+import de.flower.rmt.model.Invitee;
 import de.flower.rmt.model.RSVPStatus;
-import de.flower.rmt.model.Response;
 import de.flower.rmt.ui.common.form.EntityForm;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -19,13 +19,13 @@ import org.apache.wicket.model.Model;
  */
 public abstract class ResponseFormPanel extends BasePanel {
 
-    private EntityForm<Response> form;
+    private EntityForm<Invitee> form;
 
-    public ResponseFormPanel(final IModel<Response> model) {
-        form = new EntityForm<Response>("form", model) {
+    public ResponseFormPanel(final IModel<Invitee> model) {
+        form = new EntityForm<Invitee>("form", model) {
 
             @Override
-            protected void onSubmit(final AjaxRequestTarget target, final Form<Response> form) {
+            protected void onSubmit(final AjaxRequestTarget target, final Form<Invitee> form) {
                 ResponseFormPanel.this.onSubmit(form.getModelObject(), target);
                 onClose();
             }
@@ -51,6 +51,6 @@ public abstract class ResponseFormPanel extends BasePanel {
         form.add(new TextArea("comment"));
     }
 
-    protected abstract void onSubmit(Response response, AjaxRequestTarget target);
+    protected abstract void onSubmit(Invitee response, AjaxRequestTarget target);
 
  }
