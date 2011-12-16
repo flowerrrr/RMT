@@ -4,6 +4,7 @@ import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -26,4 +27,8 @@ public interface IInvitationRepo extends IRepository<Invitation, Long> {
     Invitation findByEventAndUser(Event event, User user);
 
     List<Invitation> findByEvent(Event event);
+
+    @Modifying
+    @Query("update Invitation i set i.invitationSent = true where i.event = :event and i.user in (select u from User u where u.email in (:addressList))")
+    void markInvitationSent(@Param("event") Event event, @Param("addressList") List<String> addressList);
 }

@@ -23,7 +23,7 @@ public class Club extends AbstractBaseEntity {
     @OneToMany(mappedBy = "club")
     private List<Team> teams;
 
-    private Club() {
+    protected Club() {
     }
 
     public Club(String name) {

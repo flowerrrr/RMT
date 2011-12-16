@@ -1,5 +1,7 @@
-package de.flower.rmt.ui.common.panel;
+package de.flower.rmt.ui.common.panel.feedback;
 
+import de.flower.common.ui.feedback.AlertMessage;
+import de.flower.common.ui.feedback.AlertMessagePanel;
 import de.flower.rmt.ui.common.page.AbstractBasePage;
 import de.flower.rmt.ui.common.page.account.AccountMainPanel;
 import de.flower.rmt.ui.common.page.account.AccountPage;
@@ -12,7 +14,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 public class PasswordChangeRequiredMessage extends AlertMessage {
 
     public PasswordChangeRequiredMessage() {
-        super(new ResourceModel("welcome.message.change.password"),
+        super(new ResourceModel("alert.message.change.password"),
                 new ResourceModel("button.change.password"));
     }
 

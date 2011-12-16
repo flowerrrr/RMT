@@ -41,7 +41,7 @@ public class Team extends AbstractClubRelatedEntity  {
     @OneToMany(mappedBy = "team")
     private List<Player> players = new ArrayList<Player>();
 
-    private Team() {
+    protected Team() {
     }
 
     public Team(Club club) {

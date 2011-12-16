@@ -1,6 +1,7 @@
 package de.flower.rmt.ui.manager.page.opponents;
 
 import de.flower.rmt.ui.manager.ManagerBasePage;
+import de.flower.rmt.ui.manager.NavigationPanel;
 import org.apache.wicket.markup.html.basic.Label;
 
 /**
@@ -15,6 +16,6 @@ public class OpponentsPage extends ManagerBasePage {
 
     @Override
     public String getActiveTopBarItem() {
-        return "opponents";
+        return NavigationPanel.OPPONENTS;
     }
 }

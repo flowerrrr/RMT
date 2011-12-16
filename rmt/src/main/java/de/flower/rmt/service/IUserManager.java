@@ -31,7 +31,7 @@ public interface IUserManager {
 
     List<User> findAll(Attribute... attributes);
 
-    List<User> findByTeam(Team team);
+    List<User> findAllByTeam(Team team);
 
     /**
      * Returns all players of the club that are not assigned to the given team.
@@ -39,7 +39,7 @@ public interface IUserManager {
      * @param team
      * @return
      */
-    List<User> findUnassignedPlayers(Team team);
+    List<User> findAllUnassignedPlayers(Team team);
 
     /**
      * Initialized the password fields with a

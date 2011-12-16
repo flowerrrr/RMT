@@ -1,11 +1,13 @@
-package de.flower.rmt.ui.common.panel;
+package de.flower.common.ui.feedback;
 
 import de.flower.common.ui.ajax.AjaxLink;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.protocol.http.WebSession;
 
 import java.lang.reflect.Method;
@@ -48,13 +50,13 @@ public class AlertMessagePanel extends Panel {
         add(link);
         link.add(new Label("label", alertMessage.getLabelModel()));
 
-        add(new AjaxLink("closeButton") {
-             @Override
-             public void onClick(final AjaxRequestTarget target) {
-                 setHideMessage(getSessionKey(), true);
-                 FeedbackPanel feedbackPanel = findParent(FeedbackPanel.class);
-                 target.add(feedbackPanel);
-             }
+        AjaxLink closeButton = new AjaxLink("closeButton") {
+            @Override
+            public void onClick(final AjaxRequestTarget target) {
+                setHideMessage(getSessionKey(), true);
+                FeedbackPanel feedbackPanel = findParent(FeedbackPanel.class);
+                target.add(feedbackPanel);
+            }
 
             /**
              * When clicking this link the feedback message is already gone from
@@ -65,7 +67,9 @@ public class AlertMessagePanel extends Panel {
             public boolean canCallListenerInterface(final Method method) {
                 return true;
             }
-         });
+        };
+        closeButton.add(AttributeModifier.replace("title", new ResourceModel("alert.message.close.button.title")));
+        add(closeButton);
 
     }
 

@@ -2,6 +2,7 @@ package de.flower.rmt.ui.manager.page.teams;
 
 import de.flower.rmt.model.Team;
 import de.flower.rmt.ui.manager.ManagerBasePage;
+import de.flower.rmt.ui.manager.NavigationPanel;
 import de.flower.rmt.ui.model.TeamModel;
 import org.apache.wicket.model.IModel;
 
@@ -27,7 +28,7 @@ public class TeamEditPage extends ManagerBasePage {
 
     @Override
     public String getActiveTopBarItem() {
-        return "teams";
+        return NavigationPanel.TEAMS;
     }
 
 }

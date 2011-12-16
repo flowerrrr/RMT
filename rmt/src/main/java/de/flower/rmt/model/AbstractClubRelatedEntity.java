@@ -3,6 +3,7 @@ package de.flower.rmt.model;
 import de.flower.common.model.AbstractBaseEntity;
 import org.hibernate.annotations.Index;
 
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
@@ -14,7 +15,7 @@ import javax.validation.constraints.NotNull;
 public abstract class AbstractClubRelatedEntity extends AbstractBaseEntity {
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @Index(name = "ix_club")
     private Club club;
 

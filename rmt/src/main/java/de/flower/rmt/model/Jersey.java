@@ -6,7 +6,9 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -30,10 +32,11 @@ public class Jersey extends AbstractBaseEntity {
     @Size(max = 50)
     private String socks;
 
-    @ManyToOne
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
     @Index(name = "ix_team")
     private Team team;
 
-    private Jersey() {
+    protected Jersey() {
     }
 }

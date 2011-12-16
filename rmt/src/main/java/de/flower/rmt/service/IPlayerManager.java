@@ -12,9 +12,9 @@ import java.util.List;
  */
 public interface IPlayerManager {
 
-    List<Player> findByTeam(Team team);
+    List<Player> findAllByTeam(Team team);
 
-    List<Player> findByUser(User user);
+    List<Player> findAllByUser(User user);
 
     Player findByTeamAndUser(Team team, User user);
 

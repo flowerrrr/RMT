@@ -3,6 +3,7 @@ package de.flower.rmt.ui.player.page.events;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.model.UserModel;
+import de.flower.rmt.ui.player.NavigationPanel;
 import de.flower.rmt.ui.player.PlayerBasePage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
@@ -29,14 +30,14 @@ public class EventsPage extends PlayerBasePage {
         return new LoadableDetachableModel<List<Event>>() {
             @Override
             protected List<Event> load() {
-                return eventManager.findUpcomingByUser(userModel.getObject());
+                return eventManager.findAllUpcomingByUser(userModel.getObject());
             }
         };
     }
 
     @Override
      public String getActiveTopBarItem() {
-         return "events";
+         return NavigationPanel.EVENTS;
      }
 
 }

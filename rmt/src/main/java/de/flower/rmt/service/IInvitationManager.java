@@ -18,14 +18,17 @@ public interface IInvitationManager {
 
     Invitation loadById(Long id);
 
-    List<Invitation> findByEvent(Event event);
+    List<Invitation> findAllByEvent(Event event);
 
-    List<Invitation> findByEventAndStatus(Event event, RSVPStatus rsvpStatus);
+    List<Invitation> findAllByEventAndStatus(Event event, RSVPStatus rsvpStatus);
 
     Long numByEventAndStatus(Event event, RSVPStatus rsvpStatus);
+
+    // List<Invitation> findAlByEmails(final Event event, List<String> addressList);
 
     Invitation loadByEventAndUser(Event event, User user);
 
     Invitation save(Invitation invitation);
 
+    void markInvitationSent(Event event, List<String> addressList);
 }

@@ -1,6 +1,7 @@
 package de.flower.rmt.ui.manager.page.players;
 
 import de.flower.rmt.ui.manager.ManagerBasePage;
+import de.flower.rmt.ui.manager.NavigationPanel;
 
 /**
  * @author flowerrrr
@@ -17,7 +18,7 @@ public class PlayersPage extends ManagerBasePage {
 
     @Override
     public String getActiveTopBarItem() {
-        return "players";
+        return NavigationPanel.PLAYERS;
     }
 
 }

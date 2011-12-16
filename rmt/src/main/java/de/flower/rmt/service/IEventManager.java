@@ -3,6 +3,7 @@ package de.flower.rmt.service;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
+import de.flower.rmt.model.type.Notification;
 
 import javax.persistence.metamodel.Attribute;
 import java.util.List;
@@ -30,7 +31,7 @@ public interface IEventManager {
 
     List<Event> findAll();
 
-    List<Event> findUpcomingByUser(User user);
+    List<Event> findAllUpcomingByUser(User user);
 
     void delete(Event entity);
 
@@ -43,4 +44,6 @@ public interface IEventManager {
      * @return
      */
     Event loadByIdAndUser(Long id, User user);
+
+    void sendInvitationMail(Long id, Notification notification);
 }

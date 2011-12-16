@@ -9,6 +9,7 @@ import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.model.InvitationModel;
+import de.flower.rmt.ui.player.NavigationPanel;
 import de.flower.rmt.ui.player.PlayerBasePage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
@@ -78,6 +79,6 @@ public class EventPage extends PlayerBasePage {
 
     @Override
     public String getActiveTopBarItem() {
-        return "events";
+        return NavigationPanel.EVENTS;
     }
 }

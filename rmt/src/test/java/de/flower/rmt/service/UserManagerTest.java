@@ -60,12 +60,12 @@ public class UserManagerTest extends AbstractIntegrationTests {
     @Test
     public void testUnassignedPlayer() {
         Team team = testData.getJuveAmateure();
-        List<User> users = userManager.findUnassignedPlayers(team);
+        List<User> users = userManager.findAllUnassignedPlayers(team);
         assertFalse(users.isEmpty());
         for (User u : users) {
             teamManager.addPlayer(team, u);
         }
-        users = userManager.findUnassignedPlayers(team);
+        users = userManager.findAllUnassignedPlayers(team);
         assertTrue(users.isEmpty());
     }
 

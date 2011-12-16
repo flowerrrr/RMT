@@ -1,15 +1,13 @@
 package de.flower.rmt.model.event;
 
+import de.flower.rmt.model.Club;
 import de.flower.rmt.model.Jersey;
 import de.flower.rmt.model.Opponent;
 import de.flower.rmt.model.Team;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalTime;
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * @author flowerrrr
@@ -22,16 +20,26 @@ public class Match extends Event {
     @Type(type = "org.joda.time.contrib.hibernate.PersistentLocalTimeAsTime") /* must be same as in Training! */
     private LocalTime kickOff;
 
-    @ManyToOne
+    /**
+     * Can be null. Sometimes events are created without knowing who the opponent will be.
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
     private Opponent opponent;
 
-    @ManyToOne
+    /**
+     * Can be null.
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
     private Jersey jersey;
 
-    public Match() {
+    protected Match() {
     }
 
     public Match(Team team) {
         super(team);
+    }
+
+    public Match(final Club club) {
+        super(club);
     }
 }

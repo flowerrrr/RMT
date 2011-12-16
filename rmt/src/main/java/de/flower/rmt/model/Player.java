@@ -5,6 +5,7 @@ import org.hibernate.annotations.Index;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
@@ -15,11 +16,13 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Player extends AbstractBaseEntity {
 
-    @ManyToOne
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
     @Index(name = "ix_team")
     private Team team;
 
-    @ManyToOne
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
     @Index(name = "ix_user")
     private User user;
 
@@ -47,7 +50,7 @@ public class Player extends AbstractBaseEntity {
     @Index(name = "ix_retired")
     private Boolean retired;
 
-    private Player() {
+    protected Player() {
     }
 
     public Player(Team team, User user) {
@@ -90,7 +93,7 @@ public class Player extends AbstractBaseEntity {
         this.user = user;
     }
 
-    public Boolean getOptional() {
+    public Boolean isOptional() {
         return optional;
     }
 
@@ -98,7 +101,7 @@ public class Player extends AbstractBaseEntity {
         this.optional = optional;
     }
 
-    public Boolean getNotification() {
+    public Boolean isNotification() {
         return notification;
     }
 
@@ -106,7 +109,7 @@ public class Player extends AbstractBaseEntity {
         this.notification = notification;
     }
 
-    public Boolean getRetired() {
+    public Boolean isRetired() {
         return retired;
     }
 

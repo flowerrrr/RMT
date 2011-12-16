@@ -28,7 +28,7 @@ public class Venue extends AbstractClubRelatedEntity {
     @Column
     private Double lng;
 
-    private Venue() {
+    protected Venue() {
     }
 
     public Venue(Club club) {

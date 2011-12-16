@@ -20,7 +20,7 @@ public class PlayerListPanelTest extends AbstractRMTWicketMockitoTests {
     @Test
     public void testRender() {
         Team team = testData.newTeamWithPlayers(20);
-        when(playerManager.findByTeam(team)).thenReturn(team.getPlayers());
+        when(playerManager.findAllByTeam(team)).thenReturn(team.getPlayers());
         wicketTester.startComponentInPage(new PlayerListPanel(Model.of(team)));
         wicketTester.dumpComponentWithPage();
     }

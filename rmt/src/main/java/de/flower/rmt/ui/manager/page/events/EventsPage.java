@@ -1,6 +1,7 @@
 package de.flower.rmt.ui.manager.page.events;
 
 import de.flower.rmt.ui.manager.ManagerBasePage;
+import de.flower.rmt.ui.manager.NavigationPanel;
 
 /**
  * @author flowerrrr
@@ -16,6 +17,6 @@ public class EventsPage extends ManagerBasePage {
 
     @Override
     public String getActiveTopBarItem() {
-        return "events";
+        return NavigationPanel.EVENTS;
     }
 }

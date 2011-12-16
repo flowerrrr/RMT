@@ -3,6 +3,7 @@ package de.flower.rmt.ui.manager.page.invitations;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.manager.ManagerBasePage;
+import de.flower.rmt.ui.manager.NavigationPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -22,14 +23,12 @@ public class InvitationsPage extends ManagerBasePage {
          addSecondaryPanel(new InvitationPanel(model));
 
          // check if an invitation has been sent for this event already
-         if (model.getObject().getInvitationSent() == false) {
-             // alert()
-         }
+         info(new NoInvitationSentMessage(model));
      }
 
     @Override
     public String getActiveTopBarItem() {
-        return "events";
+        return NavigationPanel.EVENTS;
     }
 
 }

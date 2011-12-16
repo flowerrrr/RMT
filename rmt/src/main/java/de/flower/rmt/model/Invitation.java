@@ -39,15 +39,19 @@ public class Invitation extends AbstractBaseEntity {
     private String guestName;
 
     @NotNull
-    @ManyToOne
+    @Column
+    private Boolean invitationSent = false;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
     @Index(name = "ix_event")
     private Event event;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @Index(name = "ix_user")
     private User user;
 
-    private Invitation() {
+    protected Invitation() {
     }
 
     public Invitation(Event event, User user) {
@@ -116,11 +120,27 @@ public class Invitation extends AbstractBaseEntity {
         this.user = user;
     }
 
+    public Boolean isInvitationSent() {
+        return invitationSent;
+    }
+
+    public void setInvitationSent(final Boolean invitationSent) {
+        this.invitationSent = invitationSent;
+    }
+
     public String getName() {
         if (user == null) {
             return guestName;
         } else {
             return user.getFullname();
+        }
+    }
+
+    public String getEmail() {
+        if (user == null) {
+            return null;
+        } else {
+            return user.getEmail();
         }
     }
 }

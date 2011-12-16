@@ -201,7 +201,7 @@ public class TestData {
      */
     public Event createEventWithResponses() {
         Event event = createEventWithoutResponses();
-        List<Invitation> invitations = invitationManager.findByEvent(event);
+        List<Invitation> invitations = invitationManager.findAllByEvent(event);
         respond(invitations.get(0), RSVPStatus.ACCEPTED, "some comment");
         respond(invitations.get(2), RSVPStatus.DECLINED, "some comment");
         respond(invitations.get(3), RSVPStatus.ACCEPTED, "some comment");

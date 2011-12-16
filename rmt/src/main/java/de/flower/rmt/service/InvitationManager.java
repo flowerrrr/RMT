@@ -53,12 +53,12 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     }
 
     @Override
-    public List<Invitation> findByEvent(final Event event) {
+    public List<Invitation> findAllByEvent(final Event event) {
         return invitationRepo.findByEvent(event);
     }
 
     @Override
-    public List<Invitation> findByEventAndStatus(Event event, RSVPStatus rsvpStatus) {
+    public List<Invitation> findAllByEventAndStatus(Event event, RSVPStatus rsvpStatus) {
         return invitationRepo.findByEventAndStatusOrderByDateAsc(event, rsvpStatus);
     }
 
@@ -66,6 +66,26 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     public Long numByEventAndStatus(final Event event, final RSVPStatus rsvpStatus) {
         return invitationRepo.numByEventAndStatus(event, rsvpStatus);
     }
+
+/*
+    @Override
+    public List<Invitation> findAlByEmails(final Event event, final List<String> addressList) {
+        List<Invitation> list = findAllByEvent(event);
+        Iterator<Invitation> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            Invitation invitation = iterator.next();
+            if (invitation.getEmail() != null) {
+                if (!addressList.contains(invitation.getEmail())) {
+                     iterator.remove();
+                }
+            } else {
+                // guest player
+                iterator.remove();
+            }
+        }
+        return list;
+    }
+*/
 
     @Override
     public Invitation loadByEventAndUser(Event event, User user) {
@@ -93,4 +113,8 @@ public class InvitationManager extends AbstractService implements IInvitationMan
         return invitationRepo.save(invitation);
     }
 
- }
+    @Override
+    public void markInvitationSent(final Event event, final List<String> addressList) {
+        invitationRepo.markInvitationSent(event, addressList);
+    }
+}

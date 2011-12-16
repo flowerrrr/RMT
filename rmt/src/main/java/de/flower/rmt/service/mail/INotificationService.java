@@ -10,4 +10,6 @@ public interface INotificationService {
     void sendResetPasswordMail(User user);
 
     void sendInvitationNewUser(User user, User manager);
+
+
 }

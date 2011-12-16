@@ -29,6 +29,11 @@
     <bean id="templateMessage" class="org.springframework.mail.SimpleMailMessage">
         <property name="from" value="${mail.default.sender}"/>
         <property name="replyTo" value="${mail.default.replyto}"/>
+        <property name="to">
+            <array>
+               <value>Undisclosed Recipients &lt;${mail.default.undisclosed-recipients}&gt;</value>
+            </array>
+        </property>
     </bean>
 
     <!--  velocity engine for rendering emails, sms. -->

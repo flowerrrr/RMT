@@ -6,8 +6,10 @@ import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.model.event.Event_;
+import de.flower.rmt.model.type.Notification;
 import de.flower.rmt.repository.IEventRepo;
 import de.flower.rmt.repository.Specs;
+import de.flower.rmt.service.mail.IMailService;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
@@ -35,6 +37,9 @@ public class EventManager extends AbstractService implements IEventManager {
     @Autowired
     private IUserManager userManager;
 
+    @Autowired
+    private IMailService mailService;
+
     @Override
     @Transactional(readOnly = false)
     public void save(Event entity) {
@@ -49,7 +54,7 @@ public class EventManager extends AbstractService implements IEventManager {
         save(entity);
         if (createInvitations) {
             // for every user that is a player of the team of this event a invitation will be created
-            List<User> users = userManager.findByTeam(entity.getTeam());
+            List<User> users = userManager.findAllByTeam(entity.getTeam());
             for (User user : users) {
                 // TODO (flowerrrr - 15.12.11) replace by one call to invitationManager
                 Invitation invitation = invitationManager.newInstance(entity, user);
@@ -73,7 +78,7 @@ public class EventManager extends AbstractService implements IEventManager {
     }
 
     @Override
-    public List<Event> findUpcomingByUser(final User user) {
+    public List<Event> findAllUpcomingByUser(final User user) {
         Check.notNull(user);
         Date date = new LocalDate().toDate();
         return eventRepo.findUpcomingByInvitee(user, date);
@@ -90,13 +95,8 @@ public class EventManager extends AbstractService implements IEventManager {
     @Override
     public Event newInstance(EventType eventType) {
         Check.notNull(eventType);
-        try {
-            Event event = eventType.getClazz().newInstance();
-            event.setClub(getClub());
-            return event;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        Event event = eventType.newInstance(getClub());
+        return event;
     }
 
     @Override
@@ -108,5 +108,15 @@ public class EventManager extends AbstractService implements IEventManager {
         Invitation invitation = invitationManager.loadByEventAndUser(event, user);
         Check.notNull(invitation);
         return event;
+    }
+
+    @Override
+    public void sendInvitationMail(final Long eventId, final Notification notification) {
+        Event event = loadById(eventId);
+        mailService.sendMassMail(notification);
+        event.setInvitationSent(true);
+        eventRepo.save(event);
+        // update all invitations and mark them also with invitationSent = true (allows to later add invitations and send mails to new participants)
+        invitationManager.markInvitationSent(event, notification.getAddressList());
     }
 }

@@ -17,7 +17,7 @@ public interface ITeamManager {
 
     List<Team> findAll();
 
-    List<Team> findByUserPlayer(User user);
+    List<Team> findAllByUserPlayer(User user);
 
     void delete(Team entity);
 

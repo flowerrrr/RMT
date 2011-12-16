@@ -59,7 +59,7 @@ public class InvitationListPanel extends BasePanel {
         return new LoadableDetachableModel<List<Invitation>>() {
             @Override
             protected List<Invitation> load() {
-                return invitationManager.findByEventAndStatus(model.getObject(), rsvpStatus);
+                return invitationManager.findAllByEventAndStatus(model.getObject(), rsvpStatus);
             }
         };
     }

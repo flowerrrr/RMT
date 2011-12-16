@@ -1,9 +1,6 @@
 package de.flower.rmt.model.event;
 
-import de.flower.rmt.model.AbstractClubRelatedEntity;
-import de.flower.rmt.model.Invitation;
-import de.flower.rmt.model.Team;
-import de.flower.rmt.model.Venue;
+import de.flower.rmt.model.*;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
 import org.joda.time.LocalDate;
@@ -27,14 +24,14 @@ import java.util.List;
 @DiscriminatorValue("Event")
 public class Event extends AbstractClubRelatedEntity {
 
-    @ManyToOne
     @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
     private Team team;
 
     /**
      * Can be null. Sometimes events are created before it is clear where they are held.
      */
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Venue venue;
 
     /**
@@ -65,14 +62,17 @@ public class Event extends AbstractClubRelatedEntity {
     @OneToMany(mappedBy = "event")
     private List<Invitation> invitations;
 
-    @Deprecated
-    public Event() {
+    protected Event() {
+    }
+
+    public Event(Club club) {
+        super(club);
+        this.invitationSent = false;
     }
 
     public Event(Team team) {
-        super(team.getClub());
+        this(team.getClub());
         this.team = team;
-        this.invitationSent = false;
     }
 
     public Team getTeam() {
@@ -124,7 +124,7 @@ public class Event extends AbstractClubRelatedEntity {
         this.comment = comment;
     }
 
-    public Boolean getInvitationSent() {
+    public Boolean isInvitationSent() {
         return invitationSent;
     }
 

@@ -21,14 +21,14 @@ public class ResponseManagerTest extends AbstractIntegrationTests {
     public void testFindResponder() {
         Event event = testData.createEventWithoutResponses();
         List<Player> players = event.getTeam().getPlayers();
-        assertTrue(invitationManager.findByEventAndStatus(event, RSVPStatus.ACCEPTED).isEmpty());
+        assertTrue(invitationManager.findAllByEventAndStatus(event, RSVPStatus.ACCEPTED).isEmpty());
         Invitation invitation = responseManager.respond(event, players.get(0).getUser(), RSVPStatus.ACCEPTED, "some comment");
-        List<Invitation> invitations = invitationManager.findByEventAndStatus(event, RSVPStatus.ACCEPTED);
+        List<Invitation> invitations = invitationManager.findAllByEventAndStatus(event, RSVPStatus.ACCEPTED);
         assertEquals(invitation, invitations.get(0));
         assertEquals((long) invitationManager.numByEventAndStatus(event, RSVPStatus.ACCEPTED), invitations.size());
 
         invitation = responseManager.respond(event, players.get(1).getUser(), RSVPStatus.ACCEPTED, "some comment");
-        invitations = invitationManager.findByEventAndStatus(event, RSVPStatus.ACCEPTED);
+        invitations = invitationManager.findAllByEventAndStatus(event, RSVPStatus.ACCEPTED);
         assertTrue(invitations.size() == 2);
         assertEquals((long) invitationManager.numByEventAndStatus(event, RSVPStatus.ACCEPTED), invitations.size());
     }

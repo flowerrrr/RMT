@@ -38,4 +38,5 @@ public class NotificationService implements INotificationService {
         String content = templateService.mergeTemplate(EmailTemplate.INVITATION_NEWUSER.getContent(), model);
         mailService.sendMail(user.getEmail(), subject, content);
     }
+
 }

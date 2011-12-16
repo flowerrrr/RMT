@@ -28,12 +28,12 @@ public class PlayerManager extends AbstractService implements IPlayerManager {
 
 
     @Override
-    public List<Player> findByTeam(Team team) {
+    public List<Player> findAllByTeam(Team team) {
         return playerRepo.findByTeam(team);
     }
 
     @Override
-    public List<Player> findByUser(User user) {
+    public List<Player> findAllByUser(User user) {
         return playerRepo.findByUser(user);
     }
 

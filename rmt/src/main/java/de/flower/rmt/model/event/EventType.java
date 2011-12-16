@@ -1,5 +1,7 @@
 package de.flower.rmt.model.event;
 
+import de.flower.rmt.model.Club;
+
 /**
  * @author flowerrrr
  */
@@ -30,7 +32,18 @@ public enum EventType {
         throw new IllegalArgumentException("Unknown eventType [" + event.getClass().getSimpleName() + "]");
     }
 
-    public Class<? extends Event> getClazz() {
-        return this.clazz;
+    public Event newInstance(final Club club) {
+        switch (this) {
+            case Event:
+                return new Event(club);
+            case Match:
+                return new Match(club);
+            case Training:
+                return new Training(club);
+            case Tournament:
+                return new Tournament(club);
+            default:
+                throw new RuntimeException();
+        }
     }
 }

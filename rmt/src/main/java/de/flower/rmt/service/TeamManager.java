@@ -48,7 +48,7 @@ public class TeamManager extends AbstractService implements ITeamManager {
     }
 
     @Override
-    public List<Team> findByUserPlayer(final User user) {
+    public List<Team> findAllByUserPlayer(final User user) {
         Specification spec = new Specification<Team>() {
             @Override
             public Predicate toPredicate(final Root<Team> root, final CriteriaQuery<?> query, final CriteriaBuilder cb) {

@@ -2,6 +2,7 @@ package de.flower.rmt.ui.manager.page.event;
 
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.ui.manager.ManagerBasePage;
+import de.flower.rmt.ui.manager.NavigationPanel;
 import org.apache.wicket.model.Model;
 
 /**
@@ -17,7 +18,7 @@ public class EventEditPage extends ManagerBasePage {
 
     @Override
     public String getActiveTopBarItem() {
-        return "events";
+        return NavigationPanel.EVENTS;
     }
 
 }

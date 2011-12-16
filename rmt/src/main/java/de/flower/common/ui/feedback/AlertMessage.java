@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.common.panel;
+package de.flower.common.ui.feedback;
 
 import org.apache.wicket.model.IModel;
 

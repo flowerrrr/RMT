@@ -47,12 +47,13 @@ public class Role extends AbstractBaseEntity {
     @Column
     private String authority;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @Index(name = "ix_user")
     private User user;
 
-    private Role() {
+    protected Role() {
     }
 
     public Role(String authority) {

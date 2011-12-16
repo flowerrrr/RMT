@@ -5,6 +5,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd ">
 
+    <!-- override the default mock MailSender that is used in unit tests with a real mail sender only for
+        this test. -->
+
     <!-- Spring Mail support -->
      <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
          <property name="host" value="${mail.smtp.host}"/>

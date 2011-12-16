@@ -101,13 +101,13 @@ public class UserManager extends AbstractService implements IUserManager {
     }
 
     @Override
-    public List<User> findByTeam(final Team team) {
+    public List<User> findAllByTeam(final Team team) {
         Check.notNull(team);
         return userRepo.findByTeam(team);
     }
 
     @Override
-    public List<User> findUnassignedPlayers(final Team team) {
+    public List<User> findAllUnassignedPlayers(final Team team) {
         return userRepo.findUnassignedPlayers(team, getClub());
     }
 

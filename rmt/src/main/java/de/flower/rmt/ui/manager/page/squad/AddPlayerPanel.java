@@ -94,7 +94,7 @@ public class AddPlayerPanel extends BasePanel<Team> {
         return new LoadableDetachableModel<List<User>>() {
             @Override
             protected List<User> load() {
-                return userManager.findUnassignedPlayers(model.getObject());
+                return userManager.findAllUnassignedPlayers(model.getObject());
             }
         };
     }

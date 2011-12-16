@@ -1,5 +1,6 @@
 package de.flower.rmt.model.event;
 
+import de.flower.rmt.model.Club;
 import de.flower.rmt.model.Team;
 
 import javax.persistence.DiscriminatorValue;
@@ -16,10 +17,14 @@ public class Training extends Event {
 //    @Type(type = "org.joda.time.contrib.hibernate.PersistentLocalTimeAsTime") /* must be same as in Match! */
 //    private LocalTime kickOff;
 
-    public Training() {
+    protected Training() {
     }
 
     public Training(Team team) {
         super(team);
+    }
+
+    public Training(final Club club) {
+        super(club);
     }
 }

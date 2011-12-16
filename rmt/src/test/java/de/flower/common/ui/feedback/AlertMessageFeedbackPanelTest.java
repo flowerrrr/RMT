@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.common.panel;
+package de.flower.common.ui.feedback;
 
 import de.flower.common.test.wicket.AbstractWicketUnitTests;
 import de.flower.common.test.wicket.WicketTesterHelper;
@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 /**
  * @author flowerrrr
  */
-public class AlertMessagesPanelTest extends AbstractWicketUnitTests {
+public class AlertMessageFeedbackPanelTest extends AbstractWicketUnitTests {
 
     private static boolean showInfo = true;
 
@@ -83,7 +83,7 @@ public class AlertMessagesPanelTest extends AbstractWicketUnitTests {
                 }
             });
 
-            add(new AlertMessagesPanel("panel"));
+            add(new AlertMessageFeedbackPanel("panel"));
 
             AlertMessage message = new AlertMessage(Model.of("message"), Model.of("label")) {
 

@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.common.page;
 
-import de.flower.rmt.ui.common.panel.AlertMessagesPanel;
-import de.flower.rmt.ui.common.panel.PasswordChangeRequiredMessage;
+import de.flower.common.ui.feedback.AlertMessageFeedbackPanel;
+import de.flower.rmt.ui.common.panel.feedback.PasswordChangeRequiredMessage;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -26,7 +26,7 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
     public AbstractBaseLayoutPage(final IModel<?> model) {
         super(model);
 
-        add(new AlertMessagesPanel("alertMessagesPanel"));
+        add(new AlertMessageFeedbackPanel("alertMessagesPanel"));
 
         add(heading = new Label("heading", Model.of(getClass().getSimpleName())));
         add(subheading = new Label("subheading", Model.of("")));

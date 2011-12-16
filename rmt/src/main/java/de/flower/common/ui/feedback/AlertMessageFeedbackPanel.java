@@ -1,15 +1,17 @@
-package de.flower.rmt.ui.common.panel;
+package de.flower.common.ui.feedback;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 
 /**
+ * FeedbackPanel that can render AlertMessages.
+ *
  * @author flowerrrr
  */
-public class AlertMessagesPanel extends FeedbackPanel {
+public class AlertMessageFeedbackPanel extends FeedbackPanel {
 
-    public AlertMessagesPanel(String id) {
+    public AlertMessageFeedbackPanel(String id) {
         super(id);
         setOutputMarkupId(true);
     }

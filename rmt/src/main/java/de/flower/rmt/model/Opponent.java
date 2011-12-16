@@ -28,6 +28,6 @@ public class Opponent extends AbstractBaseEntity {
     @Column
     private String url;
 
-    private Opponent() {
+    protected Opponent() {
     }
 }

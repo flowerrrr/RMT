@@ -14,15 +14,27 @@ import de.flower.rmt.ui.manager.page.venues.VenuesPage;
  */
 public class NavigationPanel extends AbstractNavigationPanel {
 
+    public static final String HOME = "home";
+
+    public static final String EVENTS = "events";
+
+    public static final String TEAMS = "teams";
+
+    public static final String PLAYERS = "players";
+
+    public static final String OPPONENTS = "opponents";
+
+    public static final String VENUES = "venues";
+
     public NavigationPanel(INavigationPanelAware page) {
         super(View.MANAGER);
 
-        add(createMenuItem("home", ManagerHomePage.class, page));
-        add(createMenuItem("events", EventsPage.class, page));
-        add(createMenuItem("teams", TeamsPage.class, page));
-        add(createMenuItem("players", PlayersPage.class, page));
-        add(createMenuItem("opponents", OpponentsPage.class, page));
-        add(createMenuItem("venues", VenuesPage.class, page));
+        add(createMenuItem(HOME, ManagerHomePage.class, page));
+        add(createMenuItem(EVENTS, EventsPage.class, page));
+        add(createMenuItem(TEAMS, TeamsPage.class, page));
+        add(createMenuItem(PLAYERS, PlayersPage.class, page));
+        add(createMenuItem(OPPONENTS, OpponentsPage.class, page));
+        add(createMenuItem(VENUES, VenuesPage.class, page));
 
     }
 

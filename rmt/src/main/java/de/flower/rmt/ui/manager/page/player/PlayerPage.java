@@ -5,6 +5,7 @@ import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.rmt.model.User;
 import de.flower.rmt.service.IUserManager;
 import de.flower.rmt.ui.manager.ManagerBasePage;
+import de.flower.rmt.ui.manager.NavigationPanel;
 import de.flower.rmt.ui.model.UserModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -55,6 +56,6 @@ public class PlayerPage extends ManagerBasePage {
 
     @Override
     public String getActiveTopBarItem() {
-        return "players";
+        return NavigationPanel.PLAYERS;
     }
 }

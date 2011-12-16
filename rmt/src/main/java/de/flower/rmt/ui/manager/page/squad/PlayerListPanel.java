@@ -65,8 +65,8 @@ public class PlayerListPanel extends BasePanel<Team> {
                 editLink.add(new Label("fullname", player.getFullname()));
                 item.add(editLink);
                 item.add(new Label("status", new ResourceModel("player.status." + player.getUser().getStatus().toString().toLowerCase())));
-                item.add(new Label("notification", new ResourceModel("choice.player.notification." + player.getNotification().toString())));
-                item.add(new Label("response", new ResourceModel("choice.player.response.optional." + player.getOptional().toString())));
+                item.add(new Label("notification", new ResourceModel("choice.player.notification." + player.isNotification().toString())));
+                item.add(new Label("response", new ResourceModel("choice.player.response.optional." + player.isOptional().toString())));
                 DropDownMenuPanel menuPanel = new DropDownMenuPanel();
                 item.add(menuPanel);
                 menuPanel.addLink(createEditLink("link", item), "button.edit");
@@ -86,7 +86,7 @@ public class PlayerListPanel extends BasePanel<Team> {
         return new LoadableDetachableModel<List<Player>>() {
             @Override
             protected List<Player> load() {
-                return playerManager.findByTeam(model.getObject());
+                return playerManager.findAllByTeam(model.getObject());
             }
         };
     }

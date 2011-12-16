@@ -26,7 +26,7 @@ public class PlayerTeamsPanelTest extends AbstractRMTWicketMockitoTests {
     public void testRender() {
         final User user = testData.newUserWithTeams();
         user.setId(1L); // make it act persisted
-        when(playerManager.findByUser(user)).thenReturn(user.getPlayers());
+        when(playerManager.findAllByUser(user)).thenReturn(user.getPlayers());
         wicketTester.startComponentInPage(new PlayerTeamsPanel("panel", Model.of(user)));
         wicketTester.dumpComponentWithPage();
         wicketTester.assertVisible("list");
@@ -45,7 +45,7 @@ public class PlayerTeamsPanelTest extends AbstractRMTWicketMockitoTests {
     @Test
     public void testNoTeam() {
         final User user = testData.newUser();
-        when(playerManager.findByUser(user)).thenReturn(new ArrayList());
+        when(playerManager.findAllByUser(user)).thenReturn(new ArrayList());
         wicketTester.startComponentInPage(new PlayerTeamsPanel("panel", Model.of(user)));
         wicketTester.dumpComponentWithPage();
         wicketTester.assertVisible("noTeam");
