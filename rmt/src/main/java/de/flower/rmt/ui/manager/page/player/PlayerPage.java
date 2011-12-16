@@ -25,7 +25,9 @@ public class PlayerPage extends ManagerBasePage {
     public PlayerPage(final IModel<User> model) {
         super(model);
         // initialize model object if it is not set
-        addHeading("manager.player.edit.heading", null);
+        setHeading("manager.player.edit.heading");
+        // replace main heading with players name.
+        setHeadingText(model.getObject().getFullname());
         addMainPanel(new PlayerMainPanel(model));
 
         final SendInvitationPanel sendInvitationPanel = new SendInvitationPanel(model) {

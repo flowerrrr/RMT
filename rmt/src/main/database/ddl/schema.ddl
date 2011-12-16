@@ -51,7 +51,9 @@
 
     create table Player (
         id bigint not null auto_increment,
+        notification bit not null,
         optional bit not null,
+        retired bit not null,
         team_id bigint,
         user_id bigint,
         primary key (id)
@@ -82,7 +84,7 @@
         fullname varchar(50) not null,
         initialPassword varchar(50),
         invitationSent bit,
-        status integer,
+        status varchar(255) not null,
         club_id bigint not null,
         primary key (id),
         unique (username),
@@ -137,15 +139,15 @@
 
     create index ix_status on Invitation (status);
 
-    alter table Invitation
-        add index FKD80C4A5CD1F985A6 (event_id), 
-        add constraint FKD80C4A5CD1F985A6 
+    alter table Invitation 
+        add index FKBE1153B9D1F985A6 (event_id), 
+        add constraint FKBE1153B9D1F985A6 
         foreign key (event_id) 
         references Event (id);
 
-    alter table Invitation
-        add index FKD80C4A5C699BC35A (user_id), 
-        add constraint FKD80C4A5C699BC35A 
+    alter table Invitation 
+        add index FKBE1153B9699BC35A (user_id), 
+        add constraint FKBE1153B9699BC35A 
         foreign key (user_id) 
         references Users (id);
 
@@ -156,6 +158,10 @@
         add constraint FK840B72901C96621A 
         foreign key (team_id) 
         references Team (id);
+
+    create index ix_retired on Player (retired);
+
+    create index ix_notification on Player (notification);
 
     create index ix_user on Player (user_id);
 

@@ -8,7 +8,7 @@ import de.flower.rmt.ui.common.page.CommonBasePage;
 public class AccountPage extends CommonBasePage {
 
     public AccountPage() {
-        addHeading("account.heading", "account.heading.sub");
+        setHeading("account.heading", "account.heading.sub");
         addMainPanel(new AccountMainPanel());
         // addSecondaryPanel(new Label("foobar", "Put some useful stuff here"));
     }

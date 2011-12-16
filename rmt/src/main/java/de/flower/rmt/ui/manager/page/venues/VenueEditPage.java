@@ -16,7 +16,7 @@ public class VenueEditPage extends ManagerBasePage {
 
     public VenueEditPage(IModel<Venue> model) {
         super(model);
-        addHeading("manager.venue.edit.heading", null);
+        setHeading("manager.venue.edit.heading", null);
         addMainPanel(new VenueEditPanel(model) {
             @Override
             protected void onClose() {

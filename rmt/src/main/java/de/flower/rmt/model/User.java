@@ -83,7 +83,9 @@ public class User extends AbstractClubRelatedEntity {
     @Column
     private String fullname;
 
+    @NotNull
     @Column
+    @Enumerated(EnumType.STRING)
     @Index(name = "ix_status")
     private Status status;
 
@@ -155,11 +157,11 @@ public class User extends AbstractClubRelatedEntity {
     }
 
     public Status getStatus() {
-        return (status == null) ? Status.UNKNOWN : status;
+        return status;
     }
 
     public void setStatus(Status status) {
-        this.status = (status == null) ? Status.UNKNOWN : status;
+        this.status = status;
     }
 
     public List<Player> getPlayers() {

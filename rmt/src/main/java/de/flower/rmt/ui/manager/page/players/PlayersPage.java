@@ -9,7 +9,7 @@ public class PlayersPage extends ManagerBasePage {
 
     public PlayersPage() {
 
-        addHeading("manager.players.heading", null);
+        setHeading("manager.players.heading", null);
         addMainPanel(new PlayerListPanel());
         addSecondaryPanel(new PlayersSecondaryPanel());
     }

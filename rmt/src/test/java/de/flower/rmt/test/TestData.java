@@ -18,6 +18,7 @@ import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @author flowerrrr
@@ -52,6 +53,8 @@ public class TestData {
 
     @Autowired
     private IUserManager userManager;
+
+    private Random random = new Random();
 
     public void checkDataConsistency(EntityManager em) {
 /*
@@ -92,6 +95,15 @@ public class TestData {
         return team;
     }
 
+    public Team newTeamWithPlayers(int numPlayers) {
+        Team team = newTeam();
+        List<User> users = newUsers(numPlayers);
+        for (User user : users) {
+            addPlayer(team, user);
+        }
+        return team;
+    }
+
     public Team newTeam() {
         return new Team(newClub());
     }
@@ -102,9 +114,16 @@ public class TestData {
         user.setFullname(RandomStringUtils.randomAlphabetic(10));
         user.setInitialPassword("1234");
         user.setEncryptedPassword("io8ujalöjdfkalsöj");
-        Role role = new Role(Role.Roles.MANAGER.getRoleName());
+        user.setStatus(random.nextBoolean() ?  User.Status.FIT : User.Status.INJURED);
+        Role role = new Role(Role.Roles.PLAYER.getRoleName());
         user.getRoles().add(role);
         role.setUser(user);
+        // some get manager role
+        if (random.nextBoolean()) {
+            role = new Role(Role.Roles.MANAGER.getRoleName());
+            user.getRoles().add(role);
+            role.setUser(user);
+        }
         return user;
     }
 
@@ -142,6 +161,15 @@ public class TestData {
             user.setEmail(RandomStringUtils.randomAlphabetic(8) + "@acme.com");
             user.setFullname(RandomStringUtils.randomAlphabetic(10));
             userManager.save(user);
+            users.add(user);
+        }
+        return users;
+    }
+
+    public List<User> newUsers(int count) {
+        List<User> users = new ArrayList<User>();
+        for (int i = 0; i < count; i++) {
+            User user = newUser();
             users.add(user);
         }
         return users;

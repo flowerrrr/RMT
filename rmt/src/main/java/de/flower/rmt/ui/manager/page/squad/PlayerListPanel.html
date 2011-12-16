@@ -19,13 +19,21 @@
                     <wicket:message key="manager.player.status"/>
                 </th>
                 <th>
+                    <wicket:message key="manager.squad.settings.notification"/>
+                </th>
+                <th>
+                    <wicket:message key="manager.squad.settings.response"/>
+                </th>
+                <th>
                 </th>
             </tr>
             </thead>
             <tbody>
             <tr wicket:id="playerList">
-                <td><span wicket:id="name">[Player A]</span></td>
+                <td><a wicket:id="editLink"><span wicket:id="fullname">[Player A]</span></a></td>
                 <td><span wicket:id="status">[Fit|Injured|OnVacation]</span></td>
+                <td><span wicket:id="notification">[On|Off]</span></td>
+                <td><span wicket:id="response">[Required|Optional]</span></td>
                 <td>
                     <div wicket:id="dropDownMenuPanel"/>
                 </td>

@@ -15,7 +15,7 @@ public class TeamEditPage extends ManagerBasePage {
     }
 
     public TeamEditPage(IModel<Team> model) {
-        addHeading("manager.team.edit.heading", null);
+        setHeading("manager.team.edit.heading", null);
         addMainPanel(new TeamEditPanel(model) {
             @Override
             protected void onClose() {

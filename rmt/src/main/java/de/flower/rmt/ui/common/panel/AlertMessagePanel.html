@@ -4,13 +4,13 @@
 <body>
 <wicket:panel>
 
-    <div wicket:id="passwordChangeMessage" class="alert-message warning welcome-message">
+    <div class="alert-message warning welcome-message">
         <div>
-            <wicket:message key="welcome.message.change.password"/>
+            <span wicket:id="message" />
         </div>
         <div>
-            <a wicket:id="gotoAccount" class="btn">
-                <wicket:message key="button.change.password"/>
+            <a wicket:id="link" class="btn">
+                <span wicket:id="label" />
             </a>
             <a wicket:id="closeButton" class="close">x</a>
         </div>

@@ -16,6 +16,8 @@ import java.util.List;
  */
 public class PlayerMainPanel extends AbstractAjaxTabbedPanel<User> {
 
+    public static final int TEAM_SETTINGS_PANEL_INDEX = 1;
+
     public PlayerMainPanel(final IModel<User> model) {
         super(Check.notNull(model));
     }

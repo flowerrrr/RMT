@@ -1,9 +1,12 @@
 package de.flower.rmt.ui.common.page;
 
+import de.flower.rmt.ui.common.panel.AlertMessagesPanel;
+import de.flower.rmt.ui.common.panel.PasswordChangeRequiredMessage;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 
 /**
@@ -16,10 +19,17 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
 
     private Panel secondaryPanel;
 
+    private Label heading;
+
+    private Label subheading;
+
     public AbstractBaseLayoutPage(final IModel<?> model) {
         super(model);
 
-        add(new WelcomeMessagesPanel());
+        add(new AlertMessagesPanel("alertMessagesPanel"));
+
+        add(heading = new Label("heading", Model.of(getClass().getSimpleName())));
+        add(subheading = new Label("subheading", Model.of("")));
     }
 
     /**
@@ -33,31 +43,37 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
         }
     }
 
-    protected void addHeading(String headingResourceKey) {
-        add(new Label("heading", new ResourceModel(headingResourceKey)));
-        add(new Label("subheading", new ResourceModel(headingResourceKey + ".sub")));
+    @Override
+    protected void onBeforeRender() {
+        // makes messages back-button save
+        info(new PasswordChangeRequiredMessage());
+        super.onBeforeRender();
     }
 
-    protected void addHeading(String headingResourceKey, final String subHeadingResourceKey) {
-        add(new Label("heading", new ResourceModel(headingResourceKey)));
-        add(new Label("subheading", new ResourceModel(subHeadingResourceKey)) {
-            @Override
-            public boolean isVisible() {
-                return subHeadingResourceKey != null;
-            }
-        });
+    protected void setHeading(String headingResourceKey) {
+        setHeading(headingResourceKey, headingResourceKey + ".sub");
     }
 
-    protected void addHeadingText(String text) {
-        add(new Label("heading", text));
-        add(new Label("subheading", "").setVisible(false)); // currently not used
+    protected void setHeading(String headingResourceKey, final String subHeadingResourceKey) {
+        heading.setDefaultModel(new ResourceModel(headingResourceKey));
+        if (subHeadingResourceKey != null) {
+            subheading.setDefaultModel(new ResourceModel(subHeadingResourceKey));
+        }
     }
 
-    protected void addMainPanel(Component ... components) {
+    protected void setHeadingText(String text) {
+        heading.setDefaultModel(Model.of(text));
+    }
+
+    protected void setSubheadingText(String text) {
+        subheading.setDefaultModel(Model.of(text));
+    }
+
+    protected void addMainPanel(Component... components) {
         add(new WrappingPanel("mainPanel", components));
     }
 
-    protected void addSecondaryPanel(Component ... components) {
+    protected void addSecondaryPanel(Component... components) {
         secondaryPanel = new WrappingPanel("secondaryPanel", components);
         add(secondaryPanel);
     }
@@ -65,4 +81,5 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
     public Panel getSecondaryPanel() {
         return secondaryPanel;
     }
+
 }

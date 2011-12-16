@@ -11,7 +11,6 @@ import org.testng.annotations.Test;
  */
 public class FormFeedbackPanelTest extends AbstractWicketUnitTests {
 
-    @Override
     @Test
     public void testRender() {
         wicketTester.startComponentInPage(new FormFeedbackTestPanel());

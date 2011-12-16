@@ -58,6 +58,10 @@ public class Event extends AbstractClubRelatedEntity {
     @Column @Size(max = 255)
     private String comment;
 
+    @NotNull
+    @Column
+    private Boolean invitationSent;
+
     @OneToMany(mappedBy = "event")
     private List<Invitation> invitations;
 
@@ -68,6 +72,7 @@ public class Event extends AbstractClubRelatedEntity {
     public Event(Team team) {
         super(team.getClub());
         this.team = team;
+        this.invitationSent = false;
     }
 
     public Team getTeam() {
@@ -119,4 +124,11 @@ public class Event extends AbstractClubRelatedEntity {
         this.comment = comment;
     }
 
+    public Boolean getInvitationSent() {
+        return invitationSent;
+    }
+
+    public void setInvitationSent(final Boolean invitationSent) {
+        this.invitationSent = invitationSent;
+    }
 }

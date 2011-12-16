@@ -52,7 +52,7 @@ public class EventPage extends PlayerBasePage {
 
     private void init(IModel<Event> model) {
         setDefaultModel(model);
-        addHeading("player.event.heading");
+        setHeading("player.event.heading");
 
         InvitationFormPanel invitationFormPanel = new InvitationFormPanel(getInvitationModel(model)) {
 

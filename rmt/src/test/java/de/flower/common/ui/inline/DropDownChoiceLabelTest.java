@@ -14,7 +14,6 @@ import java.util.List;
  */
 public class DropDownChoiceLabelTest extends AbstractWicketUnitTests {
 
-    @Override
     @Test
     public void testRender() {
         List<String> choices = Arrays.asList("a", "b", "c");

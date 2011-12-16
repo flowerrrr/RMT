@@ -66,15 +66,11 @@ a.no-hover:hover {
 **************************************************************************/
 html, body {
     /* needed for border-shadow on content divs */
-    background-color: #DDDDDD;
+    background-color: #E9E9E9;
 }
 
 body {
     padding-top: 40px; /* to adjust for usage of fixed topBar */
-}
-
-footer {
-    text-align: center;
 }
 
 // ul are unstyled by default
@@ -117,13 +113,19 @@ li {
     }
 }
 
-.content {
-    /* let content always have a minimum width. looks nicer on empty pages. */
-    min-height: 500px;
+.page-footer {
+    text-align: center;
+    background-color: #F5F5F5;
+    margin: -20px -20px 0px;
+    padding: 20px 20px 0px;
+    border-top: 1px solid #DDDDDD;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .content .main {
     width: 560px;
+    /* let content always have a minimum width. looks nicer on empty pages. */
+    min-height: 600px;
 }
 
 .content .secondary {

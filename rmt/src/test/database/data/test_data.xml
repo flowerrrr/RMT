@@ -4,22 +4,22 @@
     <club id="1" name="Juventus Urin"/>
     <club id="2" name="FC Bayern" />
 
-    <users id="1" enabled="true" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="admin-rmt@mailinator.com" fullname="Flowerrrr" club_id="1"/>
-    <users id="2" enabled="true" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="manager-rmt@mailinator.com" fullname="Sepp" club_id="1"/>
-    <users id="3" enabled="true" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="player-rmt@mailinator.com" fullname="Ingo" club_id="1"/>
-    <users id="4" enabled="true" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="both-rmt@mailinator.com" fullname="Maik" club_id="1"/>
-    <users id="5" enabled="true" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="bayern-rmt@mailinator.com" fullname="Uli Hoeneß" club_id="2"/>
-    <users id="6" enabled="true" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="player1-rmt@mailinator.com" fullname="Hansi" club_id="1"/>
-    <users id="7" enabled="true" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="player2-rmt@mailinator.com" fullname="Horst" club_id="1"/>
-    <users id="8" enabled="true" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="player3-rmt@mailinator.com" fullname="Thorsten" club_id="1"/>
-    <users id="9" enabled="true" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="player4-rmt@mailinator.com" fullname="Michi" club_id="1"/>
-    <users id="10" enabled="true" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="player5-rmt@mailinator.com" fullname="Paul" club_id="1"/>
-    <users id="11" enabled="true" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="player6-rmt@mailinator.com" fullname="Hugo" club_id="1"/>
-    <users id="12" enabled="true" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="player7-rmt@mailinator.com" fullname="Alder" club_id="1"/>
-    <users id="13" enabled="true" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="player8-rmt@mailinator.com" fullname="Dragan" club_id="1"/>
-    <users id="14" enabled="true" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="player9-rmt@mailinator.com" fullname="Stefan" club_id="1"/>
-    <users id="15" enabled="true" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="player10-rmt@mailinator.com" fullname="Erkan" club_id="1"/>
-    <users id="16" enabled="true" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="player11-rmt@mailinator.com" fullname="Süpür" club_id="1"/>
+    <users id="1" enabled="true" status="FIT" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="admin-rmt@mailinator.com" fullname="Flowerrrr" club_id="1"/>
+    <users id="2" enabled="true" status="FIT" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="manager-rmt@mailinator.com" fullname="Sepp" club_id="1"/>
+    <users id="3" enabled="true" status="FIT" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="player-rmt@mailinator.com" fullname="Ingo" club_id="1"/>
+    <users id="4" enabled="true" status="FIT" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="both-rmt@mailinator.com" fullname="Maik" club_id="1"/>
+    <users id="5" enabled="true" status="FIT" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="bayern-rmt@mailinator.com" fullname="Uli Hoeneß" club_id="2"/>
+    <users id="6" enabled="true" status="FIT" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="player1-rmt@mailinator.com" fullname="Hansi" club_id="1"/>
+    <users id="7" enabled="true" status="FIT" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="player2-rmt@mailinator.com" fullname="Horst" club_id="1"/>
+    <users id="8" enabled="true" status="FIT" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="player3-rmt@mailinator.com" fullname="Thorsten" club_id="1"/>
+    <users id="9" enabled="true" status="FIT" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="player4-rmt@mailinator.com" fullname="Michi" club_id="1"/>
+    <users id="10" enabled="true" status="FIT" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="player5-rmt@mailinator.com" fullname="Paul" club_id="1"/>
+    <users id="11" enabled="true" status="INJURED" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="player6-rmt@mailinator.com" fullname="Hugo" club_id="1"/>
+    <users id="12" enabled="true" status="FIT" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="player7-rmt@mailinator.com" fullname="Alder" club_id="1"/>
+    <users id="13" enabled="true" status="FIT" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="player8-rmt@mailinator.com" fullname="Dragan" club_id="1"/>
+    <users id="14" enabled="true" status="INJURED" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="player9-rmt@mailinator.com" fullname="Stefan" club_id="1"/>
+    <users id="15" enabled="true" status="FIT" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="player10-rmt@mailinator.com" fullname="Erkan" club_id="1"/>
+    <users id="16" enabled="true" status="FIT" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="player11-rmt@mailinator.com" fullname="Süpür" club_id="1"/>
 
     <role id="1" authority="ROLE_ADMIN" user_id="1"/>
     <role id="2" authority="ROLE_MANAGER" user_id="2"/>
@@ -63,14 +63,14 @@
     <player id="11" team_id="3" user_id="13" optional="0" notification="1" retired="0"/>
 
     <!-- use far away future dates so that tests of event dates againts now() yield always same results. -->
-    <event eventType="Match" id="3" summary="Spiel im November" date="2021-11-01 00:00:00.0" time="17:00:00" kickoff="12:00:00" club_id="1" team_id="1" venue_id="1"/>
-    <event eventType="Training" id="1" summary="Saisonopening" date="2021-10-01 00:00:00.0" time="17:00:00" club_id="1" team_id="3" venue_id="1"/>
-    <event eventType="Training" id="2" summary="2. Training" date="2012-10-08 00:00:00.0" time="17:00:00" club_id="1" team_id="1" venue_id="1"/>
-    <event eventType="Event" id="4" summary="Weihnachtsfeier" date="2021-12-15 00:00:00.0" time="17:00:00" club_id="1" team_id="1" venue_id="1"/>
-    <event eventType="Training" id="5" summary="Saisonopening" date="2021-10-07 00:00:00.0" time="17:00:00" club_id="1" team_id="3" venue_id="1"/>
-    <event eventType="Training" id="6" summary="Saisonopening" date="2021-10-14 00:00:00.0" time="17:00:00" club_id="1" team_id="3" venue_id="1"/>
-    <event eventType="Training" id="7" summary="Saisonopening" date="2021-10-21 00:00:00.0" time="17:00:00" club_id="1" team_id="3" venue_id="1"/>
-    <event eventType="Training" id="8" summary="Saisonopening" date="2021-10-28 00:00:00.0" time="17:00:00" club_id="1" team_id="3" venue_id="1"/>
+    <event eventType="Match" id="3" summary="Spiel im November" date="2021-11-01 00:00:00.0" time="17:00:00" kickoff="12:00:00" club_id="1" team_id="1" venue_id="1" invitationsent="0"/>
+    <event eventType="Training" id="1" summary="Saisonopening" date="2021-10-01 00:00:00.0" time="17:00:00" club_id="1" team_id="3" venue_id="1" invitationsent="0"/>
+    <event eventType="Training" id="2" summary="2. Training" date="2012-10-08 00:00:00.0" time="17:00:00" club_id="1" team_id="1" venue_id="1" invitationsent="0"/>
+    <event eventType="Event" id="4" summary="Weihnachtsfeier" date="2021-12-15 00:00:00.0" time="17:00:00" club_id="1" team_id="1" venue_id="1" invitationsent="0"/>
+    <event eventType="Training" id="5" summary="Saisonopening" date="2021-10-07 00:00:00.0" time="17:00:00" club_id="1" team_id="3" venue_id="1" invitationsent="0"/>
+    <event eventType="Training" id="6" summary="Saisonopening" date="2021-10-14 00:00:00.0" time="17:00:00" club_id="1" team_id="3" venue_id="1" invitationsent="0"/>
+    <event eventType="Training" id="7" summary="Saisonopening" date="2021-10-21 00:00:00.0" time="17:00:00" club_id="1" team_id="3" venue_id="1" invitationsent="0"/>
+    <event eventType="Training" id="8" summary="Saisonopening" date="2021-10-28 00:00:00.0" time="17:00:00" club_id="1" team_id="3" venue_id="1" invitationsent="0"/>
 
     <invitation id="1" status="ACCEPTED" date="2011-12-15 00:00:00.0" event_id="1" user_id="7" comment="endlich wieder"/>
     <invitation id="2" status="ACCEPTED" date="2011-12-05 00:00:00.0" event_id="1" user_id="8" comment="gfrei mi"/>

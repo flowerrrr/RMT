@@ -38,7 +38,7 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
      * Shortcut to get current user from security context.
      * @return
      */
-    protected UserDetailsBean getUserDetails() {
+    public UserDetailsBean getUserDetails() {
         return securityService.getCurrentUser();
     }
 

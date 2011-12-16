@@ -10,7 +10,7 @@ import org.apache.wicket.model.Model;
 public class EventEditPage extends ManagerBasePage {
 
     public EventEditPage(Event event) {
-        addHeading("manager.event.edit.heading", null);
+        setHeading("manager.event.edit.heading", null);
         addMainPanel(new EventEditPanel(Model.of(event)));
         // addSecondaryPanel(new Label("foobar", "Put some useful stuff here."));
     }

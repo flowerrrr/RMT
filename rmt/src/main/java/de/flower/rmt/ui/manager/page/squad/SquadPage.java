@@ -11,7 +11,7 @@ public class SquadPage extends ManagerBasePage {
 
     public SquadPage(final IModel<Team> model) {
         super();
-        addHeadingText(model.getObject().getName());
+        setHeadingText(model.getObject().getName());
         addMainPanel(new PlayerListPanel(model));
         addSecondaryPanel(new SquadSecondaryPanel(model));
 

@@ -9,7 +9,7 @@ public class EventsPage extends ManagerBasePage {
 
     public EventsPage() {
 
-        addHeading("manager.events.heading");
+        setHeading("manager.events.heading");
         addMainPanel(new EventListPanel());
         addSecondaryPanel(new EventsSecondaryPanel());
     }

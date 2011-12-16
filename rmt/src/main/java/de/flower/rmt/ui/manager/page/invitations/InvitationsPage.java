@@ -15,11 +15,16 @@ public class InvitationsPage extends ManagerBasePage {
     private IEventManager eventManager;
 
      public InvitationsPage(IModel<Event> model) {
-         addHeading("manager.invitations.heading", null);
+         setHeading("manager.invitations.heading", null);
 
          final InvitationListPanel invitationListPanel = new InvitationListPanel(model);
          addMainPanel(invitationListPanel);
          addSecondaryPanel(new InvitationPanel(model));
+
+         // check if an invitation has been sent for this event already
+         if (model.getObject().getInvitationSent() == false) {
+             // alert()
+         }
      }
 
     @Override

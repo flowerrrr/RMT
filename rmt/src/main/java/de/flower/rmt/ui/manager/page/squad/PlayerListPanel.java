@@ -8,8 +8,10 @@ import de.flower.rmt.model.Player;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.service.IPlayerManager;
 import de.flower.rmt.service.ITeamManager;
+import de.flower.rmt.ui.common.panel.AbstractAjaxTabbedPanel;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.common.panel.DropDownMenuPanel;
+import de.flower.rmt.ui.manager.page.player.PlayerMainPanel;
 import de.flower.rmt.ui.manager.page.player.PlayerPage;
 import de.flower.rmt.ui.model.UserModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -39,7 +41,7 @@ public class PlayerListPanel extends BasePanel<Team> {
     public PlayerListPanel(IModel<Team> model) {
         super(model);
 
-         final IModel<List<Player>> listModel = getListModel(model);
+        final IModel<List<Player>> listModel = getListModel(model);
 
         WebMarkupContainer playerListContainer = new WebMarkupContainer("listContainer");
         add(playerListContainer);
@@ -59,23 +61,22 @@ public class PlayerListPanel extends BasePanel<Team> {
             @Override
             protected void populateItem(final ListItem<Player> item) {
                 final Player player = item.getModelObject();
-                item.add(new Label("name", player.getFullname()));
+                Link editLink = createEditLink("editLink", item);
+                editLink.add(new Label("fullname", player.getFullname()));
+                item.add(editLink);
                 item.add(new Label("status", new ResourceModel("player.status." + player.getUser().getStatus().toString().toLowerCase())));
+                item.add(new Label("notification", new ResourceModel("choice.player.notification." + player.getNotification().toString())));
+                item.add(new Label("response", new ResourceModel("choice.player.response.optional." + player.getOptional().toString())));
                 DropDownMenuPanel menuPanel = new DropDownMenuPanel();
                 item.add(menuPanel);
-                menuPanel.addLink(new Link("link") {
-                    @Override
-                    public void onClick() {
-                        setResponsePage(new PlayerPage(new UserModel(item.getModelObject().getUser())));
-                    }
-                }, "button.edit");
+                menuPanel.addLink(createEditLink("link", item), "button.edit");
                 menuPanel.addLink(new AjaxLinkWithConfirmation("link", new ResourceModel("manager.squad.remove.confirm")) {
                     @Override
                     public void onClick(AjaxRequestTarget target) {
                         teamManager.removePlayer(PlayerListPanel.this.getModelObject(), item.getModelObject());
                         target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(Player.class)));
                     }
-                }, "button.delete");
+                }, "button.squad.player.remove");
             }
         });
         playerListContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Player.class)));
@@ -86,6 +87,17 @@ public class PlayerListPanel extends BasePanel<Team> {
             @Override
             protected List<Player> load() {
                 return playerManager.findByTeam(model.getObject());
+            }
+        };
+    }
+
+    private Link createEditLink(String id, final ListItem<Player> item) {
+        return new Link(id) {
+            @Override
+            public void onClick() {
+                PlayerPage page = new PlayerPage(new UserModel(item.getModelObject().getUser()));
+                page.getPageParameters().set(AbstractAjaxTabbedPanel.TAB_INDEX_KEY, PlayerMainPanel.TEAM_SETTINGS_PANEL_INDEX);
+                setResponsePage(page);
             }
         };
     }

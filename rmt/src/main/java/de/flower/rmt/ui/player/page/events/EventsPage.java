@@ -19,7 +19,7 @@ public class EventsPage extends PlayerBasePage {
     private IEventManager eventManager;
 
     public EventsPage() {
-        addHeading("player.events.heading");
+        setHeading("player.events.heading");
 
         final UserModel userModel = new UserModel(getUserDetails().getUser());
         addMainPanel(new EventListPanel(userModel, getUpcomingEventList(userModel)));

@@ -13,7 +13,7 @@ public class TeamsPage extends ManagerBasePage {
     private ITeamManager teamManager;
 
     public TeamsPage() {
-        addHeading("manager.teams.heading", null);
+        setHeading("manager.teams.heading", null);
         addMainPanel(new TeamListPanel());
         addSecondaryPanel(new TeamsSecondaryPanel());
     }

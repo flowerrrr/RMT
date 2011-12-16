@@ -15,7 +15,7 @@ import java.util.Locale;
  *
  * @author flowerrrr
  */
-public abstract class AbstractWicketUnitTests {
+public class AbstractWicketUnitTests {
 
     public final static Logger log = LoggerFactory.getLogger(AbstractWicketUnitTests.class);
 
@@ -40,7 +40,5 @@ public abstract class AbstractWicketUnitTests {
         // two different validation.xml on the test-classpath (one w/o ApplicationContextAwareValidationFactory and one with).
         SpringApplicationContextBridge.getInstance().setApplicationContext(new MockitoFactoryApplicationContext());
     }
-
-    abstract public void testRender();
 
 }

@@ -18,6 +18,7 @@ public class RMTSession extends WebSession {
 
     private LatLng latLng;
 
+    // TODO (flowerrrr - 16.12.11) remove if alertMessagePanel does not use it.
     private Map<String, Serializable> sessionMap = new HashMap<String, Serializable>();
 
     @SpringBean
