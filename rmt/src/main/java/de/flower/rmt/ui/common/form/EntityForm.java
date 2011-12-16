@@ -3,7 +3,6 @@ package de.flower.rmt.ui.common.form;
 import de.flower.common.ui.ajax.AjaxSubmitLink;
 import de.flower.common.util.Check;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.feedback.ComponentFeedbackMessageFilter;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
@@ -33,7 +32,7 @@ public abstract class EntityForm<T> extends Form<T> {
 
     private void init() {
 
-        add(new FormFeedbackPanel(new ComponentFeedbackMessageFilter(this)) {
+        add(new FormFeedbackPanel(this) {
             @Override
             public boolean isShowSuccessFeedbackPanel() {
                 return EntityForm.this.isShowSuccessFeedbackPanel();
