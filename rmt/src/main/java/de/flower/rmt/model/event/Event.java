@@ -104,6 +104,10 @@ public class Event extends AbstractClubRelatedEntity {
         return this.time;
     }
 
+    public Date getTimeAsDate() {
+        return (time == null) ? null : time.toDateTimeToday().toDate();
+    }
+
     public void setTime(LocalTime time) {
         this.time = time;
     }

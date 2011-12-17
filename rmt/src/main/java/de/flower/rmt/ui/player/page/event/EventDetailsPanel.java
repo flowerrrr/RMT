@@ -2,30 +2,48 @@ package de.flower.rmt.ui.player.page.event;
 
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
+import de.flower.rmt.model.event.Event_;
+import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
+import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.ResourceModel;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
  * @author flowerrrr
  */
-public class EventDetailsPanel extends BasePanel {
+public class EventDetailsPanel extends BasePanel<Event> {
+
+    @SpringBean
+    private IEventManager eventManager;
 
     public EventDetailsPanel(final IModel<Event> model) {
-        super(model);
-        Event event = model.getObject();
+        setDefaultModel(new CompoundPropertyModel<Object>(getEventModel(model)));
 
-        add(new Label("team", event.getTeam().getName()));
-        add(DateLabel.forDateStyle("date", Model.of(event.getDate()), "S-"));
-        add(DateLabel.forDateStyle("time", Model.of(event.getTime().toDateTimeToday().toDate()), "-S"));
-        add(new Label("type", new ResourceModel(EventType.from(event).getResourceKey())));
-        add(new Label("venue", event.getVenue().getName()));
-        add(new Label("summary", event.getSummary()));
-        add(new Label("comment", event.getComment()));
+        add(new Label("team.name"));
+        add(DateLabel.forDateStyle("date", "S-"));
+        add(DateLabel.forDateStyle("timeAsDate", "-S"));
+        add(new Label("type", new ResourceModel(EventType.from(model.getObject()).getResourceKey())));
+        add(new Label("venue.name"));
+        add(new Label("summary"));
+        add(new Label("comment"));
+    }
 
+    /**
+     * Return event instance initialized with team and venue association.
+     */
+    IModel<Event> getEventModel(final IModel<Event> model) {
+        return new LoadableDetachableModel<Event>() {
+            @Override
+            protected Event load() {
+                // return eventManager.loadById(model.getObject().getId(), Event_.team, Event_.venue);
+                return eventManager.initAssociations(model.getObject(), Event_.team, Event_.venue);
+            }
+        };
     }
 
  }

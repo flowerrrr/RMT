@@ -2,17 +2,23 @@ package de.flower.rmt.service;
 
 import de.flower.common.util.Check;
 import de.flower.rmt.model.Invitation;
+import de.flower.rmt.model.Invitation_;
 import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.repository.IInvitationRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.metamodel.Attribute;
 import java.util.Date;
 import java.util.List;
+
+import static de.flower.rmt.repository.Specs.*;
+import static org.springframework.data.jpa.domain.Specifications.where;
 
 /**
  * @author flowerrrr
@@ -53,13 +59,17 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     }
 
     @Override
-    public List<Invitation> findAllByEvent(final Event event) {
-        return invitationRepo.findByEvent(event);
+    public List<Invitation> findAllByEvent(final Event event, final Attribute... attributes) {
+        Specification fetch = fetch(attributes);
+        return invitationRepo.findAll(where(eq(Invitation_.event, event)).and(fetch));
     }
 
     @Override
-    public List<Invitation> findAllByEventAndStatus(Event event, RSVPStatus rsvpStatus) {
-        return invitationRepo.findByEventAndStatusOrderByDateAsc(event, rsvpStatus);
+    public List<Invitation> findAllByEventAndStatus(Event event, RSVPStatus rsvpStatus, final Attribute... attributes) {
+        return invitationRepo.findAll(where(eq(Invitation_.event, event))
+                .and(eq(Invitation_.status, rsvpStatus))
+                .and(asc(Invitation_.date))
+                .and(fetch(attributes)));
     }
 
     @Override

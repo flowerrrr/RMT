@@ -46,4 +46,7 @@ public interface IEventManager {
     Event loadByIdAndUser(Long id, User user);
 
     void sendInvitationMail(Long id, Notification notification);
+
+    @Deprecated // experimental
+    Event initAssociations(Event event, Attribute... attributes);
 }

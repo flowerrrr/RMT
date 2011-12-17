@@ -33,7 +33,7 @@ public class FormFeedbackPanelTest extends AbstractWicketUnitTests {
 
         public FormFeedbackTestPanel() {
             Form<?> form = new Form("form");
-            form.add(new FormFeedbackPanel(null));
+            form.add(new FormFeedbackPanel(form));
             add(form);
         }
 

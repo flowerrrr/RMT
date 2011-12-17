@@ -19,7 +19,7 @@ import java.util.List;
         clazz = Team.class,
         message = Team.Validation.nameNotUniqueMessage,
         groups = { Team.Validation.INameUnique.class, Default.class })
-public class Team extends AbstractClubRelatedEntity  {
+public class  Team extends AbstractClubRelatedEntity  {
 
     public static class Validation {
 

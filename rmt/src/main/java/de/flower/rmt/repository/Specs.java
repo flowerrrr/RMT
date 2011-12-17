@@ -18,7 +18,7 @@ import java.util.List;
 public class Specs {
 
     public static <X, T> Specification eq(final SingularAttribute<X, T> attribute, final T object) {
-        return  new Specification<X>() {
+        return new Specification<X>() {
             @Override
             public Predicate toPredicate(Root<X> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                 return cb.equal(root.get(attribute), object);
@@ -27,7 +27,7 @@ public class Specs {
     }
 
     public static <X, T> Specification isMember(final T object, final ListAttribute<X, T> attribute) {
-        return  new Specification<X>() {
+        return new Specification<X>() {
             @Override
             public Predicate toPredicate(Root<X> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                 return cb.isMember(object, root.get(attribute));
@@ -48,17 +48,17 @@ public class Specs {
      * Not the ideal solution. Want to separate building the predicate and the join.
      */
     public static <X, Y, T> Specification joinEq(final ListAttribute<X, Y> joinAttribute, final SingularAttribute<Y, T> attribute, final T object) {
-        return  new Specification<X>() {
+        return new Specification<X>() {
             @Override
             public Predicate toPredicate(Root<X> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-                final ListJoin<X,Y> join = root.join(joinAttribute);
+                final ListJoin<X, Y> join = root.join(joinAttribute);
                 return cb.equal(join.get(attribute), object);
             }
         };
     }
 
-    public static <X> Specification fetch(final Attribute<X, ?> ... attributes) {
-        return  new Specification<X>() {
+    public static <X> Specification fetch(final Attribute<X, ?>... attributes) {
+        return new Specification<X>() {
             @Override
             public Predicate toPredicate(Root<X> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                 for (Attribute attribute : attributes) {
@@ -76,6 +76,28 @@ public class Specs {
         };
     }
 
+    public static <X, T> Specification asc(final SingularAttribute<X, T> attribute) {
+         return new Specification<X>() {
+             @Override
+             public Predicate toPredicate(Root<X> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                 query.orderBy(cb.asc(root.get(attribute)));
+                //  return always-true-predicate to satisfy caller. null is not allowed.
+                return new BooleanStaticAssertionPredicate((CriteriaBuilderImpl) cb, true);
+             }
+         };
+     }
+
+    public static <X, T> Specification desc(final SingularAttribute<X, T> attribute) {
+         return new Specification<X>() {
+             @Override
+             public Predicate toPredicate(Root<X> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                 query.orderBy(cb.desc(root.get(attribute)));
+                //  return always-true-predicate to satisfy caller. null is not allowed.
+                return new BooleanStaticAssertionPredicate((CriteriaBuilderImpl) cb, true);
+             }
+         };
+     }
+
     public static Specification and(Specification a, Specification b) {
         return Specifications.where(a).and(b);
     }
@@ -83,5 +105,4 @@ public class Specs {
     public static Specification not(Specification a) {
         return Specifications.not(a);
     }
-
 }

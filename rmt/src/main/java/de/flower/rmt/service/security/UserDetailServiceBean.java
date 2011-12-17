@@ -29,7 +29,7 @@ public class UserDetailServiceBean implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("Username {" + username + "} not found");
         }
-        user.getClub(); // init field cause we need it very often.
+        user.getClub().getName(); // init field cause we need it very often.
         return new UserDetailsBean(user);
     }
 }

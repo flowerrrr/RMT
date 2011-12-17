@@ -10,6 +10,7 @@ import de.flower.rmt.model.type.Notification;
 import de.flower.rmt.repository.IEventRepo;
 import de.flower.rmt.repository.Specs;
 import de.flower.rmt.service.mail.IMailService;
+import org.apache.commons.lang3.ArrayUtils;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
@@ -118,5 +119,22 @@ public class EventManager extends AbstractService implements IEventManager {
         eventRepo.save(event);
         // update all invitations and mark them also with invitationSent = true (allows to later add invitations and send mails to new participants)
         invitationManager.markInvitationSent(event, notification.getAddressList());
+    }
+
+    /**
+     * Initializes (fetches) associations of entity.
+     * Not sure if this way or  #loadById(event.getId(), attributes) is better, faster, more reliable.
+     */
+    @Override
+    @Deprecated // experimental
+    public Event initAssociations(final Event event, final Attribute... attributes) {
+        eventRepo.reattach(event);
+        if (ArrayUtils.contains(attributes, Event_.team)) {
+            event.getTeam().getName();
+        }
+        if (ArrayUtils.contains(attributes, Event_.venue)) {
+            event.getVenue().getName();
+        }
+        return event;
     }
 }

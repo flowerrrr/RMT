@@ -105,7 +105,9 @@ public class TestData {
     }
 
     public Team newTeam() {
-        return new Team(newClub());
+        Team team = new Team(newClub());
+        team.setName("Amateure");
+        return team;
     }
 
     public User newUser() {
@@ -158,7 +160,7 @@ public class TestData {
         List<User> users = new ArrayList<User>();
         for (int i = 0; i < count; i++) {
             User user = userManager.newInstance();
-            user.setEmail(RandomStringUtils.randomAlphabetic(8) + "@acme.com");
+            user.setEmail(RandomStringUtils.randomAlphabetic(8) + "@mailinator.com");
             user.setFullname(RandomStringUtils.randomAlphabetic(10));
             userManager.save(user);
             users.add(user);
@@ -176,7 +178,13 @@ public class TestData {
     }
 
     public Event newEvent() {
-        return new Event(newTeam());
+        Event event = new Event(newTeam());
+        event.setDate(new Date());
+        event.setTime(new LocalTime());
+        event.setVenue(newVenue(event.getTeam().getClub()));
+        event.setSummary("2. Training");
+        event.setComment("Kommt ja nicht zu spät!");
+        return event;
     }
 
     public Event createEvent(Team team, boolean createInvitations) {
@@ -222,5 +230,11 @@ public class TestData {
 
     public User getTestUser() {
         return userManager.findByUsername(AbstractIntegrationTests.testUserName);
+    }
+
+    public Venue newVenue(Club club) {
+        Venue venue = new Venue(club);
+        venue.setName("Böglwiese");
+        return venue;
     }
 }

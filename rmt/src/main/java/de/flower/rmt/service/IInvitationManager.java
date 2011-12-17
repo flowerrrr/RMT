@@ -5,6 +5,7 @@ import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 
+import javax.persistence.metamodel.Attribute;
 import java.util.List;
 
 /**
@@ -18,9 +19,9 @@ public interface IInvitationManager {
 
     Invitation loadById(Long id);
 
-    List<Invitation> findAllByEvent(Event event);
+    List<Invitation> findAllByEvent(Event event, final Attribute... attributes);
 
-    List<Invitation> findAllByEventAndStatus(Event event, RSVPStatus rsvpStatus);
+    List<Invitation> findAllByEventAndStatus(Event event, RSVPStatus rsvpStatus, Attribute... attributes);
 
     Long numByEventAndStatus(Event event, RSVPStatus rsvpStatus);
 

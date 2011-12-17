@@ -2,6 +2,7 @@ package de.flower.rmt.ui.manager.page.invitations;
 
 import de.flower.common.util.Check;
 import de.flower.rmt.model.Invitation;
+import de.flower.rmt.model.Invitation_;
 import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IInvitationManager;
@@ -59,7 +60,7 @@ public class InvitationListPanel extends BasePanel {
         return new LoadableDetachableModel<List<Invitation>>() {
             @Override
             protected List<Invitation> load() {
-                return invitationManager.findAllByEventAndStatus(model.getObject(), rsvpStatus);
+                return invitationManager.findAllByEventAndStatus(model.getObject(), rsvpStatus, Invitation_.user);
             }
         };
     }

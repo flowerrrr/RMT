@@ -5,6 +5,7 @@ import de.flower.rmt.model.Team;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 
+import javax.persistence.metamodel.Attribute;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ import java.util.List;
  */
 public interface IPlayerManager {
 
-    List<Player> findAllByTeam(Team team);
+    List<Player> findAllByTeam(Team team, Attribute... attributes);
 
     List<Player> findAllByUser(User user);
 

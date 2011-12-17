@@ -9,7 +9,6 @@ import de.flower.rmt.model.User_;
 import de.flower.rmt.model.type.Password;
 import de.flower.rmt.repository.IRoleRepo;
 import de.flower.rmt.repository.IUserRepo;
-import de.flower.rmt.repository.Specs;
 import de.flower.rmt.service.mail.INotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
@@ -23,6 +22,9 @@ import javax.validation.Validator;
 import java.util.List;
 
 import static de.flower.common.util.Check.*;
+import static de.flower.rmt.repository.Specs.eq;
+import static de.flower.rmt.repository.Specs.fetch;
+import static org.springframework.data.jpa.domain.Specifications.where;
 
 /**
  * @author flowerrrr
@@ -54,8 +56,7 @@ public class UserManager extends AbstractService implements IUserManager {
 
     @Override
     public User loadById(Long id, final Attribute... attributes) {
-        Specification fetch = Specs.fetch(attributes);
-        User entity = userRepo.findOne(Specs.and(Specs.eq(User_.id, id), fetch));
+        User entity = userRepo.findOne(where(eq(User_.id, id)).and(fetch(attributes)).and(fetch(User_.club)));
         Check.notNull(entity);
         assertClub(entity);
         return entity;
@@ -94,9 +95,8 @@ public class UserManager extends AbstractService implements IUserManager {
 
     @Override
     public List<User> findAll(final Attribute... attributes) {
-        Specification hasClub = Specs.eq(User_.club, getClub());
-        Specification fetch = Specs.fetch(attributes);
-        List<User> list = userRepo.findAll(Specs.and(hasClub, fetch));
+        Specification hasClub = eq(User_.club, getClub());
+        List<User> list = userRepo.findAll(where(hasClub).and(fetch(attributes)));
         return list;
     }
 
