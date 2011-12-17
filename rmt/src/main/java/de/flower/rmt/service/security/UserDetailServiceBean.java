@@ -1,6 +1,7 @@
 package de.flower.rmt.service.security;
 
 import de.flower.rmt.model.User;
+import de.flower.rmt.model.User_;
 import de.flower.rmt.service.IUserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -25,11 +26,11 @@ public class UserDetailServiceBean implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DataAccessException {
-        User user = userManager.findByUsername(username);
+        // init club association cause we need it very often.
+        User user = userManager.findByUsername(username, User_.club);
         if (user == null) {
             throw new UsernameNotFoundException("Username {" + username + "} not found");
         }
-        user.getClub().getName(); // init field cause we need it very often.
         return new UserDetailsBean(user);
     }
 }

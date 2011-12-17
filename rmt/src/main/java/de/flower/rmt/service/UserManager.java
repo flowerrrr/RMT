@@ -63,8 +63,9 @@ public class UserManager extends AbstractService implements IUserManager {
     }
 
     @Override
-    public User findByUsername(String username) {
-        return userRepo.findByEmail(username);
+    public User findByUsername(String username, final Attribute... attributes) {
+        User entity = userRepo.findOne(where(eq(User_.email, username)).and(fetch(attributes)));
+        return entity;
     }
 
     @Override

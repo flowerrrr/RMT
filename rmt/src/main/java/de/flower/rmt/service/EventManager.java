@@ -22,6 +22,10 @@ import javax.persistence.metamodel.Attribute;
 import java.util.Date;
 import java.util.List;
 
+import static de.flower.rmt.repository.Specs.eq;
+import static de.flower.rmt.repository.Specs.fetch;
+import static org.springframework.data.jpa.domain.Specifications.where;
+
 /**
  * @author flowerrrr
  */
@@ -74,8 +78,10 @@ public class EventManager extends AbstractService implements IEventManager {
     }
 
     @Override
-    public List<Event> findAll() {
-        return eventRepo.findAllByClub(getClub());
+    public List<Event> findAll(Attribute... attributes) {
+        Specification hasClub = eq(Event_.club, getClub());
+        List<Event> list = eventRepo.findAll(where(hasClub).and(fetch(attributes)));
+        return list;
     }
 
     @Override

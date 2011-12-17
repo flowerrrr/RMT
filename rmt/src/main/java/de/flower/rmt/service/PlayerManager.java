@@ -7,15 +7,17 @@ import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.repository.IEventRepo;
 import de.flower.rmt.repository.IPlayerRepo;
-import de.flower.rmt.repository.Specs;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.metamodel.Attribute;
 import java.util.List;
+
+import static de.flower.rmt.repository.Specs.eq;
+import static de.flower.rmt.repository.Specs.fetch;
+import static org.springframework.data.jpa.domain.Specifications.where;
 
 /**
  * @author flowerrrr
@@ -33,12 +35,12 @@ public class PlayerManager extends AbstractService implements IPlayerManager {
 
     @Override
     public List<Player> findAllByTeam(Team team, Attribute... attributes) {
-        return playerRepo.findAll(Specifications.where(Specs.eq(Player_.team, team)).and(Specs.fetch(attributes)));
+        return playerRepo.findAll(where(eq(Player_.team, team)).and(fetch(attributes)));
     }
 
     @Override
-    public List<Player> findAllByUser(User user) {
-        return playerRepo.findByUser(user);
+    public List<Player> findAllByUser(User user, Attribute... attributes) {
+        return playerRepo.findAll(where(eq(Player_.user, user)).and(fetch(attributes)));
     }
 
     @Override

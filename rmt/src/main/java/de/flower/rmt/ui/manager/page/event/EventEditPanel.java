@@ -3,6 +3,7 @@ package de.flower.rmt.ui.manager.page.event;
 import de.flower.common.ui.form.TimeDropDownChoice;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.event.Event;
+import de.flower.rmt.model.event.Event_;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.common.form.CancelableEntityForm;
 import de.flower.rmt.ui.common.form.EntityForm;
@@ -34,7 +35,7 @@ public class EventEditPanel extends BasePanel {
     public EventEditPanel(IModel<Event> model) {
         Check.notNull(model.getObject());
 
-        EntityForm<Event> form = new CancelableEntityForm<Event>("form", new EventModel(model)) {
+        EntityForm<Event> form = new CancelableEntityForm<Event>("form", getEventModel(model)) {
 
             @Override
             protected void onSubmit(final AjaxRequestTarget target, final Form<Event> form) {
@@ -63,5 +64,12 @@ public class EventEditPanel extends BasePanel {
 
         // form.add(participants)
 
+    }
+
+    /**
+     * Return event instance initialized with team and venue association.
+     */
+    IModel<Event> getEventModel(final IModel<Event> model) {
+        return new EventModel(model.getObject().getId(), Event_.team, Event_.venue);
     }
 }

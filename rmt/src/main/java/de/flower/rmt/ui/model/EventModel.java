@@ -7,6 +7,8 @@ import de.flower.rmt.service.IEventManager;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import javax.persistence.metamodel.Attribute;
+
 /**
  * @author flowerrrr
  */
@@ -16,6 +18,13 @@ public class EventModel extends AbstractEntityModel<Event> {
     private IEventManager manager;
 
     private EventType type;
+
+    private Attribute[] attributes;
+
+    public EventModel(Long id, Attribute... attributes) {
+        super(id);
+        this.attributes = attributes;
+    }
 
     public EventModel(Event entity) {
         super(entity);
@@ -39,7 +48,7 @@ public class EventModel extends AbstractEntityModel<Event> {
 
     @Override
     protected Event load(Long id) {
-        return manager.loadById(id);
+        return manager.loadById(id, attributes);
     }
 
     @Override

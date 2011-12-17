@@ -29,7 +29,7 @@ public interface IEventManager {
 
     Event loadById(Long id, Attribute... attributes);
 
-    List<Event> findAll();
+    List<Event> findAll(Attribute... attributes);
 
     List<Event> findAllUpcomingByUser(User user);
 

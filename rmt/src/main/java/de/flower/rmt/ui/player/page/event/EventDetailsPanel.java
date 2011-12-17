@@ -5,11 +5,11 @@ import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.model.event.Event_;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
+import de.flower.rmt.ui.model.EventModel;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -37,13 +37,7 @@ public class EventDetailsPanel extends BasePanel<Event> {
      * Return event instance initialized with team and venue association.
      */
     IModel<Event> getEventModel(final IModel<Event> model) {
-        return new LoadableDetachableModel<Event>() {
-            @Override
-            protected Event load() {
-                // return eventManager.loadById(model.getObject().getId(), Event_.team, Event_.venue);
-                return eventManager.initAssociations(model.getObject(), Event_.team, Event_.venue);
-            }
-        };
+        return new EventModel(model.getObject().getId(), Event_.team, Event_.venue);
     }
 
  }

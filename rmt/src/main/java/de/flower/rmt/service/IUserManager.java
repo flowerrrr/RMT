@@ -14,7 +14,7 @@ public interface IUserManager {
 
     User loadById(Long id, final Attribute... attributes);
 
-    User findByUsername(String username);
+    User findByUsername(String username, final Attribute... attributes);
 
     void save(User user);
 

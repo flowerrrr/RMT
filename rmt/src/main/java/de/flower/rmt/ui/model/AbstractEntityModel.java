@@ -23,6 +23,11 @@ public abstract class AbstractEntityModel<T extends IEntity> extends LoadableDet
         this((T) null);
     }
 
+    public AbstractEntityModel(Long id) {
+        this.id = id;
+        init();
+    }
+
     public AbstractEntityModel(T entity) {
         if (entity != null) {
             setObject(entity);

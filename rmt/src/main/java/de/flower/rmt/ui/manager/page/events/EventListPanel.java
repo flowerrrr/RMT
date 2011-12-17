@@ -6,6 +6,7 @@ import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
+import de.flower.rmt.model.event.Event_;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.common.panel.DropDownMenuPanel;
@@ -84,7 +85,7 @@ public class EventListPanel extends BasePanel {
         return new LoadableDetachableModel<List<Event>>() {
             @Override
             protected List<Event> load() {
-                return eventManager.findAll();
+                return eventManager.findAll(Event_.team);
             }
         };
     }

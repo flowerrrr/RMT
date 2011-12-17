@@ -2,6 +2,7 @@ package de.flower.rmt.ui.manager.page.player;
 
 import de.flower.common.ui.form.BooleanDropDownChoice;
 import de.flower.rmt.model.Player;
+import de.flower.rmt.model.Player_;
 import de.flower.rmt.model.User;
 import de.flower.rmt.service.IPlayerManager;
 import de.flower.rmt.ui.common.form.field.DropDownChoicePanel;
@@ -99,7 +100,7 @@ public class PlayerTeamsPanel extends BasePanel<User> {
                 if (model.getObject().isNew()) {
                     return Collections.emptyList();
                 } else {
-                    return playerManager.findAllByUser(model.getObject());
+                    return playerManager.findAllByUser(model.getObject(), Player_.team);
                 }
             }
         };

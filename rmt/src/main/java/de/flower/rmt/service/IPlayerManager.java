@@ -15,7 +15,7 @@ public interface IPlayerManager {
 
     List<Player> findAllByTeam(Team team, Attribute... attributes);
 
-    List<Player> findAllByUser(User user);
+    List<Player> findAllByUser(User user, Attribute... attributes);
 
     Player findByTeamAndUser(Team team, User user);
 
