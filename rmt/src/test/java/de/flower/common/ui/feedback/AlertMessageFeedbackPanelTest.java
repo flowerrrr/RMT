@@ -36,7 +36,7 @@ public class AlertMessageFeedbackPanelTest extends AbstractWicketUnitTests {
         showInfo = false;
         wicketTester.clickLink("link");
         wicketTester.dumpPage();
-        wicketTester.assertInvisible("feedbackul");
+        wicketTester.assertContainsNot("class=\"alert-message");
         showInfo = true;
         wicketTester.clickLink("nextPage");
         wicketTester.dumpPage();
@@ -85,23 +85,23 @@ public class AlertMessageFeedbackPanelTest extends AbstractWicketUnitTests {
 
             add(new AlertMessageFeedbackPanel("panel"));
 
-            AlertMessage message = new AlertMessage(Model.of("message"), Model.of("label")) {
-
-                @Override
-                protected boolean onClick(final AlertMessagePanel alertMessagePanel) {
-                    setResponsePage(new TestPage());
-                    return true;
-                }
-
-                @Override
-                protected boolean isVisible() {
-                    return isVisible;
-                }
-            };
+            info("hello world");
             if (showInfo) {
+                AlertMessage message = new AlertMessage(Model.of("message"), Model.of("label")) {
+
+                    @Override
+                    protected boolean onClick(final AlertMessagePanel alertMessagePanel) {
+                        setResponsePage(new TestPage());
+                        return false;
+                    }
+
+                    @Override
+                    protected boolean isVisible() {
+                        return isVisible;
+                    }
+                };
                 info(message);
             }
-            info("hello world");
         }
 
         @Override

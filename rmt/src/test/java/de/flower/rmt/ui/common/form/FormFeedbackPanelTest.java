@@ -11,6 +11,10 @@ import org.testng.annotations.Test;
  */
 public class FormFeedbackPanelTest extends AbstractWicketUnitTests {
 
+    protected final static String message = "jöksdifuwe9823hkldhf";
+
+    protected static boolean renderError = false;
+
     @Test
     public void testRender() {
         wicketTester.startComponentInPage(new FormFeedbackTestPanel());
@@ -21,9 +25,9 @@ public class FormFeedbackPanelTest extends AbstractWicketUnitTests {
 
     @Test
     public void testRenderError() {
-        String message = "jöksdifuwe9823hkldhf";
-        wicketTester.getSession().getFeedbackMessages().error(null, message);
-        wicketTester.startComponentInPage(new FormFeedbackTestPanel());
+        FormFeedbackTestPanel panel = new FormFeedbackTestPanel();
+        renderError = true;
+        wicketTester.startComponentInPage(panel);
         wicketTester.dumpComponentWithPage();
         wicketTester.assertVisible("hasErrors");
         wicketTester.assertContains(message);
@@ -31,10 +35,20 @@ public class FormFeedbackPanelTest extends AbstractWicketUnitTests {
 
     private static class FormFeedbackTestPanel extends BasePanel {
 
+        Form form;
+
         public FormFeedbackTestPanel() {
-            Form<?> form = new Form("form");
+            form = new Form("form");
             form.add(new FormFeedbackPanel(form));
             add(form);
+        }
+
+        @Override
+        protected void onBeforeRender() {
+            super.onBeforeRender();
+            if (renderError) {
+                getSession().getFeedbackMessages().error(form, message);
+            }
         }
 
         @Override
