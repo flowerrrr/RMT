@@ -25,6 +25,7 @@ public class EventDetailsPanelTest extends AbstractRMTWicketMockitoTests {
     @Test
     public void testRender() {
         Event event = new TestData().newEvent();
+        event.setId(100L);
         when(eventManager.loadById(anyLong(), Matchers.<Attribute>anyVararg())).thenReturn(event);
         wicketTester.startComponentInPage(new EventDetailsPanel(Model.of(event)));
         wicketTester.dumpComponentWithPage();
