@@ -21,6 +21,7 @@ public class AlertMessagePanel extends Panel {
 
     public AlertMessagePanel(String id, final AlertMessage alertMessage) {
         super(id);
+        setOutputMarkupId(true);
         this.alertMessage = alertMessage;
 
         Label messageLabel = new Label("message", alertMessage.getMessageModel());
@@ -55,7 +56,7 @@ public class AlertMessagePanel extends Panel {
             public void onClick(final AjaxRequestTarget target) {
                 setHideMessage(getSessionKey(), true);
                 FeedbackPanel feedbackPanel = findParent(FeedbackPanel.class);
-                target.add(feedbackPanel);
+                target.add(AlertMessagePanel.this);
             }
 
             /**

@@ -45,9 +45,9 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
 
     @Override
     protected void onBeforeRender() {
-        // makes messages back-button save
-        info(new PasswordChangeRequiredMessage());
         super.onBeforeRender();
+        // makes messages back-button and reload-save
+        info(new PasswordChangeRequiredMessage());
     }
 
     protected void setHeading(String headingResourceKey) {

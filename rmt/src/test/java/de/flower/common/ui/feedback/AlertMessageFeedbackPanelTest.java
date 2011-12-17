@@ -13,63 +13,69 @@ import org.testng.annotations.Test;
  */
 public class AlertMessageFeedbackPanelTest extends AbstractWicketUnitTests {
 
-    private static boolean showInfo = true;
+    private static boolean showLink1 = true;
 
     private static boolean isVisible = true;
+
+    String link1 = "messages:0:message:link";
+
+    String link2 = "messages:1:message:link";
 
     @Test
     public void testRender() {
         wicketTester.startPage(TestPage.class);
         wicketTester.dumpPage();
-        wicketTester.assertVisible("link");
+        wicketTester.assertVisible(link1);
+        wicketTester.assertVisible(link2);
 
-        wicketTester.clickLink("link");
+        wicketTester.clickLink(link1);
         wicketTester.dumpPage();
-        wicketTester.assertVisible("link");
+        wicketTester.assertVisible(link1);
     }
 
     @Test
     public void testIsVisible() {
         wicketTester.startPage(TestPage.class);
         wicketTester.dumpPage();
-        wicketTester.assertVisible("link");
-        showInfo = false;
-        wicketTester.clickLink("link");
+        wicketTester.assertVisible(link1);
+        showLink1 = false;
+        wicketTester.clickLink(link1);
         wicketTester.dumpPage();
-        wicketTester.assertContainsNot("class=\"alert-message");
-        showInfo = true;
+        wicketTester.assertContainsNot("messag 1");
+        showLink1 = true;
         wicketTester.clickLink("nextPage");
         wicketTester.dumpPage();
-        wicketTester.assertVisible("link");
+        wicketTester.assertVisible(link1);
     }
 
     @Test
     public void testMessageControlsVisibility() {
         wicketTester.startPage(TestPage.class);
         wicketTester.dumpPage();
-        wicketTester.assertVisible("link");
+        wicketTester.assertVisible(link1);
         isVisible = false;
         wicketTester.clickLink("nextPage");
         wicketTester.dumpPage();
-        wicketTester.assertInvisible("link");
+        wicketTester.assertInvisible(link1);
         isVisible = true;
         wicketTester.clickLink("nextPage");
         wicketTester.dumpPage();
-        wicketTester.assertVisible("link");
+        wicketTester.assertVisible(link1);
     }
 
     @Test
     public void testCloseButton() {
         wicketTester.startPage(TestPage.class);
         wicketTester.dumpPage();
-        wicketTester.assertVisible("link");
-        wicketTester.clickLink("closeButton");
+        wicketTester.assertVisible(link1);
+        wicketTester.assertVisible(link2);
+        wicketTester.clickLink("messages:0:message:closeButton");
         wicketTester.dumpAjaxResponse();
         // does not work for some reason, have to do string matching
-        wicketTester.assertInvisible("link");
-        wicketTester.assertContainsNot("class=\"alert-message");
-        // but make sure that other messages are still visible
-        wicketTester.assertContains("hello world");
+        wicketTester.assertInvisible(link1);
+        // wicketTester.assertVisible(link2); does not work, must use string compare
+        // assert that the component is updated through ajax
+        wicketTester.assertContains("\\Q<ajax-response><component id=\"message2\" ><![CDATA[]]></component></ajax-response>\\E");
     }
 
     public static class TestPage extends WebPage {
@@ -86,9 +92,8 @@ public class AlertMessageFeedbackPanelTest extends AbstractWicketUnitTests {
 
             add(new AlertMessageFeedbackPanel("panel"));
 
-            info("hello world");
-            if (showInfo) {
-                AlertMessage message = new AlertMessage(Model.of("message"), Model.of("label")) {
+            if (showLink1) {
+                AlertMessage message = new AlertMessage(Model.of("message 1"), Model.of("label 1")) {
 
                     @Override
                     protected boolean onClick(final AlertMessagePanel alertMessagePanel) {
@@ -103,6 +108,21 @@ public class AlertMessageFeedbackPanelTest extends AbstractWicketUnitTests {
                 };
                 info(message);
             }
+            // add another message that is always visible
+            AlertMessage message = new AlertMessage(Model.of("message 2"), Model.of("label 2")) {
+
+                @Override
+                protected boolean onClick(final AlertMessagePanel alertMessagePanel) {
+                    setResponsePage(new TestPage());
+                    return false;
+                }
+
+                @Override
+                protected boolean isVisible() {
+                    return isVisible;
+                }
+            };
+            info(message);
         }
 
         @Override
