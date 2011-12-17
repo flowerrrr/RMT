@@ -3,20 +3,15 @@ package de.flower.rmt.ui.manager.page.player;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.rmt.model.User;
-import de.flower.rmt.service.IUserManager;
 import de.flower.rmt.ui.manager.ManagerBasePage;
 import de.flower.rmt.ui.manager.NavigationPanel;
 import de.flower.rmt.ui.model.UserModel;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
  * @author flowerrrr
  */
 public class PlayerPage extends ManagerBasePage {
-
-    @SpringBean
-    private IUserManager userManager;
 
     public PlayerPage() {
         // for creating new player

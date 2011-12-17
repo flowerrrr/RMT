@@ -70,6 +70,10 @@ public class EventEditPanel extends BasePanel {
      * Return event instance initialized with team and venue association.
      */
     IModel<Event> getEventModel(final IModel<Event> model) {
-        return new EventModel(model.getObject().getId(), Event_.team, Event_.venue);
+        if (model.getObject().isNew()) {
+            return new EventModel(model);
+        }   else {
+            return new EventModel(model.getObject().getId(), Event_.team, Event_.venue);
+        }
     }
 }

@@ -69,6 +69,7 @@ public class AlertMessageFeedbackPanelTest extends AbstractWicketUnitTests {
         wicketTester.assertInvisible("link");
         wicketTester.assertContainsNot("class=\"alert-message");
         // but make sure that other messages are still visible
+        wicketTester.assertContains("hello world");
     }
 
     public static class TestPage extends WebPage {

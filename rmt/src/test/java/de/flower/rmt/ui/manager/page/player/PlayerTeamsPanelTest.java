@@ -1,5 +1,6 @@
 package de.flower.rmt.ui.manager.page.player;
 
+import de.flower.rmt.model.Player_;
 import de.flower.rmt.model.User;
 import de.flower.rmt.service.IPlayerManager;
 import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
@@ -26,7 +27,7 @@ public class PlayerTeamsPanelTest extends AbstractRMTWicketMockitoTests {
     public void testRender() {
         final User user = testData.newUserWithTeams();
         user.setId(1L); // make it act persisted
-        when(playerManager.findAllByUser(user)).thenReturn(user.getPlayers());
+        when(playerManager.findAllByUser(user, Player_.team)).thenReturn(user.getPlayers());
         wicketTester.startComponentInPage(new PlayerTeamsPanel("panel", Model.of(user)));
         wicketTester.dumpComponentWithPage();
         wicketTester.assertVisible("list");

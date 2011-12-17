@@ -23,6 +23,7 @@ public class EventModel extends AbstractEntityModel<Event> {
 
     public EventModel(Long id, Attribute... attributes) {
         super(id);
+        Check.notNull(id);
         this.attributes = attributes;
     }
 
@@ -48,7 +49,11 @@ public class EventModel extends AbstractEntityModel<Event> {
 
     @Override
     protected Event load(Long id) {
-        return manager.loadById(id, attributes);
+        if (attributes != null) {
+            return manager.loadById(id, attributes);
+        } else {
+            return manager.loadById(id);
+        }
     }
 
     @Override

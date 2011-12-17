@@ -1,5 +1,6 @@
 package de.flower.rmt.repository;
 
+import de.flower.common.util.Check;
 import org.hibernate.ejb.criteria.CriteriaBuilderImpl;
 import org.hibernate.ejb.criteria.predicate.BooleanStaticAssertionPredicate;
 import org.springframework.data.jpa.domain.Specification;
@@ -58,6 +59,7 @@ public class Specs {
     }
 
     public static <X> Specification fetch(final Attribute<X, ?>... attributes) {
+        Check.notNull(attributes);
         return new Specification<X>() {
             @Override
             public Predicate toPredicate(Root<X> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
