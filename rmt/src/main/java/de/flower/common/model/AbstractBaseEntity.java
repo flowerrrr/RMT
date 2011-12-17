@@ -12,10 +12,10 @@ public abstract class AbstractBaseEntity implements Serializable, IEntity, Clone
     /**
      * This constant is only needed for serialization purposes. It overwrites the default mechanism and so makes the BE longer binary compatible
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     protected AbstractBaseEntity() {
