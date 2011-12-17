@@ -1,5 +1,6 @@
 package de.flower.rmt.ui.app ;
 
+import de.flower.rmt.ui.manager.page.player.PlayerPage;
 import org.apache.wicket.devutils.inspector.RenderPerformanceListener;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.springframework.context.ApplicationContext;
@@ -30,6 +31,10 @@ public class TestApplication extends RMTApplication {
         getMarkupSettings().setStripWicketTags(false);
         // trace rendering time of components.
         getComponentInstantiationListeners().add(new RenderPerformanceListener());
+
+        // required for RMT-464
+        mountPage("foobar", PlayerPage.class);
+
     }
 
     @Override
