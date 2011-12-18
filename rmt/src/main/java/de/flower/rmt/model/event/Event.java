@@ -9,6 +9,7 @@ import org.joda.time.LocalTime;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -60,7 +61,7 @@ public class Event extends AbstractClubRelatedEntity {
     private Boolean invitationSent;
 
     @OneToMany(mappedBy = "event")
-    private List<Invitation> invitations;
+    private List<Invitation> invitations = new ArrayList<Invitation>();
 
     protected Event() {
     }
@@ -134,5 +135,13 @@ public class Event extends AbstractClubRelatedEntity {
 
     public void setInvitationSent(final Boolean invitationSent) {
         this.invitationSent = invitationSent;
+    }
+
+    public List<Invitation> getInvitations() {
+        return invitations;
+    }
+
+    public void setInvitations(final List<Invitation> invitations) {
+        this.invitations = invitations;
     }
 }

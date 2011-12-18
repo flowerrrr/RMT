@@ -13,7 +13,7 @@ public class NotificationPage extends ManagerBasePage {
     public NotificationPage(final IModel<Event> model) {
         super(model);
 
-        setHeading("manager.notification.heading", null);
+        setHeading("manager.notification.heading");
 
         addMainPanel(new NotificationPanel(model));
 

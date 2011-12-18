@@ -178,12 +178,17 @@ public class TestData {
     }
 
     public Event newEvent() {
-        Event event = new Event(newTeam());
+        Event event = new Event(newTeamWithPlayers(15));
         event.setDate(new Date());
         event.setTime(new LocalTime());
         event.setVenue(newVenue(event.getTeam().getClub()));
         event.setSummary("2. Training");
         event.setComment("Kommt ja nicht zu spät!");
+        for (Player player : event.getTeam().getPlayers()) {
+            // create invitations
+            Invitation invitation = new Invitation(event, player.getUser());
+            event.getInvitations().add(invitation);
+        }
         return event;
     }
 
