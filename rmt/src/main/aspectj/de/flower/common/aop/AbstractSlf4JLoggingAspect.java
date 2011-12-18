@@ -88,8 +88,12 @@ public abstract class AbstractSlf4JLoggingAspect extends AbstractLoggingAspect {
     }
 
     private long popTime() {
-        Long start = (Long) stack.pop();
-        return start;
+        if (!stack.empty()) {
+            Long start = (Long) stack.pop();
+            return start;
+        } else {
+            return 0;
+        }
     }
 
     /**

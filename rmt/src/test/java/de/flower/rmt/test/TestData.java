@@ -3,6 +3,7 @@ package de.flower.rmt.test;
 import de.flower.rmt.model.*;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
+import de.flower.rmt.model.event.Event_;
 import de.flower.rmt.repository.IClubRepo;
 import de.flower.rmt.repository.IEventRepo;
 import de.flower.rmt.repository.IPlayerRepo;
@@ -200,7 +201,7 @@ public class TestData {
         event.setTeam(team);
         event.setVenue(venueManager.loadById(1L));
         eventManager.create(event, createInvitations);
-        return event;
+        return eventManager.loadById(event.getId(), Event_.team, Event_.invitations);
     }
 
     public Event createEventWithoutResponses() {

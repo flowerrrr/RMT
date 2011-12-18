@@ -1,5 +1,7 @@
 package de.flower.rmt.service;
 
+import de.flower.rmt.model.Invitation;
+import de.flower.rmt.model.Invitation_;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.test.AbstractIntegrationTests;
@@ -45,6 +47,15 @@ public class EventManagerTest extends AbstractIntegrationTests {
         user = userRepo.findOne(user.getId()) ;
         events = eventManager.findAllUpcomingByUser(user);
         assertEquals(events.size(), 2)                 ;
+    }
+
+    @Test
+    public void testUpcomingEventsByUser() {
+        Event event = testData.createEventWithoutResponses();
+        List<Invitation> invitations = invitationManager.findAllByEvent(event, Invitation_.user);
+        List<Event> list = eventManager.findAllUpcomingByUser(invitations.get(0).getUser());
+        // check if team can be accessed without LIE
+        list.get(0).getTeam().getName();
     }
 
 }

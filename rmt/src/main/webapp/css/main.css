@@ -231,6 +231,12 @@ form div.clearfix.error {
     padding: 0;
 }
 
+// forms in secondary panel should not use margin. required for feedbackpanel
+.secondary form .input {
+    margin-left: 0px;
+}
+
+
 /*************************************************************************
     form feedback
 **************************************************************************/
@@ -520,6 +526,7 @@ td.rsvpstatus {
 .invitationForm li {
     margin-top: 10px;
 }
+
 textarea {
     resize: none;
 }

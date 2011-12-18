@@ -10,9 +10,8 @@ import org.testng.annotations.Test;
  */
 public class RepositoryTest extends AbstractIntegrationTests {
 
-
     @Test(expectedExceptions = { LazyInitializationException.class })
-    void testManyToOneLazyFetching() {
+    public void testManyToOneLazyFetching() {
         User user = em.find(User.class, 1L);
         // this should trigger a LIE.
         user.getClub().getName();

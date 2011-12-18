@@ -66,7 +66,8 @@ public class EventListPanel extends BasePanel {
                 item.add(new Label("team", event.getTeam().getName()));
                 item.add(new Label("summary", event.getSummary()));
                 final Invitation invitation = getInvitation(event, userModel.getObject());
-                item.add(new QuickResponseLabel("rsvpStatus", invitation.getStatus()) {
+                RSVPStatus status = invitation.getStatus();
+                item.add(new QuickResponseLabel("rsvpStatus", status == RSVPStatus.NORESPONSE ? null : status) {
                     @Override
                     protected void submitStatus(final RSVPStatus status) {
                         responseManager.respond(eventModel.getId(), userModel.getId(), status);
@@ -77,9 +78,7 @@ public class EventListPanel extends BasePanel {
             private Invitation getInvitation(final Event event, final User user) {
                 return invitationManager.loadByEventAndUser(event, user);
             }
-
-         });
+        });
         listContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Event.class)));
     }
-
 }

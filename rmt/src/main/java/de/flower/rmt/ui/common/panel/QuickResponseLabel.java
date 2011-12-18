@@ -18,7 +18,7 @@ public abstract class QuickResponseLabel extends AjaxEditableChoiceLabel<RSVPSta
     private TwipsyBehavior tooltipBehavior;
 
     public QuickResponseLabel(final String id, final RSVPStatus status) {
-        super(id, Model.of(status), Arrays.asList(RSVPStatus.values()), new RSVPStatusRenderer());
+        super(id, Model.of(status), Arrays.asList(RSVPStatus.quickResponseValues()), new RSVPStatusRenderer());
     }
 
     protected IModel<RSVPStatus> getModel() {

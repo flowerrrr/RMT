@@ -13,4 +13,12 @@ public enum RSVPStatus {
     public String getResourceKey() {
         return "invitation.status." + this.name().toLowerCase();
     }
+
+    public static RSVPStatus[] quickResponseValues() {
+        return new RSVPStatus[]{
+                ACCEPTED,
+                UNSURE,
+                DECLINED
+        };
+    }
 }

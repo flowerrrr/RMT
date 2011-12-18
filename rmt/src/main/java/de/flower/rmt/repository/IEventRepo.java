@@ -20,6 +20,9 @@ public interface IEventRepo extends IRepository<Event, Long> {
 
     List<Event> findAllByClub(Club club);
 
-    @Query("select e from Event e join e.invitations i where i.user = :user and e.date >= :date")
+    /**
+     * Make join to table team to eager fetch this association. it is needed in the eventlistpanel.
+     */
+    @Query("select e from Event e left join FETCH e.team t  join e.invitations i where i.user = :user and e.date >= :date")
     List<Event> findUpcomingByInvitee(@Param("user") User user, @Param("date") Date date);
 }

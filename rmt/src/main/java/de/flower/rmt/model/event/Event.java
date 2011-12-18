@@ -60,7 +60,7 @@ public class Event extends AbstractClubRelatedEntity {
     @Column
     private Boolean invitationSent;
 
-    @OneToMany(mappedBy = "event")
+    @OneToMany(mappedBy = "event", cascade = CascadeType.REMOVE)
     private List<Invitation> invitations = new ArrayList<Invitation>();
 
     protected Event() {

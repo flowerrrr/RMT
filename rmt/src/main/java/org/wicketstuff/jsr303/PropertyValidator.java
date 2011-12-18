@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Overriden version with custom tailored to our needs.
+ * Overriden version with custom behavior tailored to our needs.
  *
  * - can be added to component even if component is not attached to form.
  *

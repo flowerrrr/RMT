@@ -8,7 +8,6 @@ import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.model.event.Event_;
 import de.flower.rmt.model.type.Notification;
 import de.flower.rmt.repository.IEventRepo;
-import de.flower.rmt.repository.Specs;
 import de.flower.rmt.service.mail.IMailService;
 import org.apache.commons.lang3.ArrayUtils;
 import org.joda.time.LocalDate;
@@ -22,8 +21,7 @@ import javax.persistence.metamodel.Attribute;
 import java.util.Date;
 import java.util.List;
 
-import static de.flower.rmt.repository.Specs.eq;
-import static de.flower.rmt.repository.Specs.fetch;
+import static de.flower.rmt.repository.Specs.*;
 import static org.springframework.data.jpa.domain.Specifications.where;
 
 /**
@@ -70,8 +68,8 @@ public class EventManager extends AbstractService implements IEventManager {
 
     @Override
     public Event loadById(Long id, final Attribute... attributes) {
-        Specification fetch = Specs.fetch(attributes);
-        Event entity = eventRepo.findOne(Specs.and(Specs.eq(Event_.id, id), fetch));
+        Specification fetch = fetch(attributes);
+        Event entity = eventRepo.findOne(and(eq(Event_.id, id), fetch));
         Check.notNull(entity);
         assertClub(entity);
         return entity;
@@ -80,7 +78,7 @@ public class EventManager extends AbstractService implements IEventManager {
     @Override
     public List<Event> findAll(Attribute... attributes) {
         Specification hasClub = eq(Event_.club, getClub());
-        List<Event> list = eventRepo.findAll(where(hasClub).and(fetch(attributes)));
+        List<Event> list = eventRepo.findAll(where(hasClub).and(asc(Event_.date)).and(fetch(attributes)));
         return list;
     }
 
@@ -95,6 +93,7 @@ public class EventManager extends AbstractService implements IEventManager {
     @Transactional(readOnly = false)
     public void delete(Event entity) {
         // TODO (flowerrrr - 11.06.11) decide whether to soft or hard delete entity.
+        eventRepo.reattach(entity);
         assertClub(entity);
         eventRepo.delete(entity);
     }

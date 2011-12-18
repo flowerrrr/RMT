@@ -108,15 +108,16 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     @Transactional(readOnly = false)
     public Invitation save(final Invitation invitation) {
         validate(invitation);
-        if (invitation.isNew()) {
-            invitation.setDate(new Date());
-        } else {
+        if (!invitation.isNew()) {
             // in case the status changes update the date of response.
             // used for early maybe-responder who later switch their status.
             // after status update the rank of an invitation is reset as if he has
             // just responded the first time.
             Invitation origInvitation = invitationRepo.findOne(invitation.getId());
             if (origInvitation.getStatus() != invitation.getStatus()) {
+                invitation.setDate(new Date());
+            }
+            if (invitation.getDate() == null) {
                 invitation.setDate(new Date());
             }
         }
