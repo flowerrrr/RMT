@@ -86,6 +86,7 @@ public class UserManager extends AbstractService implements IUserManager {
     @Override
     @Transactional(readOnly = false)
     public void save(final User user, final boolean isManager) {
+        validate(user);
         save(user);
         if (isManager) {
             roleManager.addRole(user.getId(), Role.Roles.MANAGER.getRoleName());

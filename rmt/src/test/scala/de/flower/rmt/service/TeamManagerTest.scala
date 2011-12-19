@@ -49,8 +49,5 @@ class TeamManagerTest extends AbstractIntegrationTests with Assertions {
         var violation: ConstraintViolation[Team] = violations.toList.head
         assertEquals(entity.getName(), violation.getInvalidValue())
         log info "" + violation.getConstraintDescriptor
-
-
     }
-
 }

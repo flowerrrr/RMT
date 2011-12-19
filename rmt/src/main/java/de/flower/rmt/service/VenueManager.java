@@ -27,6 +27,7 @@ public class VenueManager extends AbstractService implements IVenueManager {
     @Override
     @Transactional(readOnly = false)
     public void save(Venue venue) {
+        validate(venue);
         venueRepo.save(venue);
     }
 

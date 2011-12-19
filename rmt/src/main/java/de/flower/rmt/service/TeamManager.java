@@ -34,6 +34,7 @@ public class TeamManager extends AbstractService implements ITeamManager {
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void save(Team entity) {
+        validate(entity);
         teamRepo.save(entity);
     }
 
