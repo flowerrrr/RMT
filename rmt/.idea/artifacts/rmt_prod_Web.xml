@@ -14,7 +14,6 @@
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/commons-beanutils/commons-beanutils/jars/commons-beanutils-1.8.3.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/commons-codec/commons-codec/jars/commons-codec-1.4.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/commons-collections/commons-collections/jars/commons-collections-3.2.1.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/commons-dbcp/commons-dbcp/jars/commons-dbcp-1.4.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/commons-lang/commons-lang/jars/commons-lang-2.4.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.commons/commons-lang3/jars/commons-lang3-3.0.1.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/commons-logging/commons-logging/jars/commons-logging-1.1.1.jar" />
@@ -71,6 +70,7 @@
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/xmlpull/xmlpull/jars/xmlpull-1.1.3.1.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/xpp3/xpp3_min/jars/xpp3_min-1.1.4c.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/com.thoughtworks.xstream/xstream/jars/xstream-1.4.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/c3p0/c3p0/jars/c3p0-0.9.1.2.jar" />
         </element>
         <element id="file-copy" path="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <element id="directory" name="classes">

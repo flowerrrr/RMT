@@ -54,7 +54,8 @@ dependencies {
     )
     runtime(
             'org.slf4j:jcl-over-slf4j:1.6.2',
-            'commons-dbcp:commons-dbcp:1.4',
+            // 'commons-dbcp:commons-dbcp:1.4',
+            'c3p0:c3p0:0.9.1.2',
             'org.hibernate:hibernate-core:' + version_hibernate,
             'mysql:mysql-connector-java:5.1.16',
             'org.springframework.security:spring-security-web:' + version_spring_security,

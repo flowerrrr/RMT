@@ -26,12 +26,29 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
+    <!-- Local DataSource that works in any environment -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="${jdbc.driver}" />
+        <property name="jdbcUrl" value="${jdbc.url}" />
+        <property name="user" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+        <property name="initialPoolSize" value="${jdbc.connection.pool.initialPoolSize}" />
+        <property name="minPoolSize" value="${jdbc.connection.pool.minPoolSize}" />
+        <property name="maxPoolSize" value="${jdbc.connection.pool.maxPoolSize}" />
+        <property name="maxStatements" value="${jdbc.connection.pool.maxStatements}" />
+        <property name="maxStatementsPerConnection" value="${jdbc.connection.pool.maxStatementsPerConnection}" />
+        <property name="idleConnectionTestPeriod" value="${jdbc.test.period}" />
+        <property name="preferredTestQuery" value="${jdbc.test.query}" />
+    </bean>
+    
+<!--
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="${jdbc.driver}"/>
         <property name="url" value="${jdbc.url}"/>
         <property name="username" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.password}"/>
     </bean>
+-->
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>

@@ -74,6 +74,7 @@
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
+    <orderEntry type="library" name="jquery.min" level="application" />
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
@@ -830,26 +831,13 @@
     <orderEntry type="module-library" exported="" scope="RUNTIME">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/commons-dbcp/commons-dbcp/jars/commons-dbcp-1.4.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/c3p0/c3p0/jars/c3p0-0.9.1.2.jar!/" />
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/commons-dbcp/commons-dbcp/javadocs/commons-dbcp-1.4-javadoc.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/c3p0/c3p0/javadocs/c3p0-0.9.1.2-javadoc.jar!/" />
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/commons-dbcp/commons-dbcp/sources/commons-dbcp-1.4-sources.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="" scope="RUNTIME">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/commons-pool/commons-pool/jars/commons-pool-1.5.4.jar!/" />
-        </CLASSES>
-        <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/commons-pool/commons-pool/javadocs/commons-pool-1.5.4-javadoc.jar!/" />
-        </JAVADOC>
-        <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/commons-pool/commons-pool/sources/commons-pool-1.5.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/cache/c3p0/c3p0/sources/c3p0-0.9.1.2-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -1045,7 +1033,6 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="library" name="jquery.min" level="application" />
   </component>
   <component name="org.twodividedbyzero.idea.findbugs">
     <option name="_basePreferences">

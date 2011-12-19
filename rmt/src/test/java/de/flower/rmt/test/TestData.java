@@ -14,6 +14,8 @@ import org.apache.commons.lang3.Validate;
 import org.joda.time.LocalTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ import java.util.Random;
  */
 
 @Service
+@Transactional(propagation = Propagation.REQUIRED)
 public class TestData {
 
     @Autowired
@@ -225,6 +228,9 @@ public class TestData {
         respond(invitations.get(9), RSVPStatus.DECLINED, "some comment");
         respond(invitations.get(11), RSVPStatus.ACCEPTED, "some comment");
         respond(invitations.get(12), RSVPStatus.ACCEPTED, "some comment");
+        // init collections
+        event.getTeam().getPlayers().size();
+        event.getTeam().getPlayers().get(0).getUser();
         return event;
     }
 
