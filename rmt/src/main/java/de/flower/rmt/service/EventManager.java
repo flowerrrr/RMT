@@ -78,7 +78,7 @@ public class EventManager extends AbstractService implements IEventManager {
     @Override
     public List<Event> findAll(Attribute... attributes) {
         Specification hasClub = eq(Event_.club, getClub());
-        List<Event> list = eventRepo.findAll(where(hasClub).and(asc(Event_.date)).and(fetch(attributes)));
+        List<Event> list = eventRepo.findAll(where(hasClub).and(desc(Event_.date)).and(fetch(attributes)));
         return list;
     }
 

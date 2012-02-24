@@ -10,6 +10,20 @@
         <fieldset>
             <wicket:container wicket:id="formFeedbackPanel"/>
 
+            <!-- display type of event in read-only mode -->
+            <div class="clearfix">
+
+                <label>
+                    <wicket:message key="manager.event.type" />
+                </label>
+
+                <div class="input">
+                    <div class="field">
+                        <span class="uneditable-input" wicket:id="type"/>
+                    </div>
+                </div>
+            </div>
+
             <rmt:select wicket:id="team" labelKey="manager.event.team"/>
             <rmt:input wicket:id="date" labelKey="manager.event.date"/>
             <rmt:select wicket:id="time" labelKey="manager.event.time"/>

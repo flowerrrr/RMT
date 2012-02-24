@@ -3,6 +3,7 @@ package de.flower.rmt.ui.manager.page.event;
 import de.flower.common.ui.form.TimeDropDownChoice;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.event.Event;
+import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.model.event.Event_;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.common.form.CancelableEntityForm;
@@ -17,8 +18,10 @@ import de.flower.rmt.ui.manager.component.VenueDropDownChoicePanel;
 import de.flower.rmt.ui.manager.page.invitations.InvitationsPage;
 import de.flower.rmt.ui.model.EventModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
@@ -52,6 +55,7 @@ public class EventEditPanel extends BasePanel {
         };
         add(form);
 
+        form.add(new Label("type", new ResourceModel(EventType.from(model.getObject()).getResourceKey())));
         form.add(new TeamDropDownChoicePanel("team"));
         form.add(new DateFieldPanel("date"));
         form.add(new DropDownChoicePanel("time", new TimeDropDownChoice("input")));

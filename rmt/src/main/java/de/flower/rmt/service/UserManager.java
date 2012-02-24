@@ -133,6 +133,7 @@ public class UserManager extends AbstractService implements IUserManager {
         initPassword(user);
         // by default a new user is assumed to be fit.
         user.setStatus(User.Status.FIT);
+        user.setEnabled(true);
         return user;
     }
 

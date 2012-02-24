@@ -40,6 +40,9 @@ public class RMTApplication extends WebApplication {
 
         if (usesDevelopmentConfig()) {
             getDebugSettings().setDevelopmentUtilitiesEnabled(true);
+            getDebugSettings().setOutputComponentPath(true);
+            getDebugSettings().setOutputMarkupContainerClassName(true);
+
             getComponentInstantiationListeners().add(new RenderPerformanceListener());
             initSerializer();
         }

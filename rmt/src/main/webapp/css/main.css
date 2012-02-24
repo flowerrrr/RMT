@@ -98,7 +98,7 @@ li {
 }
 
 .page-header {
-    background-color: #F5F5F5;
+    // background-color: #F5F5F5;
     margin: -20px -20px 20px;
     padding: 20px 20px 10px;
 
@@ -115,7 +115,6 @@ li {
 
 .page-footer {
     text-align: center;
-    background-color: #F5F5F5;
     margin: -20px -20px 0px;
     padding: 20px 20px 0px;
     border-top: 1px solid #DDDDDD;
@@ -172,6 +171,11 @@ input[readonly].reset {
         @shadow: inset 0 1px 3px rgba(0,0,0,.1), 0 0 8px rgba(82,168,236,.6);
         .box-shadow(@shadow);
     }
+}
+
+// white background for action panels
+.actions {
+	background-color: #FFFFFF;
 }
 
 
@@ -317,12 +321,24 @@ a.menu:after, .dropdown-toggle:after {
     }
     div:last-child {
         float: right;
+		
+		a {
+			float: left;
+		}
     }
 
     .close {
         margin-left: 10px;
         line-height: normal;
     }
+}
+
+/*************************************************************************
+    event list
+**************************************************************************/
+// list of icons summarizing response status
+.invitation-summary-panel {
+    width: 158px;
 }
 
 /*************************************************************************
@@ -340,6 +356,11 @@ a.menu:after, .dropdown-toggle:after {
 .icon-checked, .icon-unsure {
     .icon-abstract;
     background-image: url(../img/checked.png);
+}
+
+.icon-unsure {
+    .icon-abstract;
+    background-image: url(../img/double-tilde.png);
 }
 
 .icon-accepted {
@@ -453,15 +474,13 @@ td {
         // align with text of checkbox
         padding-left: 5px;
         color: @grayDark;
-        &:hover {
-            text-decoration: none;
-        }
     }
     select {
         width: auto;
         height: auto;
         padding: 0px;
     }
+
 }
 
 /*************************************************************************

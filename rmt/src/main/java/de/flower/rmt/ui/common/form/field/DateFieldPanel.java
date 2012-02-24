@@ -10,7 +10,7 @@ import org.apache.wicket.markup.html.IHeaderResponse;
 public class DateFieldPanel extends FormFieldPanel {
 
     public DateFieldPanel(String id) {
-        super(id, DateTextField.forDateStyle(ID, "M-"));
+        super(id, DateTextField.forDatePattern(ID, "dd.MM.yyyy"));
     }
 
     @Override

@@ -37,7 +37,7 @@ public class Event extends AbstractClubRelatedEntity {
 
     /**
      * Only the date-part of Date.
-     * Modelled as java.util.Date cause this makes handling the field
+     * Modelled as java.util.Date instead of joda-date cause this makes handling the field
      * in wicket forms much easier.
      */
     @Column
