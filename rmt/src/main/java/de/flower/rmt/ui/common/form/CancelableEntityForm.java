@@ -12,7 +12,6 @@ import org.apache.wicket.model.IModel;
  *
  * @author flowerrrr
  */
-@Deprecated
 public abstract class CancelableEntityForm<T extends IEntity> extends EntityForm<T> {
 
     public CancelableEntityForm(String id, IModel<T> model) {
@@ -25,7 +24,7 @@ public abstract class CancelableEntityForm<T extends IEntity> extends EntityForm
             add(cancelLink);
         } else {
             ExternalLink link = new ExternalLink("cancelButton", "#");
-            link.add(AttributeModifier.replace("onclick", "history.back();"));
+            link.add(AttributeModifier.replace("onclick", "window.history.back();return false;"));
             add(link);
         }
     }
