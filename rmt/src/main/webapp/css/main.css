@@ -1,3 +1,4 @@
+
 // @import "bootstrap/bootstrap.less";
 
 /*************************************************************************
@@ -115,16 +116,13 @@ li {
 
 .page-footer {
     text-align: center;
-    margin: -20px -20px 0px;
     padding: 20px 20px 0px;
-    border-top: 1px solid #DDDDDD;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .content .main {
     width: 560px;
     /* let content always have a minimum width. looks nicer on empty pages. */
-    min-height: 600px;
+    min-height: 500px;
 }
 
 .content .secondary {
