@@ -7,6 +7,7 @@ import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.service.IInvitationManager;
+import de.flower.rmt.ui.common.page.event.EventDetailsPanel;
 import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.model.InvitationModel;
 import de.flower.rmt.ui.player.NavigationPanel;

@@ -1,6 +1,7 @@
 package de.flower.rmt.ui.manager.page.invitations;
 
 import de.flower.rmt.model.event.Event;
+import de.flower.rmt.ui.common.page.event.EventDetailsPanel;
 import de.flower.rmt.ui.manager.ManagerBasePage;
 import de.flower.rmt.ui.manager.NavigationPanel;
 import org.apache.wicket.model.IModel;
@@ -16,6 +17,7 @@ public class InvitationsPage extends ManagerBasePage {
 
         final InvitationListPanel invitationListPanel = new InvitationListPanel(model);
         addMainPanel(invitationListPanel);
+        addSecondaryPanel(new EventDetailsPanel(model));
     }
 
     @Override
