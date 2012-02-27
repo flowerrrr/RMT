@@ -36,7 +36,7 @@ public class BasePanel<T> extends GenericPanel<T> {
 
     protected BasePanel(String id, IModel<T> model) {
         super(getId(id), model);
-        log.debug("new " + getId());
+        if (log.isDebugEnabled()) log.debug("new " + getId());
         setOutputMarkupId(true);
         // always append a css class to the panels
         add(new AttributeAppender("class", Model.of("panel " + getCssClass()), " "));
@@ -75,7 +75,14 @@ public class BasePanel<T> extends GenericPanel<T> {
     }
 
     private String getCssClass() {
-        return Strings.camelCaseToHyphen(getClass().getSimpleName()).toLowerCase();
+        return Strings.camelCaseToHyphen(getClassName()).toLowerCase();
     }
 
+    private String getClassName() {
+        if (Misc.isAnonymousInnerClass(getClass())) {
+            return Misc.getSuperClassName(getClass());
+        } else {
+            return getClass().getSimpleName();
+        }
+    }
 }

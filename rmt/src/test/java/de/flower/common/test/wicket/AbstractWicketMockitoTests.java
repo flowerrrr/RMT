@@ -3,6 +3,8 @@ package de.flower.common.test.wicket;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.mockito.Mockito;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -17,6 +19,8 @@ import org.testng.annotations.BeforeMethod;
  * @author flowerrrr
  */
 public abstract class AbstractWicketMockitoTests {
+
+    protected final Logger log = LoggerFactory.getLogger(getClass());
 
     protected WicketTester wicketTester;
 

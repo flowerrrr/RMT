@@ -60,4 +60,14 @@ public final class Misc {
             return getClassContext();
         }
     }
+
+    public static boolean isAnonymousInnerClass(Class<?> clazz) {
+        // return clazz.getName().contains("$") && clazz.getSimpleName().equals("");
+        return clazz.getEnclosingClass() != null && clazz.getName().contains("$");
+    }
+
+    public static String getSuperClassName(Class<?> anonymousClass) {
+        Check.isTrue(isAnonymousInnerClass(anonymousClass));
+        return anonymousClass.getSuperclass().getSimpleName();
+    }
 }

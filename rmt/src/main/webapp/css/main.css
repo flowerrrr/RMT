@@ -331,13 +331,6 @@ a.menu:after, .dropdown-toggle:after {
     }
 }
 
-/*************************************************************************
-    event list
-**************************************************************************/
-// list of icons summarizing response status
-.invitation-summary-panel {
-    width: 158px;
-}
 
 /*************************************************************************
     icons and labels
@@ -489,12 +482,31 @@ td.rsvpstatus {
     width: 100px;
 }
 
+// list of icons summarizing response status
+.invitation-summary-panel {
+    width: 158px;
+}
+
 .num-invitation {
     padding-left: 4px;
     &:not(:last-child) {
         padding-right: 3px;
         width: 14px; // both single and double digits should fit into
         display: inline-block;
+    }
+}
+
+/*************************************************************************
+    Event pagination
+**************************************************************************/
+.event-pager-panel {
+    .pagination {
+        margin: 0px;
+    }
+    .active a {
+        width: 106px;
+        text-align: center;
+        color: @grayDark;
     }
 }
 

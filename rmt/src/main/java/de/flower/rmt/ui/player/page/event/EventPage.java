@@ -8,15 +8,20 @@ import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.ui.common.page.event.EventDetailsPanel;
+import de.flower.rmt.ui.common.page.event.EventPagerPanel;
 import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.model.InvitationModel;
+import de.flower.rmt.ui.model.UserModel;
 import de.flower.rmt.ui.player.NavigationPanel;
 import de.flower.rmt.ui.player.PlayerBasePage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.request.http.flow.AbortWithHttpErrorCodeException;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+
+import java.util.List;
 
 /**
  * @author flowerrrr
@@ -70,12 +75,31 @@ public class EventPage extends PlayerBasePage {
         invitationListPanel.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Invitation.class)));
 
         addMainPanel(invitationListPanel);
-        addSecondaryPanel(new EventDetailsPanel(model), invitationFormPanel);
+        addSecondaryPanel(createEventPagerPanel(model), new EventDetailsPanel(model), invitationFormPanel);
+    }
+
+    private EventPagerPanel createEventPagerPanel(final IModel<Event> model) {
+        return new EventPagerPanel(model, getUpcomingEventList(new UserModel(getUserDetails().getUser()))) {
+            @Override
+            protected void onClick(IModel<Event> model) {
+                setResponsePage(new EventPage(model));
+            }
+
+        };
     }
 
     private IModel<Invitation> getInvitationModel(final IModel<Event> model) {
         final Invitation invitation = invitationManager.loadByEventAndUser(model.getObject(), getUserDetails().getUser());
         return new InvitationModel(invitation);
+    }
+
+    private IModel<List<Event>> getUpcomingEventList(final UserModel userModel) {
+        return new LoadableDetachableModel<List<Event>>() {
+            @Override
+            protected List<Event> load() {
+                return eventManager.findAllUpcomingByUser(userModel.getObject());
+            }
+        };
     }
 
     @Override
