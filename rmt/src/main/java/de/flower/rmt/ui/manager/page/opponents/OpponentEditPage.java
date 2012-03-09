@@ -23,7 +23,7 @@ public class OpponentEditPage extends ManagerBasePage {
                 setResponsePage(OpponentsPage.class);
             }
         });
-        // addSecondaryPanel(new Label("foobar", "Put some useful stuff here."));
+        addSecondaryPanel();
     }
 
     @Override
