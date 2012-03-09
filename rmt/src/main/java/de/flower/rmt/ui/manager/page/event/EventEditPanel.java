@@ -7,10 +7,7 @@ import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.common.form.CancelableEntityForm;
 import de.flower.rmt.ui.common.form.EntityForm;
-import de.flower.rmt.ui.common.form.field.DateFieldPanel;
-import de.flower.rmt.ui.common.form.field.DropDownChoicePanel;
-import de.flower.rmt.ui.common.form.field.TextAreaPanel;
-import de.flower.rmt.ui.common.form.field.TextFieldPanel;
+import de.flower.rmt.ui.common.form.field.*;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.manager.component.OpponentDropDownChoicePanel;
 import de.flower.rmt.ui.manager.component.TeamDropDownChoicePanel;
@@ -18,8 +15,8 @@ import de.flower.rmt.ui.manager.component.VenueDropDownChoicePanel;
 import de.flower.rmt.ui.manager.page.invitations.InvitationsPage;
 import de.flower.rmt.ui.model.ModelFactory;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -55,8 +52,14 @@ public class EventEditPanel extends BasePanel {
         };
         add(form);
 
-        form.add(new Label("type", new ResourceModel(EventType.from(model.getObject()).getResourceKey())));
-        form.add(new TeamDropDownChoicePanel("team"));
+        form.add(new TextFieldPanel("type", new TextField(FormFieldPanel.ID, new ResourceModel(EventType.from(model.getObject()).getResourceKey())))
+                .setEnabled(false));
+        form.add(new TeamDropDownChoicePanel("team") {
+            @Override
+            public boolean isEnabled() {
+                return model.getObject().isNew();
+            }
+        });
         form.add(new DateFieldPanel("date"));
         form.add(new DropDownChoicePanel("time", new TimeDropDownChoice("input")));
         form.add(new OpponentDropDownChoicePanel("opponent") {
