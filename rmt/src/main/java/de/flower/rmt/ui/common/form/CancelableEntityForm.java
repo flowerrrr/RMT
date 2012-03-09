@@ -12,6 +12,7 @@ import org.apache.wicket.model.IModel;
  *
  * @author flowerrrr
  */
+// TODO (flowerrrr - 09.03.12) move code into entityForm and let client disable cancel link per parameter.
 public abstract class CancelableEntityForm<T extends IEntity> extends EntityForm<T> {
 
     public CancelableEntityForm(String id, IModel<T> model) {
