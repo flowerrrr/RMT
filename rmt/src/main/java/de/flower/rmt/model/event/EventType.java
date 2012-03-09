@@ -46,4 +46,8 @@ public enum EventType {
                 throw new RuntimeException();
         }
     }
+
+    public static boolean isMatch(final Event event) {
+        return event.getClass().equals(Match.clazz);
+    }
 }

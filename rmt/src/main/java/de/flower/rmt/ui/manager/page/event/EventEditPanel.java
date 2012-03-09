@@ -4,7 +4,6 @@ import de.flower.common.ui.form.TimeDropDownChoice;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
-import de.flower.rmt.model.event.Event_;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.common.form.CancelableEntityForm;
 import de.flower.rmt.ui.common.form.EntityForm;
@@ -13,10 +12,11 @@ import de.flower.rmt.ui.common.form.field.DropDownChoicePanel;
 import de.flower.rmt.ui.common.form.field.TextAreaPanel;
 import de.flower.rmt.ui.common.form.field.TextFieldPanel;
 import de.flower.rmt.ui.common.panel.BasePanel;
+import de.flower.rmt.ui.manager.component.OpponentDropDownChoicePanel;
 import de.flower.rmt.ui.manager.component.TeamDropDownChoicePanel;
 import de.flower.rmt.ui.manager.component.VenueDropDownChoicePanel;
 import de.flower.rmt.ui.manager.page.invitations.InvitationsPage;
-import de.flower.rmt.ui.model.EventModel;
+import de.flower.rmt.ui.model.ModelFactory;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
@@ -35,10 +35,10 @@ public class EventEditPanel extends BasePanel {
     @SpringBean
     private IEventManager eventManager;
 
-    public EventEditPanel(IModel<Event> model) {
+    public EventEditPanel(final IModel<Event> model) {
         Check.notNull(model.getObject());
 
-        EntityForm<Event> form = new CancelableEntityForm<Event>("form", getEventModel(model)) {
+        EntityForm<Event> form = new CancelableEntityForm<Event>("form", ModelFactory.eventModelWithAllAssociations(model.getObject())) {
 
             @Override
             protected void onSubmit(final AjaxRequestTarget target, final Form<Event> form) {
@@ -59,6 +59,12 @@ public class EventEditPanel extends BasePanel {
         form.add(new TeamDropDownChoicePanel("team"));
         form.add(new DateFieldPanel("date"));
         form.add(new DropDownChoicePanel("time", new TimeDropDownChoice("input")));
+        form.add(new OpponentDropDownChoicePanel("opponent") {
+            @Override
+            public boolean isVisible() {
+                return EventType.isMatch(model.getObject());
+            }
+        });
         form.add(new VenueDropDownChoicePanel("venue"));
 
         // form.add(surface label)
@@ -68,16 +74,5 @@ public class EventEditPanel extends BasePanel {
 
         // form.add(participants)
 
-    }
-
-    /**
-     * Return event instance initialized with team and venue association.
-     */
-    IModel<Event> getEventModel(final IModel<Event> model) {
-        if (model.getObject().isNew()) {
-            return new EventModel(model);
-        }   else {
-            return new EventModel(model.getObject().getId(), Event_.team, Event_.venue);
-        }
     }
 }

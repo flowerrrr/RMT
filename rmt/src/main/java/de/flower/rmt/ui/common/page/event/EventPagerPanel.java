@@ -38,6 +38,11 @@ public abstract class EventPagerPanel extends BasePanel<Event> {
         add(next);
     }
 
+    @Override
+    public boolean isVisible() {
+        return !getModelObject().isNew();
+    }
+
     private WebMarkupContainer createPagingLink(String id, final IModel<Event> model) {
         WebMarkupContainer container = new WebMarkupContainer(id);
         container.add(AttributeAppender.append("class", new AbstractReadOnlyModel<String>() {

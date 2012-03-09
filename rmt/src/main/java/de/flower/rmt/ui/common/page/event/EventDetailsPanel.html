@@ -24,22 +24,26 @@
             <h6><wicket:message key="manager.event.type"/></h6>
             <span wicket:id="type"/>
         </li>
-         <li>
-             <h6><wicket:message key="manager.event.venue"/></h6>
-             <span wicket:id="venue.name"/>
-         </li>
-         <li>
-             <h6><wicket:message key="manager.event.venue.surface"/></h6>
-             <span>TBD</span>
-         </li>
-         <li>
-             <h6><wicket:message key="manager.event.summary"/></h6>
-             <span wicket:id="summary"/>
-         </li>
-         <li>
-             <h6><wicket:message key="manager.event.comment"/></h6>
-             <span wicket:id="comment"/>
-         </li>
+        <li wicket:enclosure="">
+            <h6><wicket:message key="manager.event.opponent"/></h6>
+            <span wicket:id="opponent.name"/>
+        </li>
+        <li>
+            <h6><wicket:message key="manager.event.venue"/></h6>
+            <span wicket:id="venue.name"/>
+        </li>
+        <!--<li>
+            <h6><wicket:message key="manager.event.venue.surface"/></h6>
+            <span>TBD</span>
+        </li> -->
+        <li>
+            <h6><wicket:message key="manager.event.summary"/></h6>
+            <span wicket:id="summary"/>
+        </li>
+        <li>
+            <h6><wicket:message key="manager.event.comment"/></h6>
+            <span wicket:id="comment"/>
+        </li>
      </ul>
 
     <a class="btn" wicket:id="editButton">
