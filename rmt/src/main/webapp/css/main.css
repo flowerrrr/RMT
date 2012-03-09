@@ -123,9 +123,11 @@ li {
     width: 560px;
     /* let content always have a minimum width. looks nicer on empty pages. */
     min-height: 500px;
+    border-right:  1px solid #CCCCCC;
+    padding-right: 19px;
 }
 
-.content .secondary {
+.xcontent .secondary {
     border-left: 1px solid #CCCCCC;
     padding-left: 19px;
 }
