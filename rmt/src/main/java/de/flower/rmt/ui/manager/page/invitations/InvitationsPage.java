@@ -48,7 +48,6 @@ public class InvitationsPage extends ManagerBasePage {
         };
     }
 
-
     @Override
     protected void onBeforeRender() {
         super.onBeforeRender();

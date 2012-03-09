@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head></head>
+<body>
+
+<wicket:panel>
+
+    <div wicket:id="listContainer">
+        <div wicket:id="noEntry">
+            <wicket:message key="manager.teams.noentry">[List is empty]</wicket:message>
+        </div>
+        <wicket:enclosure child="list">
+        <table>
+            <thead>
+            <tr>
+                <th>
+                    <wicket:message key="manager.team.name"/>
+                </th>
+                <th>
+
+                </th>
+                <th>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr wicket:id="list">
+                <td><a wicket:id="editLink"><span wicket:id="name">[Opponent A]</span></a></td>
+                <td>
+
+                </td>
+                <td>
+                    <div wicket:id="dropDownMenuPanel"/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        </wicket:enclosure>
+    </div>
+
+</wicket:panel>
+
+
+</body>
+</html>

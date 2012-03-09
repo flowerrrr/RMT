@@ -4,8 +4,8 @@ import de.flower.common.util.Check;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.behavior.AttributeAppender;
+import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
@@ -27,7 +27,8 @@ public abstract class EventPagerPanel extends BasePanel<Event> {
             }
         });
         add(prev);
-        add(new Label("date", new PropertyModel(model, "date")));
+        add(DateLabel.forDateStyle("date", new PropertyModel(model, "date"), "S-"));
+        add(DateLabel.forDateStyle("timeAsDate",  new PropertyModel(model, "timeAsDate"), "-S"));
         WebMarkupContainer next = createPagingLink("next", new AbstractReadOnlyModel<Event>() {
             @Override
             public Event getObject() {

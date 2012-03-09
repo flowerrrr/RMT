@@ -5,9 +5,11 @@ import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.model.event.Event_;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
+import de.flower.rmt.ui.manager.page.event.EventEditPage;
 import de.flower.rmt.ui.model.EventModel;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
@@ -31,6 +33,19 @@ public class EventDetailsPanel extends BasePanel<Event> {
         add(new Label("venue.name"));
         add(new Label("summary"));
         add(new Label("comment"));
+
+        add(new Link("editButton") {
+
+            @Override
+            public void onClick() {
+                setResponsePage(new EventEditPage(model));
+            }
+
+            @Override
+            public boolean isVisible() {
+                return getUserDetails().isManager();
+            }
+        });
     }
 
     /**
