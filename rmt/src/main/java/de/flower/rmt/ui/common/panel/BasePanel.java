@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.common.panel;
 
-import de.flower.common.util.Misc;
+import de.flower.common.util.Clazz;
 import de.flower.common.util.Strings;
 import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.service.security.UserDetailsBean;
@@ -69,7 +69,7 @@ public class BasePanel<T> extends GenericPanel<T> {
         if (id != null) {
             return id;
         } else {
-            String className = Misc.getCallingClassStatic().getSimpleName();
+            String className = Clazz.getCallingClassStatic().getSimpleName();
             return Strings.uncapitalize(className);
         }
     }
@@ -79,8 +79,8 @@ public class BasePanel<T> extends GenericPanel<T> {
     }
 
     private String getClassName() {
-        if (Misc.isAnonymousInnerClass(getClass())) {
-            return Misc.getSuperClassName(getClass());
+        if (Clazz.isAnonymousInnerClass(getClass())) {
+            return Clazz.getSuperClassName(getClass());
         } else {
             return getClass().getSimpleName();
         }

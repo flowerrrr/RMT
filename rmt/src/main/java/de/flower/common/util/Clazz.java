@@ -5,9 +5,9 @@ package de.flower.common.util;
  *
  * @author flowerrrr
  */
-public final class Misc {
+public final class Clazz {
 
-    private Misc() {
+    private Clazz() {
 
     }
 

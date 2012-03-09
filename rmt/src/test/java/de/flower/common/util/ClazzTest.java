@@ -7,19 +7,19 @@ import static org.testng.Assert.*;
 /**
  * @author flowerrrr
  */
-public class MiscTest {
+public class ClazzTest {
 
     @Test
     public void testIsAnonymousClass() {
         Object o = new Object();
-        assertFalse(Misc.isAnonymousInnerClass(o.getClass()));
+        assertFalse(Clazz.isAnonymousInnerClass(o.getClass()));
         o = new Object() {
             @Override
             public String toString() {
                 return "foo";
             }
         };
-        assertTrue(Misc.isAnonymousInnerClass(o.getClass()));
+        assertTrue(Clazz.isAnonymousInnerClass(o.getClass()));
     }
 
     @Test
@@ -27,7 +27,7 @@ public class MiscTest {
         Object o = new Object() {
         };
         o.getClass().getSuperclass();
-        assertTrue(Misc.isAnonymousInnerClass(o.getClass()));
-        assertEquals(Misc.getSuperClassName(o.getClass()), Object.class.getSimpleName());
+        assertTrue(Clazz.isAnonymousInnerClass(o.getClass()));
+        assertEquals(Clazz.getSuperClassName(o.getClass()), Object.class.getSimpleName());
     }
 }
