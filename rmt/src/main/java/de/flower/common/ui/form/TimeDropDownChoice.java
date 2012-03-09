@@ -50,7 +50,7 @@ public class TimeDropDownChoice extends DropDownChoice<LocalTime> {
 
     public DateTimeFormatter getFormatter() {
         if (formatter == null) {
-            formatter = DateTimeFormat.shortTime();
+            formatter = DateTimeFormat.shortTime().withLocale(getLocale());
         }
         return formatter;
     }
