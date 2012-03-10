@@ -29,4 +29,9 @@ public class NoInvitationSentMessage extends AlertMessage {
     public boolean isVisible(final AlertMessagePanel alertMessagePanel) {
         return !model.getObject().isInvitationSent();
     }
+
+    @Override
+    public String getId() {
+        return super.getId() + model.getObject().getId();
+    }
 }

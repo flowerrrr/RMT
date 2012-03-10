@@ -80,7 +80,7 @@ public class AlertMessagePanel extends Panel {
     }
 
     private String getSessionKey() {
-        return "ALERTMESSAGE_KEY_" + alertMessage.getMessageModel().getObject();
+        return "ALERTMESSAGE_KEY_" + alertMessage.getId();
     }
 
     private void setHideMessage(String key, boolean hide) {

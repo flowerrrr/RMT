@@ -35,4 +35,15 @@ public abstract class AlertMessage implements Serializable {
     protected boolean isVisible() {
         return true;
     }
+
+    /**
+     * Returns string identifying this message. Id is used to mark messages as closed
+     * for the current session. By default returns messageModel.getObject().
+     * Subclasses can override if messages with same messageModel need to be handled separately.
+     *
+     * @return
+     */
+    public String getId() {
+        return messageModel.getObject();
+    }
 }
