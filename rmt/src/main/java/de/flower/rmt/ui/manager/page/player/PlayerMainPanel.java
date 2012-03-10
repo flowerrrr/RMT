@@ -1,8 +1,8 @@
 package de.flower.rmt.ui.manager.page.player;
 
+import de.flower.common.ui.ajax.markup.html.tab.AbstractAjaxTabbedPanel;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.User;
-import de.flower.rmt.ui.common.panel.AbstractAjaxTabbedPanel;
 import org.apache.wicket.extensions.markup.html.tabs.AbstractTab;
 import org.apache.wicket.extensions.markup.html.tabs.ITab;
 import org.apache.wicket.markup.html.panel.Panel;

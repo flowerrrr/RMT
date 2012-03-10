@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.manager.page.squad;
 
-import de.flower.common.ui.ajax.AjaxLink;
+import de.flower.common.ui.ajax.markup.html.AjaxLink;
 import de.flower.common.ui.ajax.panel.AjaxSlideTogglePanel;
 import de.flower.common.ui.js.JQuery;
 import de.flower.rmt.model.Team;

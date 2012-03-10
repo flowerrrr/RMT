@@ -30,6 +30,11 @@ public class InvitationListPanel extends BasePanel {
     private IInvitationManager invitationManager;
 
     public InvitationListPanel(IModel<Event> model) {
+        this(null, model);
+    }
+
+    public InvitationListPanel(String id, IModel<Event> model) {
+        super(id);
         Check.notNull(model);
         add(createListView("acceptedList", RSVPStatus.ACCEPTED, model));
         add(createListView("unsureList", RSVPStatus.UNSURE, model));

@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.manager.page.events;
 
-import de.flower.common.ui.ajax.AjaxLink;
+import de.flower.common.ui.ajax.markup.html.AjaxLink;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;

@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.manager.page.opponents;
 
-import de.flower.common.ui.ajax.AjaxLinkWithConfirmation;
+import de.flower.common.ui.ajax.markup.html.AjaxLinkWithConfirmation;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
@@ -8,13 +8,12 @@ import de.flower.rmt.model.Opponent;
 import de.flower.rmt.service.IOpponentManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.common.panel.DropDownMenuPanel;
+import de.flower.rmt.ui.common.panel.ListViewPanel;
 import de.flower.rmt.ui.model.OpponentModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.ResourceModel;
@@ -33,21 +32,9 @@ public class OpponentListPanel extends BasePanel {
     public OpponentListPanel() {
 
         final IModel<List<Opponent>> listModel = getListModel();
-        WebMarkupContainer listContainer = new WebMarkupContainer("listContainer");
-        add(listContainer);
-        listContainer.add(new WebMarkupContainer("noEntry") {
-            @Override
-            public boolean isVisible() {
-                return listModel.getObject().isEmpty();
-            }
-        });
-        listContainer.add(new ListView<Opponent>("list", listModel) {
-            @Override
-            public boolean isVisible() {
-                return !getList().isEmpty();
-            }
+        ListViewPanel listView = new ListViewPanel<Opponent>("listContainer", listModel, new ResourceModel("manager.teams.noentry")) {
 
-            @Override
+            // @Override
             protected void populateItem(final ListItem<Opponent> item) {
                 Link editLink = createEditLink("editLink", item);
                 editLink.add(new Label("name", item.getModelObject().getName()));
@@ -63,8 +50,9 @@ public class OpponentListPanel extends BasePanel {
                     }
                 }, "button.delete");
             }
-        });
-        listContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Opponent.class)));
+        };
+        listView.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Opponent.class)));
+        add(listView);
     }
 
     private IModel<List<Opponent>> getListModel() {

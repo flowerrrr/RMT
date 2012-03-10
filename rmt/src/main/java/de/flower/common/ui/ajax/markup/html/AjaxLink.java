@@ -1,5 +1,6 @@
-package de.flower.common.ui.ajax;
+package de.flower.common.ui.ajax.markup.html;
 
+import de.flower.common.ui.ajax.PreventDoubleClickAjaxCallDecorator;
 import org.apache.wicket.ajax.IAjaxCallDecorator;
 import org.apache.wicket.model.IModel;
 

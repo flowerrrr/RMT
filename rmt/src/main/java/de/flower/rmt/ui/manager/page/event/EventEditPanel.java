@@ -12,7 +12,6 @@ import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.manager.component.OpponentDropDownChoicePanel;
 import de.flower.rmt.ui.manager.component.TeamDropDownChoicePanel;
 import de.flower.rmt.ui.manager.component.VenueDropDownChoicePanel;
-import de.flower.rmt.ui.manager.page.invitations.InvitationsPage;
 import de.flower.rmt.ui.model.ModelFactory;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
@@ -33,6 +32,11 @@ public class EventEditPanel extends BasePanel {
     private IEventManager eventManager;
 
     public EventEditPanel(final IModel<Event> model) {
+        this(null, model);
+    }
+
+    public EventEditPanel(String id, final IModel<Event> model) {
+        super(id);
         Check.notNull(model.getObject());
 
         EntityForm<Event> form = new CancelableEntityForm<Event>("form", ModelFactory.eventModelWithAllAssociations(model.getObject())) {
@@ -46,7 +50,7 @@ public class EventEditPanel extends BasePanel {
                     eventManager.save(event);
                 }
                 // target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Event.class), AjaxEvent.EntityUpdated(Event.class)));
-                setResponsePage(new InvitationsPage(form.getModel()));
+                setResponsePage(new EventEditPage(form.getModel()));
                 // onClose(target);
             }
         };

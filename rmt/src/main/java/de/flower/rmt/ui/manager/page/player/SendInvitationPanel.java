@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.manager.page.player;
 
-import de.flower.common.ui.ajax.AjaxLink;
+import de.flower.common.ui.ajax.markup.html.AjaxLink;
 import de.flower.rmt.model.User;
 import de.flower.rmt.service.IUserManager;
 import de.flower.rmt.ui.common.form.SimpleFeedbackPanel;

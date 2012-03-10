@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.manager.page.venues.map;
 
-import de.flower.common.ui.ajax.AjaxLink;
-import de.flower.common.ui.ajax.AjaxSubmitLink;
+import de.flower.common.ui.ajax.markup.html.AjaxLink;
+import de.flower.common.ui.ajax.markup.html.form.AjaxSubmitLink;
 import de.flower.rmt.service.geocoding.GeocodingResult;
 import de.flower.rmt.service.geocoding.IGeocodingService;
 import de.flower.rmt.ui.common.panel.BasePanel;

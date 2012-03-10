@@ -1,6 +1,8 @@
-package de.flower.rmt.ui.common.panel;
+package de.flower.common.ui.ajax.markup.html.tab;
 
+import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.Page;
+import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.ajax.markup.html.tabs.AjaxTabbedPanel;
 import org.apache.wicket.extensions.markup.html.tabs.ITab;
 import org.apache.wicket.model.IModel;
@@ -29,7 +31,12 @@ public abstract class AbstractAjaxTabbedPanel<T> extends BasePanel<T> {
         // create a list of ITab objects used to feed the tabbed panel
         List<ITab> tabs = new ArrayList<ITab>();
         addTabs(tabs);
-        tabbedPanel = new AjaxTabbedPanel("tabs", tabs);
+        tabbedPanel = new AjaxTabbedPanel("tabs", tabs) {
+            @Override
+            protected void onAjaxUpdate(final AjaxRequestTarget target) {
+                AbstractAjaxTabbedPanel.this.onAjaxUpdate(target, getSelectedTab());
+            }
+        };
         add(tabbedPanel);
     }
 
@@ -50,8 +57,19 @@ public abstract class AbstractAjaxTabbedPanel<T> extends BasePanel<T> {
         }
     }
 
+    public int getSelectedTab() {
+        return tabbedPanel.getSelectedTab();
+    }
+
     /**
      * Must be implementing classes to add their panels to the tab-list.
      */
     protected abstract void addTabs(List<ITab> tabs);
+
+    /**
+     * See AjaxTabbedPanel#onAjaxUpdate().
+     * @param target
+     */
+    protected void onAjaxUpdate(final AjaxRequestTarget target, int selectedTab) {
+    }
 }

@@ -125,6 +125,12 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     }
 
     @Override
+    @Transactional(readOnly = false)
+    public void delete(final Invitation invitation) {
+        throw new UnsupportedOperationException("Feature not implemented!");
+    }
+
+    @Override
     public void markInvitationSent(final Event event, final List<String> addressList) {
         invitationRepo.markInvitationSent(event, addressList);
     }

@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.manager.page.players;
 
-import de.flower.common.ui.ajax.AjaxLinkWithConfirmation;
+import de.flower.common.ui.ajax.markup.html.AjaxLinkWithConfirmation;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;

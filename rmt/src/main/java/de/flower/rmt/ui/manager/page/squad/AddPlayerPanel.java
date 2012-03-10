@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.manager.page.squad;
 
-import de.flower.common.ui.ajax.AjaxLink;
-import de.flower.common.ui.ajax.AjaxSubmitLink;
+import de.flower.common.ui.ajax.markup.html.AjaxLink;
+import de.flower.common.ui.ajax.markup.html.form.AjaxSubmitLink;
 import de.flower.common.ui.ajax.panel.AjaxSlideTogglePanel;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;

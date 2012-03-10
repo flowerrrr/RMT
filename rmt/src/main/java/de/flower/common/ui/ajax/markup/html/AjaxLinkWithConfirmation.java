@@ -1,4 +1,4 @@
-package de.flower.common.ui.ajax;
+package de.flower.common.ui.ajax.markup.html;
 
 import org.apache.wicket.ajax.IAjaxCallDecorator;
 import org.apache.wicket.ajax.calldecorator.AjaxPreprocessingCallDecorator;

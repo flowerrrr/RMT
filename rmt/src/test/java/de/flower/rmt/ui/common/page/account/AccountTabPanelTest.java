@@ -10,18 +10,18 @@ import static org.testng.Assert.*;
 /**
  * @author flowerrrr
  */
-public class AccountMainPanelTest extends AbstractWicketIntegrationTests {
+public class AccountTabPanelTest extends AbstractWicketIntegrationTests {
 
     @Test
     public void testRender() {
-        wicketTester.startComponentInPage(new AccountMainPanel());
+        wicketTester.startComponentInPage(new AccountTabPanel());
         wicketTester.dumpComponentWithPage();
     }
 
     @Test
     public void testShowTabPanel() {
         PageParameters params = new PageParameters();
-        params.set(AccountMainPanel.TAB_INDEX_KEY, AccountMainPanel.PASSWORD_RESET_PANEL_INDEX);
+        params.set(AccountTabPanel.TAB_INDEX_KEY, AccountTabPanel.PASSWORD_RESET_PANEL_INDEX);
         wicketTester.startPage(AccountPage.class, params);
         wicketTester.dumpPage();
         Component panel = wicketTester.getComponentFromLastRenderedPage("tabs:panel");

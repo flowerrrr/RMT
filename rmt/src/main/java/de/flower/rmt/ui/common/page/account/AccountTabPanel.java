@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.common.page.account;
 
+import de.flower.common.ui.ajax.markup.html.tab.AbstractAjaxTabbedPanel;
 import de.flower.rmt.model.User;
-import de.flower.rmt.ui.common.panel.AbstractAjaxTabbedPanel;
 import de.flower.rmt.ui.model.UserModel;
 import org.apache.wicket.extensions.markup.html.tabs.AbstractTab;
 import org.apache.wicket.extensions.markup.html.tabs.ITab;
@@ -14,11 +14,11 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class AccountMainPanel extends AbstractAjaxTabbedPanel<User> {
+public class AccountTabPanel extends AbstractAjaxTabbedPanel<User> {
 
     public static final int PASSWORD_RESET_PANEL_INDEX = 1;
 
-    public AccountMainPanel() {
+    public AccountTabPanel() {
     }
 
     @Override

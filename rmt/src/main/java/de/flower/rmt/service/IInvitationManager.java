@@ -31,5 +31,7 @@ public interface IInvitationManager {
 
     Invitation save(Invitation invitation);
 
+    void delete(Invitation invitation);
+
     void markInvitationSent(Event event, List<String> addressList);
 }

@@ -8,6 +8,7 @@ import de.flower.rmt.model.type.Password;
 import de.flower.rmt.ui.common.page.account.AccountPage;
 import de.flower.rmt.ui.common.page.login.LoginPage;
 import de.flower.rmt.ui.manager.ManagerHomePage;
+import de.flower.rmt.ui.manager.page.event.EventEditPage;
 import de.flower.rmt.ui.manager.page.events.EventsPage;
 import de.flower.rmt.ui.manager.page.opponents.OpponentsPage;
 import de.flower.rmt.ui.manager.page.players.PlayersPage;
@@ -73,6 +74,7 @@ public class RMTApplication extends WebApplication {
         mountPage("manager/teams", TeamsPage.class);
         mountPage("manager/players", PlayersPage.class);
         mountPage("manager/events", EventsPage.class);
+        mountPage("manager/event/${" + EventPage.PARAM_EVENTID + "}", EventEditPage.class);
         mountPage("manager/opponents", OpponentsPage.class);
         mountPage("manager/venues", VenuesPage.class);
         mountPage("player", PlayerHomePage.class);

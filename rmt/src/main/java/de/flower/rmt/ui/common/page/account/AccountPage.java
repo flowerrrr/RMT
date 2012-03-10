@@ -9,7 +9,7 @@ public class AccountPage extends CommonBasePage {
 
     public AccountPage() {
         setHeading("account.heading", "account.heading.sub");
-        addMainPanel(new AccountMainPanel());
+        addMainPanel(new AccountTabPanel());
         // addSecondaryPanel(new Label("foobar", "Put some useful stuff here"));
     }
 

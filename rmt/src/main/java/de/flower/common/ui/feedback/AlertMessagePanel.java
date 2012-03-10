@@ -1,6 +1,6 @@
 package de.flower.common.ui.feedback;
 
-import de.flower.common.ui.ajax.AjaxLink;
+import de.flower.common.ui.ajax.markup.html.AjaxLink;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.basic.Label;

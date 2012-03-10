@@ -2,9 +2,11 @@ package de.flower.rmt.ui.manager.page.event;
 
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IEventManager;
+import de.flower.rmt.ui.common.page.event.EventDetailsPanel;
 import de.flower.rmt.ui.common.page.event.EventPagerPanel;
 import de.flower.rmt.ui.manager.ManagerBasePage;
 import de.flower.rmt.ui.manager.NavigationPanel;
+import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -21,7 +23,14 @@ public class EventEditPage extends ManagerBasePage {
 
     public EventEditPage(IModel<Event> model) {
         setHeading("manager.event.edit.heading", null);
-        addMainPanel(new EventEditPanel(model));
+        final EventTabPanel tabPanel;
+        addMainPanel(tabPanel = new EventTabPanel(model) {
+            @Override
+            protected void onAjaxUpdate(final AjaxRequestTarget target, final int selectedTab) {
+                // allow secondary panel to update when tabs change
+                target.add(getSecondaryPanel());
+            }
+        });
         addSecondaryPanel(new EventPagerPanel(model, getListModel()) {
 
             @Override
@@ -29,6 +38,12 @@ public class EventEditPage extends ManagerBasePage {
                 setResponsePage(new EventEditPage(model));
             }
 
+        });
+        getSecondaryPanel().add(new EventDetailsPanel(model) {
+            @Override
+            public boolean isVisible() {
+                return tabPanel.getSelectedTab() == EventTabPanel.INVITATIONS_PANEL_INDEX;
+            }
         });
     }
 

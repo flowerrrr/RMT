@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.common.form;
 
-import de.flower.common.ui.ajax.AjaxSubmitLink;
+import de.flower.common.ui.ajax.markup.html.form.AjaxSubmitLink;
 import de.flower.common.util.Check;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;

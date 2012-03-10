@@ -1,6 +1,7 @@
 package de.flower.rmt.ui.manager.page.squad;
 
-import de.flower.common.ui.ajax.AjaxLinkWithConfirmation;
+import de.flower.common.ui.ajax.markup.html.AjaxLinkWithConfirmation;
+import de.flower.common.ui.ajax.markup.html.tab.AbstractAjaxTabbedPanel;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
@@ -9,7 +10,6 @@ import de.flower.rmt.model.Player_;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.service.IPlayerManager;
 import de.flower.rmt.service.ITeamManager;
-import de.flower.rmt.ui.common.panel.AbstractAjaxTabbedPanel;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.common.panel.DropDownMenuPanel;
 import de.flower.rmt.ui.manager.page.player.PlayerMainPanel;

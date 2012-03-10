@@ -3,7 +3,7 @@ package de.flower.rmt.ui.common.form;
 import de.flower.common.test.StringUtils;
 import de.flower.common.test.wicket.AbstractWicketUnitTests;
 import de.flower.common.test.wicket.WicketTesterHelper;
-import de.flower.common.ui.ajax.AjaxSubmitLink;
+import de.flower.common.ui.ajax.markup.html.form.AjaxSubmitLink;
 import de.flower.rmt.test.Assert;
 import de.flower.rmt.ui.common.form.field.TextFieldPanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
