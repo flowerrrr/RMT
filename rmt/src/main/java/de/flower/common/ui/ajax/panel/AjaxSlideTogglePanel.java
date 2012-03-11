@@ -10,7 +10,9 @@ import org.apache.wicket.markup.html.panel.Panel;
 
 /**
  * @author flowerrrr
+ * @deprecated Use @link AjaxSlideToggleBehavior
  */
+@Deprecated
 public class AjaxSlideTogglePanel extends Panel {
 
     private String contentId;

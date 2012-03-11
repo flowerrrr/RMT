@@ -6,9 +6,13 @@ import de.flower.rmt.ui.common.page.event.EventDetailsPanel;
 import de.flower.rmt.ui.common.page.event.EventPagerPanel;
 import de.flower.rmt.ui.manager.ManagerBasePage;
 import de.flower.rmt.ui.manager.NavigationPanel;
+import de.flower.rmt.ui.model.EventModel;
+import de.flower.rmt.ui.player.page.event.EventPage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
+import org.apache.wicket.request.http.flow.AbortWithHttpErrorCodeException;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import java.util.List;
@@ -21,7 +25,23 @@ public class EventEditPage extends ManagerBasePage {
     @SpringBean
     private IEventManager eventManager;
 
+    public EventEditPage(PageParameters params) {
+        Event event = null;
+        try {
+            Long eventId = params.get(EventPage.PARAM_EVENTID).toLong();
+            event = eventManager.loadById(eventId);
+        } catch (Exception e) {
+            throw new AbortWithHttpErrorCodeException(404, "Invalid page parameter.");
+        }
+        init(new EventModel(event));
+    }
+
     public EventEditPage(IModel<Event> model) {
+        super(model);
+        init(model);
+    }
+
+    private void init(IModel<Event> model)  {
         setHeading("manager.event.edit.heading", null);
         final EventTabPanel tabPanel;
         addMainPanel(tabPanel = new EventTabPanel(model) {
@@ -37,12 +57,17 @@ public class EventEditPage extends ManagerBasePage {
             protected void onClick(IModel<Event> model) {
                 setResponsePage(new EventEditPage(model));
             }
-
         });
         getSecondaryPanel().add(new EventDetailsPanel(model) {
             @Override
             public boolean isVisible() {
                 return tabPanel.getSelectedTab() == EventTabPanel.INVITATIONS_PANEL_INDEX;
+            }
+        });
+        getSecondaryPanel().add(new InviteeSecondaryPanel(model) {
+            @Override
+            public boolean isVisible() {
+                return tabPanel.getSelectedTab() == EventTabPanel.INVITEES_PANEL_INDEX;
             }
         });
     }
@@ -56,10 +81,8 @@ public class EventEditPage extends ManagerBasePage {
         };
     }
 
-
     @Override
     public String getActiveTopBarItem() {
         return NavigationPanel.EVENTS;
     }
-
 }

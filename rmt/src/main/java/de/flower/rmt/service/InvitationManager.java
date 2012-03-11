@@ -134,4 +134,12 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     public void markInvitationSent(final Event event, final List<String> addressList) {
         invitationRepo.markInvitationSent(event, addressList);
     }
+
+    @Override
+    public void addUsers(final Event entity, final List<User> users) {
+        for (User user : users) {
+            Invitation invitation = newInstance(entity, user);
+            save(invitation);
+        }
+    }
 }

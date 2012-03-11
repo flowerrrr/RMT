@@ -2,6 +2,7 @@ package de.flower.rmt.service;
 
 import de.flower.rmt.model.Team;
 import de.flower.rmt.model.User;
+import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.type.Password;
 
 import javax.persistence.metamodel.Attribute;
@@ -40,6 +41,14 @@ public interface IUserManager {
      * @return
      */
     List<User> findAllUnassignedPlayers(Team team);
+
+    /**
+     * Returns all players of the club that are not invited to the given event.
+     *
+     * @param event
+     * @return
+     */
+    List<User> findAllUninvitedPlayers(Event event);
 
     /**
      * Initialized the password fields with a

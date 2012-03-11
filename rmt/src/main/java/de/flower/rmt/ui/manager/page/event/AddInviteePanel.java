@@ -1,14 +1,14 @@
-package de.flower.rmt.ui.manager.page.squad;
+package de.flower.rmt.ui.manager.page.event;
 
 import de.flower.common.ui.ajax.markup.html.AjaxLink;
 import de.flower.common.ui.ajax.markup.html.form.AjaxSubmitLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
-import de.flower.rmt.model.Player;
-import de.flower.rmt.model.Team;
+import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.User;
-import de.flower.rmt.service.ITeamManager;
+import de.flower.rmt.model.event.Event;
+import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.service.IUserManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -29,28 +29,28 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class AddPlayerPanel extends BasePanel<Team> {
+public class AddInviteePanel extends BasePanel<Event> {
+
+    @SpringBean
+    private IInvitationManager invitationManager;
 
     @SpringBean
     private IUserManager userManager;
 
-    @SpringBean
-    private ITeamManager teamManager;
-
     /** Ok to store entities in field cause field is dismissed when panel is processed. */
-    private List<User> selectedPlayers = new ArrayList<User>();
+    private List<User> selectedUsers = new ArrayList<User>();
 
-    public AddPlayerPanel(final IModel<Team> model) {
+    public AddInviteePanel(final IModel<Event> model) {
 
         Form form = new Form("form");
         add(form);
 
         // list of not-assigned players
-        WebMarkupContainer playerListContainer = new WebMarkupContainer("playerListContainer");
-        form.add(playerListContainer);
-        CheckGroup group = new CheckGroup("group", selectedPlayers);
-        playerListContainer.add(group);
-        ListView playerList = new ListView<User>("playerList", getListModel(model)) {
+        WebMarkupContainer listContainer = new WebMarkupContainer("listContainer");
+        form.add(listContainer);
+        CheckGroup group = new CheckGroup("group", selectedUsers);
+        listContainer.add(group);
+        ListView playerList = new ListView<User>("list", getListModel(model)) {
 
             @Override
             protected void populateItem(ListItem<User> item) {
@@ -66,8 +66,8 @@ public class AddPlayerPanel extends BasePanel<Team> {
         form.add(new AjaxSubmitLink("addButton") {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-                teamManager.addPlayers(model.getObject(), selectedPlayers);
-                target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Player.class)));
+                invitationManager.addUsers(model.getObject(), selectedUsers);
+                target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Invitation.class)));
                 close(target);
             }
         });
@@ -79,7 +79,7 @@ public class AddPlayerPanel extends BasePanel<Team> {
             }
         });
 
-        add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Player.class)));
+        add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Invitation.class)));
     }
 
     /**
@@ -87,17 +87,17 @@ public class AddPlayerPanel extends BasePanel<Team> {
      *
      * @return
      */
-    private IModel<List<User>> getListModel(final IModel<Team> model) {
+    private IModel<List<User>> getListModel(final IModel<Event> model) {
         return new LoadableDetachableModel<List<User>>() {
             @Override
             protected List<User> load() {
-                return userManager.findAllUnassignedPlayers(model.getObject());
+                return userManager.findAllUninvitedPlayers(model.getObject());
             }
         };
     }
 
     private void close(AjaxRequestTarget target) {
-        selectedPlayers.clear();
+        selectedUsers.clear();
         onClose(target);
     }
 

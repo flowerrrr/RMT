@@ -3,10 +3,12 @@ package de.flower.rmt.service;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.User_;
+import de.flower.rmt.model.event.Event;
 import de.flower.rmt.test.AbstractIntegrationTests;
 import org.hibernate.LazyInitializationException;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.testng.Assert.*;
@@ -67,6 +69,18 @@ public class UserManagerTest extends AbstractIntegrationTests {
         }
         users = userManager.findAllUnassignedPlayers(team);
         assertTrue(users.isEmpty());
+    }
+
+    @Test
+    public void testUninvitedPlayers() {
+        Event event = testData.createEventWithoutResponses();
+        List<User> users = userManager.findAllUninvitedPlayers(event);
+        assertFalse(users.isEmpty());
+        User u = users.get(0);
+        invitationManager.addUsers(event, Arrays.asList(u));
+        List<User> users2 = userManager.findAllUninvitedPlayers(event);
+        assertEquals(users2.size() + 1, users.size());
+        assertFalse(users2.contains(u));
     }
 
     @Test

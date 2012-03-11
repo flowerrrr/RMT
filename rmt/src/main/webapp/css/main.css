@@ -565,7 +565,7 @@ textarea {
 /*************************************************************************
     Squad Page - Add player panel
 **************************************************************************/
-.add-player-panel {
+.add-player-panel, .add-invitee-panel {
     margin-top: 10px;
 
     .info-text {

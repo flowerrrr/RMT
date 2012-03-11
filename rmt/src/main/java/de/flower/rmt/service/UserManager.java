@@ -6,6 +6,7 @@ import de.flower.rmt.model.Role;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.User_;
+import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.type.Password;
 import de.flower.rmt.repository.IRoleRepo;
 import de.flower.rmt.repository.IUserRepo;
@@ -105,12 +106,17 @@ public class UserManager extends AbstractService implements IUserManager {
     @Override
     public List<User> findAllByTeam(final Team team) {
         Check.notNull(team);
-        return userRepo.findByTeam(team);
+        return userRepo.findAllByTeam(team);
     }
 
     @Override
     public List<User> findAllUnassignedPlayers(final Team team) {
-        return userRepo.findUnassignedPlayers(team, getClub());
+        return userRepo.findAllUnassignedPlayers(team, getClub());
+    }
+
+    @Override
+    public List<User> findAllUninvitedPlayers(final Event event) {
+        return userRepo.findAllUninvitedPlayers(event, getClub());
     }
 
     @Override

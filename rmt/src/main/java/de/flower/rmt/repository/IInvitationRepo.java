@@ -19,14 +19,14 @@ import java.util.List;
  */
 public interface IInvitationRepo extends IRepository<Invitation, Long> {
 
-    List<Invitation> findByEventAndStatusOrderByDateAsc(Event event, RSVPStatus rsvpStatus);
+    List<Invitation> findAllByEventAndStatusOrderByDateAsc(Event event, RSVPStatus rsvpStatus);
 
     @Query("select count(r) from Invitation r where r.event = :event and r.status = :status")
     Long numByEventAndStatus(@Param("event") Event event, @Param("status") RSVPStatus rsvpStatus);
 
     Invitation findByEventAndUser(Event event, User user);
 
-    List<Invitation> findByEvent(Event event);
+    List<Invitation> findAllByEvent(Event event);
 
     @Modifying
     @Query("update Invitation i set i.invitationSent = true where i.event = :event and i.user in (select u from User u where u.email in (:addressList))")

@@ -34,4 +34,12 @@ public interface IInvitationManager {
     void delete(Invitation invitation);
 
     void markInvitationSent(Event event, List<String> addressList);
+
+    /**
+     * Create invitations for given users.
+     *
+     * @param entity
+     * @param users
+     */
+    void addUsers(Event entity, List<User> users);
 }

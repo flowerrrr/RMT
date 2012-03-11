@@ -3,6 +3,7 @@ package de.flower.rmt.repository;
 import de.flower.rmt.model.Club;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.model.User;
+import de.flower.rmt.model.event.Event;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -15,11 +16,15 @@ public interface IUserRepo extends IRepository<User, Long> {
 
     User findByEmail(String username);
 
-    List<User> findByClub(Club club);
+    List<User> findAllByClub(Club club);
 
     @Query("select u from User u where u.club = :club and u not in (select u2 from Player p join p.user u2 where p.team = :team)")
-    List<User> findUnassignedPlayers(@Param("team") Team team, @Param("club") Club club);
+    List<User> findAllUnassignedPlayers(@Param("team") Team team, @Param("club") Club club);
+
+    @Query("select u from User u where u.club = :club and u not in (select u2 from Invitation i join i.user u2 where i.event = :event)")
+    List<User> findAllUninvitedPlayers(@Param("event") Event event, @Param("club") Club club);
 
     @Query("select u from User u join u.players p where p.team = :team")
-    List<User> findByTeam(@Param("team") Team team);
+    List<User> findAllByTeam(@Param("team") Team team);
+
 }

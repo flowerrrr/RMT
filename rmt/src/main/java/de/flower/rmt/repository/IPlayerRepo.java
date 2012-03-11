@@ -15,9 +15,9 @@ import java.util.List;
  */
 public interface IPlayerRepo extends IRepository<Player, Long> {
 
-    List<Player> findByTeam(Team team);
+    List<Player> findAllByTeam(Team team);
 
     Player findByTeamAndUser(Team team, User user);
 
-    List<Player> findByUser(User user);
+    List<Player> findAllByUser(User user);
 }

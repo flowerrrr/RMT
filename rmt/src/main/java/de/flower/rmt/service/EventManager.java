@@ -58,11 +58,7 @@ public class EventManager extends AbstractService implements IEventManager {
         if (createInvitations) {
             // for every user that is a player of the team of this event a invitation will be created
             List<User> users = userManager.findAllByTeam(entity.getTeam());
-            for (User user : users) {
-                // TODO (flowerrrr - 15.12.11) replace by one call to invitationManager
-                Invitation invitation = invitationManager.newInstance(entity, user);
-                invitationManager.save(invitation);
-            }
+            invitationManager.addUsers(entity, users);
         }
     }
 
@@ -86,7 +82,7 @@ public class EventManager extends AbstractService implements IEventManager {
     public List<Event> findAllUpcomingByUser(final User user) {
         Check.notNull(user);
         Date date = new LocalDate().toDate();
-        return eventRepo.findUpcomingByInvitee(user, date);
+        return eventRepo.findAllUpcomingByInvitee(user, date);
     }
 
     @Override
