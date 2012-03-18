@@ -4,6 +4,7 @@ import de.flower.common.ui.ajax.markup.html.AjaxLinkWithConfirmation;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
+import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.service.ITeamManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
@@ -15,7 +16,6 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.ResourceModel;
@@ -42,7 +42,7 @@ public class TeamListPanel extends BasePanel {
                 return listModel.getObject().isEmpty();
             }
         });
-        listContainer.add(new ListView<Team>("list", listModel) {
+        listContainer.add(new EntityListView<Team>("list", listModel) {
             @Override
             public boolean isVisible() {
                 return !getList().isEmpty();

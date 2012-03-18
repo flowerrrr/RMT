@@ -1,10 +1,11 @@
 package de.flower.rmt.ui.common.panel;
 
+import de.flower.common.model.IEntity;
+import de.flower.common.ui.markup.html.list.EntityListView;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.border.Border;
 import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public abstract class ListViewPanel<T> extends Border {
+public abstract class ListViewPanel<T extends IEntity> extends Border {
 
     public ListViewPanel(final String id, final IModel<List<T>> listModel, final IModel<String> noEntryModel) {
         super(id, listModel);
@@ -22,7 +23,7 @@ public abstract class ListViewPanel<T> extends Border {
                 return listModel.getObject().isEmpty();
             }
         }.add(new Label("noEntryLabel", noEntryModel)));
-        add(new ListView<T>("list", listModel) {
+        add(new EntityListView<T>("list", listModel) {
             @Override
             public boolean isVisible() {
                 return !getList().isEmpty();

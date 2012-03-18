@@ -5,6 +5,7 @@ import de.flower.common.ui.ajax.markup.html.form.AjaxSubmitLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
+import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
@@ -50,7 +51,7 @@ public class AddInviteePanel extends BasePanel<Event> {
         form.add(listContainer);
         CheckGroup group = new CheckGroup("group", selectedUsers);
         listContainer.add(group);
-        ListView playerList = new ListView<User>("list", getListModel(model)) {
+        ListView playerList = new EntityListView<User>("list", getListModel(model)) {
 
             @Override
             protected void populateItem(ListItem<User> item) {

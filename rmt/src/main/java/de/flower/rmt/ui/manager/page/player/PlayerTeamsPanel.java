@@ -1,6 +1,7 @@
 package de.flower.rmt.ui.manager.page.player;
 
 import de.flower.common.ui.form.BooleanDropDownChoice;
+import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.rmt.model.Player;
 import de.flower.rmt.model.Player_;
 import de.flower.rmt.model.User;
@@ -43,7 +44,7 @@ public class PlayerTeamsPanel extends BasePanel<User> {
         };
         add(noTeam);
 
-        ListView<Player> list = new ListView<Player>("list", listModel) {
+        ListView<Player> list = new EntityListView<Player>("list", listModel) {
 
             @Override
             public boolean isVisible() {

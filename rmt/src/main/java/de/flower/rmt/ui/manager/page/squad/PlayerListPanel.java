@@ -5,6 +5,7 @@ import de.flower.common.ui.ajax.markup.html.tab.AbstractAjaxTabbedPanel;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
+import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.rmt.model.Player;
 import de.flower.rmt.model.Player_;
 import de.flower.rmt.model.Team;
@@ -20,7 +21,6 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.ResourceModel;
@@ -52,7 +52,7 @@ public class PlayerListPanel extends BasePanel<Team> {
                 return listModel.getObject().isEmpty();
             }
         });
-        playerListContainer.add(new ListView<Player>("playerList", listModel) {
+        playerListContainer.add(new EntityListView<Player>("playerList", listModel) {
 
             @Override
             public boolean isVisible() {

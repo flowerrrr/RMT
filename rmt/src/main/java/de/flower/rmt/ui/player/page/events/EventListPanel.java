@@ -2,6 +2,7 @@ package de.flower.rmt.ui.player.page.events;
 
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
+import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.User;
@@ -19,7 +20,6 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
@@ -48,7 +48,7 @@ public class EventListPanel extends BasePanel {
                 return listModel.getObject().isEmpty();
             }
         });
-        listContainer.add(new ListView<Event>("list", listModel) {
+        listContainer.add(new EntityListView<Event>("list", listModel) {
             @Override
             public boolean isVisible() {
                 return !getList().isEmpty();

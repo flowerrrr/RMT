@@ -4,6 +4,7 @@ import de.flower.common.ui.ajax.markup.html.AjaxLinkWithConfirmation;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
+import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.rmt.model.Venue;
 import de.flower.rmt.service.IVenueManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
@@ -14,7 +15,6 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -34,7 +34,7 @@ public class VenueListPanel extends BasePanel {
         WebMarkupContainer listContainer = new WebMarkupContainer("listContainer");
         add(listContainer);
 
-        listContainer.add(new ListView<Venue>("list", listModel) {
+        listContainer.add(new EntityListView<Venue>("list", listModel) {
             @Override
             protected void populateItem(final ListItem<Venue> item) {
                 Link editLink = createEditLink("editLink", item);

@@ -4,6 +4,7 @@ import de.flower.common.ui.ajax.markup.html.AjaxLinkWithConfirmation;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
+import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.common.ui.tooltips.TwipsyBehavior;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.User_;
@@ -20,7 +21,6 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.ResourceModel;
@@ -46,7 +46,7 @@ public class PlayerListPanel extends BasePanel {
 
         WebMarkupContainer playerListContainer = new WebMarkupContainer("listContainer");
         add(playerListContainer);
-        playerListContainer.add(new ListView<User>("playerList", getPlayerListModel()) {
+        playerListContainer.add(new EntityListView<User>("playerList", getPlayerListModel()) {
 
             @Override
             protected void populateItem(final ListItem<User> item) {

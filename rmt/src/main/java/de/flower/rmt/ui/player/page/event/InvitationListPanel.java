@@ -1,5 +1,6 @@
 package de.flower.rmt.ui.player.page.event;
 
+import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.Invitation_;
@@ -40,7 +41,7 @@ public class InvitationListPanel extends BasePanel {
     }
 
     private Component createListView(String id, RSVPStatus status, IModel<Event> model, final boolean printOrder) {
-        ListView list = new ListView<Invitation>(id, getInvitationList(model, status)) {
+        ListView list = new EntityListView<Invitation>(id, getInvitationList(model, status)) {
             @Override
             protected void populateItem(ListItem<Invitation> item) {
                 item.add(createInvitationFragement(item, printOrder));

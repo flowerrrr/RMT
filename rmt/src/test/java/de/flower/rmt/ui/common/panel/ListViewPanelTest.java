@@ -1,5 +1,6 @@
 package de.flower.rmt.ui.common.panel;
 
+import de.flower.common.model.IEntity;
 import de.flower.common.test.wicket.AbstractWicketUnitTests;
 import org.apache.wicket.markup.Markup;
 import org.apache.wicket.markup.html.basic.Label;
@@ -20,7 +21,7 @@ public class ListViewPanelTest extends AbstractWicketUnitTests {
 
     @Test
     public void testRender() {
-        wicketTester.startComponentInPage(new TestPanel(Model.of(Arrays.asList(new Object(), new Object()))));
+        wicketTester.startComponentInPage(new TestPanel(Model.of(Arrays.asList(new TestEntity(), new TestEntity()))));
         wicketTester.dumpComponentWithPage();
         wicketTester.assertInvisible("panel:listContainer:noEntry");
     }
@@ -38,10 +39,10 @@ public class ListViewPanelTest extends AbstractWicketUnitTests {
         public TestPanel(IModel<?> listModel) {
             super("panel");
 
-            ListViewPanel listView = new ListViewPanel<Object>("listContainer", (IModel<List<Object>>) listModel, Model.of("no entry in this list")) {
+            ListViewPanel listView = new ListViewPanel<IEntity>("listContainer", (IModel<List<IEntity>>) listModel, Model.of("no entry in this list")) {
 
                 // @Override
-                protected void populateItem(final ListItem<Object> item) {
+                protected void populateItem(final ListItem<IEntity> item) {
                     item.add(new Label("label", item.getModelObject().toString()));
                 }
             };
@@ -51,6 +52,19 @@ public class ListViewPanelTest extends AbstractWicketUnitTests {
         @Override
         public Markup getAssociatedMarkup() {
             return Markup.of("<wicket:panel><div wicket:id='listContainer'><table><tr><td>Label</td></tr>\n<tr wicket:id='list'><td><span wicket:id='label'/></td>\n</tr>\n</table></div></wicket:panel>");
+        }
+    }
+
+    public static class TestEntity implements IEntity {
+
+        @Override
+        public boolean isNew() {
+            return false;
+        }
+
+        @Override
+        public Long getId() {
+            return (long) hashCode();
         }
     }
 }

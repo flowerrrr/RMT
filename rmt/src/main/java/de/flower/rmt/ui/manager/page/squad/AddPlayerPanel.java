@@ -5,6 +5,7 @@ import de.flower.common.ui.ajax.markup.html.form.AjaxSubmitLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
+import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.rmt.model.Player;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.model.User;
@@ -50,7 +51,7 @@ public class AddPlayerPanel extends BasePanel<Team> {
         form.add(playerListContainer);
         CheckGroup group = new CheckGroup("group", selectedPlayers);
         playerListContainer.add(group);
-        ListView playerList = new ListView<User>("playerList", getListModel(model)) {
+        ListView playerList = new EntityListView<User>("playerList", getListModel(model)) {
 
             @Override
             protected void populateItem(ListItem<User> item) {
