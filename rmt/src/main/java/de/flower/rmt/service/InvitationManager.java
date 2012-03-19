@@ -127,6 +127,7 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     @Override
     @Transactional(readOnly = false)
     public void delete(final Invitation invitation) {
+        // TODO (flowerrrr - 19.03.12)  implement smart objectstateaware loading if softdeleting entities.
         throw new UnsupportedOperationException("Feature not implemented!");
     }
 

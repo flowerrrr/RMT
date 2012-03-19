@@ -34,7 +34,7 @@ public class OpponentManager extends AbstractService implements IOpponentManager
 
     @Override
     public List<Opponent> findAll() {
-        return opponentRepo.findAllByClub(getClub());
+        return opponentRepo.findAll();
     }
 
     @Override

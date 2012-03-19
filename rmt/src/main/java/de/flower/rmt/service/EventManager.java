@@ -73,8 +73,7 @@ public class EventManager extends AbstractService implements IEventManager {
 
     @Override
     public List<Event> findAll(Attribute... attributes) {
-        Specification hasClub = eq(Event_.club, getClub());
-        List<Event> list = eventRepo.findAll(where(hasClub).and(desc(Event_.date)).and(fetch(attributes)));
+        List<Event> list = eventRepo.findAll(where(desc(Event_.date)).and(fetch(attributes)));
         return list;
     }
 
@@ -89,6 +88,7 @@ public class EventManager extends AbstractService implements IEventManager {
     @Transactional(readOnly = false)
     public void delete(Event entity) {
         // TODO (flowerrrr - 11.06.11) decide whether to soft or hard delete entity.
+        // if soft delete take care of objectstateaware loading
         eventRepo.reattach(entity);
         assertClub(entity);
         eventRepo.delete(entity);
@@ -106,7 +106,7 @@ public class EventManager extends AbstractService implements IEventManager {
         Event event = loadById(id);
         // is this event related to the club of the user?
         Check.isEqual(event.getClub(), user.getClub());
-        // is user an invitation of this event
+        // is user an invitee of this event
         Invitation invitation = invitationManager.loadByEventAndUser(event, user);
         Check.notNull(invitation);
         return event;

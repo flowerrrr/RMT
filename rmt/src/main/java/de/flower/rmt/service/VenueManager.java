@@ -2,11 +2,8 @@ package de.flower.rmt.service;
 
 import de.flower.common.util.Check;
 import de.flower.rmt.model.Venue;
-import de.flower.rmt.model.Venue_;
 import de.flower.rmt.repository.IVenueRepo;
-import de.flower.rmt.repository.Specs;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,8 +35,7 @@ public class VenueManager extends AbstractService implements IVenueManager {
 
     @Override
     public List<Venue> findAll(final Attribute... attributes) {
-        Specification hasClub = Specs.eq(Venue_.club, getClub());
-        List<Venue> list = venueRepo.findAll(hasClub);
+        List<Venue> list = venueRepo.findAll();
         return list;
     }
 

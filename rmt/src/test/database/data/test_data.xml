@@ -43,7 +43,6 @@
     <team id="1" name="Juventus Urin" club_id="1" />
     <team id="2" name="Juve Amateure" club_id="1" />
     <team id="3" name="Socca Five" club_id="1" />
-
     <team id="10" name="FC Bayern Profis" club_id="2" />
 
     <opponent id="1" name="Dynamo Genschman" club_id="1" />

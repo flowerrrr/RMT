@@ -2,14 +2,12 @@ package de.flower.rmt.service;
 
 import de.flower.common.service.security.IPasswordGenerator;
 import de.flower.common.util.Check;
-import de.flower.rmt.model.Role;
-import de.flower.rmt.model.Team;
-import de.flower.rmt.model.User;
-import de.flower.rmt.model.User_;
+import de.flower.rmt.model.*;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.type.Password;
 import de.flower.rmt.repository.IRoleRepo;
 import de.flower.rmt.repository.IUserRepo;
+import de.flower.rmt.repository.Specs;
 import de.flower.rmt.service.mail.INotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
@@ -98,15 +96,15 @@ public class UserManager extends AbstractService implements IUserManager {
 
     @Override
     public List<User> findAll(final Attribute... attributes) {
-        Specification hasClub = eq(User_.club, getClub());
-        List<User> list = userRepo.findAll(where(hasClub).and(fetch(attributes)));
+        List<User> list = userRepo.findAll(where(fetch(attributes)));
         return list;
     }
 
     @Override
     public List<User> findAllByTeam(final Team team) {
         Check.notNull(team);
-        return userRepo.findAllByTeam(team);
+        Specification spec = Specs.joinEq(User_.players, Player_.team, team);
+        return userRepo.findAll(spec);
     }
 
     @Override

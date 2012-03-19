@@ -1,6 +1,5 @@
 package de.flower.rmt.repository;
 
-import de.flower.rmt.model.Club;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 import org.springframework.data.jpa.repository.Query;
@@ -17,8 +16,6 @@ import java.util.List;
  * @author flowerrrr
  */
 public interface IEventRepo extends IRepository<Event, Long> {
-
-    List<Event> findAllByClub(Club club);
 
     /**
      * Make join to table team to eager fetch this association. it is needed in the eventlistpanel.

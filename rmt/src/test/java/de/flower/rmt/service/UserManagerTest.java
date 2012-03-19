@@ -33,6 +33,17 @@ public class UserManagerTest extends AbstractIntegrationTests {
     }
 
     /**
+     * Test verifies that multitenancy is working.
+     */
+    @Test
+    public void testFindAllFiltersByClub() {
+        List<User> list = userManager.findAll(User_.club);
+        for (User u : list) {
+            assertEquals(u.getClub(), securityService.getUser().getClub());
+        }
+    }
+
+    /**
      * Test that forces lazy init ex.
      */
     @Test(expectedExceptions = {LazyInitializationException.class})

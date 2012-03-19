@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author flowerrrr
  */
 @MappedSuperclass
-public abstract class AbstractBaseEntity implements Serializable, IEntity, Cloneable {
+public abstract class AbstractBaseEntity implements Serializable, IEntity, IObjectStatusAware, Cloneable {
 
     /**
      * This constant is only needed for serialization purposes. It overwrites the default mechanism and so makes the BE longer binary compatible
@@ -18,8 +18,12 @@ public abstract class AbstractBaseEntity implements Serializable, IEntity, Clone
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    protected AbstractBaseEntity() {
+    @Enumerated(EnumType.ORDINAL)
+    @Column
+    private ObjectStatus objectStatus;
 
+    protected AbstractBaseEntity() {
+        this.objectStatus = ObjectStatus.ACTIVE;
     }
 
     /**
@@ -44,6 +48,26 @@ public abstract class AbstractBaseEntity implements Serializable, IEntity, Clone
     @Override
     public boolean isNew() {
         return (getId() == null);
+    }
+
+    public ObjectStatus getObjectStatus() {
+        return this.objectStatus;
+    }
+
+    public void setObjectStatus(ObjectStatus objectStatus) {
+        this.objectStatus = objectStatus;
+    }
+
+    public final boolean isActive() {
+        return objectStatus == ObjectStatus.ACTIVE;
+    }
+
+    public final boolean isDeleted() {
+        return objectStatus == ObjectStatus.DELETED;
+    }
+
+    public final boolean isFixed() {
+        return objectStatus == ObjectStatus.FIXED;
     }
 
     //---Methods

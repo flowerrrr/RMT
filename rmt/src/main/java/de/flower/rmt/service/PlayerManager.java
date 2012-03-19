@@ -8,6 +8,7 @@ import de.flower.rmt.model.event.Event;
 import de.flower.rmt.repository.IEventRepo;
 import de.flower.rmt.repository.IPlayerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,11 +45,14 @@ public class PlayerManager extends AbstractService implements IPlayerManager {
     }
 
     @Override
+    @Deprecated // not used
     public Player findByTeamAndUser(final Team team, final User user) {
-        return playerRepo.findByTeamAndUser(team, user);
+        Specifications spec = where(eq(Player_.team, team)).and(eq(Player_.user, user));
+        return playerRepo.findOne(spec);
     }
 
     @Override
+    @Deprecated // not used
     public Player findByEventAndUser(final Event event, final User user) {
         eventRepo.reattach(event);
         return findByTeamAndUser(event.getTeam(), user);
