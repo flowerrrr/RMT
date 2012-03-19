@@ -16,7 +16,7 @@ public interface IPlayerRepo extends IRepository<Player, Long> {
 
     // List<Player> findAllByTeam(Team team);
 
-    Player findByTeamAndUserAndNotObjectStatus(Team team, User user, ObjectStatus objectStatus);
+    Player findByTeamAndUserAndObjectStatusNot(Team team, User user, ObjectStatus objectStatus);
 
     // List<Player> findAllByUser(User user);
 }
