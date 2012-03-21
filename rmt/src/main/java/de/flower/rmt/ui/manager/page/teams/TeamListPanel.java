@@ -65,7 +65,7 @@ public class TeamListPanel extends BasePanel {
                 menuPanel.addLink(new AjaxLinkWithConfirmation("link", new ResourceModel("manager.teams.delete.confirm")) {
                     @Override
                     public void onClick(AjaxRequestTarget target) {
-                        teamManager.delete(item.getModelObject());
+                        teamManager.delete(item.getModelObject().getId());
                         target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(Team.class)));
                     }
                 }, "button.delete");

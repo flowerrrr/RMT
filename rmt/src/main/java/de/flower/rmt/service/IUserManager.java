@@ -28,7 +28,7 @@ public interface IUserManager {
      */
     void save(User user, boolean isManager);
 
-    void delete(User user);
+    void delete(Long id);
 
     List<User> findAll(Attribute... attributes);
 

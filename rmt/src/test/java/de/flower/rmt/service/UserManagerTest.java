@@ -105,4 +105,19 @@ public class UserManagerTest extends AbstractIntegrationTests {
         assertNotNull(user.getInitialPassword());
     }
 
+    @Test
+    public void testDelete() {
+        List<User> users = userManager.findAll();
+        for (User user : users) {
+            if (securityService.isCurrentUser(user)) {
+                continue;
+            }
+            userManager.delete(user.getId());
+            User deleted = userManager.loadById(user.getId());
+            assertTrue(deleted.isDeleted());
+        }
+        // only logged-in user remains undeleted
+        assertEquals(userManager.findAll().size(), 1);
+    }
+
  }

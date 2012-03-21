@@ -78,7 +78,7 @@ public class PlayerListPanel extends BasePanel {
 
                     @Override
                     public void onClick(AjaxRequestTarget target) {
-                        playerManager.delete(item.getModelObject());
+                        playerManager.delete(item.getModelObject().getId());
                         target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(User.class)));
                     }
                 }, "button.delete");

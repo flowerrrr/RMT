@@ -41,8 +41,10 @@ public class VenueManager extends AbstractService implements IVenueManager {
 
     @Override
     @Transactional(readOnly = false)
-    public void delete(Venue venue) {
-        throw new UnsupportedOperationException("Feature not implemented!");
+    public void delete(Long id) {
+        Venue entity = loadById(id);
+        entity.setName("DELETED-" + entity.getName());
+        venueRepo.softDelete(entity);
     }
 
     @Override

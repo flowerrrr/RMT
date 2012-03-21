@@ -1,5 +1,6 @@
 package de.flower.rmt.service;
 
+import de.flower.rmt.model.Team;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
@@ -34,6 +35,8 @@ public interface IEventManager {
     List<Event> findAllUpcomingByUser(User user);
 
     void delete(Event entity);
+
+    void deleteByTeam(Team entity);
 
     Event newInstance(EventType eventType);
 

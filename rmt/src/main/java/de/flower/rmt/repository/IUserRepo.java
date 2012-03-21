@@ -14,6 +14,8 @@ import java.util.List;
  */
 public interface IUserRepo extends IRepository<User, Long> {
 
+    User findByFullname(String candidate);
+
     User findByEmail(String username);
 
     @Query("select u from User u where u.objectStatus <> 1 and u.club = :club and u not in (select u2 from Player p join p.user u2 where p.team = :team)")
@@ -24,5 +26,6 @@ public interface IUserRepo extends IRepository<User, Long> {
 
 //    @Query("select u from User u join u.players p where p.team = :team")
 //    List<User> findAllByTeam(@Param("team") Team team);
+
 
 }

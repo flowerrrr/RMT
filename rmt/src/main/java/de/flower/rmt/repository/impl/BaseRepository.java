@@ -46,6 +46,11 @@ public class BaseRepository<T extends AbstractBaseEntity, ID extends Serializabl
         session.buildLockRequest(LockOptions.NONE).lock(entity);
     }
 
+    public void softDelete(T entity) {
+        entity.setObjectStatus(ObjectStatus.DELETED);
+        save(entity);
+    }
+
     //***************************************************************
     // Filtering of database reads.
     // Filters out all deleted entities.

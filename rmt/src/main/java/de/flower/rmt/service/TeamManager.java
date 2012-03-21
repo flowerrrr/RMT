@@ -1,6 +1,8 @@
 package de.flower.rmt.service;
 
+import com.google.common.base.Predicate;
 import de.flower.common.util.Check;
+import de.flower.common.util.NameFinder;
 import de.flower.rmt.model.*;
 import de.flower.rmt.repository.IPlayerRepo;
 import de.flower.rmt.repository.ITeamRepo;
@@ -31,6 +33,9 @@ public class TeamManager extends AbstractService implements ITeamManager {
     @Autowired
     private IUserRepo userRepo;
 
+    @Autowired
+    private IEventManager eventManager;
+
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void save(Team entity) {
@@ -54,12 +59,19 @@ public class TeamManager extends AbstractService implements ITeamManager {
         return teamRepo.findAll(spec);
     }
 
-
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-    public void delete(Team entity) {
-        // TODO (flowerrrr - 11.06.11) decide whether to soft or hard delete entity.
-        teamRepo.delete(entity);
+    public void delete(Long id) {
+        Team entity = loadById(id);
+        entity.setName(NameFinder.delete(entity.getName(), new Predicate<String>() {
+            @Override
+            public boolean apply(final String name) {
+                return teamRepo.findByName(name) == null;
+            }
+        }));
+        teamRepo.softDelete(entity);
+        // mark all events related to this team also as deleted
+        eventManager.deleteByTeam(entity);
     }
 
     @Override

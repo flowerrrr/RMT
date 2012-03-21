@@ -45,7 +45,7 @@ public class OpponentListPanel extends BasePanel {
                 menuPanel.addLink(new AjaxLinkWithConfirmation("link", new ResourceModel("manager.opponent.delete.confirm")) {
                     @Override
                     public void onClick(AjaxRequestTarget target) {
-                        opponentManager.delete(item.getModelObject());
+                        opponentManager.delete(item.getModelObject().getId());
                         target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(Opponent.class)));
                     }
                 }, "button.delete");

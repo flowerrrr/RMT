@@ -19,7 +19,7 @@ public interface ITeamManager {
 
     List<Team> findAllByUserPlayer(User user);
 
-    void delete(Team entity);
+    void delete(Long id);
 
     Team newInstance();
 

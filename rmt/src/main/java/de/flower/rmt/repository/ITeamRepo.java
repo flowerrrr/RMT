@@ -13,4 +13,11 @@ public interface ITeamRepo extends IRepository<Team, Long> {
 
     // @Deprecated // currently only used for testing
     // Team findByNameAndClub(String name, Club club);
+
+    /**
+     * Returns also soft-deleted entities.
+     * @param name
+     * @return
+     */
+    Team findByName(String name);
 }

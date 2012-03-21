@@ -12,7 +12,7 @@ public interface IVenueManager {
 
     void save(Venue venue);
 
-    void delete(Venue venue);
+    void delete(Long id);
 
     Venue loadById(Long id);
 

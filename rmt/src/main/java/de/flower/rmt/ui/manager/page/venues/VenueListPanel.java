@@ -45,7 +45,7 @@ public class VenueListPanel extends BasePanel {
                 menuPanel.addLink(new AjaxLinkWithConfirmation("link", new ResourceModel("manager.venues.delete.confirm")) {
                     @Override
                     public void onClick(AjaxRequestTarget target) {
-                        venueManager.delete(item.getModelObject());
+                        venueManager.delete(item.getModelObject().getId());
                         target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(Venue.class)));
                     }
                 }, "button.delete");

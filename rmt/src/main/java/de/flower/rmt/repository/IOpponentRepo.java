@@ -11,4 +11,5 @@ import de.flower.rmt.model.Opponent;
  */
 public interface IOpponentRepo extends IRepository<Opponent, Long> {
 
+    Opponent findByName(String name);
 }

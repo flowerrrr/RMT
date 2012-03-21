@@ -1,6 +1,8 @@
 package de.flower.rmt.service;
 
+import com.google.common.base.Predicate;
 import de.flower.common.util.Check;
+import de.flower.common.util.NameFinder;
 import de.flower.rmt.model.Opponent;
 import de.flower.rmt.repository.IOpponentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +41,15 @@ public class OpponentManager extends AbstractService implements IOpponentManager
 
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-    public void delete(Opponent entity) {
-        // TODO (flowerrrr - 11.06.11) decide whether to soft or hard delete entity.
-        opponentRepo.delete(entity);
+    public void delete(Long id) {
+        Opponent entity = loadById(id);
+        entity.setName(NameFinder.delete(entity.getName(), new Predicate<String>() {
+            @Override
+            public boolean apply(final String name) {
+                return opponentRepo.findByName(name) == null;
+            }
+        }));
+        opponentRepo.softDelete(entity);
     }
 
     @Override

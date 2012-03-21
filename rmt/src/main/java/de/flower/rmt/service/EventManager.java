@@ -2,6 +2,7 @@ package de.flower.rmt.service;
 
 import de.flower.common.util.Check;
 import de.flower.rmt.model.Invitation;
+import de.flower.rmt.model.Team;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
@@ -91,7 +92,15 @@ public class EventManager extends AbstractService implements IEventManager {
         // if soft delete take care of objectstateaware loading
         eventRepo.reattach(entity);
         assertClub(entity);
-        eventRepo.delete(entity);
+        eventRepo.softDelete(entity);
+    }
+
+    @Override
+    @Transactional(readOnly = false)
+    public void deleteByTeam(Team team) {
+        for (Event event : eventRepo.findAllByTeam(team)) {
+            delete(event);
+        }
     }
 
     @Override

@@ -1,7 +1,9 @@
 package de.flower.rmt.service;
 
+import com.google.common.base.Predicate;
 import de.flower.common.service.security.IPasswordGenerator;
 import de.flower.common.util.Check;
+import de.flower.common.util.NameFinder;
 import de.flower.rmt.model.*;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.type.Password;
@@ -119,12 +121,25 @@ public class UserManager extends AbstractService implements IUserManager {
 
     @Override
     @Transactional(readOnly = false)
-    public void delete(User user) {
+    public void delete(Long id) {
+        User entity = loadById(id);
         // do not allow to delete currently logged in user
-        if (securityService.isCurrentUser(user)) {
+        if (securityService.isCurrentUser(entity)) {
             throw new IllegalArgumentException("Cannot delete currently logged in user.");
         }
-        userRepo.delete(user);
+        entity.setEmail(NameFinder.delete(entity.getEmail(), new Predicate<String>() {
+            @Override
+            public boolean apply(final String candidate) {
+                return userRepo.findByEmail(candidate) == null;
+            }
+        }));
+        entity.setFullname(NameFinder.delete(entity.getFullname(), new Predicate<String>() {
+            @Override
+            public boolean apply(final String candidate) {
+                return userRepo.findByFullname(candidate) == null;
+            }
+        }));
+        userRepo.softDelete(entity);
     }
 
     @Override

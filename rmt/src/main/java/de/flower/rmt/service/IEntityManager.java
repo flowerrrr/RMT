@@ -13,7 +13,7 @@ public interface IEntityManager<T> {
 
     List<T> findAll();
 
-    void delete(T entity);
+    void delete(Long id);
 
     T newInstance();
 }

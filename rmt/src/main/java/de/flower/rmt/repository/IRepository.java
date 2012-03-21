@@ -20,4 +20,10 @@ public interface IRepository<T, ID extends Serializable> extends JpaRepository<T
      */
     @Deprecated
     void reattach(T entity);
+
+    /**
+     * Marks entity as deleted by setting objectstatus to DELETED.
+     * @param entity
+     */
+    void softDelete(T entity);
 }
