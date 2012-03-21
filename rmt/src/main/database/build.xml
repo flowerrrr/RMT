@@ -64,10 +64,9 @@
     <path id="classpath.db.driver">
         <fileset dir="${basedir.lib}">
             <include name="**/mysql-connector-java-5.1.16.jar"/>
+            <include name="**/h2-*.jar"/>
         </fileset>
     </path>
-
-    <property name="dbunit.datatypeFactory" value="org.dbunit.ext.mysql.MySqlDataTypeFactory"/>
 
 
     <taskdef resource="net/sf/antcontrib/antcontrib.properties">

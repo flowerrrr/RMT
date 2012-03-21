@@ -114,6 +114,8 @@ public class UserManagerTest extends AbstractIntegrationTests {
             }
             userManager.delete(user.getId());
             User deleted = userManager.loadById(user.getId());
+            assertTrue(deleted.getEmail().startsWith("DELETED"));
+            assertTrue(deleted.getFullname().startsWith("DELETED"));
             assertTrue(deleted.isDeleted());
         }
         // only logged-in user remains undeleted

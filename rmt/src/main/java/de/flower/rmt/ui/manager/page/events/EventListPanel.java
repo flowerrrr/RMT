@@ -71,7 +71,7 @@ public class EventListPanel extends BasePanel {
                 menuPanel.addLink(new AjaxLinkWithConfirmation("link", new ResourceModel("manager.events.delete.confirm")) {
                     @Override
                     public void onClick(AjaxRequestTarget target) {
-                        eventManager.delete(item.getModelObject());
+                        eventManager.delete(item.getModelObject().getId());
                         target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(Event.class)));
                     }
                 }, "button.delete");

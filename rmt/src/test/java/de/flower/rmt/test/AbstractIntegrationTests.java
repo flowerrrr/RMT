@@ -9,6 +9,7 @@ import de.flower.common.service.security.IPasswordGenerator;
 import de.flower.common.test.mock.IListAppender;
 import de.flower.common.test.mock.LogBackListAppender;
 import de.flower.rmt.repository.IClubRepo;
+import de.flower.rmt.repository.IEventRepo;
 import de.flower.rmt.repository.ITeamRepo;
 import de.flower.rmt.repository.IUserRepo;
 import de.flower.rmt.service.*;
@@ -72,6 +73,9 @@ public class AbstractIntegrationTests extends AbstractTestNGSpringContextTests {
 
     @Autowired
     protected IUserRepo userRepo;
+
+    @Autowired
+    protected IEventRepo eventRepo;
 
     /**************************************************************************/
     /*                        Services                                        */

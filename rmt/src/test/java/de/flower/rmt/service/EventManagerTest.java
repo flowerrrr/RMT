@@ -58,4 +58,12 @@ public class EventManagerTest extends AbstractIntegrationTests {
         list.get(0).getTeam().getName();
     }
 
+    @Test
+    public void testDelete() {
+        Event event = testData.createEventWithResponses();
+        eventManager.delete(event.getId());
+        // assert that event is hard-deleted
+        assertNull(eventRepo.findOne(event.getId()));
+    }
+
 }

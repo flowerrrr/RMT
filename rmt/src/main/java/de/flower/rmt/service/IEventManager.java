@@ -34,8 +34,17 @@ public interface IEventManager {
 
     List<Event> findAllUpcomingByUser(User user);
 
-    void delete(Event entity);
+    /**
+     * Hard deletes an event and all invitations.
+     * @param id
+     */
+    void delete(Long id);
 
+    /**
+     * Soft deletes all events of the team.
+     * Soft in case deletion of team was human error to be able to recover.
+     * @param entity
+     */
     void deleteByTeam(Team entity);
 
     Event newInstance(EventType eventType);

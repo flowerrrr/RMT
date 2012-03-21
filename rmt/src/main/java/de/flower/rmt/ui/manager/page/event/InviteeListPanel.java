@@ -54,7 +54,7 @@ public class InviteeListPanel extends BasePanel {
                 menuPanel.addLink(new AjaxLink("link") {
                     @Override
                     public void onClick(AjaxRequestTarget target) {
-                        invitationManager.delete(item.getModelObject());
+                        invitationManager.delete(item.getModelObject().getId());
                         target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(Invitation.class)));
                     }
                 }, "button.delete");

@@ -87,19 +87,21 @@ public class EventManager extends AbstractService implements IEventManager {
 
     @Override
     @Transactional(readOnly = false)
-    public void delete(Event entity) {
-        // TODO (flowerrrr - 11.06.11) decide whether to soft or hard delete entity.
-        // if soft delete take care of objectstateaware loading
-        eventRepo.reattach(entity);
+    public void delete(Long id) {
+        Event entity = loadById(id);
         assertClub(entity);
-        eventRepo.softDelete(entity);
+        List<Invitation> invitations = invitationManager.findAllByEvent(entity);
+        for (Invitation invitation : invitations) {
+            invitationManager.delete(invitation.getId());
+        }
+        eventRepo.delete(entity);
     }
 
     @Override
     @Transactional(readOnly = false)
     public void deleteByTeam(Team team) {
         for (Event event : eventRepo.findAllByTeam(team)) {
-            delete(event);
+            eventRepo.softDelete(event);
         }
     }
 
