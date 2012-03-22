@@ -22,4 +22,13 @@ public interface IPlayerManager {
     Player findByEventAndUser(Event event, User user);
 
     void save(Player entity);
+
+    void addPlayer(Team team, User user);
+
+    void addPlayers(Team team, List<User> users);
+
+    void removePlayer(Team team, Player player);
+
+    void removeUserFromAllTeams(User user);
+
 }

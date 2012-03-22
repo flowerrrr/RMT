@@ -53,6 +53,9 @@ public class UserManager extends AbstractService implements IUserManager {
     private IRoleManager roleManager;
 
     @Autowired
+    private IPlayerManager playerManager;
+
+    @Autowired
     private Validator validator;
 
     @Override
@@ -140,6 +143,9 @@ public class UserManager extends AbstractService implements IUserManager {
             }
         }));
         userRepo.softDelete(entity);
+        // delete user from all teams
+        playerManager.removeUserFromAllTeams(entity);
+
     }
 
     @Override

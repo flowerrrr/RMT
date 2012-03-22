@@ -47,6 +47,9 @@ public class TestData {
     private ITeamManager teamManager;
 
     @Autowired
+    private IPlayerManager playerManager;
+
+    @Autowired
     private IEventManager eventManager;
 
     @Autowired
@@ -93,9 +96,9 @@ public class TestData {
     public Team createTeamWithPlayers(String name, int numPlayers) {
         Team team = createTeam(name);
         List<User> users = createUsers(numPlayers);
-        teamManager.addPlayers(team, users);
+        playerManager.addPlayers(team, users);
         // add user of security context to team
-        teamManager.addPlayer(team, getTestUser());
+        playerManager.addPlayer(team, getTestUser());
         return team;
     }
 

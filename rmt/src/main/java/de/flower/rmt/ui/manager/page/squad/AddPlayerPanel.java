@@ -9,7 +9,7 @@ import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.rmt.model.Player;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.model.User;
-import de.flower.rmt.service.ITeamManager;
+import de.flower.rmt.service.IPlayerManager;
 import de.flower.rmt.service.IUserManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -36,7 +36,7 @@ public class AddPlayerPanel extends BasePanel<Team> {
     private IUserManager userManager;
 
     @SpringBean
-    private ITeamManager teamManager;
+    private IPlayerManager playerManager;
 
     /** Ok to store entities in field cause field is dismissed when panel is processed. */
     private List<User> selectedPlayers = new ArrayList<User>();
@@ -67,7 +67,7 @@ public class AddPlayerPanel extends BasePanel<Team> {
         form.add(new AjaxSubmitLink("addButton") {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-                teamManager.addPlayers(model.getObject(), selectedPlayers);
+                playerManager.addPlayers(model.getObject(), selectedPlayers);
                 target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Player.class)));
                 close(target);
             }

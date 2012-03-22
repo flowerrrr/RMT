@@ -76,7 +76,7 @@ public class UserManagerTest extends AbstractIntegrationTests {
         List<User> users = userManager.findAllUnassignedPlayers(team);
         assertFalse(users.isEmpty());
         for (User u : users) {
-            teamManager.addPlayer(team, u);
+            playerManager.addPlayer(team, u);
         }
         users = userManager.findAllUnassignedPlayers(team);
         assertTrue(users.isEmpty());

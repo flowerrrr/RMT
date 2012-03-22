@@ -74,7 +74,7 @@ public class PlayerListPanel extends BasePanel<Team> {
                 menuPanel.addLink(new AjaxLinkWithConfirmation("link", new ResourceModel("manager.squad.remove.confirm")) {
                     @Override
                     public void onClick(AjaxRequestTarget target) {
-                        teamManager.removePlayer(PlayerListPanel.this.getModelObject(), item.getModelObject());
+                        playerManager.removePlayer(PlayerListPanel.this.getModelObject(), item.getModelObject());
                         target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(Player.class)));
                     }
                 }, "button.squad.player.remove");
