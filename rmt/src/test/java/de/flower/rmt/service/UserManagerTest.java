@@ -88,7 +88,7 @@ public class UserManagerTest extends AbstractIntegrationTests {
         List<User> users = userManager.findAllUninvitedPlayers(event);
         assertFalse(users.isEmpty());
         User u = users.get(0);
-        invitationManager.addUsers(event, Arrays.asList(u));
+        invitationManager.addUsers(event, Arrays.asList(u.getId()));
         List<User> users2 = userManager.findAllUninvitedPlayers(event);
         assertEquals(users2.size() + 1, users.size());
         assertFalse(users2.contains(u));

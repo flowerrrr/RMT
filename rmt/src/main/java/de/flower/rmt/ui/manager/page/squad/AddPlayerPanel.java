@@ -38,7 +38,9 @@ public class AddPlayerPanel extends BasePanel<Team> {
     @SpringBean
     private IPlayerManager playerManager;
 
-    /** Ok to store entities in field cause field is dismissed when panel is processed. */
+    /**
+     * Ok to store entities in field cause field is dismissed when panel is processed.
+     */
     private List<User> selectedPlayers = new ArrayList<User>();
 
     public AddPlayerPanel(final IModel<Team> model) {
@@ -103,6 +105,6 @@ public class AddPlayerPanel extends BasePanel<Team> {
     }
 
     protected void onClose(AjaxRequestTarget target) {
-         ;
+        ;
     }
 }

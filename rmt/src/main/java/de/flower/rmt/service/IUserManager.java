@@ -51,6 +51,14 @@ public interface IUserManager {
     List<User> findAllUninvitedPlayers(Event event);
 
     /**
+     * Returns all players of the given team that are not invited to the given event.
+     * @param event
+     * @param team
+     * @return
+     */
+    List<User> findAllUninvitedPlayersByTeam(Event event, Team team);
+
+    /**
      * Initialized the password fields with a
      * fresh password.
      *

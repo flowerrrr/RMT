@@ -123,6 +123,15 @@ public class UserManager extends AbstractService implements IUserManager {
     }
 
     @Override
+    public List<User> findAllUninvitedPlayersByTeam(final Event event, final Team team) {
+        // get list of uninvited users and list of users of this team and intersect both sets.
+        List<User> uninvited = findAllUninvitedPlayers(event);
+        List<User> usersByTeam = findAllByTeam(team);
+        uninvited.retainAll(usersByTeam);
+        return uninvited;
+    }
+
+    @Override
     @Transactional(readOnly = false)
     public void delete(Long id) {
         User entity = loadById(id);

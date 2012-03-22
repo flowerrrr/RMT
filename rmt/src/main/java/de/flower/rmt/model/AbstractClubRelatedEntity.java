@@ -1,6 +1,7 @@
 package de.flower.rmt.model;
 
 import de.flower.common.model.AbstractBaseEntity;
+import de.flower.common.util.Check;
 import org.hibernate.annotations.Index;
 
 import javax.persistence.FetchType;
@@ -23,7 +24,7 @@ public abstract class AbstractClubRelatedEntity extends AbstractBaseEntity {
     }
 
     protected AbstractClubRelatedEntity(Club club) {
-        this.club = club;
+        this.club = Check.notNull(club);
     }
 
     public Club getClub() {

@@ -6,6 +6,7 @@ import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 
 import javax.persistence.metamodel.Attribute;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -39,7 +40,7 @@ public interface IInvitationManager {
      * Create invitations for given users.
      *
      * @param entity
-     * @param users
+     * @param userIds
      */
-    void addUsers(Event entity, List<User> users);
+    void addUsers(Event entity, Collection<Long> userIds);
 }

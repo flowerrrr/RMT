@@ -7,12 +7,15 @@ import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.rmt.model.Invitation;
+import de.flower.rmt.model.Team;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IInvitationManager;
+import de.flower.rmt.service.ITeamManager;
 import de.flower.rmt.service.IUserManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.form.AjaxCheckBox;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Check;
@@ -22,10 +25,13 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
+import org.apache.wicket.model.Model;
+import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author flowerrrr
@@ -38,29 +44,50 @@ public class AddInviteePanel extends BasePanel<Event> {
     @SpringBean
     private IUserManager userManager;
 
-    /** Ok to store entities in field cause field is dismissed when panel is processed. */
-    private List<User> selectedUsers = new ArrayList<User>();
+    @SpringBean
+    private ITeamManager teamManager;
+
+    private Set<Long> selectedUsers = new HashSet<Long>();
 
     public AddInviteePanel(final IModel<Event> model) {
 
-        Form form = new Form("form");
+        final Form form = new Form("form");
         add(form);
 
         // list of not-assigned players
-        WebMarkupContainer listContainer = new WebMarkupContainer("listContainer");
-        form.add(listContainer);
-        CheckGroup group = new CheckGroup("group", selectedUsers);
-        listContainer.add(group);
+
+        final CheckGroup group = new CheckGroup("group", selectedUsers);
+        form.add(group);
+        final WebMarkupContainer listContainer = new WebMarkupContainer("listContainer");
+        listContainer.setOutputMarkupId(true);
+        group.add(listContainer);
         ListView playerList = new EntityListView<User>("list", getListModel(model)) {
 
             @Override
             protected void populateItem(ListItem<User> item) {
                 User player = item.getModelObject();
-                item.add(new Check("checkbox", item.getModel()));
+                item.add(new Check("checkbox", Model.of(item.getModelObject().getId())));
                 item.add(new Label("name", player.getFullname()));
             }
         };
-        group.add(playerList);
+        listContainer.add(playerList);
+
+        // displayed above checkgroup but below in code to have reference to listContainer
+        ListView teamList = new ListView<Team>("teamList", getTeamListModel()) {
+            @Override
+            protected void populateItem(final ListItem<Team> item) {
+                final IModel<Boolean> checkboxModel = Model.of(false);
+                item.add(new AjaxCheckBox("team", checkboxModel) {
+                    @Override
+                    protected void onUpdate(final AjaxRequestTarget target) {
+                        updateSelectedPlayers(model.getObject(), item.getModelObject(), checkboxModel.getObject());
+                        target.add(listContainer);
+                    }
+                });
+                item.add(new Label("name", item.getModelObject().getName()));
+            }
+        };
+        form.add(teamList);
 
         // add and cancel buttons
 
@@ -97,12 +124,49 @@ public class AddInviteePanel extends BasePanel<Event> {
         };
     }
 
+    private IModel<List<Team>> getTeamListModel() {
+        return new LoadableDetachableModel<List<Team>>() {
+            @Override
+            protected List<Team> load() {
+                List<Team> teams = teamManager.findAll();
+                // add 'all players' fake team as first element to list
+                Team allPlayersTeam = teamManager.newInstance();
+                allPlayersTeam.setName(new ResourceModel("manager.event.invitee.add.all").getObject());
+                teams.add(0, allPlayersTeam);
+                return teams;
+            }
+        };
+    }
+
+    /**
+     * Select/Deselect users of given team. If team is transient select/deselect all users.
+     *
+     * @param team
+     * @param select
+     */
+    private void updateSelectedPlayers(Event event, Team team, boolean select) {
+        List<User> users;
+        if (team.isNew()) {
+            users = userManager.findAllUninvitedPlayers(event);
+        } else {
+            users = userManager.findAllUninvitedPlayersByTeam(event, team);
+        }
+
+        for (User user : users) {
+            if (select) {
+                selectedUsers.add(user.getId());
+            } else {
+                selectedUsers.remove(user.getId());
+            }
+        }
+    }
+
     private void close(AjaxRequestTarget target) {
         selectedUsers.clear();
         onClose(target);
     }
 
     protected void onClose(AjaxRequestTarget target) {
-         ;
+        ;
     }
 }

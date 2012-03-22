@@ -1,5 +1,6 @@
 package de.flower.rmt.service;
 
+import de.flower.common.model.EntityHelper;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.Team;
@@ -59,7 +60,7 @@ public class EventManager extends AbstractService implements IEventManager {
         if (createInvitations) {
             // for every user that is a player of the team of this event a invitation will be created
             List<User> users = userManager.findAllByTeam(entity.getTeam());
-            invitationManager.addUsers(entity, users);
+            invitationManager.addUsers(entity, EntityHelper.convertEntityListToIdList(users));
         }
     }
 

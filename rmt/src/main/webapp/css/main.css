@@ -566,10 +566,12 @@ textarea {
     Squad Page - Add player panel
 **************************************************************************/
 .add-player-panel, .add-invitee-panel {
-    margin-top: 10px;
-
     .info-text {
+        margin-top: 10px;
         margin-bottom: 10px;
+    }
+    .team {
+        font-weight: bold;
     }
 }
 

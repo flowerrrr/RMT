@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.metamodel.Attribute;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -136,8 +137,9 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     }
 
     @Override
-    public void addUsers(final Event entity, final List<User> users) {
-        for (User user : users) {
+    public void addUsers(final Event entity, final Collection<Long> userIds) {
+        for (Long userId : userIds) {
+            User user = userManager.loadById(userId);
             Invitation invitation = newInstance(entity, user);
             save(invitation);
         }

@@ -4,18 +4,24 @@
 <body>
 <wicket:panel>
 
-    <div class="info-text"><wicket:message key="manager.event.invitee.add.heading" /></div>
+    <div class="info-text">
+        <wicket:message key="manager.event.invitee.add.heading"/>
+    </div>
     <form wicket:id="form">
-        <div wicket:id="listContainer">
-            <span wicket:id="group">
             <ul>
+                <li wicket:id="teamList">
+                    <input type="checkbox" wicket:id="team"/>
+                    <span class="team" wicket:id="name">[Team name]</span>
+                </li>
+            </ul>
+            <span wicket:id="group">
+            <ul wicket:id="listContainer">
                 <li wicket:id="list">
                     <input type="checkbox" wicket:id="checkbox"/>
                     <span wicket:id="name">[Player name]</span>
                 </li>
             </ul>
             </span>
-        </div>
         <a class="btn primary" wicket:id="addButton">
             <wicket:message key="button.add"/>
         </a>
