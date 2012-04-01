@@ -4,6 +4,7 @@ import de.flower.rmt.model.Opponent;
 import de.flower.rmt.ui.manager.ManagerBasePage;
 import de.flower.rmt.ui.manager.NavigationPanel;
 import de.flower.rmt.ui.model.OpponentModel;
+import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
 
 /**
@@ -19,7 +20,7 @@ public class OpponentEditPage extends ManagerBasePage {
         setHeading("manager.opponent.edit.heading", null);
         addMainPanel(new OpponentEditPanel(model) {
             @Override
-            protected void onClose() {
+            protected void onClose(AjaxRequestTarget target) {
                 setResponsePage(OpponentsPage.class);
             }
         });

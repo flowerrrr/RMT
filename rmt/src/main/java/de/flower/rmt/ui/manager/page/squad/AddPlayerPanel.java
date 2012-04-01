@@ -43,7 +43,8 @@ public class AddPlayerPanel extends BasePanel<Team> {
      */
     private List<User> selectedPlayers = new ArrayList<User>();
 
-    public AddPlayerPanel(final IModel<Team> model) {
+    public AddPlayerPanel(String id, final IModel<Team> model) {
+        super(id);
 
         Form form = new Form("form");
         add(form);
@@ -104,7 +105,4 @@ public class AddPlayerPanel extends BasePanel<Team> {
         onClose(target);
     }
 
-    protected void onClose(AjaxRequestTarget target) {
-        ;
-    }
 }

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head></head>
+<body>
+<wicket:panel>
+
+    <div class="info-text">
+        <wicket:message key="manager.event.guestplayer.add.heading"/>
+    </div>
+    <form wicket:id="form">
+        <ul class="unstyled ul-form">
+            <li>
+                <input type="text" wicket:id="guestName"/>
+            </li>
+            <li>
+                <a class="btn primary" wicket:id="addButton">
+                    <wicket:message key="button.add"/>
+                </a>
+                <a class="btn" wicket:id="cancelButton">
+                    <wicket:message key="button.cancel"/>
+                </a>
+            </li>
+        </ul>
+    </form>
+
+</wicket:panel>
+</body>
+</html>

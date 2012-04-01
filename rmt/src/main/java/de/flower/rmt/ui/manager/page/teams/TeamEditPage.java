@@ -4,6 +4,7 @@ import de.flower.rmt.model.Team;
 import de.flower.rmt.ui.manager.ManagerBasePage;
 import de.flower.rmt.ui.manager.NavigationPanel;
 import de.flower.rmt.ui.model.TeamModel;
+import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
 
 /**
@@ -19,7 +20,7 @@ public class TeamEditPage extends ManagerBasePage {
         setHeading("manager.team.edit.heading", null);
         addMainPanel(new TeamEditPanel(model) {
             @Override
-            protected void onClose() {
+            protected void onClose(AjaxRequestTarget target) {
                 setResponsePage(TeamsPage.class);
             }
         });

@@ -43,4 +43,9 @@ public interface IInvitationManager {
      * @param userIds
      */
     void addUsers(Event entity, Collection<Long> userIds);
+
+    /**
+     * Add guest player to event.
+     */
+    void addGuestPlayer(Event entity, String guestName);
 }

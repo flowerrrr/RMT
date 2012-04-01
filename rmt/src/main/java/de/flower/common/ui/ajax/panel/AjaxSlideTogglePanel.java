@@ -1,75 +1,53 @@
 package de.flower.common.ui.ajax.panel;
 
+import de.flower.common.ui.ajax.behavior.AjaxSlideToggleBehavior;
+import de.flower.common.ui.ajax.markup.html.AjaxLink;
 import de.flower.common.ui.js.JQuery;
 import de.flower.common.util.Check;
-import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.Component;
+import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.markup.Markup;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.ResourceModel;
 
 /**
+ * Panel with a button and a wrapped panel. Wrapped panel is displayed when button is clicked.
+ *
  * @author flowerrrr
- * @deprecated Use @link AjaxSlideToggleBehavior
  */
-@Deprecated
 public class AjaxSlideTogglePanel extends Panel {
 
-    private String contentId;
+    private AjaxSlideToggleBehavior toggleBehavior;
 
-    public AjaxSlideTogglePanel(String id, Component content) {
+    public static final String WRAPPED_PANEL_ID = "wrappedPanel";
+
+    public AjaxSlideTogglePanel(final String id, final String fadeInButtonLabelResourceKey, final BasePanel wrappedPanel) {
         super(id);
-        setOutputMarkupPlaceholderTag(true);
-        add(new AttributeModifier("style", "display:none;"));
-        content.setVisible(false);
-        this.contentId = content.getId();
-        add(content);
+        Check.isEqual(wrappedPanel.getId(), WRAPPED_PANEL_ID);
+        final AjaxLink fadeInButton = new AjaxLink("fadeInButton") {
+
+            @Override
+            public void onClick(AjaxRequestTarget target) {
+                toggleBehavior.show(target);
+            }
+        };
+        fadeInButton.add(new Label("fadeInButtonLabel", new ResourceModel(fadeInButtonLabelResourceKey)));
+        add(fadeInButton);
+
+        toggleBehavior = new AjaxSlideToggleBehavior() {
+            @Override
+            public void onHide(AjaxRequestTarget target) {
+                target.prependJavaScript(JQuery.fadeIn(fadeInButton, "slow"));
+            }
+        };
+        wrappedPanel.setOnCloseCallback(new BasePanel.IOnCloseCallback() {
+
+            @Override
+            public void onClose(final AjaxRequestTarget target) {
+                toggleBehavior.hide(target);
+            }
+        });
+        wrappedPanel.add(toggleBehavior);
+        add(wrappedPanel);
     }
-
-    public void show(AjaxRequestTarget target) {
-        getContent().setVisible(true);
-        target.add(this);
-        target.appendJavaScript(getSlideDownJS());
-
-    }
-
-    public final void hide(AjaxRequestTarget target) {
-        getContent().setVisible(false);
-        // use undocumented wicket feature to delay other ajax processing steps until animation completes.
-        // see wicket-ajax.js#processEvaluation()
-        String identifier = "processNext";
-        String code = JQuery.slideUp(this, "slow", identifier + "()");
-        target.prependJavaScript(identifier + "|" + code);
-        target.add(this);
-        onHide(target);
-    }
-
-    private CharSequence getSlideDownJS() {
-        return JQuery.slideDown(this, "slow");
-    }
-
-    private CharSequence getSlideUpJS() {
-        return JQuery.slideUp(this, "slow");
-    }
-
-    private Component getContent() {
-        return get(contentId);
-    }
-
-    @Override
-    public Markup getAssociatedMarkup() {
-        return Markup.of("<wicket:panel><div wicket:id=\"" + contentId + "\" /></wicket:panel>");
-    }
-
-    public static void hideCurrent(Component component, AjaxRequestTarget target) {
-        AjaxSlideTogglePanel panel = Check.notNull(component.findParent(AjaxSlideTogglePanel.class));
-        panel.hide(target);
-    }
-
-    public void onHide(AjaxRequestTarget target) {
-        ;
-    }
-
-
-
 }

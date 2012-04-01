@@ -43,7 +43,7 @@ public class VenueEditPanel extends BasePanel  {
             protected void onSubmit(final AjaxRequestTarget target, final Form<Venue> form) {
                 venueManager.save(form.getModelObject());
                 target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Venue.class), AjaxEvent.EntityUpdated(Venue.class)));
-                onClose();
+                onClose(target);
             }
         };
         add(form);

@@ -144,4 +144,10 @@ public class InvitationManager extends AbstractService implements IInvitationMan
             save(invitation);
         }
     }
+
+    @Override
+    public void addGuestPlayer(final Event entity, final String guestName) {
+        Invitation invitation = newInstance(entity, guestName);
+        save(invitation);
+    }
 }

@@ -27,7 +27,7 @@ public abstract class InvitationFormPanel extends BasePanel {
             @Override
             protected void onSubmit(final AjaxRequestTarget target, final Form<Invitation> form) {
                 InvitationFormPanel.this.onSubmit(form.getModelObject(), target);
-                onClose();
+                onClose(target);
             }
 
             @Override

@@ -554,7 +554,7 @@ td.rsvpstatus {
 .invitationForm .radio {
     display: block;
 }
-.invitationForm li {
+.ul-form li {
     margin-top: 10px;
 }
 
@@ -565,7 +565,7 @@ textarea {
 /*************************************************************************
     Squad Page - Add player panel
 **************************************************************************/
-.add-player-panel, .add-invitee-panel {
+.add-player-panel, .add-invitee-panel, .add-guest-player-panel {
     .info-text {
         margin-top: 10px;
         margin-bottom: 10px;

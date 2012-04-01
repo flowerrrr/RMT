@@ -1,6 +1,5 @@
 package de.flower.rmt.ui.common.form;
 
-import de.flower.common.model.IEntity;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.link.Link;
@@ -13,7 +12,7 @@ import org.apache.wicket.model.IModel;
  * @author flowerrrr
  */
 // TODO (flowerrrr - 09.03.12) move code into entityForm and let client disable cancel link per parameter.
-public abstract class CancelableEntityForm<T extends IEntity> extends EntityForm<T> {
+public abstract class CancelableEntityForm<T> extends EntityForm<T> {
 
     public CancelableEntityForm(String id, IModel<T> model) {
         this(id, model, null);

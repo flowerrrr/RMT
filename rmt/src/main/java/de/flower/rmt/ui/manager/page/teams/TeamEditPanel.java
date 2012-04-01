@@ -29,7 +29,7 @@ public class TeamEditPanel extends BasePanel {
             protected void onSubmit(final AjaxRequestTarget target, final Form<Team> form) {
                 teamManager.save(form.getModelObject());
                 target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Team.class), AjaxEvent.EntityUpdated(Team.class)));
-                onClose();
+                onClose(target);
             }
 
         };

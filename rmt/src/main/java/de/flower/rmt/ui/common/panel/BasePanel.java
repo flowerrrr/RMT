@@ -4,6 +4,7 @@ import de.flower.common.util.Clazz;
 import de.flower.common.util.Strings;
 import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.service.security.UserDetailsBean;
+import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
@@ -11,6 +12,8 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.Serializable;
 
 /**
  * @author flowerrrr
@@ -21,6 +24,8 @@ public class BasePanel<T> extends GenericPanel<T> {
 
     @SpringBean
     protected ISecurityService securityService;
+
+    private IOnCloseCallback onCloseCallback;
 
     public BasePanel() {
         this(null, null);
@@ -46,8 +51,10 @@ public class BasePanel<T> extends GenericPanel<T> {
      * Should be called by a panel that can be dismissed/closed, like in modal windows or panels that should be hidden
      * when editing is finished.
      */
-    protected void onClose() {
-
+    protected void onClose(AjaxRequestTarget target) {
+        if (onCloseCallback != null) {
+            onCloseCallback.onClose(target);
+        }
     }
 
 
@@ -84,5 +91,18 @@ public class BasePanel<T> extends GenericPanel<T> {
         } else {
             return getClass().getSimpleName();
         }
+    }
+
+    public IOnCloseCallback getOnCloseCallback() {
+        return onCloseCallback;
+    }
+
+    public void setOnCloseCallback(final IOnCloseCallback onCloseCallback) {
+        this.onCloseCallback = onCloseCallback;
+    }
+
+    public interface IOnCloseCallback extends Serializable {
+
+        void onClose(AjaxRequestTarget target);
     }
 }

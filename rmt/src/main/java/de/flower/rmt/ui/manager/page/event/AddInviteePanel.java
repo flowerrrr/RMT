@@ -49,7 +49,8 @@ public class AddInviteePanel extends BasePanel<Event> {
 
     private Set<Long> selectedUsers = new HashSet<Long>();
 
-    public AddInviteePanel(final IModel<Event> model) {
+    public AddInviteePanel(String id, final IModel<Event> model) {
+        super(id);
 
         final Form form = new Form("form");
         add(form);
@@ -166,7 +167,4 @@ public class AddInviteePanel extends BasePanel<Event> {
         onClose(target);
     }
 
-    protected void onClose(AjaxRequestTarget target) {
-        ;
-    }
 }

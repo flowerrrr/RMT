@@ -4,6 +4,7 @@ import de.flower.rmt.model.Venue;
 import de.flower.rmt.ui.manager.ManagerBasePage;
 import de.flower.rmt.ui.manager.NavigationPanel;
 import de.flower.rmt.ui.model.VenueModel;
+import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
 
 /**
@@ -20,7 +21,7 @@ public class VenueEditPage extends ManagerBasePage {
         setHeading("manager.venue.edit.heading", null);
         addMainPanel(new VenueEditPanel(model) {
             @Override
-            protected void onClose() {
+            protected void onClose(AjaxRequestTarget target) {
                 setResponsePage(VenuesPage.class);
             }
         });

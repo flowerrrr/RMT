@@ -29,7 +29,7 @@ public class OpponentEditPanel extends BasePanel {
             protected void onSubmit(final AjaxRequestTarget target, final Form<Opponent> form) {
                 opponentManager.save(form.getModelObject());
                 target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Opponent.class), AjaxEvent.EntityUpdated(Opponent.class)));
-                onClose();
+                onClose(target);
             }
 
         };
