@@ -1,6 +1,5 @@
 package de.flower.rmt.ui.manager.page.event;
 
-import de.flower.common.ui.ajax.markup.html.AjaxLink;
 import de.flower.common.ui.ajax.markup.html.form.AjaxSubmitLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
@@ -50,15 +49,6 @@ public class AddGuestPlayerPanel extends BasePanel<Event> {
                 }
             }
         });
-
-        form.add(new AjaxLink("cancelButton") {
-            @Override
-            public void onClick(AjaxRequestTarget target) {
-                onClose(target);
-            }
-        });
-
-        // add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Invitation.class)));
     }
 
     @Override

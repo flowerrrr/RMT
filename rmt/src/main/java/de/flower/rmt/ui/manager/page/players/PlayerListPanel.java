@@ -5,7 +5,7 @@ import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.common.ui.markup.html.list.EntityListView;
-import de.flower.common.ui.tooltips.TwipsyBehavior;
+import de.flower.common.ui.tooltips.TooltipBehavior;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.User_;
 import de.flower.rmt.service.IRoleManager;
@@ -68,7 +68,7 @@ public class PlayerListPanel extends BasePanel {
                 // RMT-426
                 sendInvitiationLink.setVisible(!player.isInvitationSent() && player.hasInitialPassword());
                 item.add(sendInvitiationLink);
-                sendInvitiationLink.add(new TwipsyBehavior(new ResourceModel("manager.players.tooltip.invitiation.not.send")));
+                sendInvitiationLink.add(new TooltipBehavior(new ResourceModel("manager.players.tooltip.invitiation.not.send")));
 
                 // now the dropdown menu
                 DropDownMenuPanel menuPanel = new DropDownMenuPanel();

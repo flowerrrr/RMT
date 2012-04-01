@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.common.panel;
 
-import de.flower.common.ui.tooltips.TwipsyBehavior;
+import de.flower.common.ui.tooltips.TooltipBehavior;
 import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.ui.common.renderer.RSVPStatusRenderer;
 import org.apache.wicket.extensions.ajax.markup.html.AjaxEditableChoiceLabel;
@@ -15,7 +15,7 @@ import java.util.Arrays;
  */
 public abstract class QuickResponseLabel extends AjaxEditableChoiceLabel<RSVPStatus> {
 
-    private TwipsyBehavior tooltipBehavior;
+    private TooltipBehavior tooltipBehavior;
 
     public QuickResponseLabel(final String id, final RSVPStatus status) {
         super(id, Model.of(status), Arrays.asList(RSVPStatus.quickResponseValues()), new RSVPStatusRenderer());
@@ -41,7 +41,7 @@ public abstract class QuickResponseLabel extends AjaxEditableChoiceLabel<RSVPSta
      */
     @Override
     protected String defaultNullLabel() {
-        return "<span class=\"icon-info\"/>";
+        return "<span class=\"xicon-info\"/>";
     }
 
     @Override
@@ -53,7 +53,7 @@ public abstract class QuickResponseLabel extends AjaxEditableChoiceLabel<RSVPSta
     }
 
     private void addTooltipBehavior() {
-        tooltipBehavior = new TwipsyBehavior(new ResourceModel("player.events.tooltip.no.response"));
+        tooltipBehavior = new TooltipBehavior(new ResourceModel("player.events.tooltip.no.response"));
         getLabel().add(tooltipBehavior);
     }
 

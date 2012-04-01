@@ -5,7 +5,7 @@
 <body>
 <wicket:panel>
 
-    <form wicket:id="form">
+    <form class="form-horizontal" wicket:id="form">
 
         <fieldset>
             <wicket:container wicket:id="formFeedbackPanel"/>
@@ -22,8 +22,8 @@
             <rmt:input wicket:id="comment" labelKey="manager.event.comment"/>
             <!-- participants -->
 
-            <div class="actions">
-                <a class="btn primary" wicket:id="submitButton">
+            <div class="form-actions">
+                <a class="btn btn-primary" wicket:id="submitButton">
                     <wicket:message key="button.save"/>
                 </a>
                 <a class="btn" wicket:id="cancelButton">

@@ -49,6 +49,7 @@ public class RMTApplication extends WebApplication {
         }
 
         initBookmarkablePages();
+
     }
 
     /**

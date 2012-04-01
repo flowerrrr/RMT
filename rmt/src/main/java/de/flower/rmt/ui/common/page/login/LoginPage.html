@@ -12,38 +12,39 @@
         </div>
         <div class="modal-body">
 
-            <form id="loginForm" action="j_spring_security_check" method="POST">
+            <form class="form-horizontal" id="loginForm" action="j_spring_security_check" method="POST">
                 <fieldset>
-                    <div wicket:id="loginFailure" class="clearfix">
-                        <div class="input">
-                            <div class="alert-message error">
+                    <div wicket:id="loginFailure" class="control-group">
+                        <div class="controls">
+                            <div class="alert alert-error">
                                 <wicket:message key="login.failure" />
                             </div>
                         </div>
                     </div>
-                    <div class="clearfix">
-                        <label for="j_username"><wicket:message key="login.username" /></label>
-                        <div class="input">
+                    <div class="control-group">
+                        <label class="control-label" for="j_username"><wicket:message key="login.username" /></label>
+                        <div class="controls">
                             <input id="j_username" name="j_username" type="text"/>
                             <script>
                                 document.getElementById('j_username').focus();
                             </script>
                         </div>
                     </div>
-                    <div class="clearfix">
-                        <label for="j_password"><wicket:message key="login.password" /></label>
-                        <div class="input">
+                    <div class="control-group">
+                        <label class="control-label" for="j_password"><wicket:message key="login.password" /></label>
+                        <div class="controls">
                             <input name="j_password" type="password"/>
                         </div>
                     </div>
-                    <div class="clearfix">
-                        <div class="input">
+                    <div class="control-group">
+                        <div class="controls">
+                            <label class="checkbox" for="remember-me">
                             <input id="remember-me" type="checkbox" name="_spring_security_remember_me" checked="true"/>
-                            <label for="remember-me"><wicket:message key="login.rememberme">[Remember me]</wicket:message></label>
+                            <wicket:message key="login.rememberme">[Remember me]</wicket:message></label>
                         </div>
                     </div>
-                    <div class="actions">
-                        <input class="btn primary" type="submit" value="Login"/>
+                    <div class="form-actions">
+                        <input class="btn btn-primary" type="submit" value="Login"/>
                     </div>
                 </fieldset>
             </form>

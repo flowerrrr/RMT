@@ -104,7 +104,7 @@ public class EventListPanel extends BasePanel {
         return new Link(id) {
             @Override
             public void onClick() {
-                setResponsePage(new EventEditPage(item.getModel()));
+                setResponsePage(EventEditPage.class, EventEditPage.getPageParams(item.getModelObject().getId()));
             }
         };
     }

@@ -1,6 +1,5 @@
 package de.flower.rmt.ui.manager.page.event;
 
-import de.flower.common.ui.ajax.markup.html.AjaxLink;
 import de.flower.common.ui.ajax.markup.html.form.AjaxSubmitLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
@@ -97,13 +96,6 @@ public class AddInviteePanel extends BasePanel<Event> {
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 invitationManager.addUsers(model.getObject(), selectedUsers);
                 target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Invitation.class)));
-                close(target);
-            }
-        });
-
-        form.add(new AjaxLink("cancelButton") {
-            @Override
-            public void onClick(AjaxRequestTarget target) {
                 close(target);
             }
         });

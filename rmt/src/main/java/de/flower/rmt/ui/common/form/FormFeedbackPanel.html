@@ -5,22 +5,22 @@
 <wicket:panel>
 
 
-    <div class="clearfix" wicket:id="submitSuccess">
-        <div class="input">
-            <div class="alert-message info">
+    <div class="control-group" wicket:id="submitSuccess">
+        <div class="controls">
+            <div class="alert alert-info">
                 <wicket:message key="form.success"/>
             </div>
         </div>
     </div>
-    <div class="clearfix" wicket:id="hasErrors">
-        <div class="input">
-            <div class="alert-message error">
+    <div class="control-group" wicket:id="hasErrors">
+        <div class="controls">
+            <div class="alert alert-error">
                 <wicket:message key="form.haserrors"/>
             </div>
         </div>
     </div>
-    <div class="clearfix" wicket:enclosure="feedback:feedbackul">
-        <div class="input">
+    <div class="control-group" wicket:enclosure="feedback:feedbackul">
+        <div class="controls">
             <div wicket:id="feedback" class="form-feedback">[Validation messages]</div>
         </div>
     </div>

@@ -2,12 +2,13 @@ package de.flower.common.ui.ajax.panel;
 
 import de.flower.common.ui.ajax.behavior.AjaxSlideToggleBehavior;
 import de.flower.common.ui.ajax.markup.html.AjaxLink;
-import de.flower.common.ui.js.JQuery;
 import de.flower.common.util.Check;
 import de.flower.rmt.ui.common.panel.BasePanel;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.ResourceModel;
 
 /**
@@ -21,25 +22,33 @@ public class AjaxSlideTogglePanel extends Panel {
 
     public static final String WRAPPED_PANEL_ID = "wrappedPanel";
 
-    public AjaxSlideTogglePanel(final String id, final String fadeInButtonLabelResourceKey, final BasePanel wrappedPanel) {
+    public AjaxSlideTogglePanel(final String id, final String toggleButtonLabelResourceKey, final BasePanel wrappedPanel) {
         super(id);
         Check.isEqual(wrappedPanel.getId(), WRAPPED_PANEL_ID);
-        final AjaxLink fadeInButton = new AjaxLink("fadeInButton") {
+        final AjaxLink toggleButton = new AjaxLink("toggleButton") {
 
             @Override
             public void onClick(AjaxRequestTarget target) {
-                toggleBehavior.show(target);
+                if (wrappedPanel.isVisible()) {
+                    toggleBehavior.hide(target);
+                } else {
+                    toggleBehavior.show(target);
+                }
+                target.add(this);
             }
         };
-        fadeInButton.add(new Label("fadeInButtonLabel", new ResourceModel(fadeInButtonLabelResourceKey)));
-        add(fadeInButton);
-
-        toggleBehavior = new AjaxSlideToggleBehavior() {
+        Label icon = new Label("icon", "");
+        icon.add(AttributeModifier.replace("class", new AbstractReadOnlyModel<String>() {
             @Override
-            public void onHide(AjaxRequestTarget target) {
-                target.prependJavaScript(JQuery.fadeIn(fadeInButton, "slow"));
+            public String getObject() {
+                return (wrappedPanel.isVisible()) ? "icon-chevron-up" : "icon-chevron-down";
             }
-        };
+        }));
+        toggleButton.add(icon);
+        toggleButton.add(new Label("label", new ResourceModel(toggleButtonLabelResourceKey)));
+        add(toggleButton);
+
+        toggleBehavior = new AjaxSlideToggleBehavior();
         wrappedPanel.setOnCloseCallback(new BasePanel.IOnCloseCallback() {
 
             @Override

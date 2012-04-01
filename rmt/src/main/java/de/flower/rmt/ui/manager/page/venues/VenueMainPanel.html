@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
-<wicket:head>
-    <script src="http://cdn.jquerytools.org/1.2.6/jquery.tools.min.js"></script>
-</wicket:head>
 <body>
 
 <wicket:panel>
@@ -12,35 +9,28 @@
     </div>
     <wicket:container wicket:id="container">
         <!-- the tabs -->
-        <ul id="venue-tabs" class="tabs">
-            <li class="active"><a href="#">
+        <ul id="venue-tabs" class="nav nav-tabs">
+            <li class="active"><a href="#list" data-toggle="tab">
                 <wicket:message key="manager.venues.listview"/>
             </a></li>
-            <li><a href="#">
+            <li><a href="#map" data-toggle="tab">
                 <wicket:message key="manager.venues.mapview"/>
             </a></li>
         </ul>
 
         <!-- tab "panes" -->
-        <div class="panes">
-            <div wicket:id="venueListPanel"/>
-            <div wicket:id="venuesMapPanel" class="venues-map">[Map with venues]</div>
+        <div class="tab-content">
+            <div wicket:id="venueListPanel" id="list" class="tab-pane active"/>
+            <div wicket:id="venuesMapPanel" id="map" class="tab-pane venues-map">[Map with venues]</div>
         </div>
         <script>
             // have to do some work to make map display correctly after it was rendered in a hidden div.
-            // hook into jquery tools callback to resize the map when it is shown.
-            $(document).ready(function() {
-                $("ul.tabs").tabs("div.panes > div", {
-                    onClick: function(e, index) {
-                        if (index == 1) {
-                            VenuesMap.repaint();
-                        }
-                        // set class attr of li to active to use bootstrap styling
-                        $("ul.tabs > li")[index].className = "active";
-                        $("ul.tabs > li")[1 - index].className = "";
-                    }
-                });
-            });
+            // hook into bootstrap tab callback to resize the map when it is shown.
+            $('a[data-toggle="tab"]').on('shown', function (e) {
+                if (e.target.hash == "#map") {
+                    VenuesMap.repaint();
+                }
+            })
             VenuesMap = {};
             VenuesMap.repaint = function() {
                 google.maps.event.trigger(Wicket.maps[VenuesMap.getMapKey()].map, 'resize');

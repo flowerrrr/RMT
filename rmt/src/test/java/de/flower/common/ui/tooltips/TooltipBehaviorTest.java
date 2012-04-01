@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 /**
  * @author flowerrrr
  */
-public class TwipsyBehaviorTest extends AbstractWicketUnitTests {
+public class TooltipBehaviorTest extends AbstractWicketUnitTests {
 
     private static String tooltip = "this is a tooltip";
 
@@ -22,8 +22,7 @@ public class TwipsyBehaviorTest extends AbstractWicketUnitTests {
         wicketTester.dumpPage();
         wicketTester.debugComponentTrees();
         wicketTester.assertContains(tooltip);
-        wicketTester.assertContains("\\Q" + TwipsyBehavior.TWIPSY_JS + "\\E");
-        wicketTester.assertContains(TwipsyBehavior.TWIPSY_JS_URL);
+        wicketTester.assertContains("\\Q" + TooltipBehavior.TOOLTIP_JS + "\\E");
     }
 
     private static class TestPage extends WebPage {
@@ -34,11 +33,11 @@ public class TwipsyBehaviorTest extends AbstractWicketUnitTests {
                 public void onClick() {
                 }
             };
-            link.add(new TwipsyBehavior(Model.of(tooltip)));
+            link.add(new TooltipBehavior(Model.of(tooltip)));
             add(link);
 
             ExternalLink link2 = new ExternalLink("link2", "http://foo.bar");
-            link2.add(new TwipsyBehavior(Model.<String>of("another tooltip")));
+            link2.add(new TooltipBehavior(Model.<String>of("another tooltip")));
             add(link2);
         }
 

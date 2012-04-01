@@ -6,7 +6,7 @@ import org.apache.wicket.ajax.markup.html.AjaxLink
 import org.apache.wicket.markup.html.WebPage
 import org.apache.wicket.markup.html.basic.Label
 import reflect.BeanProperty
-import de.flower.common.ui.tooltips.TwipsyBehavior
+import de.flower.common.ui.tooltips.TooltipBehavior
 import org.apache.wicket.model.{Model, PropertyModel}
 
 /**
@@ -28,7 +28,7 @@ class AjaxUpdateBehaviorTestPage extends WebPage {
             target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityUpdated(classOf[Entity])))
         }
     };
-    link.add(new TwipsyBehavior(Model.of("hello")));
+    link.add(new TooltipBehavior(Model.of("hello")));
     add(link);
 }
 

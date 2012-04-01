@@ -30,6 +30,16 @@
 	       opacity: @opacity / 100;
 }
 
+
+/*************************************************************************
+    overriding bootstrap settings
+**************************************************************************/
+.container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
+    /* smaller width than default 940px. */
+    width: 820px;
+}
+
+
 /*************************************************************************
     misc
     todo: check if can be replaced by bootstrap class
@@ -48,7 +58,7 @@
     float: right;
 }
 
-.align-right {
+.align-right, td.align-right {
     text-align: right;
 }
 
@@ -60,6 +70,7 @@
 a.no-hover:hover {
     text-decoration: none;
 }
+
 
 /*************************************************************************
     taken from twitters base template http://twitter.github.com/bootstrap/examples/container-app.html
@@ -82,11 +93,6 @@ ul {
 
 li {
     color: @grayDark;
-}
-
-.container {
-    /* smaller width than default 940px. */
-    width: 820px;
 }
 
 .content {
@@ -127,10 +133,6 @@ li {
     padding-right: 19px;
 }
 
-.xcontent .secondary {
-    border-left: 1px solid #CCCCCC;
-    padding-left: 19px;
-}
 
 .secondary h4, .main h4 {
     line-height: normal;
@@ -145,6 +147,20 @@ li {
 
 input[type="checkbox"] {
     margin-right: 5px;
+    margin-bottom: 3px;
+    maring-top: 0px;
+}
+
+.toggleButton {
+    width: 200px;
+}
+
+
+/*************************************************************************
+  links
+**************************************************************************/
+.btn-link:after {
+    content: '\00A0 \2192';
 }
 
 /*************************************************************************
@@ -174,7 +190,7 @@ input[readonly].reset {
 }
 
 // white background for action panels
-.actions {
+.form-actions {
 	background-color: #FFFFFF;
 }
 
@@ -210,7 +226,7 @@ input[readonly].reset {
 /*************************************************************************
    form styling
 **************************************************************************/
-form .alert-message {
+form .alert {
     display: inline-block; /* let div shrink to size of message. */
     margin-bottom: 0px;
 }
@@ -265,7 +281,7 @@ form div.clearfix.error {
     }
 }
 
-.alert-message li {
+.alert li {
     color: #FFFFFF;
 }
 
@@ -283,36 +299,48 @@ form div.clearfix.error {
 .modal-header {
     border-bottom: 1px solid #DDDDDD;
 }
-#loginForm .actions, #loginForm, #loginForm fieldset {
+#loginForm .form-actions, #loginForm, #loginForm fieldset {
     margin-bottom: 0px;
+}
+
+#loginForm input[type=checkbox] {
+    margin-right: 10px;
+    margin-top: 1px
 }
 
 
 /*************************************************************************
-    topbar
+    navbar
 **************************************************************************/
-// remove down arrow from dropdown-toggle
-a.menu:after, .dropdown-toggle:after {
-    content: none;
-}
-
 .dropdown-icon {
-    margin-bottom: -6px;
     padding-left: 5px;
 }
 
-// beta
-.beta {
-    position: absolute;
-    bottom: 2px;
-    right: 20px;
-    font-size: 10px;
-}
+// position beta span below brand
 
+.beta {
+    display: inline-block;
+    font-size: 10px;
+    position: relative;
+    right: 20px;
+    top: 10px;
+    width: 0;
+}
 
 /*************************************************************************
     welcome messages
 **************************************************************************/
+.alert div {
+    line-height: 28px;
+    margin-bottom: 2px;
+    margin-top: 5px;
+}
+
+.alert a {
+    color: #404040;
+    font-weight: bold;
+}
+
 .welcome-message {
     overflow: auto;
 
@@ -328,8 +356,9 @@ a.menu:after, .dropdown-toggle:after {
     }
 
     .close {
-        margin-left: 10px;
-        line-height: normal;
+        margin-left: -10px;  // beyond my understanding of css.
+        line-height: 28px;
+        top: -1px;
     }
 }
 
@@ -338,7 +367,7 @@ a.menu:after, .dropdown-toggle:after {
     icons and labels
 **************************************************************************/
 
-.icon-abstract {
+.xicon-abstract {
     padding: 1px 8px;
     border: 1px solid #ccc;
     .border-radius(3px);
@@ -346,33 +375,33 @@ a.menu:after, .dropdown-toggle:after {
     background-repeat: no-repeat;
 }
 
-.icon-checked, .icon-unsure {
-    .icon-abstract;
+.xicon-checked, .xicon-unsure {
+    .xicon-abstract;
     background-image: url(../img/checked.png);
 }
 
-.icon-unsure {
-    .icon-abstract;
+.xicon-unsure {
+    .xicon-abstract;
     background-image: url(../img/double-tilde.png);
 }
 
-.icon-accepted {
-    .icon-abstract;
+.xicon-accepted {
+    .xicon-abstract;
     background-image: url(../img/valid.png);
 }
 
-.icon-declined {
-    .icon-abstract;
+.xicon-declined {
+    .xicon-abstract;
     background-image: url(../img/error.png);
 }
 
-.icon-noresponse {
-    .icon-abstract;
+.xicon-noresponse {
+    .xicon-abstract;
     background-image: url(../img/question.png);
 }
 
-.icon-info {
-    .icon-abstract;
+.xicon-info {
+    .xicon-abstract;
     // todo add class to html markup .label;
     font-weight: 900; // as thick as possible
     padding: 1px 6px 0px 6px;
@@ -407,7 +436,6 @@ td .drop-down-menu-panel {
     football icon with dropdown menu on white background
 **************************************************************************/
 ul.dropdown {
-    float: right;
     text-align: left; // in case parent container defines different alignment
     margin-bottom: 0px; // override default setting.
 
@@ -430,9 +458,7 @@ ul.dropdown {
         background: none;
         color: #FFFFFF;
     }
-    .dropdown-icon {
-        margin-bottom: -6px;
-    }
+
 }
 
 /*************************************************************************

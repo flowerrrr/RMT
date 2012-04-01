@@ -36,6 +36,10 @@ public class EventEditPage extends ManagerBasePage {
         init(new EventModel(event));
     }
 
+    public static PageParameters getPageParams(Long eventId) {
+        return new PageParameters().set(EventPage.PARAM_EVENTID, eventId);
+    }
+
     public EventEditPage(IModel<Event> model) {
         super(model);
         init(model);

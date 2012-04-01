@@ -116,8 +116,8 @@ public class FormFieldPanel extends Panel {
         // replace whatever tag the user has given.
         // user can still write <input wicket:id="name" /> and it will be replaced with a div tag.
         tag.setName("div");
-        // need to set twitter-bootstrap class 'clearfix'
-        tag.put("class", "clearfix");
+        // need to set twitter-bootstrap class 'control-group'
+        tag.put("class", "control-group");
         tag.remove(LABEL_KEY);
         tag.setNamespace(null);
         super.onComponentTag(tag);

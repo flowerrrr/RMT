@@ -52,6 +52,10 @@ public class EventPage extends PlayerBasePage {
         init(new EventModel(event));
     }
 
+    public static PageParameters getPageParams(Long eventId) {
+        return new PageParameters().set(PARAM_EVENTID, eventId);
+    }
+
     public EventPage(final IModel<Event> model) {
         super(model);
         init(model);
@@ -84,7 +88,6 @@ public class EventPage extends PlayerBasePage {
             protected void onClick(IModel<Event> model) {
                 setResponsePage(new EventPage(model));
             }
-
         };
     }
 
