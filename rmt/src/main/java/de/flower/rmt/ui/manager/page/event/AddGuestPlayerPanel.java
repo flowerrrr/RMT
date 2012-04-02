@@ -16,6 +16,8 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.hibernate.validator.constraints.NotBlank;
 import org.wicketstuff.jsr303.BeanValidator;
 
+import java.io.Serializable;
+
 /**
  * @author flowerrrr
  */
@@ -56,7 +58,7 @@ public class AddGuestPlayerPanel extends BasePanel<Event> {
         fEntity.guestName = "";
     }
 
-    protected static final class FEntity {
+    protected static final class FEntity implements Serializable {
 
         @NotBlank
         public String guestName;

@@ -189,6 +189,11 @@ input[readonly].reset {
     }
 }
 
+// give reset class the correct border in error cases
+.error input[readonly].reset {
+    border-color: #B94A48;
+}
+
 // white background for action panels
 .form-actions {
 	background-color: #FFFFFF;
@@ -244,12 +249,7 @@ form .help-inline {
 .valid input {
     background: url(../img/valid.png) no-repeat scroll 98%;
 }
-// no background-color when error
-form div.clearfix.error {
-    background: none;
-    margin: 0 0 18px 0;
-    padding: 0;
-}
+
 
 // forms in secondary panel should not use margin. required for feedbackpanel
 .secondary form .input {
