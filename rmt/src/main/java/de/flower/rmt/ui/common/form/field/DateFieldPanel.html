@@ -2,40 +2,12 @@
 <html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
 <!-- datepicker based on http://dl.dropbox.com/u/143355/datepicker/datepicker.html -->
 <wicket:head>
-    <link href="css/bootstrap/datepicker.css" rel="stylesheet" />
-    <script type="text/javascript" src="js/bootstrap/bootstrap-datepicker.js"></script>
-    <script type="text/javascript">
-      /* Update datepicker plugin so that DD.MM.YYYY format is used. */
-      $.extend($.fn.datepicker.defaults, {
-        parse: function (string) {
-          var matches;
-          if ((matches = string.match(/^(\d{2,2})\.(\d{2,2})\.(\d{4,4})$/))) {
-            return new Date(matches[3], matches[2] - 1, matches[1]);
-          } else {
-            return null;
-          }
-        },
-        format: function (date) {
-          var
-            month = (date.getMonth() + 1).toString(),
-            dom = date.getDate().toString();
-          if (month.length === 1) {
-            month = "0" + month;
-          }
-          if (dom.length === 1) {
-            dom = "0" + dom;
-          }
-          return dom + "." + month + "." + date.getFullYear();
-        }
-      });
-    </script>
-
-
+    <link href="css/bootstrap/datepicker.css" rel="stylesheet"/>
 </wicket:head>
 <body>
 <wicket:extend>
 
-    <input data-datepicker="datepicker" class="small reset" readonly="readonly" wicket:id="input"/>
+    <input data-datepicker="datepicker" class="input-small reset" readonly="readonly" wicket:id="input"/>
 
 </wicket:extend>
 </body>

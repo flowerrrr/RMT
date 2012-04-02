@@ -1,5 +1,6 @@
 package de.flower.rmt.ui.common.form.field;
 
+import de.flower.rmt.ui.app.Resource;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.datetime.markup.html.form.DateTextField;
 import org.apache.wicket.markup.html.IHeaderResponse;
@@ -16,6 +17,8 @@ public class DateFieldPanel extends FormFieldPanel {
     @Override
     public void renderHead(final IHeaderResponse response) {
         super.renderHead(response);
+        response.renderJavaScriptReference(Resource.jqueryJsUrl);
+        response.renderJavaScriptReference(Resource.datepickerJsUrl);
         AjaxRequestTarget target = AjaxRequestTarget.get();
         if (target != null) {
             // after ajax calls the datepicker must be reinitialized again.

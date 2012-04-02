@@ -11,4 +11,5 @@ public class Resource {
 
     public static final String jqueryJsUrl = "http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js";
 
+    public static final String datepickerJsUrl = "js/bootstrap/bootstrap-datepicker.js";
 }
