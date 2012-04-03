@@ -1,7 +1,6 @@
 package de.flower.common.ui.markup.html.list;
 
 import de.flower.common.model.IEntity;
-import de.flower.common.util.Check;
 import org.apache.wicket.model.IModel;
 
 import javax.persistence.EntityNotFoundException;
@@ -21,6 +20,11 @@ public final class ListItemEntityModel<T extends IEntity> implements IModel<T> {
     private final Long id;
 
     /**
+     * Fallback in case the id is not set. Mostly to be able to use this model in unit tests with transient objects.
+     */
+    private final int index;
+
+    /**
      * Instantiates a new list item entity model.
      *
      * @param listModel the list model
@@ -29,7 +33,7 @@ public final class ListItemEntityModel<T extends IEntity> implements IModel<T> {
     public ListItemEntityModel(final IModel<? extends List<? extends T>> listModel, final int index) {
         this.listModel = listModel;
         this.id = listModel.getObject().get(index).getId();
-        Check.notNull(id);
+        this.index = index;
     }
 
     @Override
@@ -39,10 +43,15 @@ public final class ListItemEntityModel<T extends IEntity> implements IModel<T> {
 
     @Override
     public T getObject() {
-        for (final T object : listModel.getObject()) {
-            if (object.getId().equals(id)) {
-                return object;
+        if (id != null) {
+            for (final T object : listModel.getObject()) {
+                if (object.getId().equals(id)) {
+                    return object;
+                }
             }
+        } else {
+            // fallback for unit tests with transient objects
+            return listModel.getObject().get(index);
         }
         throw new EntityNotFoundException("Entity [" + id + "] could not be loaded from database.");
     }

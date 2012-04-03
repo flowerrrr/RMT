@@ -4,8 +4,10 @@ import de.flower.common.test.wicket.AbstractWicketUnitTests;
 import de.flower.common.test.wicket.WicketTesterHelper;
 import de.flower.common.ui.ajax.markup.html.AjaxLink;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 import org.apache.wicket.markup.Markup;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.panel.Panel;
 import org.testng.annotations.Test;
 
 /**
@@ -38,7 +40,11 @@ public class ModalDialogWindowTest extends AbstractWicketUnitTests {
         }
     }
 
-    public static class TestPanel extends ModalPanel {
+    public static class TestPanel extends Panel {
+
+        public TestPanel() {
+            super(ModalWindow.CONTENT_ID);
+        }
 
         @Override
         public Markup getAssociatedMarkup() {
