@@ -17,7 +17,7 @@ class SquadPageTest extends AbstractWicketIntegrationTests {
         wicketTester.startPage(new SquadPage(new TeamModel(team)))
         wicketTester.dumpPage()
         wicketTester.debugComponentTrees()
-        wicketTester.clickLink("secondaryPanel:squadSecondaryPanel:addButton")
+        wicketTester.clickLink("secondaryPanel:squadSecondaryPanel:addPlayerPanel:toggleButton")
         wicketTester.dumpPage()
     }
 
