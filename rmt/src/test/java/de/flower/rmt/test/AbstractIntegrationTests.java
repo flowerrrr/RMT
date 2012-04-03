@@ -46,6 +46,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Base class for integration tests from app-layer downwards. no ui-support.
+ * Use @link AbstractWicketIntegrationTests.
+ *
  * @author flowerrrr
  */
 @Listeners({de.flower.common.test.ExceptionLoggerTestListener.class})

@@ -1,6 +1,7 @@
 package de.flower.common.ui.markup.html.list;
 
 import de.flower.common.model.IEntity;
+import de.flower.common.util.Check;
 import org.apache.wicket.model.IModel;
 
 import javax.persistence.EntityNotFoundException;
@@ -28,6 +29,7 @@ public final class ListItemEntityModel<T extends IEntity> implements IModel<T> {
     public ListItemEntityModel(final IModel<? extends List<? extends T>> listModel, final int index) {
         this.listModel = listModel;
         this.id = listModel.getObject().get(index).getId();
+        Check.notNull(id);
     }
 
     @Override

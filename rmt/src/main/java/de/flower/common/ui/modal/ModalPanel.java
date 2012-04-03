@@ -1,34 +1,52 @@
 package de.flower.common.ui.modal;
 
-
+import de.flower.common.ui.ajax.markup.html.AjaxLink;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.ResourceModel;
 
 /**
  * Base class for Panels that are displayed in a modal window.
- * Provides extension points for subclasses to hook into the closing event of the modal window.
+ * Provides default bootstrap-layout and extension points for subclasses to hook into the closing event of the modal window.
  */
 public abstract class ModalPanel extends BasePanel {
+
+    private Label heading;
 
     public ModalPanel() {
         this(null);
     }
 
     public ModalPanel(final IModel<?> model) {
-        super(ModalWindow.CONTENT_ID, model);
+        this(ModalWindow.CONTENT_ID, model);
     }
 
     /**
      * Constructor for subpanels in modal windows. Main panel of modal window must always use
      * predefined id CONTENT_ID. Subpanels are free to use any id.
      *
-     * @param id the id
+     * @param id    the id
      * @param model the model
      */
     public ModalPanel(final String id, final IModel<?> model) {
         super(id, model);
+        add(heading = new Label("heading", "use #setHeading to provide custom heading"));
+        add(new AjaxLink<Void>("closeButton") {
+            @Override
+            public void onClick(final AjaxRequestTarget target) {
+                close(target);
+            }
+        });
+
+        add(new AjaxLink<Void>("cancelButton") {
+            @Override
+            public void onClick(final AjaxRequestTarget target) {
+                close(target);
+            }
+        });
     }
 
     /**
@@ -37,25 +55,11 @@ public abstract class ModalPanel extends BasePanel {
      * @param target the target
      */
     protected final void close(final AjaxRequestTarget target) {
-        onBeforeClose(target);
         ModalDialogWindow.closeCurrent(target);
-        onAfterClose(target);
     }
 
-    /**
-     * Subclasses can override this method.
-     *
-     * @param target the target
-     */
-    protected void onBeforeClose(final AjaxRequestTarget target) {
-    }
-
-    /**
-     * Subclasses can override this method.
-     *
-     * @param target the target
-     */
-    protected void onAfterClose(final AjaxRequestTarget target) {
+    protected void setHeading(String headingResourceKey) {
+        heading.setDefaultModel(new ResourceModel(headingResourceKey));
     }
 
 

@@ -3,23 +3,30 @@
 <html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
 <head></head>
 <body>
-<wicket:panel>
+<wicket:extend>
 
-    <form wicket:id="form">
+    <div class="recipient-list">
+        <form wicket:id="form">
         <span wicket:id="group">
         <ul wicket:id="listContainer">
             <li wicket:id="list">
-                <input type="checkbox" wicket:id="checkbox"/>
-                <span wicket:id="name">[Player name]</span>
+                <label>
+                    <input type="checkbox" wicket:id="checkbox"/>
+                    <span wicket:id="name">[Player name]</span>
+                </label>
             </li>
         </ul>
         </span>
-        <a class="btn btn-primary" wicket:id="addButton">
-            <wicket:message key="button.add"/>
-        </a>
-        <a class="btn" wicket:id="cancelButton"><wicket:message key="button.cancel"/></a>
-    </form>
+        </form>
+    </div>
 
-</wicket:panel>
+    <script>
+        $('.recipient-list input:checkbox').change(function(){
+            $(this).closest('li').toggleClass('selected');
+        });
+
+    </script>
+
+</wicket:extend>
 </body>
 </html>

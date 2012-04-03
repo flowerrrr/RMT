@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd"
+      xml:lang="en" lang="en">
+<head></head>
+<body>
+<wicket:panel>
+        <div class="modal-header">
+            <a class="close" wicket:id="closeButton">&times;</a>
+            <h3 wicket:id="heading"></h3>
+        </div>
+        <div class="modal-body">
+            <wicket:child/>
+        </div>
+        <div class="modal-footer">
+            <a class="btn btn-primary" wicket:id="submitButton"><span wicket:id="submitLabel" /></a>
+            <a class="btn" wicket:id="cancelButton"><wicket:message key="button.cancel"/></a>
+        </div>
+</wicket:panel>
+</body>
+</html>

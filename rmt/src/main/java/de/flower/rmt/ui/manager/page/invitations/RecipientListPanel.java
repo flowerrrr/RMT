@@ -50,6 +50,7 @@ public class RecipientListPanel extends BasePanel {
 
                     @Override
                     protected void onSubmit(final AjaxRequestTarget target, final List<InternetAddress> recipients) {
+                        System.out.println(recipients.toString());
                         for (InternetAddress ia : recipients) {
                             if (!model.getObject().contains(ia)) {
                                 model.getObject().add(ia);

@@ -6,6 +6,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.Page;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
+import org.apache.wicket.markup.html.IHeaderResponse;
 import org.apache.wicket.util.iterator.ComponentHierarchyIterator;
 
 
@@ -144,5 +145,11 @@ public class ModalDialogWindow extends ModalWindow {
     protected final CharSequence getShowJavaScript() {
         final String s = "setTimeout(function() { " + super.getShowJavaScript().toString().replace("\n", "") + "; }, 0);\n";
         return s;
+    }
+
+    @Override
+    public void renderHead(final IHeaderResponse response) {
+        super.renderHead(response);
+        response.renderJavaScript("Wicket.Window.unloadConfirmation = false;", null);
     }
 }

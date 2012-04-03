@@ -13,9 +13,11 @@ import org.testng.annotations.BeforeMethod;
 import static org.mockito.Mockito.when;
 
 /**
+ * Base class for ui-only tests. All dependencies are mocked.
+ * Inits security context with test-user.
+ *
  * @author flowerrrr
  */
-
 public abstract class AbstractRMTWicketMockitoTests extends AbstractWicketMockitoTests {
 
     protected TestData testData = new TestData();

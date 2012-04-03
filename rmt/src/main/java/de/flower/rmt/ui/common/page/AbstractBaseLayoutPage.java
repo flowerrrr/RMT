@@ -1,6 +1,7 @@
 package de.flower.rmt.ui.common.page;
 
 import de.flower.common.ui.feedback.AlertMessageFeedbackPanel;
+import de.flower.common.ui.markup.html.panel.WrappingPanel;
 import de.flower.rmt.ui.common.panel.feedback.PasswordChangeRequiredMessage;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;

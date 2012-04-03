@@ -4,73 +4,74 @@
     <root id="archive" name="das-tool.war">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="lib">
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/javax.activation/activation/jars/activation-1.1.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/antlr/antlr/jars/antlr-2.7.6.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/aopalliance/aopalliance/jars/aopalliance-1.0.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/asm/asm/jars/asm-3.1.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.aspectj/aspectjrt/jars/aspectjrt-1.6.8.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.aspectj/aspectjweaver/jars/aspectjweaver-1.6.8.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/cglib/cglib/jars/cglib-2.2.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/commons-beanutils/commons-beanutils/jars/commons-beanutils-1.8.3.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/commons-codec/commons-codec/jars/commons-codec-1.4.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/commons-collections/commons-collections/jars/commons-collections-3.2.1.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/commons-lang/commons-lang/jars/commons-lang-2.4.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.commons/commons-lang3/jars/commons-lang3-3.0.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-core/jars/spring-core-3.1.0.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-asm/jars/spring-asm-3.1.0.RELEASE.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/commons-logging/commons-logging/jars/commons-logging-1.1.1.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/commons-pool/commons-pool/jars/commons-pool-1.5.4.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/dom4j/dom4j/jars/dom4j-1.6.1.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/com.google.code.gson/gson/jars/gson-1.7.2.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.hibernate/hibernate-commons-annotations/jars/hibernate-commons-annotations-3.2.0.Final.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.hibernate/hibernate-core/jars/hibernate-core-3.6.7.Final.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.hibernate/hibernate-entitymanager/jars/hibernate-entitymanager-3.6.7.Final.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.hibernate.javax.persistence/hibernate-jpa-2.0-api/jars/hibernate-jpa-2.0-api-1.0.1.Final.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.hibernate/hibernate-jpamodelgen/jars/hibernate-jpamodelgen-1.1.1.Final.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.hibernate/hibernate-validator/jars/hibernate-validator-4.2.0.Final.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.httpcomponents/httpclient/jars/httpclient-4.1.2.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.httpcomponents/httpcore/jars/httpcore-4.1.2.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/javassist/javassist/jars/javassist-3.12.0.GA.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.slf4j/jcl-over-slf4j/jars/jcl-over-slf4j-1.6.1.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.slf4j/jcl-over-slf4j/jars/jcl-over-slf4j-1.6.2.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.joda/joda-convert/jars/joda-convert-1.1.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/joda-time/joda-time/jars/joda-time-2.0.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/joda-time/joda-time-hibernate/jars/joda-time-hibernate-1.3.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/javax.transaction/jta/jars/jta-1.1.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/ch.qos.logback/logback-classic/jars/logback-classic-0.9.30.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/ch.qos.logback/logback-core/jars/logback-core-0.9.30.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/javax.mail/mail/jars/mail-1.4.4.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/mysql/mysql-connector-java/jars/mysql-connector-java-5.1.16.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.6.2.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-aop/jars/spring-aop-3.0.6.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-asm/jars/spring-asm-3.0.6.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-beans/jars/spring-beans-3.0.6.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-context/jars/spring-context-3.0.6.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-context-support/jars/spring-context-support-3.0.6.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-core/jars/spring-core-3.0.6.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework.data/spring-data-commons-core/jars/spring-data-commons-core-1.1.0.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework.data/spring-data-jpa/jars/spring-data-jpa-1.0.2.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-expression/jars/spring-expression-3.0.6.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-jdbc/jars/spring-jdbc-3.0.5.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-orm/jars/spring-orm-3.0.5.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-config/jars/spring-security-config-3.0.7.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-core/jars/spring-security-core-3.0.7.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-web/jars/spring-security-web-3.0.7.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-context/jars/spring-context-3.1.0.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-aop/jars/spring-aop-3.1.0.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-beans/jars/spring-beans-3.1.0.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/aopalliance/aopalliance/jars/aopalliance-1.0.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-expression/jars/spring-expression-3.1.0.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-context-support/jars/spring-context-support-3.1.0.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-web/jars/spring-security-web-3.1.0.RELEASE.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-tx/jars/spring-tx-3.0.6.RELEASE.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-web/jars/spring-web-3.0.6.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/javax.validation/validation-api/jars/validation-api-1.0.0.GA.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.velocity/velocity/jars/velocity-1.7.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-core/jars/wicket-core-1.5.3.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-datetime/jars/wicket-datetime-1.5.3.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-devutils/jars/wicket-devutils-1.5.3.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-extensions/jars/wicket-extensions-1.5.3.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-ioc/jars/wicket-ioc-1.5.3.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-request/jars/wicket-request-1.5.3.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-spring/jars/wicket-spring-1.5.3.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-util/jars/wicket-util-1.5.3.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-core/jars/spring-security-core-3.1.0.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-crypto/jars/spring-security-crypto-3.1.0.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-jdbc/jars/spring-jdbc-3.0.6.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-core/jars/wicket-core-1.5.5.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-util/jars/wicket-util-1.5.5.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.6.2.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-request/jars/wicket-request-1.5.5.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-extensions/jars/wicket-extensions-1.5.5.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-spring/jars/wicket-spring-1.5.5.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-ioc/jars/wicket-ioc-1.5.5.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/cglib/cglib/jars/cglib-2.2.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/asm/asm/jars/asm-3.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-datetime/jars/wicket-datetime-1.5.5.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/joda-time/joda-time/jars/joda-time-2.0.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-devutils/jars/wicket-devutils-1.5.5.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.wicketstuff/wicketstuff-jsr303/jars/wicketstuff-jsr303-1.5.0.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/javax.validation/validation-api/jars/validation-api-1.0.0.GA.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.hibernate/hibernate-validator/jars/hibernate-validator-4.2.0.Final.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.hibernate/hibernate-entitymanager/jars/hibernate-entitymanager-3.6.7.Final.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.hibernate.javax.persistence/hibernate-jpa-2.0-api/jars/hibernate-jpa-2.0-api-1.0.1.Final.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.hibernate/hibernate-core/jars/hibernate-core-3.6.7.Final.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/commons-collections/commons-collections/jars/commons-collections-3.2.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/antlr/antlr/jars/antlr-2.7.6.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/dom4j/dom4j/jars/dom4j-1.6.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.hibernate/hibernate-commons-annotations/jars/hibernate-commons-annotations-3.2.0.Final.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/javax.transaction/jta/jars/jta-1.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/javassist/javassist/jars/javassist-3.12.0.GA.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework.data/spring-data-jpa/jars/spring-data-jpa-1.0.2.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework.data/spring-data-commons-core/jars/spring-data-commons-core-1.1.0.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework/spring-orm/jars/spring-orm-3.0.5.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.aspectj/aspectjrt/jars/aspectjrt-1.6.8.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.slf4j/jcl-over-slf4j/jars/jcl-over-slf4j-1.6.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/commons-beanutils/commons-beanutils/jars/commons-beanutils-1.8.3.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.commons/commons-lang3/jars/commons-lang3-3.0.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/ch.qos.logback/logback-classic/jars/logback-classic-0.9.30.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/ch.qos.logback/logback-core/jars/logback-core-0.9.30.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.httpcomponents/httpclient/jars/httpclient-4.1.2.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.httpcomponents/httpcore/jars/httpcore-4.1.2.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/commons-codec/commons-codec/jars/commons-codec-1.4.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/com.google.code.gson/gson/jars/gson-1.7.2.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.hibernate/hibernate-jpamodelgen/jars/hibernate-jpamodelgen-1.1.1.Final.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/joda-time/joda-time-hibernate/jars/joda-time-hibernate-1.3.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.joda/joda-convert/jars/joda-convert-1.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/com.thoughtworks.xstream/xstream/jars/xstream-1.4.1.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/xmlpull/xmlpull/jars/xmlpull-1.1.3.1.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/xpp3/xpp3_min/jars/xpp3_min-1.1.4c.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/cache/com.thoughtworks.xstream/xstream/jars/xstream-1.4.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/javax.mail/mail/jars/mail-1.4.4.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/javax.activation/activation/jars/activation-1.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.apache.velocity/velocity/jars/velocity-1.7.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/commons-lang/commons-lang/jars/commons-lang-2.4.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/com.google.guava/guava/jars/guava-11.0.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/com.google.code.findbugs/jsr305/jars/jsr305-1.3.9.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.slf4j/jcl-over-slf4j/jars/jcl-over-slf4j-1.6.2.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/cache/c3p0/c3p0/jars/c3p0-0.9.1.2.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/mysql/mysql-connector-java/jars/mysql-connector-java-5.1.16.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-config/jars/spring-security-config-3.1.0.RELEASE.jar" />
         </element>
         <element id="file-copy" path="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <element id="directory" name="classes">

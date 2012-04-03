@@ -457,14 +457,46 @@ td .drop-down-menu-panel {
 }
 
 /*************************************************************************
-    twipsy tooltips
+    tooltips
 **************************************************************************/
-// custom tailor twipsy
-.twipsy {
-    // make it fully opaque
-    &.fade.in {
-        .opacity(100);
+
+/*************************************************************************
+    modal windows
+**************************************************************************/
+
+.recipient-list {
+    height: 300px;
+    overflow-y: scroll;
+    border: 1px solid #DDDDDD;
+
+    li {
+        border-top: 1px solid #FFFFFF;
+        padding-left: 10px;
+        padding-right: 10px;
     }
+
+    li.selected, li.selected:hover {
+        background-color: #0F5895;
+        label {
+            color: #FFFFFF;
+        }
+    }
+
+    li:hover {
+        background-color: #f5f5f5;
+    }
+
+    label {
+        padding-top: 3px;
+        padding-bottom: 3px;
+        margin-bottom: 0px; // override twitter bootstrap
+
+        input {
+            // override twitter bootstrap
+            display: inline;
+        }
+    }
+
 }
 
 
@@ -504,13 +536,6 @@ ul.dropdown {
 thead {
     border-bottom:  2px solid #CCCCCC;
 }
-
-// add some highlight for mouseover
-/*
-tbody tr:hover {
-    #gradient > .vertical(#eeeeee, #dddddd);
-}
-*/
 
 table th {
     vertical-align: top;

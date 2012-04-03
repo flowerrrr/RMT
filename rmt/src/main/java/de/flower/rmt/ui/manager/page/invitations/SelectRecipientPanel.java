@@ -1,10 +1,8 @@
 package de.flower.rmt.ui.manager.page.invitations;
 
-import de.flower.common.ui.ajax.markup.html.AjaxLink;
 import de.flower.common.ui.ajax.markup.html.form.AjaxSubmitLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
-import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.common.ui.modal.ModalPanel;
 import de.flower.common.ui.model.AbstractWrappingModel;
 import de.flower.rmt.model.Invitation;
@@ -21,6 +19,7 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
+import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import javax.mail.internet.InternetAddress;
@@ -41,6 +40,8 @@ public abstract class SelectRecipientPanel extends ModalPanel {
     public SelectRecipientPanel(final IModel<Event> model) {
         super(model);
 
+        setHeading("manager.notification.select.recipients.heading");
+
         final Form form = new Form("form");
         add(form);
 
@@ -51,7 +52,7 @@ public abstract class SelectRecipientPanel extends ModalPanel {
         final WebMarkupContainer listContainer = new WebMarkupContainer("listContainer");
         listContainer.setOutputMarkupId(true);
         group.add(listContainer);
-        ListView invitationList = new EntityListView<Invitation>("list", getListModel(model)) {
+        ListView invitationList = new ListView<Invitation>("list", getListModel(model)) {
 
             @Override
             protected void populateItem(ListItem<Invitation> item) {
@@ -62,18 +63,13 @@ public abstract class SelectRecipientPanel extends ModalPanel {
         };
         listContainer.add(invitationList);
 
-        // add and cancel buttons
-
-        form.add(new AjaxSubmitLink("addButton") {
-            @Override
-            protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-                SelectRecipientPanel.this.onSubmit(target, recipients);
-                close(target);
+        add(new AjaxSubmitLink("submitButton", form) {
+            {
+                add(new Label("submitLabel", new ResourceModel("button.add")));
             }
-        });
-        form.add(new AjaxLink<Void>("cancelButton") {
             @Override
-            public void onClick(final AjaxRequestTarget target) {
+            protected void onSubmit(final AjaxRequestTarget target, final Form<?> form) {
+                SelectRecipientPanel.this.onSubmit(target, recipients);
                 close(target);
             }
         });
@@ -88,7 +84,7 @@ public abstract class SelectRecipientPanel extends ModalPanel {
      *
      * @return
      */
-    private IModel<List<Invitation>> getListModel(final IModel<Event> model) {
+    protected IModel<List<Invitation>> getListModel(final IModel<Event> model) {
         return new LoadableDetachableModel<List<Invitation>>() {
             @Override
             protected List<Invitation> load() {

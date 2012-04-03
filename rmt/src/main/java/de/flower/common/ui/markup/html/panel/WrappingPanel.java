@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.common.page;
+package de.flower.common.ui.markup.html.panel;
 
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.Component;
@@ -24,7 +24,8 @@ public class WrappingPanel extends BasePanel {
         String divs = "";
         final Iterator<Component> iterator = this.iterator();
         while (iterator.hasNext()) {
-            divs += "<div wicket:id=\"" + iterator.next().getId() + "\" />\n";
+            String id = iterator.next().getId();
+            divs += "<div wicket:id=\"" + id + "\" />\n";
         }
         return Markup.of("<wicket:panel>" + divs + "</wicket:panel>");
     }

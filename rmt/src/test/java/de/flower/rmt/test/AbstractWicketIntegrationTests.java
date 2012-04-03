@@ -12,9 +12,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 /**
+ * Base class for ui-test that require full application stack down to database.
+ *
  * @author flowerrrr
  */
-
 public abstract class AbstractWicketIntegrationTests extends AbstractIntegrationTests {
 
     protected WicketTester wicketTester = null;

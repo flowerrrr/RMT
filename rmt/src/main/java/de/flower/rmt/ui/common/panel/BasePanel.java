@@ -18,6 +18,7 @@ import java.io.Serializable;
 /**
  * @author flowerrrr
  */
+// TODO (flowerrrr - 03.04.12) remove dependency to securityService and move to flower.common.ui.panel
 public class BasePanel<T> extends GenericPanel<T> {
 
     protected static final Logger log = LoggerFactory.getLogger(BasePanel.class);
