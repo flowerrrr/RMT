@@ -8,6 +8,7 @@ import org.apache.wicket.model.IModel;
 /**
  * @author flowerrrr
  */
+@Deprecated // currently not used
 public class NotificationPage extends ManagerBasePage {
 
     public NotificationPage(final IModel<Event> model) {
@@ -15,9 +16,7 @@ public class NotificationPage extends ManagerBasePage {
 
         setHeading("manager.notification.heading");
 
-        addMainPanel(new NotificationPanel(model));
-
-
+        addMainPanel(new NotificationPanel("notificationPanel", model));
     }
 
     @Override

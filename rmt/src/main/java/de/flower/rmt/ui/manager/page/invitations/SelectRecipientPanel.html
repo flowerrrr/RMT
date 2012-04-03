@@ -1,19 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
 <head></head>
 <body>
 <wicket:panel>
 
-    <div class="info-text">
-        <wicket:message key="manager.event.invitee.add.heading"/>
-    </div>
     <form wicket:id="form">
-        <ul>
-            <li wicket:id="teamList">
-                <input type="checkbox" wicket:id="team"/>
-                <span class="team" wicket:id="name">[Team name]</span>
-            </li>
-        </ul>
         <span wicket:id="group">
         <ul wicket:id="listContainer">
             <li wicket:id="list">
@@ -25,6 +17,7 @@
         <a class="btn btn-primary" wicket:id="addButton">
             <wicket:message key="button.add"/>
         </a>
+        <a class="btn" wicket:id="cancelButton"><wicket:message key="button.cancel"/></a>
     </form>
 
 </wicket:panel>

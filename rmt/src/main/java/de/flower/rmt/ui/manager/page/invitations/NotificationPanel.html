@@ -5,7 +5,30 @@
 <body>
 <wicket:panel>
 
-    Hier wird ein E-Mail Formular angezeigt mit dem Sie eine E-Mail an Ihre Spieler verfassen könnnen.
+    <form class="form-horizontal" wicket:id="form">
+
+        <fieldset>
+            <wicket:container wicket:id="formFeedbackPanel"/>
+
+            <div class="control-group">
+                <label class="control-label">
+                    <wicket:message key="manager.notification.recipients"/>
+                </label>
+
+                <div class="controls">
+                    <div wicket:id="recipientListPanel"/>
+                </div>
+            </div>
+            <rmt:input wicket:id="subject" labelKey="manager.notification.subject"/>
+            <rmt:input wicket:id="body" labelKey="manager.notification.body"/>
+
+            <div class="form-actions">
+                <a class="btn btn-primary" wicket:id="submitButton">
+                    <wicket:message key="button.send.invitation"/>
+                </a>
+            </div>
+        </fieldset>
+    </form>
 
 </wicket:panel>
 </body>

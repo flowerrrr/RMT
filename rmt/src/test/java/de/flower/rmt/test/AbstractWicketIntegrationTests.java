@@ -2,6 +2,7 @@ package de.flower.rmt.test;
 
 import de.flower.common.test.wicket.WicketTester;
 import de.flower.rmt.model.RSVPStatus;
+import de.flower.rmt.model.type.Notification;
 import de.flower.rmt.model.type.Password;
 import de.flower.rmt.ui.app.TestApplication;
 import org.apache.wicket.protocol.http.WebApplication;
@@ -35,9 +36,11 @@ public abstract class AbstractWicketIntegrationTests extends AbstractIntegration
     private void createTester(ApplicationContext ctx) {
         WebApplication webApp = createWebApp(ctx);
         wicketTester = new WicketTester(webApp);
+        // TODO (flowerrrr - 02.04.12) redundant information! use settings from tested app
         wicketTester.getLoggingSerializerFilter().addInclusion("\"de\\.flower\\.rmt\\.model\\.[^-]*?\"");
         wicketTester.getLoggingSerializerFilter().addExclusion(RSVPStatus.class.getName());
         wicketTester.getLoggingSerializerFilter().addExclusion(Password.class.getName());
+        wicketTester.getLoggingSerializerFilter().addExclusion(Notification.class.getName());
 
     }
 

@@ -1,5 +1,6 @@
 package de.flower.rmt.ui.common.page;
 
+import de.flower.common.ui.modal.ModalDialogWindow;
 import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.service.security.UserDetailsBean;
 import de.flower.rmt.ui.app.Resource;
@@ -24,8 +25,9 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
 
     public AbstractBasePage(IModel<?> model) {
         super(model);
+        ModalDialogWindow modalWindow = new ModalDialogWindow("modalWindow");
+        add(modalWindow);
     }
-
 
     @Override
     public void renderHead(final IHeaderResponse response) {
@@ -47,6 +49,7 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
 
     /**
      * Shortcut to get current user from security context.
+     *
      * @return
      */
     public UserDetailsBean getUserDetails() {
@@ -56,5 +59,4 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
     protected UserModel getUserModel() {
         return new UserModel(securityService.getUser());
     }
-
 }

@@ -9,7 +9,6 @@ import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.wicketstuff.jsr303.FormComponentBeanValidator;
 
@@ -24,7 +23,7 @@ public class AccountPasswordPanel extends BasePanel {
     public AccountPasswordPanel(String id, final IModel<User> model) {
         super(id, model);
 
-        EntityForm<Password> form = new EntityForm<Password>("form", Model.of(new Password(model.getObject().getId()))) {
+        EntityForm<Password> form = new EntityForm<Password>("form", new Password(model.getObject().getId())) {
             @Override
             protected void onSubmit(final AjaxRequestTarget target, final Form<Password> form) {
                 userManager.updatePassword(model.getObject().getId(), form.getModelObject());

@@ -4,6 +4,7 @@ import de.flower.common.ui.serialize.Filter;
 import de.flower.common.ui.serialize.LoggingSerializer;
 import de.flower.common.ui.serialize.SerializerWrapper;
 import de.flower.rmt.model.RSVPStatus;
+import de.flower.rmt.model.type.Notification;
 import de.flower.rmt.model.type.Password;
 import de.flower.rmt.ui.common.page.account.AccountPage;
 import de.flower.rmt.ui.common.page.login.LoginPage;
@@ -62,6 +63,7 @@ public class RMTApplication extends WebApplication {
         Filter filter = new Filter("\"de\\.flower\\.rmt\\.model\\.[^-]*?\"");
         filter.addExclusion(RSVPStatus.class.getName());
         filter.addExclusion(Password.class.getName());
+        filter.addExclusion(Notification.class.getName());
         wrapper.addListener(new LoggingSerializer(filter));
         getFrameworkSettings().setSerializer(wrapper);
     }
