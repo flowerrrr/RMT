@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import javax.mail.internet.InternetAddress;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,6 +35,16 @@ public class MailService implements IMailService {
 
     @Autowired
     private ISecurityService securityService;
+
+    @PostConstruct
+    public void init() {
+        if (mailSender instanceof JavaMailSenderImpl) {
+            String host = ((JavaMailSenderImpl) mailSender).getHost();
+            log.info("*************************************************************");
+            log.info("Smtp Mail Host: " + host);
+            log.info("*************************************************************");
+        }
+    }
 
     @Override
     public void sendMassMail(final Notification notification) {

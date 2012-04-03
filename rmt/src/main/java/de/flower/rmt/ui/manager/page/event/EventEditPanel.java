@@ -50,7 +50,7 @@ public class EventEditPanel extends BasePanel {
                     eventManager.save(event);
                 }
                 // target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Event.class), AjaxEvent.EntityUpdated(Event.class)));
-                setResponsePage(new EventEditPage(form.getModel()));
+                setResponsePage(new EventPage(form.getModel()));
                 // onClose(target);
             }
         };

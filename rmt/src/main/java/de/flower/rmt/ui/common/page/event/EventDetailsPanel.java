@@ -4,7 +4,7 @@ import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
-import de.flower.rmt.ui.manager.page.event.EventEditPage;
+import de.flower.rmt.ui.manager.page.event.EventPage;
 import de.flower.rmt.ui.model.ModelFactory;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.markup.html.basic.Label;
@@ -43,7 +43,7 @@ public class EventDetailsPanel extends BasePanel<Event> {
 
             @Override
             public void onClick() {
-                setResponsePage(new EventEditPage(model));
+                setResponsePage(new EventPage(model));
             }
 
             @Override

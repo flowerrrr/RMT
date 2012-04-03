@@ -22,8 +22,6 @@ public class ModalDialogWindow extends ModalWindow {
 
     private static final int ADDITIONAL_WIDTH = 42;
 
-    private boolean disableUnloadConfirmation = false;
-
     /**
      * Instantiates a new modal dialog window.
      *
@@ -31,6 +29,7 @@ public class ModalDialogWindow extends ModalWindow {
      */
     public ModalDialogWindow(final String id) {
         super(id);
+        setWindowClosedCallback(null); // no idea why it is enabled by default in wicket
         setCssClassName(Css.MODAL);
         add(new CloseOnEscBehavior(this));
         add(new FocusFirstInputBehavior());

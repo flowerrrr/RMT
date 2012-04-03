@@ -32,4 +32,8 @@ public class JQuery {
         Check.notBlank(component.getMarkupId());
         return "$('#" + component.getMarkupId() + "').css({visibility: 'visible'}); $('#" + component.getMarkupId() + "').animate({opacity:1},'" + duration + "');";
     }
+
+    public static String scrollToTop(String duration) {
+        return "$('html, body').animate({ scrollTop: 0 }, '" + duration + "');";
+    }
 }

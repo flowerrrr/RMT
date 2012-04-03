@@ -156,6 +156,7 @@ public class AddInviteePanel extends BasePanel<Event> {
 
     private void close(AjaxRequestTarget target) {
         selectedUsers.clear();
+        detach();
         onClose(target);
     }
 

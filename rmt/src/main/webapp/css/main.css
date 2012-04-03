@@ -167,6 +167,11 @@ input[type="checkbox"] {
    form field tweaking
 **************************************************************************/
 
+
+textarea {
+    resize: vertical;
+}
+
 /* override float:left from bootstrap */
 input[type="checkbox"] + label {
     float: none;
@@ -211,7 +216,9 @@ input[readonly].reset {
     display: inline-block;
     margin-bottom: 0;
     overflow: auto;
-    height: 200px;
+    resize: vertical;
+    min-height: 38px;
+    max-height: 210px;
     li {
         list-style: none;
         color: #555555;
@@ -617,6 +624,15 @@ td.rsvpstatus {
 }
 
 /*************************************************************************
+    Notification
+**************************************************************************/
+.notification-panel {
+    textarea {
+        height: 200px;
+    }
+}
+
+/*************************************************************************
     Invitation list
 **************************************************************************/
 .invitationListTable td:first-child {
@@ -644,10 +660,6 @@ td.rsvpstatus {
 }
 .ul-form li {
     margin-top: 10px;
-}
-
-textarea {
-    resize: none;
 }
 
 /*************************************************************************

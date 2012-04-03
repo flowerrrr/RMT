@@ -49,6 +49,7 @@ public abstract class ModalPanel extends BasePanel {
         });
     }
 
+
     /**
      * Close the containing modal window.
      *

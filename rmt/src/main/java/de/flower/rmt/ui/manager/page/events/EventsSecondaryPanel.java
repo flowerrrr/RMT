@@ -4,7 +4,7 @@ import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
-import de.flower.rmt.ui.manager.page.event.EventEditPage;
+import de.flower.rmt.ui.manager.page.event.EventPage;
 import de.flower.rmt.ui.model.EventModel;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
@@ -45,7 +45,7 @@ public class EventsSecondaryPanel extends BasePanel {
             @Override
             protected void onSelectionChanged(final EventType eventType) {
                 Event event = eventManager.newInstance(eventType);
-                setResponsePage(new EventEditPage(new EventModel(event)));
+                setResponsePage(new EventPage(new EventModel(event)));
             }
         };
         add(eventTypeSelect);

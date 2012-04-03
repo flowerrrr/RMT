@@ -2,6 +2,7 @@ package de.flower.rmt.ui.common.form.field;
 
 import de.flower.common.ui.Css;
 import de.flower.common.util.Check;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.behavior.AttributeAppender;
@@ -36,6 +37,8 @@ public class FormFieldPanel extends Panel {
 
         formComponent = fc;
         add(formComponent);
+
+        formComponent.add(AttributeModifier.append("class", getCssClassModel()));
 
         // set css class of border according to validation result.
         IModel<String> cssClassModel = new AbstractReadOnlyModel<String>() {
@@ -129,6 +132,21 @@ public class FormFieldPanel extends Panel {
         final MarkupElement markupElement = markup.get(0);
         labelKey = ((ComponentTag) markupElement).getAttribute(LABEL_KEY);
         return labelKey;
+    }
+
+    protected String getCssClass() {
+        final IMarkupFragment markup = getMarkup();
+        final MarkupElement markupElement = markup.get(0);
+        return ((ComponentTag) markupElement).getAttribute("class");
+    }
+
+    protected IModel<String> getCssClassModel() {
+        return new AbstractReadOnlyModel<String>() {
+            @Override
+            public String getObject() {
+                return getCssClass();
+            }
+        };
     }
 
     public FormComponent getFormComponent() {

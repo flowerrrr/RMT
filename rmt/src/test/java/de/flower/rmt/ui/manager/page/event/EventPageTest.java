@@ -10,12 +10,12 @@ import org.testng.annotations.Test;
  * @author flowerrrr
  */
 
-public class EventEditPageTest extends AbstractWicketIntegrationTests {
+public class EventPageTest extends AbstractWicketIntegrationTests {
 
     @Test
     public void testRender() {
         Event event = eventManager.newInstance(EventType.Training);
-        wicketTester.startPage(new EventEditPage(new EventModel(event)));
+        wicketTester.startPage(new EventPage(new EventModel(event)));
         wicketTester.dumpPage();
     }
 

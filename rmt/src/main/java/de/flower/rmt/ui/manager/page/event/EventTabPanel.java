@@ -21,7 +21,7 @@ public class EventTabPanel extends AbstractAjaxTabbedPanel<Event> {
 
     public static final int INVITEES_PANEL_INDEX = 1;
 
-    public static final int EMAIL_PANEL_INDEX = 2;
+    public static final int NOTIFICATION_PANEL_INDEX = 2;
 
     public static final int INVITATIONS_PANEL_INDEX = 3;
 

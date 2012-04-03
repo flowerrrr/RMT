@@ -7,7 +7,6 @@ import de.flower.rmt.ui.common.page.event.EventPagerPanel;
 import de.flower.rmt.ui.manager.ManagerBasePage;
 import de.flower.rmt.ui.manager.NavigationPanel;
 import de.flower.rmt.ui.model.EventModel;
-import de.flower.rmt.ui.player.page.event.EventPage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
@@ -20,15 +19,15 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class EventEditPage extends ManagerBasePage {
+public class EventPage extends ManagerBasePage {
 
     @SpringBean
     private IEventManager eventManager;
 
-    public EventEditPage(PageParameters params) {
+    public EventPage(PageParameters params) {
         Event event = null;
         try {
-            Long eventId = params.get(EventPage.PARAM_EVENTID).toLong();
+            Long eventId = params.get(de.flower.rmt.ui.player.page.event.EventPage.PARAM_EVENTID).toLong();
             event = eventManager.loadById(eventId);
         } catch (Exception e) {
             throw new AbortWithHttpErrorCodeException(404, "Invalid page parameter.");
@@ -37,10 +36,10 @@ public class EventEditPage extends ManagerBasePage {
     }
 
     public static PageParameters getPageParams(Long eventId) {
-        return new PageParameters().set(EventPage.PARAM_EVENTID, eventId);
+        return new PageParameters().set(de.flower.rmt.ui.player.page.event.EventPage.PARAM_EVENTID, eventId);
     }
 
-    public EventEditPage(IModel<Event> model) {
+    public EventPage(IModel<Event> model) {
         super(model);
         init(model);
     }
@@ -59,13 +58,14 @@ public class EventEditPage extends ManagerBasePage {
 
             @Override
             protected void onClick(IModel<Event> model) {
-                setResponsePage(new EventEditPage(model));
+                setResponsePage(new EventPage(model));
             }
         });
         getSecondaryPanel().add(new EventDetailsPanel(model) {
             @Override
             public boolean isVisible() {
-                return tabPanel.getSelectedTab() == EventTabPanel.INVITATIONS_PANEL_INDEX;
+                return tabPanel.getSelectedTab() == EventTabPanel.INVITATIONS_PANEL_INDEX
+                        || tabPanel.getSelectedTab() == EventTabPanel.NOTIFICATION_PANEL_INDEX;
             }
         });
         getSecondaryPanel().add(new InviteeSecondaryPanel(model) {

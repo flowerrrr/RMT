@@ -11,7 +11,7 @@ import de.flower.rmt.model.event.Event_;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.common.panel.DropDownMenuPanel;
-import de.flower.rmt.ui.manager.page.event.EventEditPage;
+import de.flower.rmt.ui.manager.page.event.EventPage;
 import de.flower.rmt.ui.manager.page.invitations.InvitationsPage;
 import de.flower.rmt.ui.model.EventModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -104,7 +104,7 @@ public class EventListPanel extends BasePanel {
         return new Link(id) {
             @Override
             public void onClick() {
-                setResponsePage(EventEditPage.class, EventEditPage.getPageParams(item.getModelObject().getId()));
+                setResponsePage(EventPage.class, EventPage.getPageParams(item.getModelObject().getId()));
             }
         };
     }
