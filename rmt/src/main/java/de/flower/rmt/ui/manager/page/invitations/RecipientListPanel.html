@@ -6,14 +6,12 @@
 <wicket:panel>
 
     <!-- tabindex needed to allow div receive focus and achieve nice border-glowing -->
-    <div class="field">
-        <div wicket:id="listContainer" class="listarea input-xlarge" tabindex="0">
-            <li wicket:id="list">
-                <span wicket:id="name"/>
-                <small>&lt;<span wicket:id="email"/>&gt;</small>
-                <a wicket:id="deleteButton" class="close pull-right">&times;</a>
-            </li>
-        </div>
+    <div wicket:id="listContainer" class="listarea input-xlarge" tabindex="0">
+        <li wicket:id="list">
+            <span wicket:id="name"/>
+            <small>&lt;<span wicket:id="email"/>&gt;</small>
+            <a wicket:id="deleteButton" class="close pull-right">&times;</a>
+        </li>
     </div>
     <a wicket:id="addButton" class="btn"><i class="icon-plus"></i></a>
 

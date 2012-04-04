@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class DropDownChoicePanel<T> extends FormFieldPanel {
+public class DropDownChoicePanel<T> extends AbstractFormFieldPanel {
 
     public DropDownChoicePanel(String id) {
         super(id, new DropDownChoice(ID));

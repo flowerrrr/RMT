@@ -6,6 +6,7 @@ import java.io.Serializable;
 /**
  * @author flowerrrr
  */
+@Deprecated
 public class ConstraintFilter implements Serializable {
 
     private String messageTemplate;

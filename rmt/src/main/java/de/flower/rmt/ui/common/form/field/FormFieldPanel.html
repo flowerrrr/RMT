@@ -2,19 +2,10 @@
 <html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
 <head></head>
 <body>
-<wicket:panel>
+<wicket:extend>
 
-    <label class="control-label" wicket:for="input">
-        <wicket:label>[Form Component Label]</wicket:label>
-    </label>
+        <div wicket:id="input" />
 
-    <div class="controls">
-        <div class="field">
-            <wicket:child/>
-        </div>
-        <div class="help-inline field-feedback" wicket:id="feedback"/>
-    </div>
-
-</wicket:panel>
+</wicket:extend>
 </body>
 </html>

@@ -10,15 +10,7 @@
         <fieldset>
             <wicket:container wicket:id="formFeedbackPanel"/>
 
-            <div class="control-group">
-                <label class="control-label">
-                    <wicket:message key="manager.notification.recipients"/>
-                </label>
-
-                <div class="controls">
-                    <div wicket:id="recipientListPanel"/>
-                </div>
-            </div>
+            <rmt:div wicket:id="recipientList" labelKey="manager.notification.recipients"/>
             <rmt:input wicket:id="subject" class="input-xlarge" labelKey="manager.notification.subject"/>
             <rmt:input wicket:id="body" class="input-xlarge" labelKey="manager.notification.body"/>
             <rmt:input wicket:id="bccMySelf" labelKey="manager.notification.bccmyself" />

@@ -1,5 +1,8 @@
 package de.flower.rmt.model.type;
 
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.mail.internet.InternetAddress;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
@@ -11,10 +14,13 @@ import java.util.List;
  */
 public class Notification implements Serializable {
 
+    @NotEmpty
     private List<InternetAddress> recipients = new ArrayList<InternetAddress>();
 
+    @NotBlank
     private String subject;
 
+    @NotBlank
     private String body;
 
     private Boolean bccMySelf;

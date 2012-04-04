@@ -1,20 +1,27 @@
 package de.flower.rmt.ui.manager.page.invitations;
 
+import com.google.common.annotations.VisibleForTesting;
 import de.flower.common.ui.js.JQuery;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.type.Notification;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.common.form.EntityForm;
 import de.flower.rmt.ui.common.form.field.CheckBoxPanel;
+import de.flower.rmt.ui.common.form.field.FormFieldPanel;
 import de.flower.rmt.ui.common.form.field.TextAreaPanel;
 import de.flower.rmt.ui.common.form.field.TextFieldPanel;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.markup.Markup;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.FormComponentPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+
+import javax.mail.internet.InternetAddress;
+import java.util.List;
 
 /**
  * @author flowerrrr
@@ -37,9 +44,48 @@ public class NotificationPanel extends BasePanel {
             }
         };
         add(form);
-        form.add(new RecipientListPanel(new PropertyModel(notificationModel, "recipients"), model));
+
+        RecipientListFormComponent fc = new RecipientListFormComponent(new PropertyModel(notificationModel, "recipients"), model);
+        form.add(new FormFieldPanel("recipientList", fc) {
+            @Override
+            protected boolean isInstantValidationEnabled() {
+                // disable needless rendering of javascript onchange handler
+                return false;
+            }
+        });
         form.add(new TextFieldPanel("subject"));
         form.add(new TextAreaPanel("body"));
         form.add(new CheckBoxPanel("bccMySelf"));
+    }
+
+    /**
+     * Class making the wrapped panel act like a form component. Allows to integrate panel
+     * into existing form field architecture.
+     */
+    @VisibleForTesting
+    protected static class RecipientListFormComponent extends FormComponentPanel<List<InternetAddress>> {
+
+        public RecipientListFormComponent(final IModel<List<InternetAddress>> model, final IModel<Event> eventModel) {
+            super("input", model);
+            add(new RecipientListPanel(model, eventModel) {
+                @Override
+                protected void onChange(final AjaxRequestTarget target) {
+                    // trigger instant validation, simulate AjaxFormComponentUpdatingBehavior
+                    processInput();
+                    target.add(this.findParent(FormFieldPanel.class));
+                }
+            });
+        }
+
+        @Override
+        protected void convertInput() {
+            setConvertedInput(getModelObject());
+        }
+
+        @Override
+        public Markup getAssociatedMarkup() {
+            String markup = "<wicket:panel><div wicket:id='recipientListPanel'/></wicket:panel>";
+            return Markup.of(markup);
+        }
     }
 }

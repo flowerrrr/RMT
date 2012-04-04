@@ -36,6 +36,7 @@ public class RecipientListPanel extends BasePanel {
                     @Override
                     public void onClick(final AjaxRequestTarget target) {
                         model.getObject().remove(getModelObject());
+                        onChange(target);
                         target.add(listContainer);
                     }
                 });
@@ -50,11 +51,15 @@ public class RecipientListPanel extends BasePanel {
 
                     @Override
                     protected void onSubmit(final AjaxRequestTarget target, final List<InternetAddress> recipients) {
-                        System.out.println(recipients.toString());
+                        boolean changed = false;
                         for (InternetAddress ia : recipients) {
                             if (!model.getObject().contains(ia)) {
                                 model.getObject().add(ia);
+                                changed = true;
                             }
+                        }
+                        if (changed) {
+                            onChange(target);
                         }
                         target.add(listContainer);
                     }
@@ -62,5 +67,13 @@ public class RecipientListPanel extends BasePanel {
                 ModalDialogWindow.showContent(this, content, 5);
             }
         });
+    }
+
+    /**
+     * Called whenever the selection changes.
+     * @param target
+     */
+    protected void onChange(AjaxRequestTarget target) {
+        ;
     }
 }

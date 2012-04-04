@@ -8,7 +8,7 @@ import org.apache.wicket.markup.html.IHeaderResponse;
 /**
  * @author flowerrrr
  */
-public class DateFieldPanel extends FormFieldPanel {
+public class DateFieldPanel extends AbstractFormFieldPanel {
 
     public DateFieldPanel(String id) {
         super(id, DateTextField.forDatePattern(ID, "dd.MM.yyyy"));

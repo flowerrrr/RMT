@@ -56,7 +56,7 @@ public class EventEditPanel extends BasePanel {
         };
         add(form);
 
-        form.add(new TextFieldPanel("type", new TextField(FormFieldPanel.ID, new ResourceModel(EventType.from(model.getObject()).getResourceKey())))
+        form.add(new TextFieldPanel("type", new TextField(AbstractFormFieldPanel.ID, new ResourceModel(EventType.from(model.getObject()).getResourceKey())))
                 .setEnabled(false));
         form.add(new TeamDropDownChoicePanel("team") {
             @Override

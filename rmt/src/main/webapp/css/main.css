@@ -243,6 +243,12 @@ input[readonly].reset {
     outline: 0 none;
 }
 
+.control-group.error .listarea {
+    color: #b94a48;
+    border-color: #b94a48;
+}
+
+
 
 /*************************************************************************
    tabbed panel
@@ -287,11 +293,11 @@ form .field {
 form .help-inline {
     padding-top: 5px;
 }
-.error input {
-    background: url(../img/error.png) no-repeat scroll 98%;
+.error input, .error textarea {
+    background: url(../img/error.png) no-repeat scroll 98% 7px;
 }
-.valid input {
-    background: url(../img/valid.png) no-repeat scroll 98%;
+.valid input, .valid textarea {
+    background: url(../img/valid.png) no-repeat scroll 98% 7px;
 }
 
 

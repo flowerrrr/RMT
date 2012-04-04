@@ -6,8 +6,8 @@ import de.flower.rmt.model.User;
 import de.flower.rmt.service.IRoleManager;
 import de.flower.rmt.service.IUserManager;
 import de.flower.rmt.ui.common.form.EntityForm;
+import de.flower.rmt.ui.common.form.field.AbstractFormFieldPanel;
 import de.flower.rmt.ui.common.form.field.CheckBoxPanel;
-import de.flower.rmt.ui.common.form.field.FormFieldPanel;
 import de.flower.rmt.ui.common.form.field.TextFieldPanel;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -51,7 +51,7 @@ public class PlayerGeneralPanel extends BasePanel<User> {
         TextFieldPanel email = new TextFieldPanel("email");
         form.add(email);
         email.addValidator(new FormComponentBeanValidator(User.Validation.IEmailUnique.class));
-        CheckBoxPanel manager = new CheckBoxPanel("manager", new CheckBox(FormFieldPanel.ID, managerModel));
+        CheckBoxPanel manager = new CheckBoxPanel("manager", new CheckBox(AbstractFormFieldPanel.ID, managerModel));
         manager.setVisible(!securityService.isCurrentUser(model.getObject()));
         form.add(manager);
     }

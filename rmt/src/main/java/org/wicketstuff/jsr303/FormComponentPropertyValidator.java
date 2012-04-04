@@ -24,6 +24,7 @@ import java.util.Set;
  *
  * @author flowerrrr
  */
+@Deprecated
 public class FormComponentPropertyValidator<T> extends Behavior implements INullAcceptingValidator<String>, Serializable {
 
     private final static Logger log = LoggerFactory.getLogger(FormComponentPropertyValidator.class);

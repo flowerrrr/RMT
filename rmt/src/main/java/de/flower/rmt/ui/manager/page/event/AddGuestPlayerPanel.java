@@ -56,6 +56,7 @@ public class AddGuestPlayerPanel extends BasePanel<Event> {
     @Override
     protected void onDetach() {
         fEntity.guestName = "";
+        super.onDetach();
     }
 
     protected static final class FEntity implements Serializable {

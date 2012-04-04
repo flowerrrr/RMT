@@ -1,5 +1,6 @@
 package org.wicketstuff.jsr303;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.model.AbstractPropertyModel;
@@ -60,7 +61,7 @@ public class PropertyValidator<T> implements INullAcceptingValidator<T>, Seriali
 	private Class<?> beanClass;
 	private String propertyExpression;
 
-	private final FormComponent<T> fc;
+	private final Component fc;
 
 	public PropertyValidator(final AbstractPropertyModel<?> apm, FormComponent<T> componentToApplyTo)
 	{
@@ -70,14 +71,16 @@ public class PropertyValidator<T> implements INullAcceptingValidator<T>, Seriali
         this.propertyExpression = apm.getPropertyExpression();
 	}
 
-    public PropertyValidator(FormComponent<T> componentToApplyTo) {
+    public PropertyValidator(Component componentToApplyTo) {
         this.fc = componentToApplyTo;
         // rest will be initialized lazily.
     }
 
+
+
     private void init() {
         if (this.beanClass == null) {
-            AbstractPropertyModel<?> apm = (AbstractPropertyModel<?>) this.fc.getModel();
+            AbstractPropertyModel<?> apm = (AbstractPropertyModel<?>) this.fc.getDefaultModel();
             this.beanClass = apm.getTarget().getClass();
             this.propertyExpression = apm.getPropertyExpression();
         }

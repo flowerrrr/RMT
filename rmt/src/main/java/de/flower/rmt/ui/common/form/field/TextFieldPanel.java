@@ -5,7 +5,7 @@ import org.apache.wicket.markup.html.form.TextField;
 /**
  * @author flowerrrr
  */
-public class TextFieldPanel extends FormFieldPanel {
+public class TextFieldPanel extends AbstractFormFieldPanel {
 
     public TextFieldPanel(String id) {
         super(id, new TextField(ID));
