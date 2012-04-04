@@ -42,4 +42,28 @@ public class Match extends Event {
     public Match(final Club club) {
         super(club);
     }
+
+    public LocalTime getKickOff() {
+        return kickOff;
+    }
+
+    public void setKickOff(final LocalTime kickOff) {
+        this.kickOff = kickOff;
+    }
+
+    public Opponent getOpponent() {
+        return opponent;
+    }
+
+    public void setOpponent(final Opponent opponent) {
+        this.opponent = opponent;
+    }
+
+    public Jersey getJersey() {
+        return jersey;
+    }
+
+    public void setJersey(final Jersey jersey) {
+        this.jersey = jersey;
+    }
 }

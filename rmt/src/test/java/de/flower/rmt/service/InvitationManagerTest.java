@@ -19,7 +19,7 @@ public class InvitationManagerTest extends AbstractIntegrationTests {
 
     @Test
     public void testMarkInvitationSent() {
-        Event event = testData.createEventWithoutResponses();
+        Event event = testData.createEvent();
         final List<String> addressList = new ArrayList<String>();
         for (Invitation invitation : invitationManager.findAllByEvent(event, Invitation_.user)) {
             assertFalse(invitation.isInvitationSent());

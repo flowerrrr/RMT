@@ -19,7 +19,7 @@ public class ResponseManagerTest extends AbstractIntegrationTests {
 
     @Test
     public void testFindResponder() {
-        Event event = testData.createEventWithoutResponses();
+        Event event = testData.createEvent();
         List<Player> players = event.getTeam().getPlayers();
         assertTrue(invitationManager.findAllByEventAndStatus(event, RSVPStatus.ACCEPTED).isEmpty());
         Invitation invitation = responseManager.respond(event, players.get(0).getUser(), RSVPStatus.ACCEPTED, "some comment");
@@ -35,7 +35,7 @@ public class ResponseManagerTest extends AbstractIntegrationTests {
 
     @Test
     public void testRespond() {
-        Event event = testData.createEventWithoutResponses();
+        Event event = testData.createEvent();
         Player player = event.getTeam().getPlayers().get(0);
         String comment = "Comment #1";
         RSVPStatus status = RSVPStatus.ACCEPTED;

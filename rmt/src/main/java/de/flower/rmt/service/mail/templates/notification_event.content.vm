@@ -1,0 +1,27 @@
+
+
+
+Veranstaltungsdetails
+---------------------
+Link: $eventLink
+
+Typ: $event.getEventType()
+Datum: $eventDate
+Zeit: $eventTime
+#if ($event.getEventType() == $eventTypeMatch)
+#set ($opponent = "<noch nicht festgelegt>")
+#if ($event.getOpponent())
+#set ($opponent = $event.getOpponent().getName())
+#end
+Gegner: $opponent
+#end
+#set ($venue = "<noch nicht festgelegt>")
+#if ($event.getVenue())
+#set ($venue = $event.getVenue().getName())
+#end
+Ort: $venue
+Titel: $!event.getSummary()
+Beschreibung: $!event.getComment()
+
+
+#parse('footer-include.vm')

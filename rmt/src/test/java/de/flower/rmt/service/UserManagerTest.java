@@ -84,7 +84,7 @@ public class UserManagerTest extends AbstractIntegrationTests {
 
     @Test
     public void testUninvitedPlayers() {
-        Event event = testData.createEventWithoutResponses();
+        Event event = testData.createEvent();
         List<User> users = userManager.findAllUninvitedPlayers(event);
         assertFalse(users.isEmpty());
         User u = users.get(0);

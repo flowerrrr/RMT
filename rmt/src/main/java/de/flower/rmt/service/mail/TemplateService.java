@@ -1,6 +1,7 @@
 package de.flower.rmt.service.mail;
 
 import de.flower.common.util.Check;
+import de.flower.rmt.util.Dates;
 import org.apache.velocity.app.VelocityEngine;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +12,6 @@ import org.springframework.ui.velocity.VelocityEngineUtils;
 import javax.annotation.Resource;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,8 +49,8 @@ public class TemplateService implements ITemplateService {
         Check.notNull(template);
 
         // nicely formatted time string
-        String currentTime = DateFormat.getTimeInstance(DateFormat.LONG).format(new Date());
-        String currentDate = DateFormat.getDateInstance(DateFormat.LONG).format(new Date());
+        String currentTime = Dates.formatTimeMedium(new Date());
+        String currentDate = Dates.formatDateLong(new Date());
 
         Map<String, Object> model = new HashMap<String, Object>(input);
         // add some default variables to context

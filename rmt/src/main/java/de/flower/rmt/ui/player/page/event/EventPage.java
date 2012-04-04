@@ -47,7 +47,8 @@ public class EventPage extends PlayerBasePage {
             Long eventId = params.get(PARAM_EVENTID).toLong();
             event = eventManager.loadByIdAndUser(eventId, getUserDetails().getUser());
         } catch (Exception e) {
-            throw new AbortWithHttpErrorCodeException(404, "Invalid page parameter.");
+            log.error(e.toString(), e);
+            throw new AbortWithHttpErrorCodeException(404, "Invalid page parameter: " + e.getMessage());
         }
         init(new EventModel(event));
     }

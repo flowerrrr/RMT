@@ -43,9 +43,10 @@
         <!-- needed for testing with classpath templates that reside in different file locations but same package. -->
         <property name="preferFileSystemAccess" value="false" />
         <property name="velocityProperties">
-            <!-- specify the file encodiing used in our templates. -->
             <props>
+                <!-- specify the file encoding used in our templates. -->
                 <prop key="input.encoding">UTF-8</prop>
+                <!-- raise exception when referencing null values -->
                 <prop key="runtime.references.strict">true</prop>
             </props>
         </property>

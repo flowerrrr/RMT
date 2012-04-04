@@ -51,7 +51,7 @@ public class EventManagerTest extends AbstractIntegrationTests {
 
     @Test
     public void testUpcomingEventsByUser() {
-        Event event = testData.createEventWithoutResponses();
+        Event event = testData.createEvent();
         List<Invitation> invitations = invitationManager.findAllByEvent(event, Invitation_.user);
         List<Event> list = eventManager.findAllUpcomingByUser(invitations.get(0).getUser());
         // check if team can be accessed without LIE

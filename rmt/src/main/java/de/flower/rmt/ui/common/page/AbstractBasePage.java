@@ -10,11 +10,15 @@ import org.apache.wicket.markup.html.IHeaderResponse;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author flowerrrr
  */
 public abstract class AbstractBasePage extends WebPage implements IAjaxIndicatorAware {
+
+    protected final Logger log = LoggerFactory.getLogger(getClass());
 
     @SpringBean
     private ISecurityService securityService;

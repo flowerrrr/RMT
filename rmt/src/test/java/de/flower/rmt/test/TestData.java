@@ -12,6 +12,8 @@ import de.flower.rmt.service.*;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.Validate;
 import org.joda.time.LocalTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -30,6 +32,8 @@ import java.util.Random;
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
 public class TestData {
+
+    private final static Logger log = LoggerFactory.getLogger(TestData.class);
 
     @Autowired
     private ITeamRepo teamRepo;
@@ -62,6 +66,21 @@ public class TestData {
     private IUserManager userManager;
 
     private Random random = new Random();
+
+    /**
+     * Determines type of created test event.
+     */
+    private EventType eventType = EventType.Training;
+
+    public TestData() {
+        // interesting, constructor called twice.
+        // see http://forum.springsource.org/showthread.php?9814-Constructor-called-twice-when-using-CGLIB-proxy-beans
+        log.info("TestData.<init>");
+    }
+
+    public void setEventType(final EventType eventType) {
+        this.eventType = eventType;
+    }
 
     public void checkDataConsistency(EntityManager em) {
 /*
@@ -200,7 +219,7 @@ public class TestData {
     }
 
     public Event createEvent(Team team, boolean createInvitations) {
-        Event event = eventManager.newInstance(EventType.Training);
+        Event event = eventManager.newInstance(eventType);
         event.setDate(new Date());
         event.setTime(LocalTime.now());
         event.setSummary("Summary");
@@ -210,7 +229,7 @@ public class TestData {
         return eventManager.loadById(event.getId(), Event_.team, Event_.invitations);
     }
 
-    public Event createEventWithoutResponses() {
+    public Event createEvent() {
         Team team = createTeamWithPlayers("FCB " + System.currentTimeMillis(), 15);
         Event event = createEvent(team, true);
         return event;
@@ -220,7 +239,7 @@ public class TestData {
      * Creates an event with some responses.
      */
     public Event createEventWithResponses() {
-        Event event = createEventWithoutResponses();
+        Event event = createEvent();
         List<Invitation> invitations = invitationManager.findAllByEvent(event);
         respond(invitations.get(0), RSVPStatus.ACCEPTED, "some comment");
         respond(invitations.get(2), RSVPStatus.DECLINED, "some comment");

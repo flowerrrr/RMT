@@ -1,6 +1,7 @@
 package de.flower.rmt.ui.common.form.field;
 
 import de.flower.rmt.ui.app.Resource;
+import de.flower.rmt.util.Dates;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.datetime.markup.html.form.DateTextField;
 import org.apache.wicket.markup.html.IHeaderResponse;
@@ -11,7 +12,7 @@ import org.apache.wicket.markup.html.IHeaderResponse;
 public class DateFieldPanel extends AbstractFormFieldPanel {
 
     public DateFieldPanel(String id) {
-        super(id, DateTextField.forDatePattern(ID, "dd.MM.yyyy"));
+        super(id, DateTextField.forDatePattern(ID, Dates.DATE_MEDIUM));
     }
 
     @Override

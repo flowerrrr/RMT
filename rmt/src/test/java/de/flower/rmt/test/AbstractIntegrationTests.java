@@ -52,9 +52,6 @@ import java.util.Map;
  * @author flowerrrr
  */
 @Listeners({de.flower.common.test.ExceptionLoggerTestListener.class})
-// in-memory database -> no need for transactional support and rollbacks
-//@TestExecutionListeners(Array(classOf[TransactionalTestExecutionListener]))
-// @Transactional
 @ContextConfiguration(locations = {"/applicationContext-test.xml"})
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 public class AbstractIntegrationTests extends AbstractTestNGSpringContextTests {

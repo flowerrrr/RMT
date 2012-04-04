@@ -30,7 +30,8 @@ public class EventPage extends ManagerBasePage {
             Long eventId = params.get(de.flower.rmt.ui.player.page.event.EventPage.PARAM_EVENTID).toLong();
             event = eventManager.loadById(eventId);
         } catch (Exception e) {
-            throw new AbortWithHttpErrorCodeException(404, "Invalid page parameter.");
+            log.error(e.toString(), e);
+            throw new AbortWithHttpErrorCodeException(404, "Invalid page parameter: " + e.getMessage());
         }
         init(new EventModel(event));
     }

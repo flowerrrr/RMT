@@ -68,7 +68,7 @@ public class EventManager extends AbstractService implements IEventManager {
     public Event loadById(Long id, final Attribute... attributes) {
         Specification fetch = fetch(attributes);
         Event entity = eventRepo.findOne(and(eq(Event_.id, id), fetch));
-        Check.notNull(entity);
+        Check.notNull(entity, "No event found");
         assertClub(entity);
         return entity;
     }
@@ -120,7 +120,6 @@ public class EventManager extends AbstractService implements IEventManager {
         Check.isEqual(event.getClub(), user.getClub());
         // is user an invitee of this event
         Invitation invitation = invitationManager.loadByEventAndUser(event, user);
-        Check.notNull(invitation);
         return event;
     }
 

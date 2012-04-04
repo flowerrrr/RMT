@@ -34,6 +34,5 @@ public class TemplateServiceTest extends AbstractIntegrationTests {
         assertContains(text, appUrl);
         assertContains(text, adminAddress);
         assertContains(text, "Foo: bar");
-
     }
 }

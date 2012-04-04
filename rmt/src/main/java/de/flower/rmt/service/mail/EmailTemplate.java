@@ -6,7 +6,8 @@ package de.flower.rmt.service.mail;
 public enum EmailTemplate {
 
     PASSWORD_RESET,
-    INVITATION_NEWUSER;
+    INVITATION_NEWUSER,
+    NOTIFICATION_EVENT;
 
     public String getContent() {
         return (this.name() + ".content.vm").toLowerCase()  ;

@@ -3,6 +3,7 @@ package de.flower.rmt.model.event;
 import de.flower.rmt.model.*;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 
@@ -113,6 +114,18 @@ public class Event extends AbstractClubRelatedEntity {
         this.time = time;
     }
 
+    /**
+     * Returns full date of event. date + time
+     * @return
+     */
+    public DateTime getDateTime() {
+        return new DateTime(this.date).withFields(this.time);
+    }
+
+    public Date getDateTimeAsDate() {
+        return getDateTime().toDate();
+    }
+
     public String getSummary() {
         return summary;
     }
@@ -144,4 +157,19 @@ public class Event extends AbstractClubRelatedEntity {
     public void setInvitations(final List<Invitation> invitations) {
         this.invitations = invitations;
     }
+
+    public EventType getEventType() {
+        return EventType.from(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                super.toString() +
+                "date=" + date +
+                ", time=" + time +
+                ", summary='" + summary + '\'' +
+                '}';
+    }
+
 }

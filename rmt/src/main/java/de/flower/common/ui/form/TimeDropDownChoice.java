@@ -1,10 +1,9 @@
 package de.flower.common.ui.form;
 
+import de.flower.rmt.util.Dates;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.joda.time.LocalTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,18 +13,13 @@ import java.util.List;
  */
 public class TimeDropDownChoice extends DropDownChoice<LocalTime> {
 
-    /**
-     * DateTimeFormatter is not serializable. Use lazy-init to load it.
-     */
-    private transient DateTimeFormatter formatter;
-
-    public TimeDropDownChoice(String id) {
+   public TimeDropDownChoice(String id) {
         super(id);
         setChoices(getTimeChoices());
         setChoiceRenderer(new IChoiceRenderer<LocalTime>() {
             @Override
             public Object getDisplayValue(LocalTime time) {
-                return getFormatter().print(time);
+                return Dates.formatTimeShort(time);
             }
 
             @Override
@@ -48,10 +42,4 @@ public class TimeDropDownChoice extends DropDownChoice<LocalTime> {
         return list;
     }
 
-    public DateTimeFormatter getFormatter() {
-        if (formatter == null) {
-            formatter = DateTimeFormat.shortTime().withLocale(getLocale());
-        }
-        return formatter;
-    }
 }
