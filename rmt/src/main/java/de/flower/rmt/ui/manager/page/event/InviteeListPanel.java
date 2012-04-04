@@ -6,7 +6,6 @@ import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.Invitation;
-import de.flower.rmt.model.Invitation_;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
@@ -78,7 +77,7 @@ public class InviteeListPanel extends BasePanel {
         return new LoadableDetachableModel<List<Invitation>>() {
             @Override
             protected List<Invitation> load() {
-                return invitationManager.findAllByEvent(model.getObject(), Invitation_.user);
+                return invitationManager.findAllByEventSortedByName(model.getObject());
             }
         };
     }

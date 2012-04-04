@@ -130,7 +130,8 @@ public class Invitation extends AbstractBaseEntity {
 
     public String getName() {
         if (user == null) {
-            return guestName;
+            // TODO (flowerrrr - 04.04.12) marking the name should be done in ui!
+            return guestName + " (G)";
         } else {
             return user.getFullname();
         }
@@ -138,9 +139,13 @@ public class Invitation extends AbstractBaseEntity {
 
     public String getEmail() {
         if (user == null) {
-            return null;
+            throw new IllegalStateException("Call #isEmail before accessing email-field.");
         } else {
             return user.getEmail();
         }
+    }
+
+    public boolean isEmail() {
+        return user != null;
     }
 }

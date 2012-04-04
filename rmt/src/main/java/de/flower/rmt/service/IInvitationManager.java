@@ -20,7 +20,10 @@ public interface IInvitationManager {
 
     Invitation loadById(Long id);
 
+    @Deprecated
     List<Invitation> findAllByEvent(Event event, final Attribute... attributes);
+
+    List<Invitation> findAllByEventSortedByName(Event event);
 
     List<Invitation> findAllByEventAndStatus(Event event, RSVPStatus rsvpStatus, Attribute... attributes);
 

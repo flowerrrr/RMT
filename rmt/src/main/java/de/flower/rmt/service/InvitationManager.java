@@ -14,9 +14,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.metamodel.Attribute;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import static de.flower.rmt.repository.Specs.*;
 import static org.springframework.data.jpa.domain.Specifications.where;
@@ -60,9 +58,23 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     }
 
     @Override
+    @Deprecated
     public List<Invitation> findAllByEvent(final Event event, final Attribute... attributes) {
         Specification fetch = fetch(attributes);
         return invitationRepo.findAll(where(eq(Invitation_.event, event)).and(fetch));
+    }
+
+    @Override
+    public List<Invitation> findAllByEventSortedByName(final Event event) {
+        List<Invitation> list = findAllByEvent(event, Invitation_.user);
+        // use in-memory sorting cause field name is derived and would required complicated sql-query to sort after.
+        Collections.sort(list, new Comparator<Invitation>() {
+            @Override
+            public int compare(final Invitation o1, final Invitation o2) {
+                return o1.getName().compareToIgnoreCase(o2.getName());
+            }
+        });
+        return list;
     }
 
     @Override

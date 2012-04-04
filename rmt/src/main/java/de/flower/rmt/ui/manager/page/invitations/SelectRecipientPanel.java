@@ -1,12 +1,14 @@
 package de.flower.rmt.ui.manager.page.invitations;
 
+import com.google.common.base.Predicate;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Iterables;
 import de.flower.common.ui.ajax.markup.html.form.AjaxSubmitLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
 import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.common.ui.modal.ModalPanel;
 import de.flower.common.ui.model.AbstractWrappingModel;
 import de.flower.rmt.model.Invitation;
-import de.flower.rmt.model.Invitation_;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IInvitationManager;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -22,6 +24,7 @@ import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import javax.annotation.Nullable;
 import javax.mail.internet.InternetAddress;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -67,6 +70,7 @@ public abstract class SelectRecipientPanel extends ModalPanel {
             {
                 add(new Label("submitLabel", new ResourceModel("button.add")));
             }
+
             @Override
             protected void onSubmit(final AjaxRequestTarget target, final Form<?> form) {
                 SelectRecipientPanel.this.onSubmit(target, recipients);
@@ -88,7 +92,14 @@ public abstract class SelectRecipientPanel extends ModalPanel {
         return new LoadableDetachableModel<List<Invitation>>() {
             @Override
             protected List<Invitation> load() {
-                return invitationManager.findAllByEvent(model.getObject(), Invitation_.user);
+                List<Invitation> list = invitationManager.findAllByEventSortedByName(model.getObject());
+                Iterable<Invitation> filtered = Iterables.filter(list, new Predicate<Invitation>() {
+                    @Override
+                    public boolean apply(@Nullable final Invitation invitation) {
+                        return invitation.isEmail();
+                    }
+                });
+                return ImmutableList.copyOf(filtered);
             }
         };
     }
