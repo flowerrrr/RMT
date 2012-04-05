@@ -41,12 +41,12 @@ public class NotificationPanel extends BasePanel {
     public NotificationPanel(String id, final IModel<Event> model) {
         super(id, model);
 
-        final IModel<Notification> notificationModel = Model.of(newNotification(model.getObject()));
-        EntityForm form = new EntityForm<Notification>("form", notificationModel) {
+        final IModel<Notification> notificationModel = Model.of(new Notification());
+        final EntityForm form = new EntityForm<Notification>("form", notificationModel) {
             @Override
             protected void onSubmit(final AjaxRequestTarget target, final Form<Notification> form) {
                 eventManager.sendInvitationMail(model.getObject().getId(), form.getModelObject());
-                notificationModel.setObject(newNotification(model.getObject()));
+                notificationModel.setObject(new Notification());
                 target.appendJavaScript(JQuery.scrollToTop("slow"));
             }
         };
@@ -60,10 +60,24 @@ public class NotificationPanel extends BasePanel {
                 return false;
             }
         });
-        form.add(new TextFieldPanel("subject"));
-        TextAreaPanel body = new TextAreaPanel("body");
+        final TextFieldPanel subject;
+        form.add(subject = new TextFieldPanel("subject"));
+        final TextAreaPanel body = new BodyTextAreaPanel("body");
         // disabling word wraping in firefox cannot be done by only using css. need wrap attribute on element as well
         body.getFormComponent().add(AttributeModifier.replace("wrap", "off"));
+        body.add(new SelectTemplatePanel() {
+            @Override
+            protected void onUpdate(final AjaxRequestTarget target, final Template template) {
+                Notification notification = newNotification(model.getObject());
+                notificationModel.getObject().setSubject(notification.getSubject());
+                notificationModel.getObject().setBody(notification.getBody());
+                // form.modelChanged(); // does not propagate changes down to components
+                subject.getFormComponent().modelChanged();
+                target.add(subject);
+                body.getFormComponent().modelChanged();
+                target.add(body);
+            }
+        });
         form.add(body);
         form.add(new CheckBoxPanel("bccMySelf"));
     }

@@ -56,7 +56,12 @@ public abstract class AbstractFormFieldPanel extends Panel {
 
         add(new AttributeAppender("class", cssClassModel, " "));
 
-        add(new FeedbackPanel("feedback", new ComponentFeedbackMessageFilter(formComponent)));
+        add(new FeedbackPanel("feedback", new ComponentFeedbackMessageFilter(formComponent)) {
+            @Override
+            public boolean isVisible() {
+                return formComponent.getFeedbackMessage() != null;
+            }
+        });
 
         // use form's compoundpropertymodel by default but let component override it if desired.
         if (formComponent.getModel() == null) {

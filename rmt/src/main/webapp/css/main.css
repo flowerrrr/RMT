@@ -638,12 +638,20 @@ td.rsvpstatus {
     Notification
 **************************************************************************/
 .notification-panel {
-    textarea {
+    textarea.input-xlarge, input.input-xlarge {
         width: 375px;
     }
     textarea {
         height: 200px;
         white-space: nowrap;
+        font-family: monospace;
+        font-size: 85%;
+    }
+    .select-template-panel {
+        margin-top: 20px;
+        .dropdown-menu {
+            min-width: 120px;
+        }
     }
 }
 

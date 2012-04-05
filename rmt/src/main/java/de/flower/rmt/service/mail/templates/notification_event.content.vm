@@ -23,5 +23,3 @@ Ort: $venue
 Titel: $!event.getSummary()
 Beschreibung: $!event.getComment()
 
-
-#parse('footer-include.vm')
