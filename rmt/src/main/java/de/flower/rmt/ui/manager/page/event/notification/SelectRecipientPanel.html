@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head></head>
+<body>
+<wicket:extend>
+
+    <div class="recipient-list-header">
+        <ul>
+            <li>
+                <label>
+                    <input id="checkbox-all" type="checkbox">
+                    <wicket:message key="checkbox.label.selectall" />
+                </label>
+            </li>
+        </ul>
+    </div>
+    <div class="recipient-list">
+        <form wicket:id="form">
+        <span wicket:id="group">
+        <ul wicket:id="listContainer">
+            <li wicket:id="list">
+                <label>
+                    <input class="checkbox-player" type="checkbox" wicket:id="checkbox"/>
+                    <span wicket:id="name">[Player name]</span>
+                </label>
+            </li>
+        </ul>
+        </span>
+        </form>
+    </div>
+
+    <script>
+        $('.checkbox-player').change(function(){
+            $(this).closest('li').toggleClass('selected');
+        });
+
+        // event handler to select all checkbox
+        $('#checkbox-all').change(function() {
+            $('.checkbox-player').attr('checked', $(this).get(0).checked);
+            $('.checkbox-player').closest('li').toggleClass('selected', $(this).get(0).checked);
+        });
+
+    </script>
+
+</wicket:extend>
+</body>
+</html>

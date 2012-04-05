@@ -2,8 +2,10 @@ package de.flower.rmt.ui.manager.page.event;
 
 import de.flower.common.ui.ajax.markup.html.tab.AbstractAjaxTabbedPanel;
 import de.flower.rmt.model.event.Event;
-import de.flower.rmt.ui.manager.page.invitations.InvitationListPanel;
-import de.flower.rmt.ui.manager.page.invitations.NotificationPanel;
+import de.flower.rmt.ui.manager.page.event.edit.EventEditPanel;
+import de.flower.rmt.ui.manager.page.event.invitations.InvitationListPanel;
+import de.flower.rmt.ui.manager.page.event.invitees.InviteeListPanel;
+import de.flower.rmt.ui.manager.page.event.notification.NotificationPanel;
 import org.apache.wicket.extensions.markup.html.tabs.AbstractTab;
 import org.apache.wicket.extensions.markup.html.tabs.ITab;
 import org.apache.wicket.markup.html.panel.Panel;

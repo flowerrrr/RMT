@@ -1,8 +1,9 @@
-package de.flower.rmt.ui.manager.page.invitations;
+package de.flower.rmt.ui.manager.page.event.invitations;
 
 import de.flower.common.ui.feedback.AlertMessage;
 import de.flower.common.ui.feedback.AlertMessagePanel;
 import de.flower.rmt.model.event.Event;
+import de.flower.rmt.ui.manager.page.invitations.NotificationPage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 

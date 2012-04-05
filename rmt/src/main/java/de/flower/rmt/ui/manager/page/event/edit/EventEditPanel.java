@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.manager.page.event;
+package de.flower.rmt.ui.manager.page.event.edit;
 
 import de.flower.common.ui.form.TimeDropDownChoice;
 import de.flower.common.util.Check;
@@ -12,6 +12,7 @@ import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.manager.component.OpponentDropDownChoicePanel;
 import de.flower.rmt.ui.manager.component.TeamDropDownChoicePanel;
 import de.flower.rmt.ui.manager.component.VenueDropDownChoicePanel;
+import de.flower.rmt.ui.manager.page.event.EventPage;
 import de.flower.rmt.ui.model.ModelFactory;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;

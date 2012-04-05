@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.manager.page.invitations;
+package de.flower.rmt.ui.manager.page.event.notification;
 
 import com.google.common.annotations.VisibleForTesting;
 import de.flower.common.ui.js.JQuery;

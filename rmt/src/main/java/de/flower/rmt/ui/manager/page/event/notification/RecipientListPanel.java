@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.manager.page.invitations;
+package de.flower.rmt.ui.manager.page.event.notification;
 
 import de.flower.common.ui.ajax.markup.html.AjaxLink;
 import de.flower.common.ui.modal.ModalDialogWindow;

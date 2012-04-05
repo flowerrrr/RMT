@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.manager.page.invitations;
+package de.flower.rmt.ui.manager.page.event.invitations;
 
 import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.common.util.Check;

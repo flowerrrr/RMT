@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.manager.page.invitations;
+package de.flower.rmt.ui.manager.page.event.notification;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableList;

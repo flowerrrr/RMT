@@ -487,10 +487,8 @@ td .drop-down-menu-panel {
     overflow-y: scroll;
     border: 1px solid #DDDDDD;
 
-    li {
-        border-top: 1px solid #FFFFFF;
-        padding-left: 10px;
-        padding-right: 10px;
+    li:hover {
+        background-color: #f5f5f5;
     }
 
     li.selected, li.selected:hover {
@@ -500,8 +498,15 @@ td .drop-down-menu-panel {
         }
     }
 
-    li:hover {
-        background-color: #f5f5f5;
+
+}
+
+.recipient-list, .recipient-list-header {
+
+    li {
+        border-top: 1px solid #FFFFFF;
+        padding-left: 10px;
+        padding-right: 10px;
     }
 
     label {

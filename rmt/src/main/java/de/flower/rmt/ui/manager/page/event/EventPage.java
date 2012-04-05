@@ -6,6 +6,7 @@ import de.flower.rmt.ui.common.page.event.EventDetailsPanel;
 import de.flower.rmt.ui.common.page.event.EventPagerPanel;
 import de.flower.rmt.ui.manager.ManagerBasePage;
 import de.flower.rmt.ui.manager.NavigationPanel;
+import de.flower.rmt.ui.manager.page.event.invitees.InviteeSecondaryPanel;
 import de.flower.rmt.ui.model.EventModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;

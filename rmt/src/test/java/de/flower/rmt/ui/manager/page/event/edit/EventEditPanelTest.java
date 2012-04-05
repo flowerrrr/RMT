@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.manager.page.event;
+package de.flower.rmt.ui.manager.page.event.edit;
 
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;

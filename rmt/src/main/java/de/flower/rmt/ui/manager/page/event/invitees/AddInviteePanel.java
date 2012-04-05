@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.manager.page.event;
+package de.flower.rmt.ui.manager.page.event.invitees;
 
 import de.flower.common.ui.ajax.markup.html.form.AjaxSubmitLink;
 import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;

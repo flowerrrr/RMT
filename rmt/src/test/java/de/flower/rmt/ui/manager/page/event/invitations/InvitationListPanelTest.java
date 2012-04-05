@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.manager.page.invitations;
+package de.flower.rmt.ui.manager.page.event.invitations;
 
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.test.AbstractWicketIntegrationTests;

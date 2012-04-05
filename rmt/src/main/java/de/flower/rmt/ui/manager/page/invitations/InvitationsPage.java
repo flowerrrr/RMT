@@ -6,6 +6,8 @@ import de.flower.rmt.ui.common.page.event.EventDetailsPanel;
 import de.flower.rmt.ui.common.page.event.EventPagerPanel;
 import de.flower.rmt.ui.manager.ManagerBasePage;
 import de.flower.rmt.ui.manager.NavigationPanel;
+import de.flower.rmt.ui.manager.page.event.invitations.InvitationListPanel;
+import de.flower.rmt.ui.manager.page.event.invitations.NoInvitationSentMessage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -15,6 +17,7 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
+@Deprecated // not used
 public class InvitationsPage extends ManagerBasePage {
 
     @SpringBean
