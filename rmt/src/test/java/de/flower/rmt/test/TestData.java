@@ -75,7 +75,7 @@ public class TestData {
     public TestData() {
         // interesting, constructor called twice.
         // see http://forum.springsource.org/showthread.php?9814-Constructor-called-twice-when-using-CGLIB-proxy-beans
-        log.info("TestData.<init>");
+        // log.info("TestData.<init>");
     }
 
     public void setEventType(final EventType eventType) {

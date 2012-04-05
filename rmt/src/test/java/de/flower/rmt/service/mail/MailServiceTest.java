@@ -31,6 +31,7 @@ public class MailServiceTest extends AbstractIntegrationTests {
     @BeforeMethod
     public void setUp() {
         securityService.getUser().setEmail("no-reply@mailinator.com");
+        mailSender.setHost("mail.flower.de");
     }
 
     /**
