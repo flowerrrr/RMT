@@ -1,5 +1,8 @@
 package de.flower.rmt.service;
 
+import com.google.common.base.Predicate;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Iterables;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.Invitation_;
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Nullable;
 import javax.persistence.metamodel.Attribute;
 import java.util.*;
 
@@ -75,6 +79,18 @@ public class InvitationManager extends AbstractService implements IInvitationMan
             }
         });
         return list;
+    }
+
+    @Override
+    public List<Invitation> findAllForNotificationByEventSortedByName(final Event event) {
+        List<Invitation> list = findAllByEventSortedByName(event);
+        Iterable<Invitation> filtered = Iterables.filter(list, new Predicate<Invitation>() {
+            @Override
+            public boolean apply(@Nullable final Invitation invitation) {
+                return invitation.hasEmail();
+            }
+        });
+        return ImmutableList.copyOf(filtered);
     }
 
     @Override

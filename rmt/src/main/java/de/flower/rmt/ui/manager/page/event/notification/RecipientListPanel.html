@@ -13,7 +13,20 @@
             <a wicket:id="deleteButton" class="close pull-right">&times;</a>
         </li>
     </div>
-    <a wicket:id="addButton" class="btn"><i class="icon-plus"></i></a>
+
+    <div class="btn-group">
+        <a wicket:id="addButton" class="btn"><i class="icon-plus"></i></a>
+        <button class="btn dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li>
+                <a wicket:id="addAllButton">
+                    <wicket:message key="button.add.allinvitees"/>
+                </a>
+            </li>
+        </ul>
+    </div>
 
 </wicket:panel>
 </body>

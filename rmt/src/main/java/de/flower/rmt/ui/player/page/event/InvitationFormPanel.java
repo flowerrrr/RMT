@@ -19,10 +19,9 @@ import org.apache.wicket.model.Model;
  */
 public abstract class InvitationFormPanel extends BasePanel {
 
-    private EntityForm<Invitation> form;
-
     public InvitationFormPanel(final IModel<Invitation> model) {
-        form = new EntityForm<Invitation>("form", model) {
+
+        EntityForm<Invitation> form = new EntityForm<Invitation>("form", model) {
 
             @Override
             protected void onSubmit(final AjaxRequestTarget target, final Form<Invitation> form) {
@@ -32,7 +31,7 @@ public abstract class InvitationFormPanel extends BasePanel {
 
             @Override
             protected boolean isShowSuccessFeedbackPanel() {
-                // don't to have success message. not necessary on this form.
+                // don't have to display success message. not necessary on this form.
                 return false;
             }
         };

@@ -1,16 +1,9 @@
 package de.flower.rmt.ui.manager.page.event.notification;
 
-import com.google.common.base.Predicate;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Iterables;
-import de.flower.common.ui.ajax.markup.html.form.AjaxSubmitLink;
-import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
-import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.common.ui.modal.ModalPanel;
 import de.flower.common.ui.model.AbstractWrappingModel;
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.event.Event;
-import de.flower.rmt.service.IInvitationManager;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -20,13 +13,8 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.LoadableDetachableModel;
-import org.apache.wicket.model.ResourceModel;
-import org.apache.wicket.spring.injection.annot.SpringBean;
 
-import javax.annotation.Nullable;
 import javax.mail.internet.InternetAddress;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,18 +23,16 @@ import java.util.List;
  */
 public abstract class SelectRecipientPanel extends ModalPanel {
 
-    @SpringBean
-    private IInvitationManager invitationManager;
-
     private List<InternetAddress> recipients = new ArrayList<InternetAddress>();
 
-    public SelectRecipientPanel(final IModel<Event> model) {
-        super(model);
+    public SelectRecipientPanel(final IModel<Event> model, IModel<List<Invitation>> invitationListModel) {
+        super();
 
         setHeading("manager.notification.select.recipients.heading");
+        setSubmitLabel("button.add");
 
         final Form form = new Form("form");
-        add(form);
+        addForm(form);
 
         // list of invitees
 
@@ -55,7 +41,7 @@ public abstract class SelectRecipientPanel extends ModalPanel {
         final WebMarkupContainer listContainer = new WebMarkupContainer("listContainer");
         listContainer.setOutputMarkupId(true);
         group.add(listContainer);
-        ListView invitationList = new ListView<Invitation>("list", getListModel(model)) {
+        ListView invitationList = new ListView<Invitation>("list", invitationListModel) {
 
             @Override
             protected void populateItem(ListItem<Invitation> item) {
@@ -65,44 +51,15 @@ public abstract class SelectRecipientPanel extends ModalPanel {
             }
         };
         listContainer.add(invitationList);
+    }
 
-        add(new AjaxSubmitLink("submitButton", form) {
-            {
-                add(new Label("submitLabel", new ResourceModel("button.add")));
-            }
-
-            @Override
-            protected void onSubmit(final AjaxRequestTarget target, final Form<?> form) {
-                SelectRecipientPanel.this.onSubmit(target, recipients);
-                close(target);
-            }
-        });
-
-        add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Invitation.class)));
+    @Override
+    protected boolean onSubmit(final AjaxRequestTarget target, final Form form) {
+        onSubmit(target, recipients);
+        return true;
     }
 
     protected abstract void onSubmit(final AjaxRequestTarget target, final List<InternetAddress> recipients);
-
-    /**
-     * Selects all unassigned players of a club.
-     *
-     * @return
-     */
-    protected IModel<List<Invitation>> getListModel(final IModel<Event> model) {
-        return new LoadableDetachableModel<List<Invitation>>() {
-            @Override
-            protected List<Invitation> load() {
-                List<Invitation> list = invitationManager.findAllByEventSortedByName(model.getObject());
-                Iterable<Invitation> filtered = Iterables.filter(list, new Predicate<Invitation>() {
-                    @Override
-                    public boolean apply(@Nullable final Invitation invitation) {
-                        return invitation.isEmail();
-                    }
-                });
-                return ImmutableList.copyOf(filtered);
-            }
-        };
-    }
 
     private static class CheckModel extends AbstractWrappingModel<InternetAddress, Invitation> {
 
@@ -112,11 +69,7 @@ public abstract class SelectRecipientPanel extends ModalPanel {
 
         @Override
         public InternetAddress getObject() {
-            try {
-                return new InternetAddress(getWrappedModelObject().getEmail(), getWrappedModelObject().getName());
-            } catch (UnsupportedEncodingException e) {
-                throw new RuntimeException(e);
-            }
+            return getWrappedModelObject().getInternetAddress();
         }
 
         @Override

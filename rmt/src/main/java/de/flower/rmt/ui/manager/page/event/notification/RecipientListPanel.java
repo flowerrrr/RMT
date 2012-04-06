@@ -2,7 +2,9 @@ package de.flower.rmt.ui.manager.page.event.notification;
 
 import de.flower.common.ui.ajax.markup.html.AjaxLink;
 import de.flower.common.ui.modal.ModalDialogWindow;
+import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.event.Event;
+import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -10,14 +12,20 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.LoadableDetachableModel;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import javax.mail.internet.InternetAddress;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author flowerrrr
  */
-public class RecipientListPanel extends BasePanel {
+public class RecipientListPanel extends BasePanel<List<InternetAddress>> {
+
+    @SpringBean
+    private IInvitationManager invitationManager;
 
     public RecipientListPanel(final IModel<List<InternetAddress>> model, final IModel<Event> eventModel) {
         super(model);
@@ -47,27 +55,61 @@ public class RecipientListPanel extends BasePanel {
 
             @Override
             public void onClick(final AjaxRequestTarget target) {
-                SelectRecipientPanel content = new SelectRecipientPanel(getModel()) {
+                SelectRecipientPanel content = new SelectRecipientPanel(getModel(), getInvitationListModel(getModel())) {
 
                     @Override
                     protected void onSubmit(final AjaxRequestTarget target, final List<InternetAddress> recipients) {
-                        boolean changed = false;
-                        for (InternetAddress ia : recipients) {
-                            if (!model.getObject().contains(ia)) {
-                                model.getObject().add(ia);
-                                changed = true;
-                            }
-                        }
-                        if (changed) {
-                            onChange(target);
-                        }
+                        updateList(target, recipients);
                         target.add(listContainer);
                     }
                 };
                 ModalDialogWindow.showContent(this, content, 5);
             }
         });
+
+        // shortcut to add all invitees without opening modal dialog
+        add(new AjaxLink<Event>("addAllButton", eventModel) {
+
+            @Override
+            public void onClick(final AjaxRequestTarget target) {
+                updateList(target, convert(getInvitationListModel(getModel()).getObject()));
+                target.add(listContainer);
+            }
+        });
     }
+
+    private void updateList(AjaxRequestTarget target, List<InternetAddress> recipients) {
+        boolean changed = false;
+        IModel<List<InternetAddress>> model = getModel();
+        for (InternetAddress ia : recipients) {
+            if (!model.getObject().contains(ia)) {
+                model.getObject().add(ia);
+                changed = true;
+            }
+        }
+        if (changed) {
+            onChange(target);
+        }
+    }
+
+    private List<InternetAddress> convert(List<Invitation> invitations) {
+        List<InternetAddress> list = new ArrayList<InternetAddress>();
+        for (Invitation invitation : invitations) {
+            list.add(invitation.getInternetAddress());
+        }
+        return list;
+    }
+
+    protected IModel<List<Invitation>> getInvitationListModel(final IModel<Event> model) {
+        return new LoadableDetachableModel<List<Invitation>>() {
+            @Override
+            protected List<Invitation> load() {
+                return invitationManager.findAllForNotificationByEventSortedByName(model.getObject());
+            }
+        };
+    }
+
+
 
     /**
      * Called whenever the selection changes.

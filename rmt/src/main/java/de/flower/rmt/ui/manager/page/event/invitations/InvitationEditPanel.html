@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head></head>
+<body>
+<wicket:extend>
+
+    <form wicket:id="form" class="invitationForm">
+        <ul class="unstyled ul-form">
+             <li>
+                <span wicket:id="status">
+                    <div class="alert error feedback" wicket:id="feedback"></div>
+                    <span class="radio"><input wicket:id="accepted" type="radio"/> <wicket:message key="invitation.form.accept"/></span>
+                    <span class="radio"><input wicket:id="declined" type="radio"/> <wicket:message key="invitation.form.decline"/></span>
+                    <span class="radio"><input wicket:id="unsure" type="radio"/> <wicket:message key="invitation.form.unsure"/></span>
+                </span>
+            </li>
+            <li>
+                <textarea wicket:id="comment"/>
+            </li>
+        </ul>
+
+    </form>
+
+
+</wicket:extend>
+</body>
+</html>

@@ -1,6 +1,10 @@
 package de.flower.rmt.ui.manager.page.event.invitations;
 
+import de.flower.common.ui.ajax.markup.html.AjaxLink;
+import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
+import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.common.ui.markup.html.list.EntityListView;
+import de.flower.common.ui.modal.ModalDialogWindow;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.Invitation_;
@@ -8,9 +12,12 @@ import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
+import de.flower.rmt.ui.common.panel.DropDownMenuPanel;
 import org.apache.wicket.Component;
+import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Fragment;
@@ -41,6 +48,7 @@ public class InvitationListPanel extends BasePanel {
         add(createListView("unsureList", RSVPStatus.UNSURE, model));
         add(createListView("declinedList", RSVPStatus.DECLINED, model));
         add(createListView("noresponseList", RSVPStatus.NORESPONSE, model));
+        add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Invitation.class)));
     }
 
     private Component createListView(String id, RSVPStatus status, IModel<Event> model) {
@@ -59,7 +67,22 @@ public class InvitationListPanel extends BasePanel {
         frag.add(new Label("name", invitation.getName()));
         frag.add(DateLabel.forDateStyle("date", Model.of(invitation.getDate()), "SS"));
         frag.add(new Label("comment", invitation.getComment()));
+        // now the dropdown menu
+        DropDownMenuPanel menuPanel = new DropDownMenuPanel();
+        menuPanel.addLink(createEditLink("link", item), "button.edit");
+        frag.add(menuPanel);
         return frag;
+    }
+
+    private AbstractLink createEditLink(String id, ListItem<Invitation> item) {
+        return new AjaxLink<Invitation>(id, item.getModel()) {
+
+            @Override
+            public void onClick(final AjaxRequestTarget target) {
+                InvitationEditPanel content = new InvitationEditPanel(getModel());
+                ModalDialogWindow.showContent(this, content, 5);
+            }
+        };
     }
 
     private IModel<List<Invitation>> getInvitationList(final IModel<Event> model, final RSVPStatus rsvpStatus) {

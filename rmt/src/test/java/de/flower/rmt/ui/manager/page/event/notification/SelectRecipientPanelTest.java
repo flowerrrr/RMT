@@ -12,7 +12,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import javax.mail.internet.InternetAddress;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,22 +29,18 @@ public class SelectRecipientPanelTest extends AbstractRMTWicketMockitoTests {
     }
 
     @Test
-    public void testSubmitSelectedRecipients() throws UnsupportedEncodingException {
+    public void testSubmitSelectedRecipients() {
         final List<InternetAddress> actualRecipients = new ArrayList<InternetAddress>();
         Event event = testData.newEvent();
-        InternetAddress ia1 = new InternetAddress(event.getInvitations().get(2).getEmail(), event.getInvitations().get(2).getName());
-        InternetAddress ia2 = new InternetAddress(event.getInvitations().get(4).getEmail(), event.getInvitations().get(4).getName());
+        InternetAddress ia1 = event.getInvitations().get(2).getInternetAddress();
+        InternetAddress ia2 = event.getInvitations().get(4).getInternetAddress();
 
-        Panel panel = new SelectRecipientPanel(Model.of(event)) {
+        Panel panel = new SelectRecipientPanel(Model.of(event), (IModel<List<Invitation>>) (Object) Model.ofList(event.getInvitations())) {
             @Override
             protected void onSubmit(final AjaxRequestTarget target, final List<InternetAddress> recipients) {
                 actualRecipients.addAll(recipients);
             }
 
-            @Override
-            protected IModel<List<Invitation>> getListModel(final IModel<Event> model) {
-                return (IModel<List<Invitation>>) (Object) Model.ofList(model.getObject().getInvitations());
-            }
         };
 
         wicketTester.startComponentInPage(panel);

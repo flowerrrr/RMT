@@ -478,49 +478,6 @@ td .drop-down-menu-panel {
     tooltips
 **************************************************************************/
 
-/*************************************************************************
-    modal windows
-**************************************************************************/
-
-.recipient-list {
-    height: 300px;
-    overflow-y: scroll;
-    border: 1px solid #DDDDDD;
-
-    li:hover {
-        background-color: #f5f5f5;
-    }
-
-    li.selected, li.selected:hover {
-        background-color: #0F5895;
-        label {
-            color: #FFFFFF;
-        }
-    }
-
-
-}
-
-.recipient-list, .recipient-list-header {
-
-    li {
-        border-top: 1px solid #FFFFFF;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
-    label {
-        padding-top: 3px;
-        padding-bottom: 3px;
-        margin-bottom: 0px; // override twitter bootstrap
-
-        input {
-            // override twitter bootstrap
-            display: inline;
-        }
-    }
-
-}
 
 
 
@@ -643,7 +600,7 @@ td.rsvpstatus {
     Notification
 **************************************************************************/
 .notification-panel {
-    textarea.input-xlarge, input.input-xlarge {
+    textarea.input-xlarge, input.input-xlarge, .recipient-list-panel {
         width: 375px;
     }
     textarea {
@@ -665,7 +622,56 @@ td.rsvpstatus {
         float: left;
         margin-right: 10px;
     }
+    .btn-group {
+        // needed to have dropdown be positioned correctly
+        float: left;
+    }
 }
+
+/*************************************************************************
+    modal window
+**************************************************************************/
+
+.recipient-list {
+    height: 300px;
+    overflow-y: scroll;
+    border: 1px solid #DDDDDD;
+
+    li:hover {
+        background-color: #f5f5f5;
+    }
+
+    li.selected, li.selected:hover {
+        background-color: #0088cc;
+        label {
+            color: #FFFFFF;
+        }
+    }
+
+
+}
+
+.recipient-list, .recipient-list-header {
+
+    li {
+        border-top: 1px solid #FFFFFF;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    label {
+        padding-top: 3px;
+        padding-bottom: 3px;
+        margin-bottom: 0px; // override twitter bootstrap
+
+        input {
+            // override twitter bootstrap
+            display: inline;
+        }
+    }
+
+}
+
 
 /*************************************************************************
     Invitation list

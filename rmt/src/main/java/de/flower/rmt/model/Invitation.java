@@ -4,9 +4,11 @@ import de.flower.common.model.AbstractBaseEntity;
 import de.flower.rmt.model.event.Event;
 import org.hibernate.annotations.Index;
 
+import javax.mail.internet.InternetAddress;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 /**
@@ -145,7 +147,15 @@ public class Invitation extends AbstractBaseEntity {
         }
     }
 
-    public boolean isEmail() {
+    public boolean hasEmail() {
         return user != null;
+    }
+
+    public InternetAddress getInternetAddress() {
+        try {
+            return new InternetAddress(getEmail(), getName());
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

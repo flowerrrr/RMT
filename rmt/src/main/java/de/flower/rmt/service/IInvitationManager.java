@@ -25,6 +25,14 @@ public interface IInvitationManager {
 
     List<Invitation> findAllByEventSortedByName(Event event);
 
+    /**
+     * Returns all invitees that have an email address (no guest players) and
+     * that have email-notification turned on in their player settings.
+     * @param event
+     * @return
+     */
+    List<Invitation> findAllForNotificationByEventSortedByName(Event event);
+
     List<Invitation> findAllByEventAndStatus(Event event, RSVPStatus rsvpStatus, Attribute... attributes);
 
     Long numByEventAndStatus(Event event, RSVPStatus rsvpStatus);
@@ -51,4 +59,5 @@ public interface IInvitationManager {
      * Add guest player to event.
      */
     void addGuestPlayer(Event entity, String guestName);
+
 }
