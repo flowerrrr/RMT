@@ -5,17 +5,19 @@ import de.flower.common.ui.modal.ModalPanel;
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.service.IInvitationManager;
+import de.flower.rmt.ui.common.form.FormFeedbackPanel;
+import de.flower.rmt.ui.common.form.field.TextAreaPanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.feedback.ComponentFeedbackMessageFilter;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.Radio;
 import org.apache.wicket.markup.html.form.RadioGroup;
-import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.wicketstuff.jsr303.BeanValidator;
 
 /**
  * Panel for manager to edit players invitation status and give his own comments.
@@ -34,6 +36,7 @@ public class InvitationEditPanel extends ModalPanel<Invitation> {
 
         Form<Invitation> form = new Form<Invitation>("form", new CompoundPropertyModel<Invitation>(model));
         addForm(form);
+        form.add(new FormFeedbackPanel(form));
 
         final RadioGroup group = new RadioGroup("status");
         form.add(group);
@@ -46,15 +49,20 @@ public class InvitationEditPanel extends ModalPanel<Invitation> {
                 return anyMessage();
             }
         });
-        form.add(new TextArea("comment"));
+        form.add(new TextAreaPanel("comment"));
+        form.add(new TextAreaPanel("managerComment"));
     }
 
     @Override
     protected boolean onSubmit(final AjaxRequestTarget target, final Form<Invitation> form) {
-        // save invitation and update invitationlistpanel
-        invitationManager.save(form.getModelObject());
-        AjaxEventSender.entityEvent(this, Invitation.class);
-
-        return true;
+        if (!new BeanValidator(form).isValid(form.getModelObject())) {
+            target.add(form);
+            return false;
+        } else {
+            // save invitation and update invitationlistpanel
+            invitationManager.save(form.getModelObject());
+            AjaxEventSender.entityEvent(this, Invitation.class);
+            return true;
+        }
     }
 }

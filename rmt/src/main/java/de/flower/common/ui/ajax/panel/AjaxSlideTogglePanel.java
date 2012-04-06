@@ -25,7 +25,6 @@ public class AjaxSlideTogglePanel extends Panel {
     public AjaxSlideTogglePanel(final String id, final String toggleButtonLabelResourceKey, final BasePanel wrappedPanel) {
         super(id);
         Check.isEqual(wrappedPanel.getId(), WRAPPED_PANEL_ID);
-        // wrappedPanel.setOutputMarkupPlaceholderTag(true); // so that AjaxEventListener still works when panel is invisible.
         final AjaxLink toggleButton = new AjaxLink("toggleButton") {
 
             @Override

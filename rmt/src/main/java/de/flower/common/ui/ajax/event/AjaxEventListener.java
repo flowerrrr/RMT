@@ -48,7 +48,8 @@ public final class AjaxEventListener extends Behavior {
             if (target != null) {
                 // components that are not visible and don't have outputmarkupplaceholder cannot be
                 // updated.
-                if (component.isVisible() || component.getOutputMarkupPlaceholderTag()) {
+                if (component.isVisibleInHierarchy()
+                        || (component.getParent().isVisibleInHierarchy() && component.getOutputMarkupPlaceholderTag())) {
                     // detach models so that component loads fresh data when it is repainted.
                     component.detach();
                     target.add(component);
