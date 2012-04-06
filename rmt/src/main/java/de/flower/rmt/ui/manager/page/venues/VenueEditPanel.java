@@ -1,7 +1,6 @@
 package de.flower.rmt.ui.manager.page.venues;
 
-import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
-import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
+import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.util.geo.LatLng;
 import de.flower.rmt.model.Venue;
 import de.flower.rmt.service.IVenueManager;
@@ -42,7 +41,7 @@ public class VenueEditPanel extends BasePanel  {
             @Override
             protected void onSubmit(final AjaxRequestTarget target, final Form<Venue> form) {
                 venueManager.save(form.getModelObject());
-                target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Venue.class), AjaxEvent.EntityUpdated(Venue.class)));
+                AjaxEventSender.entityEvent(this, Venue.class);
                 onClose(target);
             }
         };

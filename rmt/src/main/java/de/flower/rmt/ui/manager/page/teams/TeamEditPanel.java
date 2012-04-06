@@ -1,7 +1,6 @@
 package de.flower.rmt.ui.manager.page.teams;
 
-import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
-import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
+import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.service.ITeamManager;
 import de.flower.rmt.ui.common.form.CancelableEntityForm;
@@ -28,7 +27,7 @@ public class TeamEditPanel extends BasePanel {
             @Override
             protected void onSubmit(final AjaxRequestTarget target, final Form<Team> form) {
                 teamManager.save(form.getModelObject());
-                target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Team.class), AjaxEvent.EntityUpdated(Team.class)));
+                AjaxEventSender.entityEvent(this, Team.class);
                 onClose(target);
             }
 

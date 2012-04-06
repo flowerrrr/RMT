@@ -1,9 +1,8 @@
 package de.flower.rmt.ui.manager.page.event.invitees;
 
+import de.flower.common.ui.ajax.event.AjaxEventListener;
+import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.ajax.markup.html.AjaxLink;
-import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
-import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
-import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.event.Event;
@@ -51,27 +50,26 @@ public class InviteeListPanel extends BasePanel {
                 item.add(menuPanel);
                 // menuPanel.addLink(createEditLink("link", item), "button.edit");
                 menuPanel.addLink(new AjaxLink("link") {
-                    @Override
-                    public void onClick(AjaxRequestTarget target) {
-                        invitationManager.delete(item.getModelObject().getId());
-                        target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(Invitation.class)));
-                    }
-                }, "button.delete");
+                            @Override
+                            public void onClick(AjaxRequestTarget target) {
+                                invitationManager.delete(item.getModelObject().getId());
+                                AjaxEventSender.entityEvent(this, Invitation.class);
+                            }
+                        }, "button.delete");
             }
         };
-        listView.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Invitation.class)));
+        listView.add(new AjaxEventListener(Invitation.class));
         add(listView);
-        
     }
 
     private Link createEditLink(String id, final ListItem<Invitation> item) {
-         return new Link(id) {
-             @Override
-             public void onClick() {
-                 setResponsePage(new PlayerPage(new UserModel(item.getModel().getObject().getUser())));
-             }
-         };
-     }
+        return new Link(id) {
+            @Override
+            public void onClick() {
+                setResponsePage(new PlayerPage(new UserModel(item.getModel().getObject().getUser())));
+            }
+        };
+    }
 
     private IModel<List<Invitation>> getListModel(final IModel<Event> model) {
         return new LoadableDetachableModel<List<Invitation>>() {
@@ -81,6 +79,4 @@ public class InviteeListPanel extends BasePanel {
             }
         };
     }
-
-   
 }

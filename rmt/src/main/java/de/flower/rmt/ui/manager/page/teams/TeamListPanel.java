@@ -1,9 +1,8 @@
 package de.flower.rmt.ui.manager.page.teams;
 
+import de.flower.common.ui.ajax.event.AjaxEventListener;
+import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.ajax.markup.html.AjaxLinkWithConfirmation;
-import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
-import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
-import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.service.ITeamManager;
@@ -66,12 +65,12 @@ public class TeamListPanel extends BasePanel {
                     @Override
                     public void onClick(AjaxRequestTarget target) {
                         teamManager.delete(item.getModelObject().getId());
-                        target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(Team.class)));
+                        AjaxEventSender.entityEvent(this, Team.class);
                     }
                 }, "button.delete");
             }
         });
-        listContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Team.class)));
+        listContainer.add(new AjaxEventListener(Team.class));
     }
 
     private IModel<List<Team>> getListModel() {

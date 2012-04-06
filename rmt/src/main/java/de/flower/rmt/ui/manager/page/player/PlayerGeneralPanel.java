@@ -1,7 +1,6 @@
 package de.flower.rmt.ui.manager.page.player;
 
-import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
-import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
+import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.rmt.model.User;
 import de.flower.rmt.service.IRoleManager;
 import de.flower.rmt.service.IUserManager;
@@ -40,7 +39,7 @@ public class PlayerGeneralPanel extends BasePanel<User> {
             protected void onSubmit(AjaxRequestTarget target, Form<User> form) {
                 User user = form.getModelObject();
                 userManager.save(user, managerModel.getObject());
-                target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(User.class), AjaxEvent.EntityUpdated(User.class)));
+                AjaxEventSender.entityEvent(this, User.class);
             }
         };
         add(form);

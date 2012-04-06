@@ -1,9 +1,8 @@
 package de.flower.rmt.ui.manager.page.events;
 
+import de.flower.common.ui.ajax.event.AjaxEventListener;
+import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.ajax.markup.html.AjaxLinkWithConfirmation;
-import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
-import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
-import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
@@ -72,13 +71,13 @@ public class EventListPanel extends BasePanel {
                     @Override
                     public void onClick(AjaxRequestTarget target) {
                         eventManager.delete(item.getModelObject().getId());
-                        target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(Event.class)));
+                        AjaxEventSender.entityEvent(this, Event.class);
                     }
                 }, "button.delete");
                 item.add(menuPanel);
             }
         });
-        listContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Event.class)));
+        listContainer.add(new AjaxEventListener(Event.class));
     }
 
     private IModel<List<Event>> getListModel() {

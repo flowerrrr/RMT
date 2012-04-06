@@ -1,9 +1,8 @@
 package de.flower.rmt.ui.manager.page.event.invitees;
 
+import de.flower.common.ui.ajax.event.AjaxEventListener;
+import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.ajax.markup.html.form.AjaxSubmitLink;
-import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
-import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
-import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.Team;
@@ -95,12 +94,12 @@ public class AddInviteePanel extends BasePanel<Event> {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 invitationManager.addUsers(model.getObject(), selectedUsers);
-                target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Invitation.class)));
+                AjaxEventSender.entityEvent(this, Invitation.class);
                 close(target);
             }
         });
 
-        add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Invitation.class)));
+        add(new AjaxEventListener(Invitation.class));
     }
 
     /**
@@ -159,5 +158,4 @@ public class AddInviteePanel extends BasePanel<Event> {
         detach();
         onClose(target);
     }
-
 }

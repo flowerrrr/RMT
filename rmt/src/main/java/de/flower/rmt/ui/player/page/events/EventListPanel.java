@@ -1,7 +1,6 @@
 package de.flower.rmt.ui.player.page.events;
 
-import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
-import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
+import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.RSVPStatus;
@@ -79,6 +78,6 @@ public class EventListPanel extends BasePanel {
                 return invitationManager.loadByEventAndUser(event, user);
             }
         });
-        listContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Event.class)));
+        listContainer.add(new AjaxEventListener(Event.class));
     }
 }

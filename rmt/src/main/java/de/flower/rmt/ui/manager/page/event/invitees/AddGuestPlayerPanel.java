@@ -1,8 +1,7 @@
 package de.flower.rmt.ui.manager.page.event.invitees;
 
+import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.ajax.markup.html.form.AjaxSubmitLink;
-import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
-import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IInvitationManager;
@@ -46,7 +45,7 @@ public class AddGuestPlayerPanel extends BasePanel<Event> {
                     onError(target, form);
                 } else {
                     invitationManager.addGuestPlayer(model.getObject(), ((FEntity) form.getModelObject()).guestName);
-                    target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Invitation.class)));
+                    AjaxEventSender.entityEvent(this, Invitation.class);
                     onClose(target);
                 }
             }

@@ -1,7 +1,6 @@
 package de.flower.rmt.ui.manager.page.opponents;
 
-import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
-import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
+import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.rmt.model.Opponent;
 import de.flower.rmt.service.IOpponentManager;
 import de.flower.rmt.ui.common.form.CancelableEntityForm;
@@ -28,10 +27,9 @@ public class OpponentEditPanel extends BasePanel {
             @Override
             protected void onSubmit(final AjaxRequestTarget target, final Form<Opponent> form) {
                 opponentManager.save(form.getModelObject());
-                target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Opponent.class), AjaxEvent.EntityUpdated(Opponent.class)));
+                AjaxEventSender.entityEvent(this, Opponent.class);
                 onClose(target);
             }
-
         };
         add(form);
 
@@ -41,5 +39,4 @@ public class OpponentEditPanel extends BasePanel {
         name.addValidator(new FormComponentBeanValidator(Opponent.Validation.INameUnique.class));
         form.add(new TextFieldPanel("url"));
     }
-
 }

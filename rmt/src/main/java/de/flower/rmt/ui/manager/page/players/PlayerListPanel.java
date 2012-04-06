@@ -1,9 +1,8 @@
 package de.flower.rmt.ui.manager.page.players;
 
+import de.flower.common.ui.ajax.event.AjaxEventListener;
+import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.ajax.markup.html.AjaxLinkWithConfirmation;
-import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
-import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
-import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.common.ui.tooltips.TooltipBehavior;
 import de.flower.rmt.model.User;
@@ -79,7 +78,7 @@ public class PlayerListPanel extends BasePanel {
                     @Override
                     public void onClick(AjaxRequestTarget target) {
                         playerManager.delete(item.getModelObject().getId());
-                        target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(User.class)));
+                        AjaxEventSender.entityEvent(this, User.class);
                     }
                 }, "button.delete");
                 deleteButton.setVisible(!securityService.isCurrentUser(player));
@@ -87,7 +86,7 @@ public class PlayerListPanel extends BasePanel {
             }
 
         });
-        playerListContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(User.class)));
+        playerListContainer.add(new AjaxEventListener(User.class));
     }
 
     private IModel<List<User>> getPlayerListModel() {

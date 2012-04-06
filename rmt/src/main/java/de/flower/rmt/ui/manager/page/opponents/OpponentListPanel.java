@@ -1,9 +1,8 @@
 package de.flower.rmt.ui.manager.page.opponents;
 
+import de.flower.common.ui.ajax.event.AjaxEventListener;
+import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.ajax.markup.html.AjaxLinkWithConfirmation;
-import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
-import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
-import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.rmt.model.Opponent;
 import de.flower.rmt.service.IOpponentManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
@@ -46,12 +45,12 @@ public class OpponentListPanel extends BasePanel {
                     @Override
                     public void onClick(AjaxRequestTarget target) {
                         opponentManager.delete(item.getModelObject().getId());
-                        target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(Opponent.class)));
+                        AjaxEventSender.entityEvent(this, Opponent.class);
                     }
                 }, "button.delete");
             }
         };
-        listView.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Opponent.class)));
+        listView.add(new AjaxEventListener(Opponent.class));
         add(listView);
     }
 

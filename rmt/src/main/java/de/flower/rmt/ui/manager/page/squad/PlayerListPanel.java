@@ -1,10 +1,9 @@
 package de.flower.rmt.ui.manager.page.squad;
 
+import de.flower.common.ui.ajax.event.AjaxEventListener;
+import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.ajax.markup.html.AjaxLinkWithConfirmation;
 import de.flower.common.ui.ajax.markup.html.tab.AbstractAjaxTabbedPanel;
-import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
-import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
-import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.rmt.model.Player;
 import de.flower.rmt.model.Player_;
@@ -75,12 +74,12 @@ public class PlayerListPanel extends BasePanel<Team> {
                     @Override
                     public void onClick(AjaxRequestTarget target) {
                         playerManager.removePlayer(PlayerListPanel.this.getModelObject(), item.getModelObject());
-                        target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(Player.class)));
+                        AjaxEventSender.entityEvent(this, Player.class);
                     }
                 }, "button.squad.player.remove");
             }
         });
-        playerListContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Player.class)));
+        playerListContainer.add(new AjaxEventListener(Player.class));
     }
 
     private IModel<List<Player>> getListModel(final IModel<Team> model) {

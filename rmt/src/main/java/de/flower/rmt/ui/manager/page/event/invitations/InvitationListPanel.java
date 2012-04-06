@@ -1,8 +1,7 @@
 package de.flower.rmt.ui.manager.page.event.invitations;
 
+import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.common.ui.ajax.markup.html.AjaxLink;
-import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
-import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.common.ui.modal.ModalDialogWindow;
 import de.flower.common.util.Check;
@@ -48,7 +47,7 @@ public class InvitationListPanel extends BasePanel {
         add(createListView("unsureList", RSVPStatus.UNSURE, model));
         add(createListView("declinedList", RSVPStatus.DECLINED, model));
         add(createListView("noresponseList", RSVPStatus.NORESPONSE, model));
-        add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Invitation.class)));
+        add(new AjaxEventListener(Invitation.class));
     }
 
     private Component createListView(String id, RSVPStatus status, IModel<Event> model) {

@@ -1,9 +1,8 @@
 package de.flower.rmt.ui.manager.page.squad;
 
+import de.flower.common.ui.ajax.event.AjaxEventListener;
+import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.ajax.markup.html.form.AjaxSubmitLink;
-import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
-import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
-import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.rmt.model.Player;
 import de.flower.rmt.model.Team;
@@ -70,12 +69,12 @@ public class AddPlayerPanel extends BasePanel<Team> {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 playerManager.addPlayers(model.getObject(), selectedPlayers);
-                target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityCreated(Player.class)));
+                AjaxEventSender.entityEvent(this, Player.class);
                 close(target);
             }
         });
 
-        add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Player.class)));
+        add(new AjaxEventListener(Player.class));
     }
 
     /**

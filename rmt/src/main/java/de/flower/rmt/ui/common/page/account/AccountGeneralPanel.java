@@ -1,7 +1,6 @@
 package de.flower.rmt.ui.common.page.account;
 
-import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
-import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
+import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.rmt.model.User;
 import de.flower.rmt.service.IUserManager;
 import de.flower.rmt.ui.common.form.EntityForm;
@@ -29,7 +28,7 @@ public class AccountGeneralPanel extends BasePanel {
             protected void onSubmit(AjaxRequestTarget target, Form<User> form) {
                 User user = form.getModelObject();
                 userManager.save(user);
-                target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityUpdated(User.class)));
+                AjaxEventSender.entityEvent(this, User.class);
             }
         };
         add(form);

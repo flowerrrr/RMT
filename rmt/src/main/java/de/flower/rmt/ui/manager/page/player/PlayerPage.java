@@ -1,7 +1,6 @@
 package de.flower.rmt.ui.manager.page.player;
 
-import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
-import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
+import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.rmt.model.User;
 import de.flower.rmt.ui.manager.ManagerBasePage;
 import de.flower.rmt.ui.manager.NavigationPanel;
@@ -45,7 +44,7 @@ public class PlayerPage extends ManagerBasePage {
         };
         addSecondaryPanel(sendInvitationPanel, resetPasswordPanel);
         // listen to events when user is created.
-        getSecondaryPanel().add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(User.class)));
+        getSecondaryPanel().add(new AjaxEventListener(User.class));
 
     }
 

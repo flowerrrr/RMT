@@ -1,7 +1,6 @@
 package de.flower.rmt.ui.manager.page.event.invitations;
 
-import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
-import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
+import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.modal.ModalPanel;
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.RSVPStatus;
@@ -54,7 +53,7 @@ public class InvitationEditPanel extends ModalPanel<Invitation> {
     protected boolean onSubmit(final AjaxRequestTarget target, final Form<Invitation> form) {
         // save invitation and update invitationlistpanel
         invitationManager.save(form.getModelObject());
-        target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityUpdated(Invitation.class)));
+        AjaxEventSender.entityEvent(this, Invitation.class);
 
         return true;
     }

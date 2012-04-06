@@ -1,9 +1,8 @@
 package de.flower.rmt.ui.manager.page.venues;
 
+import de.flower.common.ui.ajax.event.AjaxEventListener;
+import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.ajax.markup.html.AjaxLinkWithConfirmation;
-import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
-import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
-import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
 import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.rmt.model.Venue;
 import de.flower.rmt.service.IVenueManager;
@@ -46,14 +45,14 @@ public class VenueListPanel extends BasePanel {
                     @Override
                     public void onClick(AjaxRequestTarget target) {
                         venueManager.delete(item.getModelObject().getId());
-                        target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityDeleted(Venue.class)));
+                        AjaxEventSender.entityEvent(this, Venue.class);
                     }
                 }, "button.delete");
                 item.add(menuPanel);
             }
 
         });
-        listContainer.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Venue.class)));
+        listContainer.add(new AjaxEventListener(Venue.class));
     }
 
     private Link createEditLink(String id, final ListItem<Venue> item) {

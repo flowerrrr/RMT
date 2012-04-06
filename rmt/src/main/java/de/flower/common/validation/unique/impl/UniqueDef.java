@@ -1,9 +1,10 @@
 package de.flower.common.validation.unique.impl;
 
+import org.springframework.util.StringUtils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.springframework.util.StringUtils;
 
 /**
  * Simple container class.

@@ -1,8 +1,7 @@
 package de.flower.rmt.ui.player.page.event;
 
-import de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener;
-import de.flower.common.ui.ajax.updatebehavior.AjaxUpdateBehavior;
-import de.flower.common.ui.ajax.updatebehavior.events.AjaxEvent;
+import de.flower.common.ui.ajax.event.AjaxEventListener;
+import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IEventManager;
@@ -72,12 +71,12 @@ public class EventPage extends PlayerBasePage {
             protected void onSubmit(final Invitation invitation, final AjaxRequestTarget target) {
                 // save invitation and update invitationlistpanel
                 invitationManager.save(invitation);
-                target.registerRespondListener(new AjaxRespondListener(AjaxEvent.EntityAll(Invitation.class)));
+                AjaxEventSender.entityEvent(this, Invitation.class);
             }
         };
 
         final InvitationListPanel invitationListPanel = new InvitationListPanel(model);
-        invitationListPanel.add(new AjaxUpdateBehavior(AjaxEvent.EntityAll(Invitation.class)));
+        invitationListPanel.add(new AjaxEventListener(Invitation.class));
 
         addMainPanel(invitationListPanel);
         addSecondaryPanel(createEventPagerPanel(model), new EventDetailsPanel(model), invitationFormPanel);
