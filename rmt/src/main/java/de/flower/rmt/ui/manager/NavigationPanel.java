@@ -29,7 +29,7 @@ public class NavigationPanel extends AbstractNavigationPanel {
     public NavigationPanel(INavigationPanelAware page) {
         super(View.MANAGER);
 
-        add(createMenuItem(HOME, ManagerHomePage.class, page));
+//        add(createMenuItem(HOME, ManagerHomePage.class, page));
         add(createMenuItem(EVENTS, EventsPage.class, page));
         add(createMenuItem(TEAMS, TeamsPage.class, page));
         add(createMenuItem(PLAYERS, PlayersPage.class, page));

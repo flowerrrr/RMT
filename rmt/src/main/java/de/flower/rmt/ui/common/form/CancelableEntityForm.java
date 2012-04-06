@@ -1,8 +1,7 @@
 package de.flower.rmt.ui.common.form;
 
-import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.markup.html.link.ExternalLink;
-import org.apache.wicket.markup.html.link.Link;
+import de.flower.rmt.ui.app.Links;
+import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.model.IModel;
 
 /**
@@ -18,14 +17,12 @@ public abstract class CancelableEntityForm<T> extends EntityForm<T> {
         this(id, model, null);
     }
 
-    public CancelableEntityForm(String id, IModel<T> model, Link<?> cancelLink) {
+    public CancelableEntityForm(String id, IModel<T> model, AbstractLink cancelLink) {
         super(id, model);
         if (cancelLink != null) {
             add(cancelLink);
         } else {
-            ExternalLink link = new ExternalLink("cancelButton", "#");
-            link.add(AttributeModifier.replace("onclick", "window.history.back();return false;"));
-            add(link);
+            add(new Links.HistoryBackLink("cancelButton"));
         }
     }
 }

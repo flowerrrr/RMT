@@ -5,6 +5,7 @@ import de.flower.common.util.Check;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.service.IEventManager;
+import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.common.form.CancelableEntityForm;
 import de.flower.rmt.ui.common.form.EntityForm;
 import de.flower.rmt.ui.common.form.field.*;
@@ -13,10 +14,12 @@ import de.flower.rmt.ui.manager.component.OpponentDropDownChoicePanel;
 import de.flower.rmt.ui.manager.component.TeamDropDownChoicePanel;
 import de.flower.rmt.ui.manager.component.VenueDropDownChoicePanel;
 import de.flower.rmt.ui.manager.page.event.EventPage;
+import de.flower.rmt.ui.manager.page.event.EventTabPanel;
 import de.flower.rmt.ui.model.ModelFactory;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -27,7 +30,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
  *
  * @author flowerrrr
  */
-public class EventEditPanel extends BasePanel {
+public class EventEditPanel extends BasePanel<Event> {
 
     @SpringBean
     private IEventManager eventManager;
@@ -37,22 +40,24 @@ public class EventEditPanel extends BasePanel {
     }
 
     public EventEditPanel(String id, final IModel<Event> model) {
-        super(id);
+        super(id, model);
         Check.notNull(model.getObject());
 
-        EntityForm<Event> form = new CancelableEntityForm<Event>("form", ModelFactory.eventModelWithAllAssociations(model.getObject())) {
+        EntityForm<Event> form = new CancelableEntityForm<Event>("form",
+                ModelFactory.eventModelWithAllAssociations(model.getObject()),
+                createCancelLink(model)) {
 
             @Override
             protected void onSubmit(final AjaxRequestTarget target, final Form<Event> form) {
                 final Event event = form.getModelObject();
                 if (event.isNew()) {
                     eventManager.create(event, true);
+                    // jump to email tab
+                    setResponsePage(EventPage.class, EventPage.getPageParams(form.getModelObject().getId(), EventTabPanel.NOTIFICATION_PANEL_INDEX));
                 } else {
                     eventManager.save(event);
+                    // stay on page
                 }
-                // AjaxEventSender.entityEvent Created(Event.class), AjaxEvent.EntityUpdated(Event.class)));
-                setResponsePage(new EventPage(form.getModel()));
-                // onClose(target);
             }
         };
         add(form);
@@ -81,6 +86,20 @@ public class EventEditPanel extends BasePanel {
         form.add(new TextAreaPanel("comment"));
 
         // form.add(participants)
+    }
 
+    /**
+     * Visibility of cancel button depends on persisted state of entity
+     *
+     * @param model
+     * @return
+     */
+    private AbstractLink createCancelLink(final IModel<Event> model) {
+        return new Links.HistoryBackLink("cancelButton") {
+            @Override
+            public boolean isVisible() {
+                return model.getObject().isNew();
+            }
+        };
     }
 }

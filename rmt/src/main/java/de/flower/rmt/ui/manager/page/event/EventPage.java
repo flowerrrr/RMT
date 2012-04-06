@@ -6,6 +6,7 @@ import de.flower.rmt.ui.common.page.event.EventDetailsPanel;
 import de.flower.rmt.ui.common.page.event.EventPagerPanel;
 import de.flower.rmt.ui.manager.ManagerBasePage;
 import de.flower.rmt.ui.manager.NavigationPanel;
+import de.flower.rmt.ui.manager.page.event.invitations.NoInvitationSentMessage;
 import de.flower.rmt.ui.manager.page.event.invitees.InviteeSecondaryPanel;
 import de.flower.rmt.ui.model.EventModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -25,6 +26,14 @@ public class EventPage extends ManagerBasePage {
     @SpringBean
     private IEventManager eventManager;
 
+    public static PageParameters getPageParams(Long eventId) {
+        return new PageParameters().set(de.flower.rmt.ui.player.page.event.EventPage.PARAM_EVENTID, eventId);
+    }
+
+    public static PageParameters getPageParams(Long eventId, int tabIndex) {
+        return getPageParams(eventId).set(EventTabPanel.TAB_INDEX_KEY, tabIndex);
+    }
+
     public EventPage(PageParameters params) {
         Event event = null;
         try {
@@ -37,16 +46,13 @@ public class EventPage extends ManagerBasePage {
         init(new EventModel(event));
     }
 
-    public static PageParameters getPageParams(Long eventId) {
-        return new PageParameters().set(de.flower.rmt.ui.player.page.event.EventPage.PARAM_EVENTID, eventId);
-    }
-
     public EventPage(IModel<Event> model) {
         super(model);
         init(model);
     }
 
-    private void init(IModel<Event> model)  {
+    private void init(IModel<Event> model) {
+        setDefaultModel(model);
         setHeading("manager.event.edit.heading", null);
         final EventTabPanel tabPanel;
         addMainPanel(tabPanel = new EventTabPanel(model) {
@@ -86,6 +92,16 @@ public class EventPage extends ManagerBasePage {
             }
         };
     }
+
+    @Override
+    protected void onBeforeRender() {
+        super.onBeforeRender();
+        // makes messages back-button and reload-save. must be called after super.onBeforeRender to have this
+        // message listed after messages of super-page
+        // check if an invitation has been sent for this event already
+        info(new NoInvitationSentMessage((IModel<Event>) getDefaultModel()));
+    }
+
 
     @Override
     public String getActiveTopBarItem() {
