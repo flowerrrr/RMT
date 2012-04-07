@@ -10,8 +10,13 @@ public enum RSVPStatus {
     UNSURE,
     NORESPONSE;
 
-    public String getResourceKey() {
-        return "invitation.status." + this.name().toLowerCase();
+    public static String getResourceKey(RSVPStatus status) {
+        String prefix = "invitation.status.";
+        if (status == null) {
+            return prefix + "null";
+        } else {
+            return prefix + status.name().toLowerCase();
+        }
     }
 
     public static RSVPStatus[] quickResponseValues() {

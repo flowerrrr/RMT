@@ -3,7 +3,7 @@ package de.flower.rmt.ui.manager.component;
 import de.flower.rmt.model.Opponent;
 import de.flower.rmt.service.IOpponentManager;
 import de.flower.rmt.ui.common.form.field.DropDownChoicePanel;
-import org.apache.wicket.markup.html.form.IChoiceRenderer;
+import de.flower.rmt.ui.common.form.field.FormFieldPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -19,19 +19,9 @@ public class OpponentDropDownChoicePanel extends DropDownChoicePanel<Opponent> {
     private IOpponentManager opponentManager;
 
     public OpponentDropDownChoicePanel(String id) {
-        super(id);
+        super(id, new OpponentDropDownChoice(FormFieldPanel.ID));
         setChoices(getOpponentChoices());
-        setChoiceRenderer(new IChoiceRenderer<Opponent>() {
-            @Override
-            public Object getDisplayValue(Opponent opponent) {
-                return opponent.getName();
-            }
 
-            @Override
-            public String getIdValue(Opponent opponent, int index) {
-                return opponent.getId().toString();
-            }
-        });
     }
 
     private IModel<List<Opponent>> getOpponentChoices() {

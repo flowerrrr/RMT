@@ -14,7 +14,7 @@ public class RSVPStatusRenderer implements IChoiceRenderer<RSVPStatus> {
         if (status == null) {
             return null;
         } else {
-            return new ResourceModel(status.getResourceKey()).getObject();
+            return new ResourceModel(RSVPStatus.getResourceKey(status)).getObject();
         }
     }
 

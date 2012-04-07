@@ -11,6 +11,7 @@ import de.flower.rmt.ui.common.form.EntityForm;
 import de.flower.rmt.ui.common.form.field.*;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.manager.component.OpponentDropDownChoicePanel;
+import de.flower.rmt.ui.manager.component.SurfaceDropDownChoice;
 import de.flower.rmt.ui.manager.component.TeamDropDownChoicePanel;
 import de.flower.rmt.ui.manager.component.VenueDropDownChoicePanel;
 import de.flower.rmt.ui.manager.page.event.EventPage;
@@ -80,7 +81,12 @@ public class EventEditPanel extends BasePanel<Event> {
         });
         form.add(new VenueDropDownChoicePanel("venue"));
 
-        // form.add(surface label)
+        form.add(new DropDownChoicePanel("surface", new SurfaceDropDownChoice("input")) {
+            @Override
+            public boolean isVisible() {
+                return EventType.hasSurface(model.getObject());
+            }
+        });
 
         form.add(new TextFieldPanel("summary"));
         form.add(new TextAreaPanel("comment"));

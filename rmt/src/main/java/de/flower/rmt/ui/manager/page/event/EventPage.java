@@ -3,7 +3,7 @@ package de.flower.rmt.ui.manager.page.event;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.common.page.event.EventDetailsPanel;
-import de.flower.rmt.ui.common.page.event.EventPagerPanel;
+import de.flower.rmt.ui.common.page.event.EventSelectPanel;
 import de.flower.rmt.ui.manager.ManagerBasePage;
 import de.flower.rmt.ui.manager.NavigationPanel;
 import de.flower.rmt.ui.manager.page.event.invitations.NoInvitationSentMessage;
@@ -62,13 +62,13 @@ public class EventPage extends ManagerBasePage {
                 target.add(getSecondaryPanel());
             }
         });
-        addSecondaryPanel(new EventPagerPanel(model, getListModel()) {
-
+        addSecondaryPanel(new EventSelectPanel(model, getListModel()) {
             @Override
-            protected void onClick(IModel<Event> model) {
-                setResponsePage(new EventPage(model));
+            protected void onClick(final IModel<Event> model) {
+                setResponsePage(EventPage.class, EventPage.getPageParams(model.getObject().getId(), tabPanel.getSelectedTab()));
             }
         });
+
         getSecondaryPanel().add(new EventDetailsPanel(model) {
             @Override
             public boolean isVisible() {
@@ -101,7 +101,6 @@ public class EventPage extends ManagerBasePage {
         // check if an invitation has been sent for this event already
         info(new NoInvitationSentMessage((IModel<Event>) getDefaultModel()));
     }
-
 
     @Override
     public String getActiveTopBarItem() {

@@ -3,7 +3,7 @@ package de.flower.rmt.ui.manager.component;
 import de.flower.rmt.model.Venue;
 import de.flower.rmt.service.IVenueManager;
 import de.flower.rmt.ui.common.form.field.DropDownChoicePanel;
-import org.apache.wicket.markup.html.form.IChoiceRenderer;
+import de.flower.rmt.ui.common.form.field.FormFieldPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -19,19 +19,8 @@ public class VenueDropDownChoicePanel extends DropDownChoicePanel<Venue> {
     private IVenueManager venueManager;
 
     public VenueDropDownChoicePanel(String id) {
-        super(id);
+        super(id, new VenueDropDownChoice(FormFieldPanel.ID));
         setChoices(getVenueChoices());
-        setChoiceRenderer(new IChoiceRenderer<Venue>() {
-            @Override
-            public Object getDisplayValue(Venue venue) {
-                return venue.getName();
-            }
-
-            @Override
-            public String getIdValue(Venue venue, int index) {
-                return venue.getId().toString();
-            }
-        });
     }
 
     private IModel<List<Venue>> getVenueChoices() {

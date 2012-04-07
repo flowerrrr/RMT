@@ -9,7 +9,6 @@ import org.apache.wicket.model.ResourceModel;
 /**
  * @author flowerrrr
  */
-@Deprecated  // not used
 public class EventRenderer implements IChoiceRenderer<Event> {
 
     @Override
@@ -19,12 +18,16 @@ public class EventRenderer implements IChoiceRenderer<Event> {
 
     @Override
     public String getIdValue(final Event object, final int index) {
-        return "" + index;
+        if (object.getId() != null) {
+            return "" + object.getId();
+        } else {
+            return "index-" + index;
+        }
     }
 
     public static String getTypeDateSummary(final Event event) {
         String eventType = new ResourceModel(EventType.from(event).getResourceKey()).getObject();
-        String date = Dates.formatDateTimeMedium(event.getDateTimeAsDate());
-        return eventType + " - " + date + ": " + event.getSummary();
+        String date = Dates.formatDateTimeShort(event.getDateTimeAsDate());
+        return eventType + " - " + date + " - " + event.getSummary();
     }
 }

@@ -51,11 +51,16 @@ public class Event extends AbstractClubRelatedEntity {
     private LocalTime time;
 
     @Column
-    @NotBlank @Size(max = 50)
+    @NotBlank
+    @Size(max = 50)
     private String summary;
 
-    @Column @Size(max = 255)
+    @Column
+    @Size(max = 255)
     private String comment;
+
+    @Enumerated(EnumType.STRING)
+    private Surface surface;
 
     @NotNull
     @Column
@@ -116,6 +121,7 @@ public class Event extends AbstractClubRelatedEntity {
 
     /**
      * Returns full date of event. date + time
+     *
      * @return
      */
     public DateTime getDateTime() {
@@ -162,6 +168,14 @@ public class Event extends AbstractClubRelatedEntity {
         return EventType.from(this);
     }
 
+    public Surface getSurface() {
+        return surface;
+    }
+
+    public void setSurface(final Surface surface) {
+        this.surface = surface;
+    }
+
     @Override
     public String toString() {
         return "Event{" +
@@ -171,5 +185,4 @@ public class Event extends AbstractClubRelatedEntity {
                 ", summary='" + summary + '\'' +
                 '}';
     }
-
 }

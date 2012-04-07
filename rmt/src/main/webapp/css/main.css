@@ -253,6 +253,9 @@ input[readonly].reset {
     border-color: #b94a48;
 }
 
+option[selected] {
+    font-weight: bold;
+}
 
 
 /*************************************************************************
@@ -569,14 +572,9 @@ td.rsvpstatus {
 /*************************************************************************
     Event pagination
 **************************************************************************/
-.event-pager-panel {
-    .pagination {
-        margin: 0px;
-    }
-    .active a {
-        width: 106px;
-        text-align: center;
-        color: @grayDark;
+.event-select-panel {
+    select {
+        margin-bottom: 0px;
     }
 }
 

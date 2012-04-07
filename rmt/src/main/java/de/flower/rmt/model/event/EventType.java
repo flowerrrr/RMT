@@ -7,15 +7,18 @@ import de.flower.rmt.model.Club;
  */
 public enum EventType {
 
-    Event(Event.class),
-    Match(Match.class),
-    Training(Training.class),
-    Tournament(Tournament.class);
+    Event(Event.class, false),
+    Match(Match.class, true),
+    Training(Training.class, true),
+    Tournament(Tournament.class, true);
 
     private Class<? extends Event> clazz;
 
-    private EventType(Class<? extends Event> clazz) {
+    private boolean hasSurface;
+
+    private EventType(Class<? extends Event> clazz, boolean hasSurface) {
         this.clazz = clazz;
+        this.hasSurface = hasSurface;
     }
 
     public String getResourceKey() {
@@ -49,5 +52,9 @@ public enum EventType {
 
     public static boolean isMatch(final Event event) {
         return event.getClass().equals(Match.clazz);
+    }
+
+    public static boolean hasSurface(final Event event) {
+        return EventType.from(event).hasSurface;
     }
 }
