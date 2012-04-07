@@ -23,11 +23,13 @@ import java.util.List;
  */
 public class EventPage extends ManagerBasePage {
 
+    public final static String PARAM_EVENTID = "event";
+
     @SpringBean
     private IEventManager eventManager;
 
     public static PageParameters getPageParams(Long eventId) {
-        return new PageParameters().set(de.flower.rmt.ui.player.page.event.EventPage.PARAM_EVENTID, eventId);
+        return new PageParameters().set(EventPage.PARAM_EVENTID, eventId);
     }
 
     public static PageParameters getPageParams(Long eventId, int tabIndex) {
@@ -37,7 +39,7 @@ public class EventPage extends ManagerBasePage {
     public EventPage(PageParameters params) {
         Event event = null;
         try {
-            Long eventId = params.get(de.flower.rmt.ui.player.page.event.EventPage.PARAM_EVENTID).toLong();
+            Long eventId = params.get(EventPage.PARAM_EVENTID).toLong();
             event = eventManager.loadById(eventId);
         } catch (Exception e) {
             log.error(e.toString(), e);

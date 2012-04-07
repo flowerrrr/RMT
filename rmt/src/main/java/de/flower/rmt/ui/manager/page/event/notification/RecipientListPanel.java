@@ -2,6 +2,7 @@ package de.flower.rmt.ui.manager.page.event.notification;
 
 import de.flower.common.ui.ajax.markup.html.AjaxLink;
 import de.flower.common.ui.modal.ModalDialogWindow;
+import de.flower.common.util.Collections;
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IInvitationManager;
@@ -16,7 +17,6 @@ import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import javax.mail.internet.InternetAddress;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -93,11 +93,12 @@ public class RecipientListPanel extends BasePanel<List<InternetAddress>> {
     }
 
     private List<InternetAddress> convert(List<Invitation> invitations) {
-        List<InternetAddress> list = new ArrayList<InternetAddress>();
-        for (Invitation invitation : invitations) {
-            list.add(invitation.getInternetAddress());
-        }
-        return list;
+        return Collections.convert(invitations, new Collections.IElementConverter<Invitation, InternetAddress>() {
+            @Override
+            public InternetAddress convert(final Invitation element) {
+                return element.getInternetAddress();
+            }
+        }) ;
     }
 
     protected IModel<List<Invitation>> getInvitationListModel(final IModel<Event> model) {

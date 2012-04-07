@@ -8,10 +8,7 @@ import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.service.mail.INotificationService;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.common.form.EntityForm;
-import de.flower.rmt.ui.common.form.field.CheckBoxPanel;
-import de.flower.rmt.ui.common.form.field.FormFieldPanel;
-import de.flower.rmt.ui.common.form.field.TextAreaPanel;
-import de.flower.rmt.ui.common.form.field.TextFieldPanel;
+import de.flower.rmt.ui.common.form.field.*;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -59,6 +56,7 @@ public class NotificationPanel extends BasePanel {
                 // disable needless rendering of javascript onchange handler
                 return false;
             }
+
         });
         final TextFieldPanel subject;
         form.add(subject = new TextFieldPanel("subject"));
@@ -100,7 +98,7 @@ public class NotificationPanel extends BasePanel {
                 protected void onChange(final AjaxRequestTarget target) {
                     // trigger instant validation, simulate AjaxFormComponentUpdatingBehavior
                     processInput();
-                    target.add(this.findParent(FormFieldPanel.class));
+                    target.add(this.findParent(AbstractFormFieldPanel.class));
                 }
             });
         }

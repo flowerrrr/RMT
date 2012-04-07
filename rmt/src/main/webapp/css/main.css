@@ -186,6 +186,10 @@ select {
     width: 220px;
 }
 
+select.input-small {
+    width: 100px; // select box not same size as text input
+}
+
 // use default bootstrap settings for input-fields (datepicker is readonly but should look like normal input)
 input[readonly].reset {
     background-color: #fff;

@@ -3,8 +3,9 @@ package de.flower.rmt.service;
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.Invitation_;
 import de.flower.rmt.model.User;
-import de.flower.rmt.model.event.Event;
+import de.flower.rmt.model.event.*;
 import de.flower.rmt.test.AbstractIntegrationTests;
+import org.hibernate.LazyInitializationException;
 import org.joda.time.DateTime;
 import org.testng.annotations.Test;
 
@@ -64,6 +65,34 @@ public class EventManagerTest extends AbstractIntegrationTests {
         eventManager.delete(event.getId());
         // assert that event is hard-deleted
         assertNull(eventRepo.findOne(event.getId()));
+    }
+
+    @Test
+    public void testLoadPrefetchedAssociation() {
+        testData.setEventType(EventType.Match);
+        Match event = (Match) testData.createEvent();
+        // reload from database
+        event = (Match) eventManager.loadById(event.getId(), Event_.team, Event_.venue, Match_.opponent, AbstractSoccerEvent_.surfaceList);
+        event.getTeam().getName();
+        event.getVenue().getName();
+        event.getOpponent().getName();
+        event.getSurfaceList().isEmpty();
+    }
+
+    @Test(expectedExceptions = LazyInitializationException.class)
+    public void testLoadNoPrefetchedAssociations() {
+        testData.setEventType(EventType.Match);
+        Event event = testData.createEvent();
+        // reload from database
+        event = eventManager.loadById(event.getId());
+        event.getTeam().getName();
+    }
+
+    @Test
+    public void debugMetaModel() {
+        log.info(AbstractSoccerEvent_.surfaceList.toString());
+        log.info(Match_.surfaceList.toString());
+        assertEquals(AbstractSoccerEvent_.surfaceList, Match_.surfaceList);
     }
 
 }

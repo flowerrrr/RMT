@@ -14,7 +14,7 @@ public class EventEditPanelTest extends AbstractWicketIntegrationTests {
 
     @Test
     public void testRender() {
-        Event event = eventManager.newInstance(EventType.Training);
+        Event event = eventManager.newInstance(EventType.Match);
         wicketTester.startComponentInPage(new EventEditPanel(new EventModel(event)));
         wicketTester.dumpComponentWithPage();
     }

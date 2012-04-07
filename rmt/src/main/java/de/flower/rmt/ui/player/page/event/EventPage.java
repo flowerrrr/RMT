@@ -29,7 +29,7 @@ import java.util.List;
  */
 public class EventPage extends PlayerBasePage {
 
-    public final static String PARAM_EVENTID = "event";
+    public final static String PARAM_EVENTID = de.flower.rmt.ui.manager.page.event.EventPage.PARAM_EVENTID;
 
     @SpringBean
     private IInvitationManager invitationManager;

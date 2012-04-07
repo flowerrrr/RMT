@@ -4,6 +4,7 @@ import de.flower.rmt.model.*;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.model.event.Event_;
+import de.flower.rmt.model.event.Match;
 import de.flower.rmt.repository.IClubRepo;
 import de.flower.rmt.repository.IEventRepo;
 import de.flower.rmt.repository.IPlayerRepo;
@@ -61,6 +62,9 @@ public class TestData {
 
     @Autowired
     private IVenueManager venueManager;
+
+    @Autowired
+    private IOpponentManager opponentManager;
 
     @Autowired
     private IUserManager userManager;
@@ -225,6 +229,9 @@ public class TestData {
         event.setSummary("Summary");
         event.setTeam(team);
         event.setVenue(venueManager.loadById(1L));
+        if (event.getEventType() == EventType.Match) {
+            ((Match) event).setOpponent(opponentManager.loadById(1L));
+        }
         eventManager.create(event, createInvitations);
         return eventManager.loadById(event.getId(), Event_.team, Event_.invitations);
     }

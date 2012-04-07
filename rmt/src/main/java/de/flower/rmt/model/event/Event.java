@@ -59,9 +59,6 @@ public class Event extends AbstractClubRelatedEntity {
     @Size(max = 255)
     private String comment;
 
-    @Enumerated(EnumType.STRING)
-    private Surface surface;
-
     @NotNull
     @Column
     private Boolean invitationSent;
@@ -167,15 +164,6 @@ public class Event extends AbstractClubRelatedEntity {
     public EventType getEventType() {
         return EventType.from(this);
     }
-
-    public Surface getSurface() {
-        return surface;
-    }
-
-    public void setSurface(final Surface surface) {
-        this.surface = surface;
-    }
-
     @Override
     public String toString() {
         return "Event{" +

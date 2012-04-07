@@ -12,7 +12,7 @@ import javax.persistence.metamodel.Attribute;
 /**
  * @author flowerrrr
  */
-public class EventModel extends AbstractEntityModel<Event> {
+public class EventModel<T extends Event> extends AbstractEntityModel<T> {
 
     @SpringBean
     private IEventManager manager;
@@ -27,13 +27,13 @@ public class EventModel extends AbstractEntityModel<Event> {
         this.attributes = attributes;
     }
 
-    public EventModel(Event entity) {
+    public EventModel(T entity) {
         super(entity);
         Check.notNull(entity);
         this.type = EventType.from(entity);
     }
 
-    public EventModel(final IModel<Event> model) {
+    public EventModel(final IModel<T> model) {
         super(model);
     }
 
@@ -41,23 +41,25 @@ public class EventModel extends AbstractEntityModel<Event> {
     protected void onDetach() {
         // if entity is transient we must save the event type in order to recreate event
         if (type == null) {
-            Event entity = getObject();
+            T entity = getObject();
             type = EventType.from(entity);
         }
         super.onDetach();
     }
 
     @Override
-    protected Event load(Long id) {
+    protected T load(Long id) {
+        Event entity;
         if (attributes != null) {
-            return manager.loadById(id, attributes);
+            entity = manager.loadById(id, attributes);
         } else {
-            return manager.loadById(id);
+            entity = manager.loadById(id);
         }
+        return (T) entity;
     }
 
     @Override
-    protected Event newInstance() {
-        return manager.newInstance(type);
+    protected T newInstance() {
+        return (T) manager.newInstance(type);
     }
 }
