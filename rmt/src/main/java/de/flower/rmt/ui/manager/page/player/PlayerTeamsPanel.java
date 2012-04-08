@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.manager.page.player;
 
-import de.flower.common.ui.form.BooleanDropDownChoice;
+import de.flower.common.ui.markup.html.form.BooleanDropDownChoice;
 import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.rmt.model.Player;
 import de.flower.rmt.model.Player_;

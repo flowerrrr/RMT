@@ -180,6 +180,7 @@ textarea {
 /* override float:left from bootstrap */
 input[type="checkbox"] + label {
     float: none;
+    display: inline;
 }
 
 select {
@@ -225,7 +226,7 @@ input[readonly].reset {
     display: inline-block;
     margin-bottom: 0;
     overflow: auto;
-    resize: vertical;
+    // resize: vertical;
     min-height: 38px;
     max-height: 210px;
     li {

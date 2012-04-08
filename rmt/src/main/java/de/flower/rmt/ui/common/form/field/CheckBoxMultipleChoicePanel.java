@@ -6,13 +6,13 @@ import org.apache.wicket.markup.html.form.ListMultipleChoice;
 /**
  * @author flowerrrr
  */
-public class ListMultipleChoicePanel<T> extends AbstractFormFieldPanel {
+public class CheckBoxMultipleChoicePanel<T> extends AbstractFormFieldPanel {
 
-    public ListMultipleChoicePanel(final String id, final FormComponent fc) {
+    public CheckBoxMultipleChoicePanel(final String id, final FormComponent fc) {
         super(id, fc);
     }
 
-    public static class NonValidatingListMultipleChoicePanel extends ListMultipleChoicePanel {
+    public static class NonValidatingListMultipleChoicePanel extends CheckBoxMultipleChoicePanel {
 
         public NonValidatingListMultipleChoicePanel(final String id, final ListMultipleChoice<?> listMultipleChoice) {
             super(id, listMultipleChoice);

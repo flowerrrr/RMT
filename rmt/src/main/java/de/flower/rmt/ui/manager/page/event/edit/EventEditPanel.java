@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.manager.page.event.edit;
 
-import de.flower.common.ui.form.TimeDropDownChoice;
+import de.flower.common.ui.markup.html.form.TimeDropDownChoice;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
@@ -11,7 +11,7 @@ import de.flower.rmt.ui.common.form.EntityForm;
 import de.flower.rmt.ui.common.form.field.*;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.manager.component.OpponentDropDownChoicePanel;
-import de.flower.rmt.ui.manager.component.SurfaceListMultipleChoice;
+import de.flower.rmt.ui.manager.component.SurfaceCheckBoxMultipleChoice;
 import de.flower.rmt.ui.manager.component.TeamDropDownChoicePanel;
 import de.flower.rmt.ui.manager.component.VenueDropDownChoicePanel;
 import de.flower.rmt.ui.manager.page.event.EventPage;
@@ -81,7 +81,7 @@ public class EventEditPanel extends BasePanel<Event> {
         });
         form.add(new VenueDropDownChoicePanel("venue"));
 
-        form.add(new ListMultipleChoicePanel("surfaceList", new SurfaceListMultipleChoice("input")) {
+        form.add(new CheckBoxMultipleChoicePanel("surfaceList", new SurfaceCheckBoxMultipleChoice("input")) {
             @Override
             public boolean isVisible() {
                 return EventType.isSoccerEvent(model.getObject());

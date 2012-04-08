@@ -2,16 +2,16 @@ package de.flower.rmt.ui.manager.component;
 
 import de.flower.rmt.model.Surface;
 import de.flower.rmt.ui.common.renderer.SurfaceRenderer;
-import org.apache.wicket.markup.html.form.ListMultipleChoice;
+import org.apache.wicket.markup.html.form.CheckBoxMultipleChoice;
 
 import java.util.Arrays;
 
 /**
  * @author flowerrrr
  */
-public class SurfaceListMultipleChoice extends ListMultipleChoice<Surface> {
+public class SurfaceCheckBoxMultipleChoice extends CheckBoxMultipleChoice<Surface> {
 
-    public SurfaceListMultipleChoice(String id) {
+    public SurfaceCheckBoxMultipleChoice(String id) {
         super(id);
         setChoices(Arrays.asList(Surface.values()));
         setChoiceRenderer(new SurfaceRenderer());
