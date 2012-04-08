@@ -20,6 +20,11 @@ public class Jersey extends AbstractBaseEntity {
     @Column
     @NotBlank
     @Size(max = 50)
+    private String name;
+
+    @Column
+    @NotBlank
+    @Size(max = 50)
     private String shirt;
 
     @Column

@@ -3,6 +3,7 @@ package de.flower.rmt.service.mail;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
+import de.flower.rmt.model.event.Match;
 import de.flower.rmt.model.type.Notification;
 import de.flower.rmt.test.AbstractIntegrationTests;
 import org.testng.annotations.Test;
@@ -39,13 +40,15 @@ public class NotificationServiceTest extends AbstractIntegrationTests {
 
         // no venue selected yet
         testData.setEventType(EventType.Match);
-        event = testData.createEvent();
-        event.setVenue(null);
-        eventManager.save(event);
-        notification = notificationService.newEventNotification(event, eventLink);
+        Match match = (Match) testData.createEvent();
+        match.setVenue(null);
+        match.getSurfaceList().clear();
+        eventManager.save(match);
+        notification = notificationService.newEventNotification(match, eventLink);
         log.info(notification.getSubject());
         log.info(notification.getBody());
         assertTrue(notification.getBody().contains("Ort: <noch nicht festgelegt>"));
+        assertTrue(notification.getBody().contains("Untergrund: <unbekannt>"));
         assertTrue(notification.getBody().contains("Gegner"));
     }
 }

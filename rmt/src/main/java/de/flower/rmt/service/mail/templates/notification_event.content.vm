@@ -20,6 +20,9 @@ Gegner: $opponent
 #set ($venue = $event.getVenue().getName())
 #end
 Ort: $venue
+#if ($isSoccerEvent)
+Untergrund: $surfaceList
+#end
 Titel: $!event.getSummary()
 Beschreibung: $!event.getComment()
 

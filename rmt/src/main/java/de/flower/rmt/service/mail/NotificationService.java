@@ -1,10 +1,8 @@
 package de.flower.rmt.service.mail;
 
+import de.flower.rmt.model.Surface;
 import de.flower.rmt.model.User;
-import de.flower.rmt.model.event.Event;
-import de.flower.rmt.model.event.EventType;
-import de.flower.rmt.model.event.Event_;
-import de.flower.rmt.model.event.Match_;
+import de.flower.rmt.model.event.*;
 import de.flower.rmt.model.type.Notification;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.util.Dates;
@@ -60,6 +58,10 @@ public class NotificationService implements INotificationService {
         model.put("eventDateTime", Dates.formatDateTimeShort(event.getDateTime()));
         model.put("eventTypeMatch", EventType.Match);
         model.put("eventLink", eventLink);
+        model.put("isSoccerEvent", EventType.isSoccerEvent(event));
+        if (EventType.isSoccerEvent(event)) {
+            model.put("surfaceList", Surface.render(((AbstractSoccerEvent) event).getSurfaceList()));
+        }
         notification.setSubject(templateService.mergeTemplate(EmailTemplate.NOTIFICATION_EVENT.getSubject(), model));
         notification.setBody(templateService.mergeTemplate(EmailTemplate.NOTIFICATION_EVENT.getContent(), model));
         return notification;

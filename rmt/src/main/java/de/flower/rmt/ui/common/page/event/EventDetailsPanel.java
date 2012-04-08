@@ -1,12 +1,10 @@
 package de.flower.rmt.ui.common.page.event;
 
-import de.flower.common.util.Collections;
 import de.flower.rmt.model.Surface;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.model.ModelFactory;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.AbstractReadOnlyModel;
@@ -21,7 +19,10 @@ import java.util.Locale;
 /**
  * @author flowerrrr
  */
-public class EventDetailsPanel extends BasePanel<Event> {
+public class
+
+
+        EventDetailsPanel extends BasePanel<Event> {
 
     public EventDetailsPanel(final IModel<Event> model) {
         setDefaultModel(new CompoundPropertyModel<Object>(ModelFactory.eventModelWithAllAssociations(model.getObject())));
@@ -68,17 +69,7 @@ public class EventDetailsPanel extends BasePanel<Event> {
 
                 @Override
                 public String convertToString(final List<Surface> value, final Locale locale) {
-                    if (value == null || value.isEmpty()) {
-                        return null;
-                    } else {
-                        List<String> list = Collections.convert(value, new Collections.IElementConverter<Surface, String>() {
-                            @Override
-                            public String convert(final Surface element) {
-                                return new ResourceModel(Surface.getResourceKey(element)).getObject();
-                            }
-                        });
-                        return StringUtils.join(list, ", ");
-                    }
+                    return Surface.render(value, locale);
                 }
             };
         }
