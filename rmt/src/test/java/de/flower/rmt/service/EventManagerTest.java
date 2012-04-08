@@ -2,8 +2,11 @@ package de.flower.rmt.service;
 
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.Invitation_;
+import de.flower.rmt.model.Surface;
 import de.flower.rmt.model.User;
-import de.flower.rmt.model.event.*;
+import de.flower.rmt.model.event.Event;
+import de.flower.rmt.model.event.EventType;
+import de.flower.rmt.model.event.Match;
 import de.flower.rmt.test.AbstractIntegrationTests;
 import org.hibernate.LazyInitializationException;
 import org.joda.time.DateTime;
@@ -14,7 +17,6 @@ import java.util.List;
 import static org.testng.Assert.*;
 
 /**
- * 
  * @author flowerrrr
  */
 
@@ -32,22 +34,22 @@ public class EventManagerTest extends AbstractIntegrationTests {
         // now do the tests
 
         // one event in the past
-        event.setDate(now.minusDays(1).toDate())  ;
-        eventManager.save(event)    ;
-        List<Event> events = eventManager.findAllUpcomingByUser(user)  ;
-        assertEquals(events.size(), 0)  ;
+        event.setDate(now.minusDays(1).toDate());
+        eventManager.save(event);
+        List<Event> events = eventManager.findAllUpcomingByUser(user);
+        assertEquals(events.size(), 0);
 
         // one event in the future
-        event.setDate(now.plusDays(1).toDate())  ;
-        eventManager.save(event)      ;
-        events = eventManager.findAllUpcomingByUser(user) ;
-        assertEquals(events.size(), 1) ;
+        event.setDate(now.plusDays(1).toDate());
+        eventManager.save(event);
+        events = eventManager.findAllUpcomingByUser(user);
+        assertEquals(events.size(), 1);
 
         // add another event scheduled for today
-        event = testData.createEvent(event.getTeam(), true)  ;
-        user = userRepo.findOne(user.getId()) ;
+        event = testData.createEvent(event.getTeam(), true);
+        user = userRepo.findOne(user.getId());
         events = eventManager.findAllUpcomingByUser(user);
-        assertEquals(events.size(), 2)                 ;
+        assertEquals(events.size(), 2);
     }
 
     @Test
@@ -68,15 +70,19 @@ public class EventManagerTest extends AbstractIntegrationTests {
     }
 
     @Test
-    public void testLoadPrefetchedAssociation() {
+    public void testSurfaceUserType() {
         testData.setEventType(EventType.Match);
-        Match event = (Match) testData.createEvent();
         // reload from database
-        event = (Match) eventManager.loadById(event.getId(), Event_.team, Event_.venue, Match_.opponent, AbstractSoccerEvent_.surfaceList);
-        event.getTeam().getName();
-        event.getVenue().getName();
-        event.getOpponent().getName();
-        event.getSurfaceList().isEmpty();
+        Match event = (Match) testData.createEvent();
+        event = (Match) eventManager.loadById(event.getId());
+        assertTrue(event.getSurfaceList().isEmpty());
+
+        event.getSurfaceList().add(Surface.NATURAL_GRASS);
+        event.getSurfaceList().add(Surface.ASH);
+        eventManager.save(event);
+        event = (Match) eventManager.loadById(event.getId());
+        assertEquals(event.getSurfaceList().get(0), Surface.NATURAL_GRASS);
+        assertEquals(event.getSurfaceList().get(1), Surface.ASH);
     }
 
     @Test(expectedExceptions = LazyInitializationException.class)
@@ -86,13 +92,6 @@ public class EventManagerTest extends AbstractIntegrationTests {
         // reload from database
         event = eventManager.loadById(event.getId());
         event.getTeam().getName();
-    }
-
-    @Test
-    public void debugMetaModel() {
-        log.info(AbstractSoccerEvent_.surfaceList.toString());
-        log.info(Match_.surfaceList.toString());
-        assertEquals(AbstractSoccerEvent_.surfaceList, Match_.surfaceList);
     }
 
 }

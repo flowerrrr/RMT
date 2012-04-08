@@ -5,6 +5,9 @@ package de.flower.rmt.model;
  */
 public enum Surface {
 
+    /**
+     * DO NOT ALTER THESE NAMES. They are stored in database as strings.
+     */
     NATURAL_GRASS,
     ARTIFICIAL_GRASS,
     ASH;

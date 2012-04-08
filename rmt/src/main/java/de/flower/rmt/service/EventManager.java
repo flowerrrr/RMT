@@ -5,7 +5,9 @@ import de.flower.common.util.Check;
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.model.User;
-import de.flower.rmt.model.event.*;
+import de.flower.rmt.model.event.Event;
+import de.flower.rmt.model.event.EventType;
+import de.flower.rmt.model.event.Event_;
 import de.flower.rmt.model.type.Notification;
 import de.flower.rmt.repository.IEventRepo;
 import de.flower.rmt.service.mail.IMailService;
@@ -70,9 +72,9 @@ public class EventManager extends AbstractService implements IEventManager {
         assertClub(entity);
         // for some reason i don't know the fetching of surfaceList works unreliable.
         // sometimes the association is initialized, sometimes not. very strange.
-        if (ArrayUtils.contains(attributes, AbstractSoccerEvent_.surfaceList)) {
-            ((AbstractSoccerEvent) entity).getSurfaceList().isEmpty();
-        }
+//        if (ArrayUtils.contains(attributes, AbstractSoccerEvent_.surfaceList)) {
+//            ((AbstractSoccerEvent) entity).getSurfaceList().isEmpty();
+//        }
         return entity;
     }
 

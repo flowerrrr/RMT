@@ -6,7 +6,10 @@ import de.flower.rmt.model.Surface;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalTime;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +23,14 @@ public abstract class AbstractSoccerEvent extends Event {
     @Type(type = "org.joda.time.contrib.hibernate.PersistentLocalTimeAsTime")
     private LocalTime kickOff;
 
-    @ElementCollection(fetch = FetchType.LAZY)
-    @CollectionTable(name = "Surface", joinColumns = @JoinColumn(name = "event_id"))
+    /**
+     * Map list of surfaces to a string. Not done as @ElementCollection cause it causes trouble with DotNode.getDataType() when
+     * used in a subperclass like here.
+     * Also not implemented as hibernate usertype cause user type is just a pain in the ass.
+     * Much faster to do conversion here manually in code.
+     */
+    @Column
+    @Type(type = "de.flower.rmt.model.type.SurfaceListType")
     private List<Surface> surfaceList = new ArrayList<Surface>();
 
     /**
