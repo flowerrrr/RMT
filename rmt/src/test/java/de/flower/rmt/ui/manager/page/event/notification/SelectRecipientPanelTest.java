@@ -12,9 +12,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import javax.mail.internet.InternetAddress;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.testng.Assert.*;
 
@@ -30,7 +31,7 @@ public class SelectRecipientPanelTest extends AbstractRMTWicketMockitoTests {
 
     @Test
     public void testSubmitSelectedRecipients() {
-        final List<InternetAddress> actualRecipients = new ArrayList<InternetAddress>();
+        final Set<InternetAddress> actualRecipients = new HashSet<InternetAddress>();
         Event event = testData.newEvent();
         InternetAddress ia1 = event.getInvitations().get(2).getInternetAddress();
         InternetAddress ia2 = event.getInvitations().get(4).getInternetAddress();
@@ -51,6 +52,7 @@ public class SelectRecipientPanelTest extends AbstractRMTWicketMockitoTests {
         formTester.select("group", 4);
 
         wicketTester.clickLink("submitButton");
-        assertEquals(actualRecipients, Arrays.asList(ia1, ia2));
+        // order of selected choices is not guaranteed to be same as in html-markup
+        assertEquals(actualRecipients, new HashSet<InternetAddress>(Arrays.asList(ia1, ia2)));
     }
 }
