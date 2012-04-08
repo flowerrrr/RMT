@@ -4,6 +4,7 @@ import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.model.event.Event_;
+import de.flower.rmt.model.event.Match_;
 import de.flower.rmt.model.type.Notification;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.util.Dates;
@@ -50,7 +51,7 @@ public class NotificationService implements INotificationService {
 
     @Override
     public Notification newEventNotification(final Event eventIn, String eventLink) {
-        Event event = eventManager.loadById(eventIn.getId(), Event_.venue);
+        Event event = eventManager.loadById(eventIn.getId(), Event_.venue, Match_.opponent);
         Notification notification = new Notification();
         final Map<String, Object> model = new HashMap<String, Object>();
         model.put("event", event);

@@ -3,7 +3,7 @@ package de.flower.rmt.ui.manager.page.event.notification;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
 import de.flower.rmt.test.TestData;
-import de.flower.rmt.ui.common.form.field.AbstractFormFieldPanel;
+import de.flower.rmt.ui.common.form.field.FormFieldPanel;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.Markup;
 import org.apache.wicket.markup.html.form.FormComponent;
@@ -32,12 +32,7 @@ public class RecipientListFormComponentlTest extends AbstractRMTWicketMockitoTes
         Event event = new TestData().newEvent();
         final IModel model =  Model.of(Collections.emptyList());
         FormComponent c = new NotificationPanel.RecipientListFormComponent(model, Model.of(event));
-        wicketTester.startComponentInPage(new AbstractFormFieldPanel("panel", c) {
-                    @Override
-                    public Markup getAssociatedMarkup() {
-                        return Markup.of("<wicket:extend><div wicket:id='input'/></wicket:extend>");
-                    }
-                }, Markup.of("<div wicket:id='panel' labelKey='button.add'/>"));
+        wicketTester.startComponentInPage(new FormFieldPanel("panel", c), Markup.of("<div wicket:id='panel' labelKey='button.add'/>"));
         wicketTester.dumpPage();
     }
 }

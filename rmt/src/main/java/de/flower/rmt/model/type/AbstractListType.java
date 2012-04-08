@@ -104,7 +104,10 @@ public abstract class AbstractListType<T> implements UserType {
     }
 
     public String list2String(final List<T> list) {
-        List<String> strings = new ArrayList<String> ();
+        if (list == null) {
+            return null;
+        }
+        List<String> strings = new ArrayList<String>();
         for (T object : list) {
             strings.add(toString(object));
         }
