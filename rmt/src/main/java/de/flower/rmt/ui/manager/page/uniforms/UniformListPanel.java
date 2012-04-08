@@ -67,7 +67,7 @@ public class UniformListPanel extends BasePanel<Team> {
                 menuPanel.addLink(new AjaxLinkWithConfirmation("link", new ResourceModel("manager.uniforms.delete.confirm")) {
                     @Override
                     public void onClick(AjaxRequestTarget target) {
-                        uniformManager.delete(UniformListPanel.this.getModelObject().getId());
+                        uniformManager.delete(item.getModelObject().getId());
                         AjaxEventSender.entityEvent(this, Uniform.class);
                     }
                 }, "button.delete");
