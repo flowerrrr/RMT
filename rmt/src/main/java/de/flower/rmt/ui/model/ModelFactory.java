@@ -1,9 +1,6 @@
 package de.flower.rmt.ui.model;
 
-import de.flower.rmt.model.event.Event;
-import de.flower.rmt.model.event.EventType;
-import de.flower.rmt.model.event.Event_;
-import de.flower.rmt.model.event.Match_;
+import de.flower.rmt.model.event.*;
 
 import javax.persistence.metamodel.Attribute;
 import java.util.ArrayList;
@@ -26,6 +23,9 @@ public class ModelFactory {
             attributes.add(Event_.venue);
             if (EventType.isMatch(event)) {
                 attributes.add(Match_.opponent);
+            }
+            if (EventType.isSoccerEvent(event)) {
+                attributes.add(AbstractSoccerEvent_.uniform);
             }
             return new EventModel(event.getId(), attributes.toArray(new Attribute[]{}));
         }

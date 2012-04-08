@@ -21,10 +21,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * @author flowerrrr
@@ -146,7 +143,7 @@ public class TestData {
         user.setFullname(RandomStringUtils.randomAlphabetic(10));
         user.setInitialPassword("1234");
         user.setEncryptedPassword("io8ujalöjdfkalsöj");
-        user.setStatus(random.nextBoolean() ?  User.Status.FIT : User.Status.INJURED);
+        user.setStatus(random.nextBoolean() ? User.Status.FIT : User.Status.INJURED);
         Role role = new Role(Role.Roles.PLAYER.getRoleName());
         user.getRoles().add(role);
         role.setUser(user);
@@ -277,5 +274,17 @@ public class TestData {
         Venue venue = new Venue(club);
         venue.setName("Böglwiese");
         return venue;
+    }
+
+    public List<Uniform> newUniformList(Team team) {
+        Uniform j1 = new Uniform(team);
+        j1.setShirt("white/red stripes");
+        j1.setShorts("red");
+        j1.setSocks("white");
+        Uniform j2 = new Uniform(team);
+        j2.setShirt("black");
+        j2.setShorts("red");
+        j2.setSocks("gold");
+        return Arrays.asList(j1, j2);
     }
 }

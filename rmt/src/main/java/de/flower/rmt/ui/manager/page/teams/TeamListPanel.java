@@ -9,6 +9,7 @@ import de.flower.rmt.service.ITeamManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.common.panel.DropDownMenuPanel;
 import de.flower.rmt.ui.manager.page.squad.SquadPage;
+import de.flower.rmt.ui.manager.page.uniforms.UniformsPage;
 import de.flower.rmt.ui.model.TeamModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -55,6 +56,7 @@ public class TeamListPanel extends BasePanel {
                 DropDownMenuPanel menuPanel = new DropDownMenuPanel();
                 item.add(menuPanel);
                 menuPanel.addLink(createSquadLink("link", item), "button.edit.squad");
+                menuPanel.addLink(createUniformLink("link", item), "button.edit.uniform");
                 menuPanel.addLink(new Link("link") {
                     @Override
                     public void onClick() {
@@ -87,6 +89,15 @@ public class TeamListPanel extends BasePanel {
             @Override
             public void onClick() {
                 setResponsePage(new SquadPage(new TeamModel(item.getModel())));
+            }
+        };
+    }
+
+    private Link createUniformLink(String id, final ListItem<Team> item) {
+        return new Link(id) {
+            @Override
+            public void onClick() {
+                setResponsePage(new UniformsPage(item.getModel()));
             }
         };
     }

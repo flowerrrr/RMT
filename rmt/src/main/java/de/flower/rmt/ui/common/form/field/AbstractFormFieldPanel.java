@@ -97,6 +97,7 @@ public abstract class AbstractFormFieldPanel extends Panel {
                     protected void onUpdate(AjaxRequestTarget target) {
                         isValidated = true;
                         target.add(AbstractFormFieldPanel.this);
+                        onChange(target);
                     }
 
                     @Override
@@ -178,5 +179,15 @@ public abstract class AbstractFormFieldPanel extends Panel {
      */
     protected boolean isValidationEnabled() {
         return true;
+    }
+
+    /**
+     * Override this method to get notified when ajax-callback fires for onChange event
+     * of component.
+     *
+     * @param target
+     */
+    protected void onChange(AjaxRequestTarget target) {
+
     }
 }

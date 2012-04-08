@@ -1,7 +1,6 @@
 package de.flower.rmt.ui.manager.page.event.edit;
 
 import de.flower.common.ui.markup.html.form.TimeDropDownChoice;
-import de.flower.common.util.Check;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.service.IEventManager;
@@ -10,13 +9,11 @@ import de.flower.rmt.ui.common.form.CancelableEntityForm;
 import de.flower.rmt.ui.common.form.EntityForm;
 import de.flower.rmt.ui.common.form.field.*;
 import de.flower.rmt.ui.common.panel.BasePanel;
-import de.flower.rmt.ui.manager.component.OpponentDropDownChoicePanel;
-import de.flower.rmt.ui.manager.component.SurfaceCheckBoxMultipleChoice;
-import de.flower.rmt.ui.manager.component.TeamDropDownChoicePanel;
-import de.flower.rmt.ui.manager.component.VenueDropDownChoicePanel;
+import de.flower.rmt.ui.manager.component.*;
 import de.flower.rmt.ui.manager.page.event.EventPage;
 import de.flower.rmt.ui.manager.page.event.EventTabPanel;
 import de.flower.rmt.ui.model.ModelFactory;
+import de.flower.rmt.ui.model.TeamModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
@@ -36,17 +33,17 @@ public class EventEditPanel extends BasePanel<Event> {
     @SpringBean
     private IEventManager eventManager;
 
+    private UniformDropDownChoicePanel uniformDDCPanel;
+
     public EventEditPanel(final IModel<Event> model) {
         this(null, model);
     }
 
-    public EventEditPanel(String id, final IModel<Event> model) {
-        super(id, model);
-        Check.notNull(model.getObject());
+    public EventEditPanel(String id, final IModel<Event> m) {
+        super(id, m);
+        final IModel<Event> model = ModelFactory.eventModelWithAllAssociations(m.getObject());
 
-        EntityForm<Event> form = new CancelableEntityForm<Event>("form",
-                ModelFactory.eventModelWithAllAssociations(model.getObject()),
-                createCancelLink(model)) {
+        final EntityForm<Event> form = new CancelableEntityForm<Event>("form", model, createCancelLink(model)) {
 
             @Override
             protected void onSubmit(final AjaxRequestTarget target, final Form<Event> form) {
@@ -65,21 +62,41 @@ public class EventEditPanel extends BasePanel<Event> {
 
         form.add(new TextFieldPanel("type", new TextField(AbstractFormFieldPanel.ID, new ResourceModel(EventType.from(model.getObject()).getResourceKey())))
                 .setEnabled(false));
+
         form.add(new TeamDropDownChoicePanel("team") {
             @Override
             public boolean isEnabled() {
                 return model.getObject().isNew();
             }
+
+            @Override
+            protected void onChange(AjaxRequestTarget target) {
+                // reset uniform select box
+                uniformDDCPanel.detach();
+                uniformDDCPanel.setTeamModel(new TeamModel(form.getModelObject().getTeam()));
+                target.add(uniformDDCPanel);
+            }
         });
+
         form.add(new DateFieldPanel("date"));
+
         form.add(new DropDownChoicePanel("time", new TimeDropDownChoice("input")));
+
         form.add(new OpponentDropDownChoicePanel("opponent") {
             @Override
             public boolean isVisible() {
                 return EventType.isMatch(model.getObject());
             }
         });
+
         form.add(new VenueDropDownChoicePanel("venue"));
+
+        form.add(uniformDDCPanel = new UniformDropDownChoicePanel("uniform", new TeamModel.NullableTeamModel(model.getObject().getTeam())) {
+            @Override
+            public boolean isVisible() {
+                return EventType.isSoccerEvent(model.getObject());
+            }
+        });
 
         form.add(new CheckBoxMultipleChoicePanel("surfaceList", new SurfaceCheckBoxMultipleChoice("input")) {
             @Override
@@ -94,9 +111,8 @@ public class EventEditPanel extends BasePanel<Event> {
         });
 
         form.add(new TextFieldPanel("summary"));
-        form.add(new TextAreaPanel("comment"));
 
-        // form.add(participants)
+        form.add(new TextAreaPanel("comment"));
     }
 
     /**

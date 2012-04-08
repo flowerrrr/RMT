@@ -91,8 +91,14 @@ public abstract class AbstractEntityModel<T extends IEntity> extends LoadableDet
             log.error("load(): " + e.getMessage(), e);
             throw e;
         }
-        Check.notNull(object);
+        if (!nullAllowed()) {
+            Check.notNull(object);
+        }
         return object;
+    }
+
+    protected boolean nullAllowed() {
+        return false;
     }
 
     abstract protected T load(Long id);

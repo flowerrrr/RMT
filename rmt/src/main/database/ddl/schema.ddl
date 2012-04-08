@@ -16,7 +16,7 @@
         club_id bigint not null,
         team_id bigint not null,
         venue_id bigint,
-        jersey_id bigint,
+        uniform_id bigint,
         opponent_id bigint,
         primary key (id)
     );
@@ -33,7 +33,7 @@
         primary key (id)
     );
 
-    create table Jersey (
+    create table Uniform (
         id bigint not null auto_increment,
         shirt varchar(50) not null,
         shorts varchar(50) not null,
@@ -128,10 +128,10 @@
         references Team (id);
 
     alter table Event 
-        add index FK403827A2B4253A (jersey_id), 
+        add index FK403827A2B4253A (uniform_id),
         add constraint FK403827A2B4253A 
-        foreign key (jersey_id) 
-        references Jersey (id);
+        foreign key (uniform_id)
+        references Uniform (id);
 
     create index ix_event on Invitation (event_id);
 
@@ -151,9 +151,9 @@
         foreign key (user_id) 
         references Users (id);
 
-    create index ix_team on Jersey (team_id);
+    create index ix_team on Uniform (team_id);
 
-    alter table Jersey 
+    alter table Uniform
         add index FK840B72901C96621A (team_id), 
         add constraint FK840B72901C96621A 
         foreign key (team_id) 

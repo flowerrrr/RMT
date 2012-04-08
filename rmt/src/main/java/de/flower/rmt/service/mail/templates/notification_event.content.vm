@@ -21,6 +21,11 @@ Gegner: $opponent
 #end
 Ort: $venue
 #if ($isSoccerEvent)
+#set ($uniform = "<unbekannt>")
+#if ($event.getUniform())
+#set ($uniform = $event.getUniform().getName())
+#end
+Trikotsatz: $uniform
 Untergrund: $surfaceList
 #end
 Titel: $!event.getSummary()

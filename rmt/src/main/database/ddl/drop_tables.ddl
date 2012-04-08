@@ -5,7 +5,7 @@ SET foreign_key_checks = 0;
 DROP TABLE club;
 DROP TABLE event;
 DROP TABLE invitation;
-DROP TABLE jersey;
+DROP TABLE uniform;
 DROP TABLE opponent;
 DROP TABLE player;
 DROP TABLE role;

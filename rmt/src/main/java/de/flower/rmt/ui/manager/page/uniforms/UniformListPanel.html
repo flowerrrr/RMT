@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head></head>
+<body>
+
+<wicket:panel>
+
+    <div wicket:id="listContainer">
+        <div wicket:id="noUniform">
+            <wicket:message key="manager.uniforms.noentry">[No uniform added.]</wicket:message>
+        </div>
+        <table class="table" wicket:enclosure="">
+            <thead>
+            <tr>
+                <th>
+                    <wicket:message key="manager.uniform.name"/>
+                </th>
+                <th>
+                    <wicket:message key="manager.uniform.shirt"/>
+                </th>
+                <th>
+                    <wicket:message key="manager.uniform.shorts"/>
+                </th>
+                <th>
+                    <wicket:message key="manager.uniform.socks"/>
+                </th>
+                <th>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr wicket:id="uniformList">
+                <td><a wicket:id="editLink"><span wicket:id="name">[Satz A]</span></a></td>
+                <td><span wicket:id="shirt">[black/white striped]</span></td>
+                <td><span wicket:id="shorts">[white]</span></td>
+                <td><span wicket:id="socks">[black]</span></td>
+                <td>
+                    <div wicket:id="dropDownMenuPanel"/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</wicket:panel>
+
+
+</body>
+</html>

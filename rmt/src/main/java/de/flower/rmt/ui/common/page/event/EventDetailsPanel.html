@@ -32,7 +32,11 @@
             <h6><wicket:message key="manager.event.venue"/></h6>
             <span wicket:id="venue.name"/>
         </li>
-        <li>
+        <li wicket:enclosure="">
+            <h6><wicket:message key="manager.event.uniform"/></h6>
+            <span wicket:id="uniform.name" />
+        </li>
+        <li wicket:enclosure="">
             <h6><wicket:message key="manager.event.surface"/></h6>
             <span wicket:id="surfaceList" />
         </li>
@@ -40,7 +44,7 @@
             <h6><wicket:message key="manager.event.summary"/></h6>
             <span wicket:id="summary"/>
         </li>
-        <li>
+        <li wicket:enclosure="">
             <h6><wicket:message key="manager.event.comment"/></h6>
             <span wicket:id="comment"/>
         </li>

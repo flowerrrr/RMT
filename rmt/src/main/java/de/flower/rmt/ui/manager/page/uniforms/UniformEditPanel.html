@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd"
+      xmlns:rmt="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<wicket:panel>
+
+    <form class="form-horizontal" wicket:id="form">
+        <fieldset>
+            <wicket:container wicket:id="formFeedbackPanel"/>
+            <rmt:input wicket:id="name" labelKey="manager.uniform.name"/>
+            <rmt:input wicket:id="shirt" labelKey="manager.uniform.shirt"/>
+            <rmt:input wicket:id="shorts" labelKey="manager.uniform.shorts"/>
+            <rmt:input wicket:id="socks" labelKey="manager.uniform.socks"/>
+            <div class="form-actions">
+                <a class="btn btn-primary" wicket:id="submitButton">
+                    <wicket:message key="button.save"/>
+                </a>
+                <a class="btn" wicket:id="cancelButton">
+                    <wicket:message key="button.cancel"/>
+                </a>
+            </div>
+        </fieldset>
+    </form>
+
+</wicket:panel>
+</body>
+</html>

@@ -34,4 +34,24 @@ public class TeamModel extends AbstractEntityModel<Team> {
     protected Team newInstance() {
         return manager.newInstance();
     }
+
+    /**
+     * Team model that allows null instances.
+     */
+    public static class NullableTeamModel extends TeamModel {
+
+        public NullableTeamModel(final Team entity) {
+            super(entity);
+        }
+
+        @Override
+        protected Team newInstance() {
+            return null;
+        }
+
+        @Override
+        protected boolean nullAllowed() {
+            return true;
+        }
+    }
 }

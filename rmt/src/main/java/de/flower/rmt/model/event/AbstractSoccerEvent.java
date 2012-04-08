@@ -1,8 +1,8 @@
 package de.flower.rmt.model.event;
 
 import de.flower.rmt.model.Club;
-import de.flower.rmt.model.Jersey;
 import de.flower.rmt.model.Surface;
+import de.flower.rmt.model.Uniform;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalTime;
 
@@ -37,7 +37,7 @@ public abstract class AbstractSoccerEvent extends Event {
      * Can be null.
      */
     @ManyToOne(fetch = FetchType.LAZY)
-    private Jersey jersey;
+    private Uniform uniform;
 
 
     public AbstractSoccerEvent(final Club club) {
@@ -56,12 +56,12 @@ public abstract class AbstractSoccerEvent extends Event {
         this.kickOff = kickOff;
     }
 
-    public Jersey getJersey() {
-        return jersey;
+    public Uniform getUniform() {
+        return uniform;
     }
 
-    public void setJersey(final Jersey jersey) {
-        this.jersey = jersey;
+    public void setUniform(final Uniform uniform) {
+        this.uniform = uniform;
     }
 
     public List<Surface> getSurfaceList() {
