@@ -1,11 +1,11 @@
 package de.flower.rmt.ui.common.page.account;
 
-import de.flower.rmt.ui.common.page.CommonBasePage;
+import de.flower.rmt.ui.common.page.AbstractCommonBasePage;
 
 /**
  * @author flowerrrr
  */
-public class AccountPage extends CommonBasePage {
+public class AccountPage extends AbstractCommonBasePage {
 
     public AccountPage() {
         setHeading("account.heading", "account.heading.sub");

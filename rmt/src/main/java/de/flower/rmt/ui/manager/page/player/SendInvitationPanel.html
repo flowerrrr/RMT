@@ -11,13 +11,15 @@
 
     <div wicket:id="simpleFeedbackPanel">[Your action has been performed.]</div>
 
-    <p>
-        <wicket:message key="manager.player.invitation.text"/>
-    </p>
+    <div wicket:id="container">
+        <p>
+            <wicket:message key="manager.player.invitation.text"/>
+        </p>
 
-    <a wicket:id="sendButton" class="btn btn-primary">
-        <wicket:message key="button.send.invitation"/>
-    </a>
+        <a wicket:id="sendButton" class="btn btn-primary">
+            <wicket:message key="button.send.invitation"/>
+        </a>
+    </div>
 
 </wicket:panel>
 </body>

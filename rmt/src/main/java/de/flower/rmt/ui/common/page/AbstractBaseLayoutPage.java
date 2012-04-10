@@ -24,6 +24,10 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
 
     private Label subheading;
 
+    public AbstractBaseLayoutPage() {
+        this(null);
+    }
+
     public AbstractBaseLayoutPage(final IModel<?> model) {
         super(model);
 
@@ -48,7 +52,11 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
     protected void onBeforeRender() {
         super.onBeforeRender();
         // makes messages back-button and reload-save
-        info(new PasswordChangeRequiredMessage());
+        if (showAlertMessages()) {
+            if (isCurrentUserLoggedIn()) {
+                info(new PasswordChangeRequiredMessage());
+            }
+        }
     }
 
     protected void setHeading(String headingResourceKey) {
@@ -83,4 +91,7 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
         return secondaryPanel;
     }
 
+    protected boolean showAlertMessages() {
+        return true;
+    }
 }

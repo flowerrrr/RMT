@@ -9,6 +9,8 @@ public interface ISecurityService {
 
     UserDetailsBean getCurrentUser();
 
+    boolean isCurrentUserLoggedIn();
+
     boolean isCurrentUser(User user);
 
     User getUser();

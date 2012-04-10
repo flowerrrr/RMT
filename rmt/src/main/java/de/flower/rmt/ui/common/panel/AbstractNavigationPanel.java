@@ -50,10 +50,10 @@ public class AbstractNavigationPanel extends BasePanel {
         return link;
     }
 
-    protected Component createMenuItem(String pageName, Class<?> pageClass, final INavigationPanelAware page) {
+    public static Component createMenuItem(String pageName, Class<?> pageClass, final INavigationPanelAware page) {
         WebMarkupContainer li = new WebMarkupContainer(pageName);
         li.add(new BookmarkablePageLink(pageName, pageClass));
-        if (page.getActiveTopBarItem().equals(pageName)) {
+        if (page != null && page.getActiveTopBarItem().equals(pageName)) {
             li.add(new AttributeAppender("class", "active").setSeparator(" "));
         }
         return li;

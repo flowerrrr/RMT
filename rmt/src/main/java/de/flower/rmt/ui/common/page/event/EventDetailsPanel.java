@@ -8,6 +8,7 @@ import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.model.ModelFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.CompoundPropertyModel;
@@ -27,34 +28,54 @@ public class EventDetailsPanel extends BasePanel<Event> {
         setDefaultModel(new CompoundPropertyModel<Object>(ModelFactory.eventModelWithAllAssociations(model.getObject())));
 
         add(new Label("team.name"));
+
         add(DateLabel.forDateStyle("date", "S-"));
+
         add(DateLabel.forDateStyle("timeAsDate", "-S"));
+
+        add(new WebMarkupContainer("kickoffContainer") {
+            {
+                add(DateLabel.forDateStyle("kickoffAsDate", "-S"));
+            }
+
+            @Override
+            public boolean isVisible() {
+                return EventType.isSoccerEvent(model.getObject());
+            }
+        });
+
         add(new Label("type", new AbstractReadOnlyModel<String>() {
             @Override
             public String getObject() {
                 return new ResourceModel(EventType.from(model.getObject()).getResourceKey()).getObject();
             }
         }));
+
         add(new FallbackLabel("opponent.name", new ResourceModel("opponent.nullValid")) {
             @Override
             public boolean isVisible() {
                 return EventType.isMatch(model.getObject());
             }
         }.setEscapeModelStrings(false));
+
         add(new FallbackLabel("venue.name", new ResourceModel("venue.nullValid")).setEscapeModelStrings(false));
+
         add(new FallbackLabel("uniform.name", new ResourceModel("uniform.nullValid")) {
             @Override
             public boolean isVisible() {
                 return EventType.isSoccerEvent(model.getObject());
             }
         }.setEscapeModelStrings(false));
+
         add(new SurfaceListLabel("surfaceList") {
             @Override
             public boolean isVisible() {
                 return EventType.isSoccerEvent(model.getObject());
             }
         });
+
         add(new Label("summary"));
+
         add(new Label("comment") {
             @Override
             public boolean isVisible() {

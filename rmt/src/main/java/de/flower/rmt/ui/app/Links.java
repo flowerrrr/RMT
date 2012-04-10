@@ -4,6 +4,7 @@ import de.flower.rmt.ui.player.page.event.EventPage;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.ExternalLink;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.protocol.http.RequestUtils;
 import org.apache.wicket.request.Url;
 import org.apache.wicket.request.cycle.RequestCycle;
@@ -32,6 +33,20 @@ public class Links {
         String requestUrl = RequestCycle.get().getRequest().getUrl().toString();
         String url = RequestUtils.toAbsolutePath(requestUrl, relativeUrl);
         return RequestCycle.get().getUrlRenderer().renderFullUrl(Url.parse(url));
+    }
+
+    public static Link homePage(final String id) {
+        return new Link(id) {
+
+            @Override
+            public void onClick() {
+                setResponsePage(getApplication().getHomePage());
+            }
+        };
+    }
+
+    public static ExternalLink mailLink(final String id, String emailAddress) {
+        return new ExternalLink(id, "mailto:" + emailAddress, emailAddress);
     }
 
     public static class HistoryBackLink extends ExternalLink {

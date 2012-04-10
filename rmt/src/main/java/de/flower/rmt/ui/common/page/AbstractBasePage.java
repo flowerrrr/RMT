@@ -60,6 +60,10 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
         return securityService.getCurrentUser();
     }
 
+    public boolean isCurrentUserLoggedIn() {
+        return securityService.isCurrentUserLoggedIn();
+    }
+
     protected UserModel getUserModel() {
         return new UserModel(securityService.getUser());
     }

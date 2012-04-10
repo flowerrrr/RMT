@@ -8,6 +8,8 @@ import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.model.type.Notification;
 import de.flower.rmt.model.type.Password;
 import de.flower.rmt.ui.common.page.account.AccountPage;
+import de.flower.rmt.ui.common.page.error.InternalError500Page;
+import de.flower.rmt.ui.common.page.error.PageNotFound404Page;
 import de.flower.rmt.ui.common.page.login.LoginPage;
 import de.flower.rmt.ui.manager.ManagerHomePage;
 import de.flower.rmt.ui.manager.page.event.EventPage;
@@ -23,6 +25,7 @@ import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
 import org.apache.wicket.serialize.ISerializer;
+import org.apache.wicket.settings.IExceptionSettings;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,6 +55,7 @@ public class RMTApplication extends WebApplication {
 
         initBookmarkablePages();
 
+        initErrorPages();
     }
 
     /**
@@ -87,6 +91,14 @@ public class RMTApplication extends WebApplication {
         mountPage("player/event/${" + EventPage.PARAM_EVENTID + "}", de.flower.rmt.ui.player.page.event.EventPage.class);
         mountPage("common/account", AccountPage.class);
         mountPage("login", LoginPage.class);
+    }
+
+    private void initErrorPages() {
+        mountPage("error404", PageNotFound404Page.class);
+
+        getRequestCycleListeners().add(new ExceptionRequestCycleListener());
+        getApplicationSettings().setInternalErrorPage(InternalError500Page.class);
+        getExceptionSettings().setUnexpectedExceptionDisplay(IExceptionSettings.SHOW_INTERNAL_ERROR_PAGE);
     }
 
     @Override

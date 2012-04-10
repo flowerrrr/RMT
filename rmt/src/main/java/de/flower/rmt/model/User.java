@@ -45,9 +45,9 @@ public class User extends AbstractClubRelatedEntity {
         public final static String emailNotUniqueMessage = "{validation.unique.email}";
     }
 
-    @NotBlank
+    @NotBlank(message = "{validation.notblank.email}")
     @Size(max = 80)
-    @Email
+    @Email(message = "{validation.email.valid}")
     // need to be  named 'username' to satisfy spring security
     @Column(name = "username")
     @Index(name = "ix_username")
@@ -56,7 +56,7 @@ public class User extends AbstractClubRelatedEntity {
     /**
      * Encrypted password.
      */
-    @NotBlank
+    @NotBlank(message = "{validation.notblank.password}")
     @Size(max = 50)
     // need to be named 'password' to satisfy spring security
     @Column(name = "password")
@@ -78,7 +78,7 @@ public class User extends AbstractClubRelatedEntity {
     @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE})
     private List<Role> roles = new ArrayList<Role>();
 
-    @NotBlank
+    @NotBlank(message = "{validation.notblank.name}")
     @Size(max = 50)
     @Column
     private String fullname;
@@ -192,7 +192,7 @@ public class User extends AbstractClubRelatedEntity {
         return initialPassword != null;
     }
 
-       public boolean isManager() {
+    public boolean isManager() {
         return hasRole(Role.Roles.MANAGER.getRoleName());
     }
 
@@ -200,8 +200,7 @@ public class User extends AbstractClubRelatedEntity {
         return findRole(roleName) != null;
     }
 
-
-    public  Role findRole(String roleName) {
+    public Role findRole(String roleName) {
         for (Role r : getRoles()) {
             if (r.getAuthority().equals(roleName)) {
                 return r;
@@ -209,8 +208,6 @@ public class User extends AbstractClubRelatedEntity {
         }
         return null;
     }
-
-
 
     public enum Status {
         UNKNOWN,

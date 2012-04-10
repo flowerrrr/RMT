@@ -27,6 +27,11 @@ public class SecurityService implements ISecurityService {
     }
 
     @Override
+    public boolean isCurrentUserLoggedIn() {
+        return getCurrentUser() != null;
+    }
+
+    @Override
     public boolean isCurrentUser(User user) {
         return getCurrentUser().getUser().equals(user);
     }

@@ -60,7 +60,9 @@ public class NotificationService implements INotificationService {
         model.put("eventLink", eventLink);
         model.put("isSoccerEvent", EventType.isSoccerEvent(event));
         if (EventType.isSoccerEvent(event)) {
-            model.put("surfaceList", Surface.render(((AbstractSoccerEvent) event).getSurfaceList()));
+            AbstractSoccerEvent soccerEvent = (AbstractSoccerEvent) event;
+            model.put("kickoffTime", Dates.formatTimeShort(soccerEvent.getKickoff()));
+            model.put("surfaceList", Surface.render(soccerEvent.getSurfaceList()));
         }
         notification.setSubject(templateService.mergeTemplate(EmailTemplate.NOTIFICATION_EVENT.getSubject(), model));
         notification.setBody(templateService.mergeTemplate(EmailTemplate.NOTIFICATION_EVENT.getContent(), model));

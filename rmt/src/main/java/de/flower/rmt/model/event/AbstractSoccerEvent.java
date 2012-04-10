@@ -10,7 +10,9 @@ import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,8 +22,9 @@ import java.util.List;
 public abstract class AbstractSoccerEvent extends Event {
 
     @Column
+    @NotNull
     @Type(type = "org.joda.time.contrib.hibernate.PersistentLocalTimeAsTime")
-    private LocalTime kickOff;
+    private LocalTime kickoff;
 
     /**
      * Map list of surfaces to a string. Not done as @ElementCollection cause it causes trouble with DotNode.getDataType() when
@@ -39,7 +42,6 @@ public abstract class AbstractSoccerEvent extends Event {
     @ManyToOne(fetch = FetchType.LAZY)
     private Uniform uniform;
 
-
     public AbstractSoccerEvent(final Club club) {
         super(club);
     }
@@ -48,12 +50,16 @@ public abstract class AbstractSoccerEvent extends Event {
         super();
     }
 
-    public LocalTime getKickOff() {
-        return kickOff;
+    public LocalTime getKickoff() {
+        return kickoff;
     }
 
-    public void setKickOff(final LocalTime kickOff) {
-        this.kickOff = kickOff;
+    public void setKickoff(final LocalTime kickoff) {
+        this.kickoff = kickoff;
+    }
+
+    public Date getKickoffAsDate() {
+        return (kickoff == null) ? null : kickoff.toDateTimeToday().toDate();
     }
 
     public Uniform getUniform() {

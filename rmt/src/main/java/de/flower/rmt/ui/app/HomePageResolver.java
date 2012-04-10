@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.app;
 
 import de.flower.rmt.model.Role;
-import de.flower.rmt.ui.common.page.HomePage;
+import de.flower.rmt.ui.common.page.login.LoginPage;
 import de.flower.rmt.ui.manager.ManagerHomePage;
 import de.flower.rmt.ui.player.page.events.EventsPage;
 import org.apache.wicket.request.component.IRequestablePage;
@@ -15,7 +15,6 @@ public class HomePageResolver {
     /**
      * Determine if user is manager or player and redirect to appropriate home page.
      *
-     * @param application
      */
     public static Class<? extends IRequestablePage> getHomePage() {
         // get roles
@@ -24,7 +23,7 @@ public class HomePageResolver {
         } else if (Authentication.hasRole(Role.Roles.PLAYER.getRoleName())){
             return EventsPage.class;
         } else {
-            return HomePage.class;
+            return LoginPage.class;
         }
     }
 }

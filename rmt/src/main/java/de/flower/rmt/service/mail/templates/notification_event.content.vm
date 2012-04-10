@@ -7,7 +7,10 @@ Link: $eventLink
 
 Typ: $event.getEventType()
 Datum: $eventDate
-Zeit: $eventTime
+Treffpunkt: $eventTime
+#if ($isSoccerEvent)
+Anstoß: $kickoffTime
+#end
 #if ($event.getEventType() == $eventTypeMatch)
 #set ($opponent = "<noch nicht festgelegt>")
 #if ($event.getOpponent())
@@ -21,7 +24,7 @@ Gegner: $opponent
 #end
 Ort: $venue
 #if ($isSoccerEvent)
-#set ($uniform = "<unbekannt>")
+#set ($uniform = "<Trikotsatz nicht festgelegt>")
 #if ($event.getUniform())
 #set ($uniform = $event.getUniform().getName())
 #end

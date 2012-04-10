@@ -36,14 +36,14 @@ public class Password implements Serializable {
 
     }
 
-    @NotBlank
+    @NotBlank(message = "{validation.notblank.password}")
     private String oldPassword;
 
-    @NotBlank
+    @NotBlank(message = "{validation.notblank.password}")
     @Size(min = 4, max = 50)
     private String newPassword;
 
-    @NotBlank
+    @NotBlank(message = "{validation.notblank.password}")
     // no additional constraints cause it must match #newPassword anyway.
     private String newPasswordRepeat;
 

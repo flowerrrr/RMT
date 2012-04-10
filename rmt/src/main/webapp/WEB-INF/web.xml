@@ -54,6 +54,13 @@
     <filter-mapping>
         <filter-name>WicketFilter</filter-name>
         <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>ERROR</dispatcher>
     </filter-mapping>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error404</location>
+    </error-page>
 
 </web-app>

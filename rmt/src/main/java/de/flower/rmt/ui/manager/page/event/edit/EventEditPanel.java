@@ -82,6 +82,13 @@ public class EventEditPanel extends BasePanel<Event> {
 
         form.add(new DropDownChoicePanel("time", new TimeDropDownChoice("input")));
 
+        form.add(new DropDownChoicePanel("kickoff", new TimeDropDownChoice("input")) {
+            @Override
+            public boolean isVisible() {
+                return EventType.isSoccerEvent(model.getObject());
+            }
+        });
+
         form.add(new OpponentDropDownChoicePanel("opponent") {
             @Override
             public boolean isVisible() {
