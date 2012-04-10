@@ -66,12 +66,12 @@ public class Specs {
                 for (Attribute attribute : attributes) {
                     if (attribute.isCollection()) {
                         root.fetch((PluralAttribute<? super X, ?, Object>) attribute, JoinType.LEFT);
+                        // force distinct results. fetching associations might lead to duplicate root entities in the result set.
+                        query.distinct(true);
                     } else {
                         root.fetch((SingularAttribute<? super X, Object>) attribute, JoinType.LEFT);
                     }
                 }
-                // force distinct results. fetching associations might lead to duplicate root entities in the result set.
-                query.distinct(true);
                 //  return always-true-predicate to satisfy caller. null is not allowed.
                 return new BooleanStaticAssertionPredicate((CriteriaBuilderImpl) cb, true);
             }
@@ -79,26 +79,65 @@ public class Specs {
     }
 
     public static <X, T> Specification asc(final SingularAttribute<X, T> attribute) {
-         return new Specification<X>() {
-             @Override
-             public Predicate toPredicate(Root<X> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-                 query.orderBy(cb.asc(root.get(attribute)));
+        return new Specification<X>() {
+            @Override
+            public Predicate toPredicate(Root<X> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                query.orderBy(cb.asc(root.get(attribute)));
                 //  return always-true-predicate to satisfy caller. null is not allowed.
                 return new BooleanStaticAssertionPredicate((CriteriaBuilderImpl) cb, true);
-             }
-         };
-     }
+            }
+        };
+    }
 
     public static <X, T> Specification desc(final SingularAttribute<X, T> attribute) {
-         return new Specification<X>() {
-             @Override
-             public Predicate toPredicate(Root<X> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-                 query.orderBy(cb.desc(root.get(attribute)));
+        return new Specification<X>() {
+            @Override
+            public Predicate toPredicate(Root<X> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                query.orderBy(cb.desc(root.get(attribute)));
                 //  return always-true-predicate to satisfy caller. null is not allowed.
                 return new BooleanStaticAssertionPredicate((CriteriaBuilderImpl) cb, true);
-             }
-         };
-     }
+            }
+        };
+    }
+
+    /**
+     * @param joinAttribute
+     * @param attribute
+     * @param asc
+     * @param <X>
+     * @param <Y>
+     * @param <T>
+     * @return
+     * @deprecated Should not be used in queries that fetch list-associations cause this call will force distinct=false
+     *             on the query.
+     */
+    @Deprecated
+    public static <X, Y, T> Specification orderByJoin(final SingularAttribute<X, Y> joinAttribute, final SingularAttribute<Y, T> attribute, final boolean asc) {
+        return new Specification<X>() {
+
+            @Override
+            public Predicate toPredicate(final Root<X> root, final CriteriaQuery<?> query, final CriteriaBuilder cb) {
+                Join<X, Y> join;
+                join = root.join(joinAttribute);
+                Order order;
+                if (asc) {
+                    order = cb.asc(join.get(attribute));
+                } else {
+                    order = cb.desc(join.get(attribute));
+                }
+                query.orderBy(order);
+                // must fetch entity of ordered column
+                root.fetch(joinAttribute, JoinType.LEFT);
+                // query must not be distinct as h2 otherwise complains
+                if (query.isDistinct()) {
+                    throw new IllegalStateException("Cannot use order by on joined entity when query is distinct");
+                }
+                query.distinct(false);
+
+                return new BooleanStaticAssertionPredicate((CriteriaBuilderImpl) cb, true);
+            }
+        };
+    }
 
     public static Specification and(Specification a, Specification b) {
         return Specifications.where(a).and(b);

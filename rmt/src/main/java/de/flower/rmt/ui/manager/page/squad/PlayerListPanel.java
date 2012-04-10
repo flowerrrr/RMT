@@ -6,7 +6,6 @@ import de.flower.common.ui.ajax.markup.html.AjaxLinkWithConfirmation;
 import de.flower.common.ui.ajax.markup.html.tab.AbstractAjaxTabbedPanel;
 import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.rmt.model.Player;
-import de.flower.rmt.model.Player_;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.service.IPlayerManager;
 import de.flower.rmt.service.ITeamManager;
@@ -86,7 +85,7 @@ public class PlayerListPanel extends BasePanel<Team> {
         return new LoadableDetachableModel<List<Player>>() {
             @Override
             protected List<Player> load() {
-                return playerManager.findAllByTeam(model.getObject(), Player_.user);
+                return playerManager.findAllByTeam(model.getObject());
             }
         };
     }

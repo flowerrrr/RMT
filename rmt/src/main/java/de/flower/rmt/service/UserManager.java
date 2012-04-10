@@ -23,8 +23,7 @@ import javax.validation.Validator;
 import java.util.List;
 
 import static de.flower.common.util.Check.*;
-import static de.flower.rmt.repository.Specs.eq;
-import static de.flower.rmt.repository.Specs.fetch;
+import static de.flower.rmt.repository.Specs.*;
 import static org.springframework.data.jpa.domain.Specifications.where;
 
 /**
@@ -101,7 +100,7 @@ public class UserManager extends AbstractService implements IUserManager {
 
     @Override
     public List<User> findAll(final Attribute... attributes) {
-        List<User> list = userRepo.findAll(where(fetch(attributes)));
+        List<User> list = userRepo.findAll(where(fetch(attributes)).and(asc(User_.fullname)));
         return list;
     }
 
@@ -109,7 +108,7 @@ public class UserManager extends AbstractService implements IUserManager {
     public List<User> findAllByTeam(final Team team) {
         Check.notNull(team);
         Specification spec = Specs.joinEq(User_.players, Player_.team, team);
-        return userRepo.findAll(spec);
+        return userRepo.findAll(where(spec).and(asc(User_.fullname)));
     }
 
     @Override

@@ -16,7 +16,7 @@ public class InternalError500Page extends AbstractBaseLayoutPage {
         setHeading("error.500.heading", "error.500.heading.sub");
         add(new AnonymousNavigationPanel());
         addMainPanel(new InternalError500Panel(getException()));
-     }
+    }
 
     @Override
     protected boolean showAlertMessages() {
@@ -34,8 +34,11 @@ public class InternalError500Page extends AbstractBaseLayoutPage {
         if (messages.isEmpty()) {
             log.warn("Could not extract exception from session");
             return null;
-        }  else {
-            return (Exception) messages.get(0).getMessage();
+        } else if (messages.size() > 1) {
+            log.warn("More than one exception found in sesion. Did you cleanup feedbackmessages properly?");
         }
+        FeedbackMessage message = messages.get(messages.size() - 1);
+        message.markRendered();
+        return (Exception) message.getMessage();
     }
 }

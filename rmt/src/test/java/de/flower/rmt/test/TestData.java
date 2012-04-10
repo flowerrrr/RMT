@@ -115,7 +115,7 @@ public class TestData {
 
     public Team createTeamWithPlayers(String name, int numPlayers) {
         Team team = createTeam(name);
-        List<User> users = createUsers(numPlayers);
+        List<User> users = createUsers(numPlayers - 1);
         playerManager.addPlayers(team, users);
         // add user of security context to team
         playerManager.addPlayer(team, getTestUser());

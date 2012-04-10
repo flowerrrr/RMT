@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface IPlayerManager {
 
-    List<Player> findAllByTeam(Team team, Attribute... attributes);
+    List<Player> findAllByTeam(Team team);
 
     List<Player> findAllByUser(User user, Attribute... attributes);
 

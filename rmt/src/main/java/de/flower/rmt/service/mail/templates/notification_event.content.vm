@@ -5,6 +5,7 @@ Veranstaltungsdetails
 ---------------------
 Link: $eventLink
 
+Team: $event.getTeam().getName()
 Typ: $event.getEventType()
 Datum: $eventDate
 Treffpunkt: $eventTime

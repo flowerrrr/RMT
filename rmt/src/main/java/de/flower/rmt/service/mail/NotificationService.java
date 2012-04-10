@@ -49,7 +49,7 @@ public class NotificationService implements INotificationService {
 
     @Override
     public Notification newEventNotification(final Event eventIn, String eventLink) {
-        Event event = eventManager.loadById(eventIn.getId(), Event_.venue, AbstractSoccerEvent_.uniform, Match_.opponent);
+        Event event = eventManager.loadById(eventIn.getId(), Event_.venue, Event_.team, AbstractSoccerEvent_.uniform, Match_.opponent);
         Notification notification = new Notification();
         final Map<String, Object> model = new HashMap<String, Object>();
         model.put("event", event);

@@ -10,9 +10,10 @@ import org.testng.annotations.Test;
  */
 public class InternalError500PageTest extends AbstractWicketIntegrationTests {
 
+    private RuntimeException exception = new RuntimeException("This is a test");
+
     @Test
     public void testRenderWithException() {
-        RuntimeException exception = new RuntimeException("This is a test");
         wicketTester.getSession().error(exception);
         wicketTester.startPage(InternalError500Page.class);
         wicketTester.dumpPage();
@@ -32,10 +33,21 @@ public class InternalError500PageTest extends AbstractWicketIntegrationTests {
             {
                 add(new Label("unknownComponent", "foobar"));
             }
-        }) ;
+        });
         wicketTester.dumpPage();
         wicketTester.assertRenderedPage(InternalError500Page.class);
         wicketTester.assertContains("org.apache.wicket.markup.MarkupNotFoundException");
-    }
 
+        // test another exception and make sure that errorpage does not display stale data (like it was in first version
+        // of errorpage
+        wicketTester.startPage(new WebPage() {
+            @Override
+            protected void onBeforeRender() {
+                throw exception;
+            }
+        });
+        wicketTester.dumpPage();
+        wicketTester.assertRenderedPage(InternalError500Page.class);
+        wicketTester.assertContains(exception.toString());
+    }
 }

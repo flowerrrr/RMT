@@ -72,13 +72,7 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     public List<Invitation> findAllByEventSortedByName(final Event event) {
         List<Invitation> list = findAllByEvent(event, Invitation_.user);
         // use in-memory sorting cause field name is derived and would required complicated sql-query to sort after.
-        Collections.sort(list, new Comparator<Invitation>() {
-            @Override
-            public int compare(final Invitation o1, final Invitation o2) {
-                return o1.getName().compareToIgnoreCase(o2.getName());
-            }
-        });
-        return list;
+        return sortByName(list);
     }
 
     @Override
@@ -95,10 +89,15 @@ public class InvitationManager extends AbstractService implements IInvitationMan
 
     @Override
     public List<Invitation> findAllByEventAndStatus(Event event, RSVPStatus rsvpStatus, final Attribute... attributes) {
-        return invitationRepo.findAll(where(eq(Invitation_.event, event))
+        List<Invitation> list = invitationRepo.findAll(where(eq(Invitation_.event, event))
                 .and(eq(Invitation_.status, rsvpStatus))
                 .and(asc(Invitation_.date))
                 .and(fetch(attributes)));
+        if (rsvpStatus == RSVPStatus.NORESPONSE) {
+            // no response means there is no date set yet. so sort by name instead
+            sortByName(list);
+        }
+        return list;
     }
 
     @Override
@@ -177,5 +176,15 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     public void addGuestPlayer(final Event entity, final String guestName) {
         Invitation invitation = newInstance(entity, guestName);
         save(invitation);
+    }
+
+    private List<Invitation> sortByName(List<Invitation> list) {
+        Collections.sort(list, new Comparator<Invitation>() {
+            @Override
+            public int compare(final Invitation o1, final Invitation o2) {
+                return o1.getName().compareToIgnoreCase(o2.getName());
+            }
+        });
+        return list;
     }
 }
