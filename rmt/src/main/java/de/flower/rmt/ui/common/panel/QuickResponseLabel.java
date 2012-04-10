@@ -3,7 +3,9 @@ package de.flower.rmt.ui.common.panel;
 import de.flower.common.ui.tooltips.TooltipBehavior;
 import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.ui.common.renderer.RSVPStatusRenderer;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.extensions.ajax.markup.html.AjaxEditableChoiceLabel;
+import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
@@ -17,6 +19,11 @@ public abstract class QuickResponseLabel extends AjaxEditableChoiceLabel<RSVPSta
 
     private TooltipBehavior tooltipBehavior;
 
+    /**
+     *
+     * @param id
+     * @param status is null for NO_RESPONSE. done to be able to use #defaultNullLabel().
+     */
     public QuickResponseLabel(final String id, final RSVPStatus status) {
         super(id, Model.of(status), Arrays.asList(RSVPStatus.quickResponseValues()), new RSVPStatusRenderer());
     }
@@ -50,6 +57,25 @@ public abstract class QuickResponseLabel extends AjaxEditableChoiceLabel<RSVPSta
         if (getModel().getObject() == null) {
             addTooltipBehavior();
         }
+        getLabel().add(AttributeModifier.append("class", new AbstractReadOnlyModel<String>() {
+            @Override
+            public String getObject() {
+                RSVPStatus status = getModel().getObject();
+                if (status == null) {
+                    return "";
+                }
+                switch (status) {
+                    case ACCEPTED:
+                        return "label label-success";
+                    case UNSURE:
+                        return "label label-warning";
+                    case DECLINED:
+                        return "label label-important";
+                    default:
+                        throw new IllegalStateException("Unknown status [" + status + "]");
+                }
+            }
+        }));
     }
 
     private void addTooltipBehavior() {

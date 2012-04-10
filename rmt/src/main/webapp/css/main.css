@@ -541,7 +541,7 @@ td {
     .inline-label {
         // align with text of checkbox
         padding-left: 5px;
-        color: @grayDark;
+        // color: @grayDark;
     }
     select {
         width: auto;
@@ -551,6 +551,7 @@ td {
     a:hover {
         text-decoration: none;
     }
+
 
 }
 
