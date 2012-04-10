@@ -19,6 +19,7 @@ import de.flower.rmt.ui.manager.page.players.PlayersPage;
 import de.flower.rmt.ui.manager.page.teams.TeamsPage;
 import de.flower.rmt.ui.manager.page.venues.VenuesPage;
 import de.flower.rmt.ui.player.PlayerHomePage;
+import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.devutils.inspector.RenderPerformanceListener;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.Request;
@@ -28,6 +29,7 @@ import org.apache.wicket.settings.IExceptionSettings;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component(value = "wicketApplication")
@@ -35,6 +37,7 @@ public class RMTApplication extends WebApplication {
 
     private final static Logger log = LoggerFactory.getLogger(RMTApplication.class);
 
+    private RuntimeConfigurationType runtimeConfigurationType;
     @Override
     protected void init() {
         super.init();
@@ -110,6 +113,11 @@ public class RMTApplication extends WebApplication {
         return new RMTSession(request);
     }
 
+    @Override
+    public RuntimeConfigurationType getConfigurationType() {
+        return (runtimeConfigurationType != null) ? runtimeConfigurationType : super.getConfigurationType();
+    }
+
     /**
      * Output to log instead of System.err.
      */
@@ -123,5 +131,9 @@ public class RMTApplication extends WebApplication {
                 + "*** See Application#getConfigurationType() for more information. ***\n"
                 + "********************************************************************\n");
     }
-            
+
+    @Value("${wicket.configurationtype}")
+    public void setRuntimeConfigurationType(final RuntimeConfigurationType runtimeConfigurationType) {
+        this.runtimeConfigurationType = runtimeConfigurationType;
+    }
 }

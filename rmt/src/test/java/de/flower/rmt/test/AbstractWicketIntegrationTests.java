@@ -4,9 +4,9 @@ import de.flower.common.test.wicket.WicketTester;
 import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.type.Notification;
 import de.flower.rmt.model.type.Password;
-import de.flower.rmt.ui.app.TestApplication;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -20,8 +20,12 @@ public abstract class AbstractWicketIntegrationTests extends AbstractIntegration
 
     protected WicketTester wicketTester = null;
 
+    @Autowired
+    private WebApplication webApp;
+
     protected WebApplication createWebApp(ApplicationContext ctx) {
-        return new TestApplication(ctx);
+//        return new TestApplication(ctx);
+        return webApp;
     }
 
     @BeforeMethod

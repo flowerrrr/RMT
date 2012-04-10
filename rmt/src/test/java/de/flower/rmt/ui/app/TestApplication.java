@@ -3,16 +3,30 @@ package de.flower.rmt.ui.app ;
 import de.flower.rmt.ui.manager.page.player.PlayerPage;
 import org.apache.wicket.devutils.inspector.RenderPerformanceListener;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
 
 /**
  * @author flowerrrr
  */
+
+@Component(value = "wicketTestApplication")
 public class TestApplication extends RMTApplication {
 
-    private final ApplicationContext appCtx;
+    @Autowired
+    private ApplicationContext appCtx;
 
     /**
+     * For usage when this class is loaded by spring application context based integration tests.
+     */
+    public TestApplication() {
+
+    }
+
+    /**
+     * Used when unit testing without an spring application context (rather a mocked context is used).
+     *
      * Invokes the super class' default constructor and stores the given application context for looking up and
      * injecting Spring managed beans into Wicket components. This constructor is mainly intended to be used for testing
      * purposes since normally the application context will be determined using the standard Spring way via the servlet

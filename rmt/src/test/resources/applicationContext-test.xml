@@ -5,19 +5,11 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd ">
 
-    <!-- append test properties file. properties in this file will override
-         properties in above file. -->
-    <context:property-placeholder
-            location="classpath:application.properties,
-    classpath:credentials.properties,
-    classpath:application-test.properties"
-            />
 
     <import resource="applicationContext-base.xml"/>
     <import resource="applicationContext-dao.xml"/>
     <import resource="applicationContext-service.xml"/>
     <import resource="applicationContext-security.xml"/>
-
 
     <context:component-scan base-package="de.flower.common.test"/>
     <context:component-scan base-package="de.flower.rmt.test"/>
@@ -27,5 +19,6 @@
 
     </bean>
 
+    <bean id="wicketApplication" class="java.lang.Object" />
 
 </beans>
