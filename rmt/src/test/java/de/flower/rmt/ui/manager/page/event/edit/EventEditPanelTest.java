@@ -30,6 +30,7 @@ public class EventEditPanelTest extends AbstractWicketIntegrationTests {
         formTester.select("team:input", 1);
         formTester.setValue("date:input", "1.12.2011");
         formTester.select("time:input", 4); // select some arbitrary value
+        formTester.select("kickoff:input", 5);
         formTester.select("venue:input", 1);
         formTester.setValue("summary:input", "New training next sunday");
         formTester.setValue("comment:input", "Hope you bastards are all coming");
