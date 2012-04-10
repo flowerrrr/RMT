@@ -5,15 +5,16 @@ import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.model.event.Match;
 import de.flower.rmt.model.type.Notification;
-import de.flower.rmt.test.AbstractIntegrationTests;
+import de.flower.rmt.test.AbstractWicketIntegrationTests;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
 /**
+ * Must extend wicket tests as long as resource string lookup is done with wicket libs.
  * @author flowerrrr
  */
-public class NotificationServiceTest extends AbstractIntegrationTests {
+public class NotificationServiceTest extends AbstractWicketIntegrationTests {
 
     @Test
     public void testSendResetPasswordMail() {

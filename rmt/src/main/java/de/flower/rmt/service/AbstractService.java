@@ -51,7 +51,8 @@ public abstract class AbstractService {
 
         final Set<?> violations = validator.validate(entity);
         if (!violations.isEmpty()) {
-            throw new ConstraintViolationException((Set<ConstraintViolation<?>>) violations);
+            String message = violations.toString();
+            throw new ConstraintViolationException(message, (Set<ConstraintViolation<?>>) violations);
         }
     }
 
