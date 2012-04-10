@@ -53,7 +53,9 @@ public abstract class AbstractAjaxTabbedPanel<T> extends BasePanel<T> {
         Page page = findPage();
         if (page != null) {
             int index = page.getPageParameters().get(TAB_INDEX_KEY).toInt(0);
-            tabbedPanel.setSelectedTab(index);
+            if (index >= 0 && index < tabbedPanel.getTabs().size()) {
+                tabbedPanel.setSelectedTab(index);
+            }
         }
     }
 

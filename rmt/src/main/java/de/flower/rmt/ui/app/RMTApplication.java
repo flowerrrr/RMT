@@ -13,7 +13,6 @@ import de.flower.rmt.ui.common.page.error.PageNotFound404Page;
 import de.flower.rmt.ui.common.page.login.LoginPage;
 import de.flower.rmt.ui.manager.ManagerHomePage;
 import de.flower.rmt.ui.manager.page.event.EventPage;
-import de.flower.rmt.ui.manager.page.event.EventTabPanel;
 import de.flower.rmt.ui.manager.page.events.EventsPage;
 import de.flower.rmt.ui.manager.page.opponents.OpponentsPage;
 import de.flower.rmt.ui.manager.page.players.PlayersPage;
@@ -83,7 +82,7 @@ public class RMTApplication extends WebApplication {
         mountPage("manager/teams", TeamsPage.class);
         mountPage("manager/players", PlayersPage.class);
         mountPage("manager/events", EventsPage.class);
-        mountPage("manager/event/${" + EventPage.PARAM_EVENTID + "}/${" + EventTabPanel.TAB_INDEX_KEY + "}", EventPage.class);
+        mountPage("manager/event/${" + EventPage.PARAM_EVENTID + "}", EventPage.class);
         mountPage("manager/opponents", OpponentsPage.class);
         mountPage("manager/venues", VenuesPage.class);
         mountPage("player", PlayerHomePage.class);
