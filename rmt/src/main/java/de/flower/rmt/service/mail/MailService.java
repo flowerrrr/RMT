@@ -56,7 +56,7 @@ public class MailService implements IMailService {
             recipients.add(getReplyTo());
         }
         // fields like sender, reply-to, to are preset by default mail template.
-        sendMail(null, null, null, null, recipients, notification.getSubject(), notification.getBody());
+        sendMail(null, getReplyTo(), null, null, recipients, notification.getSubject(), notification.getBody());
     }
 
     @Override
