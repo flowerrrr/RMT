@@ -71,6 +71,16 @@ public class UserManagerTest extends AbstractIntegrationTests {
     }
 
     @Test
+    public void testSaveUserSavesRoles() {
+        User user = userManager.newInstance();
+        user.setEmail("foo@bar.com");
+        user.setFullname("Foo Bar");
+        userManager.save(user);
+        user = userManager.loadById(user.getId(), User_.roles);
+        assertFalse(user.getRoles().isEmpty());
+    }
+
+    @Test
     public void testUnassignedPlayer() {
         Team team = testData.getJuveAmateure();
         List<User> users = userManager.findAllUnassignedPlayers(team);

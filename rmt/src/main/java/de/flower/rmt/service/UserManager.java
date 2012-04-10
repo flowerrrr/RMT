@@ -75,11 +75,12 @@ public class UserManager extends AbstractService implements IUserManager {
     @Transactional(readOnly = false)
     public void save(User user) {
         // check that a role is assigned
-        if (user.isNew()) {
+        boolean isNew = user.isNew();
+        if (isNew) {
             notEmpty(user.getRoles(), "user has no role(s) assigned");
         }
         userRepo.save(user);
-        if (user.isNew()) {
+        if (isNew) {
             for (Role role : user.getRoles()) {
                 roleRepo.save(role);
             }

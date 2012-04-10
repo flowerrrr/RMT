@@ -6,6 +6,8 @@ import de.flower.rmt.model.event.*;
 import de.flower.rmt.model.type.Notification;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.util.Dates;
+import org.apache.wicket.model.Model;
+import org.apache.wicket.model.StringResourceModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -63,6 +65,9 @@ public class NotificationService implements INotificationService {
             AbstractSoccerEvent soccerEvent = (AbstractSoccerEvent) event;
             model.put("kickoffTime", Dates.formatTimeShort(soccerEvent.getKickoff()));
             model.put("surfaceList", Surface.render(soccerEvent.getSurfaceList()));
+            if (soccerEvent.getUniform() != null) {
+                model.put("uniform", new StringResourceModel("uniform.set", Model.of(soccerEvent.getUniform())).getObject());
+            }
         }
         notification.setSubject(templateService.mergeTemplate(EmailTemplate.NOTIFICATION_EVENT.getSubject(), model));
         notification.setBody(templateService.mergeTemplate(EmailTemplate.NOTIFICATION_EVENT.getContent(), model));

@@ -42,7 +42,7 @@ public class BasePanel<T> extends GenericPanel<T> {
 
     protected BasePanel(String id, IModel<T> model) {
         super(getId(id), model);
-        if (log.isDebugEnabled()) log.debug("new " + getId());
+        if (log.isTraceEnabled()) log.trace("new " + getId());
         setOutputMarkupId(true);
         // always append a css class to the panels
         add(new AttributeAppender("class", Model.of("panel " + getCssClass()), " "));

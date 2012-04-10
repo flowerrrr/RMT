@@ -1,9 +1,9 @@
 package de.flower.rmt.ui.common.page.event;
 
-import de.flower.rmt.model.event.Event;
+import de.flower.rmt.model.event.EventType;
+import de.flower.rmt.model.event.Match;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
-import de.flower.rmt.test.TestData;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.mockito.Matchers;
@@ -24,12 +24,16 @@ public class EventDetailsPanelTest extends AbstractRMTWicketMockitoTests {
 
     @Test
     public void testRender() {
-        Event event = new TestData().newEvent();
+        testData.setEventType(EventType.Match);
+        Match event = (Match) testData.newEvent();
         event.setId(100L);
         when(eventManager.loadById(anyLong(), Matchers.<Attribute>anyVararg())).thenReturn(event);
         wicketTester.startComponentInPage(new EventDetailsPanel(Model.of(event)));
         wicketTester.dumpComponentWithPage();
         wicketTester.assertContains(event.getSummary());
-    }
 
+        event.setUniform(null);
+        wicketTester.startComponentInPage(new EventDetailsPanel(Model.of(event)));
+        wicketTester.dumpComponentWithPage();
+    }
 }

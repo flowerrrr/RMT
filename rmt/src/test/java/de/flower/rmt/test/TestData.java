@@ -46,6 +46,9 @@ public class TestData {
     private ITeamManager teamManager;
 
     @Autowired
+    private IUniformManager uniformManager;
+
+    @Autowired
     private IPlayerManager playerManager;
 
     @Autowired
@@ -202,9 +205,15 @@ public class TestData {
     }
 
     public Event newEvent() {
-        Event event = new Event(newTeamWithPlayers(15));
+        Team team = newTeamWithPlayers(15);
+        Event event = eventType.newInstance(team.getClub());
+        event.setTeam(team);
         event.setDate(new Date());
         event.setTime(new LocalTime());
+        if (EventType.isSoccerEvent(event)) {
+            ((AbstractSoccerEvent) event).setKickoff(new LocalTime());
+            ((AbstractSoccerEvent) event).setUniform(newUniformList(event.getTeam()).get(0));
+        }
         event.setVenue(newVenue(event.getTeam().getClub()));
         event.setSummary("2. Training");
         event.setComment("Kommt ja nicht zu spät!");
@@ -225,6 +234,7 @@ public class TestData {
         event.setVenue(venueManager.loadById(1L));
         if (EventType.isSoccerEvent(event)) {
             ((AbstractSoccerEvent) event).setKickoff(LocalTime.now());
+            ((AbstractSoccerEvent) event).setUniform(createUniformList(team).get(0));
         }
         if (EventType.isMatch(event)) {
             ((Match) event).setOpponent(opponentManager.loadById(1L));
@@ -276,12 +286,22 @@ public class TestData {
         return venue;
     }
 
+    public List<Uniform> createUniformList(Team team) {
+        List<Uniform> uniforms = newUniformList(team);
+        for (Uniform uniform : uniforms) {
+            uniformManager.save(uniform);
+        }
+        return uniformManager.findAllByTeam(team);
+    }
+
     public List<Uniform> newUniformList(Team team) {
         Uniform j1 = new Uniform(team);
+        j1.setName("Trikotsatz 1");
         j1.setShirt("white/red stripes");
         j1.setShorts("red");
         j1.setSocks("white");
         Uniform j2 = new Uniform(team);
+        j2.setName("Trikotsatz 2");
         j2.setShirt("black");
         j2.setShorts("red");
         j2.setSocks("gold");

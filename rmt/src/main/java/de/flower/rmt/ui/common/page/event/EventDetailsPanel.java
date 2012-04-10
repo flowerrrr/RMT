@@ -1,7 +1,9 @@
 package de.flower.rmt.ui.common.page.event;
 
 import de.flower.common.ui.markup.html.basic.FallbackLabel;
+import de.flower.common.ui.model.AbstractWrappingModel;
 import de.flower.rmt.model.Surface;
+import de.flower.rmt.model.Uniform;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.ui.common.panel.BasePanel;
@@ -10,10 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.model.AbstractReadOnlyModel;
-import org.apache.wicket.model.CompoundPropertyModel;
-import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.ResourceModel;
+import org.apache.wicket.model.*;
 import org.apache.wicket.util.convert.IConverter;
 
 import java.util.List;
@@ -24,7 +23,7 @@ import java.util.Locale;
  */
 public class EventDetailsPanel extends BasePanel<Event> {
 
-    public EventDetailsPanel(final IModel<Event> model) {
+    public EventDetailsPanel(final IModel<? extends Event> model) {
         setDefaultModel(new CompoundPropertyModel<Object>(ModelFactory.eventModelWithAllAssociations(model.getObject())));
 
         add(new Label("team.name"));
@@ -60,7 +59,7 @@ public class EventDetailsPanel extends BasePanel<Event> {
 
         add(new FallbackLabel("venue.name", new ResourceModel("venue.nullValid")).setEscapeModelStrings(false));
 
-        add(new FallbackLabel("uniform.name", new ResourceModel("uniform.nullValid")) {
+        add(new UniformLabel("uniform") {
             @Override
             public boolean isVisible() {
                 return EventType.isSoccerEvent(model.getObject());
@@ -82,6 +81,33 @@ public class EventDetailsPanel extends BasePanel<Event> {
                 return StringUtils.isNotBlank(getDefaultModelObjectAsString());
             }
         });
+    }
+
+    public static class UniformLabel extends Label {
+
+        public UniformLabel(final String id) {
+            super(id);
+        }
+
+        @Override
+        protected void onInitialize() {
+            super.onInitialize();
+            setDefaultModel(new AbstractWrappingModel<String, Uniform>((IModel<Uniform>)getDefaultModel()) {
+                @Override
+                public String getObject() {
+                    if (getWrappedModel().getObject() == null) {
+                        return new ResourceModel("uniform.nullValid").getObject();
+                    } else {
+                        return new StringResourceModel("uniform.set", getWrappedModel()).getObject();
+                    }
+                }
+
+                @Override
+                public void setObject(final String object) {
+                    throw new UnsupportedOperationException("Feature not implemented!");
+                }
+            });
+        }
     }
 
     public static class SurfaceListLabel extends Label {

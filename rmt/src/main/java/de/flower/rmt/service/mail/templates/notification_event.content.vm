@@ -25,9 +25,8 @@ Gegner: $opponent
 #end
 Ort: $venue
 #if ($isSoccerEvent)
-#set ($uniform = "<Trikotsatz nicht festgelegt>")
-#if ($event.getUniform())
-#set ($uniform = $event.getUniform().getName())
+#if (!$event.getUniform())
+#set ($uniform = "<nicht festgelegt>")
 #end
 Trikotsatz: $uniform
 Untergrund: $surfaceList
