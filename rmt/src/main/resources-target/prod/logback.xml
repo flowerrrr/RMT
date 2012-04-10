@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true" scan="true">
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned the type
+     ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%.5thread] %-5level %-36logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+      <file>${LOG_HOME}/rmt.log</file>
+      <append>false</append>
+      <!-- encoders are assigned the type
+           ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+      <encoder>
+          <pattern>%d{HH:mm:ss.SSS} [%.5thread] %-5level %-36logger{36} - %msg%n</pattern>
+      </encoder>
+    </appender>
+
+    <appender name="XSTREAM_FILE" class="ch.qos.logback.core.FileAppender">
+      <file>${LOG_HOME}/rmt-xstream.log</file>
+      <append>false</append>
+      <!-- encoders are assigned the type
+           ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+      <encoder>
+          <pattern>%d{HH:mm:ss.SSS} [%.5thread] %-5level %-36logger{36} - %msg%n</pattern>
+      </encoder>
+    </appender>
+
+    <logger name="org.apache.wicket" level="INFO" />
+    <logger name="org.apache.wicket.devutils" level="INFO" />
+    <logger name="org.wicketstuff" level="INFO" />
+    <logger name="org.springframework" level="INFO" />
+
+    <logger name="org.hibernate.SQL" level="INFO" />
+
+    <logger name="de.flower" level="INFO" />
+
+    <logger name="trace" level="INFO" />
+
+    <logger name="xstream" additivity="false" level="INFO" >
+        <appender-ref ref="XSTREAM_FILE" />
+    </logger>
+
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE" />
+    </root>
+</configuration>
