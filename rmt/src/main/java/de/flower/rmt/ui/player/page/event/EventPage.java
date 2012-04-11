@@ -7,6 +7,7 @@ import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.service.IInvitationManager;
+import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.common.page.event.EventDetailsPanel;
 import de.flower.rmt.ui.common.page.event.EventSelectPanel;
 import de.flower.rmt.ui.model.EventModel;
@@ -81,7 +82,7 @@ public class EventPage extends PlayerBasePage {
         invitationListPanel.add(new AjaxEventListener(Invitation.class));
 
         addMainPanel(invitationListPanel);
-        addSecondaryPanel(createEventPagerPanel(model), new EventDetailsPanel(model), invitationFormPanel);
+        addSecondaryPanel(createEventPagerPanel(model), new EventDetailsPanel(model, View.PLAYER), invitationFormPanel);
     }
 
     private Panel createEventPagerPanel(final IModel<Event> model) {

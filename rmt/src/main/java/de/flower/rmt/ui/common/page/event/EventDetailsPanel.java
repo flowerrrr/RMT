@@ -8,6 +8,7 @@ import de.flower.rmt.model.Uniform;
 import de.flower.rmt.model.Venue;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
+import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.manager.page.venues.VenueEditPage;
 import de.flower.rmt.ui.model.ModelFactory;
@@ -30,7 +31,7 @@ import java.util.Locale;
  */
 public class EventDetailsPanel extends BasePanel<Event> {
 
-    public EventDetailsPanel(final IModel<? extends Event> model) {
+    public EventDetailsPanel(final IModel<? extends Event> model, final View view) {
         setDefaultModel(new CompoundPropertyModel<Object>(ModelFactory.eventModelWithAllAssociations(model.getObject())));
 
         add(new Label("team.name"));
@@ -68,7 +69,7 @@ public class EventDetailsPanel extends BasePanel<Event> {
             @Override
             public void onClick() {
                 IModel<Venue> model = new VenueModel(getModel());
-                WebPage page = getUserDetails().isManager() ? new VenueEditPage(model) : new VenuePage(model);
+                WebPage page = view == View.MANAGER ? new VenueEditPage(model) : new VenuePage(model);
                 setResponsePage(page);
             }
 

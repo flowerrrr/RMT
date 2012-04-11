@@ -2,6 +2,7 @@ package de.flower.rmt.ui.manager.page.event;
 
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IEventManager;
+import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.common.page.event.EventDetailsPanel;
 import de.flower.rmt.ui.common.page.event.EventSelectPanel;
 import de.flower.rmt.ui.manager.ManagerBasePage;
@@ -71,7 +72,7 @@ public class EventPage extends ManagerBasePage {
             }
         });
 
-        getSecondaryPanel().add(new EventDetailsPanel(model) {
+        getSecondaryPanel().add(new EventDetailsPanel(model, View.MANAGER) {
             @Override
             public boolean isVisible() {
                 return tabPanel.getSelectedTab() == EventTabPanel.INVITATIONS_PANEL_INDEX
