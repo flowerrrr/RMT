@@ -6,10 +6,7 @@ import de.flower.rmt.model.Uniform;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalTime;
 
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,7 +29,7 @@ public abstract class AbstractSoccerEvent extends Event {
      * Also not implemented as hibernate usertype cause user type is just a pain in the ass.
      * Much faster to do conversion here manually in code.
      */
-    @Column
+    @Basic
     @Type(type = "de.flower.rmt.model.type.SurfaceListType")
     private List<Surface> surfaceList = new ArrayList<Surface>();
 

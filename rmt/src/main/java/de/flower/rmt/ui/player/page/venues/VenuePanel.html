@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd"
+      xmlns:rmt="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<wicket:panel>
+
+    <div class="form-horizontal">
+
+        <div class="control-group">
+            <label class="control-label"><h6><wicket:message key="manager.venue.name"/></h6></label>
+            <div class="controls">
+                 <span wicket:id="name"/>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label"><h6><wicket:message key="manager.venue.address"/></h6></label>
+            <div class="controls">
+                 <span wicket:id="address"/>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label"><h6><wicket:message key="manager.venue.map"/></h6></label>
+            <div class="controls">
+                  <div wicket:id="venueMapPanel" class="venue-map">[Map with venue]</div>
+            </div>
+        </div>
+
+    </div>
+
+</wicket:panel>
+</body>
+</html>

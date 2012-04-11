@@ -2,16 +2,23 @@ package de.flower.rmt.ui.common.page.event;
 
 import de.flower.common.ui.markup.html.basic.FallbackLabel;
 import de.flower.common.ui.model.AbstractWrappingModel;
+import de.flower.common.ui.util.convert.AbstractConverter;
 import de.flower.rmt.model.Surface;
 import de.flower.rmt.model.Uniform;
+import de.flower.rmt.model.Venue;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.ui.common.panel.BasePanel;
+import de.flower.rmt.ui.manager.page.venues.VenueEditPage;
 import de.flower.rmt.ui.model.ModelFactory;
+import de.flower.rmt.ui.model.VenueModel;
+import de.flower.rmt.ui.player.page.venues.VenuePage;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.*;
 import org.apache.wicket.util.convert.IConverter;
 
@@ -57,7 +64,21 @@ public class EventDetailsPanel extends BasePanel<Event> {
             }
         }.setEscapeModelStrings(false));
 
-        add(new FallbackLabel("venue.name", new ResourceModel("venue.nullValid")).setEscapeModelStrings(false));
+        Link link = new Link<Venue>("venue") {
+            @Override
+            public void onClick() {
+                IModel<Venue> model = new VenueModel(getModel());
+                WebPage page = getUserDetails().isManager() ? new VenueEditPage(model) : new VenuePage(model);
+                setResponsePage(page);
+            }
+
+            @Override
+            public boolean isEnabled() {
+                return getModel().getObject() != null;
+            }
+        };
+        link.add(new FallbackLabel("venue.name", new ResourceModel("venue.nullValid")).setEscapeModelStrings(false));
+        add(link);
 
         add(new UniformLabel("uniform") {
             @Override
@@ -92,7 +113,7 @@ public class EventDetailsPanel extends BasePanel<Event> {
         @Override
         protected void onInitialize() {
             super.onInitialize();
-            setDefaultModel(new AbstractWrappingModel<String, Uniform>((IModel<Uniform>)getDefaultModel()) {
+            setDefaultModel(new AbstractWrappingModel<String, Uniform>((IModel<Uniform>) getDefaultModel()) {
                 @Override
                 public String getObject() {
                     if (getWrappedModel().getObject() == null) {
@@ -118,11 +139,7 @@ public class EventDetailsPanel extends BasePanel<Event> {
 
         @Override
         public <C> IConverter<C> getConverter(final Class<C> type) {
-            return (IConverter<C>) new IConverter<List<Surface>>() {
-                @Override
-                public List<Surface> convertToObject(final String value, final Locale locale) {
-                    throw new UnsupportedOperationException("Feature not implemented!");
-                }
+            return (IConverter<C>) new AbstractConverter<List<Surface>>() {
 
                 @Override
                 public String convertToString(final List<Surface> value, final Locale locale) {

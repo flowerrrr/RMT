@@ -1,5 +1,6 @@
 package de.flower.rmt.test;
 
+import de.flower.common.util.geo.LatLng;
 import de.flower.rmt.model.*;
 import de.flower.rmt.model.event.*;
 import de.flower.rmt.repository.IClubRepo;
@@ -21,9 +22,13 @@ import javax.persistence.EntityManager;
 import java.util.*;
 
 /**
+ * Provides test data.
+ *
+ * Use #newXXX methods in unit tests.
+ * Use #getXXX methods when running integration tests with underlying database.
+ *
  * @author flowerrrr
  */
-
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
 public class TestData {
@@ -283,6 +288,8 @@ public class TestData {
     public Venue newVenue(Club club) {
         Venue venue = new Venue(club);
         venue.setName("Böglwiese");
+        venue.setAddress("Putzbrunner Str. 13\n81739 München");
+        venue.setLatLng(new LatLng(48.12123, 11.01231231));
         return venue;
     }
 

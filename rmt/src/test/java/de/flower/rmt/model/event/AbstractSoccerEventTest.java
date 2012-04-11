@@ -2,7 +2,6 @@ package de.flower.rmt.model.event;
 
 import de.flower.rmt.model.Surface;
 import de.flower.rmt.test.AbstractIntegrationTests;
-import org.hibernate.LazyInitializationException;
 import org.springframework.transaction.TransactionStatus;
 import org.testng.annotations.Test;
 
@@ -14,7 +13,7 @@ public class AbstractSoccerEventTest extends AbstractIntegrationTests {
     /**
      * For for developing. Once implementation runs test is disabled
      */
-    @Test(expectedExceptions = LazyInitializationException.class, enabled = false)
+    @Test(enabled = true)
     public void testEmbeddedSurfaceList() {
         TransactionStatus status = transactionManager.getTransaction(null);
         Match entity = new Match(testData.getClub());
@@ -24,7 +23,7 @@ public class AbstractSoccerEventTest extends AbstractIntegrationTests {
         transactionManager.commit(status);
         // see generated sql query
         entity = em.find(Match.class, entity.getId());
-        // next line throw LazyInitException
+        // next line should not throw LazyInitException
         entity.getSurfaceList().get(0);
     }
 

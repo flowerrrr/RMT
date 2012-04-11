@@ -26,4 +26,5 @@ public class HomePageResolver {
             return LoginPage.class;
         }
     }
+
 }

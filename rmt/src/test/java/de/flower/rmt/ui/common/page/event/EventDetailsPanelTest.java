@@ -31,8 +31,10 @@ public class EventDetailsPanelTest extends AbstractRMTWicketMockitoTests {
         wicketTester.startComponentInPage(new EventDetailsPanel(Model.of(event)));
         wicketTester.dumpComponentWithPage();
         wicketTester.assertContains(event.getSummary());
+        wicketTester.clickLink("eventDetailsPanel:venue");
 
         event.setUniform(null);
+        event.setVenue(null);
         wicketTester.startComponentInPage(new EventDetailsPanel(Model.of(event)));
         wicketTester.dumpComponentWithPage();
     }

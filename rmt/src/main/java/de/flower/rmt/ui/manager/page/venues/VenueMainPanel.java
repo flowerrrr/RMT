@@ -5,6 +5,7 @@ import de.flower.rmt.service.IVenueManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.manager.page.venues.map.VenuesMapPanel;
 import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -34,8 +35,8 @@ public class VenueMainPanel extends BasePanel {
                 return !listModel.getObject().isEmpty();
             }
         };
-        container.add(new VenueListPanel(listModel));
-        container.add(new VenuesMapPanel(listModel));
+        container.add(getListPanel(listModel));
+        container.add(getMapPanel(listModel));
         add(container);
     }
 
@@ -46,5 +47,13 @@ public class VenueMainPanel extends BasePanel {
                 return venueManager.findAll();
             }
         };
+    }
+
+    protected Panel getListPanel(final IModel<List<Venue>> listModel) {
+        return new VenueListPanel(listModel);
+    }
+
+    protected Panel getMapPanel(final IModel<List<Venue>> listModel) {
+        return new VenuesMapPanel(listModel);
     }
 }

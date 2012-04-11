@@ -24,15 +24,19 @@ public class VenueMapPanel extends BasePanel {
     /**
      * @param latLng position of gMarker
      */
-    public VenueMapPanel(LatLng latLng) {
+    public VenueMapPanel(LatLng latLng, boolean draggableMarker) {
         super();
 
         GMap map = new GMap("map");
         add(map);
         map.setDoubleClickZoomEnabled(true);
 
-        // put draggable marker on map.
-        DraggableMarker marker = new DraggableMarker(map, latLng);
+        if (draggableMarker) {
+            // put draggable marker on map.
+            DraggableMarker marker = new DraggableMarker(map, latLng);
+        } else {
+            Marker marker = new Marker(map, latLng);
+        }
         // and center map on marker
         map.setCenter(latLng);
 
@@ -43,15 +47,24 @@ public class VenueMapPanel extends BasePanel {
         throw new UnsupportedOperationException("Feature not implemented!");
     }
 
-    private class DraggableMarker implements Serializable {
+    private class Marker implements Serializable {
 
-        private GMarker gMarker;
+        protected GMarker gMarker;
 
-        public DraggableMarker(GMap map, GLatLng gLatLng) {
-            GMarkerOptions options = new GMarkerOptions(map, gLatLng);
-            options = options.draggable(true);
+        protected GMarkerOptions options;
+
+        public Marker(GMap map, GLatLng gLatLng) {
+            options = new GMarkerOptions(map, gLatLng);
             gMarker = new GMarker(options);
             map.addOverlay(gMarker);
+        }
+    }
+
+    private class DraggableMarker extends Marker {
+
+        public DraggableMarker(GMap map, GLatLng gLatLng) {
+            super(map, gLatLng);
+            options = options.draggable(true);
             // add drag listener
             gMarker.addListener(GOverlayEvent.DRAGEND, new GOverlayEventHandler() {
                 @Override

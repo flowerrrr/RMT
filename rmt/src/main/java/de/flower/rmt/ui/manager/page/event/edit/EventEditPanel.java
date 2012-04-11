@@ -1,5 +1,6 @@
 package de.flower.rmt.ui.manager.page.event.edit;
 
+import de.flower.common.ui.js.JQuery;
 import de.flower.common.ui.markup.html.form.TimeDropDownChoice;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
@@ -55,6 +56,7 @@ public class EventEditPanel extends BasePanel<Event> {
                 } else {
                     eventManager.save(event);
                     // stay on page
+                    target.appendJavaScript(JQuery.scrollToTop("slow"));
                 }
             }
         };

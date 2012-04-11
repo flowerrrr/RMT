@@ -2,6 +2,9 @@ package de.flower.rmt.ui.common.page.error;
 
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.common.panel.BasePanel;
+import org.apache.wicket.Application;
+import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import java.util.Map;
@@ -18,6 +21,10 @@ public class InternalError500Panel extends BasePanel {
         add(Links.homePage("home"));
         add(Links.mailLink("adminMail", getAdminEmail()));
         add(new StacktracePanel(exception) {
+            {
+                String display = Application.get().getConfigurationType() == RuntimeConfigurationType.DEVELOPMENT ? "inline" : "none";
+                add(AttributeModifier.replace("style", "display: " + display + ";"));
+            }
             @Override
             public boolean isVisible() {
                 return exception != null;

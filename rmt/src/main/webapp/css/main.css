@@ -65,6 +65,15 @@ li {
     color: @grayDark;
 }
 
+a {
+    color: @grayDark;
+}
+
+// override wickets attempt to display disabled links in italic
+span > em {
+    font-style: normal;
+}
+
 .content {
     /* defines border shadow and padding, margin of content */
     background-color: #FFFFFF;
@@ -156,7 +165,7 @@ a.no-hover:hover {
 /*************************************************************************
   links
 **************************************************************************/
-.btn-link:after {
+a.btn-link:after {
     // right arrow
     content: '\00A0 \2192';
 }
@@ -336,6 +345,16 @@ form .help-inline {
         margin-bottom: 0px;
     }
 }
+
+/*************************************************************************
+   readonly view of form-data
+**************************************************************************/
+div.form-horizontal {
+    .control-label {
+        padding-top: 0px; // override twitter default
+    }
+}
+
 
 
 /*************************************************************************

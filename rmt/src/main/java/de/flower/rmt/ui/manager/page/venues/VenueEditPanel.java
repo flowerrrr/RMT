@@ -65,7 +65,7 @@ public class VenueEditPanel extends BasePanel  {
             this.latLng = RMTSession.get().getLatLng();
         }
 
-        form.add(new VenueMapPanel(this.latLng) {
+        form.add(new VenueMapPanel(this.latLng, true) {
             @Override
             public void onUpdateMarker(LatLng latLng) {
                 VenueEditPanel.this.latLng = latLng;
