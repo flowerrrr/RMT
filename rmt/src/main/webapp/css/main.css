@@ -121,7 +121,7 @@ span > em {
     padding-bottom: 20px;
 }
 
-.secondary .btn-link, .secondary .btn-link-external {
+.secondary .btn {
     width: 190px;
 }
 
@@ -170,6 +170,11 @@ a.btn-link:after {
     // right arrow
     content: '\00A0 \2192';
     float: right;
+}
+
+a.btn-link-2:after {
+    // right arrow
+    content: '\00A0 \2192';
 }
 
 a.btn-link-external:after {
