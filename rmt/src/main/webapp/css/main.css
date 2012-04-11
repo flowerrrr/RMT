@@ -122,11 +122,15 @@ span > em {
 }
 
 .secondary .btn {
-    width: 190px;
+    width: 200px;
 }
 
 .toggleButton {
-    width: 190px;
+    width: 200px;
+}
+
+.secondary .btn-primary {
+    width: auto;
 }
 
 
