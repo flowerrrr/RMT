@@ -56,7 +56,7 @@ public class VenueMapPanel extends BasePanel {
         }
     }
 
-    private class DraggableMarker  {
+    private class DraggableMarker implements Serializable {
 
         public DraggableMarker(GMap map, GLatLng gLatLng) {
             GMarkerOptions options = new GMarkerOptions(map, gLatLng);
