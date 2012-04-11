@@ -121,6 +121,10 @@ span > em {
     padding-bottom: 20px;
 }
 
+.secondary .btn-link, .secondary .btn-link-external {
+    width: 190px;
+}
+
 .toggleButton {
     width: 200px;
 }
@@ -165,6 +169,13 @@ a.no-hover:hover {
 a.btn-link:after {
     // right arrow
     content: '\00A0 \2192';
+    float: right;
+}
+
+a.btn-link-external:after {
+    // right double arrow
+    content: '\00A0 \21D2';
+    float: right;
 }
 
 /*************************************************************************

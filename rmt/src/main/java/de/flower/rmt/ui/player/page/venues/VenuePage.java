@@ -20,6 +20,7 @@ public class VenuePage extends PlayerBasePage {
                 setResponsePage(VenuesPage.class);
             }
         });
+        addSecondaryPanel(new GetDirectionsPanel(model));
     }
 
     @Override
