@@ -65,9 +65,6 @@ li {
     color: @grayDark;
 }
 
-a {
-    color: @grayDark;
-}
 
 // override wickets attempt to display disabled links in italic
 span > em {
@@ -626,17 +623,24 @@ td.rsvpstatus {
 /*************************************************************************
     Event details list
 **************************************************************************/
-.details h6 {
-    font-size: 10px;
-    line-height: normal;
-}
-.details li {
-    margin-bottom: 5px;
-}
+.details {
+    h6 {
+        font-size: 10px;
+        line-height: normal;
+    }
 
-.details li:first-child {
-    float: left;
-    width: 50%;
+    li {
+        margin-bottom: 5px;
+    }
+
+    li:first-child {
+        float: left;
+        width: 50%;
+    }
+
+    a {
+        color: @grayDark;
+    }
 }
 
 /*************************************************************************
