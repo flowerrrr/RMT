@@ -19,6 +19,7 @@
 
     </bean>
 
+    <!-- override RMTApplication and use TestApplication instead -->
     <bean id="wicketApplication" class="java.lang.Object" />
 
 </beans>

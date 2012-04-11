@@ -30,7 +30,9 @@ public abstract class AbstractWicketIntegrationTests extends AbstractIntegration
 
     @BeforeMethod
     public void init() {
-        createTester(applicationContext);
+        if (wicketTester == null) {
+            createTester(applicationContext);
+        }
     }
 
     @AfterMethod
