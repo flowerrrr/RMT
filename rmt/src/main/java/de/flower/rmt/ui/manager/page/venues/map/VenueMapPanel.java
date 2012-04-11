@@ -49,22 +49,20 @@ public class VenueMapPanel extends BasePanel {
 
     private class Marker implements Serializable {
 
-        protected GMarker gMarker;
-
-        protected GMarkerOptions options;
-
         public Marker(GMap map, GLatLng gLatLng) {
-            options = new GMarkerOptions(map, gLatLng);
-            gMarker = new GMarker(options);
+            GMarkerOptions options = new GMarkerOptions(map, gLatLng);
+            GMarker gMarker = new GMarker(options);
             map.addOverlay(gMarker);
         }
     }
 
-    private class DraggableMarker extends Marker {
+    private class DraggableMarker  {
 
         public DraggableMarker(GMap map, GLatLng gLatLng) {
-            super(map, gLatLng);
+            GMarkerOptions options = new GMarkerOptions(map, gLatLng);
             options = options.draggable(true);
+            final GMarker gMarker = new GMarker(options);
+            map.addOverlay(gMarker);
             // add drag listener
             gMarker.addListener(GOverlayEvent.DRAGEND, new GOverlayEventHandler() {
                 @Override
