@@ -1,7 +1,7 @@
 /* Use fade in / out to show / hide veil. */
 var RMT = {
     fadeInMs: 500,
-    fadeOutMs: 300,
+    fadeOutMs: 300
 };
 
 if (typeof Wicket != 'undefined'){

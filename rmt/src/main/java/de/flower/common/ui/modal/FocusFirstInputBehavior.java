@@ -21,6 +21,7 @@ public class FocusFirstInputBehavior extends Behavior {
          * This function checks if the focus is already inside the modal panel.
          * If not it sets the focus to the first input element.
          */
+        // TODO (flowerrrr - 13.04.12) use #renderOnDomReady to avoid RMT-573
         response.renderJavaScript("Wicket.Ajax.registerPostCallHandler(function() {"
                 + "if($('*:focus').parents('.container-modal').length == 0) {"
                 + "$('.container-modal input[type=text]:first').focus();}});", JS_ID);

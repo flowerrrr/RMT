@@ -26,6 +26,7 @@ class CloseOnEscBehavior extends AbstractDefaultAjaxBehavior {
 
     @Override
     public void renderHead(final Component component, final IHeaderResponse response) {
+        // TODO (flowerrrr - 13.04.12) use #renderOnDomReady to avoid RMT-573
         response.renderJavaScript("$(document).ready(function() {\n"
             + "  $(document).bind('keyup', function(evt) {\n"
             + "    if (evt.keyCode == 27) {\n"

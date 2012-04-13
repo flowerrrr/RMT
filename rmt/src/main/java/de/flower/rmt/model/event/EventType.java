@@ -47,6 +47,14 @@ public enum EventType {
         }
     }
 
+    public boolean isMatch() {
+        return this == Match;
+    }
+
+    public boolean isSoccerEvent() {
+        return this == Match || this == Tournament  || this == Training;
+    }
+
     public static boolean isMatch(final Event event) {
         return event.getClass().equals(Match.clazz);
     }

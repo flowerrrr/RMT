@@ -31,8 +31,9 @@ public class ModalDialogWindow extends ModalWindow {
         super(id);
         setWindowClosedCallback(null); // no idea why it is enabled by default in wicket
         setCssClassName(Css.MODAL);
-        add(new CloseOnEscBehavior(this));
-        add(new FocusFirstInputBehavior());
+        // the next lines will cause javascript errors in IE 8. statements rendered before jquery link is output.
+        // add(new CloseOnEscBehavior(this));
+        // add(new FocusFirstInputBehavior());
         reset();
     }
 

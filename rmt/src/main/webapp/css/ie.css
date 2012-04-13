@@ -1,0 +1,4 @@
+/* fix for layout bug in IE9. check with newer version of wicket if rule can be removed. */
+.w_content_2 {
+    min-height: 500px;
+}

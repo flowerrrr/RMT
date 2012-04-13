@@ -115,11 +115,16 @@ span > em {
     margin-bottom: 10px;
 }
 
-.secondary > div:not(:last-child) {
+// have separate rule for IE8
+.secondary > div {
     border-bottom: 1px solid #CCCCCC;
     margin-bottom: 20px;
     padding-bottom: 20px;
 }
+.secondary > div:last-child {
+    border-bottom: 0px;
+}
+
 
 .secondary .btn {
     width: 200px;
@@ -598,6 +603,7 @@ td {
 .modal-header {
     border-bottom: 1px solid #DDDDDD;
 }
+
 #loginForm .form-actions, #loginForm, #loginForm fieldset {
     margin-bottom: 0px;
 }
@@ -714,8 +720,6 @@ td.rsvpstatus {
             color: #FFFFFF;
         }
     }
-
-
 }
 
 .recipient-list, .recipient-list-header {

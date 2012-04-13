@@ -1,13 +1,14 @@
 package de.flower.rmt.ui.model;
 
 import de.flower.common.util.Check;
-import de.flower.rmt.model.event.Event;
-import de.flower.rmt.model.event.EventType;
+import de.flower.rmt.model.event.*;
 import de.flower.rmt.service.IEventManager;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import javax.persistence.metamodel.Attribute;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author flowerrrr
@@ -19,12 +20,12 @@ public class EventModel<T extends Event> extends AbstractEntityModel<T> {
 
     private EventType type;
 
-    private Attribute[] attributes;
+    private boolean eagerFetchAssociations = false;
 
-    public EventModel(Long id, Attribute... attributes) {
-        super(id);
-        Check.notNull(id);
-        this.attributes = attributes;
+    public EventModel(T entity, boolean eagerFetchAssociations) {
+        super(entity.getId());
+        type = entity.getEventType();
+        this.eagerFetchAssociations = eagerFetchAssociations;
     }
 
     public EventModel(T entity) {
@@ -50,8 +51,8 @@ public class EventModel<T extends Event> extends AbstractEntityModel<T> {
     @Override
     protected T load(Long id) {
         Event entity;
-        if (attributes != null) {
-            entity = manager.loadById(id, attributes);
+        if (eagerFetchAssociations) {
+            entity = manager.loadById(id, getAttributes());
         } else {
             entity = manager.loadById(id);
         }
@@ -61,5 +62,18 @@ public class EventModel<T extends Event> extends AbstractEntityModel<T> {
     @Override
     protected T newInstance() {
         return (T) manager.newInstance(type);
+    }
+
+    private Attribute[] getAttributes() {
+        List<Attribute> attributes = new ArrayList<Attribute>();
+        attributes.add(Event_.team);
+        attributes.add(Event_.venue);
+        if (type.isMatch()) {
+            attributes.add(Match_.opponent);
+        }
+        if (type.isSoccerEvent()) {
+            attributes.add(AbstractSoccerEvent_.uniform);
+        }
+        return attributes.toArray(new Attribute[]{});
     }
 }
