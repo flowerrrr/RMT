@@ -678,7 +678,7 @@ td.rsvpstatus {
     }
     textarea {
         height: 200px;
-        white-space: nowrap;
+        white-space: pre;
         font-family: monospace;
         font-size: 85%;
     }
