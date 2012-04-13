@@ -5,6 +5,7 @@ import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 
+import javax.mail.internet.InternetAddress;
 import javax.persistence.metamodel.Attribute;
 import java.util.Collection;
 import java.util.List;
@@ -60,4 +61,5 @@ public interface IInvitationManager {
      */
     void addGuestPlayer(Event entity, String guestName);
 
+    List<InternetAddress[]> getAllInternetAddressesByEvent(Event event);
 }

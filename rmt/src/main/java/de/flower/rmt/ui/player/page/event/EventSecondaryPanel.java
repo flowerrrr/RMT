@@ -2,24 +2,28 @@ package de.flower.rmt.ui.player.page.event;
 
 import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.ajax.panel.AjaxSlideTogglePanel;
+import de.flower.common.util.Collections;
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.service.IInvitationManager;
+import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.common.page.event.EventDetailsPanel;
 import de.flower.rmt.ui.common.page.event.EventSelectPanel;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.model.InvitationModel;
 import de.flower.rmt.ui.model.UserModel;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import javax.mail.internet.InternetAddress;
 import java.util.List;
 
 /**
@@ -55,6 +59,8 @@ public class EventSecondaryPanel extends BasePanel {
         invitationFormPanel.setVisible(invitationModel.getObject().getStatus() == RSVPStatus.NORESPONSE);
 
         add(new EventDetailsPanel(model, View.PLAYER));
+
+        add(Links.mailLink("allMailLink", getAllEmailAddresses(model.getObject()), null));
     }
 
     private Panel createEventSelectPanel(final IModel<Event> model) {
@@ -80,5 +86,17 @@ public class EventSecondaryPanel extends BasePanel {
                 return eventManager.findAllUpcomingByUser(userModel.getObject());
             }
         };
+    }
+
+    private String getAllEmailAddresses(final Event event) {
+        List<InternetAddress[]> list = invitationManager.getAllInternetAddressesByEvent(event);
+        // convert to list of email addresses
+        List<String> stringList = Collections.convert(Collections.flattenArray(list), new Collections.IElementConverter<InternetAddress, String>() {
+            @Override
+            public String convert(final InternetAddress ia) {
+                return ia.toString();
+            }
+        });
+        return StringUtils.join(stringList, ";");
     }
 }

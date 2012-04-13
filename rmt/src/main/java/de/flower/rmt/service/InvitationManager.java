@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Nullable;
+import javax.mail.internet.InternetAddress;
 import javax.persistence.metamodel.Attribute;
 import java.util.*;
 
@@ -186,5 +187,16 @@ public class InvitationManager extends AbstractService implements IInvitationMan
             }
         });
         return list;
+    }
+
+    @Override
+    public List<InternetAddress[]> getAllInternetAddressesByEvent(final Event event) {
+        List<Invitation> invitations = findAllForNotificationByEventSortedByName(event);
+        return de.flower.common.util.Collections.convert(invitations, new de.flower.common.util.Collections.IElementConverter<Invitation, InternetAddress[]>() {
+            @Override
+            public InternetAddress[] convert(final Invitation element) {
+                return element.getInternetAddresses();
+            }
+        });
     }
 }

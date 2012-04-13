@@ -38,6 +38,14 @@ public class RMTApplication extends WebApplication {
     private final static Logger log = LoggerFactory.getLogger(RMTApplication.class);
 
     private RuntimeConfigurationType runtimeConfigurationType;
+
+    @Value("${admin.address}")
+    private String adminEmail;
+
+    public static RMTApplication getInstance() {
+        return (RMTApplication) get();
+    }
+
     @Override
     protected void init() {
         super.init();
@@ -133,8 +141,13 @@ public class RMTApplication extends WebApplication {
                 + "********************************************************************\n");
     }
 
+    // TODO (flowerrrr - 14.04.12) could be annotated field as well ??
     @Value("${wicket.configurationtype}")
     public void setRuntimeConfigurationType(final RuntimeConfigurationType runtimeConfigurationType) {
         this.runtimeConfigurationType = runtimeConfigurationType;
+    }
+
+    public String getAdminEmail() {
+        return adminEmail;
     }
 }

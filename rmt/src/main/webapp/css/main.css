@@ -138,6 +138,10 @@ span > em {
     width: auto;
 }
 
+.secondary a {
+    color: @grayDark;
+}
+
 
 /*************************************************************************
     misc
@@ -569,6 +573,13 @@ table th {
 
 td {
     border-bottom: 1px solid #CCCCCC;
+}
+
+tr .show-on-hover {
+    display: none;
+}
+tr:hover .show-on-hover {
+    display: inline;
 }
 
 /*************************************************************************

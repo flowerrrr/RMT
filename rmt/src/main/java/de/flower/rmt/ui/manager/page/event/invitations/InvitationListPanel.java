@@ -10,6 +10,7 @@ import de.flower.rmt.model.Invitation_;
 import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IInvitationManager;
+import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.common.panel.DropDownMenuPanel;
 import org.apache.wicket.Component;
@@ -69,6 +70,9 @@ public class InvitationListPanel extends BasePanel {
         // now the dropdown menu
         DropDownMenuPanel menuPanel = new DropDownMenuPanel();
         menuPanel.addLink(createEditLink("link", item), "button.edit");
+        if (invitation.hasEmail()) {
+            menuPanel.addLink(Links.mailLink("link", invitation.getEmail(), null), "button.email");
+        }
         frag.add(menuPanel);
         return frag;
     }

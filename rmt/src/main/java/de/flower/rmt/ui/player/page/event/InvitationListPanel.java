@@ -8,9 +8,11 @@ import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.service.IPlayerManager;
+import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Fragment;
@@ -67,6 +69,9 @@ public class InvitationListPanel extends BasePanel {
         frag.add(label);
         frag.add(new Label("name", invitation.getName()));
         frag.add(new Label("comment", invitation.getComment()));
+        ExternalLink link = Links.mailLink("emailLink", (invitation.hasEmail() ? invitation.getEmail() : ""), null);
+        link.setVisible(invitation.hasEmail());
+        frag.add(link);
         return frag;
     }
 
@@ -78,5 +83,4 @@ public class InvitationListPanel extends BasePanel {
             }
         };
     }
-
 }

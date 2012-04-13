@@ -2,6 +2,7 @@ package de.flower.rmt.ui.common.page;
 
 import de.flower.common.ui.feedback.AlertMessageFeedbackPanel;
 import de.flower.common.ui.markup.html.panel.WrappingPanel;
+import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.common.panel.feedback.PasswordChangeRequiredMessage;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
@@ -35,6 +36,8 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
 
         add(heading = new Label("heading", Model.of(getClass().getSimpleName())));
         add(subheading = new Label("subheading", Model.of("")));
+
+        add(Links.adminMailLink("adminLink", false));
     }
 
     /**
@@ -94,4 +97,5 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
     protected boolean showAlertMessages() {
         return true;
     }
+
 }

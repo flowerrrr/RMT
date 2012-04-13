@@ -19,7 +19,7 @@ public class InternalError500Panel extends BasePanel {
 
     public InternalError500Panel(final Exception exception) {
         add(Links.homePage("home"));
-        add(Links.mailLink("adminMail", getAdminEmail()));
+        add(Links.adminMailLink("adminMail", true));
         add(new StacktracePanel(exception) {
             {
                 String display = Application.get().getConfigurationType() == RuntimeConfigurationType.DEVELOPMENT ? "inline" : "none";

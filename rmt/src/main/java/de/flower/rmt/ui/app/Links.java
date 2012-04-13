@@ -50,8 +50,18 @@ public class Links {
         };
     }
 
-    public static ExternalLink mailLink(final String id, String emailAddress) {
-        return new ExternalLink(id, "mailto:" + emailAddress, emailAddress);
+    public static ExternalLink adminMailLink(String id, boolean label) {
+        String email = RMTApplication.getInstance().getAdminEmail();
+        ExternalLink link = mailLink(id, email, label ? email : null);
+        return link;
+    }
+
+    public static ExternalLink mailLink(final String id, String emailAddress, final String label) {
+        if (label == null) {
+            return new ExternalLink(id, "mailto:" + emailAddress);
+        } else {
+            return new ExternalLink(id, "mailto:" + emailAddress, label);
+        }
     }
 
     public static String getDirectionsLink(final Venue venue) {
@@ -60,7 +70,6 @@ public class Links {
         String lng = format.format(venue.getLatLng().getLng());
         return "http://maps.google.com/maps?daddr=" + lat + "," + lng;
     }
-
 
     public static class HistoryBackLink extends ExternalLink {
 

@@ -10,6 +10,7 @@ import de.flower.rmt.model.User_;
 import de.flower.rmt.service.IRoleManager;
 import de.flower.rmt.service.IUserManager;
 import de.flower.rmt.service.security.ISecurityService;
+import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.common.panel.DropDownMenuPanel;
 import de.flower.rmt.ui.manager.page.player.PlayerPage;
@@ -49,14 +50,14 @@ public class PlayerListPanel extends BasePanel {
 
             @Override
             protected void populateItem(final ListItem<User> item) {
-                User player = item.getModelObject();
+                User user = item.getModelObject();
                 Link editLink = createEditLink("editLink", item);
-                editLink.add(new Label("fullname", player.getFullname()));
+                editLink.add(new Label("fullname", user.getFullname()));
                 item.add(editLink);
-                item.add(new Label("email", player.getEmail()));
+                item.add(Links.mailLink("emailLink", user.getEmail(), user.getEmail()));
                 Component manager;
                 item.add(manager = new WebMarkupContainer("manager"));
-                manager.setVisible(player.isManager());
+                manager.setVisible(user.isManager());
 
                 Link sendInvitiationLink = new Link("sendInvitationLink") {
                     @Override
@@ -65,7 +66,7 @@ public class PlayerListPanel extends BasePanel {
                     }
                 };
                 // RMT-426
-                sendInvitiationLink.setVisible(!player.isInvitationSent() && player.hasInitialPassword());
+                sendInvitiationLink.setVisible(!user.isInvitationSent() && user.hasInitialPassword());
                 item.add(sendInvitiationLink);
                 sendInvitiationLink.add(new TooltipBehavior(new ResourceModel("manager.players.tooltip.invitiation.not.send")));
 
@@ -81,7 +82,7 @@ public class PlayerListPanel extends BasePanel {
                         AjaxEventSender.entityEvent(this, User.class);
                     }
                 }, "button.delete");
-                deleteButton.setVisible(!securityService.isCurrentUser(player));
+                deleteButton.setVisible(!securityService.isCurrentUser(user));
                 item.add(menuPanel);
             }
 
