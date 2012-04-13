@@ -21,6 +21,16 @@ public class Collections {
         return out;
     }
 
+    public static <T> List<T> flattenArray(final List<T[]> in) {
+        List<T> result = new ArrayList<T>();
+        for (T[] tArray : in) {
+            for (T t : tArray) {
+                result.add(t);
+            }
+        }
+        return result;
+    }
+
     public static interface IElementConverter<S, T> {
 
         T convert(S element);

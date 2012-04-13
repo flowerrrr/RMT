@@ -1,5 +1,6 @@
 package de.flower.rmt.ui.manager.page.event.notification;
 
+import de.flower.common.util.Collections;
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
@@ -33,13 +34,13 @@ public class SelectRecipientPanelTest extends AbstractRMTWicketMockitoTests {
     public void testSubmitSelectedRecipients() {
         final Set<InternetAddress> actualRecipients = new HashSet<InternetAddress>();
         Event event = testData.newEvent();
-        InternetAddress ia1 = event.getInvitations().get(2).getInternetAddress();
-        InternetAddress ia2 = event.getInvitations().get(4).getInternetAddress();
+        InternetAddress[] ia1 = event.getInvitations().get(2).getInternetAddresses();
+        InternetAddress[] ia2 = event.getInvitations().get(4).getInternetAddresses();
 
         Panel panel = new SelectRecipientPanel(Model.of(event), (IModel<List<Invitation>>) (Object) Model.ofList(event.getInvitations())) {
             @Override
-            protected void onSubmit(final AjaxRequestTarget target, final List<InternetAddress> recipients) {
-                actualRecipients.addAll(recipients);
+            protected void onSubmit(final AjaxRequestTarget target, final List<InternetAddress[]> recipients) {
+                actualRecipients.addAll(Collections.flattenArray(recipients));
             }
 
         };
@@ -53,6 +54,6 @@ public class SelectRecipientPanelTest extends AbstractRMTWicketMockitoTests {
 
         wicketTester.clickLink("submitButton");
         // order of selected choices is not guaranteed to be same as in html-markup
-        assertEquals(actualRecipients, new HashSet<InternetAddress>(Arrays.asList(ia1, ia2)));
+        assertEquals(actualRecipients, new HashSet<InternetAddress>(Collections.flattenArray(Arrays.asList(ia1, ia2))));
     }
 }

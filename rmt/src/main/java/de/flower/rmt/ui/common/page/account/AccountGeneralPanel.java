@@ -39,5 +39,7 @@ public class AccountGeneralPanel extends BasePanel {
         TextFieldPanel email = new TextFieldPanel("email");
         form.add(email);
         email.addValidator(new FormComponentBeanValidator(User.Validation.IEmailUnique.class));
+        TextFieldPanel secondEmail = new TextFieldPanel("secondEmail");
+        form.add(secondEmail);
     }
 }

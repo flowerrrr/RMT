@@ -58,7 +58,7 @@ public class RecipientListPanel extends BasePanel<List<InternetAddress>> {
                 SelectRecipientPanel content = new SelectRecipientPanel(getModel(), getInvitationListModel(getModel())) {
 
                     @Override
-                    protected void onSubmit(final AjaxRequestTarget target, final List<InternetAddress> recipients) {
+                    protected void onSubmit(final AjaxRequestTarget target, final List<InternetAddress[]> recipients) {
                         updateList(target, recipients);
                         target.add(listContainer);
                     }
@@ -78,10 +78,14 @@ public class RecipientListPanel extends BasePanel<List<InternetAddress>> {
         });
     }
 
-    private void updateList(AjaxRequestTarget target, List<InternetAddress> recipients) {
+    /**
+     * @param target
+     * @param recipients array of addresses (user might have two email addresses)
+     */
+    private void updateList(AjaxRequestTarget target, List<InternetAddress[]> recipients) {
         boolean changed = false;
         IModel<List<InternetAddress>> model = getModel();
-        for (InternetAddress ia : recipients) {
+        for (InternetAddress ia : Collections.flattenArray(recipients)) {
             if (!model.getObject().contains(ia)) {
                 model.getObject().add(ia);
                 changed = true;
@@ -92,13 +96,13 @@ public class RecipientListPanel extends BasePanel<List<InternetAddress>> {
         }
     }
 
-    private List<InternetAddress> convert(List<Invitation> invitations) {
-        return Collections.convert(invitations, new Collections.IElementConverter<Invitation, InternetAddress>() {
+    private List<InternetAddress[]> convert(List<Invitation> invitations) {
+        return Collections.convert(invitations, new Collections.IElementConverter<Invitation, InternetAddress[]>() {
             @Override
-            public InternetAddress convert(final Invitation element) {
-                return element.getInternetAddress();
+            public InternetAddress[] convert(final Invitation element) {
+                return element.getInternetAddresses();
             }
-        }) ;
+        });
     }
 
     protected IModel<List<Invitation>> getInvitationListModel(final IModel<Event> model) {
@@ -110,10 +114,9 @@ public class RecipientListPanel extends BasePanel<List<InternetAddress>> {
         };
     }
 
-
-
     /**
      * Called whenever the selection changes.
+     *
      * @param target
      */
     protected void onChange(AjaxRequestTarget target) {

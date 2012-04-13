@@ -5,10 +5,12 @@ import org.hibernate.annotations.Index;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
+import javax.mail.internet.InternetAddress;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.validation.groups.Default;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +54,13 @@ public class User extends AbstractClubRelatedEntity {
     @Column(name = "username")
     @Index(name = "ix_username")
     private String email;
+
+    /**
+     * On popular demand users can add second email address for home and work-emails.
+     */
+    @Size(max = 80)
+    @Email(message = "{validation.email.valid}")
+    private String secondEmail;
 
     /**
      * Encrypted password.
@@ -122,6 +131,14 @@ public class User extends AbstractClubRelatedEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getSecondEmail() {
+        return secondEmail;
+    }
+
+    public void setSecondEmail(final String secondEmail) {
+        this.secondEmail = secondEmail;
     }
 
     public String getUsername() {
@@ -207,6 +224,22 @@ public class User extends AbstractClubRelatedEntity {
             }
         }
         return null;
+    }
+
+    public InternetAddress[] getInternetAddresses() {
+        if (secondEmail == null) {
+            return new InternetAddress[]{newInternetAddress(email, fullname)};
+        } else {
+            return new InternetAddress[]{newInternetAddress(email, fullname), newInternetAddress(secondEmail, fullname)};
+        }
+    }
+
+    public static InternetAddress newInternetAddress(String email, String name) {
+        try {
+            return new InternetAddress(email, name);
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public enum Status {

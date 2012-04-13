@@ -8,7 +8,6 @@ import javax.mail.internet.InternetAddress;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 /**
@@ -151,11 +150,10 @@ public class Invitation extends AbstractBaseEntity {
         return user != null;
     }
 
-    public InternetAddress getInternetAddress() {
-        try {
-            return new InternetAddress(getEmail(), getName());
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
+    public InternetAddress[] getInternetAddresses() {
+        if (user == null) {
+            throw new IllegalStateException("User required to lookup internet addresses.");
         }
+        return user.getInternetAddresses();
     }
 }

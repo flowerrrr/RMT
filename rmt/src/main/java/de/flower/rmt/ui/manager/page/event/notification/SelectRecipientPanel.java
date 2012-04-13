@@ -23,7 +23,7 @@ import java.util.List;
  */
 public abstract class SelectRecipientPanel extends ModalPanel {
 
-    private List<InternetAddress> recipients = new ArrayList<InternetAddress>();
+    private List<InternetAddress[]> recipients = new ArrayList<InternetAddress[]>();
 
     public SelectRecipientPanel(final IModel<Event> model, IModel<List<Invitation>> invitationListModel) {
         super();
@@ -36,7 +36,7 @@ public abstract class SelectRecipientPanel extends ModalPanel {
 
         // list of invitees
 
-        final CheckGroup<InternetAddress> group = new CheckGroup<InternetAddress>("group", recipients);
+        final CheckGroup<InternetAddress[]> group = new CheckGroup<InternetAddress[]>("group", recipients);
         form.add(group);
         final WebMarkupContainer listContainer = new WebMarkupContainer("listContainer");
         listContainer.setOutputMarkupId(true);
@@ -59,21 +59,21 @@ public abstract class SelectRecipientPanel extends ModalPanel {
         return true;
     }
 
-    protected abstract void onSubmit(final AjaxRequestTarget target, final List<InternetAddress> recipients);
+    protected abstract void onSubmit(final AjaxRequestTarget target, final List<InternetAddress[]> recipients);
 
-    private static class CheckModel extends AbstractWrappingModel<InternetAddress, Invitation> {
+    private static class CheckModel extends AbstractWrappingModel<InternetAddress[], Invitation> {
 
         public CheckModel(final IModel<Invitation> wrappedModel) {
             super(wrappedModel);
         }
 
         @Override
-        public InternetAddress getObject() {
-            return getWrappedModelObject().getInternetAddress();
+        public InternetAddress[] getObject() {
+            return getWrappedModelObject().getInternetAddresses();
         }
 
         @Override
-        public void setObject(final InternetAddress object) {
+        public void setObject(final InternetAddress[] object) {
             throw new UnsupportedOperationException();
         }
     }
