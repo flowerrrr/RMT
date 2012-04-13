@@ -19,11 +19,12 @@ Anstoß: $kickoffTime
 #end
 Gegner: $opponent
 #end
-#set ($venue = "<noch nicht festgelegt>")
 #if ($event.getVenue())
 #set ($venue = $event.getVenue().getName())
+Ort: $venue ($directionsLink)
+#else
+Ort: <noch nicht festgelegt>
 #end
-Ort: $venue
 #if ($isSoccerEvent)
 #if (!$event.getUniform())
 #set ($uniform = "<nicht festgelegt>")

@@ -54,6 +54,7 @@ public class AjaxSlideTogglePanel extends Panel {
             @Override
             public void onClose(final AjaxRequestTarget target) {
                 toggleBehavior.hide(target);
+                target.add(toggleButton);
             }
         });
         wrappedPanel.add(toggleBehavior);

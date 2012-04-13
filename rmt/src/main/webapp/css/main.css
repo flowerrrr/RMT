@@ -178,18 +178,14 @@ a.no-hover:hover {
 a.btn-link:after {
     // right arrow
     content: '\00A0 \2192';
-    float: right;
+    // float: right;  // causes issues in chrome
 }
 
-a.btn-link-2:after {
-    // right arrow
-    content: '\00A0 \2192';
-}
 
 a.btn-link-external:after {
     // right double arrow
     content: '\00A0 \21D2';
-    float: right;
+    // float: right;
 }
 
 /*************************************************************************

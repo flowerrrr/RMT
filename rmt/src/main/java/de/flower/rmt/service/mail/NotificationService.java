@@ -5,6 +5,7 @@ import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.*;
 import de.flower.rmt.model.type.Notification;
 import de.flower.rmt.service.IEventManager;
+import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.util.Dates;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.StringResourceModel;
@@ -61,6 +62,9 @@ public class NotificationService implements INotificationService {
         model.put("eventTypeMatch", EventType.Match);
         model.put("eventLink", eventLink);
         model.put("isSoccerEvent", EventType.isSoccerEvent(event));
+        if (event.getVenue() != null) {
+            model.put("directionsLink", Links.getDirectionsLink(event.getVenue()));
+        }
         if (EventType.isSoccerEvent(event)) {
             AbstractSoccerEvent soccerEvent = (AbstractSoccerEvent) event;
             model.put("kickoffTime", Dates.formatTimeShort(soccerEvent.getKickoff()));

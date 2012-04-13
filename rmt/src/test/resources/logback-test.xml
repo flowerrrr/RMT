@@ -22,7 +22,7 @@
     <logger name="org.hibernate.cfg" level="WARN"/>
     <logger name="org.hibernate.SQL" level="DEBUG"/>
     <!-- set to TRACE to see sql parameter values -->
-    <logger name="org.hibernate.type" level="TRACE"/>
+    <logger name="org.hibernate.type" level="DEBUG"/>
     <logger name="de.flower.rmt.model.type" level="TRACE" />
     <logger name="org.hibernate" level="INFO"/>
     <logger name="org.hibernate.tool.hbm2ddl" level="DEBUG" />

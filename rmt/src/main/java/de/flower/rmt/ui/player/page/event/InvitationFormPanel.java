@@ -19,7 +19,8 @@ import org.apache.wicket.model.Model;
  */
 public abstract class InvitationFormPanel extends BasePanel {
 
-    public InvitationFormPanel(final IModel<Invitation> model) {
+    public InvitationFormPanel(String id, final IModel<Invitation> model) {
+        super(id, model);
 
         EntityForm<Invitation> form = new EntityForm<Invitation>("form", model) {
 

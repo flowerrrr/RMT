@@ -23,7 +23,7 @@ public class InvitationFormPanelTest extends AbstractWicketUnitTests {
     private static class InvitationFormTestPanel extends InvitationFormPanel {
 
         public InvitationFormTestPanel(final IModel<Invitation> model) {
-            super(model);
+            super("panel", model);
         }
 
         @Override
