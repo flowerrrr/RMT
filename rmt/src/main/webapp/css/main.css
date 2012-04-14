@@ -157,11 +157,6 @@ span > em {
     right: 0;
 }
 
-// TODO replace with .pull-right
-.float-right {
-    float: right;
-}
-
 .align-right, td.align-right {
     text-align: right;
 }
