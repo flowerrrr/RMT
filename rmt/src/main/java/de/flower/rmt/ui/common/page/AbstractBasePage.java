@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.common.page;
 
-import de.flower.common.ui.modal.ModalDialogWindow;
+import de.flower.common.ui.modal.ModalDialogWindowPanel;
 import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.service.security.UserDetailsBean;
 import de.flower.rmt.ui.app.Resource;
@@ -33,8 +33,8 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
     public AbstractBasePage(IModel<?> model) {
         super(model);
 
-        ModalDialogWindow modalWindow = new ModalDialogWindow("modalWindow");
-        add(modalWindow);
+        ModalDialogWindowPanel modalDialogWindowPanel = new ModalDialogWindowPanel();
+        add(modalDialogWindowPanel);
     }
 
     @Override

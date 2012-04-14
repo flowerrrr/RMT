@@ -29,6 +29,7 @@ public class ModalDialogWindow extends ModalWindow {
      */
     public ModalDialogWindow(final String id) {
         super(id);
+
         setWindowClosedCallback(null); // no idea why it is enabled by default in wicket
         setCssClassName(Css.MODAL);
         // the next lines will cause javascript errors in IE 8. statements rendered before jquery link is output.
