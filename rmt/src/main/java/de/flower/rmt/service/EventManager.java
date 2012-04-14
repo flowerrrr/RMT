@@ -70,11 +70,6 @@ public class EventManager extends AbstractService implements IEventManager {
         Event entity = eventRepo.findOne(and(eq(Event_.id, id), fetch));
         Check.notNull(entity, "No event found");
         assertClub(entity);
-        // for some reason i don't know the fetching of surfaceList works unreliable.
-        // sometimes the association is initialized, sometimes not. very strange.
-//        if (ArrayUtils.contains(attributes, AbstractSoccerEvent_.surfaceList)) {
-//            ((AbstractSoccerEvent) entity).getSurfaceList().isEmpty();
-//        }
         return entity;
     }
 
@@ -115,6 +110,7 @@ public class EventManager extends AbstractService implements IEventManager {
     public Event newInstance(EventType eventType) {
         Check.notNull(eventType);
         Event event = eventType.newInstance(getClub());
+        event.setCreatedBy(securityService.getUser());
         return event;
     }
 

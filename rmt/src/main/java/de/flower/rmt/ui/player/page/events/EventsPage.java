@@ -24,6 +24,7 @@ public class EventsPage extends PlayerBasePage {
 
         final UserModel userModel = new UserModel(getUserDetails().getUser());
         addMainPanel(new EventListPanel(userModel, getUpcomingEventList(userModel)));
+        // addSecondaryPanel(new FacebookPanel());
     }
 
     private IModel<List<Event>> getUpcomingEventList(final UserModel userModel) {

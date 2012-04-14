@@ -63,6 +63,9 @@ public class Event extends AbstractClubRelatedEntity {
     @Column
     private Boolean invitationSent;
 
+    @ManyToOne
+    private User createdBy;
+
     @OneToMany(mappedBy = "event", cascade = CascadeType.REMOVE)
     private List<Invitation> invitations = new ArrayList<Invitation>();
 
@@ -159,6 +162,14 @@ public class Event extends AbstractClubRelatedEntity {
 
     public void setInvitations(final List<Invitation> invitations) {
         this.invitations = invitations;
+    }
+
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(final User createdBy) {
+        this.createdBy = createdBy;
     }
 
     public EventType getEventType() {

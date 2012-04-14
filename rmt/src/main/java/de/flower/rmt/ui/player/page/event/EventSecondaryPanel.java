@@ -61,6 +61,8 @@ public class EventSecondaryPanel extends BasePanel {
         add(new EventDetailsPanel(model, View.PLAYER));
 
         add(Links.mailLink("allMailLink", getAllEmailAddresses(model.getObject()), null));
+
+        add(Links.mailLink("managerMailLink", getManagerEmailAddress(model.getObject()), null));
     }
 
     private Panel createEventSelectPanel(final IModel<Event> model) {
@@ -97,6 +99,12 @@ public class EventSecondaryPanel extends BasePanel {
                 return ia.toString();
             }
         });
-        return StringUtils.join(stringList, ";");
+        // outlook likes ';', iphone mail client prefers ','. but according to most sources ';' is correct when used in mailto.
+        // TODO (flowerrrr - 14.04.12) could try to detect user agent
+        return StringUtils.join(stringList, "; ");
+    }
+
+    private String getManagerEmailAddress(final Event event) {
+        return event.getCreatedBy().getEmail();
     }
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+</wicket:head>
+<body>
+
+<wicket:panel>
+
+    <div id="fb-root"></div>
+
+    <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fflower.de%2Fdas-tool&amp;send=false&amp;layout=standard&amp;width=200&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font&amp;height=80"
+            scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:80px;"
+            allowTransparency="true"></iframe>
+
+
+    <div class="fb-comments" data-href="http://flower.de/das-tool" data-num-posts="3" data-width="200"></div>
+
+</wicket:panel>
+
+
+</body>
+</html>
