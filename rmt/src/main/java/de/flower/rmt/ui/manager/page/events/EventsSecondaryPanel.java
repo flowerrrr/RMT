@@ -6,13 +6,8 @@ import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.manager.page.event.EventPage;
 import de.flower.rmt.ui.model.EventModel;
-import org.apache.wicket.markup.html.form.DropDownChoice;
-import org.apache.wicket.markup.html.form.IChoiceRenderer;
-import org.apache.wicket.model.Model;
-import org.apache.wicket.model.ResourceModel;
+import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-
-import java.util.Arrays;
 
 /**
  * @author flowerrrr
@@ -24,30 +19,13 @@ public class EventsSecondaryPanel extends BasePanel {
 
     public EventsSecondaryPanel() {
 
-        IChoiceRenderer<EventType> renderer = new IChoiceRenderer<EventType>() {
-
+        add(new EventTypeSelectPanel() {
             @Override
-            public Object getDisplayValue(final EventType object) {
-                return new ResourceModel(object.getResourceKey()).getObject();
-            }
-
-            @Override
-            public String getIdValue(final EventType object, final int index) {
-                return "" + index;
-            }
-        };
-        DropDownChoice<EventType> eventTypeSelect = new DropDownChoice<EventType>("select", new Model(), Arrays.asList(EventType.values()), renderer) {
-            @Override
-            protected boolean wantOnSelectionChangedNotifications() {
-                return true;
-            }
-
-            @Override
-            protected void onSelectionChanged(final EventType eventType) {
+            public void onSelect(final EventType eventType, final AjaxRequestTarget target) {
                 Event event = eventManager.newInstance(eventType);
                 setResponsePage(new EventPage(new EventModel(event)));
             }
-        };
-        add(eventTypeSelect);
-    }
+        });
+
+     }
 }

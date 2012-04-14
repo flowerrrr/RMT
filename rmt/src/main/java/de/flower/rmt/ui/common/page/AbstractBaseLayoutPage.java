@@ -3,8 +3,11 @@ package de.flower.rmt.ui.common.page;
 import de.flower.common.ui.feedback.AlertMessageFeedbackPanel;
 import de.flower.common.ui.markup.html.panel.WrappingPanel;
 import de.flower.rmt.ui.app.Links;
+import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.common.panel.feedback.PasswordChangeRequiredMessage;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
@@ -25,6 +28,8 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
 
     private Label subheading;
 
+    WebMarkupContainer container;
+
     public AbstractBaseLayoutPage() {
         this(null);
     }
@@ -32,10 +37,14 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
     public AbstractBaseLayoutPage(final IModel<?> model) {
         super(model);
 
-        add(new AlertMessageFeedbackPanel("alertMessagesPanel"));
+        container = new WebMarkupContainer("container");
+        add(container);
+        container.add(AttributeModifier.append("class", BasePanel.getCssClass(getClass())));
 
-        add(heading = new Label("heading", Model.of(getClass().getSimpleName())));
-        add(subheading = new Label("subheading", Model.of("")));
+        container.add(new AlertMessageFeedbackPanel("alertMessagesPanel"));
+
+        container.add(heading = new Label("heading", Model.of(getClass().getSimpleName())));
+        container.add(subheading = new Label("subheading", Model.of("")));
 
         add(Links.aboutLink("aboutLink"));
         add(Links.adminMailLink("adminLink", false));
@@ -83,12 +92,12 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
     }
 
     protected void addMainPanel(Component... components) {
-        add(new WrappingPanel("mainPanel", components));
+        container.add(new WrappingPanel("mainPanel", components));
     }
 
     protected void addSecondaryPanel(Component... components) {
         secondaryPanel = new WrappingPanel("secondaryPanel", components);
-        add(secondaryPanel);
+        container.add(secondaryPanel);
     }
 
     public Panel getSecondaryPanel() {
@@ -98,5 +107,4 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
     protected boolean showAlertMessages() {
         return true;
     }
-
 }

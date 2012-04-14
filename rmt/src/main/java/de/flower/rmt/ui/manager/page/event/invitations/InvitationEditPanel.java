@@ -60,7 +60,8 @@ public class InvitationEditPanel extends ModalPanel<Invitation> {
             return false;
         } else {
             // save invitation and update invitationlistpanel
-            invitationManager.save(form.getModelObject());
+            Invitation invitation = form.getModelObject();
+            invitationManager.save(invitation);
             AjaxEventSender.entityEvent(this, Invitation.class);
             return true;
         }

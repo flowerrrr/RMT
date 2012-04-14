@@ -4,12 +4,17 @@
 <body>
 <wicket:panel>
 
-    <wicket:message key="manager.event.selecttype" />
-    <ul>
-        <li wicket:id="eventTypes">
-            <a wicket:id="typeLink">[Event type]</a>
-        </li>
-    </ul>
+    <div class="btn-group">
+        <button data-toggle="dropdown" class="btn dropdown-toggle">
+            <wicket:message key="manager.events.new.event.heading"/>
+            <span class="caret pull-right"></span></button>
+        <ul class="dropdown-menu pull-right">
+            <li wicket:id="eventTypes">
+                <a wicket:id="typeLink">[Event type]</a>
+            </li>
+        </ul>
+    </div>
+
 
 </wicket:panel>
 </body>
