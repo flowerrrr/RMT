@@ -4,9 +4,14 @@ import de.flower.common.ui.modal.ModalDialogWindow;
 import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.service.security.UserDetailsBean;
 import de.flower.rmt.ui.app.Resource;
+import de.flower.rmt.ui.common.panel.BasePanel;
 import de.flower.rmt.ui.model.UserModel;
+import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.Component;
+import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.ajax.IAjaxIndicatorAware;
 import org.apache.wicket.markup.html.IHeaderResponse;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -23,14 +28,28 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
     @SpringBean
     private ISecurityService securityService;
 
+    private WebMarkupContainer pageContainer;
+
     public AbstractBasePage() {
         this(null);
     }
 
     public AbstractBasePage(IModel<?> model) {
         super(model);
+
+        super.add(pageContainer = new WebMarkupContainer("pageContainer") {
+            {
+                add(AttributeModifier.append("class", BasePanel.getCssClass(AbstractBasePage.this.getClass())));
+            }
+        });
+
         ModalDialogWindow modalWindow = new ModalDialogWindow("modalWindow");
-        add(modalWindow);
+        super.add(modalWindow);
+    }
+
+    @Override
+    public MarkupContainer add(final Component... childs) {
+        return pageContainer.add(childs);
     }
 
     @Override

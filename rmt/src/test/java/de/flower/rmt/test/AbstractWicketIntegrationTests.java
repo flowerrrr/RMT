@@ -43,7 +43,7 @@ public abstract class AbstractWicketIntegrationTests extends AbstractIntegration
     private void createTester(ApplicationContext ctx) {
         WebApplication webApp = createWebApp(ctx);
         wicketTester = new WicketTester(webApp);
-        // TODO (flowerrrr - 02.04.12) redundant information! use settings from tested app
+        // TODO (flowerrrr - 02.04.12) redundant data! use settings from tested app
         wicketTester.getLoggingSerializerFilter().addInclusion("\"de\\.flower\\.rmt\\.model\\.[^-]*?\"");
         wicketTester.getLoggingSerializerFilter().addExclusion(RSVPStatus.class.getName());
         wicketTester.getLoggingSerializerFilter().addExclusion(Password.class.getName());

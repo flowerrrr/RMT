@@ -37,6 +37,7 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
         add(heading = new Label("heading", Model.of(getClass().getSimpleName())));
         add(subheading = new Label("subheading", Model.of("")));
 
+        add(Links.aboutLink("aboutLink"));
         add(Links.adminMailLink("adminLink", false));
     }
 

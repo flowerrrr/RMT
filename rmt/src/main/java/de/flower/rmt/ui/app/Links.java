@@ -1,6 +1,7 @@
 package de.flower.rmt.ui.app;
 
 import de.flower.rmt.model.Venue;
+import de.flower.rmt.ui.common.page.about.AboutPage;
 import de.flower.rmt.ui.player.page.event.EventPage;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
@@ -51,7 +52,7 @@ public class Links {
     }
 
     public static ExternalLink adminMailLink(String id, boolean label) {
-        String email = RMTApplication.getInstance().getAdminEmail();
+        String email = RMTApplication.get().getAdminEmail();
         ExternalLink link = mailLink(id, email, label ? email : null);
         return link;
     }
@@ -69,6 +70,10 @@ public class Links {
         String lat = format.format(venue.getLatLng().getLat());
         String lng = format.format(venue.getLatLng().getLng());
         return "http://maps.google.com/maps?daddr=" + lat + "," + lng;
+    }
+
+    public static Link aboutLink(final String id) {
+        return new BookmarkablePageLink(id, AboutPage.class);
     }
 
     public static class HistoryBackLink extends ExternalLink {

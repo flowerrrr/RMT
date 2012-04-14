@@ -1,15 +1,9 @@
 package de.flower.rmt.ui.app;
 
 import de.flower.common.util.geo.LatLng;
-import de.flower.rmt.service.security.ISecurityService;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.protocol.http.WebSession;
 import org.apache.wicket.request.Request;
-import org.apache.wicket.spring.injection.annot.SpringBean;
-
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author flowerrrr
@@ -17,12 +11,6 @@ import java.util.Map;
 public class RMTSession extends WebSession {
 
     private LatLng latLng;
-
-    // TODO (flowerrrr - 16.12.11) remove if alertMessagePanel does not use it.
-    private Map<String, Serializable> sessionMap = new HashMap<String, Serializable>();
-
-    @SpringBean
-    private ISecurityService securityService;
 
     public RMTSession(Request request) {
         super(request);
@@ -49,7 +37,4 @@ public class RMTSession extends WebSession {
         return latLng;
     }
 
-    public Map<String, Serializable> getSessionMap() {
-        return sessionMap;
-    }
 }

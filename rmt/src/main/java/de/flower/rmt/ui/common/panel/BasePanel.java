@@ -83,14 +83,18 @@ public class BasePanel<T> extends GenericPanel<T> {
     }
 
     private String getCssClass() {
-        return Strings.camelCaseToHyphen(getClassName()).toLowerCase();
+        return getCssClass(getClass());
     }
 
-    private String getClassName() {
-        if (Clazz.isAnonymousInnerClass(getClass())) {
-            return Clazz.getSuperClassName(getClass());
+    public static String getCssClass(Class<?> clazz) {
+        return Strings.camelCaseToHyphen(getClassName(clazz)).toLowerCase();
+    }
+
+    private static String getClassName(Class<?> clazz) {
+        if (Clazz.isAnonymousInnerClass(clazz)) {
+            return Clazz.getSuperClassName(clazz);
         } else {
-            return getClass().getSimpleName();
+            return clazz.getSimpleName();
         }
     }
 

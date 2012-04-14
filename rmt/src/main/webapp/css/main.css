@@ -138,8 +138,21 @@ span > em {
     width: auto;
 }
 
-.secondary a {
+.secondary a, .page-footer a{
     color: @grayDark;
+}
+
+/*************************************************************************
+    alternate layout without secondary panel
+**************************************************************************/
+.about-page {
+    .main {
+        width: 820px;
+        border-right: 0px;
+    }
+    .secondary {
+        display: none;
+    }
 }
 
 
@@ -408,6 +421,11 @@ div.form-horizontal {
 **************************************************************************/
 .dropdown-icon {
     padding-left: 5px;
+}
+
+.brand a {
+    color: #FFFFFF;
+    text-decoration: none;
 }
 
 // position beta span below brand
@@ -813,4 +831,22 @@ td.rsvpstatus {
 
 #venue-tabs {
     float: none;  /* needed to make map work inside tabs. */
+}
+
+/*************************************************************************
+    About page
+**************************************************************************/
+.about-panel {
+    .items > li {
+        margin-bottom: 10px;
+    }
+    .items > li > div {
+        padding-left: 20px;
+    }
+    .items ul {
+        list-style: square;
+        margin-left: 15px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
 }

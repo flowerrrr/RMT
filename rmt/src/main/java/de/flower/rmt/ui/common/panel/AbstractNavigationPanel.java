@@ -1,6 +1,7 @@
 package de.flower.rmt.ui.common.panel;
 
 import de.flower.rmt.service.security.UserDetailsBean;
+import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.common.page.INavigationPanelAware;
 import de.flower.rmt.ui.common.page.account.AccountPage;
@@ -21,6 +22,8 @@ public class AbstractNavigationPanel extends BasePanel {
 
     public AbstractNavigationPanel(View view) {
         super("navigationPanel");
+
+        add(Links.aboutLink("about"));
 
         add(new BookmarkablePageLink("account", AccountPage.class));
         add(createSwitchViewLink("switchView", view));

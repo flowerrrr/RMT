@@ -7,6 +7,7 @@ import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.model.type.Notification;
 import de.flower.rmt.model.type.Password;
+import de.flower.rmt.ui.common.page.about.AboutPage;
 import de.flower.rmt.ui.common.page.account.AccountPage;
 import de.flower.rmt.ui.common.page.error.InternalError500Page;
 import de.flower.rmt.ui.common.page.error.PageNotFound404Page;
@@ -42,8 +43,8 @@ public class RMTApplication extends WebApplication {
     @Value("${admin.address}")
     private String adminEmail;
 
-    public static RMTApplication getInstance() {
-        return (RMTApplication) get();
+    public static RMTApplication get() {
+        return (RMTApplication) WebApplication.get();
     }
 
     @Override
@@ -102,10 +103,12 @@ public class RMTApplication extends WebApplication {
         mountPage("player/venues", de.flower.rmt.ui.player.page.venues.VenuesPage.class);
         mountPage("common/account", AccountPage.class);
         mountPage("login", LoginPage.class);
+        mountPage("about", AboutPage.class);
     }
 
     private void initErrorPages() {
         mountPage("error404", PageNotFound404Page.class);
+        mountPage("error500", InternalError500Page.class);
 
         getRequestCycleListeners().add(new ExceptionRequestCycleListener());
         getApplicationSettings().setInternalErrorPage(InternalError500Page.class);
