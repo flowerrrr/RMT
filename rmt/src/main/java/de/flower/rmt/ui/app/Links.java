@@ -1,8 +1,8 @@
 package de.flower.rmt.ui.app;
 
 import de.flower.rmt.model.Venue;
-import de.flower.rmt.ui.common.page.about.AboutPage;
-import de.flower.rmt.ui.player.page.event.EventPage;
+import de.flower.rmt.ui.page.about.AboutPage;
+import de.flower.rmt.ui.page.event.player.EventPage;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
@@ -27,7 +27,7 @@ public class Links {
     }
 
     private static CharSequence urlForEvent(Long eventId) {
-        return RequestCycle.get().urlFor(de.flower.rmt.ui.player.page.event.EventPage.class, new PageParameters().set(de.flower.rmt.ui.player.page.event.EventPage.PARAM_EVENTID, eventId));
+        return RequestCycle.get().urlFor(de.flower.rmt.ui.page.event.player.EventPage.class, new PageParameters().set(de.flower.rmt.ui.page.event.player.EventPage.PARAM_EVENTID, eventId));
     }
 
     public static String deepLinkEvent(Long eventId) {

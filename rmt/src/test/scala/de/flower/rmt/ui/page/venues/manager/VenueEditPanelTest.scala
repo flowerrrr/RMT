@@ -1,0 +1,35 @@
+package de.flower.rmt.ui.page.venues.manager
+
+import de.flower.rmt.test.AbstractWicketIntegrationTests
+import org.testng.annotations.Test
+import de.flower.rmt.ui.model.VenueModel
+/**
+ *
+ * @author flowerrrr
+ */
+
+class VenueEditPanelTest extends AbstractWicketIntegrationTests {
+
+    @Test
+    def testRender() {
+        wicketTester.startComponentInPage(new VenueEditPanel(new VenueModel()))
+        wicketTester.dumpComponentWithPage()
+    }
+
+
+    @Test(enabled = false /* geocoding currently deactivated */)
+    def testGeocoding() {
+        val panel = new VenueEditPanel(new VenueModel())
+
+        wicketTester.startComponentInPage(panel)
+        wicketTester.dumpPage()
+        wicketTester.debugComponentTrees()
+        // input name and validate field
+        val field = wicketTester.getComponentFromLastRenderedPage("form:address")
+        wicketTester.newFormTester("form").setValue(field, "Werner-Heisenberg-Allee 25\n 80939 München")
+        wicketTester.clickLink("form:geocodeButton")
+        wicketTester.dumpPage()
+    }
+
+
+}

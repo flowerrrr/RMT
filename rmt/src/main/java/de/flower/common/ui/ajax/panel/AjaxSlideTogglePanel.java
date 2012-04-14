@@ -3,7 +3,7 @@ package de.flower.common.ui.ajax.panel;
 import de.flower.common.ui.ajax.behavior.AjaxSlideToggleBehavior;
 import de.flower.common.ui.ajax.markup.html.AjaxLink;
 import de.flower.common.util.Check;
-import de.flower.rmt.ui.common.panel.BasePanel;
+import de.flower.rmt.ui.panel.BasePanel;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.basic.Label;

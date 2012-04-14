@@ -1,6 +1,6 @@
 package de.flower.common.ui.ajax.markup.html.tab;
 
-import de.flower.rmt.ui.common.panel.BasePanel;
+import de.flower.rmt.ui.panel.BasePanel;
 import org.apache.wicket.Page;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.ajax.markup.html.tabs.AjaxTabbedPanel;

@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.app ;
 
-import de.flower.rmt.ui.manager.page.player.PlayerPage;
+import de.flower.rmt.ui.page.user.manager.PlayerPage;
 import org.apache.wicket.devutils.inspector.RenderPerformanceListener;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.springframework.beans.factory.annotation.Autowired;

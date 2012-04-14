@@ -1,9 +1,9 @@
 package de.flower.rmt.ui.app;
 
 import de.flower.rmt.model.Role;
-import de.flower.rmt.ui.common.page.login.LoginPage;
-import de.flower.rmt.ui.manager.ManagerHomePage;
-import de.flower.rmt.ui.player.page.events.EventsPage;
+import de.flower.rmt.ui.page.base.manager.ManagerHomePage;
+import de.flower.rmt.ui.page.events.player.EventsPage;
+import de.flower.rmt.ui.page.login.LoginPage;
 import org.apache.wicket.request.component.IRequestablePage;
 
 
