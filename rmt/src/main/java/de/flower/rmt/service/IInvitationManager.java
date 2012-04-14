@@ -42,7 +42,7 @@ public interface IInvitationManager {
 
     Invitation loadByEventAndUser(Event event, User user);
 
-    Invitation save(Invitation invitation);
+    void save(Invitation invitation);
 
     void delete(Long id);
 

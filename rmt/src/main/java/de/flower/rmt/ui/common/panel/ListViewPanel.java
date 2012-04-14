@@ -11,6 +11,8 @@ import org.apache.wicket.model.IModel;
 import java.util.List;
 
 /**
+ * Listview that displays listEmpty-message.
+ *
  * @author flowerrrr
  */
 public abstract class ListViewPanel<T extends IEntity> extends Border {

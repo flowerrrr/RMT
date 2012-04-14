@@ -27,7 +27,7 @@ public class AbstractNavigationPanel extends BasePanel {
 
         add(new BookmarkablePageLink("account", AccountPage.class));
         add(createSwitchViewLink("switchView", view));
-        add(new LogoutLink("logoutLink"));
+        add(Links.logoutLink("logoutLink"));
         add(new Label("user", getUserDetails().getUser().getFullname()));
 
         setRenderBodyOnly(true);

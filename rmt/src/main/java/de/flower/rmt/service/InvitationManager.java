@@ -43,6 +43,9 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     @Autowired
     private IUserManager userManager;
 
+    @Autowired
+    private IActivityManager activityManager;
+
     @Override
     public Invitation newInstance(final Event event, User user) {
         Check.notNull(event);
@@ -135,9 +138,10 @@ public class InvitationManager extends AbstractService implements IInvitationMan
 
     @Override
     @Transactional(readOnly = false)
-    public Invitation save(final Invitation invitation) {
+    public void save(final Invitation invitation) {
         validate(invitation);
-        if (!invitation.isNew()) {
+        boolean isNew = invitation.isNew();
+        if (!isNew) {
             // in case the status changes update the date of response.
             // used for early maybe-responder who later switch their status.
             // after status update the rank of an invitation is reset as if he has
@@ -149,8 +153,9 @@ public class InvitationManager extends AbstractService implements IInvitationMan
             if (invitation.getDate() == null) {
                 invitation.setDate(new Date());
             }
+            activityManager.onInvitationUpdated(invitation, origInvitation);
         }
-        return invitationRepo.save(invitation);
+        invitationRepo.save(invitation);
     }
 
     @Override

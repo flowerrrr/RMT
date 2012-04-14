@@ -11,6 +11,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
+ * Service used for quick response label.
+ * Could be removed and replaced by InvitationManager.
+ *
  * @author flowerrrr
  */
 @Service
@@ -36,7 +39,8 @@ public class ResponseManager extends AbstractService implements IResponseManager
         if (comment != null) {
             invitation.setComment(comment);
         }
-        return invitationManager.save(invitation);
+        invitationManager.save(invitation);
+        return invitation;
     }
 
     @Override

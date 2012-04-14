@@ -245,7 +245,7 @@ public class TestData {
             ((Match) event).setOpponent(opponentManager.loadById(1L));
         }
         eventManager.create(event, createInvitations);
-        return eventManager.loadById(event.getId(), Event_.team, Event_.invitations);
+        return eventManager.loadById(event.getId(), Event_.team/*, Event_.invitations - does not work because of subclassing issues */);
     }
 
     public Event createEvent() {

@@ -156,12 +156,16 @@ public class Event extends AbstractClubRelatedEntity {
         this.invitationSent = invitationSent;
     }
 
+    /**
+     * association might not be initialized after loading an event when query is build
+     * using Event_.invitations. This variable can have different values depending
+     * on startup behavior of app (based on Match, Tournament or Training).
+     *
+     * @return
+     */
+    @Deprecated
     public List<Invitation> getInvitations() {
         return invitations;
-    }
-
-    public void setInvitations(final List<Invitation> invitations) {
-        this.invitations = invitations;
     }
 
     public User getCreatedBy() {

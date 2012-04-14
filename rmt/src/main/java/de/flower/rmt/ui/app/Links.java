@@ -4,6 +4,7 @@ import de.flower.rmt.model.Venue;
 import de.flower.rmt.ui.common.page.about.AboutPage;
 import de.flower.rmt.ui.player.page.event.EventPage;
 import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.link.Link;
@@ -74,6 +75,10 @@ public class Links {
 
     public static Link aboutLink(final String id) {
         return new BookmarkablePageLink(id, AboutPage.class);
+    }
+
+    public static Component logoutLink(final String id) {
+        return new ExternalLink(id, "/j_spring_security_logout").setContextRelative(true);
     }
 
     public static class HistoryBackLink extends ExternalLink {

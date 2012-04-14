@@ -45,11 +45,16 @@ public class EventManager extends AbstractService implements IEventManager {
     @Autowired
     private IMailService mailService;
 
+    @Autowired
+    private IActivityManager activityManager;
+
     @Override
     @Transactional(readOnly = false)
     public void save(Event entity) {
         validate(entity);
+        boolean isNew = entity.isNew();
         eventRepo.save(entity);
+        activityManager.onCreateOrUpdate(entity, isNew);
     }
 
     @Override
@@ -132,6 +137,7 @@ public class EventManager extends AbstractService implements IEventManager {
         eventRepo.save(event);
         // update all invitations and mark them also with invitationSent = true (allows to later add invitations and send mails to new participants)
         invitationManager.markInvitationSent(event, notification.getAddressList());
+        activityManager.onInvitationMailSent(event);
     }
 
     /**

@@ -2,6 +2,7 @@ package de.flower.rmt.ui.player.page.events;
 
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IEventManager;
+import de.flower.rmt.ui.common.panel.ActivityFeedPanel;
 import de.flower.rmt.ui.model.UserModel;
 import de.flower.rmt.ui.player.NavigationPanel;
 import de.flower.rmt.ui.player.PlayerBasePage;
@@ -24,7 +25,7 @@ public class EventsPage extends PlayerBasePage {
 
         final UserModel userModel = new UserModel(getUserDetails().getUser());
         addMainPanel(new EventListPanel(userModel, getUpcomingEventList(userModel)));
-        // addSecondaryPanel(new FacebookPanel());
+        addSecondaryPanel(new ActivityFeedPanel());
     }
 
     private IModel<List<Event>> getUpcomingEventList(final UserModel userModel) {
