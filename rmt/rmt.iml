@@ -46,14 +46,6 @@
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
       </configuration>
     </facet>
-    <facet type="hibernate" name="Hibernate">
-      <configuration>
-        <datasource-map />
-      </configuration>
-    </facet>
-    <facet type="BeanValidation" name="Bean Validation">
-      <configuration />
-    </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
@@ -64,11 +56,10 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/generated" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/scala" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/database" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/aspectj" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/sandbox" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/tools" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/scala" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
     </content>
@@ -875,6 +866,19 @@
     <orderEntry type="module-library" exported="" scope="RUNTIME">
       <library>
         <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/cache/com.h2database/h2/jars/h2-1.3.160.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$USER_HOME$/.gradle/cache/com.h2database/h2/javadocs/h2-1.3.160-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/cache/com.h2database/h2/sources/h2-1.3.160-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="" scope="RUNTIME">
+      <library>
+        <CLASSES>
           <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-config/jars/spring-security-config-3.1.0.RELEASE.jar!/" />
         </CLASSES>
         <JAVADOC />
@@ -891,19 +895,6 @@
         <JAVADOC />
         <SOURCES>
           <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-test/sources/spring-test-3.1.0.RELEASE-sources.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="" scope="RUNTIME">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/com.h2database/h2/jars/h2-1.3.160.jar!/" />
-        </CLASSES>
-        <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/com.h2database/h2/javadocs/h2-1.3.160-javadoc.jar!/" />
-        </JAVADOC>
-        <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/com.h2database/h2/sources/h2-1.3.160-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>

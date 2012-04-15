@@ -16,5 +16,6 @@ public class EventPageTest extends AbstractWicketIntegrationTests {
         Event event = testData.createEventWithResponses();
         wicketTester.startPage(new EventPage(new EventModel(event)));
         wicketTester.dumpPage();
+        wicketTester.dumpComponentWithPage();
     }
 }
