@@ -11,6 +11,7 @@ import de.flower.rmt.ui.page.about.AboutPage;
 import de.flower.rmt.ui.page.account.AccountPage;
 import de.flower.rmt.ui.page.base.manager.ManagerHomePage;
 import de.flower.rmt.ui.page.base.player.PlayerHomePage;
+import de.flower.rmt.ui.page.error.AccessDenied403Page;
 import de.flower.rmt.ui.page.error.InternalError500Page;
 import de.flower.rmt.ui.page.error.PageNotFound404Page;
 import de.flower.rmt.ui.page.event.manager.EventPage;
@@ -108,11 +109,15 @@ public class RMTApplication extends WebApplication {
 
     private void initErrorPages() {
         mountPage("error404", PageNotFound404Page.class);
-        mountPage("error500", InternalError500Page.class);
 
+        mountPage("error500", InternalError500Page.class);
         getRequestCycleListeners().add(new ExceptionRequestCycleListener());
         getApplicationSettings().setInternalErrorPage(InternalError500Page.class);
         getExceptionSettings().setUnexpectedExceptionDisplay(IExceptionSettings.SHOW_INTERNAL_ERROR_PAGE);
+
+        // access denied is not handled by wicket. spring security will redirect request to this url
+        mountPage("error403", AccessDenied403Page.class);
+
     }
 
     @Override

@@ -1,6 +1,5 @@
 package de.flower.rmt.ui.page.base;
 
-import de.flower.rmt.ui.app.HomePageResolver;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.panel.AbstractNavigationPanel;
 import de.flower.rmt.ui.panel.BasePanel;
@@ -17,7 +16,7 @@ public class AnonymousNavigationPanel extends BasePanel {
 
         add(Links.aboutLink("about"));
 
-        add(AbstractNavigationPanel.createMenuItem(HOME, HomePageResolver.getHomePage(), null));
+        add(AbstractNavigationPanel.createMenuItem(HOME, Links.homePage("home"), null));
     }
 
 }

@@ -8,6 +8,7 @@ import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.page.base.player.NavigationPanel;
 import de.flower.rmt.ui.page.base.player.PlayerBasePage;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.http.flow.AbortWithHttpErrorCodeException;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -33,7 +34,9 @@ public class EventPage extends PlayerBasePage {
             Long eventId = params.get(PARAM_EVENTID).toLong();
             event = eventManager.loadByIdAndUser(eventId, getUserDetails().getUser());
         } catch (Exception e) {
-            log.error(e.toString(), e);
+            // TODO (flowerrrr - 15.04.12) log violating url
+            log.warn("EventPage accessed with invalid parameter: " + e.toString());
+            log.warn("Violating Request " + RequestCycle.get().getUrlRenderer().renderFullUrl(RequestCycle.get().getRequest().getUrl()));
             throw new AbortWithHttpErrorCodeException(404, "Invalid page parameter: " + e.getMessage());
         }
         init(new EventModel(event));

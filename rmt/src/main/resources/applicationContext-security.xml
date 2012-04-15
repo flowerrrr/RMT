@@ -20,6 +20,7 @@
         <security:intercept-url pattern="/player/**" access="ROLE_MANAGER,ROLE_PLAYER"/>
         <security:form-login login-page="/login" authentication-failure-url="/login?error=1"/>
         <security:logout logout-success-url="/"/>
+        <security:access-denied-handler error-page="/error403" />
     </security:http>
 
     <security:authentication-manager alias="authenticationManager">
