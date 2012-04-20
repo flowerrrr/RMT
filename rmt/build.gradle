@@ -3,6 +3,9 @@ apply plugin: 'scala'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
 
+// use jdk 1.7
+sourceCompatibility = "1.7"
+
 repositories {
     mavenCentral()
     mavenRepo name: "Spring Maven MILESTONE Repository", urls: ["http://maven.springframework.org/milestone"]
