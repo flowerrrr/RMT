@@ -237,10 +237,9 @@ a.btn-link-external:after {
 /*************************************************************************
    form field tweaking
 **************************************************************************/
-
-
 textarea {
     resize: vertical;
+    height: 150px; // increase default height
 }
 
 input[type="checkbox"] {
