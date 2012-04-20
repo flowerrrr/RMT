@@ -100,6 +100,7 @@ public class Specs {
         };
     }
 
+
     /**
      * @param joinAttribute
      * @param attribute
@@ -137,10 +138,6 @@ public class Specs {
                 return new BooleanStaticAssertionPredicate((CriteriaBuilderImpl) cb, true);
             }
         };
-    }
-
-    public static Specification and(Specification a, Specification b) {
-        return Specifications.where(a).and(b);
     }
 
     public static Specification not(Specification a) {

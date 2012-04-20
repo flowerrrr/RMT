@@ -5,6 +5,8 @@ import de.flower.rmt.model.AbstractClubRelatedEntity;
 import de.flower.rmt.model.Club;
 import de.flower.rmt.model.User;
 import de.flower.rmt.service.security.ISecurityService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +24,8 @@ import static de.flower.common.util.Check.*;
  */
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
 public abstract class AbstractService {
+
+    protected final Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
     protected ISecurityService securityService;

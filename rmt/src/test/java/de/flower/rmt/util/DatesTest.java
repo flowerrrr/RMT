@@ -23,6 +23,7 @@ public class DatesTest {
         assertEquals(Dates.formatDateTimeMedium(date), "06.05.2000 10:03:59");
         assertEquals(Dates.formatDateLong(date), "6. Mai 2000");
         assertEquals(Dates.formatDateMedium(date), "06.05.2000");
+        assertEquals(Dates.formatDateShort(date), "06.05.");
         assertEquals(Dates.formatTimeMedium(date), "10:03:59");
         assertEquals(Dates.formatTimeShort(date), "10:03");
         assertEquals(Dates.formatTimeShort(new LocalTime(3, 45)), "03:45");

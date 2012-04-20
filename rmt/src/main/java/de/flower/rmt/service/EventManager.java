@@ -72,7 +72,7 @@ public class EventManager extends AbstractService implements IEventManager {
     @Override
     public Event loadById(Long id, final Attribute... attributes) {
         Specification fetch = fetch(attributes);
-        Event entity = eventRepo.findOne(and(eq(Event_.id, id), fetch));
+        Event entity = eventRepo.findOne(where(eq(Event_.id, id)).and(fetch));
         Check.notNull(entity, "No event found");
         assertClub(entity);
         return entity;

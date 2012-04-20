@@ -3,13 +3,12 @@ package de.flower.rmt.test;
 import de.flower.common.util.geo.LatLng;
 import de.flower.rmt.model.*;
 import de.flower.rmt.model.event.*;
-import de.flower.rmt.repository.IClubRepo;
-import de.flower.rmt.repository.IEventRepo;
-import de.flower.rmt.repository.IPlayerRepo;
-import de.flower.rmt.repository.ITeamRepo;
+import de.flower.rmt.repository.*;
 import de.flower.rmt.service.*;
+import org.apache.commons.lang.math.RandomUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.Validate;
+import org.joda.time.DateTime;
 import org.joda.time.LocalTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Provides test data.
@@ -48,6 +48,9 @@ public class TestData {
     private IPlayerRepo playerRepo;
 
     @Autowired
+    private IActivityRepo activityRepo;
+
+    @Autowired
     private ITeamManager teamManager;
 
     @Autowired
@@ -70,6 +73,9 @@ public class TestData {
 
     @Autowired
     private IUserManager userManager;
+
+    @Autowired
+    private IActivityManager activityManager;
 
     private Random random = new Random();
 
@@ -313,5 +319,34 @@ public class TestData {
         j2.setShorts("red");
         j2.setSocks("gold");
         return Arrays.asList(j1, j2);
+    }
+
+    public List<Activity> newActivities(final int num) {
+        Club club = newClub();
+        List<Activity> list = new ArrayList<>();
+        for (int i = 0; i < num; i++) {
+            Activity entity = new Activity(club);
+            entity.setDate(new DateTime().minusMillis(RandomUtils.nextInt((int) TimeUnit.DAYS.toMillis(10))).toDate());
+            entity.setMessage("Some message " + RandomStringUtils.randomAscii(20));
+            list.add(entity);
+        }
+        // sort desc by date
+        Collections.sort(list, new Comparator<Activity>() {
+            @Override
+            public int compare(final Activity o1, final Activity o2) {
+                return (int) (o2.getDate().getTime() - o1.getDate().getTime());
+            }
+        });
+        return list;
+    }
+
+    public void createActivities(final int num) {
+        Club club = getClub();
+         for (int i = 0; i < num; i++) {
+             Activity entity = new Activity(club);
+             entity.setDate(new DateTime().minusMillis(RandomUtils.nextInt((int) TimeUnit.DAYS.toMillis(10))).toDate());
+             entity.setMessage("Some message " + RandomStringUtils.randomAscii(20));
+             activityRepo.save(entity);
+         }
     }
 }

@@ -5,6 +5,7 @@ import org.joda.time.DateTime;
 import org.joda.time.LocalTime;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -15,6 +16,8 @@ import java.util.Date;
 public class Dates {
 
     public static final String DATE_MEDIUM = "dd.MM.yyyy";
+
+    public static final String DATE_SHORT = "dd.MM.";
 
     public static String formatDateTimeMedium(final Date date) {
         return DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM).format(date);
@@ -30,6 +33,10 @@ public class Dates {
 
     public static String formatDateLong(final Date date) {
         return DateFormat.getDateInstance(DateFormat.LONG).format(date);
+    }
+
+    public static String formatDateShort(final Date date) {
+        return new SimpleDateFormat(DATE_SHORT).format(date);
     }
 
     public static String formatDateMedium(final Date date) {

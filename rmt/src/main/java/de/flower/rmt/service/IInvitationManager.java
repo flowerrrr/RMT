@@ -19,10 +19,10 @@ public interface IInvitationManager {
 
     Invitation newInstance(Event event, String guestName);
 
-    Invitation loadById(Long id);
+    Invitation loadById(Long id, Attribute... attributes);
 
     @Deprecated
-    List<Invitation> findAllByEvent(Event event, final Attribute... attributes);
+    List<Invitation> findAllByEvent(Event event, Attribute... attributes);
 
     List<Invitation> findAllByEventSortedByName(Event event);
 

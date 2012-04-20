@@ -45,6 +45,7 @@ public class Role extends AbstractBaseEntity {
 
     @NotNull
     @Column
+    @Index(name = "ix_authority")
     private String authority;
 
     @NotNull

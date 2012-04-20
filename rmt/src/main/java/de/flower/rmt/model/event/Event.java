@@ -1,6 +1,7 @@
 package de.flower.rmt.model.event;
 
 import de.flower.rmt.model.*;
+import org.hibernate.annotations.Index;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
 import org.joda.time.DateTime;
@@ -28,6 +29,7 @@ public class Event extends AbstractClubRelatedEntity {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
+    @Index(name = "ix_team")
     private Team team;
 
     /**
@@ -43,6 +45,7 @@ public class Event extends AbstractClubRelatedEntity {
      */
     @Column
     @NotNull
+    @Index(name = "ix_date")
     private Date date;
 
     @Column
@@ -61,6 +64,7 @@ public class Event extends AbstractClubRelatedEntity {
 
     @NotNull
     @Column
+    @Index(name = "ix_invitationsent")
     private Boolean invitationSent;
 
     @ManyToOne

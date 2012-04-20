@@ -127,7 +127,6 @@ span > em {
     border-bottom: 0px;
 }
 
-
 .secondary .btn {
     width: 200px;
 }
@@ -144,6 +143,24 @@ span > em {
     width: auto;
 }
 
+/*************************************************************************
+    reset wicket styling of modal window and use twitter styles instead
+**************************************************************************/
+.w_top_1, .w_bottom_1, .w_caption {
+    display: none;
+}
+div.wicket-modal {
+    div.w_right_1, div.w_content_1 {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    div.w_content_2 {
+        padding-top: 0px;
+    }
+    div.w_content_3 {
+        border: 0px;
+    }
+}
 
 /*************************************************************************
     alternate layout without secondary panel
@@ -878,5 +895,21 @@ td.rsvpstatus {
         margin-left: 15px;
         margin-top: 5px;
         margin-bottom: 5px;
+    }
+}
+
+/*************************************************************************
+    Activity feed
+**************************************************************************/
+.activity-feed-panel {
+}
+.activity-feed {
+    max-height: 480px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 5px; // to have some padding when scrollbar appears
+    li {
+        padding: 3px 0px;
+        border-bottom: 1px dotted #CCCCCC;
     }
 }

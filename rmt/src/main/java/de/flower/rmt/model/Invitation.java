@@ -25,6 +25,7 @@ public class Invitation extends AbstractBaseEntity {
      * Date of response. Might be updated when user changes his status.
      */
     @Column
+    @Index(name = "ix_date")
     private Date date;
 
     @Column(length = 255)
@@ -41,6 +42,7 @@ public class Invitation extends AbstractBaseEntity {
 
     @NotNull
     @Column
+    @Index(name = "ix_invitationsent")
     private Boolean invitationSent = false;
 
     @NotNull

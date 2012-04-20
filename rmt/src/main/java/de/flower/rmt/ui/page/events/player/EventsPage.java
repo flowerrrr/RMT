@@ -5,7 +5,7 @@ import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.model.UserModel;
 import de.flower.rmt.ui.page.base.player.NavigationPanel;
 import de.flower.rmt.ui.page.base.player.PlayerBasePage;
-import de.flower.rmt.ui.panel.ActivityFeedPanel;
+import de.flower.rmt.ui.panel.activityfeed.ActivityFeedPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;

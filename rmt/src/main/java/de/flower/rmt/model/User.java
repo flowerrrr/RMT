@@ -90,6 +90,7 @@ public class User extends AbstractClubRelatedEntity {
     @NotBlank(message = "{validation.notblank.name}")
     @Size(max = 50)
     @Column
+    @Index(name = "ix_fullname")
     private String fullname;
 
     @NotNull

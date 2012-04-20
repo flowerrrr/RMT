@@ -61,8 +61,11 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     }
 
     @Override
-    public Invitation loadById(final Long id) {
-        return Check.notNull(invitationRepo.findOne(id));
+    public Invitation loadById(Long id, final Attribute... attributes) {
+        Specification fetch = fetch(attributes);
+        Invitation entity = invitationRepo.findOne(where(eq(Invitation_.id, id)).and(fetch));
+        Check.notNull(entity, "No invitation found");
+        return entity;
     }
 
     @Override
@@ -141,19 +144,27 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     public void save(final Invitation invitation) {
         validate(invitation);
         boolean isNew = invitation.isNew();
+        Invitation origInvitation = null;
         if (!isNew) {
+            // depending on the caller of this method the invitation might be detached or attached (when called
+            // by ResponseManager. If object is attached it is not possible to check for modifications against the
+            // saved state in database as em.findOne() will return the attached version from session cache.
+            invitationRepo.detach(invitation);
             // in case the status changes update the date of response.
             // used for early maybe-responder who later switch their status.
             // after status update the rank of an invitation is reset as if he has
             // just responded the first time.
-            Invitation origInvitation = invitationRepo.findOne(invitation.getId());
+            origInvitation = invitationRepo.findOne(invitation.getId());
+            Check.isTrue(invitation != origInvitation);
             if (origInvitation.getStatus() != invitation.getStatus()) {
                 invitation.setDate(new Date());
             }
             if (invitation.getDate() == null) {
                 invitation.setDate(new Date());
             }
-            activityManager.onInvitationUpdated(invitation, origInvitation);
+            // invitations are creted when event is created. that's not interesting to track. we'd only
+            // like to know when invitation is updated.
+            activityManager.onInvitationUpdated(invitation);
         }
         invitationRepo.save(invitation);
     }

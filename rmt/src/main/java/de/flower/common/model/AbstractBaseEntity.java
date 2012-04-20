@@ -1,5 +1,7 @@
 package de.flower.common.model;
 
+import org.hibernate.annotations.Index;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -20,6 +22,7 @@ public abstract class AbstractBaseEntity implements Serializable, IEntity, IObje
 
     @Enumerated(EnumType.ORDINAL)
     @Column
+    @Index(name = "ix_objectstatus")
     private ObjectStatus objectStatus;
 
     protected AbstractBaseEntity() {

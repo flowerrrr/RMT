@@ -5,7 +5,7 @@ import java.util.ListResourceBundle;
 public class Resources extends ListResourceBundle {
 
     private static final Object[][] OBJECTS = new Object[][]{
-            {"JustNowPastPattern", "Vor einem Augenblick"},
+            {"JustNowPastPattern", "Soeben"},
             {"MinutePastPattern", "Vor {0} Minute"},
             {"MinutePastPatternPlural", "Vor {0} Minuten"},
             {"HourPastPattern", "Vor {0} Stunde"},

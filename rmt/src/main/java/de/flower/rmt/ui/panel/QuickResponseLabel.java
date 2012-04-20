@@ -1,6 +1,8 @@
 package de.flower.rmt.ui.panel;
 
+import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.tooltips.TooltipBehavior;
+import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.ui.markup.html.form.renderer.RSVPStatusRenderer;
 import org.apache.wicket.AttributeModifier;
@@ -35,6 +37,7 @@ public abstract class QuickResponseLabel extends AjaxEditableChoiceLabel<RSVPSta
     @Override
     protected void onModelChanged() {
         submitStatus(getModel().getObject());
+        AjaxEventSender.entityEvent(this, Invitation.class);
         // must remove twipsy behavior when user has selected an entry
         removeTooltipBehavior();
     }

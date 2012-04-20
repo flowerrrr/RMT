@@ -13,6 +13,9 @@ import de.flower.rmt.repository.Specs;
 import de.flower.rmt.service.security.ISecurityService;
 import org.hibernate.LockOptions;
 import org.hibernate.Session;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
@@ -46,6 +49,12 @@ public class BaseRepository<T extends AbstractBaseEntity, ID extends Serializabl
         session.buildLockRequest(LockOptions.NONE).lock(entity);
     }
 
+    public void detach(T entity) {
+        Check.notNull(entity);
+        Session session = (Session) em.getDelegate();
+        session.evict(entity);
+    }
+
     public void softDelete(T entity) {
         entity.setObjectStatus(ObjectStatus.DELETED);
         save(entity);
@@ -61,17 +70,43 @@ public class BaseRepository<T extends AbstractBaseEntity, ID extends Serializabl
 
     @Override
     public List<T> findAll() {
-        return findAll(Specifications.where(getNotDeleted()));
+        return super.findAll(getDefaultFilter());
     }
 
     @Override
     public List<T> findAll(final Specification<T> spec) {
-        Specifications<T> specs = Specifications.where(getNotDeleted()).and(spec);
+        Specifications<T> defaultFilter = getDefaultFilter();
+        return super.findAll(defaultFilter.and(spec));
+    }
+
+    @Override
+    public Page<T> findAll(final Specification<T> spec, final Pageable pageable) {
+        Specifications<T> defaultFilter = getDefaultFilter();
+        return super.findAll(defaultFilter.and(spec), pageable);
+    }
+
+    @Override
+    public Page<T> findAll(final Pageable pageable) {
+        return super.findAll(getDefaultFilter(), pageable);
+    }
+
+    @Override
+    public List<T> findAll(final Sort sort) {
+        throw new UnsupportedOperationException("Feature not implemented!");
+    }
+
+    @Override
+    public List<T> findAll(final Specification<T> spec, final Sort sort) {
+        throw new UnsupportedOperationException("Feature not implemented!");
+    }
+
+    private Specifications<T> getDefaultFilter() {
+        Specifications<T> specs = Specifications.where(getNotDeleted());
         Class<T> domainClass = entityInformation.getJavaType();
         if (AbstractClubRelatedEntity.class.isAssignableFrom(domainClass)) {
             specs = specs.and(getHasClub());
         }
-        return super.findAll(specs);
+        return specs;
     }
 
     private Specification<T> getNotDeleted() {
