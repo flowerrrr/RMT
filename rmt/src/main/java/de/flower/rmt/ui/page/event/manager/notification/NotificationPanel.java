@@ -1,6 +1,8 @@
 package de.flower.rmt.ui.page.event.manager.notification;
 
 import com.google.common.annotations.VisibleForTesting;
+import de.flower.common.ui.ajax.event.AjaxEventSender;
+import de.flower.common.ui.feedback.AlertMessage;
 import de.flower.common.ui.js.JQuery;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.type.Notification;
@@ -45,6 +47,8 @@ public class NotificationPanel extends BasePanel {
                 eventManager.sendInvitationMail(model.getObject().getId(), form.getModelObject());
                 notificationModel.setObject(new Notification());
                 target.appendJavaScript(JQuery.scrollToTop("slow"));
+                // fix for RMT-537 - no invitation sent alert not hidden after email is sent
+                AjaxEventSender.send(this, AlertMessage.class);
             }
         };
         add(form);

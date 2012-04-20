@@ -1,5 +1,6 @@
 package de.flower.common.ui.feedback;
 
+import de.flower.common.ui.ajax.event.AjaxEventListener;
 import org.apache.wicket.Component;
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.feedback.IFeedbackMessageFilter;
@@ -20,6 +21,7 @@ public class AlertMessageFeedbackPanel extends FeedbackPanel {
             }
         });
         setOutputMarkupId(true);
+        add(new AjaxEventListener(AlertMessage.class));
     }
 
     @Override

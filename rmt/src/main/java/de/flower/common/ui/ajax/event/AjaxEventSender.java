@@ -20,7 +20,7 @@ public final class AjaxEventSender {
      *
      * @param sender the sender
      * @param payload the payload
-     * @deprecated try to use typed methods of this class. e.g. {@link #sendEntityChangedEvent(Component, Class)}.
+     * @deprecated try to use typed methods of this class. e.g. {@link #entityEvent(Component, Class)}.
      */
     @Deprecated
     public static void send(final Component sender, final Object payload) {
