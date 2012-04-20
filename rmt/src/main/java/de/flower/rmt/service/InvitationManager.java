@@ -4,10 +4,7 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import de.flower.common.util.Check;
-import de.flower.rmt.model.Invitation;
-import de.flower.rmt.model.Invitation_;
-import de.flower.rmt.model.RSVPStatus;
-import de.flower.rmt.model.User;
+import de.flower.rmt.model.*;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.repository.IInvitationRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +66,6 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     }
 
     @Override
-    @Deprecated
     public List<Invitation> findAllByEvent(final Event event, final Attribute... attributes) {
         Specification fetch = fetch(attributes);
         return invitationRepo.findAll(where(eq(Invitation_.event, event)).and(fetch));
@@ -78,20 +74,49 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     @Override
     public List<Invitation> findAllByEventSortedByName(final Event event) {
         List<Invitation> list = findAllByEvent(event, Invitation_.user);
-        // use in-memory sorting cause field name is derived and would required complicated sql-query to sort after.
+        // use in-memory sorting cause field username is derived and would required complicated sql-query to sort after.
         return sortByName(list);
     }
 
+    // TODO (flowerrrr - 20.04.12) not a nice method, neither name nor implementation. refactor!
     @Override
     public List<Invitation> findAllForNotificationByEventSortedByName(final Event event) {
         List<Invitation> list = findAllByEventSortedByName(event);
+
+        // filter out those that do not want to receive email notifications
         Iterable<Invitation> filtered = Iterables.filter(list, new Predicate<Invitation>() {
+            List<Player> players;
+            {
+                players = playerManager.findAllByTeam(event.getTeam());
+            }
             @Override
             public boolean apply(@Nullable final Invitation invitation) {
-                return invitation.hasEmail();
+                if (!invitation.hasEmail()) {
+                    return false;
+                } else {
+                    // check if player has opted out of email notifications
+                    for (Player player : players) {
+                        if (player.getUser().equals(invitation.getUser())) {
+                            return player.isNotification();
+                        }
+                    }
+                    // this happens for invitees who are not team-members (invitees that were later added).
+                    return true;
+                }
             }
         });
         return ImmutableList.copyOf(filtered);
+    }
+
+    @Override
+    public List<InternetAddress[]> findAllForNotificationByEventSortedByName2(final Event event) {
+        List<Invitation> invitations = findAllForNotificationByEventSortedByName(event);
+        return de.flower.common.util.Collections.convert(invitations, new de.flower.common.util.Collections.IElementConverter<Invitation, InternetAddress[]>() {
+            @Override
+            public InternetAddress[] convert(final Invitation element) {
+                return element.getInternetAddresses();
+            }
+        });
     }
 
     @Override
@@ -209,16 +234,5 @@ public class InvitationManager extends AbstractService implements IInvitationMan
             }
         });
         return list;
-    }
-
-    @Override
-    public List<InternetAddress[]> getAllInternetAddressesByEvent(final Event event) {
-        List<Invitation> invitations = findAllForNotificationByEventSortedByName(event);
-        return de.flower.common.util.Collections.convert(invitations, new de.flower.common.util.Collections.IElementConverter<Invitation, InternetAddress[]>() {
-            @Override
-            public InternetAddress[] convert(final Invitation element) {
-                return element.getInternetAddresses();
-            }
-        });
     }
 }

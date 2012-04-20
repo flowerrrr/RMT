@@ -21,7 +21,6 @@ public interface IInvitationManager {
 
     Invitation loadById(Long id, Attribute... attributes);
 
-    @Deprecated
     List<Invitation> findAllByEvent(Event event, Attribute... attributes);
 
     List<Invitation> findAllByEventSortedByName(Event event);
@@ -63,5 +62,5 @@ public interface IInvitationManager {
      */
     void addGuestPlayer(Event entity, String guestName);
 
-    List<InternetAddress[]> getAllInternetAddressesByEvent(Event event);
+    List<InternetAddress[]> findAllForNotificationByEventSortedByName2(Event event);
 }

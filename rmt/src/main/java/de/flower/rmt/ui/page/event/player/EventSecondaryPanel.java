@@ -102,7 +102,7 @@ public class EventSecondaryPanel extends BasePanel {
     }
 
     private String getAllEmailAddresses(final Event event) {
-        List<InternetAddress[]> list = invitationManager.getAllInternetAddressesByEvent(event);
+        List<InternetAddress[]> list = invitationManager.findAllForNotificationByEventSortedByName2(event);
         // convert to list of email addresses
         List<String> stringList = Collections.convert(Collections.flattenArray(list), new Collections.IElementConverter<InternetAddress, String>() {
             @Override

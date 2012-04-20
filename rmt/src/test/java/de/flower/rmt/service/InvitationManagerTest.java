@@ -2,6 +2,7 @@ package de.flower.rmt.service;
 
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.Invitation_;
+import de.flower.rmt.model.Player;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.test.AbstractIntegrationTests;
 import org.testng.annotations.Test;
@@ -29,5 +30,26 @@ public class InvitationManagerTest extends AbstractIntegrationTests {
         for (Invitation invitation : invitationManager.findAllByEvent(event)) {
             assertTrue(invitation.isInvitationSent());
         }
+    }
+
+    @Test
+    public void testGetAllRecipientsForEvent() {
+        Event event = testData.createEvent();
+
+        // first lookup. must return all invitees
+        List<Invitation> invitations = invitationManager.findAllForNotificationByEventSortedByName(event);
+        int numAll = invitations.size();
+
+        // disable notification for some of the players
+        List<Player> players = playerManager.findAllByTeam(event.getTeam());
+        int[] optOuts = {2, 5};
+        for (int i : optOuts) {
+            Player optOutPlayer = players.get(i);
+            optOutPlayer.setNotification(false);
+            playerManager.save(optOutPlayer);
+        }
+        // now find all recipients again. returned list must be missing two invitations
+        invitations = invitationManager.findAllForNotificationByEventSortedByName(event);
+        assertEquals(invitations.size(), numAll - optOuts.length);
     }
 }
