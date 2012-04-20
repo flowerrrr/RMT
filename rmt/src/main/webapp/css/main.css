@@ -165,7 +165,7 @@ div.wicket-modal {
 /*************************************************************************
     alternate layout without secondary panel
 **************************************************************************/
-.about-page {
+.no-secondary {
     .main {
         width: 820px;
         border-right: 0px;
@@ -711,13 +711,17 @@ td.rsvpstatus {
         margin-bottom: 5px;
     }
 
-    li:first-child {
-        float: left;
-        width: 50%;
-    }
-
     a {
         color: @grayDark;
+    }
+}
+
+.event-details-panel {
+    .details {
+        li:first-child {
+            float: left;
+            width: 50%;
+        }
     }
 }
 
@@ -883,16 +887,23 @@ td.rsvpstatus {
     About page
 **************************************************************************/
 .about-panel {
+
+    .control-label {
+        padding-top: 0px; // override twitter default
+    }
+    h3 {
+        text-transform: uppercase;
+        color: #999999;
+        font-size: 16px;
+        font-weight: normal;
+    }
+
     .items > li {
         margin-bottom: 10px;
-    }
-    .items > li > div {
-        padding-left: 20px;
     }
     .items ul {
         list-style: square;
         margin-left: 15px;
-        margin-top: 5px;
         margin-bottom: 5px;
     }
 }

@@ -25,11 +25,12 @@ public class UserManagerTest extends AbstractIntegrationTests {
      */
     @Test
     public void testEagerFetching() {
-        List<User> users = userManager.findAll(User_.roles);
+        List<User> users = userManager.findAllFetchTeams(User_.roles);
         assertTrue(users.size() > 0);
         User user = users.get(0);
         log.info(user.toString());
-        log.info(user.getRoles().get(0).getAuthority());
+        log.info(user.getRoles().iterator().next().getAuthority());
+        log.info(user.getPlayers().get(0).getTeam().getName());
     }
 
     /**
@@ -51,7 +52,7 @@ public class UserManagerTest extends AbstractIntegrationTests {
         List<User> users = userManager.findAll();
         assertTrue(users.size() > 0);
         User user = users.get(0);
-        log.info(user.getRoles().get(0).getAuthority());
+        log.info(user.getRoles().iterator().next().getAuthority());
     }
 
     @Test

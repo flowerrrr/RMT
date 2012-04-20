@@ -12,7 +12,9 @@ import javax.validation.constraints.Size;
 import javax.validation.groups.Default;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author flowerrrr
@@ -84,8 +86,12 @@ public class User extends AbstractClubRelatedEntity {
     @Index(name = "ix_enabled")
     private boolean enabled;
 
+    /**
+     * This is a set to overcome http://blog.eyallupu.com/2010/06/hibernate-exception-simultaneously.html when
+     * fetching User_.role and User_.player simultaneously.
+     */
     @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE})
-    private List<Role> roles = new ArrayList<Role>();
+    private Set<Role> roles = new HashSet<>();
 
     @NotBlank(message = "{validation.notblank.name}")
     @Size(max = 50)
@@ -170,7 +176,7 @@ public class User extends AbstractClubRelatedEntity {
         this.enabled = enabled;
     }
 
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 

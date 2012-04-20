@@ -106,6 +106,12 @@ public class UserManager extends AbstractService implements IUserManager {
     }
 
     @Override
+    public List<User> findAllFetchTeams(final Attribute... attributes) {
+        List<User> list = userRepo.findAllFetchTeams(getClub());
+        return list;
+    }
+
+    @Override
     public List<User> findAllByTeam(final Team team) {
         Check.notNull(team);
         Specification spec = Specs.joinEq(User_.players, Player_.team, team);

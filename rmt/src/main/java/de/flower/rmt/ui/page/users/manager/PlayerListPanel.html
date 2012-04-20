@@ -15,6 +15,7 @@
                 <th>
                     <wicket:message key="manager.player.email"/>
                 </th>
+                <th><wicket:message key="manager.player.teams"/></th>
                 <th><wicket:message key="manager.players.manager.role"/></th>
                 <th></th>
             </tr>
@@ -26,6 +27,11 @@
                 </td>
                 <td>
                     <a wicket:id="emailLink">gerd@mueller.de</a>
+                </td>
+                <td>
+                    <ul>
+                        <li wicket:id="teams"><span wicket:id="team"/></li>
+                    </ul>
                 </td>
                 <td>
                     <span wicket:id="manager" class="xicon-checked"/>

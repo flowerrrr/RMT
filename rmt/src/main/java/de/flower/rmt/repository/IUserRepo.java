@@ -27,5 +27,9 @@ public interface IUserRepo extends IRepository<User, Long> {
 //    @Query("select u from User u join u.players p where p.team = :team")
 //    List<User> findAllByTeam(@Param("team") Team team);
 
-
+    /**
+     * Was too stupid to build this query with criteria api
+     */
+    @Query("select u from User u join fetch u.roles left join fetch u.players p left join fetch p.team where u.objectStatus <> 1 and u.club = :club order by u.fullname")
+    List<User> findAllFetchTeams(@Param("club") Club club);
 }

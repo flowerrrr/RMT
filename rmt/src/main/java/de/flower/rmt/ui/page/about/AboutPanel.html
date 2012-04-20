@@ -6,77 +6,103 @@
 
 <wicket:panel>
 
-    <ul class="items">
-        <li>
-            <h3>Wofür?</h3>
+    <ul class="form-horizontal items">
+        <li class="control-group">
+            <h3 class="control-label">Wofür?</h3>
 
-            <div>
+            <div class="controls">
                 <p>Die Website unterstützt Fußball-Teams bei der Verwaltung von Spielen und Trainings.</p>
-                <p>Der Team-Manager stellt Termine ein und versendet Einladungen, auf die die Spieler antworten können. Der
-                Manager kann so jederzeit feststellen ob genug Spieler für den Termin zurückgemeldet sind.</p>
+
+                <p>Der Team-Manager stellt Termine ein und versendet Einladungen, auf die die Spieler antworten können.
+                    Der Manager kann so jederzeit feststellen ob genug Spieler für den Termin zurückgemeldet sind.</p>
+
+                <p>Weitere Features:</p>
+                <ul>
+                    <li>Social: Kommentarfunktion, News Feed</li>
+                    <li>Google Maps Integration inkl. Routenplanung zu Spielorten</li>
+                </ul>
             </div>
         </li>
-        <li>
-            <h3>Warum?</h3>
-            <div>Das Projekt ist eine Fortführung eines alten PHP-Skripts, das mittlerweile in die Jahre gekommen ist.
-            Neben der Bespaßung der Benutzer dient das Projekt dem Autor als Spielwiese für die Evaluierung und den Einsatz von
-            Web-Technologien.</div>
+        <li class="control-group">
+            <h3 class="control-label">Warum?</h3>
+
+            <div class="controls">
+                <p>Das Projekt ist eine Fortführung eines alten PHP-Skripts, das mittlerweile in die Jahre gekommen
+                    ist. Das Skript wurde seinerzeit für die Freizeitliga-Mannschaft Juventus Urin (sic!) entwickelt.</p>
+
+                <p>Neben der Bespaßung der Benutzer dient das Projekt v.a. dem Autor als Spielwiese für die Evaluierung
+                    und den Einsatz von Web-Technologien.</p></div>
         </li>
-        <li>
-            <h3>Beta?</h3>
-            <div>Beta bedeutet:
-            <ul>
-                <li>Darstellung optimiert für Firefox. <br/> 
-                    Andere Browser (insb. Internet Explorer) können Bereiche der Website z.T. nicht korrekt darstellen.</li>
-                <li>Features kommen und gehen</li>
-                <li>Fehler können jederzeit auftreten</li>
-                <li>Die Website kann jederzeit offline sein</li>
-            </ul></div>
-        </li>
-        <li>
-            <h3>Hosting</h3>
-            <div><ul>
-                <li>Provider: Host Europe</li>
-                <li>Server: Virtual Server Windows 2000 2 GB RAM</li>
-                <li>Servlet-Container: Tomcat (behind IIS with IIS-Tomcat Connector)</li>
-                <li>Datenbank: MySQL</li>
-            </ul></div>
-        </li>
-        <li>
-            <h3>Technik</h3>
-            <div>Das Projekt basiert auf folgendem Java Technologie-Stack:
-            <ul>
-                <li>Wicket</li>
-                <li>Spring Security</li>
-                <li>Spring</li>
-                <li>Spring Data JPA</li>
-                <li>Hibernate</li>
-                <li>Hibernate Validator</li>
-                <li>AspectJ</li>
-                <li>Velocity</li>
-            </ul>
-            User interface:
-            <ul>
-                <li>Twitter Bootstrap</li>
-                <li>Less</li>
-                <li>JQuery</li>
-            </ul>
+        <li class="control-group">
+            <h3 class="control-label">Beta?</h3>
+
+            <div class="controls">
+                <ul>
+                    <li>Darstellung optimiert für Firefox. <br/>
+                        Andere Browser (insb. Internet Explorer) können Bereiche der Website z.T. nicht korrekt
+                        darstellen.
+                    </li>
+                    <li>Features kommen und gehen</li>
+                    <li>Fehler können jederzeit auftreten</li>
+                    <li>Die Website kann jederzeit offline sein</li>
+                </ul>
             </div>
         </li>
-        <li>
-            <h3>Tools</h3>
-            <div>Für die Entwicklung werden verwendet:
-            <ul>
-                <li>IDE: IntelliJ IDEA</li>
-                <li>Datenbank: H2</li>
-                <li>Testing: TestNG, Mockito, Scala</li>
-                <li>Build: Gradle</li>
-                <li>Continuous Integration: Jenkins</li>
-                <li>Version Control System: Git</li>
-                <li>Github Repo: <a href="https://github.com/flowerrrr/RMT">https://github.com/flowerrrr/RMT</a></li>
-                <li>Project Management: <a href="http://acunote.com">Acunote</a> (Web-based Scrum Tool)</li>
-                <li>Design: <a href="http://gliffy.com">Gliffy</a> (Web-based Wireframes)</li>
-            </ul></div>
+        <li class="control-group">
+            <h3 class="control-label">Hosting</h3>
+
+            <div class="controls">
+                <ul>
+                    <li>Provider: Host Europe</li>
+                    <li>Server: Virtual Server Windows 2000 2 GB RAM</li>
+                    <li>Servlet-Container: Tomcat (behind IIS with IIS-Tomcat Connector)</li>
+                    <li>Datenbank: MySQL</li>
+                </ul>
+            </div>
+        </li>
+        <li class="control-group">
+            <h3 class="control-label">Server-Stack</h3>
+
+            <div class="controls">
+                <ul>
+                    <li>Wicket</li>
+                    <li>Spring Security</li>
+                    <li>Spring</li>
+                    <li>Spring Data JPA</li>
+                    <li>Hibernate</li>
+                    <li>Hibernate Validator</li>
+                    <li>AspectJ</li>
+                    <li>Velocity</li>
+                </ul>
+            </div>
+        </li>
+        <li class="control-group">
+            <h3 class="control-label">User interface</h3>
+
+            <div class="controls">
+                <ul>
+                    <li>Twitter Bootstrap</li>
+                    <li>Less CSS</li>
+                    <li>JQuery</li>
+                </ul>
+            </div>
+        </li>
+        <li class="control-group">
+            <h3 class="control-label">Tools</h3>
+
+            <div class="controls">
+                <ul>
+                    <li>IDE: IntelliJ IDEA</li>
+                    <li>Datenbank: H2</li>
+                    <li>Testing: TestNG, Mockito, Scala</li>
+                    <li>Build: Gradle</li>
+                    <li>Continuous Integration: Jenkins</li>
+                    <li>Version Control System: Git</li>
+                    <li>Github Repo: <a href="https://github.com/flowerrrr/RMT">https://github.com/flowerrrr/RMT</a></li>
+                    <li>Project Management: <a href="http://acunote.com">Acunote</a> (Web-based Scrum Tool)</li>
+                    <li>Design: <a href="http://gliffy.com">Gliffy</a> (Web-based Wireframes)</li>
+                </ul>
+            </div>
         </li>
     </ul>
 

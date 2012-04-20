@@ -32,6 +32,8 @@ public interface IUserManager {
 
     List<User> findAll(Attribute... attributes);
 
+    List<User> findAllFetchTeams(final Attribute... attributes);
+
     List<User> findAllByTeam(Team team);
 
     /**

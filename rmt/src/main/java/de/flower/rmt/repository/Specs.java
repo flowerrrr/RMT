@@ -58,7 +58,7 @@ public class Specs {
         };
     }
 
-    public static <X> Specification fetch(final Attribute<X, ?>... attributes) {
+     public static <X> Specification fetch(final Attribute<X, ?>... attributes) {
         Check.notNull(attributes);
         return new Specification<X>() {
             @Override
@@ -99,7 +99,6 @@ public class Specs {
             }
         };
     }
-
 
     /**
      * @param joinAttribute
