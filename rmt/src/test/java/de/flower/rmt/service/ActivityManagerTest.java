@@ -19,13 +19,13 @@ public class ActivityManagerTest extends AbstractIntegrationTests {
 
     @Test
     public void testOnEventCreatedOrUpdated() {
-        Event event = testData.newEvent();
+        Event event = testData.createEvent();
         activityManager.onCreateOrUpdate(event, true);
     }
 
     @Test
     public void testOnInvitationMailSent() {
-        Event event = testData.newEvent();
+        Event event = testData.createEvent();
         activityManager.onInvitationMailSent(event);
     }
 

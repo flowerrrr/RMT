@@ -51,7 +51,7 @@ public class PrettyTimeTest {
         int hourOfDay = 22;
         DateTime now = new DateTime(2012, 05, 1, hourOfDay, 0, 0); // tuesday
 
-        test("Vor einem Augenblick", now.plusMillis(1), now);
+        test("Soeben", now.plusMillis(1), now);
 
         test("Vor 1 Minute", now.minusMinutes(1), now);
         test("Vor 59 Minuten", now.minusMinutes(59), now);

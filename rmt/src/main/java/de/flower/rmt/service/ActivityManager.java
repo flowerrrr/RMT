@@ -6,6 +6,7 @@ import de.flower.rmt.model.Activity_;
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.Invitation_;
 import de.flower.rmt.model.event.Event;
+import de.flower.rmt.model.event.Event_;
 import de.flower.rmt.model.type.activity.EmailSentMessage;
 import de.flower.rmt.model.type.activity.EventUpdateMessage;
 import de.flower.rmt.model.type.activity.InvitationUpdateMessage;
@@ -34,6 +35,9 @@ public class ActivityManager extends AbstractService implements IActivityManager
     @Autowired
     private IInvitationManager invitationManager;
 
+    @Autowired
+    private IEventManager eventManager;
+
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void save(Activity entity) {
         validate(entity);
@@ -49,7 +53,8 @@ public class ActivityManager extends AbstractService implements IActivityManager
 
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-    public void onCreateOrUpdate(final Event event, final boolean isNew) {
+    public void onCreateOrUpdate(Event event, final boolean isNew) {
+        event = eventManager.loadById(event.getId(), Event_.team);
         Activity entity = newInstance();
         EventUpdateMessage message = new EventUpdateMessage(event);
         message.setCreated(isNew);

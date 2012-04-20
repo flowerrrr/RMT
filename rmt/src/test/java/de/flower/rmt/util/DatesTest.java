@@ -29,15 +29,5 @@ public class DatesTest {
         assertEquals(Dates.formatTimeShort(new LocalTime(3, 45)), "03:45");
     }
 
-    @Test
-    public void testFormatFacebook() {
-        test("Vor einem Augenblick", new Date());
-    }
-
-    private void test(String expected, Date date) {
-        String sDate = Dates.formatFacebook(date);
-        log.info(sDate);
-        assertEquals(sDate, expected);
-    }
 }
 
