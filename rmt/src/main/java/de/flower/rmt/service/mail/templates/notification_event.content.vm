@@ -6,7 +6,7 @@ Veranstaltungsdetails
 Link: $eventLink
 
 Team: $event.getTeam().getName()
-Typ: $event.getEventType()
+Typ: $eventType
 Datum: $eventDate
 Treffpunkt: $eventTime
 #if ($isSoccerEvent)

@@ -20,10 +20,11 @@ public class InvitationUpdateMessageRenderer implements IMessageRenderer<Invitat
         String s = "";
         String status = (message.getStatus() != null) ? new ResourceModel(RSVPStatus.getResourceKey(message.getStatus())).getObject() : "";
         Object[] params = new Object[]{EventMessageRenderer.getEventLink(message), status};
-        if (message.getStatus() != null && message.getComment() != null) {
-            s += new StringResourceModel("activity.invitation.statuscomment.update", Model.of(message), params).getObject();
-        } else if (message.getStatus() != null) {
-            s += new StringResourceModel("activity.invitation.status.update", Model.of(message), params).getObject();
+        if (message.getStatus() != null) {
+            s = new StringResourceModel("activity.invitation.status.${status}", Model.of(message), params).getObject();
+            if (message.getComment() != null) {
+                s = new StringResourceModel("activity.invitation.statuscomment.update", Model.of(message), new Object[] {s}).getObject();
+            }
         } else if (message.getComment() != null) {
             s += new StringResourceModel("activity.invitation.comment.update", Model.of(message), params).getObject();
         }

@@ -30,6 +30,6 @@ public interface IUserRepo extends IRepository<User, Long> {
     /**
      * Was too stupid to build this query with criteria api
      */
-    @Query("select u from User u join fetch u.roles left join fetch u.players p left join fetch p.team where u.objectStatus <> 1 and u.club = :club order by u.fullname")
+    @Query("select distinct u from User u join fetch u.roles left join fetch u.players p left join fetch p.team where u.objectStatus <> 1 and u.club = :club order by u.fullname")
     List<User> findAllFetchTeams(@Param("club") Club club);
 }

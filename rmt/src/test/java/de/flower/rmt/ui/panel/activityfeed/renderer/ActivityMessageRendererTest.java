@@ -103,8 +103,9 @@ public class ActivityMessageRendererTest extends AbstractRMTWicketMockitoTests {
     public void testInvitationStatusAndManagerCommentUpdated() {
         InvitationUpdateMessage message = new InvitationUpdateMessage(testData.newEvent());
         message.setUserName("Gerd Müller");
+        message.setManagerName("Uli Hoeneß");
         message.setStatus(RSVPStatus.ACCEPTED);
-        message.setComment("Gfrei mi narrisch aufs Spiel und auf die 3. Halbzeit hinterher umso mehr.");
+        message.setManagerComment("Gfrei mi narrisch aufs Spiel und auf die 3. Halbzeit hinterher umso mehr.");
         message.setEventId(1L);
         message.setEventDate(new Date());
         for (EventType eventType : EventType.values()) {

@@ -45,27 +45,30 @@ public class InvitationListPanel extends BasePanel {
     public InvitationListPanel(String id, IModel<Event> model) {
         super(id);
         Check.notNull(model);
-        add(createListView("acceptedList", RSVPStatus.ACCEPTED, model));
-        add(createListView("unsureList", RSVPStatus.UNSURE, model));
-        add(createListView("declinedList", RSVPStatus.DECLINED, model));
-        add(createListView("noresponseList", RSVPStatus.NORESPONSE, model));
+        add(createListView("acceptedList", RSVPStatus.ACCEPTED, model, true));
+        add(createListView("unsureList", RSVPStatus.UNSURE, model, false));
+        add(createListView("declinedList", RSVPStatus.DECLINED, model, false));
+        add(createListView("noresponseList", RSVPStatus.NORESPONSE, model, false));
         add(new AjaxEventListener(Invitation.class));
     }
 
-    private Component createListView(String id, RSVPStatus status, IModel<Event> model) {
+    private Component createListView(String id, RSVPStatus status, IModel<Event> model, final boolean printOrder) {
         ListView list = new EntityListView<Invitation>(id, getInvitationList(model, status)) {
             @Override
             protected void populateItem(ListItem<Invitation> item) {
-                item.add(createInvitationFragement(item));
+                item.add(createInvitationFragement(item, printOrder));
             }
         };
         return list;
     }
 
-    private Component createInvitationFragement(ListItem<Invitation> item) {
+    private Component createInvitationFragement(ListItem<Invitation> item, final boolean printOrder) {
         final Invitation invitation = item.getModelObject();
         Fragment frag = new Fragment("itemPanel", "itemFragment", this);
         frag.add(new Label("name", invitation.getName()));
+        final Label label = new Label("position", "" + (item.getIndex() + 1));
+        label.setVisible(printOrder);
+        frag.add(label);
         frag.add(DateLabel.forDateStyle("date", Model.of(invitation.getDate()), "SS"));
         frag.add(new Label("comment", invitation.getComment()).setVisible(!StringUtils.isBlank(invitation.getComment())));
         frag.add(new Label("managerComment", invitation.getManagerComment()).setVisible(!StringUtils.isBlank(invitation.getManagerComment())));

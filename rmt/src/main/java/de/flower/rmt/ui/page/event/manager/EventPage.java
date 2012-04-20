@@ -1,6 +1,7 @@
 package de.flower.rmt.ui.page.event.manager;
 
 import de.flower.rmt.model.event.Event;
+import de.flower.rmt.model.event.Event_;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.model.EventModel;
@@ -91,7 +92,7 @@ public class EventPage extends ManagerBasePage {
         return new LoadableDetachableModel<List<Event>>() {
             @Override
             protected List<Event> load() {
-                return eventManager.findAll();
+                return eventManager.findAll(Event_.team);
             }
         };
     }

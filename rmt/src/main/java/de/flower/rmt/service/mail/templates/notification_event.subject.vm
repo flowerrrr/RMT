@@ -1,1 +1,1 @@
-Rückmelden für ...  $event.getEventType() - $eventDateTime: $!event.getSummary()
+Rückmelden für ...  $eventType - $eventDateTime: $!event.getSummary()

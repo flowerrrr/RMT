@@ -8,6 +8,7 @@ import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.util.Dates;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.model.StringResourceModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,6 +60,7 @@ public class NotificationService implements INotificationService {
         model.put("eventDate", Dates.formatDateMedium(event.getDate()));
         model.put("eventTime", Dates.formatTimeShort(event.getTime()));
         model.put("eventDateTime", Dates.formatDateTimeShort(event.getDateTime()));
+        model.put("eventType", new ResourceModel(event.getEventType().getResourceKey()).getObject());
         model.put("eventTypeMatch", EventType.Match);
         model.put("eventLink", eventLink);
         model.put("isSoccerEvent", EventType.isSoccerEvent(event));

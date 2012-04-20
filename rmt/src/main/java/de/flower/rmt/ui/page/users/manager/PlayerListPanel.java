@@ -29,6 +29,8 @@ import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -101,7 +103,10 @@ public class PlayerListPanel extends BasePanel {
         IModel<List<Player>> playerListModel = new AbstractReadOnlyModel<List<Player>>() {
             @Override
             public List<Player> getObject() {
-                return userModel.getObject().getPlayers();
+                // because of fetching multiple associations the list of players can contain
+                // duplicate entries (e.g. when user has two roles assigned).
+                // filter out duplicate entries
+                return new ArrayList(new HashSet(userModel.getObject().getPlayers()));
             }
         };
         return new ListView<Player>("teams", playerListModel) {
