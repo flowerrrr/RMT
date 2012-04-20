@@ -134,8 +134,14 @@ public class InvitationManager extends AbstractService implements IInvitationMan
 
     @Override
     public Invitation loadByEventAndUser(Event event, User user) {
-        Invitation invitation = invitationRepo.findByEventAndUser(event, user);
+        Invitation invitation = findByEventAndUser(event, user);
         Check.notNull(invitation, "No invitation found");
+        return invitation;
+    }
+
+    @Override
+    public Invitation findByEventAndUser(Event event, User user) {
+        Invitation invitation = invitationRepo.findByEventAndUser(event, user);
         return invitation;
     }
 

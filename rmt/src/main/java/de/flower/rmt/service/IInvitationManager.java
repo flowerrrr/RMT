@@ -42,6 +42,8 @@ public interface IInvitationManager {
 
     Invitation loadByEventAndUser(Event event, User user);
 
+    Invitation findByEventAndUser(Event event, User user);
+
     void save(Invitation invitation);
 
     void delete(Long id);

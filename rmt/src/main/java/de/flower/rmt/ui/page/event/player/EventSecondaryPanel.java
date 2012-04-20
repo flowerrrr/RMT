@@ -21,6 +21,7 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import javax.mail.internet.InternetAddress;
@@ -43,7 +44,7 @@ public class EventSecondaryPanel extends BasePanel {
 
         add(createEventSelectPanel(model));
 
-        IModel<Invitation> invitationModel = getInvitationModel(model);
+        final IModel<Invitation> invitationModel = getInvitationModel(model);
         InvitationFormPanel invitationFormPanel = new InvitationFormPanel(AjaxSlideTogglePanel.WRAPPED_PANEL_ID, invitationModel) {
 
             @Override
@@ -53,10 +54,16 @@ public class EventSecondaryPanel extends BasePanel {
                 AjaxEventSender.entityEvent(this, Invitation.class);
             }
         };
-
-        add(new AjaxSlideTogglePanel("invitationFormPanel", "player.event.invitationform.heading", invitationFormPanel));
         // make form visible if user hasn't responded yet
-        invitationFormPanel.setVisible(invitationModel.getObject().getStatus() == RSVPStatus.NORESPONSE);
+        invitationFormPanel.setVisible(invitationModel.getObject() != null && invitationModel.getObject().getStatus() == RSVPStatus.NORESPONSE);
+
+        add(new AjaxSlideTogglePanel("invitationFormPanel", "player.event.invitationform.heading", invitationFormPanel) {
+            @Override
+            public boolean isVisible() {
+                // completely hide panel if user is not invitee of this event.
+                return invitationModel.getObject() != null;
+            }
+        });
 
         add(new EventDetailsPanel(model, View.PLAYER));
 
@@ -76,8 +83,12 @@ public class EventSecondaryPanel extends BasePanel {
     }
 
     private IModel<Invitation> getInvitationModel(final IModel<Event> model) {
-        final Invitation invitation = invitationManager.loadByEventAndUser(model.getObject(), getUserDetails().getUser());
-        return new InvitationModel(invitation);
+        final Invitation invitation = invitationManager.findByEventAndUser(model.getObject(), getUserDetails().getUser());
+        if (invitation != null) {
+            return new InvitationModel(invitation);
+        } else {
+            return new Model();
+        }
     }
 
     private IModel<List<Event>> getUpcomingEventList() {

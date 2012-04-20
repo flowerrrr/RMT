@@ -1,7 +1,5 @@
 package de.flower.rmt.ui.page.event.player;
 
-import de.flower.common.ui.ajax.event.AjaxEventListener;
-import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.model.EventModel;
@@ -32,7 +30,7 @@ public class EventPage extends PlayerBasePage {
         Event event = null;
         try {
             Long eventId = params.get(PARAM_EVENTID).toLong();
-            event = eventManager.loadByIdAndUser(eventId, getUserDetails().getUser());
+            event = eventManager.loadById(eventId);
         } catch (Exception e) {
             // TODO (flowerrrr - 15.04.12) log violating url
             log.warn("EventPage accessed with invalid parameter: " + e.toString());
@@ -56,7 +54,6 @@ public class EventPage extends PlayerBasePage {
         setHeading("player.event.heading");
 
         final InvitationListPanel invitationListPanel = new InvitationListPanel(model);
-        invitationListPanel.add(new AjaxEventListener(Invitation.class));
 
         addMainPanel(invitationListPanel);
         addSecondaryPanel(new EventSecondaryPanel(model));
