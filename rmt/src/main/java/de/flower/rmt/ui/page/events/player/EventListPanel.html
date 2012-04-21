@@ -10,10 +10,10 @@
             <wicket:message key="player.events.noentry">[List is empty]</wicket:message>
         </div>
         <wicket:enclosure child="list">
-        <table class="table">
+        <table class="table player">
             <thead>
             <tr>
-                <th>
+                <th class="date">
                     <div>
                         <wicket:message key="manager.event.date"/>
                     </div>
@@ -21,7 +21,7 @@
                         <!--<wicket:message key="manager.event.time"/>-->
                     </div>
                 </th>
-                <th>
+                <th class="team">
                     <div>
                         <wicket:message key="manager.event.team"/>
                     </div>
@@ -29,10 +29,10 @@
                         <wicket:message key="manager.event.type"/>
                     </div>
                 </th>
-                <th>
+                <th class="summary">
                     <wicket:message key="manager.event.summary"/>
                 </th>
-                <th>
+                <th class="status">
                     <wicket:message key="player.events.status"/>
                 </th>
             </tr>

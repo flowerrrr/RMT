@@ -1,5 +1,6 @@
 package de.flower.common.util;
 
+import com.google.common.base.Splitter;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -49,4 +50,14 @@ public final class Strings {
         }
         return StringUtils.join(split);
     }
+
+    public static String insertSoftHyphens(final String s, int nChars) {
+        if (StringUtils.isBlank(s)) {
+            return s;
+        } else {
+            Iterable<String> split = Splitter.fixedLength(nChars).split(s);
+            return StringUtils.join(split, "&shy;");
+        }
+    }
+
 }

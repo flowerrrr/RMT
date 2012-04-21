@@ -46,8 +46,8 @@ public class InvitationListPanel extends BasePanel {
         super(id);
         Check.notNull(model);
         add(createListView("acceptedList", RSVPStatus.ACCEPTED, model, true));
-        add(createListView("unsureList", RSVPStatus.UNSURE, model, false));
-        add(createListView("declinedList", RSVPStatus.DECLINED, model, false));
+        add(createListView("unsureList", RSVPStatus.UNSURE, model, true));
+        add(createListView("declinedList", RSVPStatus.DECLINED, model, true));
         add(createListView("noresponseList", RSVPStatus.NORESPONSE, model, false));
         add(new AjaxEventListener(Invitation.class));
     }

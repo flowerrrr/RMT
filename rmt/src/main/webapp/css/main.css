@@ -1,4 +1,3 @@
-
 /*************************************************************************
     copied from bootstrap.less.
     these functions/variables are not available if using precompiled bootstrap css.
@@ -430,7 +429,7 @@ div.form-horizontal {
 }
 
 .tab-panel {
-    padding-left: 15px; // same as padding of tab-links
+    padding-left: 2px; // looks better when table inside
 }
 
 
@@ -593,18 +592,28 @@ ul.dropdown {
 /*************************************************************************
     table styling
 **************************************************************************/
-thead {
+.table {
+    table-layout: fixed;
+}
+
+thead, .thead {
     border-bottom:  2px solid #CCCCCC;
 }
 
-table th {
+table th, .table thead th, .table .th {
     vertical-align: top;
     text-transform: uppercase;
     font-size: 90%;
+    font-weight: bold;
+}
+
+.table tr.thead:hover .th {
+    background-color: #FFFFFF; // disable for special invitation table
 }
 
 td {
     border-bottom: 1px solid #CCCCCC;
+    word-wrap: break-word;
 }
 
 
@@ -802,22 +811,6 @@ td.rsvpstatus {
 /*************************************************************************
     Invitation list
 **************************************************************************/
-.invitationListTable td:first-child {
-    font-size: 80%;
-}
-
-.invitationListTable.manager td:first-child {
-    width: 100px;
-}
-
-.invitationListTable.player td:first-child {
-    width: 50px;
-}
-
-.invitationListTable td:first-child + td {
-    width: 150px;
-}
-
 // only display border if both comments are visible
 .invitationListTable .comments span:nth-child(2) {
     border-top: 1px solid @borderColor;
@@ -842,6 +835,70 @@ td.rsvpstatus {
 .ul-form li {
     margin-top: 10px;
 }
+
+/*************************************************************************
+    Table width for several tables
+**************************************************************************/
+.player-list-panel {
+    .table {
+        .menu {
+            width: 52px;
+        }
+        .role {
+            width: 16px;
+        }
+    }
+}
+.event-list-panel {
+    .table {
+        .date {
+            width: 60px;
+        }
+    }
+    .table.player {
+        .status {
+            width: 80px;
+        }
+    }
+    .table.manager {
+        .invitations {
+            width: 160px;
+        }
+        .menu {
+            width: 52px;
+        }
+    }
+}
+.invitationListTable {
+    thead {
+        border-bottom: 0px;
+    }
+    thead th {
+        // height: 0px;
+        padding: 0px;
+    }
+    .thead .th {
+        padding-top: 20px;
+        border-top: 0px;
+    }
+    .date, .position {
+        font-size: 80%;
+    }
+    .date {
+        width: 110px;
+    }
+    .position {
+        width: 30px;
+    }
+    .name {
+        width: 130px;
+    }
+    .menu {
+        width: 30px;
+    }
+}
+
+
 
 /*************************************************************************
     Squad Page - Add player panel

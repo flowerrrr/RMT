@@ -4,59 +4,46 @@
 <body>
 <wicket:panel>
 
-    <!--<h4><wicket:message key="player.event.heading.main"/></h4>-->
-
     <table class="table invitationListTable player">
         <thead>
         <tr>
-            <th colspan="3">
-                <wicket:message key="invitation.accepted">[Accepted]</wicket:message>
-            </th>
+            <!-- to let width work in fixed-layout tables the first row must define all cells with their width -->
+            <th class="position"></th>
+            <th class="name"></th>
+            <th class="comment"></th>
+            <th class="menu"></th>
         </tr>
         </thead>
-        <tbody wicket:enclosure="">
+        <tbody>
+        <tr class="thead">
+            <td class="th" colspan="4">
+                <wicket:message key="invitation.accepted">[Accepted]</wicket:message>
+            </td>
+        </tr>
         <tr wicket:id="acceptedList">
             <wicket:container wicket:id="itemPanel"/>
         </tr>
-        </tbody>
-    </table>
-    <table class="table invitationListTable player">
-        <thead>
-        <tr>
-            <th colspan="3">
+        <tr class="thead">
+            <td class="th" colspan="4">
                 <wicket:message key="invitation.unsure">[Unsure]</wicket:message>
-            </th>
+            </td>
         </tr>
-        </thead>
-        <tbody wicket:enclosure="">
         <tr wicket:id="unsureList">
             <wicket:container wicket:id="itemPanel"/>
         </tr>
-        </tbody>
-    </table>
-    <table class="table invitationListTable player">
-        <thead>
-        <tr>
-            <th colspan="3">
+        <tr class="thead">
+            <td class="th" colspan="4">
                 <wicket:message key="invitation.declined">[Declined]</wicket:message>
-            </th>
+            </td>
         </tr>
-        </thead>
-        <tbody wicket:enclosure="">
         <tr wicket:id="declinedList">
             <wicket:container wicket:id="itemPanel"/>
         </tr>
-        </tbody>
-    </table>
-    <table class="table invitationListTable player">
-        <thead>
-        <tr>
-            <th colspan="3">
-                <wicket:message key="invitation.noresponse">[Declined]</wicket:message>
-            </th>
+        <tr class="thead">
+            <td class="th" colspan="4">
+                <wicket:message key="invitation.noresponse">[No Response]</wicket:message>
+            </td>
         </tr>
-        </thead>
-        <tbody wicket:enclosure="">
         <tr wicket:id="noresponseList">
             <wicket:container wicket:id="itemPanel"/>
         </tr>
@@ -64,10 +51,10 @@
     </table>
 
     <wicket:fragment wicket:id="itemFragment">
-        <td><span wicket:id="position"/></td>
-        <td><span wicket:id="name"/></td>
+        <td class="position"><span wicket:id="position"/></td>
+        <td class="name"><span wicket:id="name"/></td>
         <td class="comments"><span wicket:id="comment"/><span wicket:id="managerComment" class="manager-comment" wicket:message="title:invitations.commentbymanager"/></td>
-        <td class="align-right"><a wicket:id="emailLink" class="show-on-hover"><i class="icon-envelope"></i></a></td>
+        <td class="menu align-right"><a wicket:id="emailLink" class="show-on-hover"><i class="icon-envelope"></i></a></td>
     </wicket:fragment>
 
 </wicket:panel>
