@@ -931,12 +931,21 @@ td.rsvpstatus {
 
 .venues-map {
     /* map with all venues on it */
-    width: 500px;
-    height: 400px;
+    width: 560px;
+    height: 440px;
 }
 
 #venue-tabs {
     float: none;  /* needed to make map work inside tabs. */
+}
+
+.info-window {
+    li {
+        padding: 2px 0px;
+    }
+    .name {
+        font-weight: bold;
+    }
 }
 
 /*************************************************************************

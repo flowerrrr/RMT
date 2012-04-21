@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.app;
 
-import de.flower.rmt.model.Venue;
+import de.flower.common.util.geo.LatLng;
 import de.flower.rmt.ui.page.about.AboutPage;
 import de.flower.rmt.ui.page.event.player.EventPage;
 import org.apache.wicket.AttributeModifier;
@@ -66,10 +66,10 @@ public class Links {
         }
     }
 
-    public static String getDirectionsLink(final Venue venue) {
+    public static String getDirectionsUrl(final LatLng latLng) {
         DecimalFormat format = new DecimalFormat("##.##############", DecimalFormatSymbols.getInstance(Locale.US));
-        String lat = format.format(venue.getLatLng().getLat());
-        String lng = format.format(venue.getLatLng().getLng());
+        String lat = format.format(latLng.getLat());
+        String lng = format.format(latLng.getLng());
         return "http://maps.google.com/maps?daddr=" + lat + "," + lng;
     }
 

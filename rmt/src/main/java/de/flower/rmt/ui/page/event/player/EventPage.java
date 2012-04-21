@@ -45,7 +45,6 @@ public class EventPage extends PlayerBasePage {
     }
 
     public EventPage(final IModel<Event> model) {
-        super(model);
         init(model);
     }
 

@@ -6,8 +6,10 @@ import de.flower.rmt.model.Venue;
 import de.flower.rmt.ui.panel.BasePanel;
 import org.apache.wicket.model.IModel;
 import wicket.contrib.gmap3.GMap;
+import wicket.contrib.gmap3.overlay.GInfoWindow;
 import wicket.contrib.gmap3.overlay.GMarker;
 import wicket.contrib.gmap3.overlay.GMarkerOptions;
+import wicket.contrib.gmap3.overlay.GOverlayEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +33,7 @@ public class VenuesMapPanel extends BasePanel {
                         venue.getLatLng(),
                         venue.getName()));
                 map.addOverlay(marker);
+                marker.addFunctionListener(GOverlayEvent.CLICK, GInfoWindow.getJSopenFunction(map, VenueMapPanel.getInfoWindowContent(venue), marker));
                 latLngs.add(venue.getLatLng());
             }
         }

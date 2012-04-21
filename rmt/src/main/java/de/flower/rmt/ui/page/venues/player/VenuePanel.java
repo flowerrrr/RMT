@@ -13,7 +13,7 @@ import org.apache.wicket.util.string.Strings;
 /**
  * @author flowerrrr
  */
-public class VenuePanel extends BasePanel  {
+public class VenuePanel extends BasePanel {
 
     public VenuePanel(final IModel<Venue> model) {
         setDefaultModel(new CompoundPropertyModel<Venue>(model));
@@ -26,10 +26,9 @@ public class VenuePanel extends BasePanel  {
             public void onComponentTagBody(final MarkupStream markupStream, final ComponentTag openTag) {
                 replaceComponentTagBody(markupStream, openTag, Strings.toMultilineMarkup(getDefaultModelObjectAsString()));
             }
-
         });
 
-        add(new VenueMapPanel(model.getObject().getLatLng(), false));
+        add(new VenueMapPanel(model.getObject().getLatLng(), VenueMapPanel.getInfoWindowContent(model.getObject()), false));
     }
 
 }

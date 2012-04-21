@@ -65,7 +65,7 @@ public class NotificationService implements INotificationService {
         model.put("eventLink", eventLink);
         model.put("isSoccerEvent", EventType.isSoccerEvent(event));
         if (event.getVenue() != null) {
-            model.put("directionsLink", Links.getDirectionsLink(event.getVenue()));
+            model.put("directionsLink", Links.getDirectionsUrl(event.getVenue().getLatLng()));
         }
         if (EventType.isSoccerEvent(event)) {
             AbstractSoccerEvent soccerEvent = (AbstractSoccerEvent) event;

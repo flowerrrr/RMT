@@ -12,7 +12,7 @@ import org.apache.wicket.model.IModel;
 public class GetDirectionsPanel extends BasePanel {
 
     public GetDirectionsPanel(final IModel<Venue> model) {
-        add(new ExternalLink("link", Links.getDirectionsLink(model.getObject())));
+        add(new ExternalLink("link", Links.getDirectionsUrl(model.getObject().getLatLng())));
     }
 
 }

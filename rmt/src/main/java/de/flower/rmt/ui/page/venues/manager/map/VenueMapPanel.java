@@ -1,14 +1,15 @@
 package de.flower.rmt.ui.page.venues.manager.map;
 
 import de.flower.common.util.geo.LatLng;
+import de.flower.rmt.model.Venue;
+import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.model.ResourceModel;
+import org.apache.wicket.util.string.Strings;
 import wicket.contrib.gmap3.GMap;
 import wicket.contrib.gmap3.api.GLatLng;
-import wicket.contrib.gmap3.overlay.GMarker;
-import wicket.contrib.gmap3.overlay.GMarkerOptions;
-import wicket.contrib.gmap3.overlay.GOverlayEvent;
-import wicket.contrib.gmap3.overlay.GOverlayEventHandler;
+import wicket.contrib.gmap3.overlay.*;
 
 import java.io.Serializable;
 
@@ -19,12 +20,14 @@ import java.io.Serializable;
  */
 public class VenueMapPanel extends BasePanel {
 
-    private LatLng latLng;
+    public VenueMapPanel(LatLng latLng, boolean draggableMarker) {
+        this(latLng, null, draggableMarker);
+    }
 
     /**
      * @param latLng position of gMarker
      */
-    public VenueMapPanel(LatLng latLng, boolean draggableMarker) {
+    public VenueMapPanel(LatLng latLng, String infoWindowContent, boolean draggableMarker) {
         super();
 
         GMap map = new GMap("map");
@@ -35,25 +38,17 @@ public class VenueMapPanel extends BasePanel {
             // put draggable marker on map.
             DraggableMarker marker = new DraggableMarker(map, latLng);
         } else {
-            Marker marker = new Marker(map, latLng);
+            GMarkerOptions options = new GMarkerOptions(map, latLng);
+            GMarker gMarker = new GMarker(options);
+            map.addOverlay(gMarker);
+            if (infoWindowContent != null) {
+                gMarker.addFunctionListener(GOverlayEvent.CLICK, GInfoWindow.getJSopenFunction(map, infoWindowContent, gMarker));
+            }
         }
         // and center map on marker
         map.setCenter(latLng);
 
         map.setZoom(14);
-    }
-
-    public void setMarker(final LatLng latLng) {
-        throw new UnsupportedOperationException("Feature not implemented!");
-    }
-
-    private class Marker implements Serializable {
-
-        public Marker(GMap map, GLatLng gLatLng) {
-            GMarkerOptions options = new GMarkerOptions(map, gLatLng);
-            GMarker gMarker = new GMarker(options);
-            map.addOverlay(gMarker);
-        }
     }
 
     private class DraggableMarker implements Serializable {
@@ -79,6 +74,23 @@ public class VenueMapPanel extends BasePanel {
      * @param latLng
      */
     public void onUpdateMarker(LatLng latLng) {
-        ; // empty implementation, subclasses can override
+        // empty implementation, subclasses can override
     }
+
+    public static String getInfoWindowContent(final Venue venue) {
+        String s = "<div><ul class='info-window'>" +
+                "<li>" +
+                "<span class='name'>" + venue.getName() + "</span>" +
+                "</li>" +
+                "<li>" +
+                "<span>" + (venue.getAddress() != null ? Strings.toMultilineMarkup(venue.getAddress()) : "") + "</span>" +
+                "</li>" +
+                "<li>" +
+                "<span><a href='" + Links.getDirectionsUrl(venue.getLatLng()) + "' target='_blank' class='btn-link-external'>" +
+                new ResourceModel("venue.getdirections.link").getObject() + "</a></span>" +
+                "</li>" +
+                "</ul></div>";
+        return s;
+    }
+
 }
