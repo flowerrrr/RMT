@@ -978,13 +978,28 @@ td.rsvpstatus {
 **************************************************************************/
 .activity-feed-panel {
 }
+
+// hide scrollbar of inner ul. only scrolling by mouse-wheel
+.activity-feed-container {
+    overflow-x: hidden;
+}
 .activity-feed {
-    max-height: 480px;
+    width: 235px;
+    max-height: 450px;
     overflow-y: auto;
     overflow-x: hidden;
     padding-right: 5px; // to have some padding when scrollbar appears
     li {
         padding: 3px 0px;
         border-bottom: 1px dotted #CCCCCC;
+        font-size: 85%;
+        line-height: 16px;
+        h6 {
+            font-size: 9px;
+            // text-transform: none;
+        }
+    }
+    em {
+        font-style: italic;
     }
 }
