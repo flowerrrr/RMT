@@ -68,6 +68,7 @@ public class Event extends AbstractClubRelatedEntity {
     private Boolean invitationSent;
 
     @ManyToOne
+    @NotNull
     private User createdBy;
 
     @OneToMany(mappedBy = "event", cascade = CascadeType.REMOVE)

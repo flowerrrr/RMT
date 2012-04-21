@@ -37,6 +37,8 @@ import org.springframework.stereotype.Component;
 @Component(value = "wicketApplication")
 public class RMTApplication extends WebApplication {
 
+    public final static String VERSION = "1.1.1";
+
     private final static Logger log = LoggerFactory.getLogger(RMTApplication.class);
 
     private RuntimeConfigurationType runtimeConfigurationType;

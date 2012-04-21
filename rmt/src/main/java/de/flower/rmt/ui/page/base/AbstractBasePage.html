@@ -2,27 +2,15 @@
 <html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
 <head>
     <title><wicket:message key="page.title" /></title>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link href="css/main.css" rel="stylesheet" type="text/less"/>
-<!--[if IE]>
-	<link rel="stylesheet" type="text/css" href="css/ie.css" />
-<![endif]-->
-
 </head>
 <body>
 
     <wicket:child/>
 
-<div id="veil" style="display:none;z-index:99999" class="ajax-loader center"></div>
+    <div id="veil" style="display:none;z-index:99999" class="ajax-loader center"></div>
 
-<!-- modal window -->
-<div wicket:id="modalDialogWindowPanel"></div>
-
-
-<!-- Include script at end of page in order to override wicket functions. -->
-<script type="text/javascript" src="js/main.js"></script>
-
-
+    <!-- modal window -->
+    <div wicket:id="modalDialogWindowPanel"></div>
 
 </body>
 </html>

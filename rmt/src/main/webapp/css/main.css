@@ -239,7 +239,6 @@ a.btn-link-external:after {
 **************************************************************************/
 textarea {
     resize: vertical;
-    height: 150px; // increase default height
 }
 
 input[type="checkbox"] {
