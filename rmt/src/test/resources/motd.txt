@@ -1,0 +1,11 @@
+<div style="display:none" title="comment">
+This is the message of the day file.
+How to use?
+
+1. Edit message below (after the closing div). Message cannot not contain html markup.
+2. Rename to motd.txt
+3. Web app will pick it up automatically.
+...
+5. Rename to motd.txt.bak (or any other name) and message will not be displayed anymore.
+</div>
+Maintenance work is about to being in 15 minutes.

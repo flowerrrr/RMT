@@ -130,6 +130,9 @@ public class AbstractIntegrationTests extends AbstractTestNGSpringContextTests {
     protected ISecurityService securityService;
 
     @Autowired
+    protected IApplicationService applicationService;
+
+    @Autowired
     protected SecurityContextHolderStrategy securityContextHolderStrategy;
 
     @Autowired

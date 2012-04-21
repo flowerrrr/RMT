@@ -1,0 +1,18 @@
+<!--
+This is the message of the day file.
+How to use?
+
+1. Edit message below. Message can contain html markup.
+2. Rename to motd.txt
+3. Web app will pick it up automatically.
+...
+5. Rename to motd.txt.bak (or any other name) and message will not be displayed anymore.
+-->
+
+<!-- Maintenance message -->
+<div style="display:xnone;">
+    <h3>Warning</h3>
+    <p>Maintenance work is about to begin in a few minutes. The website will be closed down for about 15 minutes.</p>
+    <p>Please finish your work and come back later again.</p>
+    <p>Thank you!</p>
+</div>

@@ -3,8 +3,9 @@ package de.flower.rmt.ui.page.base;
 import de.flower.common.ui.feedback.AlertMessageFeedbackPanel;
 import de.flower.common.ui.markup.html.panel.WrappingPanel;
 import de.flower.rmt.ui.app.Links;
+import de.flower.rmt.ui.feedback.MessageOfTheDayMessage;
+import de.flower.rmt.ui.feedback.PasswordChangeRequiredMessage;
 import de.flower.rmt.ui.panel.BasePanel;
-import de.flower.rmt.ui.panel.feedback.PasswordChangeRequiredMessage;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -66,6 +67,7 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
         super.onBeforeRender();
         // makes messages back-button and reload-save
         if (showAlertMessages()) {
+            info(new MessageOfTheDayMessage());
             if (isCurrentUserLoggedIn()) {
                 info(new PasswordChangeRequiredMessage());
             }
@@ -104,6 +106,10 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
         return secondaryPanel;
     }
 
+    /**
+     * Allow subclasses to disable alert messages (e.g. Error pages).
+     * @return
+     */
     protected boolean showAlertMessages() {
         return true;
     }

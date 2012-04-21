@@ -194,11 +194,8 @@ public class IO {
             throw new IllegalArgumentException("inputstream cannot be null.");
         }
 
-        try {
-            BufferedReader input;
-            // use buffering, reading one line at a time
-            // noinspection IOResourceOpenedButNotSafelyClosed
-            input = new BufferedReader(new InputStreamReader(in, charsetName));
+        try (BufferedReader input = new BufferedReader(new InputStreamReader(in, charsetName)))
+        {
 
             String line = null; // not declared within while loop
             /*

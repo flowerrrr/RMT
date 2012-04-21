@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.page.event.manager.invitations;
+package de.flower.rmt.ui.feedback;
 
 import de.flower.common.ui.feedback.AlertMessage;
 import de.flower.common.ui.feedback.AlertMessagePanel;
@@ -37,7 +37,7 @@ public class NoInvitationSentMessage extends AlertMessage {
     }
 
     @Override
-    public String getId() {
-        return super.getId() + model.getObject().getId();
+    public String getSessionKey() {
+        return super.getSessionKey() + model.getObject().getId();
     }
 }

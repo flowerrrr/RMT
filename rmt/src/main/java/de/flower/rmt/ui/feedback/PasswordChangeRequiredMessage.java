@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.panel.feedback;
+package de.flower.rmt.ui.feedback;
 
 import de.flower.common.ui.feedback.AlertMessage;
 import de.flower.common.ui.feedback.AlertMessagePanel;

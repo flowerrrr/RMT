@@ -25,6 +25,7 @@ public class AlertMessagePanel extends Panel {
         this.alertMessage = alertMessage;
 
         Label messageLabel = new Label("message", alertMessage.getMessageModel());
+        messageLabel.setEscapeModelStrings(alertMessage.getEscapeModelStrings());
         add(messageLabel);
 
         Link link = new Link("link") {
@@ -35,6 +36,11 @@ public class AlertMessagePanel extends Panel {
                 if (hideMessage) {
                     setHideMessage(getSessionKey(), true);
                 }
+            }
+
+            @Override
+            public boolean isVisible() {
+                return alertMessage.getLabelModel() != null;
             }
 
             /**
@@ -80,7 +86,7 @@ public class AlertMessagePanel extends Panel {
     }
 
     private String getSessionKey() {
-        return "ALERTMESSAGE_KEY_" + alertMessage.getId();
+        return "ALERTMESSAGE_KEY_" + alertMessage.getSessionKey();
     }
 
     private void setHideMessage(String key, boolean hide) {
