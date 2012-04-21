@@ -4,6 +4,7 @@ import de.flower.common.ui.feedback.AlertMessage;
 import de.flower.common.ui.feedback.AlertMessagePanel;
 import de.flower.rmt.service.IApplicationService;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.wicket.injection.Injector;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -18,6 +19,7 @@ public class MessageOfTheDayMessage extends AlertMessage {
 
     public MessageOfTheDayMessage() {
         super(null, null);
+        Injector.get().inject(this); // to make @SpringBean work
         setMessageModel(getMOTDModel());
     }
 

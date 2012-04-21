@@ -1,6 +1,5 @@
 package de.flower.common.ui.feedback;
 
-import org.apache.wicket.injection.Injector;
 import org.apache.wicket.model.IModel;
 
 import java.io.Serializable;
@@ -17,7 +16,6 @@ public abstract class AlertMessage implements Serializable {
     public AlertMessage(final IModel<String> messageModel, IModel<String> labelModel) {
         this.messageModel = messageModel;
         this.labelModel = labelModel;
-        Injector.get().inject(this); // to make @SpringBean work in subclasses.
     }
 
     protected abstract boolean onClick(final AlertMessagePanel alertMessagePanel);
