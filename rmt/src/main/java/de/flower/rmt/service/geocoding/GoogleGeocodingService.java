@@ -45,6 +45,8 @@ public class GoogleGeocodingService implements IGeocodingService {
         notBlank(region);
         notBlank(language);
 
+        log.info("Geocoding for [" + address + "]");
+
         HttpGet httpGet = null;
 
         try {

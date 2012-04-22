@@ -34,6 +34,7 @@ public abstract class AbstractFormFieldPanel extends Panel {
     public AbstractFormFieldPanel(String id, FormComponent fc) {
         super(id);
         setOutputMarkupId(true);
+        add(AttributeModifier.append("class", id));
 
         formComponent = fc;
         add(formComponent);

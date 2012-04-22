@@ -25,7 +25,6 @@ public class VenueEditPage extends ManagerBasePage {
                 setResponsePage(VenuesPage.class);
             }
         });
-        // addSecondaryPanel(new Label("foobar", "Put something useful here"));
     }
 
     @Override

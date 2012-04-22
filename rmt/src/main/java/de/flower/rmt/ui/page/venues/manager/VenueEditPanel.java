@@ -4,39 +4,34 @@ import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.util.geo.LatLng;
 import de.flower.rmt.model.Venue;
 import de.flower.rmt.service.IVenueManager;
+import de.flower.rmt.service.geocoding.GeocodingResult;
 import de.flower.rmt.ui.app.RMTSession;
 import de.flower.rmt.ui.markup.html.form.CancelableEntityForm;
 import de.flower.rmt.ui.markup.html.form.EntityForm;
 import de.flower.rmt.ui.markup.html.form.field.TextAreaPanel;
 import de.flower.rmt.ui.markup.html.form.field.TextFieldPanel;
-import de.flower.rmt.ui.page.venues.manager.map.GeocodePanel;
-import de.flower.rmt.ui.page.venues.manager.map.VenueMapPanel;
+import de.flower.rmt.ui.page.venues.manager.geocode.GeocodePanel;
+import de.flower.rmt.ui.page.venues.manager.map.VenueMapFormComponent;
 import de.flower.rmt.ui.panel.BasePanel;
+import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
  * @author flowerrrr
  */
-public class VenueEditPanel extends BasePanel  {
-
-    private EntityForm<Venue> form;
-
-    private LatLng latLng;
+public class VenueEditPanel extends BasePanel {
 
     @SpringBean
     private IVenueManager venueManager;
 
     public VenueEditPanel(final IModel<Venue> model) {
+        super(model);
 
-        form = new CancelableEntityForm<Venue>("form", model) {
-
-            @Override
-            protected void onBeforeValidation(final Venue entity) {
-                entity.setLatLng(latLng);
-            }
+        final EntityForm<Venue> form = new CancelableEntityForm<Venue>("form", model) {
 
             @Override
             protected void onSubmit(final AjaxRequestTarget target, final Form<Venue> form) {
@@ -49,28 +44,39 @@ public class VenueEditPanel extends BasePanel  {
 
         form.add(new TextFieldPanel("name"));
         final TextAreaPanel address;
-        form.add(address = new TextAreaPanel("address"));
+        form.add(address = new AddressTextAreaPanel("address") {
+            @Override
+            protected boolean isInstantValidationEnabled() {
+                // collides with clicking on the geocode button.
+                return false;
+            }
+        });
+        final VenueMapFormComponent latLng;
+        form.add(latLng = new VenueMapFormComponent("latLng", new PropertyModel<LatLng>(model, "latLng"), RMTSession.get().getLatLng()));
 
         form.add(new GeocodePanel() {
             @Override
             protected String getAddress() {
                 return address.getFormComponent().getValue();
             }
-        }.setVisible(false)); // currently disable, feature not stable
 
-
-        if (model.getObject().getLatLng() != null) {
-            this.latLng = model.getObject().getLatLng();
-        } else {
-            this.latLng = RMTSession.get().getLatLng();
-        }
-
-        form.add(new VenueMapPanel(this.latLng, true) {
             @Override
-            public void onUpdateMarker(LatLng latLng) {
-                VenueEditPanel.this.latLng = latLng;
+            protected void onSelect(final AjaxRequestTarget target, final GeocodingResult result) {
+                // update marker in venue map and in address field
+                address.getFormComponent().setModelObject(result.getAddress());
+                latLng.setModelObject(result.getLatLng());
+                target.add(address);
+                target.add(latLng);
             }
-        });
-    }
 
+            /**
+             * Search button is placed outside the geocode panel.
+             */
+            @Override
+            protected MarkupContainer getGeocodeButtonParent() {
+                return address;
+            }
+        }.setVisible(false).setOutputMarkupPlaceholderTag(true));
+
+    }
 }

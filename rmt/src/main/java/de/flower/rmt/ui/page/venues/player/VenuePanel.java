@@ -28,7 +28,7 @@ public class VenuePanel extends BasePanel {
             }
         });
 
-        add(new VenueMapPanel(model.getObject().getLatLng(), VenueMapPanel.getInfoWindowContent(model.getObject()), false));
+        add(new VenueMapPanel(model.getObject().getLatLng(), VenueMapPanel.getInfoWindowContent(model.getObject())));
     }
 
 }

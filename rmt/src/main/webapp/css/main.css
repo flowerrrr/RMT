@@ -193,7 +193,8 @@ div.wicket-modal {
     text-align: right;
 }
 
-* {
+// get rid of outline
+*, a, a:focus, .btn:focus {
     outline: none;
 }
 
@@ -947,6 +948,32 @@ td.rsvpstatus {
         font-weight: bold;
     }
 }
+/*************************************************************************
+    Geocoding panel
+**************************************************************************/
+.venue-edit-panel {
+    .address textarea {
+        margin-right: 10px; // margin to geocodebutton
+    }
+}
+
+.geocode-results-panel {
+    .result-list {
+        td {
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
+        a {
+            padding: 8px 0px;
+            color: @grayDark;
+            display: block;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+}
+
 
 /*************************************************************************
     About page

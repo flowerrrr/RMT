@@ -5,40 +5,58 @@ import de.flower.rmt.model.Venue;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.util.string.Strings;
 import wicket.contrib.gmap3.GMap;
-import wicket.contrib.gmap3.api.GLatLng;
 import wicket.contrib.gmap3.overlay.*;
-
-import java.io.Serializable;
 
 /**
  * The model contains the latLng of the marker to display. If null no marker is displayed.
  *
  * @author flowerrrr
  */
-public class VenueMapPanel extends BasePanel {
+public class VenueMapPanel extends BasePanel<LatLng> {
 
-    public VenueMapPanel(LatLng latLng, boolean draggableMarker) {
-        this(latLng, null, draggableMarker);
+    private GMap map;
+
+    private GMarkerOptions options;
+
+    public VenueMapPanel(IModel<LatLng> model) {
+        this(model, null, true);
+    }
+
+    public VenueMapPanel(final LatLng latLng, final String infoWindowContent) {
+        this(Model.of(latLng), infoWindowContent, false);
     }
 
     /**
      * @param latLng position of gMarker
      */
-    public VenueMapPanel(LatLng latLng, String infoWindowContent, boolean draggableMarker) {
-        super();
+    private VenueMapPanel(IModel<LatLng> model, String infoWindowContent, boolean draggableMarker) {
+        super(model);
 
-        GMap map = new GMap("map");
+        LatLng latLng = model.getObject();
+        map = new GMap("map");
         add(map);
         map.setDoubleClickZoomEnabled(true);
 
         if (draggableMarker) {
             // put draggable marker on map.
-            DraggableMarker marker = new DraggableMarker(map, latLng);
+            options = new GMarkerOptions(map, latLng);
+            options = options.draggable(true);
+            final GMarker gMarker = new GMarker(options);
+            map.addOverlay(gMarker);
+            // add drag listener
+            gMarker.addListener(GOverlayEvent.DRAGEND, new GOverlayEventHandler() {
+                @Override
+                public void onEvent(AjaxRequestTarget target) {
+                    onUpdateMarker(new LatLng(gMarker.getLatLng()));
+                }
+            });
         } else {
-            GMarkerOptions options = new GMarkerOptions(map, latLng);
+            options = new GMarkerOptions(map, latLng);
             GMarker gMarker = new GMarker(options);
             map.addOverlay(gMarker);
             if (infoWindowContent != null) {
@@ -51,23 +69,6 @@ public class VenueMapPanel extends BasePanel {
         map.setZoom(14);
     }
 
-    private class DraggableMarker implements Serializable {
-
-        public DraggableMarker(GMap map, GLatLng gLatLng) {
-            GMarkerOptions options = new GMarkerOptions(map, gLatLng);
-            options = options.draggable(true);
-            final GMarker gMarker = new GMarker(options);
-            map.addOverlay(gMarker);
-            // add drag listener
-            gMarker.addListener(GOverlayEvent.DRAGEND, new GOverlayEventHandler() {
-                @Override
-                public void onEvent(AjaxRequestTarget target) {
-                    onUpdateMarker(new LatLng(gMarker.getLatLng()));
-                }
-            });
-        }
-    }
-
     /**
      * Called when gMarker on map is set or dragged around.
      *
@@ -75,6 +76,14 @@ public class VenueMapPanel extends BasePanel {
      */
     public void onUpdateMarker(LatLng latLng) {
         // empty implementation, subclasses can override
+    }
+
+    @Override
+    protected void onBeforeRender() {
+        // update settings if latLng has changed, should be enough to reflect model changes when panel is repainted.
+        map.setCenter(getModelObject());
+        options.setLatLng(getModelObject());
+        super.onBeforeRender();
     }
 
     public static String getInfoWindowContent(final Venue venue) {
@@ -92,5 +101,4 @@ public class VenueMapPanel extends BasePanel {
                 "</ul></div>";
         return s;
     }
-
 }

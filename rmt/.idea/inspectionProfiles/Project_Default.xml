@@ -2,7 +2,73 @@
   <profile version="1.0" is_locked="false">
     <option name="myName" value="Project Default" />
     <option name="myLocal" value="false" />
+    <inspection_tool class="AbstractClassExtendsConcreteClass" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="AbstractClassNeverImplemented" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="AbstractClassWithoutAbstractMethods" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="AbstractMethodOverridesAbstractMethod" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="AbstractMethodOverridesConcreteMethod" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="AbstractMethodWithMissingImplementations" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="AmbiguousMethodCall" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="AnonymousClassComplexity" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="m_limit" value="3" />
+    </inspection_tool>
+    <inspection_tool class="AnonymousClassMethodCount" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="m_limit" value="3" />
+    </inspection_tool>
+    <inspection_tool class="AssignmentToCollectionFieldFromParameter" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignorePrivateMethods" value="true" />
+    </inspection_tool>
+    <inspection_tool class="AssignmentToDateFieldFromParameter" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignorePrivateMethods" value="true" />
+    </inspection_tool>
+    <inspection_tool class="AssignmentToNull" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="AssignmentUsedAsCondition" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="CheckStyle-IDEA" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="ClassComplexity" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="m_limit" value="80" />
+    </inspection_tool>
+    <inspection_tool class="ClassCoupling" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="m_includeJavaClasses" value="false" />
+      <option name="m_includeLibraryClasses" value="false" />
+      <option name="m_limit" value="15" />
+    </inspection_tool>
+    <inspection_tool class="ClassInheritanceDepth" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="m_limit" value="3" />
+    </inspection_tool>
+    <inspection_tool class="ClassInitializer" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="ClassMayBeInterface" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="ClassNestingDepth" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="m_limit" value="1" />
+    </inspection_tool>
+    <inspection_tool class="ClassWithTooManyDependencies" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="limit" value="10" />
+    </inspection_tool>
+    <inspection_tool class="ClassWithTooManyDependents" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="limit" value="10" />
+    </inspection_tool>
+    <inspection_tool class="ClassWithTooManyTransitiveDependencies" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="limit" value="35" />
+    </inspection_tool>
+    <inspection_tool class="ClassWithTooManyTransitiveDependents" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="limit" value="35" />
+    </inspection_tool>
+    <inspection_tool class="ConstantDeclaredInAbstractClass" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="ConstantDeclaredInInterface" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="ConstructorCount" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="m_limit" value="5" />
+    </inspection_tool>
+    <inspection_tool class="EmptyClass" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="ExtendsConcreteCollection" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="ExtendsUtilityClass" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="FieldCount" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="m_countConstantFields" value="false" />
+      <option name="m_considerStaticFinalFieldsConstant" value="false" />
+      <option name="m_limit" value="10" />
+    </inspection_tool>
+    <inspection_tool class="FieldHidesSuperclassField" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="m_ignoreInvisibleFields" value="true" />
+    </inspection_tool>
+    <inspection_tool class="FieldMayBeStatic" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
@@ -12,6 +78,17 @@
         </value>
       </option>
       <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="IncrementDecrementUsedAsExpression" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="InnerClassVariableHidesOuterClassVariable" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="m_ignoreInvisibleFields" value="true" />
+    </inspection_tool>
+    <inspection_tool class="InstanceofChain" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoreInstanceofOnLibraryClasses" value="false" />
+    </inspection_tool>
+    <inspection_tool class="InstantiationOfUtilityClass" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="InterfaceNeverImplemented" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoreInterfacesThatOnlyDeclareConstants" value="false" />
     </inspection_tool>
     <inspection_tool class="JavaDoc" enabled="false" level="WARNING" enabled_by_default="false">
       <option name="TOP_LEVEL_CLASS_OPTIONS">
@@ -45,10 +122,54 @@
       <option name="myAdditionalJavadocTags" value="" />
     </inspection_tool>
     <inspection_tool class="JpaDataSourceORMInspection" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="MagicNumber" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="m_ignoreInHashCode" value="true" />
+    </inspection_tool>
+    <inspection_tool class="MarkerInterface" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="MethodCount" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="m_limit" value="20" />
+      <option name="ignoreGettersAndSetters" value="false" />
+    </inspection_tool>
+    <inspection_tool class="MethodMayBeStatic" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="m_onlyPrivateOrFinal" value="false" />
+      <option name="m_ignoreEmptyMethods" value="true" />
+    </inspection_tool>
+    <inspection_tool class="MissingDeprecatedAnnotation" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="NonProtectedConstructorInAbstractClass" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="m_ignoreNonPublicClasses" value="false" />
+    </inspection_tool>
+    <inspection_tool class="NonSerializableWithSerialVersionUIDField" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="PackageVisibleField" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="ProtectedField" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="PublicField" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoreEnums" value="false" />
+    </inspection_tool>
+    <inspection_tool class="RedundantMethodOverride" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="RefusedBequest" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoreEmptySuperMethods" value="true" />
+    </inspection_tool>
+    <inspection_tool class="ReturnOfCollectionField" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignorePrivateMethods" value="true" />
+    </inspection_tool>
+    <inspection_tool class="ReturnOfDateField" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="SpellCheckingInspection" enabled="true" level="TYPO" enabled_by_default="true">
       <option name="processCode" value="false" />
       <option name="processLiterals" value="false" />
       <option name="processComments" value="true" />
+    </inspection_tool>
+    <inspection_tool class="StaticInheritance" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="StaticNonFinalField" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="TransientFieldInNonSerializableClass" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="TransientFieldNotInitialized" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="TypeParameterExtendsFinalClass" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="UseOfAnotherObjectsPrivateField" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoreSameClass" value="false" />
+      <option name="ignoreEquals" value="false" />
+    </inspection_tool>
+    <inspection_tool class="UtilityClass" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="UtilityClassWithPublicConstructor" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="UtilityClassWithoutPrivateConstructor" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoreClassesWithOnlyMain" value="false" />
     </inspection_tool>
   </profile>
 </component>
