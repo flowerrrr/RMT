@@ -990,13 +990,16 @@ td.rsvpstatus {
     overflow-x: hidden;
     padding-right: 5px; // to have some padding when scrollbar appears
     li {
-        padding: 3px 0px;
+        padding: 5px 0px;
         border-bottom: 1px dotted #CCCCCC;
         font-size: 85%;
-        line-height: 16px;
+        line-height: 15px;
         h6 {
             font-size: 9px;
             // text-transform: none;
+        }
+        .spacer {
+            height: 3px;
         }
     }
     em {

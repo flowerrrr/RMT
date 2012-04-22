@@ -2,6 +2,7 @@ package de.flower.rmt.ui.panel.activityfeed.renderer;
 
 import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.type.activity.InvitationUpdateMessage;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.model.StringResourceModel;
@@ -14,6 +15,8 @@ import org.slf4j.LoggerFactory;
 public class InvitationUpdateMessageRenderer implements IMessageRenderer<InvitationUpdateMessage> {
 
     private final static Logger log = LoggerFactory.getLogger(InvitationUpdateMessageRenderer.class);
+
+    private final String spacer = "<div class=\"spacer\" ></div>";
 
     @Override
     public String toString(final InvitationUpdateMessage message) {
@@ -29,6 +32,9 @@ public class InvitationUpdateMessageRenderer implements IMessageRenderer<Invitat
             s += new StringResourceModel("activity.invitation.comment.update", Model.of(message), params).getObject();
         }
         if (message.getManagerComment() != null) {
+            if (StringUtils.isNotBlank(s)) {
+                s +=  spacer;
+            }
             s += new StringResourceModel("activity.invitation.managercomment.update", Model.of(message), params).getObject();
         }
         log.debug(message.toString() + " -> [" + s + "]");
