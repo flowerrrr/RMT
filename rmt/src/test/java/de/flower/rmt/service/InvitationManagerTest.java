@@ -7,6 +7,8 @@ import de.flower.rmt.model.event.Event;
 import de.flower.rmt.test.AbstractIntegrationTests;
 import org.testng.annotations.Test;
 
+import javax.mail.internet.InternetAddress;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,5 +53,11 @@ public class InvitationManagerTest extends AbstractIntegrationTests {
         // now find all recipients again. returned list must be missing two invitations
         invitations = invitationManager.findAllForNotificationByEventSortedByName(event);
         assertEquals(invitations.size(), numAll - optOuts.length);
+    }
+
+    @Test
+    public void testInternetAddress2String() throws UnsupportedEncodingException {
+        InternetAddress ia = new InternetAddress("foo@acme.com", "Mesut Özil");
+        log.info(ia.toString());
     }
 }

@@ -33,6 +33,14 @@ public interface IInvitationManager {
      */
     List<Invitation> findAllForNotificationByEventSortedByName(Event event);
 
+    /**
+     * Returns all invitees with an email address, also those with email notifications
+     * turned off.
+     * @param event
+     * @return string for usage in href="mailto: ..."
+     */
+    List<InternetAddress> getAddressesForfAllInvitees(Event event);
+
     List<Invitation> findAllByEventAndStatus(Event event, RSVPStatus rsvpStatus, Attribute... attributes);
 
     Long numByEventAndStatus(Event event, RSVPStatus rsvpStatus);
@@ -62,5 +70,4 @@ public interface IInvitationManager {
      */
     void addGuestPlayer(Event entity, String guestName);
 
-    List<InternetAddress[]> findAllForNotificationByEventSortedByName2(Event event);
 }

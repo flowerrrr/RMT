@@ -16,7 +16,10 @@ public class Collections {
         }
         List<T> out = new ArrayList<T>();
         for (S element : in) {
-            out.add(converter.convert(element));
+            T convert = converter.convert(element);
+            if (convert != null) {
+                out.add(convert);
+            }
         }
         return out;
     }

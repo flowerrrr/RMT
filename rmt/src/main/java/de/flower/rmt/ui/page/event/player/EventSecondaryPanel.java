@@ -2,7 +2,6 @@ package de.flower.rmt.ui.page.event.player;
 
 import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.ajax.panel.AjaxSlideTogglePanel;
-import de.flower.common.util.Collections;
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.User;
@@ -16,7 +15,6 @@ import de.flower.rmt.ui.model.UserModel;
 import de.flower.rmt.ui.page.event.EventDetailsPanel;
 import de.flower.rmt.ui.page.event.EventSelectPanel;
 import de.flower.rmt.ui.panel.BasePanel;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
@@ -24,7 +22,6 @@ import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-import javax.mail.internet.InternetAddress;
 import java.util.List;
 
 /**
@@ -67,7 +64,7 @@ public class EventSecondaryPanel extends BasePanel {
 
         add(new EventDetailsPanel(model, View.PLAYER));
 
-        add(Links.mailLink("allMailLink", getAllEmailAddresses(model.getObject()), null));
+        add(Links.mailLink("allMailLink", invitationManager.getAddressesForfAllInvitees(model.getObject())));
 
         add(Links.mailLink("managerMailLink", getManagerEmailAddress(model.getObject()), null));
     }
@@ -99,20 +96,6 @@ public class EventSecondaryPanel extends BasePanel {
                 return eventManager.findAllUpcomingByUser(userModel.getObject());
             }
         };
-    }
-
-    private String getAllEmailAddresses(final Event event) {
-        List<InternetAddress[]> list = invitationManager.findAllForNotificationByEventSortedByName2(event);
-        // convert to list of email addresses
-        List<String> stringList = Collections.convert(Collections.flattenArray(list), new Collections.IElementConverter<InternetAddress, String>() {
-            @Override
-            public String convert(final InternetAddress ia) {
-                return ia.toString();
-            }
-        });
-        // outlook likes ';', iphone mail client prefers ','. but according to most sources ';' is correct when used in mailto.
-        // TODO (flowerrrr - 14.04.12) could try to detect user agent
-        return StringUtils.join(stringList, "; ");
     }
 
     private String getManagerEmailAddress(final Event event) {

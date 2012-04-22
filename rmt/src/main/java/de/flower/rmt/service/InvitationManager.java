@@ -109,14 +109,21 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     }
 
     @Override
-    public List<InternetAddress[]> findAllForNotificationByEventSortedByName2(final Event event) {
-        List<Invitation> invitations = findAllForNotificationByEventSortedByName(event);
-        return de.flower.common.util.Collections.convert(invitations, new de.flower.common.util.Collections.IElementConverter<Invitation, InternetAddress[]>() {
+    public List<InternetAddress> getAddressesForfAllInvitees(final Event event) {
+        List<Invitation> list = findAllByEventSortedByName(event);
+        // convert to list of internet addresses
+        List<InternetAddress[]> internetAddresses = de.flower.common.util.Collections.convert(list,
+                new de.flower.common.util.Collections.IElementConverter<Invitation, InternetAddress[]>(){
             @Override
             public InternetAddress[] convert(final Invitation element) {
-                return element.getInternetAddresses();
+                if (element.hasEmail()) {
+                    return element.getInternetAddresses();
+                } else {
+                    return null;
+                }
             }
         });
+        return de.flower.common.util.Collections.flattenArray(internetAddresses);
     }
 
     @Override

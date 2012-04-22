@@ -1,8 +1,10 @@
 package de.flower.rmt.ui.app;
 
+import de.flower.common.util.Collections;
 import de.flower.common.util.geo.LatLng;
 import de.flower.rmt.ui.page.about.AboutPage;
 import de.flower.rmt.ui.page.event.player.EventPage;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
@@ -13,8 +15,11 @@ import org.apache.wicket.request.Url;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
+import javax.mail.internet.InternetAddress;
+import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -64,6 +69,24 @@ public class Links {
         } else {
             return new ExternalLink(id, "mailto:" + emailAddress, label);
         }
+    }
+
+    public static ExternalLink mailLink(final String id, List<InternetAddress> emailAddresses) {
+
+        List<String> stringList = Collections.convert(emailAddresses,
+                new Collections.IElementConverter<InternetAddress, String>() {
+                    @Override
+                    public String convert(final InternetAddress ia) {
+                        // fix for RMT-614 (umlaute pose problems in mailto-links)
+                        return ia.getAddress();
+                        // return ia.toString();
+                    }
+                });
+        // outlook likes ';', iphone mail client prefers ','. but according to most sources ';' is correct when used in mailto.
+        // TODO (flowerrrr - 14.04.12) could try to detect user agent
+        String href = StringUtils.join(stringList, ";");
+        href = "mailTo:" + URLEncoder.encode(href);
+        return new ExternalLink(id, href);
     }
 
     public static String getDirectionsUrl(final LatLng latLng) {
