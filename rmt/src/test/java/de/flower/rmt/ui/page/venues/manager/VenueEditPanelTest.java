@@ -37,5 +37,6 @@ public class VenueEditPanelTest extends AbstractWicketIntegrationTests {
         wicketTester.assertComponentOnAjaxResponse("form:geocodePanel");
         wicketTester.assertContains(resultAddress);
         wicketTester.assertContains(resultAddress2);
-    }
+
+     }
 }

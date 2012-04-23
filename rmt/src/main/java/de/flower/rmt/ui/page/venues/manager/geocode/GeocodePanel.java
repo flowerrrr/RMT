@@ -40,8 +40,14 @@ public abstract class GeocodePanel extends BasePanel {
                     // avoid useless remote call to google api
                     resultListModel.setObject(Collections.<GeocodingResult>emptyList());
                 } else {
-                    List<GeocodingResult> results = geocodingService.geocode(value);
-                    resultListModel.setObject(results);
+                    List<GeocodingResult> results = null;
+                    try {
+                        results = geocodingService.geocode(value);
+                        resultListModel.setObject(results);
+                    } catch (Exception e) {
+                        log.error("Geocoding API error in search for [" + value + "]: " + e.getMessage(), e);
+                        resultListModel.setObject(Collections.<GeocodingResult>emptyList());
+                    }
                 }
                 self.setVisible(true);
                 target.add(self);

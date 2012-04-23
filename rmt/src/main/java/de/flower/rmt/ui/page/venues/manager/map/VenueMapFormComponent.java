@@ -23,7 +23,7 @@ public class VenueMapFormComponent extends FormComponentPanel<LatLng> {
                 return model.getObject() != null ? model.getObject() : defaultPosition;
             }
         };
-        // latLng = model.getObject() == null ? defaultPosition : model.getObject();
+        latLng = mapModel.getObject();
         add(new VenueMapPanel(mapModel) {
 
             @Override
@@ -39,14 +39,8 @@ public class VenueMapFormComponent extends FormComponentPanel<LatLng> {
     }
 
     @Override
-    protected void onModelChanged() {
-        latLng = getModelObject();
-    }
-
-    @Override
     public Markup getAssociatedMarkup() {
         String markup = "<wicket:panel><div wicket:id='venueMapPanel' class='venue-map'/></wicket:panel>";
         return Markup.of(markup);
     }
-
 }

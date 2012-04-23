@@ -67,8 +67,13 @@ public class Venue extends AbstractClubRelatedEntity {
     }
 
     public void setLatLng(LatLng latLng) {
-        this.lat = latLng.getLat();
-        this.lng = latLng.getLng();
+        if (latLng == null) {
+            this.lat = null;
+            this.lng = null;
+        } else {
+            this.lat = latLng.getLat();
+            this.lng = latLng.getLng();
+        }
     }
 
 }
