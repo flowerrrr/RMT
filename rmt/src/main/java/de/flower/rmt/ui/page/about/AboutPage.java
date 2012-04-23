@@ -12,7 +12,7 @@ public class AboutPage extends AbstractBaseLayoutPage {
         setHeading("about.heading", "about.heading.sub");
         add(new AnonymousNavigationPanel());
         addMainPanel(new AboutPanel());
-        addSecondaryPanel(new ContactPanel());
+        addSecondaryPanel(new ContactPanel(), new DemoPanel());
     }
 
     @Override

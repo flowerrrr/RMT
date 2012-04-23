@@ -496,6 +496,10 @@ div.form-horizontal {
 /*************************************************************************
     icons and labels
 **************************************************************************/
+// add some opacity to twitter icons
+[class^="icon-"], [class*=" icon-"] {
+    opacity: 0.6;
+}
 
 .xicon-abstract {
     padding: 1px 8px;
