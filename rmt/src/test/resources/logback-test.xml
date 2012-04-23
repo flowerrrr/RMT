@@ -52,7 +52,7 @@
 
     <logger name="de.flower" level="DEBUG" />
 
-    <logger name="xstream" additivity="false" level="TRACE" >
+    <logger name="xstream" additivity="false" level="DEBUG" >
         <appender-ref ref="FILE" />
     </logger>
 

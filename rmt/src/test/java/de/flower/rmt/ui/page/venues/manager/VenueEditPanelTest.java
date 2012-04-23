@@ -20,7 +20,9 @@ public class VenueEditPanelTest extends AbstractWicketIntegrationTests {
     public void testGeocoding() {
         // verify that google delivers correct address.
         String searchAddress = "Werner Heisenberg Allee  25\n 80939 Muenchen";
-        String resultAddress = "Werner-Heisenberg-Allee 25, 80939 München, Deutschland";
+        // TODO (flowerrrr - 23.04.12) use umlaut again once upgraded to gradle 1.0 (http://issues.gradle.org/browse/GRADLE-1618)
+        String resultAddress = "Werner-Heisenberg-Allee 25, 80939 M";
+        String resultAddress2 = "nchen, Deutschland";
 
         VenueEditPanel panel = new VenueEditPanel(new VenueModel());
 
@@ -34,5 +36,6 @@ public class VenueEditPanelTest extends AbstractWicketIntegrationTests {
         wicketTester.dumpAjaxResponse();
         wicketTester.assertComponentOnAjaxResponse("form:geocodePanel");
         wicketTester.assertContains(resultAddress);
+        wicketTester.assertContains(resultAddress2);
     }
 }
