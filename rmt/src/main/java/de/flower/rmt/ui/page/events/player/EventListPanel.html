@@ -11,9 +11,15 @@
         </div>
         <wicket:enclosure child="list">
         <table class="table player">
+            <colgroup>
+                <col class="date" />
+                <col class="team" />
+                <col class="summary" />
+                <col class="status" />
+            </colgroup>
             <thead>
             <tr>
-                <th class="date">
+                <th>
                     <div>
                         <wicket:message key="manager.event.date"/>
                     </div>
@@ -21,7 +27,7 @@
                         <!--<wicket:message key="manager.event.time"/>-->
                     </div>
                 </th>
-                <th class="team">
+                <th>
                     <div>
                         <wicket:message key="manager.event.team"/>
                     </div>
@@ -29,10 +35,10 @@
                         <wicket:message key="manager.event.type"/>
                     </div>
                 </th>
-                <th class="summary">
+                <th>
                     <wicket:message key="manager.event.summary"/>
                 </th>
-                <th class="status">
+                <th>
                     <wicket:message key="player.events.status"/>
                 </th>
             </tr>

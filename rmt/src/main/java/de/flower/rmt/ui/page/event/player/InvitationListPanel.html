@@ -5,15 +5,12 @@
 <wicket:panel>
 
     <table class="table invitationListTable player">
-        <thead>
-        <tr>
-            <!-- to let width work in fixed-layout tables the first row must define all cells with their width -->
-            <th class="position"></th>
-            <th class="name"></th>
-            <th class="comment"></th>
-            <th class="menu"></th>
-        </tr>
-        </thead>
+        <colgroup>
+            <col class="position" />
+            <col class="name" />
+            <col class="comment" />
+            <col class="menu" />
+        </colgroup>
         <tbody>
         <tr class="thead">
             <td class="th" colspan="4">

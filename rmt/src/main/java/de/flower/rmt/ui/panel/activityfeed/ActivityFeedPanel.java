@@ -61,7 +61,7 @@ public class ActivityFeedPanel extends BasePanel {
                 // whenever implementation of message classes change we risk a deserialization error
                 // when loading those messages.
                 try {
-                    return activityManager.findLastN(10);
+                    return activityManager.findLastN(30);
                 } catch (Exception e) {
                     log.error("Could not load activities: " + e.getMessage(), e);
                     return Collections.emptyList();

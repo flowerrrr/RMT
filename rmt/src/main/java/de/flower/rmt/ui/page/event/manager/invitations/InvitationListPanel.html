@@ -5,19 +5,19 @@
 <wicket:panel>
 
     <table class="table invitationListTable manager">
-        <thead>
-        <tr>
+        <colgroup>
             <!-- to let width work in fixed-layout tables the first row must define all cells with their width -->
-            <th class="date"></th>
-            <th class="name"></th>
-            <th class="comment"></th>
-            <th class="menu"></th>
-        </tr>
+            <col class="date" />
+            <col class="name" />
+            <col class="comment" />
+            <col class="menu" />
+        </colgroup>
+        <thead>
         </thead>
         <tbody>
         <tr class="thead">
             <td class="th" colspan="4">
-                <wicket:message key="invitation.accepted">[Accepted]</wicket:message>
+                <wicket:message key="invitation.accepted">[Accepted]</wicket:message>   <span class="num-responses" wicket:id="numACCEPTED"/>
             </td>
         </tr>
         <tr wicket:id="acceptedList">
@@ -25,7 +25,7 @@
         </tr>
         <tr class="thead">
             <td class="th" colspan="4">
-                <wicket:message key="invitation.unsure">[Unsure]</wicket:message>
+                <wicket:message key="invitation.unsure">[Unsure]</wicket:message>       <span class="num-responses" wicket:id="numUNSURE"/>
             </td>
         </tr>
         <tr wicket:id="unsureList">
@@ -33,7 +33,7 @@
         </tr>
         <tr class="thead">
             <td class="th" colspan="4">
-                <wicket:message key="invitation.declined">[Declined]</wicket:message>
+                <wicket:message key="invitation.declined">[Declined]</wicket:message>  <span class="num-responses" wicket:id="numDECLINED"/>
             </td>
         </tr>
         <tr wicket:id="declinedList">
@@ -41,7 +41,7 @@
         </tr>
         <tr class="thead">
             <td class="th" colspan="4">
-                <wicket:message key="invitation.noresponse">[No Response]</wicket:message>
+                <wicket:message key="invitation.noresponse">[No Response]</wicket:message>   <span class="num-responses" wicket:id="numNORESPONSE"/>
             </td>
         </tr>
         <tr wicket:id="noresponseList">
@@ -51,7 +51,7 @@
     </table>
 
     <wicket:fragment wicket:id="itemFragment">
-        <td class="date"><span wicket:id="date"/><span wicket:enclosure=""> (<span wicket:id="position"/>)</span></td>
+        <td class="date"><span wicket:id="date"/></td>
         <td class="name"><span wicket:id="name"/></td>
         <td class="comments"><span wicket:id="comment"/><span wicket:id="managerComment" class="manager-comment" wicket:message="title:invitations.commentbymanager"/></td>
         <td class="menu"><div wicket:id="dropDownMenuPanel" /></td>

@@ -597,6 +597,10 @@ ul.dropdown {
     table-layout: fixed;
 }
 
+.table.not-fixed {
+    table-layout: auto;
+}
+
 thead, .thead {
     border-bottom:  2px solid #CCCCCC;
 }
@@ -812,6 +816,12 @@ td.rsvpstatus {
 /*************************************************************************
     Invitation list
 **************************************************************************/
+.num-responses {
+    margin-left: 10px;
+    font-size: 80%;
+    font-weight: normal;
+}
+
 // only display border if both comments are visible
 .invitationListTable .comments span:nth-child(2) {
     border-top: 1px solid @borderColor;
@@ -843,30 +853,30 @@ td.rsvpstatus {
 .player-list-panel {
     .table {
         .menu {
-            width: 52px;
+            width: 68px;
         }
         .role {
-            width: 16px;
+            width: 34px;
         }
     }
 }
 .event-list-panel {
     .table {
         .date {
-            width: 60px;
+            width: 76px;
         }
     }
     .table.player {
         .status {
-            width: 80px;
+            width: 96px;
         }
     }
     .table.manager {
         .invitations {
-            width: 160px;
+            width: 176px;
         }
         .menu {
-            width: 52px;
+            width: 68px;
         }
     }
 }
@@ -889,7 +899,7 @@ td.rsvpstatus {
         width: 110px;
     }
     .position {
-        width: 30px;
+        width: 36px;
     }
     .name {
         width: 130px;

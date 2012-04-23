@@ -7,17 +7,24 @@
 
     <div wicket:id="listContainer">
         <table class="table" id="playerList">
+            <colgroup>
+                <col class="name" />
+                <col class="email" />
+                <col class="teams" />
+                <col class="role" />
+                <col class="menu" />
+            </colgroup>
             <thead>
             <tr>
-                <th class="name">
+                <th>
                     <wicket:message key="manager.player.fullname"/>
                 </th>
-                <th class="email">
-                    <wicket:message key="manager.player.email"/>
+                <th>
+                    <wicket:message key="manager.players.email"/>
                 </th>
-                <th class="teams"><wicket:message key="manager.player.teams"/></th>
-                <th class="role"><wicket:message key="manager.players.manager.role"/></th>
-                <th class="menu"></th>
+                <th><wicket:message key="manager.player.teams"/></th>
+                <th><wicket:message key="manager.players.manager.role"/></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
