@@ -4,20 +4,20 @@
     <facet type="web" name="Web">
       <configuration>
         <descriptors>
-          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/web.xml" />
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/web.xml"/>
         </descriptors>
         <webroots>
-          <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
+          <root url="file://$MODULE_DIR$/src/main/webapp" relative="/"/>
         </webroots>
         <sourceRoots>
-          <root url="file://$MODULE_DIR$/src/main/java" />
-          <root url="file://$MODULE_DIR$/src/main/resources" />
+          <root url="file://$MODULE_DIR$/src/main/java"/>
+          <root url="file://$MODULE_DIR$/src/main/resources"/>
         </sourceRoots>
       </configuration>
     </facet>
     <facet type="Spring" name="Spring">
       <configuration>
-        <fileset id="web: application context" name="MVC application context" removed="true" />
+        <fileset id="web: application context" name="MVC application context" removed="true"/>
         <fileset id="fileset1" name="My Fileset" removed="false">
           <file>file://$MODULE_DIR$/src/main/resources/applicationContext-service.xml</file>
           <file>file://$MODULE_DIR$/src/test/resources/applicationContext-test.xml</file>
@@ -30,1019 +30,1019 @@
     </facet>
     <facet type="scala" name="Scala">
       <configuration>
-        <option name="compilerLibraryLevel" value="Global" />
-        <option name="compilerLibraryName" value="scala-compiler-2.9.0.1" />
-        <option name="explainTypeErrors" value="true" />
+        <option name="compilerLibraryLevel" value="Global"/>
+        <option name="compilerLibraryName" value="scala-compiler-2.9.0.1"/>
+        <option name="explainTypeErrors" value="true"/>
       </configuration>
     </facet>
     <facet type="jpa" name="JPA">
       <configuration>
-        <setting name="validation-enabled" value="true" />
-        <setting name="provider-name" value="Hibernate" />
+        <setting name="validation-enabled" value="true"/>
+        <setting name="provider-name" value="Hibernate"/>
         <datasource-mapping>
-          <factory-entry name="rmt-pu" />
-          <factory-entry name="rmt-test-pu" />
+          <factory-entry name="rmt-pu"/>
+          <factory-entry name="rmt-test-pu"/>
         </datasource-mapping>
-        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
+        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml"/>
       </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
-    <exclude-output />
-    <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/main/aspectj" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/main/generated" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/database" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/aspectj" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/tools" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/scala" isTestSource="true" />
-      <excludeFolder url="file://$MODULE_DIR$/.gradle" />
-      <excludeFolder url="file://$MODULE_DIR$/build" />
+    <exclude-output/>
+    <content url="file://$MODULE_DIR$/">
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false"/>
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" isTestSource="false"/>
+      <sourceFolder url="file://$MODULE_DIR$/src/main/aspectj" isTestSource="false"/>
+      <sourceFolder url="file://$MODULE_DIR$/src/main/generated" isTestSource="false"/>
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true"/>
+      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" isTestSource="true"/>
+      <sourceFolder url="file://$MODULE_DIR$/src/test/database" isTestSource="true"/>
+      <sourceFolder url="file://$MODULE_DIR$/src/test/aspectj" isTestSource="true"/>
+      <sourceFolder url="file://$MODULE_DIR$/src/test/tools" isTestSource="true"/>
+      <sourceFolder url="file://$MODULE_DIR$/src/test/scala" isTestSource="true"/>
+      <excludeFolder url="file://$MODULE_DIR$/.gradle"/>
+      <excludeFolder url="file://$MODULE_DIR$/build"/>
     </content>
-    <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="jquery.min" level="application" />
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false"/>
+    <orderEntry type="library" name="jquery.min" level="application"/>
+    <orderEntry type="inheritedJdk"/>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-core/jars/spring-core-3.1.0.RELEASE.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework/spring-core/jars/spring-core-3.1.0.RELEASE.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-core/sources/spring-core-3.1.0.RELEASE-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework/spring-core/sources/spring-core-3.1.0.RELEASE-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-asm/jars/spring-asm-3.1.0.RELEASE.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework/spring-asm/jars/spring-asm-3.1.0.RELEASE.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-asm/sources/spring-asm-3.1.0.RELEASE-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework/spring-asm/sources/spring-asm-3.1.0.RELEASE-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/commons-logging/commons-logging/jars/commons-logging-1.1.1.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/commons-logging/commons-logging/jars/commons-logging-1.1.1.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/commons-logging/commons-logging/javadocs/commons-logging-1.1.1-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/commons-logging/commons-logging/javadocs/commons-logging-1.1.1-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/commons-logging/commons-logging/sources/commons-logging-1.1.1-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/commons-logging/commons-logging/sources/commons-logging-1.1.1-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-context/jars/spring-context-3.1.0.RELEASE.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework/spring-context/jars/spring-context-3.1.0.RELEASE.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-context/sources/spring-context-3.1.0.RELEASE-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework/spring-context/sources/spring-context-3.1.0.RELEASE-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-aop/jars/spring-aop-3.1.0.RELEASE.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework/spring-aop/jars/spring-aop-3.1.0.RELEASE.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-aop/sources/spring-aop-3.1.0.RELEASE-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework/spring-aop/sources/spring-aop-3.1.0.RELEASE-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-beans/jars/spring-beans-3.1.0.RELEASE.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework/spring-beans/jars/spring-beans-3.1.0.RELEASE.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-beans/sources/spring-beans-3.1.0.RELEASE-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework/spring-beans/sources/spring-beans-3.1.0.RELEASE-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/aopalliance/aopalliance/jars/aopalliance-1.0.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/aopalliance/aopalliance/jars/aopalliance-1.0.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/aopalliance/aopalliance/sources/aopalliance-1.0-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/aopalliance/aopalliance/sources/aopalliance-1.0-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-expression/jars/spring-expression-3.1.0.RELEASE.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework/spring-expression/jars/spring-expression-3.1.0.RELEASE.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-expression/sources/spring-expression-3.1.0.RELEASE-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework/spring-expression/sources/spring-expression-3.1.0.RELEASE-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-context-support/jars/spring-context-support-3.1.0.RELEASE.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework/spring-context-support/jars/spring-context-support-3.1.0.RELEASE.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-context-support/sources/spring-context-support-3.1.0.RELEASE-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework/spring-context-support/sources/spring-context-support-3.1.0.RELEASE-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-web/jars/spring-security-web-3.1.0.RELEASE.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework.security/spring-security-web/jars/spring-security-web-3.1.0.RELEASE.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-web/sources/spring-security-web-3.1.0.RELEASE-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework.security/spring-security-web/sources/spring-security-web-3.1.0.RELEASE-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-tx/jars/spring-tx-3.0.6.RELEASE.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework/spring-tx/jars/spring-tx-3.0.6.RELEASE.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-tx/sources/spring-tx-3.0.6.RELEASE-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework/spring-tx/sources/spring-tx-3.0.6.RELEASE-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-web/jars/spring-web-3.0.6.RELEASE.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework/spring-web/jars/spring-web-3.0.6.RELEASE.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-web/sources/spring-web-3.0.6.RELEASE-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework/spring-web/sources/spring-web-3.0.6.RELEASE-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-core/jars/spring-security-core-3.1.0.RELEASE.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework.security/spring-security-core/jars/spring-security-core-3.1.0.RELEASE.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-core/sources/spring-security-core-3.1.0.RELEASE-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework.security/spring-security-core/sources/spring-security-core-3.1.0.RELEASE-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-crypto/jars/spring-security-crypto-3.1.0.RELEASE.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework.security/spring-security-crypto/jars/spring-security-crypto-3.1.0.RELEASE.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-crypto/sources/spring-security-crypto-3.1.0.RELEASE-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework.security/spring-security-crypto/sources/spring-security-crypto-3.1.0.RELEASE-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-jdbc/jars/spring-jdbc-3.0.6.RELEASE.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework/spring-jdbc/jars/spring-jdbc-3.0.6.RELEASE.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-jdbc/sources/spring-jdbc-3.0.6.RELEASE-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework/spring-jdbc/sources/spring-jdbc-3.0.6.RELEASE-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-core/jars/wicket-core-1.5.5.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.wicket/wicket-core/jars/wicket-core-1.5.5.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-core/javadocs/wicket-core-1.5.5-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.wicket/wicket-core/javadocs/wicket-core-1.5.5-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-core/sources/wicket-core-1.5.5-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.wicket/wicket-core/sources/wicket-core-1.5.5-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-util/jars/wicket-util-1.5.5.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.wicket/wicket-util/jars/wicket-util-1.5.5.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-util/javadocs/wicket-util-1.5.5-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.wicket/wicket-util/javadocs/wicket-util-1.5.5-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-util/sources/wicket-util-1.5.5-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.wicket/wicket-util/sources/wicket-util-1.5.5-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.6.2.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.6.2.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.slf4j/slf4j-api/javadocs/slf4j-api-1.6.2-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.slf4j/slf4j-api/javadocs/slf4j-api-1.6.2-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.slf4j/slf4j-api/sources/slf4j-api-1.6.2-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.slf4j/slf4j-api/sources/slf4j-api-1.6.2-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-request/jars/wicket-request-1.5.5.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.wicket/wicket-request/jars/wicket-request-1.5.5.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-request/javadocs/wicket-request-1.5.5-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.wicket/wicket-request/javadocs/wicket-request-1.5.5-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-request/sources/wicket-request-1.5.5-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.wicket/wicket-request/sources/wicket-request-1.5.5-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-extensions/jars/wicket-extensions-1.5.5.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.wicket/wicket-extensions/jars/wicket-extensions-1.5.5.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-extensions/javadocs/wicket-extensions-1.5.5-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.wicket/wicket-extensions/javadocs/wicket-extensions-1.5.5-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-extensions/sources/wicket-extensions-1.5.5-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.wicket/wicket-extensions/sources/wicket-extensions-1.5.5-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-spring/jars/wicket-spring-1.5.5.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.wicket/wicket-spring/jars/wicket-spring-1.5.5.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-spring/javadocs/wicket-spring-1.5.5-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.wicket/wicket-spring/javadocs/wicket-spring-1.5.5-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-spring/sources/wicket-spring-1.5.5-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.wicket/wicket-spring/sources/wicket-spring-1.5.5-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-ioc/jars/wicket-ioc-1.5.5.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.wicket/wicket-ioc/jars/wicket-ioc-1.5.5.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-ioc/javadocs/wicket-ioc-1.5.5-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.wicket/wicket-ioc/javadocs/wicket-ioc-1.5.5-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-ioc/sources/wicket-ioc-1.5.5-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.wicket/wicket-ioc/sources/wicket-ioc-1.5.5-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/cglib/cglib/jars/cglib-2.2.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/cglib/cglib/jars/cglib-2.2.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/cglib/cglib/javadocs/cglib-2.2-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/cglib/cglib/javadocs/cglib-2.2-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/cglib/cglib/sources/cglib-2.2-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/cglib/cglib/sources/cglib-2.2-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/asm/asm/jars/asm-3.1.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/asm/asm/jars/asm-3.1.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/asm/asm/sources/asm-3.1-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/asm/asm/sources/asm-3.1-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-datetime/jars/wicket-datetime-1.5.5.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.wicket/wicket-datetime/jars/wicket-datetime-1.5.5.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-datetime/javadocs/wicket-datetime-1.5.5-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.wicket/wicket-datetime/javadocs/wicket-datetime-1.5.5-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-datetime/sources/wicket-datetime-1.5.5-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.wicket/wicket-datetime/sources/wicket-datetime-1.5.5-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/joda-time/joda-time/jars/joda-time-2.0.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/joda-time/joda-time/jars/joda-time-2.0.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/joda-time/joda-time/javadocs/joda-time-2.0-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/joda-time/joda-time/javadocs/joda-time-2.0-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/joda-time/joda-time/sources/joda-time-2.0-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/joda-time/joda-time/sources/joda-time-2.0-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-devutils/jars/wicket-devutils-1.5.5.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.wicket/wicket-devutils/jars/wicket-devutils-1.5.5.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-devutils/javadocs/wicket-devutils-1.5.5-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.wicket/wicket-devutils/javadocs/wicket-devutils-1.5.5-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.wicket/wicket-devutils/sources/wicket-devutils-1.5.5-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.wicket/wicket-devutils/sources/wicket-devutils-1.5.5-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.wicketstuff/wicketstuff-jsr303/jars/wicketstuff-jsr303-1.5.0.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.wicketstuff/wicketstuff-jsr303/jars/wicketstuff-jsr303-1.5.0.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.wicketstuff/wicketstuff-jsr303/javadocs/wicketstuff-jsr303-1.5.0-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.wicketstuff/wicketstuff-jsr303/javadocs/wicketstuff-jsr303-1.5.0-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.wicketstuff/wicketstuff-jsr303/sources/wicketstuff-jsr303-1.5.0-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.wicketstuff/wicketstuff-jsr303/sources/wicketstuff-jsr303-1.5.0-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/javax.validation/validation-api/jars/validation-api-1.0.0.GA.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/javax.validation/validation-api/jars/validation-api-1.0.0.GA.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/javax.validation/validation-api/javadocs/validation-api-1.0.0.GA-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/javax.validation/validation-api/javadocs/validation-api-1.0.0.GA-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/javax.validation/validation-api/sources/validation-api-1.0.0.GA-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/javax.validation/validation-api/sources/validation-api-1.0.0.GA-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-validator/jars/hibernate-validator-4.2.0.Final.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.hibernate/hibernate-validator/jars/hibernate-validator-4.2.0.Final.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-validator/sources/hibernate-validator-4.2.0.Final-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.hibernate/hibernate-validator/sources/hibernate-validator-4.2.0.Final-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-entitymanager/jars/hibernate-entitymanager-3.6.7.Final.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.hibernate/hibernate-entitymanager/jars/hibernate-entitymanager-3.6.7.Final.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-entitymanager/sources/hibernate-entitymanager-3.6.7.Final-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.hibernate/hibernate-entitymanager/sources/hibernate-entitymanager-3.6.7.Final-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate.javax.persistence/hibernate-jpa-2.0-api/jars/hibernate-jpa-2.0-api-1.0.1.Final.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.hibernate.javax.persistence/hibernate-jpa-2.0-api/jars/hibernate-jpa-2.0-api-1.0.1.Final.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate.javax.persistence/hibernate-jpa-2.0-api/sources/hibernate-jpa-2.0-api-1.0.1.Final-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.hibernate.javax.persistence/hibernate-jpa-2.0-api/sources/hibernate-jpa-2.0-api-1.0.1.Final-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-core/jars/hibernate-core-3.6.7.Final.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.hibernate/hibernate-core/jars/hibernate-core-3.6.7.Final.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-core/sources/hibernate-core-3.6.7.Final-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.hibernate/hibernate-core/sources/hibernate-core-3.6.7.Final-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/commons-collections/commons-collections/jars/commons-collections-3.2.1.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/commons-collections/commons-collections/jars/commons-collections-3.2.1.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/commons-collections/commons-collections/javadocs/commons-collections-3.2.1-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/commons-collections/commons-collections/javadocs/commons-collections-3.2.1-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/commons-collections/commons-collections/sources/commons-collections-3.2.1-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/commons-collections/commons-collections/sources/commons-collections-3.2.1-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/antlr/antlr/jars/antlr-2.7.6.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/antlr/antlr/jars/antlr-2.7.6.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/antlr/antlr/sources/antlr-2.7.6-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/antlr/antlr/sources/antlr-2.7.6-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/dom4j/dom4j/jars/dom4j-1.6.1.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/dom4j/dom4j/jars/dom4j-1.6.1.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/dom4j/dom4j/sources/dom4j-1.6.1-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/dom4j/dom4j/sources/dom4j-1.6.1-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-commons-annotations/jars/hibernate-commons-annotations-3.2.0.Final.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.hibernate/hibernate-commons-annotations/jars/hibernate-commons-annotations-3.2.0.Final.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-commons-annotations/javadocs/hibernate-commons-annotations-3.2.0.Final-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.hibernate/hibernate-commons-annotations/javadocs/hibernate-commons-annotations-3.2.0.Final-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-commons-annotations/sources/hibernate-commons-annotations-3.2.0.Final-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.hibernate/hibernate-commons-annotations/sources/hibernate-commons-annotations-3.2.0.Final-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/javax.transaction/jta/jars/jta-1.1.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/javax.transaction/jta/jars/jta-1.1.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/javax.transaction/jta/sources/jta-1.1-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/javax.transaction/jta/sources/jta-1.1-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/javassist/javassist/jars/javassist-3.12.0.GA.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/javassist/javassist/jars/javassist-3.12.0.GA.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/javassist/javassist/sources/javassist-3.12.0.GA-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/javassist/javassist/sources/javassist-3.12.0.GA-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.data/spring-data-jpa/jars/spring-data-jpa-1.0.2.RELEASE.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework.data/spring-data-jpa/jars/spring-data-jpa-1.0.2.RELEASE.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.data/spring-data-jpa/sources/spring-data-jpa-1.0.2.RELEASE-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework.data/spring-data-jpa/sources/spring-data-jpa-1.0.2.RELEASE-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.data/spring-data-commons-core/jars/spring-data-commons-core-1.1.0.RELEASE.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework.data/spring-data-commons-core/jars/spring-data-commons-core-1.1.0.RELEASE.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.data/spring-data-commons-core/sources/spring-data-commons-core-1.1.0.RELEASE-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework.data/spring-data-commons-core/sources/spring-data-commons-core-1.1.0.RELEASE-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-orm/jars/spring-orm-3.0.5.RELEASE.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework/spring-orm/jars/spring-orm-3.0.5.RELEASE.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-orm/sources/spring-orm-3.0.5.RELEASE-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework/spring-orm/sources/spring-orm-3.0.5.RELEASE-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.aspectj/aspectjrt/jars/aspectjrt-1.6.8.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.aspectj/aspectjrt/jars/aspectjrt-1.6.8.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.aspectj/aspectjrt/sources/aspectjrt-1.6.8-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.aspectj/aspectjrt/sources/aspectjrt-1.6.8-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.slf4j/jcl-over-slf4j/jars/jcl-over-slf4j-1.6.1.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.slf4j/jcl-over-slf4j/jars/jcl-over-slf4j-1.6.1.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.slf4j/jcl-over-slf4j/javadocs/jcl-over-slf4j-1.6.1-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.slf4j/jcl-over-slf4j/javadocs/jcl-over-slf4j-1.6.1-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.slf4j/jcl-over-slf4j/sources/jcl-over-slf4j-1.6.1-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.slf4j/jcl-over-slf4j/sources/jcl-over-slf4j-1.6.1-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/commons-beanutils/commons-beanutils/jars/commons-beanutils-1.8.3.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/commons-beanutils/commons-beanutils/jars/commons-beanutils-1.8.3.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/commons-beanutils/commons-beanutils/javadocs/commons-beanutils-1.8.3-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/commons-beanutils/commons-beanutils/javadocs/commons-beanutils-1.8.3-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/commons-beanutils/commons-beanutils/sources/commons-beanutils-1.8.3-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/commons-beanutils/commons-beanutils/sources/commons-beanutils-1.8.3-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.commons/commons-lang3/jars/commons-lang3-3.0.1.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.commons/commons-lang3/jars/commons-lang3-3.0.1.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.commons/commons-lang3/javadocs/commons-lang3-3.0.1-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.commons/commons-lang3/javadocs/commons-lang3-3.0.1-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.commons/commons-lang3/sources/commons-lang3-3.0.1-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.commons/commons-lang3/sources/commons-lang3-3.0.1-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/ch.qos.logback/logback-classic/jars/logback-classic-0.9.30.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/ch.qos.logback/logback-classic/jars/logback-classic-0.9.30.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/ch.qos.logback/logback-classic/javadocs/logback-classic-0.9.30-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/ch.qos.logback/logback-classic/javadocs/logback-classic-0.9.30-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/ch.qos.logback/logback-classic/sources/logback-classic-0.9.30-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/ch.qos.logback/logback-classic/sources/logback-classic-0.9.30-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/ch.qos.logback/logback-core/jars/logback-core-0.9.30.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/ch.qos.logback/logback-core/jars/logback-core-0.9.30.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/ch.qos.logback/logback-core/javadocs/logback-core-0.9.30-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/ch.qos.logback/logback-core/javadocs/logback-core-0.9.30-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/ch.qos.logback/logback-core/sources/logback-core-0.9.30-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/ch.qos.logback/logback-core/sources/logback-core-0.9.30-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.httpcomponents/httpclient/jars/httpclient-4.1.2.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.httpcomponents/httpclient/jars/httpclient-4.1.2.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.httpcomponents/httpclient/sources/httpclient-4.1.2-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.httpcomponents/httpclient/sources/httpclient-4.1.2-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.httpcomponents/httpcore/jars/httpcore-4.1.2.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.httpcomponents/httpcore/jars/httpcore-4.1.2.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.httpcomponents/httpcore/sources/httpcore-4.1.2-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.httpcomponents/httpcore/sources/httpcore-4.1.2-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/commons-codec/commons-codec/jars/commons-codec-1.4.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/commons-codec/commons-codec/jars/commons-codec-1.4.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/commons-codec/commons-codec/javadocs/commons-codec-1.4-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/commons-codec/commons-codec/javadocs/commons-codec-1.4-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/commons-codec/commons-codec/sources/commons-codec-1.4-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/commons-codec/commons-codec/sources/commons-codec-1.4-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/com.google.code.gson/gson/jars/gson-1.7.2.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/com.google.code.gson/gson/jars/gson-1.7.2.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/com.google.code.gson/gson/javadocs/gson-1.7.2-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/com.google.code.gson/gson/javadocs/gson-1.7.2-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/com.google.code.gson/gson/sources/gson-1.7.2-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/com.google.code.gson/gson/sources/gson-1.7.2-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-jpamodelgen/jars/hibernate-jpamodelgen-1.1.1.Final.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.hibernate/hibernate-jpamodelgen/jars/hibernate-jpamodelgen-1.1.1.Final.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-jpamodelgen/javadocs/hibernate-jpamodelgen-1.1.1.Final-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.hibernate/hibernate-jpamodelgen/javadocs/hibernate-jpamodelgen-1.1.1.Final-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.hibernate/hibernate-jpamodelgen/sources/hibernate-jpamodelgen-1.1.1.Final-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.hibernate/hibernate-jpamodelgen/sources/hibernate-jpamodelgen-1.1.1.Final-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/joda-time/joda-time-hibernate/jars/joda-time-hibernate-1.3.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/joda-time/joda-time-hibernate/jars/joda-time-hibernate-1.3.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/joda-time/joda-time-hibernate/javadocs/joda-time-hibernate-1.3-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/joda-time/joda-time-hibernate/javadocs/joda-time-hibernate-1.3-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/joda-time/joda-time-hibernate/sources/joda-time-hibernate-1.3-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/joda-time/joda-time-hibernate/sources/joda-time-hibernate-1.3-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.joda/joda-convert/jars/joda-convert-1.1.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.joda/joda-convert/jars/joda-convert-1.1.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.joda/joda-convert/javadocs/joda-convert-1.1-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.joda/joda-convert/javadocs/joda-convert-1.1-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.joda/joda-convert/sources/joda-convert-1.1-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.joda/joda-convert/sources/joda-convert-1.1-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/com.thoughtworks.xstream/xstream/jars/xstream-1.4.1.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/com.thoughtworks.xstream/xstream/jars/xstream-1.4.1.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/com.thoughtworks.xstream/xstream/javadocs/xstream-1.4.1-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/com.thoughtworks.xstream/xstream/javadocs/xstream-1.4.1-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/com.thoughtworks.xstream/xstream/sources/xstream-1.4.1-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/com.thoughtworks.xstream/xstream/sources/xstream-1.4.1-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/xmlpull/xmlpull/jars/xmlpull-1.1.3.1.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/xmlpull/xmlpull/jars/xmlpull-1.1.3.1.jar!/"/>
         </CLASSES>
-        <JAVADOC />
-        <SOURCES />
+        <JAVADOC/>
+        <SOURCES/>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/xpp3/xpp3_min/jars/xpp3_min-1.1.4c.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/xpp3/xpp3_min/jars/xpp3_min-1.1.4c.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/xpp3/xpp3_min/javadocs/xpp3_min-1.1.4c-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/xpp3/xpp3_min/javadocs/xpp3_min-1.1.4c-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/xpp3/xpp3_min/sources/xpp3_min-1.1.4c-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/xpp3/xpp3_min/sources/xpp3_min-1.1.4c-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/javax.mail/mail/jars/mail-1.4.4.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/javax.mail/mail/jars/mail-1.4.4.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/javax.mail/mail/sources/mail-1.4.4-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/javax.mail/mail/sources/mail-1.4.4-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/javax.activation/activation/jars/activation-1.1.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/javax.activation/activation/jars/activation-1.1.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/javax.activation/activation/sources/activation-1.1-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/javax.activation/activation/sources/activation-1.1-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.velocity/velocity/jars/velocity-1.7.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.velocity/velocity/jars/velocity-1.7.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.velocity/velocity/javadocs/velocity-1.7-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.velocity/velocity/javadocs/velocity-1.7-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.apache.velocity/velocity/sources/velocity-1.7-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.apache.velocity/velocity/sources/velocity-1.7-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/commons-lang/commons-lang/jars/commons-lang-2.4.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/commons-lang/commons-lang/jars/commons-lang-2.4.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/commons-lang/commons-lang/javadocs/commons-lang-2.4-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/commons-lang/commons-lang/javadocs/commons-lang-2.4-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/commons-lang/commons-lang/sources/commons-lang-2.4-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/commons-lang/commons-lang/sources/commons-lang-2.4-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/com.google.guava/guava/jars/guava-11.0.1.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/com.google.guava/guava/jars/guava-11.0.1.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/com.google.guava/guava/javadocs/guava-11.0.1-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/com.google.guava/guava/javadocs/guava-11.0.1-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/com.google.guava/guava/sources/guava-11.0.1-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/com.google.guava/guava/sources/guava-11.0.1-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/com.google.code.findbugs/jsr305/jars/jsr305-1.3.9.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/com.google.code.findbugs/jsr305/jars/jsr305-1.3.9.jar!/"/>
         </CLASSES>
-        <JAVADOC />
-        <SOURCES />
+        <JAVADOC/>
+        <SOURCES/>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="" scope="RUNTIME">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.slf4j/jcl-over-slf4j/jars/jcl-over-slf4j-1.6.2.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.slf4j/jcl-over-slf4j/jars/jcl-over-slf4j-1.6.2.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.slf4j/jcl-over-slf4j/javadocs/jcl-over-slf4j-1.6.2-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.slf4j/jcl-over-slf4j/javadocs/jcl-over-slf4j-1.6.2-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.slf4j/jcl-over-slf4j/sources/jcl-over-slf4j-1.6.2-sources.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="" scope="RUNTIME">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/c3p0/c3p0/jars/c3p0-0.9.1.2.jar!/" />
-        </CLASSES>
-        <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/c3p0/c3p0/javadocs/c3p0-0.9.1.2-javadoc.jar!/" />
-        </JAVADOC>
-        <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/c3p0/c3p0/sources/c3p0-0.9.1.2-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.slf4j/jcl-over-slf4j/sources/jcl-over-slf4j-1.6.2-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="" scope="RUNTIME">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/mysql/mysql-connector-java/jars/mysql-connector-java-5.1.16.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="" scope="RUNTIME">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/com.h2database/h2/jars/h2-1.3.160.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/c3p0/c3p0/jars/c3p0-0.9.1.2.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/com.h2database/h2/javadocs/h2-1.3.160-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/c3p0/c3p0/javadocs/c3p0-0.9.1.2-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/com.h2database/h2/sources/h2-1.3.160-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/c3p0/c3p0/sources/c3p0-0.9.1.2-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="" scope="RUNTIME">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-config/jars/spring-security-config-3.1.0.RELEASE.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/mysql/mysql-connector-java/jars/mysql-connector-java-5.1.16.jar!/"/>
         </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework.security/spring-security-config/sources/spring-security-config-3.1.0.RELEASE-sources.jar!/" />
-        </SOURCES>
+        <JAVADOC/>
+        <SOURCES/>
       </library>
     </orderEntry>
-    <orderEntry type="module-library" scope="TEST">
+    <orderEntry type="module-library" exported="" scope="RUNTIME">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-test/jars/spring-test-3.1.0.RELEASE.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.springframework/spring-test/sources/spring-test-3.1.0.RELEASE-sources.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" scope="TEST">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.dbunit/dbunit/jars/dbunit-2.4.8.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/com.h2database/h2/jars/h2-1.3.160.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.dbunit/dbunit/javadocs/dbunit-2.4.8-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/com.h2database/h2/javadocs/h2-1.3.160-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.dbunit/dbunit/sources/dbunit-2.4.8-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/com.h2database/h2/sources/h2-1.3.160-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="" scope="RUNTIME">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework.security/spring-security-config/jars/spring-security-config-3.1.0.RELEASE.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework.security/spring-security-config/sources/spring-security-config-3.1.0.RELEASE-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/junit/junit/jars/junit-3.8.2.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework/spring-test/jars/spring-test-3.1.0.RELEASE.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.springframework/spring-test/sources/spring-test-3.1.0.RELEASE-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.dbunit/dbunit/jars/dbunit-2.4.8.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/junit/junit/javadocs/junit-3.8.2-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.dbunit/dbunit/javadocs/dbunit-2.4.8-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/junit/junit/sources/junit-3.8.2-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.dbunit/dbunit/sources/dbunit-2.4.8-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.scala-lang/scala-library/jars/scala-library-2.9.1.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/junit/junit/jars/junit-3.8.2.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.scala-lang/scala-library/javadocs/scala-library-2.9.1-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/junit/junit/javadocs/junit-3.8.2-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.scala-lang/scala-library/sources/scala-library-2.9.1-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/junit/junit/sources/junit-3.8.2-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.testng/testng/jars/testng-6.1.1.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.scala-lang/scala-library/jars/scala-library-2.9.1.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.testng/testng/javadocs/testng-6.1.1-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.scala-lang/scala-library/javadocs/scala-library-2.9.1-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.testng/testng/sources/testng-6.1.1-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.scala-lang/scala-library/sources/scala-library-2.9.1-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.beanshell/bsh/jars/bsh-2.0b4.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" scope="TEST">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/com.beust/jcommander/jars/jcommander-1.12.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.testng/testng/jars/testng-6.1.1.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/com.beust/jcommander/javadocs/jcommander-1.12-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.testng/testng/javadocs/testng-6.1.1-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/com.beust/jcommander/sources/jcommander-1.12-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.testng/testng/sources/testng-6.1.1-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.yaml/snakeyaml/jars/snakeyaml-1.6.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.beanshell/bsh/jars/bsh-2.0b4.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES/>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/oblume/.gradle/cache/com.beust/jcommander/jars/jcommander-1.12.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.yaml/snakeyaml/javadocs/snakeyaml-1.6-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/com.beust/jcommander/javadocs/jcommander-1.12-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.yaml/snakeyaml/sources/snakeyaml-1.6-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/com.beust/jcommander/sources/jcommander-1.12-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.scalatest/scalatest/jars/scalatest-1.4.RC2.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.yaml/snakeyaml/jars/snakeyaml-1.6.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.scalatest/scalatest/javadocs/scalatest-1.4.RC2-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.yaml/snakeyaml/javadocs/snakeyaml-1.6-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.scalatest/scalatest/sources/scalatest-1.4.RC2-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.yaml/snakeyaml/sources/snakeyaml-1.6-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.mockito/mockito-core/jars/mockito-core-1.9.0-rc1.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.scalatest/scalatest/jars/scalatest-1.4.RC2.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.mockito/mockito-core/javadocs/mockito-core-1.9.0-rc1-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.scalatest/scalatest/javadocs/scalatest-1.4.RC2-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.mockito/mockito-core/sources/mockito-core-1.9.0-rc1-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.scalatest/scalatest/sources/scalatest-1.4.RC2-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.hamcrest/hamcrest-core/jars/hamcrest-core-1.1.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.hamcrest/hamcrest-core/sources/hamcrest-core-1.1-sources.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" scope="TEST">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.objenesis/objenesis/jars/objenesis-1.0.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.mockito/mockito-core/jars/mockito-core-1.9.0-rc1.jar!/"/>
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.objenesis/objenesis/javadocs/objenesis-1.0-javadoc.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.mockito/mockito-core/javadocs/mockito-core-1.9.0-rc1-javadoc.jar!/"/>
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.objenesis/objenesis/sources/objenesis-1.0-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.mockito/mockito-core/sources/mockito-core-1.9.0-rc1-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/javax.servlet/servlet-api/jars/servlet-api-2.5.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.hamcrest/hamcrest-core/jars/hamcrest-core-1.1.jar!/"/>
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC/>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/cache/javax.servlet/servlet-api/sources/servlet-api-2.5-sources.jar!/" />
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.hamcrest/hamcrest-core/sources/hamcrest-core-1.1-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.objenesis/objenesis/jars/objenesis-1.0.jar!/"/>
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.objenesis/objenesis/javadocs/objenesis-1.0-javadoc.jar!/"/>
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://C:/Users/oblume/.gradle/cache/org.objenesis/objenesis/sources/objenesis-1.0-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/oblume/.gradle/cache/javax.servlet/servlet-api/jars/servlet-api-2.5.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/oblume/.gradle/cache/javax.servlet/servlet-api/sources/servlet-api-2.5-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
@@ -1050,191 +1050,190 @@
   <component name="org.twodividedbyzero.idea.findbugs">
     <option name="_basePreferences">
       <map>
-        <entry key="property.analysisEffortLevel" value="default" />
-        <entry key="property.analyzeAfterCompile" value="false" />
-        <entry key="property.exportAsHtml" value="true" />
-        <entry key="property.exportAsXml" value="true" />
-        <entry key="property.exportBaseDir" value="" />
-        <entry key="property.exportCreateArchiveDir" value="false" />
-        <entry key="property.exportOpenBrowser" value="true" />
-        <entry key="property.minPriorityToReport" value="Medium" />
-        <entry key="property.runAnalysisInBackground" value="false" />
-        <entry key="property.showHiddenDetectors" value="false" />
-        <entry key="property.toolWindowToFront" value="true" />
+        <entry key="property.analysisEffortLevel" value="default"/>
+        <entry key="property.analyzeAfterCompile" value="false"/>
+        <entry key="property.exportAsHtml" value="true"/>
+        <entry key="property.exportAsXml" value="true"/>
+        <entry key="property.exportBaseDir" value=""/>
+        <entry key="property.exportCreateArchiveDir" value="false"/>
+        <entry key="property.exportOpenBrowser" value="true"/>
+        <entry key="property.minPriorityToReport" value="Medium"/>
+        <entry key="property.runAnalysisInBackground" value="false"/>
+        <entry key="property.showHiddenDetectors" value="false"/>
+        <entry key="property.toolWindowToFront" value="true"/>
       </map>
     </option>
     <option name="_detectors">
       <map>
-        <entry key="AppendingToAnObjectOutputStream" value="true" />
-        <entry key="BCPMethodReturnCheck" value="false" />
-        <entry key="BadAppletConstructor" value="false" />
-        <entry key="BadResultSetAccess" value="true" />
-        <entry key="BadSyntaxForRegularExpression" value="true" />
-        <entry key="BadUseOfReturnValue" value="true" />
-        <entry key="BadlyOverriddenAdapter" value="true" />
-        <entry key="BooleanReturnNull" value="true" />
-        <entry key="BuildInterproceduralCallGraph" value="false" />
-        <entry key="BuildObligationPolicyDatabase" value="true" />
-        <entry key="CallToUnsupportedMethod" value="false" />
-        <entry key="CalledMethods" value="true" />
-        <entry key="CheckCalls" value="false" />
-        <entry key="CheckExpectedWarnings" value="false" />
-        <entry key="CheckImmutableAnnotation" value="true" />
-        <entry key="CheckTypeQualifiers" value="true" />
-        <entry key="CloneIdiom" value="true" />
-        <entry key="ComparatorIdiom" value="true" />
-        <entry key="ConfusedInheritance" value="true" />
-        <entry key="ConfusionBetweenInheritedAndOuterMethod" value="true" />
-        <entry key="CrossSiteScripting" value="true" />
-        <entry key="DoInsideDoPrivileged" value="true" />
-        <entry key="DontCatchIllegalMonitorStateException" value="true" />
-        <entry key="DontIgnoreResultOfPutIfAbsent" value="true" />
-        <entry key="DontUseEnum" value="true" />
-        <entry key="DroppedException" value="true" />
-        <entry key="DumbMethodInvocations" value="true" />
-        <entry key="DumbMethods" value="true" />
-        <entry key="DuplicateBranches" value="true" />
-        <entry key="EmptyZipFileEntry" value="true" />
-        <entry key="EqStringTest" value="false" />
-        <entry key="EqualsOperandShouldHaveClassCompatibleWithThis" value="true" />
-        <entry key="FieldItemSummary" value="true" />
-        <entry key="FinalizerNullsFields" value="true" />
-        <entry key="FindBadCast" value="false" />
-        <entry key="FindBadCast2" value="true" />
-        <entry key="FindBadEqualsImplementation" value="false" />
-        <entry key="FindBadForLoop" value="true" />
-        <entry key="FindBugsSummaryStats" value="true" />
-        <entry key="FindCircularDependencies" value="false" />
-        <entry key="FindDeadLocalStores" value="true" />
-        <entry key="FindDoubleCheck" value="true" />
-        <entry key="FindEmptySynchronizedBlock" value="true" />
-        <entry key="FindFieldSelfAssignment" value="true" />
-        <entry key="FindFinalizeInvocations" value="true" />
-        <entry key="FindFloatEquality" value="true" />
-        <entry key="FindFloatMath" value="false" />
-        <entry key="FindHEmismatch" value="true" />
-        <entry key="FindInconsistentSync2" value="true" />
-        <entry key="FindJSR166LockMonitorenter" value="true" />
-        <entry key="FindLocalSelfAssignment2" value="true" />
-        <entry key="FindMaskedFields" value="true" />
-        <entry key="FindMismatchedWaitOrNotify" value="true" />
-        <entry key="FindNakedNotify" value="true" />
-        <entry key="FindNonSerializableStoreIntoSession" value="true" />
-        <entry key="FindNonSerializableValuePassedToWriteObject" value="true" />
-        <entry key="FindNonShortCircuit" value="true" />
-        <entry key="FindNullDeref" value="true" />
-        <entry key="FindNullDerefsInvolvingNonShortCircuitEvaluation" value="true" />
-        <entry key="FindOpenStream" value="true" />
-        <entry key="FindPuzzlers" value="true" />
-        <entry key="FindRefComparison" value="true" />
-        <entry key="FindReturnRef" value="true" />
-        <entry key="FindRunInvocations" value="true" />
-        <entry key="FindSelfComparison" value="true" />
-        <entry key="FindSelfComparison2" value="true" />
-        <entry key="FindSleepWithLockHeld" value="true" />
-        <entry key="FindSpinLoop" value="true" />
-        <entry key="FindSqlInjection" value="true" />
-        <entry key="FindTwoLockWait" value="true" />
-        <entry key="FindUncalledPrivateMethods" value="true" />
-        <entry key="FindUnconditionalWait" value="true" />
-        <entry key="FindUninitializedGet" value="true" />
-        <entry key="FindUnrelatedTypesInGenericContainer" value="true" />
-        <entry key="FindUnreleasedLock" value="true" />
-        <entry key="FindUnsatisfiedObligation" value="true" />
-        <entry key="FindUnsyncGet" value="true" />
-        <entry key="FindUselessControlFlow" value="true" />
-        <entry key="FormatStringChecker" value="true" />
-        <entry key="HugeSharedStringConstants" value="true" />
-        <entry key="IDivResultCastToDouble" value="true" />
-        <entry key="IncompatMask" value="true" />
-        <entry key="InconsistentAnnotations" value="true" />
-        <entry key="InefficientMemberAccess" value="false" />
-        <entry key="InefficientToArray" value="true" />
-        <entry key="InfiniteLoop" value="true" />
-        <entry key="InfiniteRecursiveLoop" value="true" />
-        <entry key="InfiniteRecursiveLoop2" value="false" />
-        <entry key="InheritanceUnsafeGetResource" value="true" />
-        <entry key="InitializationChain" value="true" />
-        <entry key="InstantiateStaticClass" value="true" />
-        <entry key="InvalidJUnitTest" value="true" />
-        <entry key="IteratorIdioms" value="true" />
-        <entry key="LazyInit" value="true" />
-        <entry key="LoadOfKnownNullValue" value="true" />
-        <entry key="LockedFields" value="false" />
-        <entry key="LostLoggerDueToWeakReference" value="true" />
-        <entry key="MethodReturnCheck" value="true" />
-        <entry key="Methods" value="true" />
-        <entry key="MultithreadedInstanceAccess" value="true" />
-        <entry key="MutableLock" value="true" />
-        <entry key="MutableStaticFields" value="true" />
-        <entry key="Naming" value="true" />
-        <entry key="Noise" value="false" />
-        <entry key="NoiseNullDeref" value="false" />
-        <entry key="NoteAnnotationRetention" value="true" />
-        <entry key="NoteCheckReturnValue" value="true" />
-        <entry key="NoteCheckReturnValueAnnotations" value="true" />
-        <entry key="NoteDirectlyRelevantTypeQualifiers" value="true" />
-        <entry key="NoteJCIPAnnotation" value="true" />
-        <entry key="NoteNonNullAnnotations" value="true" />
-        <entry key="NoteNonnullReturnValues" value="true" />
-        <entry key="NoteSuppressedWarnings" value="true" />
-        <entry key="NoteUnconditionalParamDerefs" value="true" />
-        <entry key="NumberConstructor" value="true" />
-        <entry key="OverridingEqualsNotSymmetrical" value="true" />
-        <entry key="PreferZeroLengthArrays" value="true" />
-        <entry key="PublicSemaphores" value="false" />
-        <entry key="QuestionableBooleanAssignment" value="true" />
-        <entry key="ReadOfInstanceFieldInMethodInvokedByConstructorInSuperclass" value="true" />
-        <entry key="ReadReturnShouldBeChecked" value="true" />
-        <entry key="RedundantInterfaces" value="true" />
-        <entry key="ReflectiveClasses" value="true" />
-        <entry key="RepeatedConditionals" value="true" />
-        <entry key="ResolveAllReferences" value="false" />
-        <entry key="RuntimeExceptionCapture" value="true" />
-        <entry key="SerializableIdiom" value="true" />
-        <entry key="StartInConstructor" value="true" />
-        <entry key="StaticCalendarDetector" value="true" />
-        <entry key="StringConcatenation" value="true" />
-        <entry key="SuperfluousInstanceOf" value="true" />
-        <entry key="SuspiciousThreadInterrupted" value="true" />
-        <entry key="SwitchFallthrough" value="true" />
-        <entry key="SynchronizationOnSharedBuiltinConstant" value="true" />
-        <entry key="SynchronizeAndNullCheckField" value="true" />
-        <entry key="SynchronizeOnClassLiteralNotGetClass" value="true" />
-        <entry key="SynchronizingOnContentsOfFieldToProtectField" value="true" />
-        <entry key="TestASM" value="false" />
-        <entry key="TestDataflowAnalysis" value="false" />
-        <entry key="TestingGround" value="false" />
-        <entry key="TrainFieldStoreTypes" value="true" />
-        <entry key="TrainNonNullAnnotations" value="true" />
-        <entry key="TrainUnconditionalDerefParams" value="true" />
-        <entry key="URLProblems" value="true" />
-        <entry key="UncallableMethodOfAnonymousClass" value="true" />
-        <entry key="UnnecessaryMath" value="true" />
-        <entry key="UnreadFields" value="true" />
-        <entry key="UseObjectEquals" value="false" />
-        <entry key="UselessSubclassMethod" value="false" />
-        <entry key="VarArgsProblems" value="true" />
-        <entry key="VolatileUsage" value="true" />
-        <entry key="WaitInLoop" value="true" />
-        <entry key="WrongMapIterator" value="true" />
-        <entry key="XMLFactoryBypass" value="true" />
+        <entry key="AppendingToAnObjectOutputStream" value="true"/>
+        <entry key="BCPMethodReturnCheck" value="false"/>
+        <entry key="BadAppletConstructor" value="false"/>
+        <entry key="BadResultSetAccess" value="true"/>
+        <entry key="BadSyntaxForRegularExpression" value="true"/>
+        <entry key="BadUseOfReturnValue" value="true"/>
+        <entry key="BadlyOverriddenAdapter" value="true"/>
+        <entry key="BooleanReturnNull" value="true"/>
+        <entry key="BuildInterproceduralCallGraph" value="false"/>
+        <entry key="BuildObligationPolicyDatabase" value="true"/>
+        <entry key="CallToUnsupportedMethod" value="false"/>
+        <entry key="CalledMethods" value="true"/>
+        <entry key="CheckCalls" value="false"/>
+        <entry key="CheckExpectedWarnings" value="false"/>
+        <entry key="CheckImmutableAnnotation" value="true"/>
+        <entry key="CheckTypeQualifiers" value="true"/>
+        <entry key="CloneIdiom" value="true"/>
+        <entry key="ComparatorIdiom" value="true"/>
+        <entry key="ConfusedInheritance" value="true"/>
+        <entry key="ConfusionBetweenInheritedAndOuterMethod" value="true"/>
+        <entry key="CrossSiteScripting" value="true"/>
+        <entry key="DoInsideDoPrivileged" value="true"/>
+        <entry key="DontCatchIllegalMonitorStateException" value="true"/>
+        <entry key="DontIgnoreResultOfPutIfAbsent" value="true"/>
+        <entry key="DontUseEnum" value="true"/>
+        <entry key="DroppedException" value="true"/>
+        <entry key="DumbMethodInvocations" value="true"/>
+        <entry key="DumbMethods" value="true"/>
+        <entry key="DuplicateBranches" value="true"/>
+        <entry key="EmptyZipFileEntry" value="true"/>
+        <entry key="EqStringTest" value="false"/>
+        <entry key="EqualsOperandShouldHaveClassCompatibleWithThis" value="true"/>
+        <entry key="FieldItemSummary" value="true"/>
+        <entry key="FinalizerNullsFields" value="true"/>
+        <entry key="FindBadCast" value="false"/>
+        <entry key="FindBadCast2" value="true"/>
+        <entry key="FindBadEqualsImplementation" value="false"/>
+        <entry key="FindBadForLoop" value="true"/>
+        <entry key="FindBugsSummaryStats" value="true"/>
+        <entry key="FindCircularDependencies" value="false"/>
+        <entry key="FindDeadLocalStores" value="true"/>
+        <entry key="FindDoubleCheck" value="true"/>
+        <entry key="FindEmptySynchronizedBlock" value="true"/>
+        <entry key="FindFieldSelfAssignment" value="true"/>
+        <entry key="FindFinalizeInvocations" value="true"/>
+        <entry key="FindFloatEquality" value="true"/>
+        <entry key="FindFloatMath" value="false"/>
+        <entry key="FindHEmismatch" value="true"/>
+        <entry key="FindInconsistentSync2" value="true"/>
+        <entry key="FindJSR166LockMonitorenter" value="true"/>
+        <entry key="FindLocalSelfAssignment2" value="true"/>
+        <entry key="FindMaskedFields" value="true"/>
+        <entry key="FindMismatchedWaitOrNotify" value="true"/>
+        <entry key="FindNakedNotify" value="true"/>
+        <entry key="FindNonSerializableStoreIntoSession" value="true"/>
+        <entry key="FindNonSerializableValuePassedToWriteObject" value="true"/>
+        <entry key="FindNonShortCircuit" value="true"/>
+        <entry key="FindNullDeref" value="true"/>
+        <entry key="FindNullDerefsInvolvingNonShortCircuitEvaluation" value="true"/>
+        <entry key="FindOpenStream" value="true"/>
+        <entry key="FindPuzzlers" value="true"/>
+        <entry key="FindRefComparison" value="true"/>
+        <entry key="FindReturnRef" value="true"/>
+        <entry key="FindRunInvocations" value="true"/>
+        <entry key="FindSelfComparison" value="true"/>
+        <entry key="FindSelfComparison2" value="true"/>
+        <entry key="FindSleepWithLockHeld" value="true"/>
+        <entry key="FindSpinLoop" value="true"/>
+        <entry key="FindSqlInjection" value="true"/>
+        <entry key="FindTwoLockWait" value="true"/>
+        <entry key="FindUncalledPrivateMethods" value="true"/>
+        <entry key="FindUnconditionalWait" value="true"/>
+        <entry key="FindUninitializedGet" value="true"/>
+        <entry key="FindUnrelatedTypesInGenericContainer" value="true"/>
+        <entry key="FindUnreleasedLock" value="true"/>
+        <entry key="FindUnsatisfiedObligation" value="true"/>
+        <entry key="FindUnsyncGet" value="true"/>
+        <entry key="FindUselessControlFlow" value="true"/>
+        <entry key="FormatStringChecker" value="true"/>
+        <entry key="HugeSharedStringConstants" value="true"/>
+        <entry key="IDivResultCastToDouble" value="true"/>
+        <entry key="IncompatMask" value="true"/>
+        <entry key="InconsistentAnnotations" value="true"/>
+        <entry key="InefficientMemberAccess" value="false"/>
+        <entry key="InefficientToArray" value="true"/>
+        <entry key="InfiniteLoop" value="true"/>
+        <entry key="InfiniteRecursiveLoop" value="true"/>
+        <entry key="InfiniteRecursiveLoop2" value="false"/>
+        <entry key="InheritanceUnsafeGetResource" value="true"/>
+        <entry key="InitializationChain" value="true"/>
+        <entry key="InstantiateStaticClass" value="true"/>
+        <entry key="InvalidJUnitTest" value="true"/>
+        <entry key="IteratorIdioms" value="true"/>
+        <entry key="LazyInit" value="true"/>
+        <entry key="LoadOfKnownNullValue" value="true"/>
+        <entry key="LockedFields" value="false"/>
+        <entry key="LostLoggerDueToWeakReference" value="true"/>
+        <entry key="MethodReturnCheck" value="true"/>
+        <entry key="Methods" value="true"/>
+        <entry key="MultithreadedInstanceAccess" value="true"/>
+        <entry key="MutableLock" value="true"/>
+        <entry key="MutableStaticFields" value="true"/>
+        <entry key="Naming" value="true"/>
+        <entry key="Noise" value="false"/>
+        <entry key="NoiseNullDeref" value="false"/>
+        <entry key="NoteAnnotationRetention" value="true"/>
+        <entry key="NoteCheckReturnValue" value="true"/>
+        <entry key="NoteCheckReturnValueAnnotations" value="true"/>
+        <entry key="NoteDirectlyRelevantTypeQualifiers" value="true"/>
+        <entry key="NoteJCIPAnnotation" value="true"/>
+        <entry key="NoteNonNullAnnotations" value="true"/>
+        <entry key="NoteNonnullReturnValues" value="true"/>
+        <entry key="NoteSuppressedWarnings" value="true"/>
+        <entry key="NoteUnconditionalParamDerefs" value="true"/>
+        <entry key="NumberConstructor" value="true"/>
+        <entry key="OverridingEqualsNotSymmetrical" value="true"/>
+        <entry key="PreferZeroLengthArrays" value="true"/>
+        <entry key="PublicSemaphores" value="false"/>
+        <entry key="QuestionableBooleanAssignment" value="true"/>
+        <entry key="ReadOfInstanceFieldInMethodInvokedByConstructorInSuperclass" value="true"/>
+        <entry key="ReadReturnShouldBeChecked" value="true"/>
+        <entry key="RedundantInterfaces" value="true"/>
+        <entry key="ReflectiveClasses" value="true"/>
+        <entry key="RepeatedConditionals" value="true"/>
+        <entry key="ResolveAllReferences" value="false"/>
+        <entry key="RuntimeExceptionCapture" value="true"/>
+        <entry key="SerializableIdiom" value="true"/>
+        <entry key="StartInConstructor" value="true"/>
+        <entry key="StaticCalendarDetector" value="true"/>
+        <entry key="StringConcatenation" value="true"/>
+        <entry key="SuperfluousInstanceOf" value="true"/>
+        <entry key="SuspiciousThreadInterrupted" value="true"/>
+        <entry key="SwitchFallthrough" value="true"/>
+        <entry key="SynchronizationOnSharedBuiltinConstant" value="true"/>
+        <entry key="SynchronizeAndNullCheckField" value="true"/>
+        <entry key="SynchronizeOnClassLiteralNotGetClass" value="true"/>
+        <entry key="SynchronizingOnContentsOfFieldToProtectField" value="true"/>
+        <entry key="TestASM" value="false"/>
+        <entry key="TestDataflowAnalysis" value="false"/>
+        <entry key="TestingGround" value="false"/>
+        <entry key="TrainFieldStoreTypes" value="true"/>
+        <entry key="TrainNonNullAnnotations" value="true"/>
+        <entry key="TrainUnconditionalDerefParams" value="true"/>
+        <entry key="URLProblems" value="true"/>
+        <entry key="UncallableMethodOfAnonymousClass" value="true"/>
+        <entry key="UnnecessaryMath" value="true"/>
+        <entry key="UnreadFields" value="true"/>
+        <entry key="UseObjectEquals" value="false"/>
+        <entry key="UselessSubclassMethod" value="false"/>
+        <entry key="VarArgsProblems" value="true"/>
+        <entry key="VolatileUsage" value="true"/>
+        <entry key="WaitInLoop" value="true"/>
+        <entry key="WrongMapIterator" value="true"/>
+        <entry key="XMLFactoryBypass" value="true"/>
       </map>
     </option>
     <option name="_reportCategories">
       <map>
-        <entry key="BAD_PRACTICE" value="true" />
-        <entry key="CORRECTNESS" value="true" />
-        <entry key="EXPERIMENTAL" value="true" />
-        <entry key="I18N" value="true" />
-        <entry key="MALICIOUS_CODE" value="true" />
-        <entry key="MT_CORRECTNESS" value="true" />
-        <entry key="NOISE" value="false" />
-        <entry key="PERFORMANCE" value="true" />
-        <entry key="SECURITY" value="true" />
-        <entry key="STYLE" value="true" />
+        <entry key="BAD_PRACTICE" value="true"/>
+        <entry key="CORRECTNESS" value="true"/>
+        <entry key="EXPERIMENTAL" value="true"/>
+        <entry key="I18N" value="true"/>
+        <entry key="MALICIOUS_CODE" value="true"/>
+        <entry key="MT_CORRECTNESS" value="true"/>
+        <entry key="NOISE" value="false"/>
+        <entry key="PERFORMANCE" value="true"/>
+        <entry key="SECURITY" value="true"/>
+        <entry key="STYLE" value="true"/>
       </map>
     </option>
   </component>
 </module>
-

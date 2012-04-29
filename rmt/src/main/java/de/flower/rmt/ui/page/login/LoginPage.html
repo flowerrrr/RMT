@@ -15,7 +15,8 @@
         </div>
         <div class="modal-body">
 
-            <form class="form-horizontal" id="loginForm" action="j_spring_security_check" method="POST">
+            <!-- accept-charset added as fix for RMT-620 -->
+            <form class="form-horizontal" id="loginForm" action="j_spring_security_check" method="POST" accept-charset="UTF-8">
                 <fieldset>
                     <div wicket:id="loginFailure" class="control-group">
                         <div class="controls">

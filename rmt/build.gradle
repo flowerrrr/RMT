@@ -67,7 +67,9 @@ dependencies {
             'org.springframework.security:spring-security-config:' + version_spring_security
     )
     provided(
-
+            'org.apache.tomcat:tomcat-catalina:7.0.25',
+            'org.apache.tomcat:tomcat-util:7.0.25',
+            'org.apache.tomcat:tomcat-coyote:7.0.25',
     )
     testCompile(
             'org.springframework:spring-test:' + version_spring,
