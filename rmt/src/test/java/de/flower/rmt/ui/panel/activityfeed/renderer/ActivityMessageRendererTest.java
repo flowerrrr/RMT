@@ -60,13 +60,16 @@ public class ActivityMessageRendererTest extends AbstractRMTWicketMockitoTests {
     public void testInvitationStatusUpdated() {
         InvitationUpdateMessage message = new InvitationUpdateMessage(testData.newEvent());
         message.setUserName("Gerd Müller");
-        message.setStatus(RSVPStatus.ACCEPTED);
         message.setEventDate(new Date());
         message.setEventId(1L);
         for (EventType eventType : EventType.values()) {
             message.setEventType(eventType);
-            String s = ActivityMessageRenderer.toString(message);
-            log.info(message + " rendered to [" + s + "]");
+            for (RSVPStatus status : RSVPStatus.values()) {
+                if (status == RSVPStatus.NORESPONSE) continue;
+                message.setStatus(status);
+                String s = ActivityMessageRenderer.toString(message);
+                log.info(message + " rendered to [" + s + "]");
+            }
         }
     }
 
@@ -100,6 +103,21 @@ public class ActivityMessageRendererTest extends AbstractRMTWicketMockitoTests {
     }
 
     @Test
+    public void testInvitationStatusUpdatedByManager() {
+        InvitationUpdateMessage message = new InvitationUpdateMessage(testData.newEvent());
+        message.setUserName("Gerd Müller");
+        message.setManagerName("Uli Hoeneß");
+        message.setStatus(RSVPStatus.ACCEPTED);
+        message.setEventId(1L);
+        message.setEventDate(new Date());
+        for (EventType eventType : EventType.values()) {
+            message.setEventType(eventType);
+            String s = ActivityMessageRenderer.toString(message);
+            log.info(message + " rendered to [" + s + "]");
+        }
+    }
+
+    @Test
     public void testInvitationStatusAndManagerCommentUpdated() {
         InvitationUpdateMessage message = new InvitationUpdateMessage(testData.newEvent());
         message.setUserName("Gerd Müller");
@@ -110,8 +128,12 @@ public class ActivityMessageRendererTest extends AbstractRMTWicketMockitoTests {
         message.setEventDate(new Date());
         for (EventType eventType : EventType.values()) {
             message.setEventType(eventType);
-            String s = ActivityMessageRenderer.toString(message);
-            log.info(message + " rendered to [" + s + "]");
+            for (RSVPStatus status : RSVPStatus.values()) {
+                if (status == RSVPStatus.NORESPONSE) continue;
+                message.setStatus(status);
+                String s = ActivityMessageRenderer.toString(message);
+                log.info(message + " rendered to [" + s + "]");
+            }
         }
     }
 }

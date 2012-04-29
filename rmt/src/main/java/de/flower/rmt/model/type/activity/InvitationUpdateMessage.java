@@ -71,6 +71,8 @@ public class InvitationUpdateMessage extends AbstractEventMessage {
         this.comment = comment;
     }
 
+
+
     public String getManagerComment() {
         return managerComment;
     }
