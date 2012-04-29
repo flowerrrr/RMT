@@ -4,7 +4,7 @@ import de.flower.rmt.model.User;
 import de.flower.rmt.model.type.Password;
 import de.flower.rmt.service.IUserManager;
 import de.flower.rmt.ui.markup.html.form.EntityForm;
-import de.flower.rmt.ui.markup.html.form.field.TextFieldPanel;
+import de.flower.rmt.ui.markup.html.form.field.PasswordTextFieldPanel;
 import de.flower.rmt.ui.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
@@ -31,11 +31,11 @@ public class AccountPasswordPanel extends BasePanel {
         };
         add(form);
 
-        TextFieldPanel oldPassword = new TextFieldPanel("oldPassword");
+        PasswordTextFieldPanel oldPassword = new PasswordTextFieldPanel("oldPassword");
         form.add(oldPassword);
         oldPassword.addValidator(new FormComponentBeanValidator(Password.Validation.IPasswordMatches.class));
-        form.add(new TextFieldPanel("newPassword"));
-        TextFieldPanel newPasswordRepeat = new TextFieldPanel("newPasswordRepeat");
+        form.add(new PasswordTextFieldPanel("newPassword"));
+        PasswordTextFieldPanel newPasswordRepeat = new PasswordTextFieldPanel("newPasswordRepeat");
         form.add(newPasswordRepeat);
         newPasswordRepeat.addValidator(new FormComponentBeanValidator(Password.Validation.IPasswordEquals.class));
     }
