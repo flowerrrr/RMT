@@ -5,6 +5,7 @@ import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.*;
 import de.flower.rmt.model.type.Notification;
 import de.flower.rmt.service.IEventManager;
+import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.util.Dates;
 import org.apache.wicket.model.Model;
@@ -31,13 +32,16 @@ public class NotificationService implements INotificationService {
     @Autowired
     private IEventManager eventManager;
 
+    @Autowired
+    private ISecurityService securityService;
+
     @Override
-    public void sendResetPasswordMail(final User user) {
+    public void sendResetPasswordMail(final User user, final User manager) {
         Map<String, Object> model = new HashMap<String, Object>();
         model.put("user", user);
         String subject = templateService.mergeTemplate(EmailTemplate.PASSWORD_RESET.getSubject(), model);
         String content = templateService.mergeTemplate(EmailTemplate.PASSWORD_RESET.getContent(), model);
-        mailService.sendMail(user.getEmail(), subject, content);
+        mailService.sendMail(user.getEmail(), manager.getEmail(), subject, content);
     }
 
     @Override
@@ -48,7 +52,7 @@ public class NotificationService implements INotificationService {
         model.put("club", user.getClub());
         String subject = templateService.mergeTemplate(EmailTemplate.INVITATION_NEWUSER.getSubject(), model);
         String content = templateService.mergeTemplate(EmailTemplate.INVITATION_NEWUSER.getContent(), model);
-        mailService.sendMail(user.getEmail(), subject, content);
+        mailService.sendMail(user.getEmail(), manager.getEmail(), subject, content);
     }
 
     @Override

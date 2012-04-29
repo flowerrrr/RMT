@@ -60,9 +60,9 @@ public class MailService implements IMailService {
     }
 
     @Override
-    public void sendMail(final String receiver, final String subject, final String content) {
+    public void sendMail(final String receiver, final String bcc, final String subject, final String content) {
         // mail to single person gets managers email as reply to.
-        sendMail(null, getReplyTo(), Arrays.asList(new String[]{receiver}), null, null, subject, content);
+        sendMail(null, getReplyTo(), Arrays.asList(new String[]{receiver}), null, Arrays.asList(new String[] { bcc }), subject, content);
     }
 
     /**
@@ -93,10 +93,10 @@ public class MailService implements IMailService {
             String[] tmp = msg.getTo();
             Check.isTrue(tmp.length > 0);
         }
-        if (ccList != null) {
+        if (ccList != null && !ccList.isEmpty()) {
             msg.setCc(ccList.toArray(new String[] {}));
         }
-        if (bccList != null) {
+        if (bccList != null && !bccList.isEmpty()) {
             msg.setBcc(bccList.toArray(new String[] {}));
         }
         msg.setSubject(subject);

@@ -40,7 +40,7 @@ public class MailServiceTest extends AbstractIntegrationTests {
     @Test
     public void testSendMail() {
         body += "\nSome umlaute: äöüÄÖÜß\n";
-        mailService.sendMail("das-tool-test@mailinator.com", "Unit test generated mail", body);
+        mailService.sendMail("das-tool-test@mailinator.com", "das-tool-bcc@mailinator.com", "Unit test generated mail", body);
         log.info("Open http://das-tool-test.mailinator.com to verify mail has been sent.");
     }
 

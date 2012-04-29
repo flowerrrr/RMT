@@ -21,7 +21,7 @@ public class NotificationServiceTest extends AbstractWicketIntegrationTests {
     @Test
     public void testSendResetPasswordMail() {
         User user = testData.createUser();
-        notificationService.sendResetPasswordMail(user);
+        notificationService.sendResetPasswordMail(user, securityService.getUser());
     }
 
     @Test

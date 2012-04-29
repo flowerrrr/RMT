@@ -7,7 +7,7 @@ import de.flower.rmt.model.type.Notification;
  */
 public interface IMailService {
 
-    void sendMail(String receiver, String subject, String body);
+    void sendMail(String receiver, final String bcc, String subject, String body);
 
     /**
      * Sends a mail to multiple recipients (all on bcc).

@@ -182,7 +182,7 @@ public class UserManager extends AbstractService implements IUserManager {
     public void resetPassword(final User user, final boolean sendMail) {
         initPassword(user);
         if (sendMail) {
-            notificationService.sendResetPasswordMail(user);
+            notificationService.sendResetPasswordMail(user, securityService.getUser());
             // even if user hasen't received invitation mail yet
             user.setInvitationSent(true);
         }

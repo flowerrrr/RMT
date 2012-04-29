@@ -9,7 +9,7 @@ import de.flower.rmt.model.type.Notification;
  */
 public interface INotificationService {
 
-    void sendResetPasswordMail(User user);
+    void sendResetPasswordMail(User user, final User manager);
 
     void sendInvitationNewUser(User user, User manager);
 
