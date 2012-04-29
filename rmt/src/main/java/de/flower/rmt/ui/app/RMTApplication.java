@@ -38,14 +38,11 @@ import org.springframework.stereotype.Component;
 @Component(value = "wicketApplication")
 public class RMTApplication extends WebApplication {
 
-    public final static String VERSION = "1.1.2";
+    public final static String VERSION = "1.1.3";
 
     private final static Logger log = LoggerFactory.getLogger(RMTApplication.class);
 
     private RuntimeConfigurationType runtimeConfigurationType;
-
-    @Value("${admin.address}")
-    private String adminEmail;
 
     public static RMTApplication get() {
         return (RMTApplication) WebApplication.get();
@@ -157,9 +154,5 @@ public class RMTApplication extends WebApplication {
     @Value("${wicket.configurationtype}")
     public void setRuntimeConfigurationType(final RuntimeConfigurationType runtimeConfigurationType) {
         this.runtimeConfigurationType = runtimeConfigurationType;
-    }
-
-    public String getAdminEmail() {
-        return adminEmail;
     }
 }

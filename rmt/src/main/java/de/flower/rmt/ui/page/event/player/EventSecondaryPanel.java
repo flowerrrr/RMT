@@ -6,8 +6,10 @@ import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
+import de.flower.rmt.model.event.QEvent;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.service.IInvitationManager;
+import de.flower.rmt.ui.app.IPropertyProvider;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.model.InvitationModel;
@@ -34,6 +36,9 @@ public class EventSecondaryPanel extends BasePanel {
 
     @SpringBean
     private IInvitationManager invitationManager;
+
+    @SpringBean
+    private IPropertyProvider propertyProvider;
 
     public EventSecondaryPanel(IModel<Event> model) {
         // treat subpanels as top level secondary panels to have spacer between them
@@ -93,7 +98,7 @@ public class EventSecondaryPanel extends BasePanel {
         return new LoadableDetachableModel<List<Event>>() {
             @Override
             protected List<Event> load() {
-                return eventManager.findAllUpcomingByUser(userModel.getObject());
+                return eventManager.findAllUpcomingAndLastNByUser(userModel.getObject(), propertyProvider.getEventsNumPast(), QEvent.event.team);
             }
         };
     }

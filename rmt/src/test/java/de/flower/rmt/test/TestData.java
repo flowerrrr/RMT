@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Provides test data.
- *
+ * <p/>
  * Use #newXXX methods in unit tests.
  * Use #getXXX methods when running integration tests with underlying database.
  *
@@ -238,7 +238,8 @@ public class TestData {
 
     public Event createEvent(Team team, boolean createInvitations) {
         Event event = eventManager.newInstance(eventType);
-        event.setDate(new Date());
+        // use soem time in the future
+        event.setDate(new DateTime().plusHours(RandomUtils.nextInt(1000)).toDate());
         event.setTime(LocalTime.now());
         event.setSummary("Summary");
         event.setTeam(team);
@@ -258,6 +259,20 @@ public class TestData {
         Team team = createTeamWithPlayers("FCB " + System.currentTimeMillis(), 15);
         Event event = createEvent(team, true);
         return event;
+    }
+
+    public List<Event> createEventsWithInvitations(final Team team, final int number, boolean past) {
+        List<Event> list = new ArrayList<>();
+        for (int i = 0; i < number; i++) {
+            Event event = createEvent(team, true);
+            // events are in the future by default
+            if (past) {
+                event.setDate(new DateTime().minusHours(RandomUtils.nextInt(1000)).toDate());
+            }
+            eventManager.save(event);
+            list.add(event);
+        }
+        return list;
     }
 
     /**
@@ -342,11 +357,11 @@ public class TestData {
 
     public void createActivities(final int num) {
         Club club = getClub();
-         for (int i = 0; i < num; i++) {
-             Activity entity = new Activity(club);
-             entity.setDate(new DateTime().minusMillis(RandomUtils.nextInt((int) TimeUnit.DAYS.toMillis(10))).toDate());
-             entity.setMessage("Some message " + RandomStringUtils.randomAscii(20));
-             activityRepo.save(entity);
-         }
+        for (int i = 0; i < num; i++) {
+            Activity entity = new Activity(club);
+            entity.setDate(new DateTime().minusMillis(RandomUtils.nextInt((int) TimeUnit.DAYS.toMillis(10))).toDate());
+            entity.setMessage("Some message " + RandomStringUtils.randomAscii(20));
+            activityRepo.save(entity);
+        }
     }
 }

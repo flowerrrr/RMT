@@ -1,5 +1,6 @@
 package org.wicketstuff.jsr303;
 
+import de.flower.common.annotation.Patched;
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.html.form.FormComponent;
@@ -22,6 +23,7 @@ import java.util.Set;
  *
  * @param <T>
  */
+@Patched
 public class PropertyValidator<T> implements INullAcceptingValidator<T>, Serializable
 {
 	public static class Exclude extends Behavior

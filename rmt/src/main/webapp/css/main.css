@@ -37,6 +37,10 @@
     width: 820px;
 }
 
+// navbar text very dark
+.navbar .nav > li > a {
+    color: #bbb;
+}
 
 /*************************************************************************
     base layout for pages
@@ -870,6 +874,9 @@ td.rsvpstatus {
     .table {
         .date {
             width: 76px;
+        }
+        tr.next-event {
+            background-color: #F5F5F5;
         }
     }
     .table.player {

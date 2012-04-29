@@ -31,4 +31,5 @@ public interface IInvitationRepo extends IRepository<Invitation, Long> {
     @Modifying
     @Query("update Invitation i set i.invitationSent = true where i.event = :event and i.user in (select u from User u where u.email in (:addressList))")
     void markInvitationSent(@Param("event") Event event, @Param("addressList") List<String> addressList);
+
 }

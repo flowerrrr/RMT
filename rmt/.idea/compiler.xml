@@ -22,6 +22,7 @@
     </wildcardResourcePatterns>
     <annotationProcessing enabled="true" useClasspath="true">
       <processor name="org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor" options="" />
+      <processor name="com.mysema.query.apt.jpa.JPAAnnotationProcessor" options="" />
       <processModule name="rmt" generatedDirName="src/main/generated" />
     </annotationProcessing>
   </component>

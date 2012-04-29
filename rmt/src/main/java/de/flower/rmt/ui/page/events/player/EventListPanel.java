@@ -14,6 +14,7 @@ import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.model.UserModel;
 import de.flower.rmt.ui.panel.BasePanel;
 import de.flower.rmt.ui.panel.QuickResponseLabel;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -24,6 +25,7 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -57,6 +59,11 @@ public class EventListPanel extends BasePanel {
             protected void populateItem(final ListItem<Event> item) {
                 final Event event = item.getModelObject();
                 final EventModel eventModel = new EventModel(item.getModel());
+
+                if (isNextEvent(event, getList())) {
+                    item.add(AttributeModifier.append("class", "next-event"));
+                }
+
                 Link link = Links.eventLink("invitationsLink", event.getId());
                 item.add(link);
                 link.add(DateLabel.forDateStyle("date", Model.of(event.getDate()), "S-"));
@@ -79,5 +86,28 @@ public class EventListPanel extends BasePanel {
             }
         });
         listContainer.add(new AjaxEventListener(Event.class));
+    }
+
+    /**
+     * Returns true, if given event is a future event and no other event in events is closer to
+     * today then given event.
+     */
+    public static boolean isNextEvent(Event event, List<? extends Event> events) {
+        Date date = event.getDate();
+        long now = new Date().getTime();
+        if (date.getTime() < now) {
+            return false;
+        } else {
+            for (Event e : events) {
+                if (e.getDate().getTime() < now) {
+                    continue;
+                } else {
+                    if (e.getDate().getTime() < event.getDate().getTime()) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 }

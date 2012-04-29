@@ -57,9 +57,8 @@ public class Links {
         };
     }
 
-    public static ExternalLink adminMailLink(String id, boolean label) {
-        String email = RMTApplication.get().getAdminEmail();
-        ExternalLink link = mailLink(id, email, label ? email : null);
+    public static ExternalLink mailLink(String id, String emailAddress, boolean label) {
+        ExternalLink link = mailLink(id, emailAddress, label ? emailAddress : null);
         return link;
     }
 

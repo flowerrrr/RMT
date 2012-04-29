@@ -2,6 +2,7 @@ package de.flower.rmt.ui.page.base;
 
 import de.flower.common.ui.feedback.AlertMessageFeedbackPanel;
 import de.flower.common.ui.markup.html.panel.WrappingPanel;
+import de.flower.rmt.ui.app.IPropertyProvider;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.feedback.MessageOfTheDayMessage;
 import de.flower.rmt.ui.feedback.PasswordChangeRequiredMessage;
@@ -14,6 +15,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
  * This class only defines layout but not content.
@@ -22,6 +24,9 @@ import org.apache.wicket.model.ResourceModel;
  * @author flowerrrr
  */
 public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
+
+    @SpringBean
+    private IPropertyProvider propertyProvider;
 
     private Panel secondaryPanel;
 
@@ -48,7 +53,7 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
         container.add(subheading = new Label("subheading", Model.of("")));
 
         add(Links.aboutLink("aboutLink"));
-        add(Links.adminMailLink("adminLink", false));
+        add(Links.mailLink("adminLink", propertyProvider.getAdminEmail(), false));
     }
 
     /**

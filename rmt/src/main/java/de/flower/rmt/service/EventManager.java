@@ -1,5 +1,7 @@
 package de.flower.rmt.service;
 
+import com.mysema.query.types.EntityPath;
+import com.mysema.query.types.expr.BooleanExpression;
 import de.flower.common.model.EntityHelper;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.Invitation;
@@ -8,12 +10,14 @@ import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.model.event.Event_;
+import de.flower.rmt.model.event.QEvent;
 import de.flower.rmt.model.type.Notification;
 import de.flower.rmt.repository.IEventRepo;
 import de.flower.rmt.service.mail.IMailService;
 import org.apache.commons.lang3.ArrayUtils;
-import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -84,11 +88,31 @@ public class EventManager extends AbstractService implements IEventManager {
         return list;
     }
 
-    @Override
-    public List<Event> findAllUpcomingByUser(final User user) {
+    // @Override
+    public List<Event> findAllUpcomingAndLastNByManager(Attribute... attributes) {
+        throw new UnsupportedOperationException("Method not implemented!");
+    }
+
+    private List<Event> findAllUpcomingByUser(final User user, EntityPath<?> ... attributes) {
         Check.notNull(user);
-        Date date = new LocalDate().toDate();
-        return eventRepo.findAllUpcomingByInvitee(user, date);
+        BooleanExpression future = QEvent.event.date.after(new Date());
+        BooleanExpression isUser = QEvent.event.invitations.any().user.eq(user);
+        return eventRepo.findAll(future.and(isUser), QEvent.event.date.desc(), attributes);
+    }
+
+    private List<Event> findLastNByUser(final User user, final int num, EntityPath<?> ... attributes) {
+        Check.notNull(user);
+        BooleanExpression beforeNow = QEvent.event.date.before(new Date());
+        BooleanExpression isUser = QEvent.event.invitations.any().user.eq(user);
+        return eventRepo.findAll(beforeNow.and(isUser), new PageRequest(0, num, Sort.Direction.DESC, Event_.date.getName()), attributes).getContent();
+    }
+
+    @Override
+    public List<Event> findAllUpcomingAndLastNByUser(final User user, int num, EntityPath<?> ... attributes) {
+        List<Event> upcoming = findAllUpcomingByUser(user, attributes);
+        List<Event> lastN = findLastNByUser(user, num, attributes);
+        upcoming.addAll(lastN);
+        return upcoming;
     }
 
     @Override

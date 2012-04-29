@@ -25,4 +25,5 @@ public interface IEventRepo extends IRepository<Event, Long> {
     List<Event> findAllUpcomingByInvitee(@Param("user") User user, @Param("date") Date date);
 
     List<Event> findAllByTeam(Team team);
+
 }

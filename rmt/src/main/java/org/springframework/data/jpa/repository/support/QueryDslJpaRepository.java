@@ -22,6 +22,7 @@ import com.mysema.query.types.Expression;
 import com.mysema.query.types.OrderSpecifier;
 import com.mysema.query.types.Predicate;
 import com.mysema.query.types.path.PathBuilder;
+import de.flower.common.annotation.Patched;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -41,6 +42,7 @@ import java.util.List;
  *
  * @author Oliver Gierke
  */
+@Patched
 public class QueryDslJpaRepository<T, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements
 		QueryDslPredicateExecutor<T> {
 
@@ -101,6 +103,25 @@ public class QueryDslJpaRepository<T, ID extends Serializable> extends SimpleJpa
 		return createQuery(predicate).list(path);
 	}
 
+    @Patched
+    public List<T> findAll(final Predicate predicate, final EntityPath<?> ... fetchAttributes) {
+        return createQuery(fetchAttributes).where(predicate).list(path);
+    }
+
+    @Patched
+    public Page<T> findAll(final Predicate predicate, Pageable pageable, final EntityPath<?> ... fetchAttributes) {
+        JPQLQuery countQuery = createQuery(predicate);
+        JPQLQuery query = applyPagination(createQuery(fetchAttributes).where(predicate), pageable);
+
+        return new PageImpl<T>(query.list(path), pageable, countQuery.count());
+    }
+
+    @Patched
+    public List<T> findAll(final Predicate predicate, final OrderSpecifier<?> order, final EntityPath<?> ... fetchAttributes) {
+        return createQuery(fetchAttributes).where(predicate).orderBy(order).list(path);
+    }
+
+
 	/*
 	 * (non-Javadoc)
 	 *
@@ -149,6 +170,16 @@ public class QueryDslJpaRepository<T, ID extends Serializable> extends SimpleJpa
 
 		return new JPAQuery(em).from(path).where(predicate);
 	}
+
+    @Patched
+    protected JPQLQuery createQuery(EntityPath<?>... fetchAttributes) {
+        JPAQuery query = new JPAQuery(em).from(path);
+        for (EntityPath<?> path : fetchAttributes) {
+            query.leftJoin(path).fetch();
+        }
+        query.distinct(); // fetching one-to-many associations would multiply the result set.
+        return query;
+    }
 
 	/**
 	 * Applies the given {@link org.springframework.data.domain.Pageable} to the given {@link JPQLQuery}.

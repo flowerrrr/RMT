@@ -1,5 +1,6 @@
 package de.flower.rmt.service;
 
+import com.mysema.query.types.EntityPath;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
@@ -32,8 +33,7 @@ public interface IEventManager {
 
     List<Event> findAll(Attribute... attributes);
 
-    List<Event> findAllUpcomingByUser(User user);
-
+    List<Event> findAllUpcomingAndLastNByUser(User user, int num, EntityPath<?> ... attributes);
     /**
      * Hard deletes an event and all invitations.
      * @param id

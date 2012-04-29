@@ -1,7 +1,9 @@
 package de.flower.rmt.ui.page.events.player;
 
 import de.flower.rmt.model.event.Event;
+import de.flower.rmt.model.event.QEvent;
 import de.flower.rmt.service.IEventManager;
+import de.flower.rmt.ui.app.IPropertyProvider;
 import de.flower.rmt.ui.model.UserModel;
 import de.flower.rmt.ui.page.base.player.NavigationPanel;
 import de.flower.rmt.ui.page.base.player.PlayerBasePage;
@@ -20,6 +22,9 @@ public class EventsPage extends PlayerBasePage {
     @SpringBean
     private IEventManager eventManager;
 
+    @SpringBean
+    private IPropertyProvider propertyProvider;
+
     public EventsPage() {
         setHeading("player.events.heading");
 
@@ -32,7 +37,7 @@ public class EventsPage extends PlayerBasePage {
         return new LoadableDetachableModel<List<Event>>() {
             @Override
             protected List<Event> load() {
-                return eventManager.findAllUpcomingByUser(userModel.getObject());
+                return eventManager.findAllUpcomingAndLastNByUser(userModel.getObject(), propertyProvider.getEventsNumPast(), QEvent.event.team);
             }
         };
     }

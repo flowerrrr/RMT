@@ -14,6 +14,7 @@ import de.flower.rmt.ui.page.event.manager.EventPage;
 import de.flower.rmt.ui.page.event.manager.EventTabPanel;
 import de.flower.rmt.ui.panel.BasePanel;
 import de.flower.rmt.ui.panel.DropDownMenuPanel;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -56,6 +57,11 @@ public class EventListPanel extends BasePanel {
             @Override
             protected void populateItem(final ListItem<Event> item) {
                 final Event event = item.getModelObject();
+
+                if (de.flower.rmt.ui.page.events.player.EventListPanel.isNextEvent(event, getList())) {
+                    item.add(AttributeModifier.append("class", "next-event"));
+                }
+
                 Link link = createInvitationsLink("invitationsLink", item.getModel());
                 link.add(DateLabel.forDateStyle("date", Model.of(event.getDate()), "S-"));
                 link.add(DateLabel.forDateStyle("time", Model.of(event.getTime().toDateTimeToday().toDate()), "-S"));

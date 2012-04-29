@@ -1,17 +1,16 @@
 package de.flower.rmt.service;
 
-import de.flower.rmt.model.Invitation;
-import de.flower.rmt.model.Invitation_;
-import de.flower.rmt.model.Surface;
-import de.flower.rmt.model.User;
+import de.flower.rmt.model.*;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.model.event.Match;
+import de.flower.rmt.model.event.QEvent;
 import de.flower.rmt.test.AbstractIntegrationTests;
 import org.hibernate.LazyInitializationException;
 import org.joda.time.DateTime;
 import org.testng.annotations.Test;
 
+import java.util.Date;
 import java.util.List;
 
 import static org.testng.Assert.*;
@@ -23,42 +22,54 @@ import static org.testng.Assert.*;
 public class EventManagerTest extends AbstractIntegrationTests {
 
     @Test
-    public void testFindUpcomingByUser() {
+    public void testFindUpcomingAndLastNByUser() {
         // create team with some events in the future and some in the past
-        Event event = testData.createEventWithResponses();
-        DateTime now = new DateTime();
-        User user = event.getTeam().getPlayers().get(0).getUser();
+        Team team = testData.createTeamWithPlayers("test team", 5);
+        int numFuture = 4;
+        List<Event> events = testData.createEventsWithInvitations(team, numFuture, false);
+        User user = team.getPlayers().get(0).getUser();
         // need to reload user to get fresh instance from database
         user = userRepo.findOne(user.getId());
 
         // now do the tests
+        events = eventManager.findAllUpcomingAndLastNByUser(user, 5);
+        assertEquals(events.size(), numFuture);
 
-        // one event in the past
-        event.setDate(now.minusDays(1).toDate());
-        eventManager.save(event);
-        List<Event> events = eventManager.findAllUpcomingByUser(user);
-        assertEquals(events.size(), 0);
-
-        // one event in the future
-        event.setDate(now.plusDays(1).toDate());
-        eventManager.save(event);
-        events = eventManager.findAllUpcomingByUser(user);
-        assertEquals(events.size(), 1);
-
-        // add another event scheduled for today
-        event = testData.createEvent(event.getTeam(), true);
-        user = userRepo.findOne(user.getId());
-        events = eventManager.findAllUpcomingByUser(user);
-        assertEquals(events.size(), 2);
+        // two events in the past
+        testData.createEventsWithInvitations(team, 2, true);
+        events = eventManager.findAllUpcomingAndLastNByUser(user, 5);
+        assertEquals(events.size(), numFuture + 2);
     }
 
     @Test
-    public void testUpcomingEventsByUser() {
-        Event event = testData.createEvent();
-        List<Invitation> invitations = invitationManager.findAllByEvent(event, Invitation_.user);
-        List<Event> list = eventManager.findAllUpcomingByUser(invitations.get(0).getUser());
-        // check if team can be accessed without LIE
-        list.get(0).getTeam().getName();
+    public void testFindLastNByUser() {
+        // create team with some events in the future and some in the past
+        Team team = testData.createTeamWithPlayers("test team", 4);
+        List<Event> events = testData.createEventsWithInvitations(team, 2, true);
+        User user = team.getPlayers().get(0).getUser();
+        // need to reload user to get fresh instance from database
+        user = userRepo.findOne(user.getId());
+
+        events = eventManager.findAllUpcomingAndLastNByUser(user, 5);
+        assertEquals(events.size(), 2);
+
+        // create more past events
+        testData.createEventsWithInvitations(team, 10, true);
+        events = eventManager.findAllUpcomingAndLastNByUser(user, 5);
+        assertEquals(events.size(), 5);
+    }
+
+    @Test
+    public void testUpcomingEventsByUserEagerFetchesTeams() {
+        Team team = testData.createTeamWithPlayers("test team", 10);
+        List<Event> events = testData.createEventsWithInvitations(team, 3, true);
+        List<Invitation> invitations = invitationManager.findAllByEvent(events.get(0), Invitation_.user);
+        List<Event> list = eventManager.findAllUpcomingAndLastNByUser(invitations.get(0).getUser(), 3, QEvent.event.team);
+        assertEquals(list.size(), 3);
+        for (Event event : list) {
+            // check if team can be accessed without LIE
+            event.getTeam().getName();
+        }
     }
 
     @Test
@@ -94,4 +105,17 @@ public class EventManagerTest extends AbstractIntegrationTests {
         event.getTeam().getName();
     }
 
+    @Test
+    public void testSorting() {
+        Team team = testData.createTeamWithPlayers("test team", 10);
+        User user = team.getPlayers().get(0).getUser();
+        testData.createEventsWithInvitations(team, 10, true);
+        testData.createEventsWithInvitations(team, 10, false);
+        List<Event> events = eventManager.findAllUpcomingAndLastNByUser(user, 100);
+        Date last = new DateTime().plusYears(1000).toDate();
+        for (Event event : events) {
+            assertTrue(event.getDate().getTime() <= last.getTime());
+            last = event.getDate();
+        }
+    }
 }
