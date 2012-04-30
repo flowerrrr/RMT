@@ -200,7 +200,7 @@ public class InvitationManager extends AbstractService implements IInvitationMan
             if (invitation.getDate() == null) {
                 invitation.setDate(new Date());
             }
-            // invitations are creted when event is created. that's not interesting to track. we'd only
+            // invitations are created when event is created. that's not interesting to track. we'd only
             // like to know when invitation is updated.
             activityManager.onInvitationUpdated(invitation);
         }

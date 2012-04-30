@@ -30,24 +30,11 @@ public class ActivityMessageRenderer {
                 return renderer;
             }
         }
-        log.warn("Unknown message type [" + message.getClass() + "].");
-        return new DefaultMessageRenderer();
+        throw new IllegalArgumentException("Unknown message type [" + message.getClass() + "].");
     }
 
     public static String toString(Object message) {
         return get(message).toString(message);
     }
 
-    public static class DefaultMessageRenderer implements IMessageRenderer<Object> {
-
-        @Override
-        public String toString(Object message) {
-            return message.toString();
-        }
-
-        @Override
-        public boolean canHandle(final Object message) {
-            return true;
-        }
-    }
 }

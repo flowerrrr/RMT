@@ -88,11 +88,12 @@ public class ActivityManager extends AbstractService implements IActivityManager
             message.setManagerName(entity.getUser().getFullname());
             changed = true;
         }
-        if (ObjectUtils.notEqual(invitation.getComment(), origInvitation.getComment())) {
+        // do not track when comments are removed. what to display then?
+        if (invitation.getComment() != null && ObjectUtils.notEqual(invitation.getComment(), origInvitation.getComment())) {
             message.setComment(invitation.getComment());
             changed = true;
         }
-        if (ObjectUtils.notEqual(invitation.getManagerComment(), origInvitation.getManagerComment())) {
+        if (invitation.getManagerComment() != null && ObjectUtils.notEqual(invitation.getManagerComment(), origInvitation.getManagerComment())) {
             message.setManagerComment(invitation.getManagerComment());
             changed = true;
         }
@@ -102,10 +103,7 @@ public class ActivityManager extends AbstractService implements IActivityManager
         }
         entity.setMessage(message);
 
-        if (!changed) {
-            // assert that implementation is correct.
-            log.warn("No change detected for [" + invitation + "]");
-        } else {
+        if (changed) {
             save(entity);
         }
     }

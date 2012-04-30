@@ -37,19 +37,20 @@ public class ActivityFeedPanel extends BasePanel {
             @Override
             protected void populateItem(final ListItem<Activity> item) {
                 item.add(new Label("date", getDateLabel(item.getModelObject().getDate())));
-                item.add(new Label("message", renderMessage(item.getModelObject())).setEscapeModelStrings(false));
+                String message = renderMessage(item.getModelObject());
+                item.add(new Label("message", message).setEscapeModelStrings(false));
+                item.setVisible(message != null);
             }
         };
         add(list);
     }
 
     private String renderMessage(final Activity activity) {
-        String message;
+        String message = null;
         try {
             message = ActivityMessageRenderer.toString(activity.getMessage()) ;
         }   catch (Exception e) {
             log.error("Could not render [" + activity + "]: " + e.toString(), e);
-            message = activity.getMessage().toString();
         }
         return message;
     }
