@@ -5,7 +5,7 @@ package de.flower.common.ui;
  *
  * @author flowerrrr
  */
-public class Css {
+public interface Css {
 
     public static final String VALID = "valid";
 

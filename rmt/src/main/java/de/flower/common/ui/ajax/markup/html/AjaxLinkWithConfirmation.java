@@ -37,7 +37,7 @@ public abstract class AjaxLinkWithConfirmation<T> extends AjaxLink<T> {
      * @param confirmationMessage the confirmation message
      * @return the string
      */
-    public static final String decorateScriptWithConfirmationMessage(final CharSequence script,
+    public static String decorateScriptWithConfirmationMessage(final CharSequence script,
             final String confirmationMessage) {
         final String myScript = "var r=confirm('" + JavaScriptUtils.escapeQuotes(confirmationMessage)
                 + "'); if (r!=true) { return false; } " + script;

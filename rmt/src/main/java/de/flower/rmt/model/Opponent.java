@@ -26,7 +26,7 @@ import javax.validation.groups.Default;
         groups = { Opponent.Validation.INameUnique.class, Default.class })
 public class Opponent extends AbstractClubRelatedEntity {
 
-    public static class Validation {
+    public interface Validation {
 
         public interface INameUnique {}
 

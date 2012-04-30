@@ -99,6 +99,34 @@ sourceSets.test.resources.srcDirs('/src/test/database')
 
 // seems to be necessary to pick up the java base test classes
 sourceSets.test.scala.srcDirs('/src/test/java')
+
+// needed to get querydsl preprocessor executed
+// s. http://gradle.1045684.n5.nabble.com/Javac-Java-Annotation-Processor-Maven-classpath-dependencies-in-Gradle-td4626751.html
+
+sourceSets {
+    annotation {
+        java {
+            srcDir '/src/main/java'
+        }
+    }
+}
+
+compileJava.dependsOn compileAnnotationJava
+sourceSets.main.java.srcDirs(compileAnnotationJava.destinationDir)
+
+compileAnnotationJava {
+    doFirst {
+        println "Generating QueryDSL sources";
+        println "Destination dir: " + destinationDir.absolutePath
+    }
+    options.compilerArgs = [
+            "-processor", "com.mysema.query.apt.hibernate.HibernateAnnotationProcessor",
+            "-proc:only",
+            "-s", "${destinationDir.absolutePath}".toString()
+    ]
+}
+
+
 /**
  * It's currently not possible to capture the console output of the tests.
  * Until it is fixed (http://issues.gradle.org/browse/GRADLE-1009) use the

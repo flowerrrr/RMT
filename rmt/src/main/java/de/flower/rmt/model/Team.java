@@ -21,7 +21,7 @@ import java.util.List;
         groups = { Team.Validation.INameUnique.class, Default.class })
 public class  Team extends AbstractClubRelatedEntity  {
 
-    public static class Validation {
+    public interface Validation {
 
         public interface INameUnique {}
 

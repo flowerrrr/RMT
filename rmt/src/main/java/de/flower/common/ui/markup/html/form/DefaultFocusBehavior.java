@@ -9,11 +9,8 @@ import org.apache.wicket.markup.html.IHeaderResponse;
  */
 public class DefaultFocusBehavior extends Behavior {
 
-    private Component component;
-
     @Override
     public void bind(Component component) {
-        this.component = component;
         component.setOutputMarkupId(true);
     }
 

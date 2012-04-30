@@ -42,8 +42,6 @@ public class RMTApplication extends WebApplication {
 
     private final static Logger log = LoggerFactory.getLogger(RMTApplication.class);
 
-    private RuntimeConfigurationType runtimeConfigurationType;
-
     public static RMTApplication get() {
         return (RMTApplication) WebApplication.get();
     }
@@ -131,11 +129,6 @@ public class RMTApplication extends WebApplication {
         return new RMTSession(request);
     }
 
-    @Override
-    public RuntimeConfigurationType getConfigurationType() {
-        return (runtimeConfigurationType != null) ? runtimeConfigurationType : super.getConfigurationType();
-    }
-
     /**
      * Output to log instead of System.err.
      */
@@ -153,6 +146,6 @@ public class RMTApplication extends WebApplication {
     // TODO (flowerrrr - 14.04.12) could be annotated field as well ??
     @Value("${wicket.configurationtype}")
     public void setRuntimeConfigurationType(final RuntimeConfigurationType runtimeConfigurationType) {
-        this.runtimeConfigurationType = runtimeConfigurationType;
+        setConfigurationType(runtimeConfigurationType);
     }
 }

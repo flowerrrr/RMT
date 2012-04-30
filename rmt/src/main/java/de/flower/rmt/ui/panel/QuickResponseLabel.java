@@ -89,6 +89,7 @@ public abstract class QuickResponseLabel extends AjaxEditableChoiceLabel<RSVPSta
     private void removeTooltipBehavior() {
         if (tooltipBehavior != null) {
             getLabel().remove(tooltipBehavior);
+            //noinspection AssignmentToNull
             tooltipBehavior = null;
         }
     }

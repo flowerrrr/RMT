@@ -4,7 +4,7 @@ package de.flower.rmt.ui.app;
  * @author flowerrrr
  */
 // TODO (flowerrrr - 21.04.12) replace with ContextRelativeResource and use wickets caching support.
-public class Resource {
+public interface Resource {
 
     public static final String bootstrapJsUrl = "bootstrap/js/bootstrap.js?" + RMTApplication.VERSION;
 

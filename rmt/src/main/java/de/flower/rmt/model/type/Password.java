@@ -24,7 +24,7 @@ import java.io.Serializable;
 )
 public class Password implements Serializable {
 
-    public static class Validation {
+    public interface Validation {
 
         public interface IPasswordEquals {}
 

@@ -14,10 +14,8 @@ import org.apache.wicket.markup.html.pages.ExceptionErrorPage;
  */
 public class StacktracePanel extends BasePanel {
 
-    private Throwable throwable;
-
     public StacktracePanel(Exception e) {
-        this.throwable = e;
+        Throwable throwable = e;
 
 		// Add exception label
 		add(new MultiLineLabel("exception", getErrorMessage(throwable)));

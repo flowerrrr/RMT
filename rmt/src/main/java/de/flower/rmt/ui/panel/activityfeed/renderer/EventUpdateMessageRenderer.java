@@ -23,4 +23,9 @@ public class EventUpdateMessageRenderer implements IMessageRenderer<EventUpdateM
         String s = new StringResourceModel(key, Model.of(message), params).getObject();
         return s;
     }
+
+    @Override
+    public boolean canHandle(final Object message) {
+        return message instanceof EventUpdateMessage;
+    }
 }

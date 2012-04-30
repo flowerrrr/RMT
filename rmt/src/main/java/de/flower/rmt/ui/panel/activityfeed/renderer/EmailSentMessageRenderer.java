@@ -16,4 +16,8 @@ public class EmailSentMessageRenderer implements IMessageRenderer<EmailSentMessa
         return s;
     }
 
+    @Override
+    public boolean canHandle(final Object message) {
+        return message instanceof EmailSentMessage;
+    }
 }

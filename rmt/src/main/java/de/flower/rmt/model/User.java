@@ -34,7 +34,7 @@ import java.util.Set;
 })
 public class User extends AbstractClubRelatedEntity {
 
-    public static class Validation {
+    public interface Validation {
 
         public interface INameUnique {
 

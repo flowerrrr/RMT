@@ -7,4 +7,6 @@ public interface IMessageRenderer<T> {
 
     String toString(T message);
 
+    boolean canHandle(Object message);
+
 }

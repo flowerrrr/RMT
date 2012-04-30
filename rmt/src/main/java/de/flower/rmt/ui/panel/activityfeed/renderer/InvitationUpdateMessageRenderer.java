@@ -82,4 +82,9 @@ public class InvitationUpdateMessageRenderer implements IMessageRenderer<Invitat
             }
         }
     }
+
+    @Override
+    public boolean canHandle(final Object message) {
+        return message instanceof InvitationUpdateMessage;
+    }
 }

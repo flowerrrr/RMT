@@ -74,7 +74,7 @@ public class ModalDialogWindow extends ModalWindow {
      * @param content    the content (panel) to be shown in the modal dialog
      * @param numColumns the required number of bootstrap columns for the content
      */
-    public static final void showContent(final Component parent, final Component content, final int numColumns) {
+    public static void showContent(final Component parent, final Component content, final int numColumns) {
         get(parent.getPage()).reset().setContent(content, numColumns).show(AjaxRequestTarget.get());
     }
 

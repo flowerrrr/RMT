@@ -69,6 +69,7 @@ public abstract class AbstractEntityModel<T extends IEntity> extends LoadableDet
         // once we detach this model we discard any wrapped model. the call to getObject() will have
         // initialized the id of the entity so we can reload it next time.
         if (wrappedModel != null) {
+            //noinspection AssignmentToNull
             wrappedModel = null;
         }
     }
