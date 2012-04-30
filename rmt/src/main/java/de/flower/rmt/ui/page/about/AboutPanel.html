@@ -8,29 +8,32 @@
 
     <ul class="form-horizontal items">
         <li class="control-group">
-            <h3 class="control-label">Wofür?</h3>
+            <h3 class="control-label">Mission</h3>
 
             <div class="controls">
                 <p>Die Website unterstützt Fußball-Teams bei der Verwaltung von Spielen und Trainings.</p>
 
-                <p>Der Team-Manager stellt Termine ein und versendet Einladungen, auf die die Spieler antworten können.
-                    Der Manager kann so jederzeit feststellen ob genug Spieler für den Termin zurückgemeldet sind.</p>
+                <p>Die Applikation ist ein klassische RSVP-Tool, das besonders auf die Anforderungen von Team-Managern ausgerichtet ist.
 
-                <p>Weitere Features:</p>
+                <p>Features:</p>
                 <ul>
-                    <li>Social: Kommentarfunktion, News Feed</li>
+                    <li>Verwaltung von Spielterminen (Trainings, Spiele, Turniere)</li>
+                    <li>Einladungs-E-Mails an die Spieler</li>
+                    <li>Rückmeldungen zu den Spielen</li>
+                    <li>Social Web: Kommentarfunktion, News Feed</li>
                     <li>Google Maps Integration inkl. Routenplanung zu Spielorten</li>
                 </ul>
             </div>
         </li>
         <li class="control-group">
-            <h3 class="control-label">Warum?</h3>
+            <h3 class="control-label">Background</h3>
 
             <div class="controls">
                 <p>Das Projekt ist eine Fortführung eines alten PHP-Skripts, das mittlerweile in die Jahre gekommen
                     ist. Das Skript wurde seinerzeit für die Freizeitliga-Mannschaft Juventus Urin (sic!) entwickelt.</p>
+                <p>Die Neuentwicklung wurde in Java implementiert (s. unten).</p>
 
-                <p>Neben der Bespaßung der Benutzer dient das Projekt v.a. dem Autor als Spielwiese für die Evaluierung
+                <p>Neben der Unterstützung des Managers und der Spieler dient das Projekt dem Autor auch als Spielwiese für die Evaluierung
                     und den Einsatz von Web-Technologien.</p></div>
         </li>
         <li class="control-group">
@@ -39,12 +42,11 @@
             <div class="controls">
                 <ul>
                     <li>Darstellung optimiert für Firefox. <br/>
-                        Andere Browser (insb. Internet Explorer) können Bereiche der Website z.T. nicht korrekt
+                        Andere Browser (insb. Internet Explorer oder Smartphone-Browser) können Bereiche der Website z.T. nicht korrekt
                         darstellen.
                     </li>
-                    <li>Features kommen und gehen</li>
-                    <li>Fehler können jederzeit auftreten</li>
-                    <li>Die Website kann jederzeit offline sein</li>
+                    <li>Auch wenn das Ziel ein reibungsloser Betrieb und eine hohe Verfügbarkeit sind, kann nicht ausgeschlossen werden,
+                        das Fehler auftreten und die Website zeitweise offline ist.</li>
                 </ul>
             </div>
         </li>
@@ -54,7 +56,7 @@
             <div class="controls">
                 <ul>
                     <li>Provider: Host Europe</li>
-                    <li>Server: Virtual Server Windows 2000 2 GB RAM</li>
+                    <li>Server: Virtual Server Windows 2008 2 GB RAM</li>
                     <li>Servlet-Container: Tomcat (behind IIS with IIS-Tomcat Connector)</li>
                     <li>Datenbank: MySQL</li>
                 </ul>
@@ -69,6 +71,7 @@
                     <li>Spring Security</li>
                     <li>Spring</li>
                     <li>Spring Data JPA</li>
+                    <li>QueryDsl</li>
                     <li>Hibernate</li>
                     <li>Hibernate Validator</li>
                     <li>AspectJ</li>
@@ -99,8 +102,8 @@
                     <li>Continuous Integration: Jenkins</li>
                     <li>Version Control System: Git</li>
                     <li>Github Repo: <a href="https://github.com/flowerrrr/RMT">https://github.com/flowerrrr/RMT</a></li>
-                    <li>Project Management: <a href="http://acunote.com">Acunote</a> (Web-based Scrum Tool)</li>
-                    <li>Design: <a href="http://gliffy.com">Gliffy</a> (Web-based Wireframes)</li>
+                    <li>Scrum Tool: <a href="http://acunote.com">Acunote</a></li>
+                    <li>Wireframes / ER-Diagramm: <a href="http://gliffy.com">Gliffy</a></li>
                 </ul>
             </div>
         </li>
