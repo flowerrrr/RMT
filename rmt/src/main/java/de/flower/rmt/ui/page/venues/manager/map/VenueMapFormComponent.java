@@ -39,6 +39,12 @@ public class VenueMapFormComponent extends FormComponentPanel<LatLng> {
     }
 
     @Override
+    protected void onModelChanged() {
+        // necessary when updating model value from outside (like selecting a geocoding result)
+        latLng = getModelObject();
+    }
+
+    @Override
     public Markup getAssociatedMarkup() {
         String markup = "<wicket:panel><div wicket:id='venueMapPanel' class='venue-map'/></wicket:panel>";
         return Markup.of(markup);

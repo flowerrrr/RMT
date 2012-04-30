@@ -71,9 +71,9 @@ public class Activity extends AbstractClubRelatedEntity {
     @Override
     public String toString() {
         return "Activity{" +
+                "id=" + getId() +
                 "message=" + message +
                 ", date=" + date +
-                ", user=" + user +
                 '}';
     }
 }

@@ -58,7 +58,7 @@ public class VenuePage extends PlayerBasePage {
                 setResponsePage(VenuesPage.class);
             }
         });
-        addSecondaryPanel(new GetDirectionsPanel(model));
+        addSecondaryPanel(new GetDirectionsPanel(model), new WeatherPanel(model));
     }
 
     @Override

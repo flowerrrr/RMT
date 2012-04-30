@@ -38,7 +38,7 @@ import org.springframework.stereotype.Component;
 @Component(value = "wicketApplication")
 public class RMTApplication extends WebApplication {
 
-    public final static String VERSION = "1.1.3";
+    public final static String VERSION = "1.2.0";
 
     private final static Logger log = LoggerFactory.getLogger(RMTApplication.class);
 
@@ -48,6 +48,9 @@ public class RMTApplication extends WebApplication {
 
     @Override
     protected void init() {
+        log.info("***********************************************************************************");
+        log.info("*** Version " + VERSION);
+        log.info("***********************************************************************************");
         super.init();
         // add support for @SpringBean
         getComponentInstantiationListeners().add(getSpringComponentInjector());

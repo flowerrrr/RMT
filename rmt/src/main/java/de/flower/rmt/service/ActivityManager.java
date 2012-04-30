@@ -108,6 +108,7 @@ public class ActivityManager extends AbstractService implements IActivityManager
         }
     }
 
+
     @Override
     public List<Activity> findLastN(final int num) {
         return activityRepo.findAll(new PageRequest(0, num, Sort.Direction.DESC, Activity_.date.getName())).getContent();

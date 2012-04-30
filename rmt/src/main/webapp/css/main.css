@@ -997,6 +997,16 @@ td.rsvpstatus {
     }
 }
 
+/*************************************************************************
+    Weather widget
+**************************************************************************/
+iframe.wetteronline {
+    border: 0 none;
+    height: 308px;
+    margin-left: -20px; // to left-align with heading
+    overflow: hidden;
+    width: 220px;
+}
 
 /*************************************************************************
     About page
