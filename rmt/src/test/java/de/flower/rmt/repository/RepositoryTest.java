@@ -1,8 +1,6 @@
 package de.flower.rmt.repository;
 
-import com.mysema.query.types.Predicate;
 import com.mysema.query.types.expr.BooleanExpression;
-import de.flower.rmt.model.QTeam;
 import de.flower.rmt.model.QUser;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.model.User;
@@ -40,14 +38,4 @@ public class RepositoryTest extends AbstractIntegrationTests {
         assertEquals(list.size(), 3);
     }
 
-    @Test
-    public void testQueryDsl() {
-
-        BooleanExpression hasClub = QTeam.team.club.eq(securityService.getUser().getClub());
-        List<Team> list = teamRepo.findAll(hasClub);
-        assertEquals(list.size(), 3);
-
-        list = teamRepo.findAll((Predicate) null);
-        assertEquals(list.size(), 4);
-    }
 }

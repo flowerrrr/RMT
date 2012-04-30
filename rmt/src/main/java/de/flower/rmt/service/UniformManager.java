@@ -1,14 +1,15 @@
 package de.flower.rmt.service;
 
 import com.google.common.base.Predicate;
-import com.mysema.query.types.expr.BooleanExpression;
 import de.flower.common.util.Check;
 import de.flower.common.util.NameFinder;
-import de.flower.rmt.model.QUniform;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.model.Uniform;
+import de.flower.rmt.model.Uniform_;
 import de.flower.rmt.repository.IUniformRepo;
+import de.flower.rmt.repository.Specs;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,8 +46,8 @@ public class UniformManager extends AbstractService implements IUniformManager {
     @Override
     public List<Uniform> findAllByTeam(Team team) {
         Check.notNull(team);
-        BooleanExpression predicate = QUniform.uniform.team.eq(team);
-        return uniformRepo.findAll(predicate);
+        Specification spec = Specs.eq(Uniform_.team, team);
+        return uniformRepo.findAll(spec);
     }
 
     @Override
