@@ -2,3 +2,7 @@
 .w_content_2 {
     min-height: 500px;
 }
+
+iframe.wetteronline {
+    margin-left: -15px !important; // -20px is too much for IE8
+}

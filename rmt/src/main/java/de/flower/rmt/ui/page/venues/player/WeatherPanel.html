@@ -7,7 +7,8 @@
 
     <h4>Wetter am Spielort</h4>
 
-    <iframe class="wetteronline" wicket:id="iframe" ></iframe>
+    <!-- frameborder needed to fix layoutbug in ie8 -->
+    <iframe class="wetteronline" wicket:id="iframe" marginheight="0" marginwidth="0" frameborder="0" ></iframe>
 
 </wicket:panel>
 </body>
