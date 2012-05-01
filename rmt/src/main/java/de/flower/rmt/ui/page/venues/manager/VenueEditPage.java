@@ -4,6 +4,7 @@ import de.flower.rmt.model.Venue;
 import de.flower.rmt.ui.model.VenueModel;
 import de.flower.rmt.ui.page.base.manager.ManagerBasePage;
 import de.flower.rmt.ui.page.base.manager.NavigationPanel;
+import de.flower.rmt.ui.page.venues.player.WeatherPanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
 
@@ -25,6 +26,7 @@ public class VenueEditPage extends ManagerBasePage {
                 setResponsePage(VenuesPage.class);
             }
         });
+        addSecondaryPanel(new WeatherPanel(model));
     }
 
     @Override
