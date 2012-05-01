@@ -27,14 +27,19 @@
             // have to do some work to make map display correctly after it was rendered in a hidden div.
             // hook into bootstrap tab callback to resize the map when it is shown.
             $('a[data-toggle="tab"]').on('shown', function (e) {
-                if (e.target.hash == "#map") {
+                if (e.target.hash == "#map" && !VenuesMap.initialized) {
                     VenuesMap.repaint();
+                    VenuesMap.initialized = true;
                 }
             })
-            VenuesMap = {};
+            VenuesMap = {
+                initialized : false
+            };
             VenuesMap.repaint = function() {
-                google.maps.event.trigger(Wicket.maps[VenuesMap.getMapKey()].map, 'resize');
-                Wicket.maps[VenuesMap.getMapKey()].reCenter();
+                var mapId = VenuesMap.getMapKey();
+                google.maps.event.trigger(Wicket.maps[mapId].map, 'resize');
+                // Wicket.maps[mapId].reCenter();
+                Wicket.maps[mapId].map.fitBounds(Wicket.maps[mapId].bounds);
             }
             VenuesMap.getMapKey = function() {
                 for (key in Wicket.maps) {

@@ -375,7 +375,7 @@ public class GMap extends Panel {
      * @param maximumZoomLevel the maximum zoom level
      * @see <a href= "http://www.nabble.com/Re%3A-initial-GMap2-bounds-question-p19886673.html" >Doug's Nabble post</a>
      */
-    public void fitMarkers(final List<GLatLng> markersToShow, final int maximumZoomLevel) {
+    public void fitMarkers(final List<? extends GLatLng> markersToShow, final int maximumZoomLevel) {
         if (markersToShow.isEmpty()) {
             log.warn("Empty list provided to GMap.fitMarkers method.");
             return;

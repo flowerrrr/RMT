@@ -52,7 +52,7 @@ public class GLatLngBounds implements GValue {
         _ne = ne;
     }
 
-    public GLatLngBounds(final List<GLatLng> list) {
+    public GLatLngBounds(final List<? extends GLatLng> list) {
         for (final GLatLng point : list) {
             extend(point);
         }

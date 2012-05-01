@@ -1,6 +1,5 @@
 package de.flower.rmt.ui.page.venues.manager.map;
 
-import de.flower.common.util.geo.GeoUtil;
 import de.flower.common.util.geo.LatLng;
 import de.flower.rmt.model.Venue;
 import de.flower.rmt.ui.panel.BasePanel;
@@ -18,6 +17,9 @@ import java.util.List;
  * @author flowerrrr
  */
 public class VenuesMapPanel extends BasePanel {
+
+    /** Google maps maximum zoom level in map mode is 19 (22 in satellite). */
+    public static final int MAX_INITAL_ZOOM_LEVEL = 15;
 
     public VenuesMapPanel(IModel<List<Venue>> listModel) {
 
@@ -38,12 +40,13 @@ public class VenuesMapPanel extends BasePanel {
             }
         }
 
-        LatLng center = GeoUtil.centerOf(latLngs);
-        map.setCenter(center);
-        map.setZoom(10);
+        // LatLng center = GeoUtil.centerOf(latLngs);
+        // map.setCenter(center);
+        map.fitMarkers(latLngs, MAX_INITAL_ZOOM_LEVEL);
 
         // updates of venue locations must be done via javascript. repainting the whole map
         // takes to long and doesn't look nice.
         // add(new AjaxUpdateBehavior(Event.EntityAll(Venue.class)));
     }
+
 }
