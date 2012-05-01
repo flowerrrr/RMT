@@ -856,8 +856,14 @@ td.rsvpstatus {
 /*************************************************************************
     Invitation form
 **************************************************************************/
-.invitationForm .radio {
-    display: block;
+.invitationForm {
+    margin-bottom: 0px;
+    ul {
+        margin-bottom: 0px;
+    }
+    .radio {
+        display: block;
+    }
 }
 .ul-form li {
     margin-top: 10px;

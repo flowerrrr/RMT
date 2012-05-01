@@ -56,8 +56,6 @@ public class EventSecondaryPanel extends BasePanel {
                 AjaxEventSender.entityEvent(this, Invitation.class);
             }
         };
-        // make form visible if user hasn't responded yet
-        invitationFormPanel.setVisible(invitationModel.getObject() != null && invitationModel.getObject().getStatus() == RSVPStatus.NORESPONSE);
 
         add(new AjaxSlideTogglePanel("invitationFormPanel", "player.event.invitationform.heading", invitationFormPanel) {
             @Override
@@ -66,6 +64,10 @@ public class EventSecondaryPanel extends BasePanel {
                 return invitationModel.getObject() != null;
             }
         });
+
+        // make form visible if user hasn't responded yet
+        // must be called after adding to AjaxSlideTogglePanel
+        invitationFormPanel.setVisible(invitationModel.getObject() != null && invitationModel.getObject().getStatus() == RSVPStatus.NORESPONSE);
 
         add(new EventDetailsPanel(model, View.PLAYER));
 
