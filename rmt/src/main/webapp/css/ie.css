@@ -12,6 +12,6 @@ iframe.wetteronline {
  * crazy IE9 helvetica bug: http://simunix.com/wordpress/index.php/2011/03/18/ie9-helvetica-bug/
  * must remove helvetica from list
  */
-body, p, textarea {
+body, p, input, button, select, textarea {
     font-family: Arial,sans-serif;
 }
