@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="true" scan="true">
 
+    <property resource="credentials.properties" />
+
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <!-- encoders are assigned the type
      ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
@@ -44,6 +46,22 @@
       </encoder>
     </appender>
 
+    <appender name="EMAIL" class="ch.qos.logback.classic.net.SMTPAppender">
+        <!-- deny all events with a level below ERROR -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <smtpHost>${mail.smtp.host}</smtpHost>
+        <to>das-tool-admin@flower.de</to>
+        <from>rmt-log-monitor@localhost</from>
+        <username>${mail.smtp.username}</username>
+        <password>${mail.smtp.password}</password>
+        <subject>das-tool: Error-Notification</subject>
+        <layout class="ch.qos.logback.classic.html.HTMLLayout"/>
+        <evaluator class="de.flower.common.logging.SMTPEvaluator" />
+    </appender>
+
+
     <logger name="org.apache.wicket" level="INFO" />
     <logger name="org.apache.wicket.devutils" level="INFO" />
     <logger name="org.wicketstuff" level="INFO" />
@@ -64,5 +82,7 @@
         <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE" />
         <appender-ref ref="FILE-ERROR" />
+        <appender-ref ref="EMAIL"/>
     </root>
+
 </configuration>
