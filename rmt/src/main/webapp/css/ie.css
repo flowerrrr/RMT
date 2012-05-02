@@ -3,11 +3,6 @@
     min-height: 500px;
 }
 
-/* IE8 does move iframe too much to the left */
-iframe.wetteronline {
-    margin-left: -15px !important; // -20px is too much for IE8
-}
-
 /*
  * crazy IE9 helvetica bug: http://simunix.com/wordpress/index.php/2011/03/18/ie9-helvetica-bug/
  * must remove helvetica from list
