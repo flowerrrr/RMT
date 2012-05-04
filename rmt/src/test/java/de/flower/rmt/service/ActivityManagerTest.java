@@ -43,10 +43,10 @@ public class ActivityManagerTest extends AbstractIntegrationTests {
 
     @Test
     public void testFind() {
-        int num = 10;
-        testData.createActivities(num);
-        List<Activity> list = activityManager.findLastN(num);
-        assertEquals(list.size(), num);
+        int size = 10;
+        testData.createActivities(size);
+        List<Activity> list = activityManager.findLastN(0, size);
+        assertEquals(list.size(), size);
     }
 
 }

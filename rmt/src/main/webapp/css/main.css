@@ -1077,4 +1077,9 @@ iframe.wetteronline {
     em {
         font-style: italic;
     }
+    // center ajax-spinner
+    .btn-more .ajax-loader {
+        margin-left: auto;
+        margin-right: auto;
+    }
 }

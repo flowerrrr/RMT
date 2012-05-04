@@ -18,8 +18,8 @@ public class ActivityFeedPanelTest extends AbstractRMTWicketMockitoTests {
 
     @BeforeMethod
     public void setUp() {
-        int num = 10;
-        when(activityManager.findLastN(num)).thenReturn(testData.newActivities(num));
+        int size = 10;
+        when(activityManager.findLastN(0, size)).thenReturn(testData.newActivities(size));
     }
 
     @Test

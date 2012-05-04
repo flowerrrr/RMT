@@ -11,9 +11,9 @@ import java.util.List;
  */
 public interface IActivityManager {
 
-//    void save(Activity entity);
+    //    void save(Activity entity);
 //
-//    Activity loadById(Long id);
+    Activity loadById(Long id);
 //
 //    List<Activity> findAll();
 //
@@ -25,9 +25,10 @@ public interface IActivityManager {
 
     /**
      * Method must be called before invitation is saved.
+     *
      * @param invitation
      */
     void onInvitationUpdated(Invitation invitation);
 
-    List<Activity> findLastN(int num);
+    List<Activity> findLastN(int num, final int i);
 }
