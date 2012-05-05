@@ -60,7 +60,7 @@ public class ActivityFeedPanel extends BasePanel {
         listContainer.add(list);
         add(listContainer);
 
-        add(new AjaxLink<Void>("more") {
+        add(new AjaxLink.NoIndicatingAjaxLink<Void>("more") {
             @Override
             public void onClick(final AjaxRequestTarget target) {
                 // load next N items

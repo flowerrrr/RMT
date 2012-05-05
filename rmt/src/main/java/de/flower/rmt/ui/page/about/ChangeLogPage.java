@@ -6,13 +6,12 @@ import de.flower.rmt.ui.page.base.AnonymousNavigationPanel;
 /**
  * @author flowerrrr
  */
-public class AboutPage extends AbstractBaseLayoutPage {
+public class ChangeLogPage extends AbstractBaseLayoutPage {
 
-    public AboutPage() {
-        setHeading("about.heading", "about.heading.sub");
+    public ChangeLogPage() {
+        setHeading("changelog.heading", null);
         add(new AnonymousNavigationPanel());
-        addMainPanel(new AboutPanel());
-        addSecondaryPanel(new ContactPanel(), new DemoPanel(), new VersionPanel());
+        addMainPanel(new ChangeLogPanel());
     }
 
     @Override
