@@ -60,11 +60,11 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/aspectj" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/tools" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/scala" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/groovy" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="jquery.min" level="application" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="module-library" exported="">
       <library>
@@ -1134,6 +1134,7 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" name="groovy-1.8.0" level="application" />
   </component>
   <component name="org.twodividedbyzero.idea.findbugs">
     <option name="_basePreferences">
