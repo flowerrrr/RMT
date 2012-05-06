@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.markup.html.panel;
 
 import de.flower.common.test.wicket.AbstractWicketUnitTests;
-import de.flower.rmt.ui.panel.BasePanel;
+import de.flower.common.ui.panel.BasePanel;
 import org.apache.wicket.markup.Markup;
 import org.apache.wicket.markup.html.form.Form;
 import org.testng.annotations.Test;

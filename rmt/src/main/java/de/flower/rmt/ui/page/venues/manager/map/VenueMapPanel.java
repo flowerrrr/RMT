@@ -1,9 +1,9 @@
 package de.flower.rmt.ui.page.venues.manager.map;
 
+import de.flower.common.ui.panel.BasePanel;
 import de.flower.common.util.geo.LatLng;
 import de.flower.rmt.model.Venue;
 import de.flower.rmt.ui.app.Links;
-import de.flower.rmt.ui.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;

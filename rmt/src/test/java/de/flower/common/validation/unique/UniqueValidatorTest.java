@@ -28,6 +28,7 @@ public class UniqueValidatorTest {
         columnResolver = mock(IColumnResolver.class);
         rowCountChecker = mock(IRowCountChecker.class);
         entity = mock(IEntity.class);
+        when(entity.getId()).thenReturn(1L);
         context = mock(ConstraintValidatorContext.class);
 
         constraintDef = new UniqueDef("foo", new String[] { "id" });

@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.markup.html.panel;
 
+import de.flower.common.ui.panel.BasePanel;
 import de.flower.common.util.Check;
-import de.flower.rmt.ui.panel.BasePanel;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.Session;
 import org.apache.wicket.feedback.ComponentFeedbackMessageFilter;

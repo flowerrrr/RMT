@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.page.error;
 
-import de.flower.rmt.ui.panel.BasePanel;
+import de.flower.common.ui.panel.BasePanel;
 import org.apache.wicket.markup.MarkupException;
 import org.apache.wicket.markup.MarkupStream;
 import org.apache.wicket.markup.html.WebMarkupContainer;

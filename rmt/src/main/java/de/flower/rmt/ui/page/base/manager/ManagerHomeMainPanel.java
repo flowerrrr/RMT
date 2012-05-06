@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.page.base.manager;
 
-import de.flower.rmt.ui.panel.BasePanel;
+import de.flower.common.ui.panel.BasePanel;
 
 /**
  * @author flowerrrr

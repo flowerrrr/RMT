@@ -20,9 +20,7 @@
       <entry name="?*.js" />
     </wildcardResourcePatterns>
     <annotationProcessing enabled="true" useClasspath="true">
-      <processor name="org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor" options="" />
-      <processor name="com.mysema.query.apt.hibernate.HibernateAnnotationProcessor" options="" />
-      <processModule name="rmt" generatedDirName="src/main/generated" />
+      <processModule name="rmt" generatedDirName="src/generated/jpa" />
     </annotationProcessing>
   </component>
 </project>

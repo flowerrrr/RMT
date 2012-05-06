@@ -2,10 +2,10 @@ package de.flower.rmt.ui.page.event.manager.invitees;
 
 import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.ajax.markup.html.form.AjaxSubmitLink;
+import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IInvitationManager;
-import de.flower.rmt.ui.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;

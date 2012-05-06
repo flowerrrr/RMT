@@ -5,7 +5,7 @@
     <weaver options="-verbose -showWeaveInfo
           -XmessageHandlerClass:org.springframework.aop.aspectj.AspectJWeaverMessageHandler">
 
-        <!-- required for /de/flower/common/aop/ConfigurableTest.scala -->
+        <!-- required for /de/flower/common/aop/ConfigurableTest.groovy -->
         <include within="de.flower.common.aop.ConfigurableFoo"/>
 
         <!-- exclude generated proxy classes -->

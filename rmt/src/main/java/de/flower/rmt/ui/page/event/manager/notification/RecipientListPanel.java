@@ -2,11 +2,11 @@ package de.flower.rmt.ui.page.event.manager.notification;
 
 import de.flower.common.ui.ajax.markup.html.AjaxLink;
 import de.flower.common.ui.modal.ModalDialogWindow;
+import de.flower.common.ui.panel.BasePanel;
 import de.flower.common.util.Collections;
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.service.IInvitationManager;
-import de.flower.rmt.ui.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;

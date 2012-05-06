@@ -2,6 +2,7 @@ package de.flower.rmt.ui.page.events.player;
 
 import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.common.ui.markup.html.list.EntityListView;
+import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.User;
@@ -12,7 +13,6 @@ import de.flower.rmt.service.IResponseManager;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.model.UserModel;
-import de.flower.rmt.ui.panel.BasePanel;
 import de.flower.rmt.ui.panel.QuickResponseLabel;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;

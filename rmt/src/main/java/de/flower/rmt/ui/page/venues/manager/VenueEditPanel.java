@@ -1,6 +1,7 @@
 package de.flower.rmt.ui.page.venues.manager;
 
 import de.flower.common.ui.ajax.event.AjaxEventSender;
+import de.flower.common.ui.panel.BasePanel;
 import de.flower.common.util.geo.LatLng;
 import de.flower.rmt.model.Venue;
 import de.flower.rmt.service.IVenueManager;
@@ -12,7 +13,6 @@ import de.flower.rmt.ui.markup.html.form.field.TextAreaPanel;
 import de.flower.rmt.ui.markup.html.form.field.TextFieldPanel;
 import de.flower.rmt.ui.page.venues.manager.geocode.GeocodePanel;
 import de.flower.rmt.ui.page.venues.manager.map.VenueMapFormComponent;
-import de.flower.rmt.ui.panel.BasePanel;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;

@@ -1,8 +1,8 @@
 package de.flower.rmt.ui.page.error;
 
+import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.ui.app.IPropertyProvider;
 import de.flower.rmt.ui.app.Links;
-import de.flower.rmt.ui.panel.BasePanel;
 import org.apache.wicket.Application;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.RuntimeConfigurationType;

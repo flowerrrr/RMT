@@ -1,8 +1,8 @@
 package de.flower.rmt.ui.page.venues.player;
 
+import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.Venue;
 import de.flower.rmt.ui.page.venues.manager.map.VenueMapPanel;
-import de.flower.rmt.ui.panel.BasePanel;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.MarkupStream;
 import org.apache.wicket.markup.html.basic.Label;

@@ -2,11 +2,11 @@ package de.flower.rmt.ui.page.base;
 
 import de.flower.common.ui.feedback.AlertMessageFeedbackPanel;
 import de.flower.common.ui.markup.html.panel.WrappingPanel;
+import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.ui.app.IPropertyProvider;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.feedback.MessageOfTheDayMessage;
 import de.flower.rmt.ui.feedback.PasswordChangeRequiredMessage;
-import de.flower.rmt.ui.panel.BasePanel;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;

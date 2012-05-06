@@ -2,7 +2,6 @@ package de.flower.common.validation.unique.impl;
 
 import de.flower.common.validation.unique.Unique;
 import org.testng.annotations.Test;
-import scala.None;
 
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -24,7 +23,7 @@ public class UniqueDefFactoryTest {
     @Test
     public void testParseTableUniqueConstraint() {
         @Table(uniqueConstraints = { @UniqueConstraint(name = "c1", columnNames = { "name", "email" }) })
-        @Unique(name = "c1", clazz = TestEntity.class, groups = { None.class })
+        @Unique(name = "c1", clazz = TestEntity.class, groups = { Void.class })
         final class TestEntity {
         }
 
@@ -36,7 +35,7 @@ public class UniqueDefFactoryTest {
 
     @Test
     public void testParseConstraintWithAttributeNames() {
-        @Unique(name = "c1", attributeNames = { "name", "email" }, clazz = TestEntity.class, groups = { None.class })
+        @Unique(name = "c1", attributeNames = { "name", "email" }, clazz = TestEntity.class, groups = { Void.class })
         final class TestEntity {
         }
 
@@ -48,7 +47,7 @@ public class UniqueDefFactoryTest {
 
     @Test
     public void testParseConstraintWithoutName() {
-        @Unique(attributeNames = { "name", "email" }, clazz = TestEntity.class, groups = { None.class })
+        @Unique(attributeNames = { "name", "email" }, clazz = TestEntity.class, groups = { Void.class })
         final class TestEntity {
         }
 
@@ -60,7 +59,7 @@ public class UniqueDefFactoryTest {
 
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testCheckMissingArguments() {
-        @Unique(clazz = TestEntity.class, groups = { None.class })
+        @Unique(clazz = TestEntity.class, groups = { Void.class })
         final class TestEntity {
         }
 
@@ -70,7 +69,7 @@ public class UniqueDefFactoryTest {
 
     @Test(expectedExceptions = IllegalStateException.class)
     public void testCheckUnknownConstraint() {
-        @Unique(name = "unknownConstraint", clazz = TestEntity.class, groups = { None.class })
+        @Unique(name = "unknownConstraint", clazz = TestEntity.class, groups = { Void.class })
         final class TestEntity {
         }
 

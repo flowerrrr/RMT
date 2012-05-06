@@ -1,6 +1,6 @@
 package de.flower.common.ui.markup.html.panel;
 
-import de.flower.rmt.ui.panel.BasePanel;
+import de.flower.common.ui.panel.BasePanel;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.Markup;
 

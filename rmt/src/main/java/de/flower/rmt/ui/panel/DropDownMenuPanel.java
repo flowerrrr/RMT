@@ -1,5 +1,6 @@
 package de.flower.rmt.ui.panel;
 
+import de.flower.common.ui.panel.BasePanel;
 import de.flower.common.util.Check;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.AbstractLink;

@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.page.error;
 
+import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.ui.app.Links;
-import de.flower.rmt.ui.panel.BasePanel;
 
 /**
  * @author flowerrrr

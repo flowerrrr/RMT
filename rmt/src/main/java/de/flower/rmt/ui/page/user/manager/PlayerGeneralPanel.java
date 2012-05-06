@@ -1,14 +1,15 @@
 package de.flower.rmt.ui.page.user.manager;
 
 import de.flower.common.ui.ajax.event.AjaxEventSender;
+import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.User;
 import de.flower.rmt.service.IRoleManager;
 import de.flower.rmt.service.IUserManager;
+import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.ui.markup.html.form.EntityForm;
 import de.flower.rmt.ui.markup.html.form.field.AbstractFormFieldPanel;
 import de.flower.rmt.ui.markup.html.form.field.CheckBoxPanel;
 import de.flower.rmt.ui.markup.html.form.field.TextFieldPanel;
-import de.flower.rmt.ui.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.Form;
@@ -27,6 +28,9 @@ public class PlayerGeneralPanel extends BasePanel<User> {
 
     @SpringBean
     private IRoleManager roleManager;
+
+    @SpringBean
+    private ISecurityService securityService;
 
     private IModel<Boolean> managerModel;
 

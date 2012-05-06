@@ -6,7 +6,7 @@ import de.flower.common.ui.serialize.SerializerWrapper;
 import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.model.type.Notification;
-import de.flower.rmt.model.type.Password;
+import de.flower.rmt.service.type.Password;
 import de.flower.rmt.ui.page.about.AboutPage;
 import de.flower.rmt.ui.page.account.AccountPage;
 import de.flower.rmt.ui.page.base.manager.ManagerHomePage;

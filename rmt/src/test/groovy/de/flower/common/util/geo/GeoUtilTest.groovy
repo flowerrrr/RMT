@@ -1,6 +1,6 @@
 package de.flower.common.util.geo
 
-import org.junit.Test
+import org.testng.annotations.Test
 import static org.testng.Assert.assertEquals
 
 /**

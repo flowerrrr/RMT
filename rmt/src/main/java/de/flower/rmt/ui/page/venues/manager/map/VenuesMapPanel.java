@@ -1,8 +1,8 @@
 package de.flower.rmt.ui.page.venues.manager.map;
 
+import de.flower.common.ui.panel.BasePanel;
 import de.flower.common.util.geo.LatLng;
 import de.flower.rmt.model.Venue;
-import de.flower.rmt.ui.panel.BasePanel;
 import org.apache.wicket.model.IModel;
 import wicket.contrib.gmap3.GMap;
 import wicket.contrib.gmap3.overlay.GInfoWindow;

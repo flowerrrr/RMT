@@ -1,5 +1,7 @@
 package de.flower.rmt.ui.panel;
 
+import de.flower.common.ui.panel.BasePanel;
+import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.service.security.UserDetailsBean;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.app.View;
@@ -14,12 +16,15 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
-
+import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
  * @author flowerrrr
  */
 public class AbstractNavigationPanel extends BasePanel {
+
+    @SpringBean
+    protected ISecurityService securityService;
 
     public AbstractNavigationPanel(View view) {
         super("navigationPanel");
@@ -29,7 +34,7 @@ public class AbstractNavigationPanel extends BasePanel {
         add(new BookmarkablePageLink("account", AccountPage.class));
         add(createSwitchViewLink("switchView", view));
         add(Links.logoutLink("logoutLink"));
-        add(new Label("user", getUserDetails().getUser().getFullname()));
+        add(new Label("user", securityService.getUser().getFullname()));
 
         setRenderBodyOnly(true);
     }
@@ -41,7 +46,7 @@ public class AbstractNavigationPanel extends BasePanel {
      * @return
      */
     private Link createSwitchViewLink(String id, View view) {
-        UserDetailsBean userDetails = getUserDetails();
+        UserDetailsBean userDetails = securityService.getCurrentUser();
         Link link;
         if (view == View.MANAGER) {
             // manager can always switch to player view.

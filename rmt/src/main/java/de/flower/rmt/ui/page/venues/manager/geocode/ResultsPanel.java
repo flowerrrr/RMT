@@ -2,8 +2,8 @@ package de.flower.rmt.ui.page.venues.manager.geocode;
 
 import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.common.ui.ajax.markup.html.AjaxLink;
+import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.service.geocoding.GeocodingResult;
-import de.flower.rmt.ui.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;

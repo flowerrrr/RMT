@@ -3,7 +3,7 @@ package de.flower.rmt.test;
 import de.flower.common.test.wicket.WicketTester;
 import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.type.Notification;
-import de.flower.rmt.model.type.Password;
+import de.flower.rmt.service.type.Password;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;

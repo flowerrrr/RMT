@@ -1,8 +1,8 @@
 package de.flower.rmt.ui.page.event;
 
+import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.ui.markup.html.form.EventDropDownChoice;
-import de.flower.rmt.ui.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.model.IModel;

@@ -2,6 +2,7 @@ package de.flower.rmt.ui.page.event;
 
 import de.flower.common.ui.markup.html.basic.FallbackLabel;
 import de.flower.common.ui.model.AbstractWrappingModel;
+import de.flower.common.ui.panel.BasePanel;
 import de.flower.common.ui.util.convert.AbstractConverter;
 import de.flower.rmt.model.Surface;
 import de.flower.rmt.model.Uniform;
@@ -13,7 +14,6 @@ import de.flower.rmt.ui.model.ModelFactory;
 import de.flower.rmt.ui.model.VenueModel;
 import de.flower.rmt.ui.page.venues.manager.VenueEditPage;
 import de.flower.rmt.ui.page.venues.player.VenuePage;
-import de.flower.rmt.ui.panel.BasePanel;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.markup.html.WebMarkupContainer;

@@ -2,12 +2,12 @@ package de.flower.rmt.ui.page.user.manager;
 
 import de.flower.common.ui.markup.html.form.BooleanDropDownChoice;
 import de.flower.common.ui.markup.html.list.EntityListView;
+import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.Player;
 import de.flower.rmt.model.Player_;
 import de.flower.rmt.model.User;
 import de.flower.rmt.service.IPlayerManager;
 import de.flower.rmt.ui.markup.html.form.field.DropDownChoicePanel;
-import de.flower.rmt.ui.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.OnChangeAjaxBehavior;
 import org.apache.wicket.markup.html.WebMarkupContainer;

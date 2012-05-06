@@ -1,10 +1,10 @@
 package de.flower.rmt.ui.page.user.manager;
 
 import de.flower.common.ui.ajax.markup.html.AjaxLink;
+import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.User;
 import de.flower.rmt.service.IUserManager;
 import de.flower.rmt.ui.markup.html.panel.SimpleFeedbackPanel;
-import de.flower.rmt.ui.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.feedback.ComponentFeedbackMessageFilter;
 import org.apache.wicket.markup.html.WebMarkupContainer;

@@ -1,11 +1,11 @@
 package de.flower.rmt.ui.page.events.manager;
 
+import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.page.event.manager.EventPage;
-import de.flower.rmt.ui.panel.BasePanel;
 import de.flower.rmt.ui.panel.activityfeed.ActivityFeedPanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.spring.injection.annot.SpringBean;

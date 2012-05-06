@@ -1,7 +1,7 @@
 apply plugin: 'java'
-apply plugin: 'scala'
+apply plugin: 'groovy'
 apply plugin: 'idea'
-apply plugin: 'eclipse'
+// apply plugin: 'eclipse'
 
 // use jdk 1.7
 sourceCompatibility = "1.7"
@@ -20,7 +20,7 @@ version_spring = "3.1.0.RELEASE"
 version_spring_security = "3.1.0.RELEASE"
 version_wicket = "1.5.5"
 version_hibernate = "3.6.7.Final"
-version_scala = "2.9.1"
+version_groovy = "1.8.6"
 
 
 dependencies {
@@ -76,45 +76,40 @@ dependencies {
     testCompile(
             'org.springframework:spring-test:' + version_spring,
             'org.dbunit:dbunit:2.4.8',
-            'org.scala-lang:scala-library:' + version_scala,
+            'org.codehaus.groovy:groovy-all:' + version_groovy,
             'org.testng:testng:6.1.1', // current rel. 6.2.1 has dependency to com.google.inject
-            'org.scalatest:scalatest:1.4.RC2',
             'org.mockito:mockito-core:1.9.0-rc1',
             'javax.servlet:servlet-api:2.5'
     )
-    scalaTools(
-            'org.scala-lang:scala-compiler:' + version_scala,
-            'org.scala-lang:scala-library:' + version_scala
+    groovy (
+            'org.codehaus.groovy:groovy-all:' + version_groovy,
     )
-
 }
 
 // wicket app: need to copy .html files from java-src to output
 sourceSets.main.resources.srcDirs('/src/main/java')
 sourceSets.test.resources.srcDirs('/src/test/java')
-sourceSets.test.resources.srcDirs('/src/test/scala')
+sourceSets.test.resources.srcDirs('/src/test/groovy')
 
 // add directory with db-unit files to test-classpath
 sourceSets.test.resources.srcDirs('/src/test/database')
 
-// seems to be necessary to pick up the java base test classes
-sourceSets.test.scala.srcDirs('/src/test/java')
 
 // needed to get querydsl preprocessor executed
 // s. http://gradle.1045684.n5.nabble.com/Javac-Java-Annotation-Processor-Maven-classpath-dependencies-in-Gradle-td4626751.html
-
 sourceSets {
-    annotation {
+    queryDsl {
         java {
             srcDir '/src/main/java'
         }
     }
 }
+compileQueryDslJava.destinationDir = file('/src/generated/querydsl')
 
-compileJava.dependsOn compileAnnotationJava
-sourceSets.main.java.srcDirs(compileAnnotationJava.destinationDir)
+compileJava.dependsOn compileQueryDslJava
+sourceSets.main.java.srcDirs(compileQueryDslJava.destinationDir)
 
-compileAnnotationJava {
+compileQueryDslJava {
     doFirst {
         println "Generating QueryDSL sources";
         println "Destination dir: " + destinationDir.absolutePath
