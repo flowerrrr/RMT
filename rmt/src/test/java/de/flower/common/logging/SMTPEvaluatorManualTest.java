@@ -6,7 +6,7 @@ import ch.qos.logback.core.joran.spi.JoranException;
 import ch.qos.logback.core.util.StatusPrinter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.io.InputStream;
@@ -14,19 +14,21 @@ import java.io.InputStream;
 /**
  * No real test. Just helps debugging into the appender code.
  *
+ * Degraded to manual test cause it slowed down the jenkins build massively and messed the log-output of the other tests.
+ *
  * @author flowerrrr
  */
-public class SMTPEvaluatorTest {
+public class SMTPEvaluatorManualTest {
 
-    private final static Logger log = LoggerFactory.getLogger(SMTPEvaluatorTest.class);
+    private final static Logger log = LoggerFactory.getLogger(SMTPEvaluatorManualTest.class);
 
     /**
      * Initialization code from http://logback.qos.ch/manual/joran.html.
      */
-    @BeforeClass
-    public static void setUp() {
+    @BeforeMethod
+    public void setUp() {
 
-        InputStream logfile = SMTPEvaluatorTest.class.getResourceAsStream("logback.xml");
+        InputStream logfile = SMTPEvaluatorManualTest.class.getResourceAsStream("logback.xml");
 
         // assume SLF4J is bound to logback in the current environment
         LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();

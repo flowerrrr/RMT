@@ -1,7 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'idea'
-// apply plugin: 'eclipse'
 
 // use jdk 1.7
 sourceCompatibility = "1.7"
@@ -107,6 +106,8 @@ sourceSets {
 compileQueryDslJava.destinationDir = file('/src/generated/querydsl')
 
 compileJava.dependsOn compileQueryDslJava
+clean.dependsOn cleanCompileQueryDslJava
+
 sourceSets.main.java.srcDirs(compileQueryDslJava.destinationDir)
 
 compileQueryDslJava {
@@ -120,7 +121,6 @@ compileQueryDslJava {
             "-s", "${destinationDir.absolutePath}".toString()
     ]
 }
-
 
 /**
  * It's currently not possible to capture the console output of the tests.
