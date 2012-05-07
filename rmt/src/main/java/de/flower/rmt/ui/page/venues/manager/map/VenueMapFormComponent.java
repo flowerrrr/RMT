@@ -3,7 +3,6 @@ package de.flower.rmt.ui.page.venues.manager.map;
 import de.flower.common.util.geo.LatLng;
 import org.apache.wicket.markup.Markup;
 import org.apache.wicket.markup.html.form.FormComponentPanel;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 
 /**
@@ -11,37 +10,46 @@ import org.apache.wicket.model.IModel;
  */
 public class VenueMapFormComponent extends FormComponentPanel<LatLng> {
 
-    private LatLng latLng;
+    private IModel<LatLng> mapModel;
 
     public VenueMapFormComponent(String id, final IModel<LatLng> model, final LatLng defaultPosition) {
         super(id, model);
         setOutputMarkupId(true);
 
-        final IModel<LatLng> mapModel = new AbstractReadOnlyModel<LatLng>() {
-            @Override
-            public LatLng getObject() {
-                return model.getObject() != null ? model.getObject() : defaultPosition;
-            }
-        };
-        latLng = mapModel.getObject();
-        add(new VenueMapPanel(mapModel) {
+        mapModel = new IModel<LatLng>() {
+
+            private LatLng latLng;
 
             @Override
-            public void onUpdateMarker(final LatLng latLng) {
-                VenueMapFormComponent.this.latLng = latLng;
+            public LatLng getObject() {
+                if (latLng == null) {
+                    return model.getObject() != null ? model.getObject() : defaultPosition;
+                } else {
+                    return latLng;
+                }
             }
-        });
+
+            @Override
+            public void setObject(final LatLng object) {
+                latLng = object;
+            }
+
+            @Override
+            public void detach() {
+            }
+        };
+        add(new VenueMapPanel(mapModel));
     }
 
     @Override
     protected void convertInput() {
-        setConvertedInput(latLng);
+        setConvertedInput(mapModel.getObject());
     }
 
     @Override
     protected void onModelChanged() {
         // necessary when updating model value from outside (like selecting a geocoding result)
-        latLng = getModelObject();
+        mapModel.setObject(getModelObject());
     }
 
     @Override

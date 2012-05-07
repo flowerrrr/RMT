@@ -6,7 +6,6 @@ import de.flower.rmt.model.Venue;
 import de.flower.rmt.ui.app.Links;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.util.string.Strings;
 import wicket.contrib.gmap3.GMap;
@@ -27,8 +26,8 @@ public class VenueMapPanel extends BasePanel<LatLng> {
         this(model, null, true);
     }
 
-    public VenueMapPanel(final LatLng latLng, final String infoWindowContent) {
-        this(Model.of(latLng), infoWindowContent, false);
+    public VenueMapPanel(final IModel<LatLng> model, final String infoWindowContent) {
+        this(model, infoWindowContent, false);
     }
 
     /**
@@ -75,7 +74,8 @@ public class VenueMapPanel extends BasePanel<LatLng> {
      * @param latLng
      */
     public void onUpdateMarker(LatLng latLng) {
-        // empty implementation, subclasses can override
+        //  subclasses can override
+        setModelObject(latLng);
     }
 
     @Override

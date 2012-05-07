@@ -18,6 +18,7 @@
       <entry name="?*.tld" />
       <entry name="?*.ftl" />
       <entry name="?*.js" />
+      <entry name="?*.vm" />
     </wildcardResourcePatterns>
     <annotationProcessing enabled="true" useClasspath="true">
       <processModule name="rmt" generatedDirName="src/generated/jpa" />

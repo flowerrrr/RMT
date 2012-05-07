@@ -395,7 +395,7 @@ public class GMap extends Panel {
         _fitBounds = bounds;
 
         // set Center so that map will be placed at correct position (avoids short display of Palo Alto location)
-        setCenter(_fitBounds.getCenter());
+        _center = _fitBounds.getCenter();
         _boundsMaxZoom = maximumZoomLevel;
     }
 
@@ -601,6 +601,8 @@ public class GMap extends Panel {
      */
     public void setCenter(final GLatLng center) {
         _center = center;
+        // clear fitbounds
+        _fitBounds = null;
     }
 
     /**
