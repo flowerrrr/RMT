@@ -12,6 +12,7 @@ repositories {
 
 configurations {
     provided
+    annotations
 }
 
 // version properties
@@ -22,10 +23,6 @@ project.ext.versions = [
         hibernate: "3.6.7.Final",
         groovy: "1.8.6",
 ]
-
-configurations {
-    annotations
-}
 
 dependencies {
     compile(
@@ -99,6 +96,9 @@ sourceSets.test.resources.srcDirs('/src/test/groovy')
 
 // add directory with db-unit files to test-classpath
 sourceSets.test.resources.srcDirs('/src/test/database')
+
+// fix for http://forums.gradle.org/gradle/topics/regression_with_classloading_in_the_jetty_plugin_with_gradle_1_0_milestone_6?from_gsfn=true
+sourceSets.main.output.resourcesDir = sourceSets.main.output.classesDir
 
 // needed to get querydsl preprocessor executed
 // s. http://gradle.1045684.n5.nabble.com/Javac-Java-Annotation-Processor-Maven-classpath-dependencies-in-Gradle-td4626751.html
