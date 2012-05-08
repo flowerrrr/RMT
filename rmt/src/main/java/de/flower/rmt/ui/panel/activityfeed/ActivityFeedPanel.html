@@ -26,8 +26,9 @@
             var target = $('.activity-feed .list-container');
             var diff = target.height() - (el.scrollTop() + el.height());
             if (diff < -10) {
-                console.log('load more');
-                $('.btn-more').click();
+                // console.log('load more');
+                $('.btn-more').css("visibility", "visible");
+                setTimeout("$('.btn-more').click();", 500);
             }
         });
     </script>
