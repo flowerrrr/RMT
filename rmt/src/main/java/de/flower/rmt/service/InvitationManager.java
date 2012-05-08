@@ -85,7 +85,7 @@ public class InvitationManager extends AbstractService implements IInvitationMan
 
         // filter out those that do not want to receive email notifications
         Iterable<Invitation> filtered = Iterables.filter(list, new Predicate<Invitation>() {
-            List<Player> players;
+            private List<Player> players;
             {
                 players = playerManager.findAllByTeam(event.getTeam());
             }

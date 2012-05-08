@@ -62,7 +62,7 @@ public class MailService implements IMailService {
     @Override
     public void sendMail(final String receiver, final String bcc, final String subject, final String content) {
         // mail to single person gets managers email as reply to.
-        sendMail(null, getReplyTo(), Arrays.asList(new String[]{receiver}), null, Arrays.asList(new String[] { bcc }), subject, content);
+        sendMail(null, getReplyTo(), Arrays.asList(receiver), null, Arrays.asList(bcc), subject, content);
     }
 
     /**

@@ -7,8 +7,6 @@ import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.model.AbstractPropertyModel;
 import org.apache.wicket.validation.INullAcceptingValidator;
 import org.apache.wicket.validation.IValidatable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.wicketstuff.jsr303.util.Assert;
 
 import javax.validation.ConstraintViolation;
@@ -102,14 +100,4 @@ public class PropertyValidator<T> implements INullAcceptingValidator<T>, Seriali
 		return false;
 	}
 
-	private static transient volatile Logger _transient_logger = LoggerFactory.getLogger(PropertyValidator.class);
-
-	public static final Logger log()
-	{
-		if (_transient_logger == null)
-		{
-			_transient_logger = LoggerFactory.getLogger(PropertyValidator.class);
-		}
-		return _transient_logger;
-	}
 }

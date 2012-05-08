@@ -21,7 +21,7 @@ public class AccountTabPanel extends AbstractAjaxTabbedPanel<User> {
     public static final int PASSWORD_RESET_PANEL_INDEX = 1;
 
     @SpringBean
-    protected ISecurityService securityService;
+    private ISecurityService securityService;
 
     public AccountTabPanel() {
     }

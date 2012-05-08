@@ -33,7 +33,6 @@ public class VenuePage extends PlayerBasePage {
             Long id = params.get(PARAM_VENUEID).toLong();
             venue = venueManager.loadById(id);
         } catch (Exception e) {
-            // TODO (flowerrrr - 15.04.12) log violating url
             log.warn("VenuePage accessed with invalid parameter: " + e.toString());
             log.warn("Violating Request " + RequestCycle.get().getUrlRenderer().renderFullUrl(RequestCycle.get().getRequest().getUrl()));
             throw new AbortWithHttpErrorCodeException(404, "Invalid page parameter: " + e.getMessage());

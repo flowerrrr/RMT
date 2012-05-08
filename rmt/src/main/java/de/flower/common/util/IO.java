@@ -94,11 +94,7 @@ public class IO {
 
     ;
 
-    /**
-     * Need public Constructor to be able to use class in velocity templates.
-     */
-    @Deprecated
-    public IO() {
+    private IO() {
     }
 
     /**

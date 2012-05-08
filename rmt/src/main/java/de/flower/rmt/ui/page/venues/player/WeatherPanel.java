@@ -38,7 +38,7 @@ public class WeatherPanel extends BasePanel<String> {
             protected String load() {
                 String address = model.getObject().getAddress();
                 String zipCode = getZipCode(address);
-                return (zipCode == null) ? null : MessageFormat.format(url, new Object[]{zipCode});
+                return (zipCode == null) ? null : MessageFormat.format(url, zipCode);
             }
         };
     }

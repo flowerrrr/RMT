@@ -106,11 +106,7 @@ public abstract class AbstractDateHandler implements IDateHandler {
         public boolean canHandle(final Date date, final long delta) {
             DateTime referenceDate = new DateTime(date).plus(delta);
             DateTime jDate = new DateTime(date);
-            if (isSameDay(referenceDate, jDate)) {
-                return true;
-            } else {
-                return false;
-            }
+            return isSameDay(referenceDate, jDate);
         }
 
         @Override
@@ -130,11 +126,7 @@ public abstract class AbstractDateHandler implements IDateHandler {
             DateTime referenceDate = new DateTime(date).plus(delta);
             DateTime yesterDay = referenceDate.minusDays(1);
             DateTime jDate = new DateTime(date);
-            if (isSameDay(yesterDay, jDate)) {
-                return true;
-            } else {
-                return false;
-            }
+            return (isSameDay(yesterDay, jDate));
         }
 
         @Override
@@ -168,7 +160,7 @@ public abstract class AbstractDateHandler implements IDateHandler {
             super(locale);
         }
 
-         @Override
+        @Override
         public boolean canHandle(final Date date, final long delta) {
             return true;
         }

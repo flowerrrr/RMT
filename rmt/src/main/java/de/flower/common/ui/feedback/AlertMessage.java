@@ -33,7 +33,7 @@ public abstract class AlertMessage implements Serializable {
     }
 
     protected boolean isVisible(final AlertMessagePanel alertMessagePanel) {
-        return true && isVisible();
+        return isVisible();
     }
 
     protected boolean isVisible() {

@@ -34,7 +34,7 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
 
     private Label subheading;
 
-    WebMarkupContainer container;
+    private WebMarkupContainer container;
 
     public AbstractBaseLayoutPage() {
         this(null);

@@ -13,7 +13,7 @@ public class ActivityMessageRenderer {
 
     private final static Logger log = LoggerFactory.getLogger(ActivityMessageRenderer.class);
 
-    private static List<IMessageRenderer<?>> renderers = new ArrayList<IMessageRenderer<?>>() {
+    private final static List<IMessageRenderer<?>> renderers = new ArrayList<IMessageRenderer<?>>() {
         {
             add(new EventUpdateMessageRenderer());
             add(new EmailSentMessageRenderer());
