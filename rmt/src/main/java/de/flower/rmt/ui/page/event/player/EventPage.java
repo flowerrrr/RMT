@@ -32,7 +32,6 @@ public class EventPage extends PlayerBasePage {
             Long eventId = params.get(PARAM_EVENTID).toLong();
             event = eventManager.loadById(eventId);
         } catch (Exception e) {
-            // TODO (flowerrrr - 15.04.12) log violating url
             log.warn("EventPage accessed with invalid parameter: " + e.toString());
             log.warn("Violating Request " + RequestCycle.get().getUrlRenderer().renderFullUrl(RequestCycle.get().getRequest().getUrl()));
             throw new AbortWithHttpErrorCodeException(404, "Invalid page parameter: " + e.getMessage());

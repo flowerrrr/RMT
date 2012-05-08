@@ -129,6 +129,9 @@ compileQueryDslJava {
     classpath += configurations.compile + configurations.annotations
 }
 
+// needed for some unit tests that use umlaute in asserted strings.
+[compileJava, compileTestJava, compileGroovy, compileTestGroovy]*.options*.encoding = 'UTF-8'
+
 test {
     useTestNG()
     exclude '**/*ManualTest.*'
