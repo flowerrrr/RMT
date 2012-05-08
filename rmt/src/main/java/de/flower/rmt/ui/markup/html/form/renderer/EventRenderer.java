@@ -29,6 +29,6 @@ public class EventRenderer implements IChoiceRenderer<Event> {
         String team = event.getTeam().getName();
         String eventType = new ResourceModel(EventType.from(event).getResourceKey()).getObject();
         String date = Dates.formatDateTimeShort(event.getDateTimeAsDate());
-        return team + " - " + eventType + " - " + date + " - " + event.getSummary();
+        return date + " - " + team + " - " + eventType + " - " + event.getSummary();
     }
 }

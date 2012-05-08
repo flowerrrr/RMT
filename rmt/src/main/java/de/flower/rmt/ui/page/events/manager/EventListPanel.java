@@ -8,8 +8,8 @@ import de.flower.common.ui.panel.BasePanel;
 import de.flower.common.ui.tooltips.TooltipBehavior;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
-import de.flower.rmt.model.event.Event_;
 import de.flower.rmt.service.IEventManager;
+import de.flower.rmt.ui.app.IEventListProvider;
 import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.page.event.manager.EventPage;
 import de.flower.rmt.ui.page.event.manager.EventTabPanel;
@@ -36,6 +36,9 @@ public class EventListPanel extends BasePanel {
 
     @SpringBean
     private IEventManager eventManager;
+
+    @SpringBean
+    private IEventListProvider eventListProvider;
 
     public EventListPanel() {
 
@@ -92,7 +95,8 @@ public class EventListPanel extends BasePanel {
         return new LoadableDetachableModel<List<Event>>() {
             @Override
             protected List<Event> load() {
-                return eventManager.findAll(Event_.team);
+                return eventListProvider.getManagerEventListPanelList();
+
             }
         };
     }

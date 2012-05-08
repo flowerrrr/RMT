@@ -6,17 +6,25 @@ import de.flower.rmt.ui.markup.html.form.EventDropDownChoice;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 
 import java.util.List;
 
 /**
  * @author flowerrrr
  */
+@Deprecated
 public abstract class EventSelectPanel extends BasePanel<Event> {
 
-    public EventSelectPanel(final IModel<Event> model, final IModel<List<Event>> listModel) {
+    private EventDropDownChoice eventDropDownChoice;
+
+    public EventSelectPanel(final IModel<Event> model) {
+        this(model, new Model());
+    }
+
+    private EventSelectPanel(final IModel<Event> model, final IModel<List<Event>> listModel) {
         super(model);
-        add(new EventDropDownChoice("selectEvent", model, listModel) {
+        eventDropDownChoice = new EventDropDownChoice("selectEvent", model, listModel) {
             {
                 add(new AjaxFormComponentUpdatingBehavior("onchange") {
                     @Override
@@ -25,7 +33,12 @@ public abstract class EventSelectPanel extends BasePanel<Event> {
                     }
                 });
             }
-        });
+        };
+        add(eventDropDownChoice);
+    }
+
+    public void setListModel(IModel<List<Event>> listModel) {
+        eventDropDownChoice.setChoices(listModel);
     }
 
     @Override

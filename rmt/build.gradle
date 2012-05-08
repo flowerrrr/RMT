@@ -16,11 +16,11 @@ configurations {
 
 // version properties
 project.ext.versions = [
-    spring: "3.1.0.RELEASE",
-    spring_security: "3.1.0.RELEASE",
-    wicket: "1.5.5",
-    hibernate: "3.6.7.Final",
-    groovy: "1.8.6",
+        spring: "3.1.0.RELEASE",
+        spring_security: "3.1.0.RELEASE",
+        wicket: "1.5.5",
+        hibernate: "3.6.7.Final",
+        groovy: "1.8.6",
 ]
 
 configurations {
@@ -58,10 +58,10 @@ dependencies {
             'org.apache.velocity:velocity:1.7',
             'com.google.guava:guava:11.0.2',
             // TODO - jar needed for idea to use apt during compilation. possible to move to other configuration?
-            'org.hibernate:hibernate-jpamodelgen:1.1.1.Final' ,
+            'org.hibernate:hibernate-jpamodelgen:1.1.1.Final',
             'com.mysema.querydsl:querydsl-jpa:2.5.0'
     )
-    annotations (
+    annotations(
             'com.mysema.querydsl:querydsl-apt:2.5.0',
     )
     runtime(
@@ -87,7 +87,7 @@ dependencies {
             'org.mockito:mockito-core:1.9.0-rc1',
             'javax.servlet:servlet-api:2.5'
     )
-    groovy (
+    groovy(
             'org.codehaus.groovy:groovy-all:' + versions.groovy,
     )
 }
@@ -99,7 +99,6 @@ sourceSets.test.resources.srcDirs('/src/test/groovy')
 
 // add directory with db-unit files to test-classpath
 sourceSets.test.resources.srcDirs('/src/test/database')
-
 
 // needed to get querydsl preprocessor executed
 // s. http://gradle.1045684.n5.nabble.com/Javac-Java-Annotation-Processor-Maven-classpath-dependencies-in-Gradle-td4626751.html
@@ -130,15 +129,22 @@ compileQueryDslJava {
     classpath += configurations.compile + configurations.annotations
 }
 
-
-/**
- * It's currently not possible to capture the console output of the tests.
- * Until it is fixed (http://issues.gradle.org/browse/GRADLE-1009) use the
- * log-file.
- */
 test {
     useTestNG()
     exclude '**/*ManualTest.*'
+    // must use gradle -i to see test output
+    testLogging.showStandardStreams = true
+    //listening to test execution events
+    beforeTest { descriptor ->
+        logger.lifecycle("Running test: " + descriptor)
+    }
+}
+
+task info << {
+    def s = "hello\n\r"
+    s.replaceAll('\r', '')
+    logger.lifecycle(s[0..-3])
+    logger.lifecycle(s)
 }
 
 /**
@@ -161,7 +167,7 @@ task checkLibVersions << {
     allprojects {
         configurations.each { configuration ->
             configuration.allDependencies.each { dependency ->
-                    def version = dependency.version
+                def version = dependency.version
                 if (!version.contains('SNAPSHOT') && !checked[dependency]) {
                     def group = dependency.group
                     def path = group.replace('.', '/')

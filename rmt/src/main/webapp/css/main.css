@@ -5,6 +5,7 @@
 @black:             #000;
 @grayDark:          lighten(@black, 25%);
 @borderColor:       #DDDDDD;
+@widthContent:      560px;
 
 // Border Radius
 .border-radius(@radius: 5px) {
@@ -108,7 +109,7 @@ span > em {
 }
 
 .content .main {
-    width: 560px;
+    width: @widthContent;
     /* let content always have a minimum width. looks nicer on empty pages. */
     min-height: 500px;
     border-right:  1px solid #CCCCCC;
@@ -721,10 +722,15 @@ td.rsvpstatus {
 /*************************************************************************
     Event quick navigation
 **************************************************************************/
-.event-select-panel {
+.player-event-select-panel, .manager-event-select-panel {
     select {
         margin-bottom: 0px;
+        width: @widthContent;
     }
+}
+
+.manager-event-select-panel {
+    margin-bottom: 20px;
 }
 
 /*************************************************************************
@@ -917,6 +923,9 @@ td.rsvpstatus {
         padding-top: 20px;
         border-top: 0px;
     }
+    .thead:first-child .th {
+        padding-top: 0px;
+    }
     .date, .position {
         font-size: 80%;
     }
@@ -967,7 +976,7 @@ td.rsvpstatus {
 
 .venues-map {
     /* map with all venues on it */
-    width: 560px;
+    width: @widthContent;
     height: 440px;
 }
 
@@ -1090,6 +1099,9 @@ iframe.wetteronline {
     }
     em {
         font-style: italic;
+    }
+    .btn-more {
+        visibility: hidden; // hide initialy (for feeds without any content)
     }
     // center ajax-spinner
     .btn-more .ajax-loader {
