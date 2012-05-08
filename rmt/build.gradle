@@ -54,7 +54,7 @@ dependencies {
             'javax.mail:mail:1.4.4',
             'org.apache.velocity:velocity:1.7',
             'com.google.guava:guava:11.0.2',
-            // TODO - jar needed for idea to use apt during compilation. possible to move to other configuration?
+            // NOTE - jar needed for idea to use apt during compilation. possible to move to other configuration?
             'org.hibernate:hibernate-jpamodelgen:1.1.1.Final',
             'com.mysema.querydsl:querydsl-jpa:2.5.0'
     )

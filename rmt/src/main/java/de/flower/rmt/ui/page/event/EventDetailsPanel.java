@@ -10,6 +10,7 @@ import de.flower.rmt.model.Venue;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.model.event.EventType;
 import de.flower.rmt.ui.app.View;
+import de.flower.rmt.ui.markup.html.form.renderer.SurfaceRenderer;
 import de.flower.rmt.ui.model.ModelFactory;
 import de.flower.rmt.ui.model.VenueModel;
 import de.flower.rmt.ui.page.venues.manager.VenueEditPage;
@@ -144,7 +145,7 @@ public class EventDetailsPanel extends BasePanel<Event> {
 
                 @Override
                 public String convertToString(final List<Surface> value, final Locale locale) {
-                    return Surface.render(value);
+                    return SurfaceRenderer.renderList(value);
                 }
             };
         }

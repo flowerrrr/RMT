@@ -1,12 +1,12 @@
 package de.flower.rmt.service.mail;
 
-import de.flower.rmt.model.Surface;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.*;
 import de.flower.rmt.model.type.Notification;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.ui.app.Links;
+import de.flower.rmt.ui.markup.html.form.renderer.SurfaceRenderer;
 import de.flower.rmt.util.Dates;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
@@ -74,7 +74,8 @@ public class NotificationService implements INotificationService {
         if (EventType.isSoccerEvent(event)) {
             AbstractSoccerEvent soccerEvent = (AbstractSoccerEvent) event;
             model.put("kickoffTime", Dates.formatTimeShort(soccerEvent.getKickoff()));
-            model.put("surfaceList", Surface.render(soccerEvent.getSurfaceList()));
+            // TODO (flowerrrr - 08.05.12) reference to ui bundle!!!
+            model.put("surfaceList", SurfaceRenderer.renderList(soccerEvent.getSurfaceList()));
             if (soccerEvent.getUniform() != null) {
                 model.put("uniform", new StringResourceModel("uniform.set", Model.of(soccerEvent.getUniform())).getObject());
             }

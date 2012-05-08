@@ -10,6 +10,7 @@ public class Collections {
 
     private Collections() {}
 
+    @Deprecated // use google collections.transform
     public static <S, T> List<T> convert(List<S> in, IElementConverter<S, T> converter) {
         if (in == null) {
             return null;

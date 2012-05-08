@@ -25,8 +25,6 @@ import de.flower.rmt.ui.page.venues.player.VenuePage;
 import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.devutils.inspector.RenderPerformanceListener;
 import org.apache.wicket.protocol.http.WebApplication;
-import org.apache.wicket.request.Request;
-import org.apache.wicket.request.Response;
 import org.apache.wicket.serialize.ISerializer;
 import org.apache.wicket.settings.IExceptionSettings;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
@@ -127,11 +125,6 @@ public class RMTApplication extends WebApplication {
         return HomePageResolver.getHomePage();
     }
 
-    @Override
-    public RMTSession newSession(Request request, Response response) {
-        return new RMTSession(request);
-    }
-
     /**
      * Output to log instead of System.err.
      */
@@ -146,7 +139,6 @@ public class RMTApplication extends WebApplication {
                 + "********************************************************************\n");
     }
 
-    // TODO (flowerrrr - 14.04.12) could be annotated field as well ??
     @Value("${wicket.configurationtype}")
     public void setRuntimeConfigurationType(final RuntimeConfigurationType runtimeConfigurationType) {
         setConfigurationType(runtimeConfigurationType);

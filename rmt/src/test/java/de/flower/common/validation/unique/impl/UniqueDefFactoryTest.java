@@ -19,7 +19,6 @@ public class UniqueDefFactoryTest {
 
     private final List<String> expectedAttributes = Arrays.asList(new String[] { "name", "email" });
 
-    // TODO write unit test for UNiqueValidator.
     @Test
     public void testParseTableUniqueConstraint() {
         @Table(uniqueConstraints = { @UniqueConstraint(name = "c1", columnNames = { "name", "email" }) })

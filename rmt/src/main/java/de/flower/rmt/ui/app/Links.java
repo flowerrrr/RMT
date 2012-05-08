@@ -82,7 +82,7 @@ public class Links {
                     }
                 });
         // outlook likes ';', iphone mail client prefers ','. but according to most sources ';' is correct when used in mailto.
-        // TODO (flowerrrr - 14.04.12) could try to detect user agent
+        // could try to detect user agent
         String href = StringUtils.join(stringList, ";");
         href = "mailTo:" + URLEncoder.encode(href);
         return new ExternalLink(id, href);

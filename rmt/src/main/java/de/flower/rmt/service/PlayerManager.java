@@ -79,7 +79,6 @@ public class PlayerManager extends AbstractService implements IPlayerManager {
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void addPlayers(Team team, List<User> users) {
-        // TODO (flowerrrr - 22.03.12) use ids as parameters
         teamRepo.reattach(team);
         for (User user : users) {
             userRepo.reattach(user);

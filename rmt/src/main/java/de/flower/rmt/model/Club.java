@@ -1,13 +1,12 @@
 package de.flower.rmt.model;
 
 import de.flower.common.model.AbstractBaseEntity;
+import de.flower.common.util.geo.LatLng;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
-import java.util.List;
 
 /**
  * @author flowerrrr
@@ -20,8 +19,11 @@ public class Club extends AbstractBaseEntity {
     @Size(max = 50)
     private String name;
 
-    @OneToMany(mappedBy = "club")
-    private List<Team> teams;
+    @Column
+    private Double lat;
+
+    @Column
+    private Double lng;
 
     protected Club() {
     }
@@ -38,11 +40,23 @@ public class Club extends AbstractBaseEntity {
         this.name = name;
     }
 
-    public List<Team> getTeams() {
-        return teams;
+    public LatLng getLatLng() {
+        if (this.lat == null || this.lng == null) {
+            return null;
+        } else {
+            return new LatLng(this.lat, this.lng);
+        }
     }
 
-    public void setTeams(List<Team> teams) {
-        this.teams = teams;
+    public void setLatLng(LatLng latLng) {
+        if (latLng == null) {
+            //noinspection AssignmentToNull
+            this.lat = null;
+            //noinspection AssignmentToNull
+            this.lng = null;
+        } else {
+            this.lat = latLng.getLat();
+            this.lng = latLng.getLng();
+        }
     }
 }

@@ -6,7 +6,7 @@ import de.flower.common.util.geo.LatLng;
 import de.flower.rmt.model.Venue;
 import de.flower.rmt.service.IVenueManager;
 import de.flower.rmt.service.geocoding.GeocodingResult;
-import de.flower.rmt.ui.app.RMTSession;
+import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.ui.markup.html.form.CancelableEntityForm;
 import de.flower.rmt.ui.markup.html.form.EntityForm;
 import de.flower.rmt.ui.markup.html.form.field.TextAreaPanel;
@@ -27,6 +27,9 @@ public class VenueEditPanel extends BasePanel {
 
     @SpringBean
     private IVenueManager venueManager;
+
+    @SpringBean
+    private ISecurityService securityService;
 
     public VenueEditPanel(final IModel<Venue> model) {
         super(model);
@@ -52,7 +55,7 @@ public class VenueEditPanel extends BasePanel {
             }
         });
         final VenueMapFormComponent latLng;
-        form.add(latLng = new VenueMapFormComponent("latLng", new PropertyModel<LatLng>(model, "latLng"), RMTSession.get().getLatLng()));
+        form.add(latLng = new VenueMapFormComponent("latLng", new PropertyModel<LatLng>(model, "latLng"), securityService.getUser().getClub().getLatLng()));
 
         form.add(new GeocodePanel() {
             @Override

@@ -37,6 +37,11 @@ public class VenueMapPanel extends BasePanel<LatLng> {
         super(model);
 
         LatLng latLng = model.getObject();
+        if (latLng == null) {
+            // init with 0,0
+            latLng = new LatLng(0, 0);
+            model.setObject(latLng);
+        }
         map = new GMap("map");
         add(map);
         map.setDoubleClickZoomEnabled(true);
