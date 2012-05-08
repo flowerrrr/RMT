@@ -61,9 +61,9 @@ public class NotificationService implements INotificationService {
         Notification notification = new Notification();
         final Map<String, Object> model = new HashMap<String, Object>();
         model.put("event", event);
-        model.put("eventDate", Dates.formatDateMedium(event.getDate()));
+        model.put("eventDate", Dates.formatDateMediumWithWeekday(event.getDate()));
         model.put("eventTime", Dates.formatTimeShort(event.getTime()));
-        model.put("eventDateTime", Dates.formatDateTimeShort(event.getDateTime()));
+        model.put("eventDateTime", Dates.formatDateTimeShortWithWeekday(event.getDateTimeAsDate()));
         model.put("eventType", new ResourceModel(event.getEventType().getResourceKey()).getObject());
         model.put("eventTypeMatch", EventType.Match);
         model.put("eventLink", eventLink);

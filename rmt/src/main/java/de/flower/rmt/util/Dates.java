@@ -19,8 +19,16 @@ public class Dates {
 
     public static final String DATE_SHORT = "dd.MM.";
 
+    public static final String DATE_SHORT_WITH_WEEKDAY = "EE. dd.MM.";
+
+    public static final String DATE_MEDIUM_WITH_WEEKDAY = "EE. dd.MM.yy";
+
     public static String formatDateTimeMedium(final Date date) {
         return DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM).format(date);
+    }
+
+    public static String formatDateMediumWithWeekday(final Date date) {
+        return new SimpleDateFormat(DATE_MEDIUM_WITH_WEEKDAY).format(date);
     }
 
     public static String formatDateTimeShort(final Date date) {
@@ -31,8 +39,16 @@ public class Dates {
         return formatDateTimeShort(dateTime.toDate());
     }
 
+    public static String formatDateTimeShortWithWeekday(final Date date) {
+        return formatDateShortWithWeekday(date) + " " + formatTimeShort(date);
+    }
+
     public static String formatDateLong(final Date date) {
         return DateFormat.getDateInstance(DateFormat.LONG).format(date);
+    }
+
+    public static String formatDateShortWithWeekday(final Date date) {
+        return new SimpleDateFormat(DATE_SHORT_WITH_WEEKDAY).format(date);
     }
 
     public static String formatDateShort(final Date date) {

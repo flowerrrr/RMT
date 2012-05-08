@@ -14,16 +14,15 @@ import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.page.event.manager.EventPage;
 import de.flower.rmt.ui.page.event.manager.EventTabPanel;
 import de.flower.rmt.ui.panel.DropDownMenuPanel;
+import de.flower.rmt.util.Dates;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -66,8 +65,8 @@ public class EventListPanel extends BasePanel {
                 }
 
                 Link link = createInvitationsLink("invitationsLink", item.getModel());
-                link.add(DateLabel.forDateStyle("date", Model.of(event.getDate()), "S-"));
-                link.add(DateLabel.forDateStyle("time", Model.of(event.getTime().toDateTimeToday().toDate()), "-S"));
+                link.add(new Label("date", Dates.formatDateShortWithWeekday(event.getDate())));
+                link.add(new Label("time", Dates.formatTimeShort(event.getTime())));
                 item.add(link);
                 item.add(new Label("type", new ResourceModel(EventType.from(event).getResourceKey())));
                 item.add(new Label("team", event.getTeam().getName()));

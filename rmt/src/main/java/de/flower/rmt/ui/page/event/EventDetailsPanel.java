@@ -15,6 +15,7 @@ import de.flower.rmt.ui.model.ModelFactory;
 import de.flower.rmt.ui.model.VenueModel;
 import de.flower.rmt.ui.page.venues.manager.VenueEditPage;
 import de.flower.rmt.ui.page.venues.player.VenuePage;
+import de.flower.rmt.util.Dates;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -37,7 +38,7 @@ public class EventDetailsPanel extends BasePanel<Event> {
 
         add(new Label("team.name"));
 
-        add(DateLabel.forDateStyle("date", "S-"));
+        add(DateLabel.forDatePattern("date", Dates.DATE_MEDIUM_WITH_WEEKDAY));
 
         add(DateLabel.forDateStyle("timeAsDate", "-S"));
 

@@ -28,7 +28,7 @@ public class EventRenderer implements IChoiceRenderer<Event> {
     public static String getTypeDateSummary(final Event event) {
         String team = event.getTeam().getName();
         String eventType = new ResourceModel(EventType.from(event).getResourceKey()).getObject();
-        String date = Dates.formatDateTimeShort(event.getDateTimeAsDate());
+        String date = Dates.formatDateTimeShortWithWeekday(event.getDateTimeAsDate());
         return date + " - " + team + " - " + eventType + " - " + event.getSummary();
     }
 }
