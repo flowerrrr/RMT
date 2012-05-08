@@ -8,6 +8,7 @@ import de.flower.common.model.AbstractBaseEntity;
 import de.flower.common.model.AbstractBaseEntity_;
 import de.flower.common.model.ObjectStatus;
 import de.flower.common.model.QAbstractBaseEntity;
+import de.flower.common.repository.QueryDslJpaRepository2;
 import de.flower.common.spring.SpringApplicationContextBridge;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.AbstractClubRelatedEntity;
@@ -24,7 +25,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
-import org.springframework.data.jpa.repository.support.QueryDslJpaRepository;
 
 import javax.persistence.EntityManager;
 import java.io.Serializable;
@@ -33,7 +33,7 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class BaseRepository<T extends AbstractBaseEntity, ID extends Serializable> extends QueryDslJpaRepository<T, ID> implements IRepository<T, ID> {
+public class BaseRepository<T extends AbstractBaseEntity, ID extends Serializable> extends QueryDslJpaRepository2<T, ID> implements IRepository<T, ID> {
 
     private EntityManager em;
 

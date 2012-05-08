@@ -978,19 +978,6 @@
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.testng/testng/6.5.2/jar/5069d2e72356ed87645c5fc3622b0bbb5e0667c9/testng-6.5.2.jar!/" />
-        </CLASSES>
-        <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.testng/testng/6.5.2/javadoc/c9d3120322bd6e0fa7bdc5cfcb660b87d9254801/testng-6.5.2-javadoc.jar!/" />
-        </JAVADOC>
-        <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.testng/testng/6.5.2/source/169985b454073275ab8fa2b9652d83d4ac824f55/testng-6.5.2-sources.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" scope="TEST">
-      <library>
-        <CLASSES>
           <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.mockito/mockito-core/1.9.0-rc1/jar/993b183646268b5b65f9ee6d9de2e2eac8939e4d/mockito-core-1.9.0-rc1.jar!/" />
         </CLASSES>
         <JAVADOC>
@@ -1082,6 +1069,15 @@
         <SOURCES>
           <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.objenesis/objenesis/1.0/source/b10c90e57b7bb985a7b6a704769428fe5c2a732c/objenesis-1.0-sources.jar!/" />
         </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/cache/org.testng/testng/jars/testng-6.1.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
       </library>
     </orderEntry>
   </component>
