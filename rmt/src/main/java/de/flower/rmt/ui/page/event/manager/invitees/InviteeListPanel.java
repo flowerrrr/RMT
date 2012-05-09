@@ -4,6 +4,7 @@ import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.ajax.markup.html.AjaxLink;
 import de.flower.common.ui.panel.BasePanel;
+import de.flower.common.ui.tooltips.TooltipBehavior;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.event.Event;
@@ -13,6 +14,7 @@ import de.flower.rmt.ui.page.user.manager.PlayerPage;
 import de.flower.rmt.ui.panel.DropDownMenuPanel;
 import de.flower.rmt.ui.panel.ListViewPanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -46,6 +48,17 @@ public class InviteeListPanel extends BasePanel {
                 Link editLink = createEditLink("editLink", item);
                 editLink.add(new Label("name", item.getModelObject().getName()));
                 item.add(editLink);
+
+                WebMarkupContainer invitationNotSent = new WebMarkupContainer("invitationNotSent") {
+
+                    @Override
+                    public boolean isVisible() {
+                        return !item.getModelObject().isInvitationSent();
+                    }
+                };
+                invitationNotSent.add(new TooltipBehavior(new ResourceModel("manager.invitee.tooltip.invitiation.not.send")));
+                item.add(invitationNotSent);
+
                 DropDownMenuPanel menuPanel = new DropDownMenuPanel();
                 item.add(menuPanel);
                 // menuPanel.addLink(createEditLink("link", item), "button.edit");
