@@ -67,16 +67,6 @@ public class Player extends AbstractBaseEntity {
         return this.user.getFullname();
     }
 
-    /**
-     * Convenience method.
-     *
-     * @return
-     */
-    @Deprecated // might throw LIE
-    public User.Status getStatus() {
-        return this.user.getStatus();
-    }
-
     public Team getTeam() {
         return team;
     }

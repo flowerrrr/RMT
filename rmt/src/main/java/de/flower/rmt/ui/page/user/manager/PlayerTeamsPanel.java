@@ -73,6 +73,7 @@ public class PlayerTeamsPanel extends BasePanel<User> {
         });
         form.add(new DropDownChoicePanel.NonValidatingDropDownChoicePanel("notification", dropDownChoice));
 
+        /*
         dropDownChoice = new BooleanDropDownChoice("input", "choice.player.response.optional", true);
         dropDownChoice.add(new OnChangeAjaxBehavior() {
             @Override
@@ -82,6 +83,7 @@ public class PlayerTeamsPanel extends BasePanel<User> {
         });
         form.add(new DropDownChoicePanel.NonValidatingDropDownChoicePanel("optional", dropDownChoice));
 
+
         dropDownChoice = new BooleanDropDownChoice("input", "choice.player.retired", true);
         dropDownChoice.add(new OnChangeAjaxBehavior() {
             @Override
@@ -90,6 +92,7 @@ public class PlayerTeamsPanel extends BasePanel<User> {
             }
         });
         form.add(new DropDownChoicePanel.NonValidatingDropDownChoicePanel("retired", dropDownChoice));
+        */
 
         return form;
     }
