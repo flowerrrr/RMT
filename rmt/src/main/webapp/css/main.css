@@ -1002,6 +1002,18 @@ td.rsvpstatus {
 .venue-edit-panel {
     .address textarea {
         margin-right: 10px; // margin to geocodebutton
+        height: 73px; // 4 lines
+    }
+    // position search icon inside textarea
+    .address {
+        position: relative;
+        .search-button {
+            position: absolute;
+            right: 12px;
+            top: 2px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 3px 3px 3px 5px;
+        }
     }
 }
 

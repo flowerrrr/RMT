@@ -9,11 +9,12 @@
     </label>
 
     <div class="controls">
-        <div class="field">
+        <div class="field address">
             <textarea wicket:id="input"/>
-            <a wicket:id="geocodeButton" class="btn">
-                <wicket:message key="button.geocode"/>
-            </a>
+
+            <div class="search-button">
+                <a wicket:id="geocodeButton" wicket:message="title:button.geocode"><i class="icon-search"></i></a>
+            </div>
 
         </div>
         <div class="help-inline field-feedback" wicket:id="feedback"/>
