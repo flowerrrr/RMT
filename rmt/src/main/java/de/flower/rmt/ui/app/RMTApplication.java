@@ -36,8 +36,6 @@ import org.springframework.stereotype.Component;
 @Component(value = "wicketApplication")
 public class RMTApplication extends WebApplication {
 
-    public final static String VERSION = "1.2.2";
-
     private final static Logger log = LoggerFactory.getLogger(RMTApplication.class);
 
     public static RMTApplication get() {
@@ -47,7 +45,7 @@ public class RMTApplication extends WebApplication {
     @Override
     protected void init() {
         log.info("***********************************************************************************");
-        log.info("*** Version " + VERSION);
+        log.info("*** Version " + Version.VERSION);
         log.info("***********************************************************************************");
         super.init();
         // add support for @SpringBean
@@ -117,7 +115,6 @@ public class RMTApplication extends WebApplication {
 
         // access denied is not handled by wicket. spring security will redirect request to this url
         mountPage("error403", AccessDenied403Page.class);
-
     }
 
     @Override
@@ -129,8 +126,7 @@ public class RMTApplication extends WebApplication {
      * Output to log instead of System.err.
      */
     @Override
-    protected void outputDevelopmentModeWarning()
-    {
+    protected void outputDevelopmentModeWarning() {
         log.warn("\n********************************************************************\n"
                 + "*** WARNING: Wicket is running in DEVELOPMENT mode.              ***\n"
                 + "***                               ^^^^^^^^^^^                    ***\n"
