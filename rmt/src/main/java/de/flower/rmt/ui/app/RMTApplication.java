@@ -106,6 +106,7 @@ public class RMTApplication extends WebApplication {
     }
 
     private void initErrorPages() {
+        // same url as in web.xml
         mountPage("error404", PageNotFound404Page.class);
 
         mountPage("error500", InternalError500Page.class);
