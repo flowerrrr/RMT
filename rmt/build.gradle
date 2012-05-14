@@ -56,7 +56,8 @@ dependencies {
             'com.google.guava:guava:11.0.2',
             // NOTE - jar needed for idea to use apt during compilation. possible to move to other configuration?
             'org.hibernate:hibernate-jpamodelgen:1.1.1.Final',
-            'com.mysema.querydsl:querydsl-jpa:2.5.0'
+            'com.mysema.querydsl:querydsl-jpa:2.5.0',
+            'javax.servlet:servlet-api:2.5'
     )
     annotations(
             'com.mysema.querydsl:querydsl-apt:2.5.0',
@@ -82,7 +83,6 @@ dependencies {
             'org.codehaus.groovy:groovy-all:' + versions.groovy,
             'org.testng:testng:6.1.1', // 6.5.1 has issues with idea test runner /always reports success
             'org.mockito:mockito-core:1.9.0-rc1',
-            'javax.servlet:servlet-api:2.5'
     )
     groovy(
             'org.codehaus.groovy:groovy-all:' + versions.groovy,

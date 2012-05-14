@@ -13,5 +13,4 @@ public class PageNotFound404PageTest extends AbstractRMTWicketMockitoTests {
         wicketTester.startPage(PageNotFound404Page.class);
         wicketTester.dumpPage();
     }
-
 }

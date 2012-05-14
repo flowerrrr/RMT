@@ -34,7 +34,7 @@ public class VenueManager extends AbstractService implements IVenueManager {
 
     @Override
     public Venue loadById(Long id) {
-        return Check.notNull(venueRepo.findOne(id));
+        return Check.notNull(venueRepo.findOne(id), "Entity [" + id + "] not found");
     }
 
     @Override

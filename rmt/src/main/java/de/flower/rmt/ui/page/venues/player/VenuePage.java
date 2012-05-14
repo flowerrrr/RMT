@@ -7,7 +7,6 @@ import de.flower.rmt.ui.page.base.player.NavigationPanel;
 import de.flower.rmt.ui.page.base.player.PlayerBasePage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.http.flow.AbortWithHttpErrorCodeException;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -34,7 +33,6 @@ public class VenuePage extends PlayerBasePage {
             venue = venueManager.loadById(id);
         } catch (Exception e) {
             log.warn("VenuePage accessed with invalid parameter: " + e.toString());
-            log.warn("Violating Request " + RequestCycle.get().getUrlRenderer().renderFullUrl(RequestCycle.get().getRequest().getUrl()));
             throw new AbortWithHttpErrorCodeException(404, "Invalid page parameter: " + e.getMessage());
         }
         init(new VenueModel(venue));
