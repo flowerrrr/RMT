@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/das-tool/" />
+<title>Venue-Create</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Venue-Create</td></tr>
+</thead><tbody>
+<tr>
+	<td>setImplicitWaitCondition</td>
+	<td>10000</td>
+	<td>!selenium.browserbot.getCurrentWindow().Wicket.Ajax.isAjaxBusy()</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>manager/venues</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Neuer Spielort</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>&quot;Spielort-&quot; + new Date().getTime()</td>
+	<td>name</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=name:input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>'Name' kann nicht leer sein</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=name:input</td>
+	<td>${name}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=address:input</td>
+	<td>München</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//a[@wicketpath='container_mainPanel_venueEditPanel_form_address_geocodeButton']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//span[@wicketpath='container_mainPanel_venueEditPanel_form_geocodePanel_resultsPanel_resultList_0_chooseLink_address']</td>
+	<td></td>
+</tr>
+<!--move marker to some random position-->
+<tr>
+	<td>mouseDown</td>
+	<td>//div[@class=&quot;gmnoprint&quot;]//area</td>
+	<td>select marker</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>Math.floor(Math.random() * 2000 - 1000)</td>
+	<td>x</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>Math.floor(Math.random() * 2000 - 1000)</td>
+	<td>y</td>
+</tr>
+<tr>
+	<td>mouseMoveAt</td>
+	<td>//div[@class=&quot;map&quot;]</td>
+	<td>${x},${y}</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>javascript{Math.floor(Math.random() * 5000)}</td>
+	<td>required to let marker move</td>
+</tr>
+<tr>
+	<td>mouseUp</td>
+	<td>//div[@class=&quot;gmnoprint&quot;]//area</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Speichern</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>${name}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Kartenansicht</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

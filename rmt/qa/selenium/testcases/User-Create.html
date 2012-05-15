@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/das-tool/" />
+<title>User-Create</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">User-Create</td></tr>
+</thead><tbody>
+<tr>
+	<td>setImplicitWaitCondition</td>
+	<td>10000</td>
+	<td>!selenium.browserbot.getCurrentWindow().Wicket.Ajax.isAjaxBusy()</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>manager/players</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Neuer Spieler</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>&quot;User-&quot; + new Date().getTime()</td>
+	<td>user</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=fullname:input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Bitte geben Sie einen Namen ein.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=email:input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Bitte geben Sie eine E-Mail-Adresse ein.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=email:input</td>
+	<td>test-manager@mailinator.com</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>E-Mail bereits vergeben.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=fullname:input</td>
+	<td>${user}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=email:input</td>
+	<td>${user}@mailinator.com</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Speichern</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Daten wurden erfolgreich gespeichert.</td>
+	<td></td>
+</tr>
+<!--send invitation mail to user, requires smtp server running on localhost-->
+<tr>
+	<td>click</td>
+	<td>//a[@wicketpath='container_secondaryPanel_sendInvitationPanel_container_sendButton']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Es wurde eine Einladung an den Spieler geschickt. Sie erhalten eine Kopie.</td>
+	<td></td>
+</tr>
+<!--goto to overview and verify new user is listed in table-->
+<tr>
+	<td>clickAndWait</td>
+	<td>//a[@wicketpath='navigationPanel_players_players']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>${user}</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

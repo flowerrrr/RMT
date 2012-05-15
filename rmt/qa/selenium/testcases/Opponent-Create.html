@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/das-tool/" />
+<title>Opponent-Create</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Opponent-Create</td></tr>
+</thead><tbody>
+<tr>
+	<td>setImplicitWaitCondition</td>
+	<td>10000</td>
+	<td>!selenium.browserbot.getCurrentWindow().Wicket.Ajax.isAjaxBusy()</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>manager/opponents</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Neuer Gegner</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>&quot;Gegner-&quot; + new Date().getTime()</td>
+	<td>name</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=name:input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>'Name' kann nicht leer sein</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=name:input</td>
+	<td>${name}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=url:input</td>
+	<td>http://gegner.com/${name}</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Speichern</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>${name}</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

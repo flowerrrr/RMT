@@ -1,13 +1,15 @@
 package de.flower.rmt.ui.page.base;
 
+import de.flower.common.ui.ajax.behavior.test.SeleniumWaitForAjaxSupportBehavior;
 import de.flower.common.ui.modal.ModalDialogWindowPanel;
 import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.service.security.UserDetailsBean;
 import de.flower.rmt.ui.app.Resource;
-import de.flower.rmt.ui.model.UserModel;
+import org.apache.wicket.Application;
+import org.apache.wicket.Component;
+import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.ajax.IAjaxIndicatorAware;
 import org.apache.wicket.markup.html.IHeaderResponse;
-import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.cycle.RequestCycle;
@@ -25,14 +27,20 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
     @SpringBean
     private ISecurityService securityService;
 
-    private WebMarkupContainer pageContainer;
-
     public AbstractBasePage() {
         this(null);
     }
 
     public AbstractBasePage(IModel<?> model) {
         super(model);
+
+        // support for selenium tests.
+        add(new SeleniumWaitForAjaxSupportBehavior() {
+            @Override
+            public boolean isEnabled(final Component component) {
+                return Application.get().getConfigurationType() == RuntimeConfigurationType.DEVELOPMENT;
+            }
+        });
 
         ModalDialogWindowPanel modalDialogWindowPanel = new ModalDialogWindowPanel();
         add(modalDialogWindowPanel);
@@ -83,7 +91,4 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
         return securityService.isCurrentUserLoggedIn();
     }
 
-    protected UserModel getUserModel() {
-        return new UserModel(securityService.getUser());
-    }
 }

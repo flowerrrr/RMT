@@ -1,0 +1,37 @@
+/**
+ * Locator that works on form-fields. Uses prefix of id (strips last 3 letters) in the 
+ * hope that the remaining prefix is unique on the page.
+ *
+ * Fails if you use id="name" and id="nameOfOtherEl" in same page. as both will be matched by the starts-with operator.
+ */
+LocatorBuilders.add('form:wicket-id', function(e) {
+	LOG.debug("form:wicket-id: e=" + e.tagName);
+    if (["input", "select", "textarea"].indexOf(e.tagName.toLowerCase()) != -1) {
+		var id = e.id.substring(0, e.id.length - 3); // wicket seems to append 3 letters to given id.
+		var xpath = "//" + e.tagName.toLowerCase() + "[starts-with(@id, '" + id + "')]";
+		LOG.info("found form field: " + xpath);
+		return xpath;
+	}
+	return null;
+}); 
+LocatorBuilders.order.unshift(LocatorBuilders.order.pop());
+
+LocatorBuilders.add('wicketpath', function(e) {
+	LOG.debug("wicketpath: e=" + e);
+	if (e.attributes && e.hasAttribute("wicketpath")) {
+		LOG.info("found attribute " + e.getAttribute("wicketpath"));
+		return "//" + this.xpathHtmlElement(e.nodeName.toLowerCase()) +
+			"[@wicketpath=" + this.attributeValue(e.getAttribute("wicketpath")) + "]";
+	}
+	// test parent in case e is just a image inside an <a> tag
+	p = e.parentNode;
+	if (p.attributes && p.hasAttribute("wicketpath")) {
+		LOG.info("found attribute " + p.getAttribute("wicketpath"));
+		var target = "//" + this.xpathHtmlElement(p.nodeName.toLowerCase()) +
+			"[@wicketpath=" + this.attributeValue(p.getAttribute("wicketpath")) + "]/"  + e.nodeName.toLowerCase();
+		LOG.debug(target);
+		return target;
+	}
+	return null;
+});
+LocatorBuilders.order.unshift(LocatorBuilders.order.pop());

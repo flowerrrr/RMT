@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/das-tool/" />
+<title>Event-Create</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Event-Create</td></tr>
+</thead><tbody>
+<tr>
+	<td>setImplicitWaitCondition</td>
+	<td>10000</td>
+	<td>!selenium.browserbot.getCurrentWindow().Wicket.Ajax.isAjaxBusy()</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>manager/events</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Neuer Termin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Spiel</td>
+	<td></td>
+</tr>
+<!--submit empty form, check for validation messages-->
+<tr>
+	<td>click</td>
+	<td>link=Speichern</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>'Team' kann nicht null sein</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>'Datum' kann nicht null sein</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>'Treffpunkt' kann nicht null sein</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>'Anstoß' kann nicht null sein</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>'Titel' kann nicht leer sein</td>
+	<td></td>
+</tr>
+<!--now fill out form-->
+<tr>
+	<td>select</td>
+	<td>name=team:input</td>
+	<td>index=1</td>
+</tr>
+<!--datepicker-->
+<tr>
+	<td>click</td>
+	<td>//div[starts-with(@id,'date')]/label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=span.next.button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[12]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=time:input</td>
+	<td>label=06:00</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=kickoff:input</td>
+	<td>label=07:30</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=opponent:input</td>
+	<td>index=1</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=venue:input</td>
+	<td>index=1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[@name='surfaceList:input'][1]/../label[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[@name='surfaceList:input'][3]/../label[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=summary:input</td>
+	<td>Spiel</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=comment:input</td>
+	<td>foo bar</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Speichern</td>
+	<td></td>
+</tr>
+<!--add guest player-->
+<tr>
+	<td>click</td>
+	<td>//a[span=&quot;Teilnehmer&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//span[@wicketpath='container_secondaryPanel_inviteeSecondaryPanel_addGuestPlayerPanel_toggleButton_label']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=guestName</td>
+	<td>Gast</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Hinzufügen</td>
+	<td></td>
+</tr>
+<!--send email-->
+<tr>
+	<td>click</td>
+	<td>//a[span=&quot;E-Mail&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=E-Mail senden</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>'Empfänger' kann nicht leer sein</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>'Betreff' kann nicht leer sein</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>'Text' kann nicht leer sein</td>
+	<td></td>
+</tr>
+<!--add recipients-->
+<tr>
+	<td>click</td>
+	<td>link=+</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//input[@wicketpath='modalDialogWindowPanel_form_modalWindow_content_form_group_listContainer_list_1_checkbox']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[@wicketpath='modalDialogWindowPanel_form_modalWindow_content_form_group_listContainer_list_1_checkbox']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[@wicketpath='modalDialogWindowPanel_form_modalWindow_content_form_group_listContainer_list_2_checkbox']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[@wicketpath='modalDialogWindowPanel_form_modalWindow_content_form_group_listContainer_list_3_checkbox']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Hinzufügen</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//a[@wicketpath='container_mainPanel_abstractAjaxTabbedPanel_tabs_panel_form_recipientList_input_recipientListPanel_listContainer_list_0_deleteButton']</td>
+	<td></td>
+</tr>
+<!--subject and text-->
+<tr>
+	<td>click</td>
+	<td>link=Template wählen</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Einladung</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=bccMySelf:input</td>
+	<td></td>
+</tr>
+<!--now send email-->
+<tr>
+	<td>click</td>
+	<td>link=E-Mail senden</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Nachricht wurde gesendet.</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

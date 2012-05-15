@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/das-tool/" />
+<title>Team-Edit</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Team-Edit</td></tr>
+</thead><tbody>
+<tr>
+	<td>setImplicitWaitCondition</td>
+	<td>10000</td>
+	<td>!selenium.browserbot.getCurrentWindow().Wicket.Ajax.isAjaxBusy()</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>manager/teams</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Neues Team</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>&quot;Team-&quot; + new Date().getTime()</td>
+	<td>name</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=name:input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>'Name' kann nicht leer sein</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=name:input</td>
+	<td>${name}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=url:input</td>
+	<td>http://myteam.com/${name}</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Speichern</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>${name}</td>
+	<td></td>
+</tr>
+<!--add players to squad-->
+<tr>
+	<td>clickAndWait</td>
+	<td>//a[span='${name}']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Spieler hinzufügen</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[@wicketpath='container_secondaryPanel_squadSecondaryPanel_addPlayerPanel_wrappedPanel_form_playerListContainer_group_playerList_0_checkbox']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[@wicketpath='container_secondaryPanel_squadSecondaryPanel_addPlayerPanel_wrappedPanel_form_playerListContainer_group_playerList_1_checkbox']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[@wicketpath='container_secondaryPanel_squadSecondaryPanel_addPlayerPanel_wrappedPanel_form_playerListContainer_group_playerList_3_checkbox']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[@wicketpath='container_secondaryPanel_squadSecondaryPanel_addPlayerPanel_wrappedPanel_form_playerListContainer_group_playerList_4_checkbox']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[@wicketpath='container_secondaryPanel_squadSecondaryPanel_addPlayerPanel_wrappedPanel_form_playerListContainer_group_playerList_5_checkbox']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Hinzufügen</td>
+	<td></td>
+</tr>
+<!--remove one player-->
+<tr>
+	<td>click</td>
+	<td>//a[@wicketpath='container_mainPanel_playerListPanel_listContainer_playerList_2_dropDownMenuPanel_linkList_1_link']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyConfirmation</td>
+	<td>Spieler entfernen?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//a[@wicketpath='navigationPanel_teams_teams']</td>
+	<td></td>
+</tr>
+<!--edit uniform-->
+<tr>
+	<td>clickAndWait</td>
+	<td>//a[span='${name}']/../..//a[span='Trikotsätze']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Neuer Trikotsatz</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Speichern</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>'Name' kann nicht leer sein</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>'Hemd' kann nicht leer sein</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>'Hose' kann nicht leer sein</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>'Stutzen' kann nicht leer sein</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>&quot;Trikotsatz-&quot; + new Date().getTime()</td>
+	<td>uniform</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=name:input</td>
+	<td>${uniform}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=shirt:input</td>
+	<td>schwarz</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=shorts:input</td>
+	<td>rot</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=socks:input</td>
+	<td>gold</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Speichern</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>${uniform}</td>
+	<td></td>
+</tr>
+<!--go back to team overview and delete team-->
+<tr>
+	<td>clickAndWait</td>
+	<td>//a[@wicketpath='navigationPanel_teams_teams']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//a[span='${name}']/../..//a[span='Löschen']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyConfirmation</td>
+	<td>Team löschen?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>${name}</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

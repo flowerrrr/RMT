@@ -1,0 +1,21 @@
+/**
+ *
+ * @fileoverview This file contains extensions to Selenium Core related
+ * to cbs.
+ */
+
+Options = {
+	screenshotDir: 'C:\\Temp\\',
+};
+
+/*** ACTIONS ***/
+
+/**
+ * Captures screenshot and saves it to well-defined folder
+ * @param {String} name Name of the screenshot
+ */
+Selenium.prototype.doCaptureScreenshot = function(name) {
+	var filename = Options.screenshotDir + name + ".png";
+	LOG.info("Capturing screenshot: [" + filename + "]");
+	this.doCaptureEntirePageScreenshot(filename);
+};

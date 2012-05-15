@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/das-tool/" />
+<title>Profil</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Profil</td></tr>
+</thead><tbody>
+<tr>
+	<td>setImplicitWaitCondition</td>
+	<td>10000</td>
+	<td>!window.Wicket.Ajax.isAjaxBusy()</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>player</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//span[@wicketpath='navigationPanel_user']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Profil</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=fullname:input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=email:input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Speichern</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//span[@wicketpath='container_mainPanel_abstractAjaxTabbedPanel_tabs_panel_form_fullname_feedback_feedbackul_messages_0_message']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//span[@wicketpath='container_mainPanel_abstractAjaxTabbedPanel_tabs_panel_form_email_feedback_feedbackul_messages_0_message']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Fehler bei der Verarbeitung der Eingabedaten.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=email:input</td>
+	<td>manager-rmt@mailinator.com</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Speichern</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>E-Mail bereits vergeben.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=fullname:input</td>
+	<td>Test Player</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=email:input</td>
+	<td>player-rmt@mailinator.com</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Speichern</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Daten wurden erfolgreich gespeichert.</td>
+	<td></td>
+</tr>
+<!--change password-->
+<tr>
+	<td>click</td>
+	<td>//span[@wicketpath='container_mainPanel_abstractAjaxTabbedPanel_tabs_tabs-container_tabs_1_link_title']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=oldPassword:input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Bitte geben Sie ein Passwort ein.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=oldPassword:input</td>
+	<td>ungültig</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Ungültiges Passwort</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=oldPassword:input</td>
+	<td>1234</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=newPassword:input</td>
+	<td>1234</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=newPasswordRepeat:input</td>
+	<td>2345</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Passwörter stimmen nicht überein.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=newPasswordRepeat:input</td>
+	<td>1234</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Speichern</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Daten wurden erfolgreich gespeichert.</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>
