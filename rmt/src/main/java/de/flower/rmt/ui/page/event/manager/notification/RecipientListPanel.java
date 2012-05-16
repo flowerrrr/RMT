@@ -1,5 +1,8 @@
 package de.flower.rmt.ui.page.event.manager.notification;
 
+import com.google.common.base.Predicate;
+import com.google.common.collect.Collections2;
+import com.google.common.collect.Lists;
 import de.flower.common.ui.ajax.markup.html.AjaxLink;
 import de.flower.common.ui.modal.ModalDialogWindow;
 import de.flower.common.ui.panel.BasePanel;
@@ -16,6 +19,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import javax.annotation.Nullable;
 import javax.mail.internet.InternetAddress;
 import java.util.List;
 
@@ -76,6 +80,13 @@ public class RecipientListPanel extends BasePanel<List<InternetAddress>> {
                 target.add(listContainer);
             }
         });
+        add(new AjaxLink<Event>("addUninvitedButton", eventModel) {
+            @Override
+            public void onClick(final AjaxRequestTarget target) {
+                updateList(target, convert(getUninvitedListModel(getModel()).getObject()));
+                target.add(listContainer);
+            }
+        });
     }
 
     /**
@@ -110,6 +121,21 @@ public class RecipientListPanel extends BasePanel<List<InternetAddress>> {
             @Override
             protected List<Invitation> load() {
                 return invitationManager.findAllForNotificationByEventSortedByName(model.getObject());
+            }
+        };
+    }
+
+    protected IModel<List<Invitation>> getUninvitedListModel(final IModel<Event> model) {
+        return new LoadableDetachableModel<List<Invitation>>() {
+            @Override
+            protected List<Invitation> load() {
+                List<Invitation> list = invitationManager.findAllForNotificationByEventSortedByName(model.getObject());
+                return Lists.newArrayList(Collections2.filter(list, new Predicate<Invitation>() {
+                    @Override
+                    public boolean apply(@Nullable final Invitation invitation) {
+                        return !invitation.isInvitationSent();
+                    }
+                }));
             }
         };
     }
