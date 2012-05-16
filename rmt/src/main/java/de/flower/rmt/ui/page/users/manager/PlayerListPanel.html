@@ -28,16 +28,16 @@
             </tr>
             </thead>
             <tbody>
-            <tr wicket:id="playerList">
+            <tr class="filterable" wicket:id="playerList">
                 <td>
-                    <a wicket:id="editLink"><span wicket:id="fullname">Gerd Müller</span></a>
+                    <a wicket:id="editLink"><span wicket:id="fullname" class="filtered">Gerd Müller</span></a>
                 </td>
                 <td>
-                    <a wicket:id="emailLink">gerd@mueller.de</a>
+                    <a wicket:id="emailLink" class="filtered">gerd@mueller.de</a>
                 </td>
                 <td>
                     <ul>
-                        <li wicket:id="teams"><span wicket:id="team"/></li>
+                        <li wicket:id="teams"><span wicket:id="team" class="filtered"/></li>
                     </ul>
                 </td>
                 <td>

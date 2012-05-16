@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+    <style type="text/less">
+        .search-filter-box {
+            position: relative;
+
+            input {
+                width: 190px;
+                padding-right: 24px;
+            }
+
+            #clearButton {
+                display: none;
+                position: absolute;
+                top: 6px;
+                right: 6px;
+                cursor: pointer;
+            }
+        }
+    </style>
+</wicket:head>
+<body>
+<wicket:panel>
+
+    <!-- Search -->
+    <div class="search-filter-box">
+        <input id="filter" type="text" size="30" wicket:message="placeholder:search.filter.heading">
+        <a id="clearButton"><i class="icon-remove" ></i></a>
+    </div>
+
+</wicket:panel>
+</body>
+</html>

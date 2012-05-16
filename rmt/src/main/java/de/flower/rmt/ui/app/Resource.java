@@ -21,4 +21,6 @@ public interface Resource {
     public static final String ieCssUrl = "css/ie.css?" + Version.VERSION;
 
     public static final String mainJsUrl = "js/main.js?" + Version.VERSION;
+
+    public static final String searchFilterJsUrl = "js/search-filter.js?" + Version.VERSION;
 }

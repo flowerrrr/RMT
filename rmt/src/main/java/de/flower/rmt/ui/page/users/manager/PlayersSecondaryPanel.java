@@ -1,5 +1,6 @@
 package de.flower.rmt.ui.page.users.manager;
 
+import de.flower.common.ui.markup.html.panel.SearchFilterPanel;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.ui.page.user.manager.PlayerPage;
 import org.apache.wicket.markup.html.link.Link;
@@ -10,6 +11,7 @@ import org.apache.wicket.markup.html.link.Link;
 public class PlayersSecondaryPanel extends BasePanel {
 
     public PlayersSecondaryPanel() {
+        setRenderBodyOnly(true);
         add(new Link("newButton") {
 
             @Override
@@ -17,5 +19,7 @@ public class PlayersSecondaryPanel extends BasePanel {
                 setResponsePage(new PlayerPage());
             }
         });
+
+        add(new SearchFilterPanel());
     }
 }
