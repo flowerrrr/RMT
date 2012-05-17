@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.page.event.manager.notification;
 
 import de.flower.common.ui.modal.ModalPanel;
-import de.flower.common.ui.model.AbstractWrappingModel;
+import de.flower.common.ui.model.AbstractChainingModel;
 import de.flower.rmt.model.Invitation;
 import de.flower.rmt.model.event.Event;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -61,7 +61,7 @@ public abstract class SelectRecipientPanel extends ModalPanel {
 
     protected abstract void onSubmit(final AjaxRequestTarget target, final List<InternetAddress[]> recipients);
 
-    private static class CheckModel extends AbstractWrappingModel<InternetAddress[], Invitation> {
+    private static class CheckModel extends AbstractChainingModel<InternetAddress[], Invitation> {
 
         public CheckModel(final IModel<Invitation> wrappedModel) {
             super(wrappedModel);
@@ -69,7 +69,7 @@ public abstract class SelectRecipientPanel extends ModalPanel {
 
         @Override
         public InternetAddress[] getObject() {
-            return getWrappedModelObject().getInternetAddresses();
+            return getChainedModelObject().getInternetAddresses();
         }
 
         @Override

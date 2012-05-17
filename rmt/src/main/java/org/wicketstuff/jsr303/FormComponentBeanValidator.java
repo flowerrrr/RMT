@@ -6,6 +6,8 @@ import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.model.AbstractPropertyModel;
+import org.apache.wicket.model.IChainingModel;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.util.lang.PropertyResolver;
 import org.apache.wicket.validation.INullAcceptingValidator;
 import org.apache.wicket.validation.IValidatable;
@@ -48,13 +50,19 @@ public class FormComponentBeanValidator<T> extends Behavior implements INullAcce
         Check.notNull(form);
         Check.isTrue(component instanceof FormComponent);
         if (propertyExpression == null) {
-            propertyExpression = getPropertyExpression((FormComponent) component);
+            propertyExpression = getPropertyExpression(component.getDefaultModel());
         }
     }
 
-    private String getPropertyExpression(final FormComponent component) {
-        AbstractPropertyModel<?> model = (AbstractPropertyModel<?>) component.getModel();
-        return model.getPropertyExpression();
+    private static String getPropertyExpression(final IModel<?> model) {
+        Check.notNull(model);
+        if (model instanceof AbstractPropertyModel) {
+            return ((AbstractPropertyModel) model).getPropertyExpression();
+        } else if (model instanceof IChainingModel) {
+            return getPropertyExpression(((IChainingModel) model).getChainedModel());
+        } else {
+            throw new IllegalArgumentException("Could not resolve property expression for model [" + model + "]");
+        }
     }
 
     @Override

@@ -1,6 +1,7 @@
 package de.flower.rmt.ui.markup.html.form.field;
 
 import de.flower.common.ui.Css;
+import de.flower.common.ui.model.StateSavingModel;
 import de.flower.common.util.Check;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -30,6 +31,8 @@ public abstract class AbstractFormFieldPanel extends Panel {
     private boolean isValidated = false;
 
     private final FormComponent formComponent;
+
+    private boolean validationEnabled = true;
 
     public AbstractFormFieldPanel(String id, FormComponent fc) {
         super(id);
@@ -68,30 +71,24 @@ public abstract class AbstractFormFieldPanel extends Panel {
         if (formComponent.getModel() == null) {
             // set model of form component. form.getForm not available at constructor time, so we have
             // to use wrapping model to defer lookup of form.
-            IModel formModelWrapperModel = new AbstractReadOnlyModel() {
+            IModel<?> formModelWrapperModel = new AbstractReadOnlyModel<IModel<?>>() {
 
                 @Override
-                public Object getObject() {
+                public IModel<?> getObject() {
                     return formComponent.getForm().getModel();
                 }
             };
             formComponent.setModel(new PropertyModel(formModelWrapperModel, this.getId()));
         }
-
-        formComponent.setLabel(new LoadableDetachableModel<String>() {
-            /**
-             * Have to delay lookup of resourceKey until component is rendered.
-             */
-            @Override
-            protected String load() {
-                String resourceKey = Check.notNull(getLabelKey());
-                return new ResourceModel(resourceKey).getObject();
-            }
-        });
+        if (useStateSavingModel()) {
+            final StateSavingModel<?> cachingModel = new StateSavingModel(formComponent.getModel());
+            formComponent.setModel(cachingModel);
+        }
 
         // add validation
         if (isValidationEnabled()) {
-            formComponent.add(new PropertyValidator(formComponent));
+            formComponent.add(getValidator(formComponent));
+
             if (isInstantValidationEnabled()) {
                 formComponent.add(new AjaxFormComponentUpdatingBehavior("onchange") {
                     @Override
@@ -112,7 +109,20 @@ public abstract class AbstractFormFieldPanel extends Panel {
                 });
             }
         }
+
+
+        formComponent.setLabel(new LoadableDetachableModel<String>() {
+            /**
+             * Have to delay lookup of resourceKey until component is rendered.
+             */
+            @Override
+            protected String load() {
+                String resourceKey = Check.notNull(getLabelKey());
+                return new ResourceModel(resourceKey).getObject();
+            }
+        });
     }
+
 
     @Override
     public void onDetach() {
@@ -165,6 +175,16 @@ public abstract class AbstractFormFieldPanel extends Panel {
     }
 
     /**
+     * Subclass can override if they need special handling.
+     *
+     * @param fc
+     * @return
+     */
+    protected IValidator<?> getValidator(FormComponent<?> fc) {
+        return new PropertyValidator(fc);
+    }
+
+    /**
      * Override this method to disable standard instant validation behavior.
      *
      * @return
@@ -179,7 +199,21 @@ public abstract class AbstractFormFieldPanel extends Panel {
      * @return
      */
     protected boolean isValidationEnabled() {
+        return validationEnabled;
+    }
+
+    public AbstractFormFieldPanel setValidationEnabled(boolean enabled) {
+        this.validationEnabled = enabled;
+        return this;
+    }
+
+    protected boolean useStateSavingModel() {
         return true;
+    }
+
+    public StateSavingModel<?> getStateSavingModel() {
+        Check.isTrue(useStateSavingModel(), "Form component does not use state saving model");
+        return (StateSavingModel<?>) formComponent.getModel();
     }
 
     /**

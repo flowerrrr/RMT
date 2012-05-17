@@ -7,15 +7,18 @@ import de.flower.rmt.model.Club;
  */
 public enum EventType {
 
-    Event(Event.class),
-    Match(Match.class),
-    Training(Training.class),
-    Tournament(Tournament.class);
+    Event(Event.class, 0),
+    Match(Match.class, 45),
+    Training(Training.class, 15),
+    Tournament(Tournament.class, 45);
 
     private Class<? extends Event> clazz;
 
-    private EventType(Class<? extends Event> clazz) {
+    private int meetBeforeKickOffMinutes;
+
+    private EventType(Class<? extends Event> clazz, int meetBeforeKickOffMinutes) {
         this.clazz = clazz;
+        this.meetBeforeKickOffMinutes = meetBeforeKickOffMinutes;
     }
 
     public String getResourceKey() {
@@ -63,4 +66,7 @@ public enum EventType {
         return event instanceof AbstractSoccerEvent;
     }
 
+    public int getMeetBeforeKickOffMinutes() {
+        return meetBeforeKickOffMinutes;
+    }
 }

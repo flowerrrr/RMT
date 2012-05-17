@@ -19,6 +19,7 @@ import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.joda.time.LocalTime;
 
 /**
  * A bit different form other editing panels cause it is always
@@ -32,6 +33,10 @@ public class EventEditPanel extends BasePanel<Event> {
     private IEventManager eventManager;
 
     private UniformDropDownChoicePanel uniformDDCPanel;
+
+    private DropDownChoicePanel<?> timeDDCPanel;
+
+    private DropDownChoicePanel<?> kickOffDDCPanel;
 
     public EventEditPanel(final IModel<Event> model) {
         this(null, model);
@@ -60,7 +65,7 @@ public class EventEditPanel extends BasePanel<Event> {
         add(form);
 
         form.add(new TextFieldPanel("type", new TextField(AbstractFormFieldPanel.ID, new ResourceModel(EventType.from(model.getObject()).getResourceKey())))
-                .setEnabled(false));
+                .setValidationEnabled(false).setEnabled(false));
 
         form.add(new TeamDropDownChoicePanel("team") {
             @Override
@@ -79,12 +84,33 @@ public class EventEditPanel extends BasePanel<Event> {
 
         form.add(new DateFieldPanel("date"));
 
-        form.add(new DropDownChoicePanel("time", new TimeDropDownChoice("input")));
+        form.add(timeDDCPanel = new DropDownChoicePanel("time", new TimeDropDownChoice("input")) {
+            @Override
+            protected void onChange(final AjaxRequestTarget target) {
+                // preset kickoff time (if it is not set yet)
+                if (kickOffDDCPanel.isVisible() && kickOffDDCPanel.getStateSavingModel().getSavedObject() == null) {
+                    kickOffDDCPanel.getFormComponent().setModelObject(form.getModelObject().getTime().plusMinutes(EventType.from(model.getObject()).getMeetBeforeKickOffMinutes()));
+                    target.add(kickOffDDCPanel);
+                }
+            }
+        });
 
-        form.add(new DropDownChoicePanel("kickoff", new TimeDropDownChoice("input")) {
+        form.add(kickOffDDCPanel = new DropDownChoicePanel("kickoff", new TimeDropDownChoice("input")) {
             @Override
             public boolean isVisible() {
                 return EventType.isSoccerEvent(model.getObject());
+            }
+
+            @Override
+            protected void onChange(final AjaxRequestTarget target) {
+                // preset meeting time (if it is not set yet)
+                if (timeDDCPanel.getStateSavingModel().getSavedObject() == null) {
+                    timeDDCPanel.getFormComponent().setModelObject(((LocalTime) getDefaultModelObject()).minusMinutes(EventType.from(model.getObject()).getMeetBeforeKickOffMinutes()));
+                    target.add(timeDDCPanel);
+                }
+                System.out.println("kickoff: " + getDefaultModelObjectAsString());
+                System.out.println("time cached: " + timeDDCPanel.getStateSavingModel().getSavedObject());
+                System.out.println("time: " + timeDDCPanel.getDefaultModel().getObject());
             }
         });
 

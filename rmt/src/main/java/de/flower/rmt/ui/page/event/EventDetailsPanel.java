@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.page.event;
 
 import de.flower.common.ui.markup.html.basic.FallbackLabel;
-import de.flower.common.ui.model.AbstractWrappingModel;
+import de.flower.common.ui.model.AbstractChainingModel;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.common.ui.util.convert.AbstractConverter;
 import de.flower.rmt.model.Surface;
@@ -116,13 +116,13 @@ public class EventDetailsPanel extends BasePanel<Event> {
         @Override
         protected void onInitialize() {
             super.onInitialize();
-            setDefaultModel(new AbstractWrappingModel<String, Uniform>((IModel<Uniform>) getDefaultModel()) {
+            setDefaultModel(new AbstractChainingModel<String, Uniform>((IModel<Uniform>) getDefaultModel()) {
                 @Override
                 public String getObject() {
-                    if (getWrappedModel().getObject() == null) {
+                    if (getChainedModel().getObject() == null) {
                         return new ResourceModel("uniform.nullValid").getObject();
                     } else {
-                        return new StringResourceModel("uniform.set", getWrappedModel()).getObject();
+                        return new StringResourceModel("uniform.set", getChainedModel()).getObject();
                     }
                 }
 

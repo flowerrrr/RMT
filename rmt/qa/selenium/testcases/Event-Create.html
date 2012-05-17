@@ -80,20 +80,26 @@
 	<td></td>
 </tr>
 <tr>
+	<td>storeEval</td>
+	<td>Math.floor(Math.random() * 28) + 1</td>
+	<td>day</td>
+</tr>
+<tr>
 	<td>click</td>
-	<td>//div[12]</td>
+	<td>//div[@class=&quot;days&quot;]/div[not(@class=&quot;overlap&quot;)][${day}]</td>
 	<td></td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>Math.floor(Math.random() * 96)</td>
+	<td>index</td>
 </tr>
 <tr>
 	<td>select</td>
 	<td>name=time:input</td>
-	<td>label=06:00</td>
+	<td>index=${index}</td>
 </tr>
-<tr>
-	<td>select</td>
-	<td>name=kickoff:input</td>
-	<td>label=07:30</td>
-</tr>
+<!--kickoff will be set automatically to meetingtime + 45-->
 <tr>
 	<td>select</td>
 	<td>name=opponent:input</td>
@@ -244,7 +250,6 @@
 	<td>Nachricht wurde gesendet.</td>
 	<td></td>
 </tr>
-
 </tbody></table>
 </body>
 </html>
