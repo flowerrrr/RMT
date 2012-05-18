@@ -7,9 +7,7 @@ import de.flower.rmt.model.Player_;
 import de.flower.rmt.model.Team;
 import de.flower.rmt.model.Team_;
 import de.flower.rmt.model.User;
-import de.flower.rmt.repository.IPlayerRepo;
 import de.flower.rmt.repository.ITeamRepo;
-import de.flower.rmt.repository.IUserRepo;
 import de.flower.rmt.repository.Specs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
@@ -30,13 +28,10 @@ public class TeamManager extends AbstractService implements ITeamManager {
     private ITeamRepo teamRepo;
 
     @Autowired
-    private IPlayerRepo playerRepo;
-
-    @Autowired
-    private IUserRepo userRepo;
-
-    @Autowired
     private IEventManager eventManager;
+
+    @Autowired
+    private IPlayerManager playerManager;
 
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
@@ -74,6 +69,8 @@ public class TeamManager extends AbstractService implements ITeamManager {
         teamRepo.softDelete(entity);
         // mark all events related to this team also as deleted
         eventManager.deleteByTeam(entity);
+        // delete all players of team squad
+        playerManager.deleteByTeam(entity);
     }
 
     @Override

@@ -103,7 +103,7 @@ public class PlayerListPanel extends BasePanel {
         IModel<List<Player>> playerListModel = new AbstractReadOnlyModel<List<Player>>() {
             @Override
             public List<Player> getObject() {
-                // because of fetching multiple associations the list of players can contain
+                // because of pre-fetching multiple associations the list of players can contain
                 // duplicate entries (e.g. when user has two roles assigned).
                 // filter out duplicate entries
                 return new ArrayList(new HashSet(userModel.getObject().getPlayers()));

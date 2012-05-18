@@ -39,7 +39,6 @@ public class PlayerManager extends AbstractService implements IPlayerManager {
     @Autowired
     private IUserRepo userRepo;
 
-
     @Override
     public List<Player> findAllByTeam(Team team) {
         return playerRepo.findAll(where(eq(Player_.team, team)).and(orderByJoin(Player_.user, User_.fullname, true)));
@@ -112,5 +111,14 @@ public class PlayerManager extends AbstractService implements IPlayerManager {
         }
     }
 
-
+    @Override
+    @Transactional(readOnly = false)
+    public void deleteByTeam(Team team) {
+        teamRepo.reattach(team);
+        for (Player player : team.getPlayers()) {
+            // can do hard delete cause player is not referenced from other entities than team and user.
+            // in case recovery is needed just re-add the users to the undeleted team.
+            delete(player);
+        }
+    }
 }

@@ -31,4 +31,12 @@ public interface IPlayerManager {
 
     void removeUserFromAllTeams(User user);
 
+    /**
+     * Soft deletes all players of the team.
+     * Soft in case deletion of team was human error to be able to recover.
+     * @param entity
+     */
+    void deleteByTeam(Team entity);
+
+
 }
