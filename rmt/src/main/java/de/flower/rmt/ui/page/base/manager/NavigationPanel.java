@@ -7,6 +7,7 @@ import de.flower.rmt.ui.markup.html.form.renderer.EventRenderer;
 import de.flower.rmt.ui.page.base.AbstractNavigationPanel;
 import de.flower.rmt.ui.page.base.INavigationPanelAware;
 import de.flower.rmt.ui.page.event.manager.EventPage;
+import de.flower.rmt.ui.page.event.manager.EventTabPanel;
 import de.flower.rmt.ui.page.events.manager.EventsPage;
 import de.flower.rmt.ui.page.opponents.manager.OpponentsPage;
 import de.flower.rmt.ui.page.teams.manager.TeamsPage;
@@ -19,6 +20,7 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import java.util.List;
@@ -52,11 +54,11 @@ public class NavigationPanel extends AbstractNavigationPanel {
         events.add(new ListView<Event>("eventList", getEventListModel()) {
             @Override
             protected void populateItem(final ListItem<Event> item) {
-                Link link = new Link<Event>("link", item.getModel()) {
+                Link link = new Link<Long>("link", Model.of(item.getModelObject().getId())) {
 
                     @Override
                     public void onClick() {
-                        setResponsePage(new EventPage(getModel()));
+                        setResponsePage(EventPage.class, EventPage.getPageParams(getModel().getObject(), EventTabPanel.INVITATIONS_PANEL_INDEX));
                     }
                 };
                 link.add(new Label("label", EventRenderer.getTypeDateSummary(item.getModelObject())));
