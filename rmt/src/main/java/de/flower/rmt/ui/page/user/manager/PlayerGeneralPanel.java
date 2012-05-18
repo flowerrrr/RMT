@@ -51,11 +51,17 @@ public class PlayerGeneralPanel extends BasePanel<User> {
         TextFieldPanel fullname = new TextFieldPanel("fullname");
         form.add(fullname);
         fullname.addValidator(new FormComponentBeanValidator(User.Validation.INameUnique.class));
+
         TextFieldPanel email = new TextFieldPanel("email");
         form.add(email);
         email.addValidator(new FormComponentBeanValidator(User.Validation.IEmailUnique.class));
+
+        TextFieldPanel secondEmail = new TextFieldPanel("secondEmail");
+        form.add(secondEmail);
+
         CheckBoxPanel manager = new CheckBoxPanel("manager", new CheckBox(AbstractFormFieldPanel.ID, managerModel));
         manager.setVisible(!securityService.isCurrentUser(model.getObject()));
+
         form.add(manager);
     }
 
