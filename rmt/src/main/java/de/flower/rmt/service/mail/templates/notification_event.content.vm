@@ -33,5 +33,7 @@ Trikotsatz: $uniform
 Untergrund: $surfaceList
 #end
 Titel: $!event.getSummary()
-Beschreibung: $!event.getComment()
+#if ($event.getComment())
+Zusatzinfo: $event.getComment()
+#end
 
