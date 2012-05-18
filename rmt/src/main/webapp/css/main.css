@@ -1116,7 +1116,7 @@ iframe.wetteronline {
             height: 3px;
         }
     }
-    em {
+    em, .status {
         font-style: italic;
     }
     .btn-more {

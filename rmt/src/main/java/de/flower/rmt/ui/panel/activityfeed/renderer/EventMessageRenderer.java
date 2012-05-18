@@ -17,5 +17,7 @@ public class EventMessageRenderer {
         return eventLink;
     }
 
-
+    public static String getEventArticle(AbstractEventMessage message) {
+        return new StringResourceModel("activity.${eventType}.2.tmpl", Model.of(message)).getObject();
+    }
 }

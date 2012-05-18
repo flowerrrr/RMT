@@ -28,7 +28,7 @@ public class InvitationUpdateMessageRenderer implements IMessageRenderer<Invitat
     public String toString(final InvitationUpdateMessage message) {
         String s;
         String status = (message.getStatus() != null) ? new ResourceModel(RSVPStatus.getResourceKey(message.getStatus())).getObject() : "";
-        Object[] params = new Object[]{EventMessageRenderer.getEventLink(message), status};
+        Object[] params = new Object[]{EventMessageRenderer.getEventArticle(message), EventMessageRenderer.getEventLink(message), status};
         UpdateType updateType = getUpdateType(message);
 
         switch (updateType) {
