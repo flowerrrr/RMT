@@ -7,6 +7,7 @@ public enum EmailTemplate {
 
     PASSWORD_RESET,
     INVITATION_NEWUSER,
+    INVITATION_STATUSCHANGED,
     NOTIFICATION_EVENT;
 
     public String getContent() {

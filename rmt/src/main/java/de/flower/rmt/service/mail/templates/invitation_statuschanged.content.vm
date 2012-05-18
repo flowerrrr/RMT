@@ -1,0 +1,6 @@
+Der Spieler $user.getFullname() hat seinen Rückmeldestatus aktualisiert.
+
+Event: $eventType - $eventDateTime: $!event.getSummary()
+Status: $status
+
+#parse('footer-include.vm')

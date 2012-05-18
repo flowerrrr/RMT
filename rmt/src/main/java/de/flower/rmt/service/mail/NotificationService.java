@@ -1,10 +1,12 @@
 package de.flower.rmt.service.mail;
 
+import de.flower.rmt.model.Invitation;
+import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.*;
 import de.flower.rmt.model.type.Notification;
 import de.flower.rmt.service.IEventManager;
-import de.flower.rmt.service.security.ISecurityService;
+import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.markup.html.form.renderer.SurfaceRenderer;
 import de.flower.rmt.util.Dates;
@@ -13,6 +15,8 @@ import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.model.StringResourceModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,7 +37,7 @@ public class NotificationService implements INotificationService {
     private IEventManager eventManager;
 
     @Autowired
-    private ISecurityService securityService;
+    private IInvitationManager invitationManager;
 
     @Override
     public void sendResetPasswordMail(final User user, final User manager) {
@@ -53,6 +57,25 @@ public class NotificationService implements INotificationService {
         String subject = templateService.mergeTemplate(EmailTemplate.INVITATION_NEWUSER.getSubject(), model);
         String content = templateService.mergeTemplate(EmailTemplate.INVITATION_NEWUSER.getContent(), model);
         mailService.sendMail(user.getEmail(), manager.getEmail(), subject, content);
+    }
+
+    @Override
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+    public void sendStatusChangedMessage(final Invitation invitationIn) {
+        Invitation invitation = invitationManager.loadById(invitationIn.getId());
+        Event event = invitation.getEvent();
+        User user = invitation.getUser();
+        User manager = invitation.getEvent().getCreatedBy();
+
+        Map<String, Object> model = new HashMap<String, Object>();
+        model.put("user", user);
+        model.put("event", invitation.getEvent());
+        model.put("eventDateTime", Dates.formatDateTimeShortWithWeekday(event.getDateTimeAsDate()));
+        model.put("eventType", new ResourceModel(event.getEventType().getResourceKey()).getObject());
+        model.put("status", new ResourceModel(RSVPStatus.getResourceKey(invitation.getStatus())).getObject());
+        String subject = templateService.mergeTemplate(EmailTemplate.INVITATION_STATUSCHANGED.getSubject(), model);
+        String content = templateService.mergeTemplate(EmailTemplate.INVITATION_STATUSCHANGED.getContent(), model);
+        mailService.sendMail(manager.getEmail(), null, subject, content);
     }
 
     @Override

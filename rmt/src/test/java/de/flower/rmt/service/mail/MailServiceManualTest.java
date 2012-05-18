@@ -30,6 +30,8 @@ public class MailServiceManualTest extends AbstractIntegrationTests {
         body += "\nSome umlaute: äöüÄÖÜß\n";
         securityService.getUser().setEmail("no-reply@flower.de");
         mailService.sendMail(mailAddress, securityService.getUser().getEmail(), "Unit test generated mail", body);
+        // test empty bcc as we had errors with initial implementation
+        mailService.sendMail(mailAddress, null, "Unit test generated mail", body);
         log.info("Check mail at [" + mailAddress + "] to verify mail has been sent.");
     }
 

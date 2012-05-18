@@ -7,6 +7,7 @@ import de.flower.common.util.Check;
 import de.flower.rmt.model.*;
 import de.flower.rmt.model.event.Event;
 import de.flower.rmt.repository.IInvitationRepo;
+import de.flower.rmt.service.mail.INotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -42,6 +43,9 @@ public class InvitationManager extends AbstractService implements IInvitationMan
 
     @Autowired
     private IActivityManager activityManager;
+
+    @Autowired
+    private INotificationService notificationService;
 
     @Override
     public Invitation newInstance(final Event event, User user) {
@@ -182,6 +186,7 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     public void save(final Invitation invitation) {
         validate(invitation);
         boolean isNew = invitation.isNew();
+        boolean isNotifyManager = false;
         Invitation origInvitation = null;
         if (!isNew) {
             // depending on the caller of this method the invitation might be detached or attached (when called
@@ -196,6 +201,10 @@ public class InvitationManager extends AbstractService implements IInvitationMan
             Check.isTrue(invitation != origInvitation);
             if (origInvitation.getStatus() != invitation.getStatus()) {
                 invitation.setDate(new Date());
+                if (origInvitation.getStatus() == RSVPStatus.ACCEPTED) {
+                    // if status changes from accepted to any other state -> notify manager
+                    isNotifyManager = true;
+                }
             }
             if (invitation.getDate() == null) {
                 invitation.setDate(new Date());
@@ -205,6 +214,13 @@ public class InvitationManager extends AbstractService implements IInvitationMan
             activityManager.onInvitationUpdated(invitation);
         }
         invitationRepo.save(invitation);
+        if (isNotifyManager) {
+            try {
+                notificationService.sendStatusChangedMessage(invitation);
+            } catch (Exception e) {
+                log.error("Could not send notification.", e);
+            }
+        }
     }
 
     @Override

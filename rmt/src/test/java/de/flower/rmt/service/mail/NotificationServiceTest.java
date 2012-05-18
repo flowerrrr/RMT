@@ -1,5 +1,7 @@
 package de.flower.rmt.service.mail;
 
+import de.flower.rmt.model.Invitation;
+import de.flower.rmt.model.RSVPStatus;
 import de.flower.rmt.model.Uniform;
 import de.flower.rmt.model.User;
 import de.flower.rmt.model.event.Event;
@@ -28,6 +30,15 @@ public class NotificationServiceTest extends AbstractWicketIntegrationTests {
     public void testSendInvitationNewUserMail() {
         User user = testData.createUser();
         notificationService.sendInvitationNewUser(user, securityService.getUser());
+    }
+
+    @Test
+    public void testStatusChangedMessage() {
+        Event event = testData.createEvent();
+        Invitation invitation = invitationManager.findAllByEvent(event).get(0);
+        invitation.setStatus(RSVPStatus.DECLINED);
+        invitationManager.save(invitation);
+        notificationService.sendStatusChangedMessage(invitation);
     }
 
     @Test
