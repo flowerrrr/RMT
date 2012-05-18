@@ -3,6 +3,7 @@
  */
 package org.wicketstuff.jsr303;
 
+import de.flower.common.annotation.Patched;
 import org.apache.wicket.Application;
 import org.apache.wicket.MetaDataKey;
 import org.apache.wicket.Session;
@@ -11,7 +12,13 @@ import org.wicketstuff.jsr303.util.Assert;
 import javax.validation.*;
 import java.util.Locale;
 
+/**
+ * Patched version to use cached validator factory instead of re-creating validator factory for every #getValidator call.
+ *
+ * @author flowerrrr
+ */
 
+@Patched
 public class JSR303Validation
 {
 	public static class WicketSessionLocaleMessageInterpolator implements MessageInterpolator
@@ -35,7 +42,7 @@ public class JSR303Validation
 		}
 	}
 
-	private synchronized ValidatorFactory createFactory()
+	private ValidatorFactory createFactory()
 	{
 
 		final Configuration<?> configuration = Validation.byDefaultProvider().configure();
@@ -53,7 +60,15 @@ public class JSR303Validation
 		return validationFactory;
 	}
 
+    private synchronized ValidatorFactory getFactory() {
+        if (validatorFactory == null) {
+            validatorFactory = createFactory();
+        }
+        return validatorFactory;
+    }
+
 	private static final JSR303Validation INSTANCE = new JSR303Validation();
+    private ValidatorFactory validatorFactory;
 	private static final MetaDataKey<ViolationMessageRenderer> violationMessageRendererKey = new MetaDataKey<ViolationMessageRenderer>()
 	{
 		private static final long serialVersionUID = 1L;
@@ -66,7 +81,7 @@ public class JSR303Validation
 
 	public static Validator getValidator()
 	{
-		return getInstance().createFactory().getValidator();
+		return getInstance().getFactory().getValidator();
 	}
 
 	private JSR303Validation()

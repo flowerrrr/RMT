@@ -172,13 +172,13 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.wicketstuff/wicketstuff-jsr303/1.5.0/jar/eafef46321e0013baa38bd6c6593027837c9407a/wicketstuff-jsr303-1.5.0.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.wicketstuff/wicketstuff-jsr303/1.5.5/jar/7e26d56ea4b5c583cd268247b2ebd67e7608c306/wicketstuff-jsr303-1.5.5.jar!/" />
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.wicketstuff/wicketstuff-jsr303/1.5.0/javadoc/aaf500ae95d7e91678b69a7205c07741bb1db62b/wicketstuff-jsr303-1.5.0-javadoc.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.wicketstuff/wicketstuff-jsr303/1.5.5/javadoc/d23e4a9f00fa783ffd28ced91fc5e11dfe2efcb4/wicketstuff-jsr303-1.5.5-javadoc.jar!/" />
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.wicketstuff/wicketstuff-jsr303/1.5.0/source/560d66e2bae9e2cc0be1f99b3673fe54641ea713/wicketstuff-jsr303-1.5.0-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.wicketstuff/wicketstuff-jsr303/1.5.5/source/8b54bd544c79fb7d3ec1b68886f2b4d150d16e3/wicketstuff-jsr303-1.5.5-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -425,6 +425,17 @@
         <JAVADOC />
         <SOURCES>
           <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/com.mysema.querydsl/querydsl-jpa/2.5.0/source/29cc416e9695c9664a8582acc922b7ed6b1e4363/querydsl-jpa-2.5.0-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/javax.servlet/servlet-api/2.5/jar/5959582d97d8b61f4d154ca9e495aafd16726e34/servlet-api-2.5.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/javax.servlet/servlet-api/2.5/source/21599814ad9a605b86f3e6381571beccd861a32/servlet-api-2.5-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -978,6 +989,19 @@
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.testng/testng/6.1.1/jar/a94d7d28cabfa782f0cfd4275cbe4106aecd6aec/testng-6.1.1.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.testng/testng/6.1.1/javadoc/6dd97cfdfc7723cdfc49faeb334d404668749872/testng-6.1.1-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.testng/testng/6.1.1/source/c762bd3de6bcc529e457fed1433d74c09d9e6afc/testng-6.1.1-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
           <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.mockito/mockito-core/1.9.0-rc1/jar/993b183646268b5b65f9ee6d9de2e2eac8939e4d/mockito-core-1.9.0-rc1.jar!/" />
         </CLASSES>
         <JAVADOC>
@@ -988,38 +1012,16 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/javax.servlet/servlet-api/2.5/jar/5959582d97d8b61f4d154ca9e495aafd16726e34/servlet-api-2.5.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/javax.servlet/servlet-api/2.5/source/21599814ad9a605b86f3e6381571beccd861a32/servlet-api-2.5-sources.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.hamcrest/hamcrest-core/1.1/jar/860340562250678d1a344907ac75754e259cdb14/hamcrest-core-1.1.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.hamcrest/hamcrest-core/1.1/source/2ccf1154d1a8936042a8a742dc3e611d02ac7213/hamcrest-core-1.1-sources.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" scope="TEST">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/junit/junit/4.10/jar/e4f1766ce7404a08f45d859fb9c226fc9e41a861/junit-4.10.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/junit/junit/3.8.2/jar/7e4cde26b53a9a0e3fe5b00d1dbbc7cc1d46060/junit-3.8.2.jar!/" />
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/junit/junit/4.10/javadoc/8271524e260a074563bb1dca45c8769d103665c7/junit-4.10-javadoc.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/junit/junit/3.8.2/javadoc/c4757f577c76e7248e14858c76e4ce0ca1c78d89/junit-3.8.2-javadoc.jar!/" />
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/junit/junit/4.10/source/6c98d6766e72d5575f96c9479d1c1d3b865c6e25/junit-4.10-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/junit/junit/3.8.2/source/aaa058540bf14ad600dd784de979c46c721ccbbe/junit-3.8.2-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -1061,6 +1063,17 @@
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.hamcrest/hamcrest-core/1.1/jar/860340562250678d1a344907ac75754e259cdb14/hamcrest-core-1.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.hamcrest/hamcrest-core/1.1/source/2ccf1154d1a8936042a8a742dc3e611d02ac7213/hamcrest-core-1.1-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
           <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.objenesis/objenesis/1.0/jar/9b473564e792c2bdf1449da1f0b1b5bff9805704/objenesis-1.0.jar!/" />
         </CLASSES>
         <JAVADOC>
@@ -1069,15 +1082,6 @@
         <SOURCES>
           <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.objenesis/objenesis/1.0/source/b10c90e57b7bb985a7b6a704769428fe5c2a732c/objenesis-1.0-sources.jar!/" />
         </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" scope="TEST">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/cache/org.testng/testng/jars/testng-6.1.1.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
       </library>
     </orderEntry>
   </component>
