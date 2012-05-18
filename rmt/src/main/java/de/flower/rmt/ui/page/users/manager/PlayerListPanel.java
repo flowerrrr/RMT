@@ -1,5 +1,6 @@
 package de.flower.rmt.ui.page.users.manager;
 
+import com.google.common.collect.ImmutableList;
 import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.ajax.markup.html.AjaxLinkWithConfirmation;
@@ -29,6 +30,7 @@ import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import javax.mail.internet.InternetAddress;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -60,7 +62,8 @@ public class PlayerListPanel extends BasePanel {
                 Link editLink = createEditLink("editLink", item);
                 editLink.add(new Label("fullname", user.getFullname()));
                 item.add(editLink);
-                item.add(Links.mailLink("emailLink", user.getEmail(), user.getEmail()));
+
+                item.add(createMailLinkList(item.getModel()));
 
                 // list of teams the user belongs to
                 item.add(createTeamList(item.getModel()));
@@ -97,6 +100,16 @@ public class PlayerListPanel extends BasePanel {
             }
         });
         playerListContainer.add(new AjaxEventListener(User.class));
+    }
+
+    private ListView createMailLinkList(final IModel<User> userModel) {
+        return new ListView<InternetAddress>("emails", ImmutableList.copyOf(userModel.getObject().getInternetAddresses())) {
+            @Override
+            protected void populateItem(final ListItem<InternetAddress> item) {
+                String email = item.getModelObject().getAddress();
+                item.add(Links.mailLink("emailLink", email, email));
+            }
+        };
     }
 
     private ListView createTeamList(final IModel<User> userModel) {
