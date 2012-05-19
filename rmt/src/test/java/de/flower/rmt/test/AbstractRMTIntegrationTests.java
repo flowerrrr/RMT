@@ -177,6 +177,7 @@ public class AbstractRMTIntegrationTests extends AbstractTestNGSpringContextTest
             resetListAppender();
 
             initializeSecurityContextWithTestUser();
+
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             throw e;

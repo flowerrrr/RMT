@@ -207,7 +207,10 @@ public class InvitationManager extends AbstractService implements IInvitationMan
                 invitation.setDate(new Date());
                 if (origInvitation.getStatus() == RSVPStatus.ACCEPTED) {
                     // if status changes from accepted to any other state -> notify manager
-                    isNotifyManager = true;
+                    // but only if it's not the manager himself who changes the status.
+                    if (!securityService.getUser().isManager()) {
+                        isNotifyManager = true;
+                    }
                 }
             }
             if (invitation.getDate() == null) {

@@ -23,37 +23,17 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public class EventSecondaryPanel extends BasePanel {
 
     @SpringBean
-    private IInvitationManager invitationManager;
+    private ISecurityService securityService;
 
     @SpringBean
-    private ISecurityService securityService;
+    private IInvitationManager invitationManager;
 
     public EventSecondaryPanel(IModel<Event> model) {
         // treat subpanels as top level secondary panels to have spacer between them
         setRenderBodyOnly(true);
 
         final IModel<Invitation> invitationModel = getInvitationModel(model);
-        InvitationFormPanel invitationFormPanel = new InvitationFormPanel(AjaxSlideTogglePanel.WRAPPED_PANEL_ID, invitationModel) {
-
-            @Override
-            protected void onSubmit(final Invitation invitation, final AjaxRequestTarget target) {
-                // save invitation and update invitationlistpanel
-                invitationManager.save(invitation);
-                AjaxEventSender.entityEvent(this, Invitation.class);
-            }
-        };
-
-        add(new AjaxSlideTogglePanel("invitationFormPanel", "player.event.invitationform.heading", invitationFormPanel) {
-            @Override
-            public boolean isVisible() {
-                // completely hide panel if user is not invitee of this event.
-                return invitationModel.getObject() != null;
-            }
-        });
-
-        // make form visible if user hasn't responded yet
-        // must be called after adding to AjaxSlideTogglePanel
-        invitationFormPanel.setVisible(invitationModel.getObject() != null && invitationModel.getObject().getStatus() == RSVPStatus.NORESPONSE);
+        add(new SlideableInvitationFormPanel(invitationModel));
 
         add(new EventDetailsPanel(model, View.PLAYER));
 
@@ -74,5 +54,36 @@ public class EventSecondaryPanel extends BasePanel {
 
     private static String getManagerEmailAddress(final Event event) {
         return event.getCreatedBy().getEmail();
+    }
+
+    public static class SlideableInvitationFormPanel extends BasePanel<Invitation> {
+
+        @SpringBean
+        private IInvitationManager invitationManager;
+
+        public SlideableInvitationFormPanel(IModel<Invitation> invitationModel) {
+            super(invitationModel);
+            InvitationFormPanel invitationFormPanel = new InvitationFormPanel(AjaxSlideTogglePanel.WRAPPED_PANEL_ID, invitationModel) {
+
+                @Override
+                protected void onSubmit(final Invitation invitation, final AjaxRequestTarget target) {
+                    // save invitation and update invitationlistpanel
+                    invitationManager.save(invitation);
+                    AjaxEventSender.entityEvent(this, Invitation.class);
+                }
+            };
+
+            add(new AjaxSlideTogglePanel("invitationFormPanel", "player.event.invitationform.heading", invitationFormPanel) {
+                @Override
+                public boolean isVisible() {
+                    // completely hide panel if user is not invitee of this event.
+                    return SlideableInvitationFormPanel.this.getModel().getObject() != null;
+                }
+            });
+
+            // make form visible if user hasn't responded yet
+            // must be called after adding to AjaxSlideTogglePanel
+            invitationFormPanel.setVisible(invitationModel.getObject() != null && invitationModel.getObject().getStatus() == RSVPStatus.NORESPONSE);
+        }
     }
 }

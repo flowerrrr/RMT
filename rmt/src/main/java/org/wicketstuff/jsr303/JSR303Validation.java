@@ -7,6 +7,8 @@ import de.flower.common.annotation.Patched;
 import org.apache.wicket.Application;
 import org.apache.wicket.MetaDataKey;
 import org.apache.wicket.Session;
+import org.apache.wicket.injection.Injector;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.wicketstuff.jsr303.util.Assert;
 
 import javax.validation.*;
@@ -79,13 +81,19 @@ public class JSR303Validation
 		return INSTANCE;
 	}
 
-	public static Validator getValidator()
+    @SpringBean
+    private Validator validator;
+
+	public Validator getValidator()
 	{
-		return getInstance().getFactory().getValidator();
+		// return getInstance().getFactory().getValidator();
+        return validator;
 	}
+
 
 	private JSR303Validation()
 	{
+         Injector.get().inject(this);
 	}
 
 	synchronized static ViolationMessageRenderer getViolationMessageRenderer()
