@@ -8,6 +8,7 @@ import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.EventType;
 import de.flower.rmt.model.db.type.RSVPStatus;
+import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.service.IResponseManager;
 import de.flower.rmt.ui.app.Links;
@@ -37,6 +38,9 @@ public class EventListPanel extends BasePanel {
 
     @SpringBean
     private IInvitationManager invitationManager;
+
+    @SpringBean
+    private IEventManager eventManager;
 
     public EventListPanel(final UserModel userModel, final IModel<List<Event>> listModel) {
 
@@ -76,6 +80,11 @@ public class EventListPanel extends BasePanel {
                     @Override
                     protected void submitStatus(final RSVPStatus status) {
                         responseManager.respond(eventModel.getId(), userModel.getId(), status);
+                    }
+
+                    @Override
+                    public boolean isEnabled() {
+                        return !eventManager.isEventClosed(event);
                     }
                 });
             }

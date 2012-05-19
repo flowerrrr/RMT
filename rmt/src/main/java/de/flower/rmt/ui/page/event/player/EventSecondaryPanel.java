@@ -7,9 +7,9 @@ import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.RSVPStatus;
+import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.service.security.ISecurityService;
-import de.flower.rmt.ui.app.IPropertyProvider;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.model.InvitationModel;
@@ -21,7 +21,6 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-import org.joda.time.DateTime;
 
 /**
  * @author flowerrrr
@@ -35,7 +34,7 @@ public class EventSecondaryPanel extends BasePanel {
     private IInvitationManager invitationManager;
 
     @SpringBean
-    private IPropertyProvider propertyProvider;
+    private IEventManager eventManager;
 
     public EventSecondaryPanel(final IModel<Event> model) {
         // treat subpanels as top level secondary panels to have spacer between them
@@ -45,14 +44,14 @@ public class EventSecondaryPanel extends BasePanel {
         add(new SlideableInvitationFormPanel(invitationModel) {
             @Override
             public boolean isVisible() {
-                return !isEventClosed(model.getObject());
+                return !eventManager.isEventClosed(model.getObject());
             }
         });
 
         add(new InvitationClosedPanel(model) {
             @Override
             public boolean isVisible() {
-                return isEventClosed(model.getObject());
+                return eventManager.isEventClosed(model.getObject());
             }
         });
 
@@ -75,11 +74,6 @@ public class EventSecondaryPanel extends BasePanel {
 
     private static String getManagerEmailAddress(final Event event) {
         return event.getCreatedBy().getEmail();
-    }
-
-    private boolean isEventClosed(Event event) {
-        DateTime now = new DateTime();
-        return now.minusHours(propertyProvider.getEventClosedBeforeHours()).isAfter(event.getDateTime());
     }
 
     public static class SlideableInvitationFormPanel extends BasePanel<Invitation> {

@@ -9,5 +9,4 @@ public interface IPropertyProvider {
 
     int getEventsNumPast();
 
-    int getEventClosedBeforeHours();
 }

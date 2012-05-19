@@ -15,7 +15,9 @@ import de.flower.rmt.model.dto.Notification;
 import de.flower.rmt.repository.IEventRepo;
 import de.flower.rmt.service.mail.IMailService;
 import org.apache.commons.lang3.ArrayUtils;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
@@ -51,6 +53,9 @@ public class EventManager extends AbstractService implements IEventManager {
 
     @Autowired
     private IActivityManager activityManager;
+
+    @Value("${event.closed.before.hours}")
+    private Integer eventClosedBeforeHours;
 
     @Override
     @Transactional(readOnly = false)
@@ -93,14 +98,14 @@ public class EventManager extends AbstractService implements IEventManager {
         throw new UnsupportedOperationException("Method not implemented!");
     }
 
-    private List<Event> findAllUpcomingByUser(final User user, EntityPath<?> ... attributes) {
+    private List<Event> findAllUpcomingByUser(final User user, EntityPath<?>... attributes) {
         Check.notNull(user);
         BooleanExpression future = QEvent.event.date.after(new Date());
         BooleanExpression isUser = QEvent.event.invitations.any().user.eq(user);
         return eventRepo.findAll(future.and(isUser), QEvent.event.date.desc(), attributes);
     }
 
-    private List<Event> findLastNByUser(final User user, final int num, EntityPath<?> ... attributes) {
+    private List<Event> findLastNByUser(final User user, final int num, EntityPath<?>... attributes) {
         Check.notNull(user);
         BooleanExpression beforeNow = QEvent.event.date.before(new Date());
         BooleanExpression isUser = QEvent.event.invitations.any().user.eq(user);
@@ -108,7 +113,7 @@ public class EventManager extends AbstractService implements IEventManager {
     }
 
     @Override
-    public List<Event> findAllUpcomingAndLastNByUser(final User user, int num, EntityPath<?> ... attributes) {
+    public List<Event> findAllUpcomingAndLastNByUser(final User user, int num, EntityPath<?>... attributes) {
         List<Event> upcoming = findAllUpcomingByUser(user, attributes);
         List<Event> lastN = findLastNByUser(user, num, attributes);
         upcoming.addAll(lastN);
@@ -179,5 +184,11 @@ public class EventManager extends AbstractService implements IEventManager {
             event.getVenue().getName();
         }
         return event;
+    }
+
+    @Override
+    public boolean isEventClosed(Event event) {
+        DateTime now = new DateTime();
+        return now.minusHours(eventClosedBeforeHours).isAfter(event.getDateTime());
     }
 }

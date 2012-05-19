@@ -22,7 +22,6 @@ public abstract class QuickResponseLabel extends AjaxEditableChoiceLabel<RSVPSta
     private TooltipBehavior tooltipBehavior;
 
     /**
-     *
      * @param id
      * @param status is null for NO_RESPONSE. done to be able to use #defaultNullLabel().
      */
@@ -42,6 +41,20 @@ public abstract class QuickResponseLabel extends AjaxEditableChoiceLabel<RSVPSta
         removeTooltipBehavior();
     }
 
+    /**
+     * just return other than real event to disable edit mode of label.
+     *
+     * @return
+     */
+    @Override
+    protected String getLabelAjaxEvent() {
+        if (isEnabled()) {
+            return super.getLabelAjaxEvent();
+        } else {
+            return "disabled";
+        }
+    }
+
     protected abstract void submitStatus(final RSVPStatus status);
 
     /**
@@ -57,12 +70,19 @@ public abstract class QuickResponseLabel extends AjaxEditableChoiceLabel<RSVPSta
     @Override
     protected void onInitialize() {
         super.onInitialize();
-        if (getModel().getObject() == null) {
-            addTooltipBehavior();
+        // if event is closed add tooltip to tell user he cannot respond
+        if (!isEnabled()) {
+            addTooltipBehavior("player.events.tooltip.event.closed");
+            getLabel().add(AttributeModifier.replace("href", AttributeModifier.VALUELESS_ATTRIBUTE_REMOVE)); // to avoid mouse pointer when hovering over <a> tag
+        } else {
+            if (getModel().getObject() == null) {
+                addTooltipBehavior("player.events.tooltip.no.response");
+            }
         }
         getLabel().add(AttributeModifier.append("class", new AbstractReadOnlyModel<String>() {
             @Override
             public String getObject() {
+                String attr = "";
                 RSVPStatus status = getModel().getObject();
                 if (status == null) {
                     return "";
@@ -79,10 +99,11 @@ public abstract class QuickResponseLabel extends AjaxEditableChoiceLabel<RSVPSta
                 }
             }
         }));
+
     }
 
-    private void addTooltipBehavior() {
-        tooltipBehavior = new TooltipBehavior(new ResourceModel("player.events.tooltip.no.response"));
+    private void addTooltipBehavior(String resourceKey) {
+        tooltipBehavior = new TooltipBehavior(new ResourceModel(resourceKey));
         getLabel().add(tooltipBehavior);
     }
 

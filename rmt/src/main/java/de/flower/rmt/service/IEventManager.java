@@ -61,4 +61,6 @@ public interface IEventManager {
 
     @Deprecated // experimental
     Event initAssociations(Event event, Attribute... attributes);
+
+    boolean isEventClosed(Event event);
 }
