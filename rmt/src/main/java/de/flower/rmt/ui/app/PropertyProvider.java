@@ -15,6 +15,9 @@ public class PropertyProvider implements IPropertyProvider {
     @Value("${events.numpast}")
     private Integer eventsNumPast;
 
+    @Value("${event.closed.before.hours}")
+    private Integer eventClosedBeforeHours;
+
     @Override
     public String getAdminEmail() {
         return adminEmail;
@@ -25,4 +28,8 @@ public class PropertyProvider implements IPropertyProvider {
         return eventsNumPast;
     }
 
- }
+    @Override
+    public int getEventClosedBeforeHours() {
+        return eventClosedBeforeHours;
+    }
+}

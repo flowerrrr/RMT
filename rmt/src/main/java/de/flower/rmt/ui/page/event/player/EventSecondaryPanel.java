@@ -4,18 +4,24 @@ import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.ajax.panel.AjaxSlideTogglePanel;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.Invitation;
+import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.service.security.ISecurityService;
+import de.flower.rmt.ui.app.IPropertyProvider;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.model.InvitationModel;
 import de.flower.rmt.ui.page.event.EventDetailsPanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.joda.time.DateTime;
 
 /**
  * @author flowerrrr
@@ -28,12 +34,27 @@ public class EventSecondaryPanel extends BasePanel {
     @SpringBean
     private IInvitationManager invitationManager;
 
-    public EventSecondaryPanel(IModel<Event> model) {
+    @SpringBean
+    private IPropertyProvider propertyProvider;
+
+    public EventSecondaryPanel(final IModel<Event> model) {
         // treat subpanels as top level secondary panels to have spacer between them
         setRenderBodyOnly(true);
 
         final IModel<Invitation> invitationModel = getInvitationModel(model);
-        add(new SlideableInvitationFormPanel(invitationModel));
+        add(new SlideableInvitationFormPanel(invitationModel) {
+            @Override
+            public boolean isVisible() {
+                return !isEventClosed(model.getObject());
+            }
+        });
+
+        add(new InvitationClosedPanel(model) {
+            @Override
+            public boolean isVisible() {
+                return isEventClosed(model.getObject());
+            }
+        });
 
         add(new EventDetailsPanel(model, View.PLAYER));
 
@@ -54,6 +75,11 @@ public class EventSecondaryPanel extends BasePanel {
 
     private static String getManagerEmailAddress(final Event event) {
         return event.getCreatedBy().getEmail();
+    }
+
+    private boolean isEventClosed(Event event) {
+        DateTime now = new DateTime();
+        return now.minusHours(propertyProvider.getEventClosedBeforeHours()).isAfter(event.getDateTime());
     }
 
     public static class SlideableInvitationFormPanel extends BasePanel<Invitation> {
@@ -84,6 +110,24 @@ public class EventSecondaryPanel extends BasePanel {
             // make form visible if user hasn't responded yet
             // must be called after adding to AjaxSlideTogglePanel
             invitationFormPanel.setVisible(invitationModel.getObject() != null && invitationModel.getObject().getStatus() == RSVPStatus.NORESPONSE);
+        }
+
+        @Override
+        public String getPanelMarkup() {
+            return "<div wicket:id='invitationFormPanel'/>";
+        }
+    }
+
+    public static class InvitationClosedPanel extends BasePanel {
+
+        public InvitationClosedPanel(IModel<Event> model) {
+            add(new Label("message", new StringResourceModel("player.event.closed.message", new PropertyModel<User>(model, "createdBy"))).setEscapeModelStrings(false));
+        }
+
+        @Override
+        public String getPanelMarkup() {
+            return "<h4><wicket:message key=\"player.event.closed\"/></h4>" +
+                    "<span wicket:id=\"message\" />";
         }
     }
 }

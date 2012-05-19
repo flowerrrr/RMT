@@ -4,6 +4,7 @@ import de.flower.common.util.Clazz;
 import de.flower.common.util.Strings;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.behavior.AttributeAppender;
+import org.apache.wicket.markup.Markup;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -50,6 +51,19 @@ public class BasePanel<T> extends GenericPanel<T> {
         }
     }
 
+    protected String getPanelMarkup() {
+        return null;
+    }
+
+    @Override
+    public Markup getAssociatedMarkup() {
+        String markup = getPanelMarkup();
+        if (markup != null) {
+            return Markup.of("<wicket:panel>" + markup + "</wicket:panel>");
+        } else {
+            return super.getAssociatedMarkup();
+        }
+    }
 
     /**
      * Most panels let the basepanel determine the id. using default id provides a

@@ -8,4 +8,6 @@ public interface IPropertyProvider {
     String getAdminEmail();
 
     int getEventsNumPast();
+
+    int getEventClosedBeforeHours();
 }

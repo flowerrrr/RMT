@@ -36,10 +36,15 @@ public class AccountGeneralPanel extends BasePanel {
         TextFieldPanel fullname = new TextFieldPanel("fullname");
         form.add(fullname);
         fullname.addValidator(new FormComponentBeanValidator(User.Validation.INameUnique.class));
+
         TextFieldPanel email = new TextFieldPanel("email");
         form.add(email);
         email.addValidator(new FormComponentBeanValidator(User.Validation.IEmailUnique.class));
+
         TextFieldPanel secondEmail = new TextFieldPanel("secondEmail");
         form.add(secondEmail);
+
+        TextFieldPanel phoneNumber = new TextFieldPanel("phoneNumber");
+        form.add(phoneNumber);
     }
 }

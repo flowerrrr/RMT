@@ -156,6 +156,7 @@ public class TestData {
     public User newUser() {
         User user = new User(newClub());
         user.setEmail(RandomStringUtils.randomAlphabetic(8) + "@acme.com");
+        user.setPhoneNumber("+49-189-8234238");
         user.setFullname(RandomStringUtils.randomAlphabetic(10));
         user.setInitialPassword("1234");
         user.setEncryptedPassword("io8ujalöjdfkalsöj");
@@ -224,6 +225,8 @@ public class TestData {
         Team team = newTeamWithPlayers(15);
         Event event = eventType.newInstance(team.getClub());
         event.setTeam(team);
+        // pick first player as manager who created this event.
+        event.setCreatedBy(team.getPlayers().get(0).getUser());
         event.setDate(new Date());
         event.setTime(new LocalTime());
         if (EventType.isSoccerEvent(event)) {

@@ -59,6 +59,9 @@ public class PlayerGeneralPanel extends BasePanel<User> {
         TextFieldPanel secondEmail = new TextFieldPanel("secondEmail");
         form.add(secondEmail);
 
+        TextFieldPanel phoneNumber = new TextFieldPanel("phoneNumber");
+        form.add(phoneNumber);
+
         CheckBoxPanel manager = new CheckBoxPanel("manager", new CheckBox(AbstractFormFieldPanel.ID, managerModel));
         manager.setVisible(!securityService.isCurrentUser(model.getObject()));
 

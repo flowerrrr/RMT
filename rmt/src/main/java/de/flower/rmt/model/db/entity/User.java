@@ -64,6 +64,9 @@ public class User extends AbstractClubRelatedEntity {
     @Email(message = "{validation.email.valid}")
     private String secondEmail;
 
+    @Size(max = 40)
+    private String phoneNumber;
+
     /**
      * Encrypted password.
      */
@@ -146,6 +149,14 @@ public class User extends AbstractClubRelatedEntity {
 
     public void setSecondEmail(final String secondEmail) {
         this.secondEmail = secondEmail;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(final String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getUsername() {

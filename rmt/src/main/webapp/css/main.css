@@ -73,13 +73,6 @@ li {
     color: @grayDark;
 }
 
-
-
-// override wickets attempt to display disabled links in italic
-span > em {
-    font-style: normal;
-}
-
 .content {
     /* defines border shadow and padding, margin of content */
     background-color: #FFFFFF;
@@ -1116,7 +1109,7 @@ iframe.wetteronline {
             height: 3px;
         }
     }
-    em, .status {
+    .status {
         font-style: italic;
     }
     .btn-more {

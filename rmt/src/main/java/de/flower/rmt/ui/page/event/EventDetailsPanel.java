@@ -80,6 +80,7 @@ public class EventDetailsPanel extends BasePanel<Event> {
                 return getModel().getObject() != null;
             }
         };
+        link.setBeforeDisabledLink("");
         link.add(new FallbackLabel("venue.name", new ResourceModel("venue.nullValid")).setEscapeModelStrings(false));
         add(link);
 
