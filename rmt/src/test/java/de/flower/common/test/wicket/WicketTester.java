@@ -4,7 +4,7 @@ import com.thoughtworks.xstream.converters.ConversionException;
 import de.flower.common.test.StringUtils;
 import de.flower.common.ui.Css;
 import de.flower.common.ui.serialize.Filter;
-import de.flower.common.ui.serialize.LoggingSerializer;
+import de.flower.common.ui.serialize.PageSerializationValidatorListener;
 import junit.framework.AssertionFailedError;
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
@@ -35,9 +35,7 @@ public class WicketTester extends org.apache.wicket.util.tester.WicketTester {
 
     private final static Logger log = LoggerFactory.getLogger(WicketTester.class);
 
-    private Filter filter = new Filter();
-
-    private LoggingSerializer loggingSerializer = new LoggingSerializer(filter);
+    private PageSerializationValidatorListener pageSerializationValidatorListener = new PageSerializationValidatorListener(new Filter());
 
     private boolean serializationCheck = true;
 
@@ -49,8 +47,8 @@ public class WicketTester extends org.apache.wicket.util.tester.WicketTester {
         super(application);
     }
 
-    public Filter getLoggingSerializerFilter() {
-        return filter;
+    public void setPageSerializationValidatorFilter(final Filter filter) {
+        this.pageSerializationValidatorListener.setFilter(filter);
     }
 
     /**
@@ -205,13 +203,11 @@ public class WicketTester extends org.apache.wicket.util.tester.WicketTester {
         final Page page = getLastRenderedPage();
         if (page != null) {
             try {
-                loggingSerializer.notify(page, null);
+                pageSerializationValidatorListener.notify(page, null);
             } catch (final ConversionException e) {
                 // happens if anonymous inner classes in tested panels reference a variable of the test class. in that
-                // case xstream tries
-                // to serialize itself (the instance of this class) away => boom
+                // case xstream tries to serialize itself (the instance of this class) away => boom
                 // strictly spoken it is not a test failure, but should be avoided.
-                // See https://rb-tmp-dev.de.bosch.com/wiki/display/BHOME/2011/10/13/Debugging+serialization+errors+in+Tests
                 log.error(
                         "Cannot check serialized version of your Page/Panel. Are you having references to your test class in your tested panels?",
                         e);

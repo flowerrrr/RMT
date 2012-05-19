@@ -1,8 +1,8 @@
 package de.flower.rmt.ui.page.events.manager;
 
 import de.flower.common.ui.panel.BasePanel;
-import de.flower.rmt.model.RSVPStatus;
-import de.flower.rmt.model.event.Event;
+import de.flower.rmt.model.db.entity.event.Event;
+import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.service.IInvitationManager;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;

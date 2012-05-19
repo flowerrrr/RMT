@@ -2,8 +2,8 @@ package de.flower.rmt.ui.page.event.manager.invitations;
 
 import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.modal.ModalPanel;
-import de.flower.rmt.model.Invitation;
-import de.flower.rmt.model.RSVPStatus;
+import de.flower.rmt.model.db.entity.Invitation;
+import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.ui.markup.html.form.field.TextAreaPanel;
 import de.flower.rmt.ui.markup.html.panel.FormFeedbackPanel;

@@ -1,8 +1,8 @@
 package de.flower.rmt.ui.page.account;
 
-import de.flower.rmt.model.User;
-import de.flower.rmt.service.type.Password;
-import de.flower.rmt.test.AbstractWicketIntegrationTests;
+import de.flower.rmt.model.db.entity.User;
+import de.flower.rmt.model.dto.Password;
+import de.flower.rmt.test.AbstractRMTWicketIntegrationTests;
 import de.flower.rmt.ui.model.UserModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.util.tester.FormTester;
@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 /**
  * @author flowerrrr
  */
-public class AccountPasswordPanelTest extends AbstractWicketIntegrationTests {
+public class AccountPasswordPanelTest extends AbstractRMTWicketIntegrationTests {
 
     @Test
     public void testRender() {

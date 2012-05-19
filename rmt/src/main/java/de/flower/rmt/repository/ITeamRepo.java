@@ -1,6 +1,6 @@
 package de.flower.rmt.repository;
 
-import de.flower.rmt.model.Team;
+import de.flower.rmt.model.db.entity.Team;
 
 /**
  * Uses Spring Data JPA library to define a XXXRepistory

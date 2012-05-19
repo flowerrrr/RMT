@@ -1,8 +1,8 @@
 package de.flower.rmt.service.validation;
 
-import de.flower.rmt.model.User;
-import de.flower.rmt.service.type.Password;
-import de.flower.rmt.test.AbstractIntegrationTests;
+import de.flower.rmt.model.db.entity.User;
+import de.flower.rmt.model.dto.Password;
+import de.flower.rmt.test.AbstractRMTIntegrationTests;
 import org.testng.annotations.Test;
 
 import javax.validation.ConstraintViolation;
@@ -13,7 +13,7 @@ import static org.testng.Assert.*;
 /**
  * @author flowerrrr
  */
-public class PasswordValidatorTest extends AbstractIntegrationTests {
+public class PasswordValidatorTest extends AbstractRMTIntegrationTests {
 
     @Test
     public void testValidation() {

@@ -1,13 +1,13 @@
 package de.flower.common.validation.unique.impl;
 
-import de.flower.rmt.model.Team;
-import de.flower.rmt.test.AbstractIntegrationTests;
+import de.flower.rmt.model.db.entity.Team;
+import de.flower.rmt.test.AbstractRMTIntegrationTests;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
-public class HibernateColumnResolverTest extends AbstractIntegrationTests {
+public class HibernateColumnResolverTest extends AbstractRMTIntegrationTests {
 
     @Autowired
     private HibernateColumnResolver columnResolver;

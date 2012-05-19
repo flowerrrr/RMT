@@ -1,6 +1,6 @@
 package de.flower.common.ui.ajax.event;
 
-import de.flower.common.model.IEntity;
+import de.flower.common.model.db.entity.IEntity;
 import org.apache.wicket.Component;
 import org.apache.wicket.event.Broadcast;
 

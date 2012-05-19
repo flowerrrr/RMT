@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.page.base.player;
 
-import de.flower.rmt.model.event.Event;
+import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.ui.app.IEventListProvider;
 import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.markup.html.form.renderer.EventRenderer;

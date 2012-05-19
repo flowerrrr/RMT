@@ -1,11 +1,11 @@
 package de.flower.rmt.service;
 
 import com.mysema.query.types.EntityPath;
-import de.flower.rmt.model.Team;
-import de.flower.rmt.model.User;
-import de.flower.rmt.model.event.Event;
-import de.flower.rmt.model.event.EventType;
-import de.flower.rmt.model.type.Notification;
+import de.flower.rmt.model.db.entity.Team;
+import de.flower.rmt.model.db.entity.User;
+import de.flower.rmt.model.db.entity.event.Event;
+import de.flower.rmt.model.db.type.EventType;
+import de.flower.rmt.model.dto.Notification;
 
 import javax.persistence.metamodel.Attribute;
 import java.util.List;

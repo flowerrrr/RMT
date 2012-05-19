@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.page.teams.manager
 
-import de.flower.rmt.test.AbstractWicketIntegrationTests
+import de.flower.rmt.test.AbstractRMTWicketIntegrationTests
 import de.flower.rmt.ui.model.TeamModel
 import org.testng.annotations.Test
 
@@ -9,7 +9,7 @@ import org.testng.annotations.Test
  * @author flowerrrr
  */
 
-class TeamEditPanelTest extends AbstractWicketIntegrationTests {
+class TeamEditPanelTest extends AbstractRMTWicketIntegrationTests {
 
     @Test
     def void testRender() {

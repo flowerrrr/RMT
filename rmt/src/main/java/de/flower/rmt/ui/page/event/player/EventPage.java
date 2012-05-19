@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.page.event.player;
 
-import de.flower.rmt.model.event.Event;
+import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.page.base.player.NavigationPanel;

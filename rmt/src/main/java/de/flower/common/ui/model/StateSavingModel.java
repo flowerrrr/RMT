@@ -1,6 +1,6 @@
 package de.flower.common.ui.model;
 
-import de.flower.common.model.IEntity;
+import de.flower.common.model.db.entity.IEntity;
 import org.apache.wicket.model.IModel;
 
 import java.io.Serializable;

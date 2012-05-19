@@ -1,8 +1,8 @@
 package de.flower.rmt.ui.page.event.player;
 
 import de.flower.common.test.wicket.AbstractWicketUnitTests;
-import de.flower.rmt.model.Invitation;
-import de.flower.rmt.model.User;
+import de.flower.rmt.model.db.entity.Invitation;
+import de.flower.rmt.model.db.entity.User;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;

@@ -1,6 +1,6 @@
 package de.flower.rmt.service.mail;
 
-import de.flower.rmt.test.AbstractIntegrationTests;
+import de.flower.rmt.test.AbstractRMTIntegrationTests;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.test.context.ContextConfiguration;
@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
  */
 // use real mailsender (by defaul all unit-tests use mock-mailsender)
 @ContextConfiguration(locations = { "mailServiceTest.xml" } )
-public class MailServiceManualTest extends AbstractIntegrationTests {
+public class MailServiceManualTest extends AbstractRMTIntegrationTests {
 
     private String mailAddress = "das-tool@flower.de";
 

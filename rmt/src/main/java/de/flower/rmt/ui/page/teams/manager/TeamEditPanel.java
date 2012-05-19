@@ -2,7 +2,7 @@ package de.flower.rmt.ui.page.teams.manager;
 
 import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.panel.BasePanel;
-import de.flower.rmt.model.Team;
+import de.flower.rmt.model.db.entity.Team;
 import de.flower.rmt.service.ITeamManager;
 import de.flower.rmt.ui.markup.html.form.CancelableEntityForm;
 import de.flower.rmt.ui.markup.html.form.EntityForm;

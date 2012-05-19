@@ -3,7 +3,7 @@ package de.flower.rmt.service;
 import com.google.common.base.Predicate;
 import de.flower.common.util.Check;
 import de.flower.common.util.NameFinder;
-import de.flower.rmt.model.Opponent;
+import de.flower.rmt.model.db.entity.Opponent;
 import de.flower.rmt.repository.IOpponentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

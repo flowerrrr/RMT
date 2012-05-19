@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.page.venues.manager;
 
-import de.flower.rmt.test.AbstractWicketIntegrationTests;
+import de.flower.rmt.test.AbstractRMTWicketIntegrationTests;
 import de.flower.rmt.ui.model.VenueModel;
 import org.apache.wicket.Component;
 import org.testng.annotations.Test;
@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 /**
  * @author flowerrrr
  */
-public class VenueEditPanelTest extends AbstractWicketIntegrationTests {
+public class VenueEditPanelTest extends AbstractRMTWicketIntegrationTests {
 
     @Test
     public void testRender() {

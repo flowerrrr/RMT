@@ -1,10 +1,10 @@
 package de.flower.rmt.service;
 
-import de.flower.rmt.model.Invitation;
-import de.flower.rmt.model.Player;
-import de.flower.rmt.model.RSVPStatus;
-import de.flower.rmt.model.event.Event;
-import de.flower.rmt.test.AbstractIntegrationTests;
+import de.flower.rmt.model.db.entity.Invitation;
+import de.flower.rmt.model.db.entity.Player;
+import de.flower.rmt.model.db.entity.event.Event;
+import de.flower.rmt.model.db.type.RSVPStatus;
+import de.flower.rmt.test.AbstractRMTIntegrationTests;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -15,7 +15,7 @@ import static org.testng.Assert.*;
  * @author flowerrrr
  */
 
-public class ResponseManagerTest extends AbstractIntegrationTests {
+public class ResponseManagerTest extends AbstractRMTIntegrationTests {
 
     @Test
     public void testFindResponder() {

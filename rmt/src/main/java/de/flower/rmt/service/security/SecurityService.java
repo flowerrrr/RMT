@@ -1,6 +1,6 @@
 package de.flower.rmt.service.security;
 
-import de.flower.rmt.model.User;
+import de.flower.rmt.model.db.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolderStrategy;
 import org.springframework.stereotype.Service;

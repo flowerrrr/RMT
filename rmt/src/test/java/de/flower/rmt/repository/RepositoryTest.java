@@ -1,10 +1,10 @@
 package de.flower.rmt.repository;
 
 import com.mysema.query.types.expr.BooleanExpression;
-import de.flower.rmt.model.QUser;
-import de.flower.rmt.model.Team;
-import de.flower.rmt.model.User;
-import de.flower.rmt.test.AbstractIntegrationTests;
+import de.flower.rmt.model.db.entity.QUser;
+import de.flower.rmt.model.db.entity.Team;
+import de.flower.rmt.model.db.entity.User;
+import de.flower.rmt.test.AbstractRMTIntegrationTests;
 import org.hibernate.LazyInitializationException;
 import org.testng.annotations.Test;
 
@@ -15,7 +15,7 @@ import static org.testng.Assert.*;
 /**
  * @author flowerrrr
  */
-public class RepositoryTest extends AbstractIntegrationTests {
+public class RepositoryTest extends AbstractRMTIntegrationTests {
 
     @Test(expectedExceptions = {LazyInitializationException.class})
     public void testManyToOneLazyFetching() {

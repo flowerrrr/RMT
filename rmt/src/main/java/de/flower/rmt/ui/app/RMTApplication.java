@@ -1,12 +1,7 @@
 package de.flower.rmt.ui.app;
 
-import de.flower.common.ui.serialize.Filter;
-import de.flower.common.ui.serialize.LoggingSerializer;
+import de.flower.common.ui.serialize.ISerializerListener;
 import de.flower.common.ui.serialize.SerializerWrapper;
-import de.flower.rmt.model.RSVPStatus;
-import de.flower.rmt.model.event.EventType;
-import de.flower.rmt.model.type.Notification;
-import de.flower.rmt.service.type.Password;
 import de.flower.rmt.ui.page.about.AboutPage;
 import de.flower.rmt.ui.page.account.AccountPage;
 import de.flower.rmt.ui.page.base.manager.ManagerHomePage;
@@ -30,6 +25,7 @@ import org.apache.wicket.settings.IExceptionSettings;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -37,6 +33,9 @@ import org.springframework.stereotype.Component;
 public class RMTApplication extends WebApplication {
 
     private final static Logger log = LoggerFactory.getLogger(RMTApplication.class);
+
+    @Autowired
+    private ISerializerListener pageSerializationValidatorListener;
 
     public static RMTApplication get() {
         return (RMTApplication) WebApplication.get();
@@ -74,12 +73,7 @@ public class RMTApplication extends WebApplication {
     private void initSerializer() {
         final ISerializer serializer = getFrameworkSettings().getSerializer();
         SerializerWrapper wrapper = new SerializerWrapper(serializer);
-        Filter filter = new Filter("\"de\\.flower\\.rmt\\.model\\.[^-]*?\"");
-        filter.addExclusion(RSVPStatus.class.getName());
-        filter.addExclusion(Password.class.getName());
-        filter.addExclusion(Notification.class.getName());
-        filter.addExclusion(EventType.class.getName());
-        wrapper.addListener(new LoggingSerializer(filter));
+        wrapper.addListener(pageSerializationValidatorListener);
         getFrameworkSettings().setSerializer(wrapper);
     }
 

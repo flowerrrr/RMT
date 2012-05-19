@@ -1,8 +1,8 @@
 package de.flower.rmt.ui.page.event.player;
 
 import de.flower.common.ui.panel.BasePanel;
-import de.flower.rmt.model.Invitation;
-import de.flower.rmt.model.RSVPStatus;
+import de.flower.rmt.model.db.entity.Invitation;
+import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.ui.markup.html.form.EntityForm;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.feedback.ComponentFeedbackMessageFilter;

@@ -1,7 +1,7 @@
 package de.flower.rmt.service.security;
 
-import de.flower.rmt.model.Role;
-import de.flower.rmt.model.User;
+import de.flower.rmt.model.db.entity.Role;
+import de.flower.rmt.model.db.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 

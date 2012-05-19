@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.panel.activityfeed.renderer;
 
-import de.flower.rmt.model.type.activity.AbstractEventMessage;
+import de.flower.rmt.model.db.type.activity.AbstractEventMessage;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.util.Dates;
 import org.apache.wicket.model.Model;

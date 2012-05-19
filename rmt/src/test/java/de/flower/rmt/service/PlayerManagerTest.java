@@ -1,10 +1,10 @@
 package de.flower.rmt.service;
 
-import de.flower.rmt.model.Player;
-import de.flower.rmt.model.Team;
-import de.flower.rmt.model.User;
-import de.flower.rmt.model.event.Event;
-import de.flower.rmt.test.AbstractIntegrationTests;
+import de.flower.rmt.model.db.entity.Player;
+import de.flower.rmt.model.db.entity.Team;
+import de.flower.rmt.model.db.entity.User;
+import de.flower.rmt.model.db.entity.event.Event;
+import de.flower.rmt.test.AbstractRMTIntegrationTests;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -16,7 +16,7 @@ import static org.testng.Assert.*;
  * @author flowerrrr
  */
 
-public class PlayerManagerTest extends AbstractIntegrationTests {
+public class PlayerManagerTest extends AbstractRMTIntegrationTests {
 
     @Test
     public void testFindByEventAndUser() {

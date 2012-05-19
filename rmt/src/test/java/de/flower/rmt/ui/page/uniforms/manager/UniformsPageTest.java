@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.page.uniforms.manager;
 
-import de.flower.rmt.test.AbstractWicketIntegrationTests;
+import de.flower.rmt.test.AbstractRMTWicketIntegrationTests;
 import de.flower.rmt.ui.model.TeamModel;
 import org.testng.annotations.Test;
 
@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
  * @author flowerrrr
  */
 
-public class UniformsPageTest extends AbstractWicketIntegrationTests {
+public class UniformsPageTest extends AbstractRMTWicketIntegrationTests {
 
     @Test
     public void testRender() {

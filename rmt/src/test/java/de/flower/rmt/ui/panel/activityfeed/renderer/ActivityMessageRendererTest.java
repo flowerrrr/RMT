@@ -1,10 +1,10 @@
 package de.flower.rmt.ui.panel.activityfeed.renderer;
 
-import de.flower.rmt.model.RSVPStatus;
-import de.flower.rmt.model.event.EventType;
-import de.flower.rmt.model.type.activity.EmailSentMessage;
-import de.flower.rmt.model.type.activity.EventUpdateMessage;
-import de.flower.rmt.model.type.activity.InvitationUpdateMessage;
+import de.flower.rmt.model.db.type.EventType;
+import de.flower.rmt.model.db.type.RSVPStatus;
+import de.flower.rmt.model.db.type.activity.EmailSentMessage;
+import de.flower.rmt.model.db.type.activity.EventUpdateMessage;
+import de.flower.rmt.model.db.type.activity.InvitationUpdateMessage;
 import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
 import org.testng.annotations.Test;
 

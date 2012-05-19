@@ -1,9 +1,9 @@
 package de.flower.rmt.service;
 
-import de.flower.rmt.model.Invitation;
-import de.flower.rmt.model.RSVPStatus;
-import de.flower.rmt.model.User;
-import de.flower.rmt.model.event.Event;
+import de.flower.rmt.model.db.entity.Invitation;
+import de.flower.rmt.model.db.entity.User;
+import de.flower.rmt.model.db.entity.event.Event;
+import de.flower.rmt.model.db.type.RSVPStatus;
 
 import javax.mail.internet.InternetAddress;
 import javax.persistence.metamodel.Attribute;

@@ -1,6 +1,6 @@
 package de.flower.rmt.service;
 
-import de.flower.rmt.model.Venue;
+import de.flower.rmt.model.db.entity.Venue;
 
 import javax.persistence.metamodel.Attribute;
 import java.util.List;

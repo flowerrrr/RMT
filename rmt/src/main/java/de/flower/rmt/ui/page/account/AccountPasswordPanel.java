@@ -1,9 +1,9 @@
 package de.flower.rmt.ui.page.account;
 
 import de.flower.common.ui.panel.BasePanel;
-import de.flower.rmt.model.User;
+import de.flower.rmt.model.db.entity.User;
+import de.flower.rmt.model.dto.Password;
 import de.flower.rmt.service.IUserManager;
-import de.flower.rmt.service.type.Password;
 import de.flower.rmt.ui.markup.html.form.EntityForm;
 import de.flower.rmt.ui.markup.html.form.field.PasswordTextFieldPanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;

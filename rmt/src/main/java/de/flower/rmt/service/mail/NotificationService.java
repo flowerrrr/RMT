@@ -1,10 +1,11 @@
 package de.flower.rmt.service.mail;
 
-import de.flower.rmt.model.Invitation;
-import de.flower.rmt.model.RSVPStatus;
-import de.flower.rmt.model.User;
-import de.flower.rmt.model.event.*;
-import de.flower.rmt.model.type.Notification;
+import de.flower.rmt.model.db.entity.Invitation;
+import de.flower.rmt.model.db.entity.User;
+import de.flower.rmt.model.db.entity.event.*;
+import de.flower.rmt.model.db.type.EventType;
+import de.flower.rmt.model.db.type.RSVPStatus;
+import de.flower.rmt.model.dto.Notification;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.ui.app.Links;

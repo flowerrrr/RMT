@@ -1,14 +1,14 @@
 package de.flower.rmt.service.mail;
 
-import de.flower.rmt.model.Invitation;
-import de.flower.rmt.model.RSVPStatus;
-import de.flower.rmt.model.Uniform;
-import de.flower.rmt.model.User;
-import de.flower.rmt.model.event.Event;
-import de.flower.rmt.model.event.EventType;
-import de.flower.rmt.model.event.Match;
-import de.flower.rmt.model.type.Notification;
-import de.flower.rmt.test.AbstractWicketIntegrationTests;
+import de.flower.rmt.model.db.entity.Invitation;
+import de.flower.rmt.model.db.entity.Uniform;
+import de.flower.rmt.model.db.entity.User;
+import de.flower.rmt.model.db.entity.event.Event;
+import de.flower.rmt.model.db.entity.event.Match;
+import de.flower.rmt.model.db.type.EventType;
+import de.flower.rmt.model.db.type.RSVPStatus;
+import de.flower.rmt.model.dto.Notification;
+import de.flower.rmt.test.AbstractRMTWicketIntegrationTests;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
@@ -18,7 +18,7 @@ import static org.testng.Assert.*;
  *
  * @author flowerrrr
  */
-public class NotificationServiceTest extends AbstractWicketIntegrationTests {
+public class NotificationServiceTest extends AbstractRMTWicketIntegrationTests {
 
     @Test
     public void testSendResetPasswordMail() {

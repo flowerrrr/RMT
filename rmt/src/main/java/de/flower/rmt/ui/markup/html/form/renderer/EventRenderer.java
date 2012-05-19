@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.markup.html.form.renderer;
 
-import de.flower.rmt.model.event.Event;
-import de.flower.rmt.model.event.EventType;
+import de.flower.rmt.model.db.entity.event.Event;
+import de.flower.rmt.model.db.type.EventType;
 import de.flower.rmt.util.Dates;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.model.ResourceModel;

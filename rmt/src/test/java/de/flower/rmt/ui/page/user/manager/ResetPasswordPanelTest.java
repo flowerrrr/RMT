@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.page.user.manager;
 
-import de.flower.rmt.model.User;
+import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;

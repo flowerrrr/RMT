@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.page.venues.player;
 
-import de.flower.rmt.model.Venue;
+import de.flower.rmt.model.db.entity.Venue;
 import de.flower.rmt.service.IVenueManager;
 import de.flower.rmt.ui.model.VenueModel;
 import de.flower.rmt.ui.page.base.player.NavigationPanel;

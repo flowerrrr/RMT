@@ -1,8 +1,8 @@
 package de.flower.rmt.ui.page.user.manager;
 
-import de.flower.rmt.model.User;
-import de.flower.rmt.model.User_;
-import de.flower.rmt.test.AbstractWicketIntegrationTests;
+import de.flower.rmt.model.db.entity.User;
+import de.flower.rmt.model.db.entity.User_;
+import de.flower.rmt.test.AbstractRMTWicketIntegrationTests;
 import de.flower.rmt.ui.model.UserModel;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.Form;
@@ -14,7 +14,7 @@ import static org.testng.Assert.*;
  * @author flowerrrr
  */
 
-public class PlayerGeneralPanelITest extends AbstractWicketIntegrationTests {
+public class PlayerGeneralPanelITest extends AbstractRMTWicketIntegrationTests {
 
     @Test
     public void validateConstraints() {

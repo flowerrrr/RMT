@@ -1,11 +1,11 @@
 package de.flower.rmt.service;
 
-import de.flower.rmt.model.*;
-import de.flower.rmt.model.event.Event;
-import de.flower.rmt.model.event.EventType;
-import de.flower.rmt.model.event.Match;
-import de.flower.rmt.model.event.QEvent;
-import de.flower.rmt.test.AbstractIntegrationTests;
+import de.flower.rmt.model.db.entity.*;
+import de.flower.rmt.model.db.entity.event.Event;
+import de.flower.rmt.model.db.entity.event.Match;
+import de.flower.rmt.model.db.entity.event.QEvent;
+import de.flower.rmt.model.db.type.EventType;
+import de.flower.rmt.test.AbstractRMTIntegrationTests;
 import org.hibernate.LazyInitializationException;
 import org.joda.time.DateTime;
 import org.testng.annotations.Test;
@@ -19,7 +19,7 @@ import static org.testng.Assert.*;
  * @author flowerrrr
  */
 
-public class EventManagerTest extends AbstractIntegrationTests {
+public class EventManagerTest extends AbstractRMTIntegrationTests {
 
     @Test
     public void testFindUpcomingAndLastNByUser() {

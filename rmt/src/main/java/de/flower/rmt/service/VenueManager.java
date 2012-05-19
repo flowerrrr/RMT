@@ -1,8 +1,8 @@
 package de.flower.rmt.service;
 
 import de.flower.common.util.Check;
-import de.flower.rmt.model.Venue;
-import de.flower.rmt.model.Venue_;
+import de.flower.rmt.model.db.entity.Venue;
+import de.flower.rmt.model.db.entity.Venue_;
 import de.flower.rmt.repository.IVenueRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

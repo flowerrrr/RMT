@@ -1,6 +1,6 @@
 package de.flower.rmt.service.mail;
 
-import de.flower.rmt.model.type.Notification;
+import de.flower.rmt.model.dto.Notification;
 
 /**
  * @author flowerrrr

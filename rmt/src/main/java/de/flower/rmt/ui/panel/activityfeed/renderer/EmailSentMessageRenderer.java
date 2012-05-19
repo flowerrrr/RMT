@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.panel.activityfeed.renderer;
 
-import de.flower.rmt.model.type.activity.EmailSentMessage;
+import de.flower.rmt.model.db.type.activity.EmailSentMessage;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.StringResourceModel;
 

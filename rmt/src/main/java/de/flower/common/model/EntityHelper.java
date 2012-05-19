@@ -1,5 +1,7 @@
 package de.flower.common.model;
 
+import de.flower.common.model.db.entity.IEntity;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.page.uniforms.manager;
 
 import de.flower.common.ui.panel.BasePanel;
-import de.flower.rmt.model.Team;
+import de.flower.rmt.model.db.entity.Team;
 import de.flower.rmt.service.IUniformManager;
 import de.flower.rmt.ui.model.UniformModel;
 import org.apache.wicket.markup.html.link.Link;

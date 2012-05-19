@@ -1,9 +1,9 @@
 package de.flower.rmt.service;
 
 import de.flower.common.util.Check;
-import de.flower.rmt.model.Role;
-import de.flower.rmt.model.User;
-import de.flower.rmt.model.User_;
+import de.flower.rmt.model.db.entity.Role;
+import de.flower.rmt.model.db.entity.User;
+import de.flower.rmt.model.db.entity.User_;
 import de.flower.rmt.repository.IRoleRepo;
 import de.flower.rmt.repository.IUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;

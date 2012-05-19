@@ -2,7 +2,7 @@ package de.flower.rmt.ui.page.user.manager;
 
 import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.panel.BasePanel;
-import de.flower.rmt.model.User;
+import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.service.IRoleManager;
 import de.flower.rmt.service.IUserManager;
 import de.flower.rmt.service.security.ISecurityService;

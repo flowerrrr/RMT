@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.app;
 
-import de.flower.rmt.model.Role;
+import de.flower.rmt.model.db.entity.Role;
 import de.flower.rmt.ui.page.base.manager.ManagerHomePage;
 import de.flower.rmt.ui.page.events.player.EventsPage;
 import de.flower.rmt.ui.page.login.LoginPage;

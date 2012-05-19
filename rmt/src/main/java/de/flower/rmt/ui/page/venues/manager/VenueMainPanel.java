@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.page.venues.manager;
 
 import de.flower.common.ui.panel.BasePanel;
-import de.flower.rmt.model.Venue;
+import de.flower.rmt.model.db.entity.Venue;
 import de.flower.rmt.service.IVenueManager;
 import de.flower.rmt.ui.page.venues.manager.map.VenuesMapPanel;
 import org.apache.wicket.markup.html.WebMarkupContainer;

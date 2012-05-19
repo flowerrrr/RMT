@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.page.event.manager.notification;
 
-import de.flower.rmt.model.event.Event;
+import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
 import de.flower.rmt.test.TestData;
 import org.apache.wicket.model.Model;

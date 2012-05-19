@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.markup.html.form;
 
-import de.flower.rmt.model.Uniform;
+import de.flower.rmt.model.db.entity.Uniform;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 

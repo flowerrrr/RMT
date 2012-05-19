@@ -1,8 +1,13 @@
 package de.flower.rmt.test;
 
 import de.flower.common.util.geo.LatLng;
-import de.flower.rmt.model.*;
-import de.flower.rmt.model.event.*;
+import de.flower.rmt.model.db.entity.*;
+import de.flower.rmt.model.db.entity.event.AbstractSoccerEvent;
+import de.flower.rmt.model.db.entity.event.Event;
+import de.flower.rmt.model.db.entity.event.Event_;
+import de.flower.rmt.model.db.entity.event.Match;
+import de.flower.rmt.model.db.type.EventType;
+import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.repository.*;
 import de.flower.rmt.service.*;
 import org.apache.commons.lang.math.RandomUtils;
@@ -303,7 +308,7 @@ public class TestData {
     }
 
     public User getTestUser() {
-        return userManager.findByUsername(AbstractIntegrationTests.testUserName);
+        return userManager.findByUsername(AbstractRMTIntegrationTests.testUserName);
     }
 
     public Venue newVenue(Club club) {

@@ -1,10 +1,10 @@
 package de.flower.rmt.service;
 
-import de.flower.rmt.model.Team;
-import de.flower.rmt.model.User;
-import de.flower.rmt.model.User_;
-import de.flower.rmt.model.event.Event;
-import de.flower.rmt.test.AbstractIntegrationTests;
+import de.flower.rmt.model.db.entity.Team;
+import de.flower.rmt.model.db.entity.User;
+import de.flower.rmt.model.db.entity.User_;
+import de.flower.rmt.model.db.entity.event.Event;
+import de.flower.rmt.test.AbstractRMTIntegrationTests;
 import org.hibernate.LazyInitializationException;
 import org.testng.annotations.Test;
 
@@ -17,7 +17,7 @@ import static org.testng.Assert.*;
  * @author flowerrrr
  */
 
-public class UserManagerTest extends AbstractIntegrationTests {
+public class UserManagerTest extends AbstractRMTIntegrationTests {
 
     /**
      * Test if clients of service layer can specify

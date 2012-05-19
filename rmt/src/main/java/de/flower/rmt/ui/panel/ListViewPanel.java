@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.panel;
 
-import de.flower.common.model.IEntity;
+import de.flower.common.model.db.entity.IEntity;
 import de.flower.common.ui.markup.html.list.EntityListView;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;

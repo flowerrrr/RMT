@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.model;
 
 import de.flower.common.util.Check;
-import de.flower.rmt.model.Invitation;
+import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.service.IInvitationManager;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 

@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.panel.activityfeed.renderer;
 
-import de.flower.rmt.model.RSVPStatus;
-import de.flower.rmt.model.type.activity.InvitationUpdateMessage;
+import de.flower.rmt.model.db.type.RSVPStatus;
+import de.flower.rmt.model.db.type.activity.InvitationUpdateMessage;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.model.StringResourceModel;

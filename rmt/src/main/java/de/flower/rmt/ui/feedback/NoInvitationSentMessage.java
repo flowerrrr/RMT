@@ -2,7 +2,7 @@ package de.flower.rmt.ui.feedback;
 
 import de.flower.common.ui.feedback.AlertMessage;
 import de.flower.common.ui.feedback.AlertMessagePanel;
-import de.flower.rmt.model.event.Event;
+import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.ui.page.event.manager.EventPage;
 import de.flower.rmt.ui.page.event.manager.EventTabPanel;
 import org.apache.wicket.model.IModel;

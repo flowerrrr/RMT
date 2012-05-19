@@ -1,14 +1,14 @@
 package de.flower.rmt.ui.page.event.manager.invitations;
 
-import de.flower.rmt.model.event.Event;
-import de.flower.rmt.test.AbstractWicketIntegrationTests;
+import de.flower.rmt.model.db.entity.event.Event;
+import de.flower.rmt.test.AbstractRMTWicketIntegrationTests;
 import de.flower.rmt.ui.model.EventModel;
 import org.testng.annotations.Test;
 
 /**
  * @author flowerrrr
  */
-public class InvitationListPanelTest extends AbstractWicketIntegrationTests {
+public class InvitationListPanelTest extends AbstractRMTWicketIntegrationTests {
 
     @Test
     public void testRender() {

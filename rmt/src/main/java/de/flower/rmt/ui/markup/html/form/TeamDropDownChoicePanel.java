@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.markup.html.form;
 
-import de.flower.rmt.model.Team;
+import de.flower.rmt.model.db.entity.Team;
 import de.flower.rmt.service.ITeamManager;
 import de.flower.rmt.ui.markup.html.form.field.DropDownChoicePanel;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;

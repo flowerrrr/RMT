@@ -1,8 +1,8 @@
 package de.flower.rmt.service.mail;
 
 import de.flower.common.util.Check;
-import de.flower.rmt.model.User;
-import de.flower.rmt.model.type.Notification;
+import de.flower.rmt.model.db.entity.User;
+import de.flower.rmt.model.dto.Notification;
 import de.flower.rmt.service.security.ISecurityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

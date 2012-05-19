@@ -1,6 +1,6 @@
 package de.flower.rmt.service.mail;
 
-import de.flower.rmt.test.AbstractIntegrationTests;
+import de.flower.rmt.test.AbstractRMTIntegrationTests;
 import org.springframework.beans.factory.annotation.Value;
 import org.testng.annotations.Test;
 
@@ -12,7 +12,7 @@ import static de.flower.rmt.test.Assert.assertContains;
 /**
  * @author flowerrrr
  */
-public class TemplateServiceTest extends AbstractIntegrationTests {
+public class TemplateServiceTest extends AbstractRMTIntegrationTests {
 
     @Value("${app.title}")
     private String appTitle;

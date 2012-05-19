@@ -1,6 +1,6 @@
 package de.flower.common.validation.unique.impl;
 
-import de.flower.common.model.IEntity;
+import de.flower.common.model.db.entity.IEntity;
 
 import java.util.List;
 

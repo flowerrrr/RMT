@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.model;
 
-import de.flower.rmt.model.Activity;
+import de.flower.rmt.model.db.entity.Activity;
 import de.flower.rmt.service.IActivityManager;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 

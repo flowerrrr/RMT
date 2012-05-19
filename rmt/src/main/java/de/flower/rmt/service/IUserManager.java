@@ -1,9 +1,9 @@
 package de.flower.rmt.service;
 
-import de.flower.rmt.model.Team;
-import de.flower.rmt.model.User;
-import de.flower.rmt.model.event.Event;
-import de.flower.rmt.service.type.Password;
+import de.flower.rmt.model.db.entity.Team;
+import de.flower.rmt.model.db.entity.User;
+import de.flower.rmt.model.db.entity.event.Event;
+import de.flower.rmt.model.dto.Password;
 
 import javax.persistence.metamodel.Attribute;
 import java.util.List;

@@ -2,7 +2,7 @@ package de.flower.rmt.ui.page.user.manager;
 
 import de.flower.common.ui.ajax.markup.html.tab.AbstractAjaxTabbedPanel;
 import de.flower.common.util.Check;
-import de.flower.rmt.model.User;
+import de.flower.rmt.model.db.entity.User;
 import org.apache.wicket.extensions.markup.html.tabs.AbstractTab;
 import org.apache.wicket.extensions.markup.html.tabs.ITab;
 import org.apache.wicket.markup.html.panel.Panel;

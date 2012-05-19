@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.page.error;
 
-import de.flower.rmt.test.AbstractWicketIntegrationTests;
+import de.flower.rmt.test.AbstractRMTWicketIntegrationTests;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.testng.annotations.Test;
@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 /**
  * @author flowerrrr
  */
-public class InternalError500PageTest extends AbstractWicketIntegrationTests {
+public class InternalError500PageTest extends AbstractRMTWicketIntegrationTests {
 
     private RuntimeException exception = new RuntimeException("This is a test");
 

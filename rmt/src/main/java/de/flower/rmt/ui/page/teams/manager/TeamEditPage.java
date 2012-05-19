@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.page.teams.manager;
 
-import de.flower.rmt.model.Team;
+import de.flower.rmt.model.db.entity.Team;
 import de.flower.rmt.ui.model.TeamModel;
 import de.flower.rmt.ui.page.base.manager.ManagerBasePage;
 import de.flower.rmt.ui.page.base.manager.NavigationPanel;

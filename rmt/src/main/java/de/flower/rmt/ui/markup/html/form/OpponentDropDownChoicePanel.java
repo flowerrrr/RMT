@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.markup.html.form;
 
-import de.flower.rmt.model.Opponent;
+import de.flower.rmt.model.db.entity.Opponent;
 import de.flower.rmt.service.IOpponentManager;
 import de.flower.rmt.ui.markup.html.form.field.AbstractFormFieldPanel;
 import de.flower.rmt.ui.markup.html.form.field.DropDownChoicePanel;

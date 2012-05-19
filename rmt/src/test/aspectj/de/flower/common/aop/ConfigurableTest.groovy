@@ -1,7 +1,7 @@
 package de.flower.common.aop
 
 import de.flower.rmt.repository.ITeamRepo
-import de.flower.rmt.test.AbstractIntegrationTests
+import de.flower.rmt.test.AbstractRMTIntegrationTests
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Configurable
 import org.testng.annotations.Test
@@ -12,7 +12,7 @@ import static org.testng.Assert.assertNotNull
  * @author flowerrrr
  */
 @Deprecated // not working
-class ConfigurableTest extends AbstractIntegrationTests {
+class ConfigurableTest extends AbstractRMTIntegrationTests {
 
     @Test(enabled = false)
     def void testConfigurableInjection() {

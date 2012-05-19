@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.panel;
 
-import de.flower.common.model.IEntity;
+import de.flower.common.model.db.entity.IEntity;
 import de.flower.common.test.wicket.AbstractWicketUnitTests;
 import org.apache.wicket.markup.Markup;
 import org.apache.wicket.markup.html.basic.Label;

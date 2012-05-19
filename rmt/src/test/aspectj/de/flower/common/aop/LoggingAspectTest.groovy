@@ -7,8 +7,8 @@ import ch.qos.logback.core.filter.Filter
 import ch.qos.logback.core.spi.FilterReply
 import de.flower.common.test.mock.IListAppender
 import de.flower.common.test.mock.LogBackListAppender
-import de.flower.rmt.model.Club
-import de.flower.rmt.model.Team
+import de.flower.rmt.model.db.entity.Club
+import de.flower.rmt.model.db.entity.Team
 import org.slf4j.LoggerFactory
 import org.testng.annotations.BeforeMethod
 import static org.testng.Assert.assertTrue

@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.page.venues.player;
 
 import de.flower.common.ui.panel.BasePanel;
-import de.flower.rmt.model.Venue;
+import de.flower.rmt.model.db.entity.Venue;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.model.IModel;

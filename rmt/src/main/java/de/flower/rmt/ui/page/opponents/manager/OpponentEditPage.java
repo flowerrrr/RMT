@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.page.opponents.manager;
 
-import de.flower.rmt.model.Opponent;
+import de.flower.rmt.model.db.entity.Opponent;
 import de.flower.rmt.ui.model.OpponentModel;
 import de.flower.rmt.ui.page.base.manager.ManagerBasePage;
 import de.flower.rmt.ui.page.base.manager.NavigationPanel;

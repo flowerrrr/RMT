@@ -1,7 +1,7 @@
 package de.flower.rmt.service;
 
-import de.flower.rmt.model.Team;
-import de.flower.rmt.test.AbstractIntegrationTests;
+import de.flower.rmt.model.db.entity.Team;
+import de.flower.rmt.test.AbstractRMTIntegrationTests;
 import org.springframework.transaction.TransactionStatus;
 import org.testng.annotations.Test;
 
@@ -17,7 +17,7 @@ import static org.testng.Assert.*;
  * @author flowerrrr
  */
 
-public class TeamManagerTest extends AbstractIntegrationTests {
+public class TeamManagerTest extends AbstractRMTIntegrationTests {
 
     @Test
     public void testSave() {

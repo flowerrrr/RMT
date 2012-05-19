@@ -1,12 +1,12 @@
 package de.flower.rmt.ui.page.venues.manager;
 
-import de.flower.rmt.test.AbstractWicketIntegrationTests;
+import de.flower.rmt.test.AbstractRMTWicketIntegrationTests;
 import org.testng.annotations.Test;
 
 /**
  * @author flowerrrr
  */
-public class VenuesPageTest extends AbstractWicketIntegrationTests {
+public class VenuesPageTest extends AbstractRMTWicketIntegrationTests {
 
     @Test
     public void testRender() {

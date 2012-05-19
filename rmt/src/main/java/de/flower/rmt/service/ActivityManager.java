@@ -1,15 +1,15 @@
 package de.flower.rmt.service;
 
 import de.flower.common.util.Check;
-import de.flower.rmt.model.Activity;
-import de.flower.rmt.model.Activity_;
-import de.flower.rmt.model.Invitation;
-import de.flower.rmt.model.Invitation_;
-import de.flower.rmt.model.event.Event;
-import de.flower.rmt.model.event.Event_;
-import de.flower.rmt.model.type.activity.EmailSentMessage;
-import de.flower.rmt.model.type.activity.EventUpdateMessage;
-import de.flower.rmt.model.type.activity.InvitationUpdateMessage;
+import de.flower.rmt.model.db.entity.Activity;
+import de.flower.rmt.model.db.entity.Activity_;
+import de.flower.rmt.model.db.entity.Invitation;
+import de.flower.rmt.model.db.entity.Invitation_;
+import de.flower.rmt.model.db.entity.event.Event;
+import de.flower.rmt.model.db.entity.event.Event_;
+import de.flower.rmt.model.db.type.activity.EmailSentMessage;
+import de.flower.rmt.model.db.type.activity.EventUpdateMessage;
+import de.flower.rmt.model.db.type.activity.InvitationUpdateMessage;
 import de.flower.rmt.repository.IActivityRepo;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;

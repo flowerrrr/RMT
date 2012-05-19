@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.page.squad.manager;
 
-import de.flower.rmt.model.Team;
+import de.flower.rmt.model.db.entity.Team;
 import de.flower.rmt.service.IPlayerManager;
 import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
 import org.apache.wicket.model.Model;

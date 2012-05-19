@@ -2,8 +2,8 @@ package de.flower.rmt.ui.panel;
 
 import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.tooltips.TooltipBehavior;
-import de.flower.rmt.model.Invitation;
-import de.flower.rmt.model.RSVPStatus;
+import de.flower.rmt.model.db.entity.Invitation;
+import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.ui.markup.html.form.renderer.RSVPStatusRenderer;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.extensions.ajax.markup.html.AjaxEditableChoiceLabel;

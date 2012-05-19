@@ -1,6 +1,6 @@
 package de.flower.common.ui.ajax.markup.repeater;
 
-import de.flower.common.model.IIdentifiable;
+import de.flower.common.model.db.entity.IIdentifiable;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.RefreshingView;

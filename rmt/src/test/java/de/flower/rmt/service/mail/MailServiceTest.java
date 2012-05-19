@@ -1,7 +1,7 @@
 package de.flower.rmt.service.mail;
 
-import de.flower.rmt.model.type.Notification;
-import de.flower.rmt.test.AbstractIntegrationTests;
+import de.flower.rmt.model.dto.Notification;
+import de.flower.rmt.test.AbstractRMTIntegrationTests;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
  */
 // use real mailsender (by defaul all unit-tests use mock-mailsender)
 @ContextConfiguration(locations = { "mailServiceTest.xml" } )
-public class MailServiceTest extends AbstractIntegrationTests {
+public class MailServiceTest extends AbstractRMTIntegrationTests {
 
     /**
      * Autowiring will ensure that real mailSender is used.

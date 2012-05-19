@@ -1,8 +1,8 @@
 package de.flower.rmt.ui.page.event.player;
 
-import de.flower.rmt.model.User;
-import de.flower.rmt.model.event.Event;
-import de.flower.rmt.model.event.QEvent;
+import de.flower.rmt.model.db.entity.User;
+import de.flower.rmt.model.db.entity.event.Event;
+import de.flower.rmt.model.db.entity.event.QEvent;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.ui.app.IPropertyProvider;

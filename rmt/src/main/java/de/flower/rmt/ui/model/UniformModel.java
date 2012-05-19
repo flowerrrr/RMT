@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.model;
 
-import de.flower.rmt.model.Team;
-import de.flower.rmt.model.Uniform;
+import de.flower.rmt.model.db.entity.Team;
+import de.flower.rmt.model.db.entity.Uniform;
 import de.flower.rmt.service.IUniformManager;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;

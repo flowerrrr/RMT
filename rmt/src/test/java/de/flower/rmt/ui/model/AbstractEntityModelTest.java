@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.model;
 
-import de.flower.common.model.IEntity;
+import de.flower.common.model.db.entity.IEntity;
 import org.apache.wicket.model.Model;
 import org.testng.annotations.Test;
 

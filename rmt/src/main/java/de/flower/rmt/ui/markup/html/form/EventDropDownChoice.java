@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.markup.html.form;
 
-import de.flower.rmt.model.event.Event;
+import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.ui.markup.html.form.renderer.EventRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.model.IModel;

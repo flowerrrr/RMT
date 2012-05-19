@@ -1,8 +1,8 @@
 package de.flower.rmt.service;
 
-import de.flower.rmt.model.Activity;
-import de.flower.rmt.model.Invitation;
-import de.flower.rmt.model.event.Event;
+import de.flower.rmt.model.db.entity.Activity;
+import de.flower.rmt.model.db.entity.Invitation;
+import de.flower.rmt.model.db.entity.event.Event;
 
 import java.util.List;
 

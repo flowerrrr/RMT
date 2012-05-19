@@ -1,7 +1,8 @@
 package de.flower.common.service.security;
 
-import de.flower.rmt.test.AbstractIntegrationTests;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.testng.annotations.Test;
 
@@ -11,10 +12,11 @@ import org.testng.annotations.Test;
  *
  * @author flowerrrr
  */
-public class PasswordEncoderTool extends AbstractIntegrationTests {
+public class PasswordEncoderTool {
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final static Logger log = LoggerFactory.getLogger(PasswordEncoderTool.class);
+
+    private PasswordEncoder passwordEncoder = new Md5PasswordEncoder();
 
     @Test
     public void encodePassword() {

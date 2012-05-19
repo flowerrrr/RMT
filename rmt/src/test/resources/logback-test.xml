@@ -23,7 +23,7 @@
     <logger name="org.hibernate.SQL" level="DEBUG"/>
     <!-- set to TRACE to see sql parameter values -->
     <logger name="org.hibernate.type" level="DEBUG"/>
-    <logger name="de.flower.rmt.model.type" level="DEBUG" />
+    <logger name="de.flower.rmt.model.db.type" level="DEBUG" />
     <logger name="org.hibernate" level="INFO"/>
     <logger name="org.hibernate.tool.hbm2ddl" level="DEBUG" />
     <!--
@@ -44,7 +44,7 @@
     <logger name="trace.de.flower" level="INFO"/>
     <!-- exceptions to avoid too many output -->
     <logger name="trace.de.flower.common.test" level="INFO" />
-    <logger name="trace.de.flower.common.model.AbstractBaseEntity" level="INFO" />
+    <logger name="trace.de.flower.common.model.db.entity.AbstractBaseEntity" level="INFO" />
     <logger name="trace.de.flower.common.ui.ajax.updatebehavior.AjaxRespondListener" level="INFO" />
     <logger name="trace.de.flower.common.util.xstream.ClassEmittingReflectionConverter" level="INFO" />
     <logger name="trace.de.flower.common.ui.serialize" level="INFO" />

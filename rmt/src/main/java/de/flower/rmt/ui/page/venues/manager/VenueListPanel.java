@@ -5,7 +5,7 @@ import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.ajax.markup.html.AjaxLinkWithConfirmation;
 import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.common.ui.panel.BasePanel;
-import de.flower.rmt.model.Venue;
+import de.flower.rmt.model.db.entity.Venue;
 import de.flower.rmt.service.IVenueManager;
 import de.flower.rmt.ui.model.VenueModel;
 import de.flower.rmt.ui.panel.DropDownMenuPanel;

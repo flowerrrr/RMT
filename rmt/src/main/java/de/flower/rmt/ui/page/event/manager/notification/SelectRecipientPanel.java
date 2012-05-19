@@ -2,8 +2,8 @@ package de.flower.rmt.ui.page.event.manager.notification;
 
 import de.flower.common.ui.modal.ModalPanel;
 import de.flower.common.ui.model.AbstractChainingModel;
-import de.flower.rmt.model.Invitation;
-import de.flower.rmt.model.event.Event;
+import de.flower.rmt.model.db.entity.Invitation;
+import de.flower.rmt.model.db.entity.event.Event;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;

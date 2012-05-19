@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.markup.html.form.renderer;
 
 import de.flower.common.util.Collections;
-import de.flower.rmt.model.Surface;
+import de.flower.rmt.model.db.entity.Surface;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.model.ResourceModel;

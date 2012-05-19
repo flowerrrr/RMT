@@ -1,8 +1,8 @@
 package de.flower.rmt.ui.page.event.manager.edit;
 
-import de.flower.rmt.model.event.Event;
-import de.flower.rmt.model.event.EventType;
-import de.flower.rmt.test.AbstractWicketIntegrationTests;
+import de.flower.rmt.model.db.entity.event.Event;
+import de.flower.rmt.model.db.type.EventType;
+import de.flower.rmt.test.AbstractRMTWicketIntegrationTests;
 import de.flower.rmt.ui.model.EventModel;
 import org.apache.wicket.util.tester.FormTester;
 import org.testng.annotations.Test;
@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 /**
  * @author flowerrrr
  */
-public class EventEditPanelTest extends AbstractWicketIntegrationTests {
+public class EventEditPanelTest extends AbstractRMTWicketIntegrationTests {
 
     @Test
     public void testRender() {

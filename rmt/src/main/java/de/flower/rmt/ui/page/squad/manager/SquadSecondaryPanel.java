@@ -3,7 +3,7 @@ package de.flower.rmt.ui.page.squad.manager;
 import de.flower.common.ui.ajax.behavior.AjaxSlideToggleBehavior;
 import de.flower.common.ui.ajax.panel.AjaxSlideTogglePanel;
 import de.flower.common.ui.panel.BasePanel;
-import de.flower.rmt.model.Team;
+import de.flower.rmt.model.db.entity.Team;
 import org.apache.wicket.model.IModel;
 
 /**

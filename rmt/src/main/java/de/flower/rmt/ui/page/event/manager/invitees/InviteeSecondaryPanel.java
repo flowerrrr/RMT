@@ -2,7 +2,7 @@ package de.flower.rmt.ui.page.event.manager.invitees;
 
 import de.flower.common.ui.ajax.panel.AjaxSlideTogglePanel;
 import de.flower.common.ui.panel.BasePanel;
-import de.flower.rmt.model.event.Event;
+import de.flower.rmt.model.db.entity.event.Event;
 import org.apache.wicket.model.IModel;
 
 /**

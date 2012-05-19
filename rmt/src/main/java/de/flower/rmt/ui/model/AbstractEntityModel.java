@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.model;
 
-import de.flower.common.model.IEntity;
+import de.flower.common.model.db.entity.IEntity;
 import de.flower.common.util.Check;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.model.IModel;

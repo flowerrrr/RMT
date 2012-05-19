@@ -1,6 +1,6 @@
 package org.wicketstuff.jsr303;
 
-import de.flower.common.util.Check;
+import com.google.common.base.Preconditions;
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.html.form.Form;
@@ -47,15 +47,15 @@ public class FormComponentBeanValidator<T> extends Behavior implements INullAcce
     @Override
     public void bind(Component component) {
         form = component.findParent(Form.class);
-        Check.notNull(form);
-        Check.isTrue(component instanceof FormComponent);
+        Preconditions.checkNotNull(form);
+        Preconditions.checkArgument(component instanceof FormComponent);
         if (propertyExpression == null) {
             propertyExpression = getPropertyExpression(component.getDefaultModel());
         }
     }
 
     private static String getPropertyExpression(final IModel<?> model) {
-        Check.notNull(model);
+        Preconditions.checkNotNull(model);
         if (model instanceof AbstractPropertyModel) {
             return ((AbstractPropertyModel) model).getPropertyExpression();
         } else if (model instanceof IChainingModel) {

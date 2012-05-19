@@ -1,6 +1,6 @@
 package de.flower.common.ui.markup.html.list;
 
-import de.flower.common.model.IEntity;
+import de.flower.common.model.db.entity.IEntity;
 import org.apache.wicket.model.IModel;
 
 import javax.persistence.EntityNotFoundException;

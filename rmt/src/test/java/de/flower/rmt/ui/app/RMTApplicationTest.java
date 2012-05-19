@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.app;
 
-import de.flower.rmt.model.Uniform;
+import de.flower.rmt.model.db.entity.Uniform;
 import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.Model;

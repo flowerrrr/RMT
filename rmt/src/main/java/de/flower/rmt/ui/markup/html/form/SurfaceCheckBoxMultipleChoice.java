@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.markup.html.form;
 
-import de.flower.rmt.model.Surface;
+import de.flower.rmt.model.db.entity.Surface;
 import de.flower.rmt.ui.markup.html.form.renderer.SurfaceRenderer;
 import org.apache.wicket.markup.html.form.CheckBoxMultipleChoice;
 

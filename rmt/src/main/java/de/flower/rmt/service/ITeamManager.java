@@ -1,7 +1,7 @@
 package de.flower.rmt.service;
 
-import de.flower.rmt.model.Team;
-import de.flower.rmt.model.User;
+import de.flower.rmt.model.db.entity.Team;
+import de.flower.rmt.model.db.entity.User;
 
 import java.util.List;
 

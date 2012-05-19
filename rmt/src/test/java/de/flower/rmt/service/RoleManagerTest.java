@@ -1,8 +1,8 @@
 package de.flower.rmt.service;
 
-import de.flower.rmt.model.User;
-import de.flower.rmt.model.User_;
-import de.flower.rmt.test.AbstractIntegrationTests;
+import de.flower.rmt.model.db.entity.User;
+import de.flower.rmt.model.db.entity.User_;
+import de.flower.rmt.test.AbstractRMTIntegrationTests;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
@@ -10,7 +10,7 @@ import static org.testng.Assert.*;
 /**
  * @author flowerrrr
  */
-public class RoleManagerTest extends AbstractIntegrationTests {
+public class RoleManagerTest extends AbstractRMTIntegrationTests {
 
     @Test
     public void testRoles() {

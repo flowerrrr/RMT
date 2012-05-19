@@ -1,8 +1,8 @@
 package de.flower.rmt.repository;
 
-import de.flower.rmt.model.Team;
-import de.flower.rmt.model.User;
-import de.flower.rmt.model.event.Event;
+import de.flower.rmt.model.db.entity.Team;
+import de.flower.rmt.model.db.entity.User;
+import de.flower.rmt.model.db.entity.event.Event;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 

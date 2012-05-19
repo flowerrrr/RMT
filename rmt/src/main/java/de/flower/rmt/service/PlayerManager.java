@@ -1,8 +1,8 @@
 package de.flower.rmt.service;
 
 import de.flower.common.util.Check;
-import de.flower.rmt.model.*;
-import de.flower.rmt.model.event.Event;
+import de.flower.rmt.model.db.entity.*;
+import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.repository.IEventRepo;
 import de.flower.rmt.repository.IPlayerRepo;
 import de.flower.rmt.repository.ITeamRepo;

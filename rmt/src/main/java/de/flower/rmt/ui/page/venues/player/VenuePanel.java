@@ -2,7 +2,7 @@ package de.flower.rmt.ui.page.venues.player;
 
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.common.util.geo.LatLng;
-import de.flower.rmt.model.Venue;
+import de.flower.rmt.model.db.entity.Venue;
 import de.flower.rmt.ui.page.venues.manager.map.VenueMapPanel;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.MarkupStream;

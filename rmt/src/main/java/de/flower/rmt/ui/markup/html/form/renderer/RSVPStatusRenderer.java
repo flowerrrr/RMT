@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.markup.html.form.renderer;
 
-import de.flower.rmt.model.RSVPStatus;
+import de.flower.rmt.model.db.type.RSVPStatus;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.model.ResourceModel;
 

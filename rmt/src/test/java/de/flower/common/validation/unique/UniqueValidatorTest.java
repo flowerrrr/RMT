@@ -1,6 +1,6 @@
 package de.flower.common.validation.unique;
 
-import de.flower.common.model.IEntity;
+import de.flower.common.model.db.entity.IEntity;
 import de.flower.common.validation.unique.impl.IColumnResolver;
 import de.flower.common.validation.unique.impl.IRowCountChecker;
 import de.flower.common.validation.unique.impl.UniqueDef;

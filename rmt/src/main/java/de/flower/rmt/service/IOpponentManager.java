@@ -1,6 +1,6 @@
 package de.flower.rmt.service;
 
-import de.flower.rmt.model.Opponent;
+import de.flower.rmt.model.db.entity.Opponent;
 
 /**
  * @author flowerrrr

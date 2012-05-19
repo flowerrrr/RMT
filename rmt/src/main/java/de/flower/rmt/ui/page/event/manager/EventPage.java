@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.page.event.manager;
 
-import de.flower.rmt.model.event.Event;
+import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.feedback.NoInvitationSentMessage;
