@@ -15,7 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -37,11 +36,8 @@ public class FormComponentBeanValidator<T> extends Behavior implements INullAcce
 
     private Form form;
 
-    private Validator validator;
-
     public FormComponentBeanValidator(Class<?>[] groups) {
         this.groups = groups;
-        validator = JSR303Validation.getInstance().getValidator();
     }
 
     public FormComponentBeanValidator(Class<?> group) {
@@ -78,7 +74,7 @@ public class FormComponentBeanValidator<T> extends Behavior implements INullAcce
         setProperty(bean, propertyExpression, validatable.getValue());
 
         log.debug("Validating bean[{}]", bean);
-        Set<ConstraintViolation<T>> violations = validator.validate(bean, groups);
+        Set<ConstraintViolation<T>> violations = JSR303Validation.getValidator().validate(bean, groups);
 
         for (ConstraintViolation<T> v : violations) {
             log.debug("Constraint violation: " + v);

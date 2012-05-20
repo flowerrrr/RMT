@@ -12,7 +12,6 @@ import org.apache.wicket.validation.INullAcceptingValidator;
 import org.apache.wicket.validation.IValidatable;
 
 import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
@@ -45,7 +44,7 @@ public class PropertyValidator<T> implements INullAcceptingValidator<T>, Seriali
 
         final T value = validatable.getValue();
 
-        final Set<?> violations = validator.validateValue(beanClass,
+        final Set<?> violations = JSR303Validation.getValidator().validateValue(beanClass,
                 propertyExpression, value);
         for (final Object v : violations) {
             validatable.error(wrap((ConstraintViolation<?>) v).createError());
@@ -64,13 +63,10 @@ public class PropertyValidator<T> implements INullAcceptingValidator<T>, Seriali
 
     private final Component fc;
 
-    private Validator validator;
-
     public PropertyValidator(FormComponent<T> componentToApplyTo, Class<?> beanClass, String propertyExpression) {
         this.fc = componentToApplyTo;
         this.beanClass = beanClass;
         this.propertyExpression = propertyExpression;
-        validator = JSR303Validation.getInstance().getValidator();
     }
 
     public PropertyValidator(FormComponent<T> componentToApplyTo) {

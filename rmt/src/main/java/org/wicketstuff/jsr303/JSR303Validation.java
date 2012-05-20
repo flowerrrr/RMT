@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.wicketstuff.jsr303;
 
@@ -8,8 +8,6 @@ import de.flower.common.annotation.Patched;
 import org.apache.wicket.Application;
 import org.apache.wicket.MetaDataKey;
 import org.apache.wicket.Session;
-import org.apache.wicket.injection.Injector;
-import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import javax.validation.*;
 import java.util.Locale;
@@ -21,46 +19,42 @@ import java.util.Locale;
  */
 
 @Patched
-public class JSR303Validation
-{
-	public static class WicketSessionLocaleMessageInterpolator implements MessageInterpolator
-	{
-		private final MessageInterpolator delegate;
+public class JSR303Validation {
 
-		public WicketSessionLocaleMessageInterpolator(final MessageInterpolator delegate)
-		{
-			this.delegate = delegate;
-			Preconditions.checkNotNull(delegate, "delegate");
-		}
+    public static class WicketSessionLocaleMessageInterpolator implements MessageInterpolator {
 
-		public String interpolate(final String message, final Context context)
-		{
-			return delegate.interpolate(message, context, Session.get().getLocale());
-		}
+        private final MessageInterpolator delegate;
 
-		public String interpolate(final String message, final Context context, final Locale locale)
-		{
-			return delegate.interpolate(message, context, Session.get().getLocale());
-		}
-	}
+        public WicketSessionLocaleMessageInterpolator(final MessageInterpolator delegate) {
+            this.delegate = delegate;
+            Preconditions.checkNotNull(delegate, "delegate");
+        }
 
-	private ValidatorFactory createFactory()
-	{
+        public String interpolate(final String message, final Context context) {
+            return delegate.interpolate(message, context, Session.get().getLocale());
+        }
 
-		final Configuration<?> configuration = Validation.byDefaultProvider().configure();
-		// FIXME seems like needed for hib-val 4.0.2.? strange enough it does
-		// not respect the locale passed on interpolate call. Working on it.
+        public String interpolate(final String message, final Context context, final Locale locale) {
+            return delegate.interpolate(message, context, Session.get().getLocale());
+        }
+    }
 
-		// geez. they screwed it up.
-		// http://opensource.atlassian.com/projects/hibernate/browse/HV-306
-		// fixed in 4.1.0.beta2 ... Locale.setDefault(Session.get().getLocale());
+    private ValidatorFactory createFactory() {
 
-		final ValidatorFactory validationFactory = configuration.messageInterpolator(
-			new WicketSessionLocaleMessageInterpolator(
-				configuration.getDefaultMessageInterpolator())).buildValidatorFactory();
+        final Configuration<?> configuration = Validation.byDefaultProvider().configure();
+        // FIXME seems like needed for hib-val 4.0.2.? strange enough it does
+        // not respect the locale passed on interpolate call. Working on it.
 
-		return validationFactory;
-	}
+        // geez. they screwed it up.
+        // http://opensource.atlassian.com/projects/hibernate/browse/HV-306
+        // fixed in 4.1.0.beta2 ... Locale.setDefault(Session.get().getLocale());
+
+        final ValidatorFactory validationFactory = configuration.messageInterpolator(
+                new WicketSessionLocaleMessageInterpolator(
+                        configuration.getDefaultMessageInterpolator())).buildValidatorFactory();
+
+        return validationFactory;
+    }
 
     private synchronized ValidatorFactory getFactory() {
         if (validatorFactory == null) {
@@ -69,51 +63,46 @@ public class JSR303Validation
         return validatorFactory;
     }
 
-	private static final JSR303Validation INSTANCE = new JSR303Validation();
+    private static final JSR303Validation INSTANCE = new JSR303Validation();
+
     private ValidatorFactory validatorFactory;
-	private static final MetaDataKey<ViolationMessageRenderer> violationMessageRendererKey = new MetaDataKey<ViolationMessageRenderer>()
-	{
-		private static final long serialVersionUID = 1L;
-	};
 
-	public static final JSR303Validation getInstance()
-	{
-		return INSTANCE;
-	}
+    private static final MetaDataKey<ViolationMessageRenderer> violationMessageRendererKey = new MetaDataKey<ViolationMessageRenderer>() {
+        private static final long serialVersionUID = 1L;
+    };
 
-    @SpringBean
-    private Validator validator;
+    public static final JSR303Validation getInstance() {
+        return INSTANCE;
+    }
 
-	public Validator getValidator()
-	{
-		// return getInstance().getFactory().getValidator();
-        return validator;
-	}
+    public static Validator getValidator() {
+        return getInstance().getFactory().getValidator();
+    }
 
+    private JSR303Validation() {
 
-	private JSR303Validation()
-	{
-         Injector.get().inject(this);
-	}
+    }
 
-	synchronized static ViolationMessageRenderer getViolationMessageRenderer()
-	{
-		final Application app = Application.get();
-		ViolationMessageRenderer renderer = app.getMetaData(violationMessageRendererKey);
-		if (renderer == null)
-		{
-			renderer = new ViolationMessageRenderer.Default();
-			setViolationMessageRenderer(renderer);
-		}
-		return renderer;
-	}
+    public void reset() {
+        validatorFactory = null;
+    }
 
-	public synchronized static void setViolationMessageRenderer(
-		final ViolationMessageRenderer renderer)
-	{
-		Preconditions.checkNotNull(renderer, "renderer");
-		final Application app = Application.get();
-		app.setMetaData(violationMessageRendererKey, renderer);
-	}
+    synchronized
+    static ViolationMessageRenderer getViolationMessageRenderer
+            () {
+        final Application app = Application.get();
+        ViolationMessageRenderer renderer = app.getMetaData(violationMessageRendererKey);
+        if (renderer == null) {
+            renderer = new ViolationMessageRenderer.Default();
+            setViolationMessageRenderer(renderer);
+        }
+        return renderer;
+    }
 
+    public synchronized static void setViolationMessageRenderer(
+            final ViolationMessageRenderer renderer) {
+        Preconditions.checkNotNull(renderer, "renderer");
+        final Application app = Application.get();
+        app.setMetaData(violationMessageRendererKey, renderer);
+    }
 }

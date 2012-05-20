@@ -37,7 +37,7 @@ public class BeanValidator
 			return true;
 		}
 
-		final Set<ConstraintViolation<U>> s = JSR303Validation.getInstance().getValidator().validate(e);
+		final Set<ConstraintViolation<U>> s = JSR303Validation.getValidator().validate(e);
 		if (s.isEmpty())
 		{
 			return true;
