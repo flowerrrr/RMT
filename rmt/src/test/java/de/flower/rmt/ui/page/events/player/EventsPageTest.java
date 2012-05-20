@@ -11,6 +11,7 @@ public class EventsPageTest extends AbstractRMTWicketIntegrationTests {
 
     @Test
     public void testRender() {
+        testData.createEvent();
         wicketTester.startPage(new EventsPage());
         wicketTester.dumpPage();
     }

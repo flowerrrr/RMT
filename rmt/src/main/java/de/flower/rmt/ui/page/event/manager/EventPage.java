@@ -14,11 +14,15 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.http.flow.AbortWithHttpErrorCodeException;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author flowerrrr
  */
 public class EventPage extends ManagerBasePage {
+
+    private final static Logger log = LoggerFactory.getLogger(EventPage.class);
 
     public final static String PARAM_EVENTID = "event";
 
@@ -48,6 +52,7 @@ public class EventPage extends ManagerBasePage {
     public EventPage(IModel<Event> model) {
         super(model);
         init(model);
+        log.warn("check class name");
     }
 
     private void init(IModel<Event> model) {

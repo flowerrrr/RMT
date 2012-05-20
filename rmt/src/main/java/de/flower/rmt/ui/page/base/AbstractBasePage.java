@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class AbstractBasePage extends WebPage implements IAjaxIndicatorAware {
 
-    protected final Logger log = LoggerFactory.getLogger(getClass());
+    private final static Logger log = LoggerFactory.getLogger(AbstractBasePage.class);
 
     @SpringBean
     private ISecurityService securityService;

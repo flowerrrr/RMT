@@ -4,6 +4,8 @@ import de.flower.rmt.ui.page.base.AbstractBaseLayoutPage;
 import de.flower.rmt.ui.page.base.AnonymousNavigationPanel;
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.feedback.IFeedbackMessageFilter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -11,6 +13,8 @@ import java.util.List;
  * @author flowerrrr
  */
 public class InternalError500Page extends AbstractBaseLayoutPage {
+
+    private final static Logger log = LoggerFactory.getLogger(InternalError500Page.class);
 
     public InternalError500Page() {
         setHeading("error.500.heading", "error.500.heading.sub");

@@ -15,7 +15,12 @@
     </bean>
 
     <bean id="filter" class="de.flower.common.ui.serialize.Filter">
-        <constructor-arg value="&quot;de\.flower\.rmt\.model\.db\.entity\.[^-]*?&quot;" />
+        <constructor-arg>
+            <array>
+                <value>"de\.flower\.rmt\.model\.db\.entity\.[^-]*?"</value>
+                <value>"ch\.qos\.logback\.classic\.Logger"</value>
+            </array>
+        </constructor-arg>
     </bean>
 
 </beans>

@@ -84,7 +84,7 @@ public class EventListPanel extends BasePanel {
 
                     @Override
                     public boolean isEnabled() {
-                        return !eventManager.isEventClosed(event);
+                        return !eventManager.isEventClosed(item.getModelObject());
                     }
                 });
             }
