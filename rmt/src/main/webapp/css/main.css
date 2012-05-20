@@ -452,20 +452,23 @@ div.form-horizontal {
     margin-top: 2px;  // increase to have little gap above dropdown menu and navbar
 }
 
+.navbar .brand {
+    padding-bottom: 4px;
+}
+
 .brand a {
     color: #FFFFFF;
     text-decoration: none;
+    display: block;
 }
 
 // position beta span below brand
 
 .beta {
-    display: inline-block;
+    display: block;
     font-size: 10px;
     position: relative;
-    right: 20px;
-    top: 10px;
-    width: 0;
+    left: 48px;
 }
 
 /*************************************************************************
