@@ -3,13 +3,13 @@
  */
 package org.wicketstuff.jsr303;
 
+import com.google.common.base.Preconditions;
 import de.flower.common.annotation.Patched;
 import org.apache.wicket.Application;
 import org.apache.wicket.MetaDataKey;
 import org.apache.wicket.Session;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-import org.wicketstuff.jsr303.util.Assert;
 
 import javax.validation.*;
 import java.util.Locale;
@@ -30,7 +30,7 @@ public class JSR303Validation
 		public WicketSessionLocaleMessageInterpolator(final MessageInterpolator delegate)
 		{
 			this.delegate = delegate;
-			Assert.parameterNotNull(delegate, "delegate");
+			Preconditions.checkNotNull(delegate, "delegate");
 		}
 
 		public String interpolate(final String message, final Context context)
@@ -111,7 +111,7 @@ public class JSR303Validation
 	public synchronized static void setViolationMessageRenderer(
 		final ViolationMessageRenderer renderer)
 	{
-		Assert.parameterNotNull(renderer, "renderer");
+		Preconditions.checkNotNull(renderer, "renderer");
 		final Application app = Application.get();
 		app.setMetaData(violationMessageRendererKey, renderer);
 	}
