@@ -24,8 +24,8 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.joda.time.DateTime;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -101,16 +101,15 @@ public class EventListPanel extends BasePanel {
      * today then given event.
      */
     public static boolean isNextEvent(Event event, List<? extends Event> events) {
-        Date date = event.getDate();
-        long now = new Date().getTime();
-        if (date.getTime() < now) {
+        DateTime date = event.getDateTime();
+        if (date.isBeforeNow()) {
             return false;
         } else {
             for (Event e : events) {
-                if (e.getDate().getTime() < now) {
+                if (e.getDateTime().isBeforeNow()) {
                     continue;
                 } else {
-                    if (e.getDate().getTime() < event.getDate().getTime()) {
+                    if (e.getDateTime().isBefore(event.getDateTime())) {
                         return false;
                     }
                 }
@@ -118,4 +117,5 @@ public class EventListPanel extends BasePanel {
         }
         return true;
     }
+
 }
