@@ -6,6 +6,7 @@ import org.apache.wicket.resource.loader.IStringResourceLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeMethod;
+import org.wicketstuff.jsr303.JSR303Validation;
 
 import java.util.Locale;
 
@@ -39,6 +40,7 @@ public class AbstractWicketUnitTests {
         // for usage of validation needed. not nice but i found no easy way to have
         // two different validation.xml on the test-classpath (one w/o ApplicationContextAwareValidationFactory and one with).
         SpringApplicationContextBridge.getInstance().setApplicationContext(new MockitoFactoryApplicationContext());
+        JSR303Validation.getInstance().reset();
     }
 
 }
