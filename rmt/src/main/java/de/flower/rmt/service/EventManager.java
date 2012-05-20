@@ -189,6 +189,7 @@ public class EventManager extends AbstractService implements IEventManager {
     @Override
     public boolean isEventClosed(Event event) {
         DateTime now = new DateTime();
+        eventRepo.reattach(event);
         return now.minusHours(eventClosedBeforeHours).isAfter(event.getDateTime());
     }
 }

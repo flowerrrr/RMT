@@ -870,6 +870,9 @@ td.rsvpstatus {
     .radio {
         display: block;
     }
+    .form-feedback-panel {
+        margin-top: 10px;
+    }
 }
 .ul-form li {
     margin-top: 10px;
