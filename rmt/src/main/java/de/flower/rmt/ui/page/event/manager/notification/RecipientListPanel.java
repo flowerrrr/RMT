@@ -9,6 +9,7 @@ import de.flower.common.ui.panel.BasePanel;
 import de.flower.common.util.Collections;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.event.Event;
+import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.service.IInvitationManager;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -87,6 +88,13 @@ public class RecipientListPanel extends BasePanel<List<InternetAddress>> {
                 target.add(listContainer);
             }
         });
+        add(new AjaxLink<Event>("addNoResponseAndUnsureButton", eventModel) {
+            @Override
+            public void onClick(final AjaxRequestTarget target) {
+                updateList(target, convert(getNoResponseOrUnsureListModel(getModel()).getObject()));
+                target.add(listContainer);
+            }
+        });
     }
 
     /**
@@ -125,7 +133,7 @@ public class RecipientListPanel extends BasePanel<List<InternetAddress>> {
         };
     }
 
-    protected IModel<List<Invitation>> getUninvitedListModel(final IModel<Event> model) {
+    private IModel<List<Invitation>> getUninvitedListModel(final IModel<Event> model) {
         return new LoadableDetachableModel<List<Invitation>>() {
             @Override
             protected List<Invitation> load() {
@@ -134,6 +142,21 @@ public class RecipientListPanel extends BasePanel<List<InternetAddress>> {
                     @Override
                     public boolean apply(@Nullable final Invitation invitation) {
                         return !invitation.isInvitationSent();
+                    }
+                }));
+            }
+        };
+    }
+
+    private IModel<List<Invitation>> getNoResponseOrUnsureListModel(final IModel<Event> model) {
+        return new LoadableDetachableModel<List<Invitation>>() {
+            @Override
+            protected List<Invitation> load() {
+                List<Invitation> list = invitationManager.findAllForNotificationByEventSortedByName(model.getObject());
+                return Lists.newArrayList(Collections2.filter(list, new Predicate<Invitation>() {
+                    @Override
+                    public boolean apply(@Nullable final Invitation invitation) {
+                        return invitation.getStatus() == RSVPStatus.NORESPONSE || invitation.getStatus() == RSVPStatus.UNSURE;
                     }
                 }));
             }
