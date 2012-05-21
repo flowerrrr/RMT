@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.wicketstuff.jsr303.JSR303Validation;
 
 /**
  * Base class for ui-test that require full application stack down to database.
@@ -35,7 +34,6 @@ public abstract class AbstractRMTWicketIntegrationTests extends AbstractRMTInteg
         if (wicketTester == null) {
             createTester(applicationContext);
         }
-        JSR303Validation.getInstance().reset();
     }
 
     @AfterMethod

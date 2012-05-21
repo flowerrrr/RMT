@@ -9,6 +9,10 @@ import org.springframework.context.ApplicationContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import javax.validation.Validator;
+
+import static org.mockito.Mockito.mock;
+
 /**
  * Base class for wicket test that need @SpringBean to work.
  * Wicket components will get mockito mocks injected whenever
@@ -24,7 +28,11 @@ public abstract class AbstractWicketMockitoTests {
 
     protected WicketTester wicketTester;
 
-    protected MockitoFactoryApplicationContext mockCtx = new MockitoFactoryApplicationContext();
+    protected MockitoFactoryApplicationContext mockCtx = new MockitoFactoryApplicationContext() {
+        {
+            putBean("wicketValidator", mock(Validator.class));
+        }
+    };
 
     @BeforeMethod
     public void init() {
@@ -32,6 +40,7 @@ public abstract class AbstractWicketMockitoTests {
         WebApplication webApp = wicketTester.getApplication();
         SpringComponentInjector injector = new SpringComponentInjector(webApp, mockCtx);
         webApp.getComponentInstantiationListeners().add(injector);
+
         // support for @SpringBean and inject mock beans into test classes.
         // need pass paramater wrapInProxy 'false', cause mockito complains about proxied mocks (SpringComponentInjector wraps
         // a proxy around the inject bean by default).

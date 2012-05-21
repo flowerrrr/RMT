@@ -3,11 +3,13 @@ package org.wicketstuff.jsr303;
 import com.google.common.base.Preconditions;
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
+import org.apache.wicket.injection.Injector;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.model.AbstractPropertyModel;
 import org.apache.wicket.model.IChainingModel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.util.lang.PropertyResolver;
 import org.apache.wicket.validation.INullAcceptingValidator;
 import org.apache.wicket.validation.IValidatable;
@@ -15,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -36,8 +39,12 @@ public class FormComponentBeanValidator<T> extends Behavior implements INullAcce
 
     private Form form;
 
+    @SpringBean(name = "wicketValidator")
+    private Validator validator;
+
     public FormComponentBeanValidator(Class<?>[] groups) {
         this.groups = groups;
+        Injector.get().inject(this);
     }
 
     public FormComponentBeanValidator(Class<?> group) {
@@ -74,7 +81,7 @@ public class FormComponentBeanValidator<T> extends Behavior implements INullAcce
         setProperty(bean, propertyExpression, validatable.getValue());
 
         log.debug("Validating bean[{}]", bean);
-        Set<ConstraintViolation<T>> violations = JSR303Validation.getValidator().validate(bean, groups);
+        Set<ConstraintViolation<T>> violations = validator.validate(bean, groups);
 
         for (ConstraintViolation<T> v : violations) {
             log.debug("Constraint violation: " + v);

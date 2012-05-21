@@ -3,14 +3,17 @@ package org.wicketstuff.jsr303;
 import org.apache.wicket.Application;
 import org.apache.wicket.Component;
 import org.apache.wicket.Localizer;
+import org.apache.wicket.injection.Injector;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.ValidationErrorFeedback;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.util.string.Strings;
 import org.apache.wicket.util.string.interpolator.MapVariableInterpolator;
 import org.apache.wicket.validation.IErrorMessageSource;
 import org.apache.wicket.validation.IValidationError;
 
 import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
@@ -25,9 +28,13 @@ public class BeanValidator
 {
 	private final Form<?> context;
 
+    @SpringBean(name = "wicketValidator")
+    private Validator validator;
+
 	public BeanValidator(final Form<?> contextOrNull)
 	{
 		context = contextOrNull;
+        Injector.get().inject(this);
 	}
 
 	public <U> boolean isValid(final U e)
@@ -37,7 +44,7 @@ public class BeanValidator
 			return true;
 		}
 
-		final Set<ConstraintViolation<U>> s = JSR303Validation.getValidator().validate(e);
+		final Set<ConstraintViolation<U>> s = validator.validate(e);
 		if (s.isEmpty())
 		{
 			return true;

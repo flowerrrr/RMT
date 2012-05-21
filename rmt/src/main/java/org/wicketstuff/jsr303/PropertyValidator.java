@@ -4,14 +4,17 @@ import de.flower.common.annotation.Patched;
 import de.flower.common.util.Check;
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
+import org.apache.wicket.injection.Injector;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.model.AbstractPropertyModel;
 import org.apache.wicket.model.IChainingModel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.validation.INullAcceptingValidator;
 import org.apache.wicket.validation.IValidatable;
 
 import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
@@ -44,7 +47,7 @@ public class PropertyValidator<T> implements INullAcceptingValidator<T>, Seriali
 
         final T value = validatable.getValue();
 
-        final Set<?> violations = JSR303Validation.getValidator().validateValue(beanClass,
+        final Set<?> violations = validator.validateValue(beanClass,
                 propertyExpression, value);
         for (final Object v : violations) {
             validatable.error(wrap((ConstraintViolation<?>) v).createError());
@@ -63,10 +66,14 @@ public class PropertyValidator<T> implements INullAcceptingValidator<T>, Seriali
 
     private final Component fc;
 
+    @SpringBean(name = "wicketValidator")
+    private Validator validator;
+
     public PropertyValidator(FormComponent<T> componentToApplyTo, Class<?> beanClass, String propertyExpression) {
         this.fc = componentToApplyTo;
         this.beanClass = beanClass;
         this.propertyExpression = propertyExpression;
+        Injector.get().inject(this);
     }
 
     public PropertyValidator(FormComponent<T> componentToApplyTo) {

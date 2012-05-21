@@ -9,10 +9,10 @@
 
     <context:annotation-config/>
     <context:component-scan base-package="de.flower.rmt.ui"/>
+    <context:component-scan base-package="de.flower.common.ui"/>
 
-    <bean class="de.flower.common.ui.serialize.PageSerializationValidatorListener">
-        <constructor-arg ref="filter" />
-    </bean>
+    <!-- configure jsr303 validation via javaconfig -->
+    <bean class="org.wicketstuff.jsr303.JSR303SpringConfig" />
 
     <bean id="filter" class="de.flower.common.ui.serialize.Filter">
         <constructor-arg>

@@ -83,10 +83,6 @@ public class JSR303Validation {
 
     }
 
-    public void reset() {
-        validatorFactory = null;
-    }
-
     synchronized
     static ViolationMessageRenderer getViolationMessageRenderer
             () {

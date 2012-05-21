@@ -1,9 +1,9 @@
 package de.flower.rmt.ui.markup.html.form;
 
 import de.flower.common.test.StringUtils;
-import de.flower.common.test.wicket.AbstractWicketUnitTests;
 import de.flower.common.test.wicket.WicketTesterHelper;
 import de.flower.common.ui.ajax.markup.html.form.AjaxSubmitLink;
+import de.flower.rmt.test.AbstractRMTWicketIntegrationTests;
 import de.flower.rmt.test.Assert;
 import de.flower.rmt.ui.markup.html.form.field.TextFieldPanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -27,7 +27,7 @@ import static org.testng.AssertJUnit.assertEquals;
 /**
  * @author flowerrrr
  */
-public class EntityFormTest extends AbstractWicketUnitTests {
+public class EntityFormTest extends AbstractRMTWicketIntegrationTests {
 
     @Test
     public void testRender() {
@@ -44,7 +44,8 @@ public class EntityFormTest extends AbstractWicketUnitTests {
      */
     @Test
     public void testRenderError() {
-        wicketTester.startPage(new EntityFormTestPage(new TestEntity()));
+        TestEntity entity = new TestEntity();
+        wicketTester.startPage(new EntityFormTestPage(entity));
         wicketTester.dumpPage();
         wicketTester.clickLink("submitButton");
         wicketTester.dumpPage();
@@ -124,8 +125,8 @@ public class EntityFormTest extends AbstractWicketUnitTests {
                     + "<form wicket:id='form'>\n"
                     + "<div wicket:id='formFeedbackPanel' />"
                     // can use whatever tag we like, since only the body is rendered
-                    + "<wicket:container wicket:id='name' labelKey='label.name' />\n"
-                    + "<wicket:container wicket:id='password' labelKey='label.name' />\n"
+                    + "<wicket:container wicket:id='name' labelKey='login.username' />\n"
+                    + "<wicket:container wicket:id='password' labelKey='login.password' />\n"
                     + "<a wicket:id='submitButton' >save</a>"
                     + "</form>\n"
                     + "</body></html>", this);

@@ -4,6 +4,8 @@ import com.thoughtworks.xstream.XStream;
 import de.flower.common.util.xstream.ClassEmittingReflectionConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -12,6 +14,7 @@ import java.util.List;
  *
  * @author flowerrrr
  */
+@Component
 public class PageSerializationValidatorListener implements ISerializerListener {
 
     public static class PageSerializationException extends RuntimeException {
@@ -29,6 +32,7 @@ public class PageSerializationValidatorListener implements ISerializerListener {
 
     private Filter filter;
 
+    @Autowired
     public PageSerializationValidatorListener(Filter filter) {
         xstream = new XStream();
         // by default xstream does not output the classname of serialized fields.
