@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.markup.html.form.field;
 
-import de.flower.common.test.wicket.AbstractWicketUnitTests;
 import de.flower.common.test.wicket.WicketTesterHelper;
+import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
 import org.apache.wicket.markup.Markup;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.Form;
@@ -13,7 +13,7 @@ import java.util.Arrays;
 /**
  * @author flowerrrr
  */
-public class FormFieldPanelTest extends AbstractWicketUnitTests {
+public class FormFieldPanelTest extends AbstractRMTWicketMockitoTests {
 
     @Test
     public void testRender() {
@@ -37,9 +37,9 @@ public class FormFieldPanelTest extends AbstractWicketUnitTests {
             return WicketTesterHelper.creatPageMarkup("<html><body>\n"
                     + "<form wicket:id='form'>\n"
                     // can use whatever tag we like, since the tag is rewritten by the panel
-                    + "<foobar wicket:id='name' labelKey='label.name' />\n"
-                    + "<rmt:select wicket:id='time' labelKey='label.time' />\n"
-                    + "<rmt:checkbox wicket:id='flag' labelKey='label.flag' />\n"
+                    + "<foobar wicket:id='name' labelKey='login.username' />\n"
+                    + "<rmt:select wicket:id='time' labelKey='login.password' />\n"
+                    + "<rmt:checkbox wicket:id='flag' labelKey='login.username' />\n"
                     + "</form>\n"
                     + "</body></html>", this);
         }
