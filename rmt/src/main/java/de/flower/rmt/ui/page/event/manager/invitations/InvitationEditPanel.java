@@ -17,7 +17,6 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-import org.wicketstuff.jsr303.BeanValidator;
 
 /**
  * Panel for manager to edit players invitation status and give his own comments.
@@ -55,7 +54,7 @@ public class InvitationEditPanel extends ModalPanel<Invitation> {
 
     @Override
     protected boolean onSubmit(final AjaxRequestTarget target, final Form<Invitation> form) {
-        if (!new BeanValidator(form).isValid(form.getModelObject())) {
+        if (!new org.wicketstuff.jsr303.validator.BeanValidator(form).isValid(form.getModelObject())) {
             target.add(form);
             return false;
         } else {

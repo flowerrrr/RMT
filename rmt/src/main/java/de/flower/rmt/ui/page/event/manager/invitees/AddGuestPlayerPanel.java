@@ -13,7 +13,6 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.hibernate.validator.constraints.NotBlank;
-import org.wicketstuff.jsr303.BeanValidator;
 
 import java.io.Serializable;
 
@@ -41,7 +40,7 @@ public class AddGuestPlayerPanel extends BasePanel<Event> {
         form.add(new AjaxSubmitLink("addButton") {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-                if (!new BeanValidator(form).isValid(form.getModelObject())) {
+                if (!new org.wicketstuff.jsr303.validator.BeanValidator(form).isValid(form.getModelObject())) {
                     onError(target, form);
                 } else {
                     invitationManager.addGuestPlayer(model.getObject(), ((FEntity) form.getModelObject()).guestName);

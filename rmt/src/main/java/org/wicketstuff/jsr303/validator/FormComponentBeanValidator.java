@@ -1,4 +1,4 @@
-package org.wicketstuff.jsr303;
+package org.wicketstuff.jsr303.validator;
 
 import com.google.common.base.Preconditions;
 import org.apache.wicket.Component;
@@ -15,6 +15,7 @@ import org.apache.wicket.validation.INullAcceptingValidator;
 import org.apache.wicket.validation.IValidatable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.wicketstuff.jsr303.PropertyValidationErrorBuilder;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
@@ -85,16 +86,16 @@ public class FormComponentBeanValidator<T> extends Behavior implements INullAcce
 
         for (ConstraintViolation<T> v : violations) {
             log.debug("Constraint violation: " + v);
-            validatable.error(new ViolationErrorBuilder.Property<T>(v).createError());
+            validatable.error(new PropertyValidationErrorBuilder<T>(v).createError());
         }
         setProperty(bean, propertyExpression, origValue);
     }
 
-    private void setProperty(final T bean, final String propertyExpression, final Object value) {
+    private static void setProperty(final Object bean, final String propertyExpression, final Object value) {
         PropertyResolver.setValue(propertyExpression, bean, value, null);
     }
 
-    private Object getProperty(final T bean, final String propertyExpression) {
+    private static Object getProperty(final Object bean, final String propertyExpression) {
         return PropertyResolver.getValue(propertyExpression, bean);
     }
 }

@@ -15,7 +15,7 @@ import org.apache.wicket.util.tester.FormTester;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.ScriptAssert;
 import org.testng.annotations.Test;
-import org.wicketstuff.jsr303.FormComponentBeanValidator;
+import org.wicketstuff.jsr303.validator.FormComponentBeanValidator;
 
 import javax.validation.constraints.Size;
 import javax.validation.groups.Default;

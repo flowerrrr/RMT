@@ -12,7 +12,7 @@
     <context:component-scan base-package="de.flower.common.ui"/>
 
     <!-- configure jsr303 validation via javaconfig -->
-    <bean class="org.wicketstuff.jsr303.JSR303SpringConfig" />
+    <bean class="org.wicketstuff.jsr303.spring.JSR303SpringConfig" />
 
     <bean id="filter" class="de.flower.common.ui.serialize.Filter">
         <constructor-arg>

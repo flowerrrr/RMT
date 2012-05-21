@@ -16,7 +16,6 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.*;
 import org.apache.wicket.validation.IValidator;
-import org.wicketstuff.jsr303.PropertyValidator;
 
 /**
  * @author flowerrrr
@@ -181,7 +180,7 @@ public abstract class AbstractFormFieldPanel extends Panel {
      * @return
      */
     protected IValidator<?> getValidator(FormComponent<?> fc) {
-        return new PropertyValidator(fc);
+        return new org.wicketstuff.jsr303.validator.PropertyValidator(fc);
     }
 
     /**

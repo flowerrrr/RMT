@@ -7,7 +7,6 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
-import org.wicketstuff.jsr303.BeanValidator;
 
 /**
  * Form for editing domain objects.
@@ -44,7 +43,7 @@ public abstract class EntityForm<T> extends Form<T> {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 onBeforeValidation((T) form.getModelObject());
-                if (!new BeanValidator(form).isValid(form.getModelObject())) {
+                if (!new org.wicketstuff.jsr303.validator.BeanValidator(form).isValid(form.getModelObject())) {
                     onError(target, form);
                     target.add(EntityForm.this);
                 } else {

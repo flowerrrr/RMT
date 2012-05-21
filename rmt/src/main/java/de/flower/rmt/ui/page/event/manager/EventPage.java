@@ -52,7 +52,6 @@ public class EventPage extends ManagerBasePage {
     public EventPage(IModel<Event> model) {
         super(model);
         init(model);
-        log.warn("check class name");
     }
 
     private void init(IModel<Event> model) {
