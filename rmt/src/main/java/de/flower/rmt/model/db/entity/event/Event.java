@@ -40,9 +40,10 @@ public class Event extends AbstractClubRelatedEntity {
     private Venue venue;
 
     /**
-     * Only the date-part of Date.
+     * Two separate fields to make form validation easier.
      * Modelled as java.util.Date instead of joda-date cause this makes handling the field
      * in wicket forms much easier.
+     * Time part of this field is always midnight 00:00:00.
      */
     @Column
     @NotNull
@@ -53,6 +54,14 @@ public class Event extends AbstractClubRelatedEntity {
     @NotNull
     @Type(type = "org.joda.time.contrib.hibernate.PersistentLocalTimeAsTime")
     private LocalTime time;
+
+    /**
+     * Field is updated whenever #setDate() or #setTime() is called.
+     */
+    @Column
+    @NotNull
+    @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+    private DateTime dateTime;
 
     @Column
     @NotBlank
@@ -109,25 +118,37 @@ public class Event extends AbstractClubRelatedEntity {
         this.venue = venue;
     }
 
+    // **************************************************
+    // Date functions
+    // **************************************************
+
     public Date getDate() {
+        // must return raw value, otherwise validator would fail.
         return date;
     }
 
+    /**
+     * Setter used by datepicker field.
+     */
+    @Deprecated // use #setDateTime if called from user code.
     public void setDate(Date date) {
-        // normalize date and reset to 0:00:00
-        this.date = new LocalDate(date).toDate();
+        // normalize to midnight
+        this.date = (date == null) ? null : new LocalDate(date).toDate();
+        updateDateTime(this.date);
     }
 
     public LocalTime getTime() {
-        return this.time;
+        // must return raw value, otherwise validator would fail.
+        return time;
     }
 
-    public Date getTimeAsDate() {
-        return (time == null) ? null : time.toDateTimeToday().toDate();
-    }
-
+    /**
+     * Setter for wicket form component
+     */
+    @Deprecated // use #setDateTime if called from user code.
     public void setTime(LocalTime time) {
         this.time = time;
+        updateDateTime(time);
     }
 
     /**
@@ -136,12 +157,56 @@ public class Event extends AbstractClubRelatedEntity {
      * @return
      */
     public DateTime getDateTime() {
-        return new DateTime(this.date).withFields(this.time);
+        return dateTime;
     }
 
-    public Date getDateTimeAsDate() {
-        return getDateTime().toDate();
+    public void setDateTime(final DateTime dateTime) {
+        this.dateTime = dateTime;
+        if (dateTime == null) {
+            this.date = null;
+            this.time = null;
+        } else {
+            this.date = dateTime.toLocalDate().toDate();
+            this.time = dateTime.toLocalTime();
+        }
     }
+
+    /**
+     * Used for wicket date fields.
+     *
+     * @return
+     */
+    public Date getDateTimeAsDate() {
+        return (dateTime == null) ? null : dateTime.toDate();
+    }
+
+    private void updateDateTime(Date date) {
+        if (date == null) {
+            dateTime = null;
+        } else {
+            if (time == null) {
+                dateTime = new DateTime(date);
+            } else {
+                dateTime = new DateTime(date).withFields(time);
+            }
+        }
+    }
+
+    private void updateDateTime(LocalTime time) {
+        if (time == null) {
+            dateTime = null;
+        } else {
+            if (date == null) {
+                dateTime = new DateTime(0).withFields(time);
+            } else {
+                dateTime = new DateTime(date).withFields(time);
+            }
+        }
+    }
+
+    // **************************************************
+    // End Date functions
+    // **************************************************
 
     public String getSummary() {
         return summary;
@@ -183,6 +248,14 @@ public class Event extends AbstractClubRelatedEntity {
         return createdBy;
     }
 
+    public Boolean getCanceled() {
+        return canceled;
+    }
+
+    public void setCanceled(final Boolean canceled) {
+        this.canceled = canceled;
+    }
+
     public void setCreatedBy(final User createdBy) {
         this.createdBy = createdBy;
     }
@@ -190,6 +263,7 @@ public class Event extends AbstractClubRelatedEntity {
     public EventType getEventType() {
         return EventType.from(this);
     }
+
     @Override
     public String toString() {
         return "Event{" +

@@ -40,7 +40,7 @@ public class EventDetailsPanel extends BasePanel<Event> {
 
         add(DateLabel.forDatePattern("date", Dates.DATE_MEDIUM_WITH_WEEKDAY));
 
-        add(DateLabel.forDateStyle("timeAsDate", "-S"));
+        add(DateLabel.forDateStyle("dateTimeAsDate", "-S"));
 
         add(new WebMarkupContainer("kickoffContainer") {
             {

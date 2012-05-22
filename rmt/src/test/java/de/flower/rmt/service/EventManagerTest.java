@@ -63,9 +63,32 @@ public class EventManagerTest extends AbstractRMTIntegrationTests {
     public void testFindAllNextNHours() {
         Event event = testData.createEvent();
         List<Event> events;
-        // event.setDate();
-        events = eventManager.findAllNextNHours(0);
+        event.setDateTime(new DateTime().minusSeconds(1));
+        eventManager.save(event);
+        events = eventManager.findAllNextNHours(1);
+        assertEquals(events.size(), 0);
+
+        event.setDateTime(new DateTime().plusHours(1));
+        eventManager.save(event);
+        events = eventManager.findAllNextNHours(1);
         assertEquals(events.size(), 1);
+
+        event.setDateTime(new DateTime().plusHours(1).plusMinutes(1));
+        eventManager.save(event);
+        events = eventManager.findAllNextNHours(1);
+        assertEquals(events.size(), 0);
+    }
+
+    @Test
+    public void testFindAllNextHoursRespectsCanceledFlag() {
+        Event event = testData.createEvent();
+        event.setDateTime(new DateTime().plusMinutes(1));
+        eventManager.save(event);
+        assertEquals(eventManager.findAllNextNHours(1).size(), 1);
+
+        event.setCanceled(true);
+        eventManager.save(event);
+        assertEquals(eventManager.findAllNextNHours(1).size(), 0);
     }
 
     @Test

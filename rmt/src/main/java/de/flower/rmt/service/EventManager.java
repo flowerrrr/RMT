@@ -26,7 +26,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.metamodel.Attribute;
-import java.util.Date;
 import java.util.List;
 
 import static de.flower.rmt.repository.Specs.*;
@@ -100,14 +99,14 @@ public class EventManager extends AbstractService implements IEventManager {
 
     private List<Event> findAllUpcomingByUser(final User user, EntityPath<?>... attributes) {
         Check.notNull(user);
-        BooleanExpression future = QEvent.event.date.after(new Date());
+        BooleanExpression future = QEvent.event.dateTime.after(new DateTime());
         BooleanExpression isUser = QEvent.event.invitations.any().user.eq(user);
-        return eventRepo.findAll(future.and(isUser), QEvent.event.date.desc(), attributes);
+        return eventRepo.findAll(future.and(isUser), QEvent.event.dateTime.desc(), attributes);
     }
 
     private List<Event> findLastNByUser(final User user, final int num, EntityPath<?>... attributes) {
         Check.notNull(user);
-        BooleanExpression beforeNow = QEvent.event.date.before(new Date());
+        BooleanExpression beforeNow = QEvent.event.dateTime.before(new DateTime());
         BooleanExpression isUser = QEvent.event.invitations.any().user.eq(user);
         return eventRepo.findAll(beforeNow.and(isUser), new PageRequest(0, num, Sort.Direction.DESC, Event_.date.getName()), attributes).getContent();
     }
@@ -124,7 +123,7 @@ public class EventManager extends AbstractService implements IEventManager {
     public List<Event> findAllNextNHours(final int hours) {
         // when: 5 days before event, but at least 48 h after invitation mail
         DateTime now = new DateTime();
-        BooleanExpression insideNextNDays = QEvent.event.date.between(now.toDate(), now.plusHours(hours).toDate());
+        BooleanExpression insideNextNDays = QEvent.event.dateTime.between(now, now.plusHours(hours));
         BooleanExpression notCanceled = QEvent.event.canceled.ne(true);
         return eventRepo.findAll(insideNextNDays.and(notCanceled));
     }

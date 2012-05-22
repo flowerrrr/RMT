@@ -227,8 +227,7 @@ public class TestData {
         event.setTeam(team);
         // pick first player as manager who created this event.
         event.setCreatedBy(team.getPlayers().get(0).getUser());
-        event.setDate(new Date());
-        event.setTime(new LocalTime());
+        event.setDateTime(new DateTime());
         if (EventType.isSoccerEvent(event)) {
             ((AbstractSoccerEvent) event).setKickoff(new LocalTime());
             ((AbstractSoccerEvent) event).setUniform(newUniformList(event.getTeam()).get(0));
@@ -246,9 +245,8 @@ public class TestData {
 
     public Event createEvent(Team team, boolean createInvitations) {
         Event event = eventManager.newInstance(eventType);
-        // use soem time in the future
-        event.setDate(new DateTime().plusHours(RandomUtils.nextInt(1000)).toDate());
-        event.setTime(LocalTime.now());
+        // use some time in the future
+        event.setDateTime(new DateTime().plusHours(RandomUtils.nextInt(1000)));
         event.setSummary("Summary");
         event.setTeam(team);
         event.setVenue(venueManager.loadById(1L));
@@ -275,7 +273,7 @@ public class TestData {
             Event event = createEvent(team, true);
             // events are in the future by default
             if (past) {
-                event.setDate(new DateTime().minusHours(RandomUtils.nextInt(1000)).toDate());
+                event.setDateTime(new DateTime().minusHours(RandomUtils.nextInt(1000)));
             }
             eventManager.save(event);
             list.add(event);
