@@ -5,6 +5,8 @@ import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.dto.Notification;
 
+import java.util.List;
+
 /**
  * @author flowerrrr
  */
@@ -30,4 +32,5 @@ public interface INotificationService {
      */
     Notification newEventNotification(Event event, String eventLink);
 
+    void sendNoResponseReminder(List<Invitation> invitations);
 }

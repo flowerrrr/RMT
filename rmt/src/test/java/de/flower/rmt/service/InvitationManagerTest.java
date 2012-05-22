@@ -24,13 +24,21 @@ public class InvitationManagerTest extends AbstractRMTIntegrationTests {
     public void testMarkInvitationSent() {
         Event event = testData.createEvent();
         final List<String> addressList = new ArrayList<String>();
-        for (Invitation invitation : invitationManager.findAllByEvent(event, Invitation_.user)) {
+        List<Invitation> invitations = invitationManager.findAllByEvent(event, Invitation_.user);
+        for (Invitation invitation : invitations) {
             assertFalse(invitation.isInvitationSent());
             addressList.add(invitation.getEmail());
         }
         invitationManager.markInvitationSent(event, addressList);
         for (Invitation invitation : invitationManager.findAllByEvent(event)) {
             assertTrue(invitation.isInvitationSent());
+            assertNotNull(invitation.getInvitationSentDate());
+        }
+
+        // use test also for other notification markers
+        invitationManager.markNoResponseReminderSent(invitations);
+        for (Invitation invitation : invitationManager.findAllByEvent(event)) {
+            assertTrue(invitation.isNoResponseReminderSent());
         }
     }
 

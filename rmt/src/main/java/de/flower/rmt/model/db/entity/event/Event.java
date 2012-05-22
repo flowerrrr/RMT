@@ -68,6 +68,11 @@ public class Event extends AbstractClubRelatedEntity {
     @Index(name = "ix_invitationsent")
     private Boolean invitationSent;
 
+    @NotNull
+    @Column
+    @Index(name = "ix_canceled")
+    private Boolean canceled = false;
+
     @ManyToOne
     @NotNull
     private User createdBy;

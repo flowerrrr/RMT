@@ -14,12 +14,15 @@ import de.flower.rmt.util.Dates;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.model.StringResourceModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,6 +30,8 @@ import java.util.Map;
  */
 @Service
 public class NotificationService implements INotificationService {
+
+    private final static Logger log = LoggerFactory.getLogger(NotificationService.class);
 
     @Autowired
     private IMailService mailService;
@@ -107,5 +112,10 @@ public class NotificationService implements INotificationService {
         notification.setSubject(templateService.mergeTemplate(EmailTemplate.NOTIFICATION_EVENT.getSubject(), model));
         notification.setBody(templateService.mergeTemplate(EmailTemplate.NOTIFICATION_EVENT.getContent(), model));
         return notification;
+    }
+
+    @Override
+    public void sendNoResponseReminder(final List<Invitation> invitations) {
+        log.info("Sending no response reminder");
     }
 }

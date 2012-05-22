@@ -17,6 +17,7 @@ public interface IEventManager {
 
     /**
      * Saves or updates an event.
+     *
      * @param entity
      */
     void save(Event entity);
@@ -24,6 +25,7 @@ public interface IEventManager {
     /**
      * Creates a new event an also creates invitations for all players of the
      * team of the event.
+     *
      * @param entity
      * @param createInvitations
      */
@@ -33,9 +35,17 @@ public interface IEventManager {
 
     List<Event> findAll(Attribute... attributes);
 
-    List<Event> findAllUpcomingAndLastNByUser(User user, int num, EntityPath<?> ... attributes);
+    List<Event> findAllUpcomingAndLastNByUser(User user, int num, EntityPath<?>... attributes);
+
+    /**
+     * Returns all events scheduled inside the next <code>hours</code>.
+     * Calculated against Event.date - Event.time (not kickOff).
+     */
+    List<Event> findAllNextNHours(int hours);
+
     /**
      * Hard deletes an event and all invitations.
+     *
      * @param id
      */
     void delete(Long id);
@@ -43,6 +53,7 @@ public interface IEventManager {
     /**
      * Soft deletes all events of the team.
      * Soft in case deletion of team was human error to be able to recover.
+     *
      * @param entity
      */
     void deleteByTeam(Team entity);
@@ -51,6 +62,7 @@ public interface IEventManager {
 
     /**
      * Used for deep links. Loads event and checks if user has access rights to this event.
+     *
      * @param id
      * @param user
      * @return
@@ -59,7 +71,8 @@ public interface IEventManager {
 
     void sendInvitationMail(Long id, Notification notification);
 
-    @Deprecated // experimental
+    @Deprecated
+        // experimental
     Event initAssociations(Event event, Attribute... attributes);
 
     boolean isEventClosed(Event event);

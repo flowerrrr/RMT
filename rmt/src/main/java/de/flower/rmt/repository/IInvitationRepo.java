@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,7 +30,10 @@ public interface IInvitationRepo extends IRepository<Invitation, Long> {
     // List<Invitation> findAllByEvent(Event event);
 
     @Modifying
-    @Query("update Invitation i set i.invitationSent = true where i.event = :event and i.user in (select u from User u where u.email in (:addressList))")
-    void markInvitationSent(@Param("event") Event event, @Param("addressList") List<String> addressList);
+    @Query("update Invitation i set i.invitationSent = true, i.invitationSentDate = :date where i.event = :event and i.user in (select u from User u where u.email in (:addressList))")
+    void markInvitationSent(@Param("event") Event event, @Param("addressList") List<String> addressList, @Param("date") Date date);
 
+    @Modifying
+    @Query("update Invitation i set i.noResponseReminderSent = true where i in (:invitations)")
+    void markNoResponseReminderSent(@Param("invitations") List<Invitation> invitations);
 }

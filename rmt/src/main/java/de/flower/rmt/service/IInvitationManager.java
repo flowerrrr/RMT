@@ -45,6 +45,8 @@ public interface IInvitationManager {
 
     Long numByEventAndStatus(Event event, RSVPStatus rsvpStatus);
 
+    List<Invitation> findAllForNoResponseReminder(Event event);
+
     // List<Invitation> findAlByEmails(final Event event, List<String> addressList);
 
     Invitation loadByEventAndUser(Event event, User user);
@@ -56,6 +58,8 @@ public interface IInvitationManager {
     void delete(Long id);
 
     void markInvitationSent(Event event, List<String> addressList);
+
+    void markNoResponseReminderSent(List<Invitation> invitations);
 
     /**
      * Create invitations for given users.

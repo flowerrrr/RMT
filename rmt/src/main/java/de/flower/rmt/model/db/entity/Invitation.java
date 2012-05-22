@@ -46,6 +46,17 @@ public class Invitation extends AbstractBaseEntity {
     @Index(name = "ix_invitationsent")
     private Boolean invitationSent = false;
 
+    @Column
+    private Date invitationSentDate;
+
+    @Column
+    @Index(name = "ix_noresponseremindersent")
+    private Boolean noResponseReminderSent = false;
+
+    @Column
+    @Index(name = "ix_noresponseremindersent")
+    private Boolean unsureReminderSent = false;
+
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @Index(name = "ix_event")
@@ -130,6 +141,18 @@ public class Invitation extends AbstractBaseEntity {
 
     public void setInvitationSent(final Boolean invitationSent) {
         this.invitationSent = invitationSent;
+    }
+
+    public Date getInvitationSentDate() {
+        return invitationSentDate;
+    }
+
+    public Boolean isUnsureReminderSent() {
+        return unsureReminderSent;
+    }
+
+    public Boolean isNoResponseReminderSent() {
+        return noResponseReminderSent;
     }
 
     public String getName() {

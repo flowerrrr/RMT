@@ -121,6 +121,15 @@ public class EventManager extends AbstractService implements IEventManager {
     }
 
     @Override
+    public List<Event> findAllNextNHours(final int hours) {
+        // when: 5 days before event, but at least 48 h after invitation mail
+        DateTime now = new DateTime();
+        BooleanExpression insideNextNDays = QEvent.event.date.between(now.toDate(), now.plusHours(hours).toDate());
+        BooleanExpression notCanceled = QEvent.event.canceled.ne(true);
+        return eventRepo.findAll(insideNextNDays.and(notCanceled));
+    }
+
+    @Override
     @Transactional(readOnly = false)
     public void delete(Long id) {
         Event entity = loadById(id);

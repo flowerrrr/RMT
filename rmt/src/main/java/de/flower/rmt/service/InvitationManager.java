@@ -3,15 +3,14 @@ package de.flower.rmt.service;
 import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
+import com.mysema.query.types.expr.BooleanExpression;
 import de.flower.common.util.Check;
-import de.flower.rmt.model.db.entity.Invitation;
-import de.flower.rmt.model.db.entity.Invitation_;
-import de.flower.rmt.model.db.entity.Player;
-import de.flower.rmt.model.db.entity.User;
+import de.flower.rmt.model.db.entity.*;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.repository.IInvitationRepo;
 import de.flower.rmt.service.mail.INotificationService;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -152,25 +151,36 @@ public class InvitationManager extends AbstractService implements IInvitationMan
         return invitationRepo.numByEventAndStatus(event, rsvpStatus);
     }
 
-/*
     @Override
-    public List<Invitation> findAlByEmails(final Event event, final List<String> addressList) {
-        List<Invitation> list = findAllByEvent(event);
-        Iterator<Invitation> iterator = list.iterator();
-        while (iterator.hasNext()) {
-            Invitation invitation = iterator.next();
-            if (invitation.getEmail() != null) {
-                if (!addressList.contains(invitation.getEmail())) {
-                     iterator.remove();
-                }
-            } else {
-                // guest player
-                iterator.remove();
-            }
-        }
-        return list;
+    public List<Invitation> findAllForNoResponseReminder(final Event event) {
+        DateTime now = new DateTime();
+        BooleanExpression isEvent = QInvitation.invitation.event.eq(event);
+        // no invitation sent yet -> cannot blame user for not having responded.
+        BooleanExpression isInvitationSent = QInvitation.invitation.invitationSent.eq(true);
+        BooleanExpression isNoResponse = QInvitation.invitation.status.eq(RSVPStatus.NORESPONSE);
+        BooleanExpression twoDaysAfterInvitationSent = QInvitation.invitation.invitationSentDate.before(now.minusHours(48).toDate());
+        return invitationRepo.findAll(isEvent.and(isInvitationSent).and(isNoResponse).and(twoDaysAfterInvitationSent));
     }
-*/
+
+    /*
+        @Override
+        public List<Invitation> findAlByEmails(final Event event, final List<String> addressList) {
+            List<Invitation> list = findAllByEvent(event);
+            Iterator<Invitation> iterator = list.iterator();
+            while (iterator.hasNext()) {
+                Invitation invitation = iterator.next();
+                if (invitation.getEmail() != null) {
+                    if (!addressList.contains(invitation.getEmail())) {
+                         iterator.remove();
+                    }
+                } else {
+                    // guest player
+                    iterator.remove();
+                }
+            }
+            return list;
+        }
+    */
 
     @Override
     public Invitation loadByEventAndUser(Event event, User user) {
@@ -237,11 +247,19 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     }
 
     @Override
+    @Transactional(readOnly = false)
     public void markInvitationSent(final Event event, final List<String> addressList) {
-        invitationRepo.markInvitationSent(event, addressList);
+        invitationRepo.markInvitationSent(event, addressList, new Date());
     }
 
     @Override
+    @Transactional(readOnly = false)
+    public void markNoResponseReminderSent(final List<Invitation> invitations) {
+        invitationRepo.markNoResponseReminderSent(invitations);
+    }
+
+    @Override
+    @Transactional(readOnly = false)
     public void addUsers(final Event entity, final Collection<Long> userIds) {
         for (Long userId : userIds) {
             User user = userManager.loadById(userId);
@@ -251,6 +269,7 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     }
 
     @Override
+    @Transactional(readOnly = false)
     public void addGuestPlayer(final Event entity, final String guestName) {
         Invitation invitation = newInstance(entity, guestName);
         save(invitation);

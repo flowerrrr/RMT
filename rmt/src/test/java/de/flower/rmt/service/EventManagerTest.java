@@ -60,6 +60,15 @@ public class EventManagerTest extends AbstractRMTIntegrationTests {
     }
 
     @Test
+    public void testFindAllNextNHours() {
+        Event event = testData.createEvent();
+        List<Event> events;
+        // event.setDate();
+        events = eventManager.findAllNextNHours(0);
+        assertEquals(events.size(), 1);
+    }
+
+    @Test
     public void testUpcomingEventsByUserEagerFetchesTeams() {
         Team team = testData.createTeamWithPlayers("test team", 10);
         List<Event> events = testData.createEventsWithInvitations(team, 3, true);
