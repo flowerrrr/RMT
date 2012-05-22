@@ -88,7 +88,7 @@ public class EventManager extends AbstractService implements IEventManager {
 
     @Override
     public List<Event> findAll(Attribute... attributes) {
-        List<Event> list = eventRepo.findAll(where(desc(Event_.date)).and(fetch(attributes)));
+        List<Event> list = eventRepo.findAll(where(desc(Event_.dateTime)).and(fetch(attributes)));
         return list;
     }
 
@@ -173,7 +173,7 @@ public class EventManager extends AbstractService implements IEventManager {
         event.setInvitationSent(true);
         eventRepo.save(event);
         // update all invitations and mark them also with invitationSent = true (allows to later add invitations and send mails to new participants)
-        invitationManager.markInvitationSent(event, notification.getAddressList());
+        invitationManager.markInvitationSent(event, notification.getAddressList(), null);
         activityManager.onInvitationMailSent(event);
     }
 

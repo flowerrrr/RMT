@@ -13,6 +13,8 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.validation.INullAcceptingValidator;
 import org.apache.wicket.validation.IValidatable;
 import org.apache.wicket.validation.IValidationError;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.wicketstuff.jsr303.PropertyValidationErrorBuilder;
 
 import javax.validation.ConstraintViolation;
@@ -30,6 +32,8 @@ import java.util.Set;
  */
 @Patched
 public class PropertyValidator<T> implements INullAcceptingValidator<T>, Serializable {
+
+    private final static Logger log = LoggerFactory.getLogger(PropertyValidator.class);
 
     private static final long serialVersionUID = 1L;
 
@@ -77,6 +81,7 @@ public class PropertyValidator<T> implements INullAcceptingValidator<T>, Seriali
 
         final Set<ConstraintViolation<T>> violations = validator.validateValue(beanClass, propertyExpression, value);
         for (final ConstraintViolation v : violations) {
+            log.debug("Constraint violation: " + v);
             final IValidationError ve = new PropertyValidationErrorBuilder<T>(v).createError();
             validatable.error(ve);
         }

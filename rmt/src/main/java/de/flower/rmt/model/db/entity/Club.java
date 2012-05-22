@@ -59,4 +59,11 @@ public class Club extends AbstractBaseEntity {
             this.lng = latLng.getLng();
         }
     }
+
+    @Override
+    public String toString() {
+        return "Club{" +
+                "name='" + name + '\'' +
+                "} " + super.toString();
+    }
 }

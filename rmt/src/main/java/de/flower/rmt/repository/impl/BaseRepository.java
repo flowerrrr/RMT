@@ -9,7 +9,6 @@ import de.flower.common.model.db.entity.AbstractBaseEntity_;
 import de.flower.common.model.db.entity.QAbstractBaseEntity;
 import de.flower.common.model.db.type.ObjectStatus;
 import de.flower.common.repository.QueryDslJpaRepository2;
-import de.flower.common.spring.SpringApplicationContextBridge;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.AbstractClubRelatedEntity;
 import de.flower.rmt.model.db.entity.AbstractClubRelatedEntity_;
@@ -41,11 +40,11 @@ public class BaseRepository<T extends AbstractBaseEntity, ID extends Serializabl
 
     private ISecurityService securityService;
 
-    public BaseRepository(JpaEntityInformation<T, ID> entityInformation, EntityManager entityManager) {
+    public BaseRepository(JpaEntityInformation<T, ID> entityInformation, EntityManager entityManager, final ISecurityService securityService) {
         super(entityInformation, entityManager);
         this.em = entityManager;
         this.entityInformation = entityInformation;
-        this.securityService = (ISecurityService) SpringApplicationContextBridge.getInstance().getBean("securityService");
+        this.securityService = securityService;
     }
 
     public void reattach(T entity) {

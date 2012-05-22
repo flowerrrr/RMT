@@ -152,14 +152,23 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     }
 
     @Override
-    public List<Invitation> findAllForNoResponseReminder(final Event event) {
+    public List<Invitation> findAllForNoResponseReminder(final Event event, final int hoursAfterInvitationSent) {
         DateTime now = new DateTime();
         BooleanExpression isEvent = QInvitation.invitation.event.eq(event);
         // no invitation sent yet -> cannot blame user for not having responded.
         BooleanExpression isInvitationSent = QInvitation.invitation.invitationSent.eq(true);
         BooleanExpression isNoResponse = QInvitation.invitation.status.eq(RSVPStatus.NORESPONSE);
-        BooleanExpression twoDaysAfterInvitationSent = QInvitation.invitation.invitationSentDate.before(now.minusHours(48).toDate());
-        return invitationRepo.findAll(isEvent.and(isInvitationSent).and(isNoResponse).and(twoDaysAfterInvitationSent));
+        BooleanExpression isHoursAfterInvitationSent = QInvitation.invitation.invitationSentDate.before(now.minusHours(hoursAfterInvitationSent).toDate());
+        BooleanExpression isNotReminderSent = QInvitation.invitation.noResponseReminderSent.eq(false);
+        return invitationRepo.findAll(isEvent.and(isInvitationSent).and(isNoResponse).and(isHoursAfterInvitationSent).and(isNotReminderSent), QInvitation.invitation.user);
+    }
+
+    @Override
+    public List<Invitation> findAllForUnsureReminder(final Event event) {
+        BooleanExpression isEvent = QInvitation.invitation.event.eq(event);
+        BooleanExpression isUnsure = QInvitation.invitation.status.eq(RSVPStatus.UNSURE);
+        BooleanExpression isNotReminderSent = QInvitation.invitation.unsureReminderSent.eq(false);
+        return invitationRepo.findAll(isEvent.and(isUnsure).and(isNotReminderSent), QInvitation.invitation.user);
     }
 
     /*
@@ -248,14 +257,19 @@ public class InvitationManager extends AbstractService implements IInvitationMan
 
     @Override
     @Transactional(readOnly = false)
-    public void markInvitationSent(final Event event, final List<String> addressList) {
-        invitationRepo.markInvitationSent(event, addressList, new Date());
+    public void markInvitationSent(final Event event, final List<String> addressList, Date date) {
+        invitationRepo.markInvitationSent(event, addressList, date == null ? new Date() : date);
     }
 
     @Override
     @Transactional(readOnly = false)
     public void markNoResponseReminderSent(final List<Invitation> invitations) {
         invitationRepo.markNoResponseReminderSent(invitations);
+    }
+
+    @Override
+    public void markUnsureReminderSent(final List<Invitation> invitations) {
+        invitationRepo.markUnsureReminderSent(invitations);
     }
 
     @Override

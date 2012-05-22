@@ -8,6 +8,7 @@ import de.flower.rmt.model.db.type.RSVPStatus;
 import javax.mail.internet.InternetAddress;
 import javax.persistence.metamodel.Attribute;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -45,7 +46,9 @@ public interface IInvitationManager {
 
     Long numByEventAndStatus(Event event, RSVPStatus rsvpStatus);
 
-    List<Invitation> findAllForNoResponseReminder(Event event);
+    List<Invitation> findAllForNoResponseReminder(Event event, final int hoursAfterInvitationSent);
+
+    List<Invitation> findAllForUnsureReminder(Event event);
 
     // List<Invitation> findAlByEmails(final Event event, List<String> addressList);
 
@@ -57,9 +60,17 @@ public interface IInvitationManager {
 
     void delete(Long id);
 
-    void markInvitationSent(Event event, List<String> addressList);
+    /**
+     *
+     * @param event
+     * @param addressList list of email-addresses (matched against user-email, not secondary email)
+     * @param date visible for testing, if null will be replaced with current date
+     */
+    void markInvitationSent(Event event, List<String> addressList, Date date);
 
     void markNoResponseReminderSent(List<Invitation> invitations);
+
+    void markUnsureReminderSent(List<Invitation> invitations);
 
     /**
      * Create invitations for given users.

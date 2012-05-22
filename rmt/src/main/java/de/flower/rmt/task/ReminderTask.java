@@ -1,22 +1,27 @@
 package de.flower.rmt.task;
 
+import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.service.mail.INotificationService;
+import de.flower.rmt.service.security.ISecurityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
  * @author flowerrrr
  */
-@Component
+@Service
+@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 public class ReminderTask {
 
     private final static Logger log = LoggerFactory.getLogger(ReminderTask.class);
@@ -28,29 +33,49 @@ public class ReminderTask {
     private INotificationService notificationService;
 
     @Autowired
+    private ISecurityService securityService;
+
+    @Autowired
     private IEventManager eventManager;
 
-    // @Scheduled(cron = "0 0 6 * * ?")  // run at 6 in the morning
-    @Scheduled(cron = "0 * * * * ?")
-    public void sendReminderMails() {
-        log.info("Running job [sendReminderMails]");
-        sendNoResponseReminder();
-        sendUnsureReminder();
-    }
+    @Value("${reminder.noresponse.days.before.event}")
+    private Integer noResponseDaysBeforeEvent;
+
+    @Value("${reminder.noresponse.hours.after.invitation}")
+    private Integer hoursAfterInvitationSent;
+
+    @Value("${reminder.unsure.hours.before.event}")
+    private Integer unsureReminderHoursBeforeEvent;
 
     public void sendNoResponseReminder() {
+        Check.notNull(securityService.getUser().getClub());
         // select events eligible for reminding users
-        List<Event> events = eventManager.findAllNextNHours(5 * 24);
+        List<Event> events = eventManager.findAllNextNHours(noResponseDaysBeforeEvent * 24);
 
         for (Event event : events) {
             log.info("Checking no response reminders for [{}].", event);
-            List<Invitation> invitations = invitationManager.findAllForNoResponseReminder(event);
-            notificationService.sendNoResponseReminder(invitations);
-            invitationManager.markNoResponseReminderSent(invitations);
+            List<Invitation> invitations = invitationManager.findAllForNoResponseReminder(event, hoursAfterInvitationSent);
+            if (!invitations.isEmpty()) {
+                // first mark as sent to avoid repeated sending of mails if marking fails
+                invitationManager.markNoResponseReminderSent(invitations);
+                notificationService.sendNoResponseReminder(event, invitations);
+            }
         }
     }
 
     public void sendUnsureReminder() {
+        Check.notNull(securityService.getUser().getClub());
+        // select events eligible for reminding users
+        List<Event> events = eventManager.findAllNextNHours(unsureReminderHoursBeforeEvent);
 
+        for (Event event : events) {
+            log.info("Checking unsure response reminders for [{}].", event);
+            List<Invitation> invitations = invitationManager.findAllForUnsureReminder(event);
+            if (!invitations.isEmpty()) {
+                // first mark as sent to avoid repeated sending of mails if marking fails
+                invitationManager.markUnsureReminderSent(invitations);
+                notificationService.sendUnsureReminder(event, invitations);
+            }
+        }
     }
 }

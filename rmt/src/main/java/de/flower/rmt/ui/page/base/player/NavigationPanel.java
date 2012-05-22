@@ -11,12 +11,12 @@ import de.flower.rmt.ui.page.events.player.EventsPage;
 import de.flower.rmt.ui.page.venues.player.VenuesPage;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import java.util.List;
@@ -41,13 +41,7 @@ public class NavigationPanel extends AbstractNavigationPanel {
         events.add(new ListView<Event>("eventList", getEventListModel()) {
             @Override
             protected void populateItem(final ListItem<Event> item) {
-                Link link = new Link<Long>("link", Model.of(item.getModelObject().getId())) {
-
-                    @Override
-                    public void onClick() {
-                        setResponsePage(EventPage.class, EventPage.getPageParams(getModel().getObject()));
-                    }
-                };
+                Link link = new BookmarkablePageLink("link", EventPage.class,  EventPage.getPageParams(item.getModelObject().getId()));
                 link.add(new Label("label", EventRenderer.getTypeDateSummary(item.getModelObject())));
                 item.add(link);
             }

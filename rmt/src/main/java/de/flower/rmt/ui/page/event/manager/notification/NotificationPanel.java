@@ -8,8 +8,8 @@ import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.dto.Notification;
 import de.flower.rmt.service.IEventManager;
+import de.flower.rmt.service.ILinkProvider;
 import de.flower.rmt.service.mail.INotificationService;
-import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.markup.html.form.EntityForm;
 import de.flower.rmt.ui.markup.html.form.field.*;
 import org.apache.wicket.AttributeModifier;
@@ -36,6 +36,9 @@ public class NotificationPanel extends BasePanel {
 
     @SpringBean
     private INotificationService notificationService;
+
+    @SpringBean(name = "wicketLinkProvider")
+    private ILinkProvider linkProvider;
 
     public NotificationPanel(String id, final IModel<Event> model) {
         super(id, model);
@@ -85,7 +88,7 @@ public class NotificationPanel extends BasePanel {
     }
 
     private Notification newNotification(Event event) {
-        return notificationService.newEventNotification(event, Links.deepLinkEvent(event.getId()));
+        return notificationService.newEventNotification(event, linkProvider.deepLinkEvent(event.getId()));
     }
 
     /**

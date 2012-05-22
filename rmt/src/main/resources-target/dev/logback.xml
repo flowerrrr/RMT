@@ -75,7 +75,7 @@
         <appender-ref ref="XSTREAM_FILE"/>
     </logger>
 
-    <root level="INFO">
+    <root level="DEBUG">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILE"/>
         <appender-ref ref="FILE-ERROR"/>

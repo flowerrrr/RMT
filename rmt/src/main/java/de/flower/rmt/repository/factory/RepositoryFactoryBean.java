@@ -1,6 +1,8 @@
 package de.flower.rmt.repository.factory;
 
 import de.flower.rmt.repository.impl.BaseRepository;
+import de.flower.rmt.service.security.ISecurityService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
@@ -16,16 +18,22 @@ import java.io.Serializable;
  */
 public class RepositoryFactoryBean<T extends JpaRepository<S, ID>, S, ID extends Serializable> extends JpaRepositoryFactoryBean<T, S, ID> {
 
+    @Autowired
+    private ISecurityService securityService;
+
     @Override
     protected RepositoryFactory createRepositoryFactory(
             EntityManager entityManager) {
-        return new RepositoryFactory(entityManager);
+        return new RepositoryFactory(entityManager, securityService);
     }
 
     private static class RepositoryFactory extends JpaRepositoryFactory {
 
-        public RepositoryFactory(EntityManager entityManager) {
+        private ISecurityService securityService;
+
+        public RepositoryFactory(EntityManager entityManager, final ISecurityService securityService) {
             super(entityManager);
+            this.securityService = securityService;
         }
 
         @Override
@@ -34,7 +42,7 @@ public class RepositoryFactoryBean<T extends JpaRepository<S, ID>, S, ID extends
             JpaEntityInformation<?, Serializable> entityInformation =
                     getEntityInformation(metadata.getDomainClass());
             Assert.notNull(entityInformation);
-            return new BaseRepository(entityInformation, entityManager);
+            return new BaseRepository(entityInformation, entityManager, securityService);
         }
 
         @Override

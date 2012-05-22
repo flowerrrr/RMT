@@ -7,11 +7,11 @@ import org.apache.wicket.model.StringResourceModel;
 /**
  * @author flowerrrr
  */
-public class EmailSentMessageRenderer implements IMessageRenderer<EmailSentMessage> {
+public class EmailSentMessageRenderer extends AbstractEventMessageRenderer implements IMessageRenderer<EmailSentMessage> {
 
     @Override
     public String toString(final EmailSentMessage message) {
-        Object[] params = new Object[]{EventMessageRenderer.getEventLink(message)};
+        Object[] params = new Object[]{ getEventLink(message) };
         String s = new StringResourceModel("activity.event.notification.sent.message", Model.of(message), params).getObject();
         return s;
     }

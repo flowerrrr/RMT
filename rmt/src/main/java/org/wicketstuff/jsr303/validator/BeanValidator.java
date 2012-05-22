@@ -11,6 +11,8 @@ import org.apache.wicket.util.string.Strings;
 import org.apache.wicket.util.string.interpolator.MapVariableInterpolator;
 import org.apache.wicket.validation.IErrorMessageSource;
 import org.apache.wicket.validation.IValidationError;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.wicketstuff.jsr303.BeanValidationErrorBuilder;
 
 import javax.validation.ConstraintViolation;
@@ -26,6 +28,8 @@ import java.util.Set;
  * component being passed on construction.
  */
 public class BeanValidator {
+
+    private final static Logger log = LoggerFactory.getLogger(BeanValidator.class);
 
     private final Form<?> context;
 
@@ -48,6 +52,7 @@ public class BeanValidator {
         }
 
         for (final ConstraintViolation<U> v : s) {
+            log.debug("Constraint violation: " + v);
             if (context != null) {
                 final IValidationError ve = new BeanValidationErrorBuilder<U>(v).createError();
                 context.error(new ValidationErrorFeedback(ve, ve.getErrorMessage(new MessageSource())));

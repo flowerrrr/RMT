@@ -1,5 +1,6 @@
 package de.flower.common.test.wicket;
 
+import de.flower.rmt.service.ILinkProvider;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.mockito.Mockito;
@@ -31,6 +32,7 @@ public abstract class AbstractWicketMockitoTests {
     protected MockitoFactoryApplicationContext mockCtx = new MockitoFactoryApplicationContext() {
         {
             putBean("wicketValidator", mock(Validator.class));
+            putBean("wicketLinkProvider", mock(ILinkProvider.class));
         }
     };
 

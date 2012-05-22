@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import javax.mail.internet.InternetAddress;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -48,21 +47,32 @@ public class MailService implements IMailService {
 
     @Override
     public void sendMassMail(final Notification notification) {
+        SimpleMailMessage message = new SimpleMailMessage();
         List<String> recipients = new ArrayList<String>();
         for (InternetAddress iAddress : notification.getRecipients()) {
             recipients.add(iAddress.toString());
         }
         if (notification.isBccMySelf()) {
-            recipients.add(getReplyTo());
+            recipients.add(getCurrentUserEmail());
         }
-        // fields like sender, reply-to, to are preset by default mail template.
-        sendMail(null, getReplyTo(), null, null, recipients, notification.getSubject(), notification.getBody());
+        message.setBcc(recipients.toArray(new String[] {}));
+        message.setReplyTo(getCurrentUserEmail());
+        message.setSubject(notification.getSubject());
+        message.setText(notification.getBody());
+         // fields like sender, reply-to, to are preset by default mail template.
+        sendMail(message);
     }
 
     @Override
     public void sendMail(final String receiver, final String bcc, final String subject, final String content) {
         // mail to single person gets managers email as reply to.
-        sendMail(null, getReplyTo(), Arrays.asList(receiver), null, (bcc == null) ? null : Arrays.asList(bcc), subject, content);
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setReplyTo(getCurrentUserEmail());
+        message.setTo(receiver);
+        message.setBcc(bcc);
+        message.setSubject(subject);
+        message.setText(content);
+        sendMail(message);
     }
 
     /**
@@ -76,31 +86,15 @@ public class MailService implements IMailService {
      * @param bccList the bcc list
      * @throws RuntimeException the mail interface exception
      */
-    public final void sendMail(String sender, String replyTo, final List<String> toList, final List<String> ccList, List<String> bccList, final String subject, final String content) {
+    public final void sendMail(SimpleMailMessage message) {
         // Create a thread safe "copy" of the template message and customize it
-        SimpleMailMessage msg = new SimpleMailMessage(this.templateMessage);
-        if (sender != null) {
-            msg.setFrom(sender);
-        }
-        if (replyTo != null) {
-            msg.setReplyTo(replyTo);
-        }
-        if (toList != null) {
-            msg.setTo(toList.toArray(new String[] {}));
-        } else {
-            // use default undisclosed recipients address if no recipient is defined (like in mass mails)
-            // check if template is configured correctly.
-            String[] tmp = msg.getTo();
-            Check.isTrue(tmp.length > 0);
-        }
-        if (ccList != null && !ccList.isEmpty()) {
-            msg.setCc(ccList.toArray(new String[] {}));
-        }
-        if (bccList != null && !bccList.isEmpty()) {
-            msg.setBcc(bccList.toArray(new String[] {}));
-        }
-        msg.setSubject(subject);
-        msg.setText(content);
+        SimpleMailMessage msg = new SimpleMailMessage(templateMessage);
+        message.copyTo(msg);
+        // use default undisclosed recipients address if no recipient is defined (like in mass mails)
+        // check if template is configured correctly.
+        String[] tmp = msg.getTo();
+        Check.isTrue(tmp.length > 0);
+
         try {
             this.mailSender.send(msg);
         } catch (MailException e) {
@@ -113,7 +107,7 @@ public class MailService implements IMailService {
      * Preset reply-to address with email of user that is triggering the email.
      * @return
      */
-    private String getReplyTo() {
+    private String getCurrentUserEmail() {
         User user = securityService.getUser();
         if (user != null) {
             return user.getEmail();

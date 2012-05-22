@@ -1,6 +1,7 @@
 package de.flower.rmt.service.mail;
 
 import de.flower.rmt.model.db.entity.Invitation;
+import de.flower.rmt.model.db.entity.Invitation_;
 import de.flower.rmt.model.db.entity.Uniform;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
@@ -10,6 +11,8 @@ import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.model.dto.Notification;
 import de.flower.rmt.test.AbstractRMTWicketIntegrationTests;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 import static org.testng.Assert.*;
 
@@ -69,5 +72,19 @@ public class NotificationServiceTest extends AbstractRMTWicketIntegrationTests {
         assertTrue(notification.getBody().contains("Untergrund: <unbekannt>"));
         assertTrue(notification.getBody().contains("Trikotsatz: <nicht festgelegt>"));
         assertTrue(notification.getBody().contains("Gegner"));
+    }
+
+    @Test
+    public void testSendNoResponseReminder() {
+        Event event = testData.createEvent();
+        List<Invitation> invitations = invitationManager.findAllByEvent(event, Invitation_.user);
+        notificationService.sendNoResponseReminder(event, invitations);
+    }
+
+    @Test
+    public void testSendUnsureReminder() {
+        Event event = testData.createEvent();
+        List<Invitation> invitations = invitationManager.findAllByEvent(event, Invitation_.user);
+        notificationService.sendUnsureReminder(event, invitations);
     }
 }

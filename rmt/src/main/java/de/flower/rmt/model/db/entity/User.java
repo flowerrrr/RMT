@@ -244,6 +244,14 @@ public class User extends AbstractClubRelatedEntity {
         return null;
     }
 
+    public String[] getEmails() {
+        if (secondEmail == null) {
+            return new String[]{email};
+        } else {
+            return new String[]{email, secondEmail};
+        }
+    }
+
     public InternetAddress[] getInternetAddresses() {
         if (secondEmail == null) {
             return new InternetAddress[]{newInternetAddress(email, fullname)};

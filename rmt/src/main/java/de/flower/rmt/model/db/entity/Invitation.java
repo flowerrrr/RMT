@@ -172,6 +172,14 @@ public class Invitation extends AbstractBaseEntity {
         }
     }
 
+    public String[] getEmails() {
+        if (user == null) {
+            throw new IllegalStateException("Call #isEmail before accessing email-field.");
+        } else {
+            return user.getEmails();
+        }
+    }
+
     public boolean hasEmail() {
         return user != null;
     }

@@ -8,13 +8,20 @@ public enum EmailTemplate {
     PASSWORD_RESET,
     INVITATION_NEWUSER,
     INVITATION_STATUSCHANGED,
-    NOTIFICATION_EVENT;
+    NOTIFICATION_EVENT,
+    NORESPONSE_REMINDER,
+    UNSURE_REMINDER,
+    EVENT_DETAILS;
 
-    public String getContent() {
-        return (this.name() + ".content.vm").toLowerCase()  ;
+    public String getTemplate() {
+        return (this.name() + ".vm").toLowerCase();
     }
 
-   public String getSubject() {
-       return (this.name() + ".subject.vm").toLowerCase()  ;
+    public String getContent() {
+        return (this.name() + ".content.vm").toLowerCase();
+    }
+
+    public String getSubject() {
+        return (this.name() + ".subject.vm").toLowerCase();
     }
 }

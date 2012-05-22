@@ -32,5 +32,7 @@ public interface INotificationService {
      */
     Notification newEventNotification(Event event, String eventLink);
 
-    void sendNoResponseReminder(List<Invitation> invitations);
+    void sendNoResponseReminder(Event event, List<Invitation> invitations);
+
+    void sendUnsureReminder(Event event, List<Invitation> invitations);
 }

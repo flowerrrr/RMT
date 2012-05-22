@@ -29,7 +29,7 @@ public class InvitationManagerTest extends AbstractRMTIntegrationTests {
             assertFalse(invitation.isInvitationSent());
             addressList.add(invitation.getEmail());
         }
-        invitationManager.markInvitationSent(event, addressList);
+        invitationManager.markInvitationSent(event, addressList, null);
         for (Invitation invitation : invitationManager.findAllByEvent(event)) {
             assertTrue(invitation.isInvitationSent());
             assertNotNull(invitation.getInvitationSentDate());
@@ -39,6 +39,12 @@ public class InvitationManagerTest extends AbstractRMTIntegrationTests {
         invitationManager.markNoResponseReminderSent(invitations);
         for (Invitation invitation : invitationManager.findAllByEvent(event)) {
             assertTrue(invitation.isNoResponseReminderSent());
+        }
+
+        // use test also for other notification markers
+        invitationManager.markUnsureReminderSent(invitations);
+        for (Invitation invitation : invitationManager.findAllByEvent(event)) {
+            assertTrue(invitation.isUnsureReminderSent());
         }
     }
 
@@ -68,4 +74,17 @@ public class InvitationManagerTest extends AbstractRMTIntegrationTests {
         InternetAddress ia = new InternetAddress("foo@acme.com", "Mesut Özil");
         log.info(ia.toString());
     }
+
+    @Test
+    public void testFindAllForNoResponseReminder() {
+        Event event = testData.createEvent();
+        invitationManager.findAllForNoResponseReminder(event, 0);
+    }
+
+    @Test
+    public void testFindAllForUnsureReminder() {
+        Event event = testData.createEvent();
+        invitationManager.findAllForUnsureReminder(event);
+    }
+
 }

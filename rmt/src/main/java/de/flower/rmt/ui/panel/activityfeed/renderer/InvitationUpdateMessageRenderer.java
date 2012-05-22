@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author flowerrrr
  */
-public class InvitationUpdateMessageRenderer implements IMessageRenderer<InvitationUpdateMessage> {
+public class InvitationUpdateMessageRenderer extends AbstractEventMessageRenderer implements IMessageRenderer<InvitationUpdateMessage> {
 
     private final static Logger log = LoggerFactory.getLogger(InvitationUpdateMessageRenderer.class);
 
@@ -28,7 +28,7 @@ public class InvitationUpdateMessageRenderer implements IMessageRenderer<Invitat
     public String toString(final InvitationUpdateMessage message) {
         String s;
         String status = (message.getStatus() != null) ? new ResourceModel(RSVPStatus.getResourceKey(message.getStatus())).getObject() : "";
-        Object[] params = new Object[]{EventMessageRenderer.getEventArticle(message), EventMessageRenderer.getEventLink(message), status};
+        Object[] params = new Object[]{ getEventArticle(message), getEventLink(message), status};
         UpdateType updateType = getUpdateType(message);
 
         switch (updateType) {

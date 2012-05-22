@@ -74,17 +74,11 @@ public abstract class AbstractBaseEntity implements Serializable, IEntity, IObje
         return objectStatus == ObjectStatus.FIXED;
     }
 
-    //---Methods
-    /* (non-Javadoc)
-      * @see java.lang.Object#toString()
-      */
     @Override
     public String toString() {
-        StringBuilder retVal = new StringBuilder();
-
-        retVal.append("[" + this.getClass().getSimpleName() + "@" + this.hashCode() + "]");
-
-        return retVal.toString();
+        return "AbstractBaseEntity@" + super.hashCode()  + "{" +
+                "id=" + id +
+                '}';
     }
 
     /**

@@ -5,6 +5,9 @@ package de.flower.rmt.model.db.type;
  */
 public enum RSVPStatus {
 
+    /**
+     * Don't change values they are used as database keys.
+     */
     ACCEPTED,
     DECLINED,
     UNSURE,

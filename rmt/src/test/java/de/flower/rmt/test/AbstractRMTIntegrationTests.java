@@ -8,10 +8,7 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 import de.flower.common.service.security.IPasswordGenerator;
 import de.flower.common.test.mock.IListAppender;
 import de.flower.common.test.mock.LogBackListAppender;
-import de.flower.rmt.repository.IClubRepo;
-import de.flower.rmt.repository.IEventRepo;
-import de.flower.rmt.repository.ITeamRepo;
-import de.flower.rmt.repository.IUserRepo;
+import de.flower.rmt.repository.*;
 import de.flower.rmt.service.*;
 import de.flower.rmt.service.geocoding.IGeocodingService;
 import de.flower.rmt.service.mail.IMailService;
@@ -52,7 +49,7 @@ import java.util.Map;
  * @author flowerrrr
  */
 @Listeners({de.flower.common.test.ExceptionLoggerTestListener.class})
-@ContextConfiguration(locations = {"/applicationContext-test.xml"})
+@ContextConfiguration(classes = { AbstractRMTIntegrationTestsConfig.class })
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 public class AbstractRMTIntegrationTests extends AbstractTestNGSpringContextTests {
 
@@ -76,6 +73,9 @@ public class AbstractRMTIntegrationTests extends AbstractTestNGSpringContextTest
 
     @Autowired
     protected IEventRepo eventRepo;
+
+    @Autowired
+    protected IInvitationRepo invitationRepo;
 
     /**************************************************************************/
     /*                        Services                                        */
@@ -110,6 +110,9 @@ public class AbstractRMTIntegrationTests extends AbstractTestNGSpringContextTest
 
     @Autowired
     protected IActivityManager activityManager;
+
+    @Autowired
+    protected IClubManager clubManager;
 
     @Autowired
     protected UserDetailsService userDetailService;

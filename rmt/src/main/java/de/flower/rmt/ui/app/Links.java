@@ -10,9 +10,6 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.link.Link;
-import org.apache.wicket.protocol.http.RequestUtils;
-import org.apache.wicket.request.Url;
-import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import javax.mail.internet.InternetAddress;
@@ -29,22 +26,6 @@ public class Links {
 
     public static BookmarkablePageLink eventLink(String id, Long eventId) {
         return new BookmarkablePageLink(id, EventPage.class, new PageParameters().set(EventPage.PARAM_EVENTID, eventId));
-    }
-
-    private static CharSequence urlForEvent(Long eventId) {
-        return RequestCycle.get().urlFor(de.flower.rmt.ui.page.event.player.EventPage.class, new PageParameters().set(de.flower.rmt.ui.page.event.player.EventPage.PARAM_EVENTID, eventId));
-    }
-
-    public static String deepLinkEvent(Long eventId) {
-        // relative url might contain ../../player/event/2
-        String relativeUrl = urlForEvent(eventId).toString();
-        return toAbsoluteUrl(relativeUrl);
-    }
-
-    public static String toAbsoluteUrl(String relativeUrl) {
-        String requestUrl = RequestCycle.get().getRequest().getUrl().toString();
-        String url = RequestUtils.toAbsolutePath(requestUrl, relativeUrl);
-        return RequestCycle.get().getUrlRenderer().renderFullUrl(Url.parse(url));
     }
 
     public static Link homePage(final String id) {

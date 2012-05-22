@@ -5,15 +5,29 @@ import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.model.db.type.activity.EmailSentMessage;
 import de.flower.rmt.model.db.type.activity.EventUpdateMessage;
 import de.flower.rmt.model.db.type.activity.InvitationUpdateMessage;
+import de.flower.rmt.service.ILinkProvider;
 import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
+import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Date;
+
+import static org.mockito.Mockito.anyLong;
+import static org.mockito.Mockito.when;
 
 /**
  * @author flowerrrr
  */
 public class ActivityMessageRendererTest extends AbstractRMTWicketMockitoTests {
+
+    @SpringBean
+    private ILinkProvider linkProvider;
+
+    @BeforeMethod
+    public void setUp() {
+        when(linkProvider.deepLinkEvent(anyLong())).thenReturn("http://flower.de/das-tool/player/event/19");
+    }
 
     @Test
     public void testEventCreated() {

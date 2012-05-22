@@ -95,7 +95,6 @@ public class EventListPanel extends BasePanel {
             @Override
             protected List<Event> load() {
                 return eventListProvider.getManagerEventListPanelList();
-
             }
         };
     }

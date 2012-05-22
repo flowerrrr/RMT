@@ -1,0 +1,35 @@
+---------------------
+Link: $eventLink
+
+Team: $event.getTeam().getName()
+Typ: $eventType
+Datum: $eventDate
+Treffpunkt: $eventTime
+#if ($isSoccerEvent)
+Anstoß: $kickoffTime
+#end
+#if ($event.getEventType() == $eventTypeMatch)
+#set ($opponent = "<noch nicht festgelegt>")
+#if ($event.getOpponent())
+#set ($opponent = $event.getOpponent().getName())
+#end
+Gegner: $opponent
+#end
+#if ($event.getVenue())
+#set ($venue = $event.getVenue().getName())
+Ort: $venue ($directionsLink)
+#else
+Ort: <noch nicht festgelegt>
+#end
+#if ($isSoccerEvent)
+#if (!$event.getUniform())
+#set ($uniform = "<nicht festgelegt>")
+#end
+Trikotsatz: $uniform
+Untergrund: $surfaceList
+#end
+Titel: $!event.getSummary()
+#if ($event.getComment())
+Zusatzinfo: $event.getComment()
+#end
+
