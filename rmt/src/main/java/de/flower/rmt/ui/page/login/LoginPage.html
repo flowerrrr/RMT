@@ -34,10 +34,15 @@
                             </script>
                         </div>
                     </div>
-                    <div class="control-group">
+                    <div class="control-group" style="margin-bottom: 10px;">
                         <label class="control-label" for="j_password"><wicket:message key="login.password" /></label>
                         <div class="controls">
-                            <input name="j_password" type="password"/>
+                            <div class="password-forgotten">
+                                <input name="j_password" type="password"/>
+                                <div>
+                                    <a wicket:id="passwordForgottenLink" ><wicket:message key="login.password.forgotten" /></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="control-group">

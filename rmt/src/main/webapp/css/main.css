@@ -4,6 +4,7 @@
 **************************************************************************/
 @black:             #000;
 @grayDark:          lighten(@black, 25%);
+@grayMedium:        lighten(@black, 50%);
 @borderColor:       #DDDDDD;
 @widthContent:      560px;
 
@@ -698,6 +699,14 @@ tr:hover .show-on-hover {
     margin-top: 1px
 }
 
+#loginForm .password-forgotten {
+    display: inline-block;
+    a {
+        font-size: 10px;
+        margin-left: 5px;
+    }
+}
+
 
 
 /*************************************************************************
@@ -900,7 +909,12 @@ td.rsvpstatus {
             width: 78px;
         }
         tr.next-event {
-            background-color: #F5F5F5;
+            // background-color: #F5F5F5;
+            font-weight: bold;
+        }
+        .canceled-event {
+            color: @grayMedium;
+            font-style: italic;
         }
     }
     .table.player {
