@@ -190,4 +190,12 @@ public class Invitation extends AbstractBaseEntity {
         }
         return user.getInternetAddresses();
     }
+
+    @Override
+    public String toString() {
+        return "Invitation{" +
+                "status=" + status +
+                ", date=" + date +
+                "} " + super.toString();
+    }
 }

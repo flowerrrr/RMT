@@ -149,6 +149,7 @@ public class NotificationService implements INotificationService {
 
     @Override
     public void sendNoResponseReminder(Event event, final List<Invitation> invitations) {
+        log.info("Sending no-response reminder to [{}]", invitations);
         String eventLink = linkProvider.deepLinkEvent(event.getId());
         SimpleMailMessage message = getNoResponseReminderMessage(event, eventLink);
 
@@ -160,7 +161,8 @@ public class NotificationService implements INotificationService {
         }
         message.setBcc(to.toArray(new String[] {}));
 
-        mailService.sendMail(message);
+        log.warn("Reminder-Mails are currently mocked.\nSending mail:\n" + message.toString());
+        // mailService.sendMail(message);
     }
 
     @VisibleForTesting
@@ -179,6 +181,7 @@ public class NotificationService implements INotificationService {
 
     @Override
     public void sendUnsureReminder(final Event event, final List<Invitation> invitations) {
+        log.info("Sending unsure reminder to [{}]", invitations);
         String eventLink = linkProvider.deepLinkEvent(event.getId());
         SimpleMailMessage message = getUnsureReminderMessage(event, eventLink);
 
@@ -190,7 +193,8 @@ public class NotificationService implements INotificationService {
         }
         message.setBcc(to.toArray(new String[] {}));
 
-        mailService.sendMail(message);
+        log.warn("Reminder-Mails are currently mocked.\nSending mail:\n" + message.toString());
+        // mailService.sendMail(message);
     }
 
     @VisibleForTesting
