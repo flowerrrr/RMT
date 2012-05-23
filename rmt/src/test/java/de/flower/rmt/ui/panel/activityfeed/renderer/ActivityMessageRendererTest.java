@@ -150,4 +150,20 @@ public class ActivityMessageRendererTest extends AbstractRMTWicketMockitoTests {
             }
         }
     }
+
+    @Test
+    public void testInvitationManagerCommentUpdated() {
+        InvitationUpdateMessage message = new InvitationUpdateMessage(testData.newEvent());
+        message.setUserName("Gerd Müller");
+        message.setManagerName("Uli Hoeneß");
+        // message.setStatus(RSVPStatus.ACCEPTED);
+        message.setManagerComment("Gfrei mi narrisch aufs Spiel und auf die 3. Halbzeit hinterher umso mehr.");
+        message.setEventId(1L);
+        message.setEventDate(new Date());
+        for (EventType eventType : EventType.values()) {
+            message.setEventType(eventType);
+            String s = ActivityMessageRenderer.toString(message);
+            log.info(message + " rendered to [" + s + "]");
+        }
+    }
 }

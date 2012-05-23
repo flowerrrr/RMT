@@ -63,7 +63,8 @@ public class Club extends AbstractBaseEntity {
     @Override
     public String toString() {
         return "Club{" +
-                "name='" + name + '\'' +
-                "} " + super.toString();
+                "id=" + getId() +
+                ", name='" + name + '\'' +
+                "}";
     }
 }

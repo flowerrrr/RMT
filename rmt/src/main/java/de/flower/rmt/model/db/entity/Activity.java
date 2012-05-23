@@ -18,8 +18,7 @@ import java.util.Date;
 public class Activity extends AbstractClubRelatedEntity {
 
     /**
-     * The message to display in the activity stream. message.toString() will be used
-     * to output message.
+     * The message to display in the activity stream. A renderer will take care of formatting the message.
      */
     @Basic
     @Column(columnDefinition = "blob")
@@ -35,7 +34,6 @@ public class Activity extends AbstractClubRelatedEntity {
      * User that triggered the activity.
      */
     @ManyToOne
-    @Deprecated // currently not used
     private User user;
 
     protected Activity() {}
@@ -72,7 +70,7 @@ public class Activity extends AbstractClubRelatedEntity {
     public String toString() {
         return "Activity{" +
                 "id=" + getId() +
-                "message=" + message +
+                ", message=" + message +
                 ", date=" + date +
                 '}';
     }

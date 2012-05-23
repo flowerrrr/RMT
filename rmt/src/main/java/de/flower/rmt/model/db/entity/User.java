@@ -278,7 +278,7 @@ public class User extends AbstractClubRelatedEntity {
     public String toString() {
         return "User{" +
                 "id='" + getId() + '\'' +
-                "email='" + email + '\'' +
+                ", email='" + email + '\'' +
                 ", fullname='" + fullname + '\'' +
                 '}';
     }

@@ -1,10 +1,10 @@
 package de.flower.rmt.service;
 
+import com.google.common.base.Predicate;
+import com.google.common.collect.Collections2;
+import com.mysema.query.types.expr.BooleanExpression;
 import de.flower.common.util.Check;
-import de.flower.rmt.model.db.entity.Activity;
-import de.flower.rmt.model.db.entity.Activity_;
-import de.flower.rmt.model.db.entity.Invitation;
-import de.flower.rmt.model.db.entity.Invitation_;
+import de.flower.rmt.model.db.entity.*;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.entity.event.Event_;
 import de.flower.rmt.model.db.type.activity.EmailSentMessage;
@@ -12,6 +12,7 @@ import de.flower.rmt.model.db.type.activity.EventUpdateMessage;
 import de.flower.rmt.model.db.type.activity.InvitationUpdateMessage;
 import de.flower.rmt.repository.IActivityRepo;
 import org.apache.commons.lang3.ObjectUtils;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -19,6 +20,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Nullable;
+import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -109,10 +113,63 @@ public class ActivityManager extends AbstractService implements IActivityManager
         entity.setMessage(message);
 
         if (changed) {
+            removeDuplicates(entity, message);
             save(entity);
         }
     }
 
+    private void removeDuplicates(final Activity entity, final InvitationUpdateMessage message) {
+        // reading the activity table is always a bit unsafe due to the de-serialization errors
+        // that might occur when the message classes are changed. so better try/catch.
+        try {
+            Collection<Activity> list = findDuplicates(entity, message);
+            if (!list.isEmpty()) {
+                log.info("Removing duplicates {}", list);
+                activityRepo.delete(list);
+            }
+        } catch (Exception e) {
+            log.error("Error in removeDuplicates: " + e.getMessage(), e);
+        }
+    }
+
+    /**
+     * If user updates his comment twice, e.g. to correct a wrong spelling both submits
+     * will be listed in activity feed. that's not nice.
+     * <p/>
+     * <pre>
+     * Duplicates are identified:
+     * - by user
+     * - message type
+     * - event
+     * - username (as Activity.user might be the manager updating invitations on behalf of the users).
+     *
+     * </pre>
+     */
+    private Collection<Activity> findDuplicates(final Activity entity, final InvitationUpdateMessage message) {
+        BooleanExpression isSameUser = QActivity.activity.user.eq(entity.getUser());
+        BooleanExpression isInsideOneHour = QActivity.activity.date.after(new DateTime().minusHours(1).toDate());
+        Collection<Activity> list = activityRepo.findAll(isSameUser.and(isInsideOneHour));
+        list = Collections2.filter(list, new Predicate<Activity>() {
+            @Override
+            public boolean apply(@Nullable final Activity activity) {
+                Serializable msg = activity.getMessage();
+                if (msg instanceof InvitationUpdateMessage) {
+                    InvitationUpdateMessage ium = (InvitationUpdateMessage) msg;
+                    // event and user must match. event alone is not ok cause manager might update
+                    // several invitations.
+                    if (ium.getEventId().equals(message.getEventId())
+                            && ium.getUserName().equals(message.getUserName())) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+        if (list.size() > 1) {
+            log.warn("Error in findDuplicates(): There should only be one duplicate.");
+        }
+        return list;
+    }
 
     @Override
     public List<Activity> findLastN(final int page, final int size) {

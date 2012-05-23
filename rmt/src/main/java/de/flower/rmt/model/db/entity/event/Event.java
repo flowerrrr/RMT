@@ -266,8 +266,8 @@ public class Event extends AbstractClubRelatedEntity {
     @Override
     public String toString() {
         return "Event{" +
-                super.toString() +
-                "date=" + date +
+                "id=" + getId() +
+                ", date=" + date +
                 ", time=" + time +
                 ", summary='" + summary + '\'' +
                 '}';

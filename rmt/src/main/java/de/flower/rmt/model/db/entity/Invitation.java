@@ -203,8 +203,9 @@ public class Invitation extends AbstractBaseEntity {
     @Override
     public String toString() {
         return "Invitation{" +
-                "status=" + status +
+                "id=" + getId() +
+                ", status=" + status +
                 ", date=" + date +
-                "} " + super.toString();
+                "}";
     }
 }
