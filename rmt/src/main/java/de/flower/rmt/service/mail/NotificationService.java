@@ -220,7 +220,6 @@ public class NotificationService implements INotificationService {
         model.put("eventTime", Dates.formatTimeShort(event.getTime()));
         model.put("eventDateTime", Dates.formatDateTimeShortWithWeekday(event.getDateTimeAsDate()));
         model.put("eventType", messageSource.getMessage(event.getEventType().getResourceKey()));
-        // model.put("eventType", new ResourceModel(event.getEventType().getResourceKey()).getObject());
         model.put("eventTypeMatch", EventType.Match);
         model.put("eventLink", eventLink);
         model.put("isSoccerEvent", EventType.isSoccerEvent(event));
@@ -230,7 +229,6 @@ public class NotificationService implements INotificationService {
         if (EventType.isSoccerEvent(event)) {
             AbstractSoccerEvent soccerEvent = (AbstractSoccerEvent) event;
             model.put("kickoffTime", Dates.formatTimeShort(soccerEvent.getKickoff()));
-            // TODO (flowerrrr - 08.05.12) reference to ui bundle!!!
             model.put("surfaceList", new SurfaceRenderer() {
                 @Override
                 protected String getResourceString(final String key) {
@@ -240,8 +238,7 @@ public class NotificationService implements INotificationService {
             if (soccerEvent.getUniform() != null) {
                 Uniform u = soccerEvent.getUniform();
                 final Object[] params = new Object[]{u.getShirt(), u.getShorts(), u.getSocks()};
-                model.put("uniform", messageSource.getMessage("uniform.set2", params));
-                // model.put("uniform", new StringResourceModel("uniform.set", Model.of(soccerEvent.getUniform())).getObject());
+                model.put("uniform", messageSource.getMessage("uniform.set", params));
             }
         }
         return model;

@@ -123,7 +123,9 @@ public class EventDetailsPanel extends BasePanel<Event> {
                     if (getChainedModel().getObject() == null) {
                         return new ResourceModel("uniform.nullValid").getObject();
                     } else {
-                        return new StringResourceModel("uniform.set", getChainedModel()).getObject();
+                        Uniform u = getChainedModel().getObject();
+                        final Object[] params = new Object[]{u.getShirt(), u.getShorts(), u.getSocks()};
+                        return new StringResourceModel("uniform.set", null, params).getObject();
                     }
                 }
 
