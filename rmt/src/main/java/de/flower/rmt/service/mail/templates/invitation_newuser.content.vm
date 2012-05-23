@@ -1,14 +1,14 @@
-Der Vereins-Manager $manager.getFullname() hat für Sie ein Benutzerkonto
-im Rückmelde-Tool erstellt. Sie sind nun als Spieler des Vereins $club.getName()
-eingetragen und können sich für die Termine des Vereins zurückmelden.
+Der Vereins-Manager $manager.getFullname() hat für Dich ein Benutzerkonto
+im Rückmelde-Tool erstellt. Du bist nun als Spieler des Vereins $club.getName()
+eingetragen und kannst Dich für die Spiele des Vereins zurückmelden.
 
-Ihre Zugangsdaten lauten:
+Deine Zugangsdaten lauten:
 
 E-Mail: $user.getUsername()
 Password: $user.getInitialPassword()
 
 URL: $u.appUrl
 
-Hinweis: Bitte ändern Sie das Passwort unmittelbar nach der Anmeldung.
+Hinweis: Bitte ändere das Passwort unmittelbar nach der Anmeldung.
 
 #parse('footer-include.vm')
