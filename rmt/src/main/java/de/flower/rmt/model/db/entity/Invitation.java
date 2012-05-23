@@ -47,6 +47,7 @@ public class Invitation extends AbstractBaseEntity {
     private Boolean invitationSent = false;
 
     @Column
+    @Index(name = "ix_invitationsentdate")
     private Date invitationSentDate;
 
     @Column
@@ -54,8 +55,16 @@ public class Invitation extends AbstractBaseEntity {
     private Boolean noResponseReminderSent = false;
 
     @Column
-    @Index(name = "ix_noresponseremindersent")
+    @Index(name = "ix_noresponseremindersentdate")
+    private Date noResponseReminderSentDate;
+
+    @Column
+    @Index(name = "ix_unsureremindersent")
     private Boolean unsureReminderSent = false;
+
+    @Column
+    @Index(name = "ix_unsureremindersentdate")
+    private Date unsureReminderSentDate;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)

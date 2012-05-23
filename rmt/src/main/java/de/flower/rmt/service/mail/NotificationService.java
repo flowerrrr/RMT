@@ -159,7 +159,7 @@ public class NotificationService implements INotificationService {
                 to.addAll(Arrays.asList(invitation.getEmails()));
             }
         }
-        message.setBcc(to.toArray(new String[] {}));
+        message.setBcc(to.toArray(new String[]{}));
 
         log.warn("Reminder-Mails are currently mocked.\nSending mail:\n" + message.toString());
         // mailService.sendMail(message);
@@ -191,7 +191,7 @@ public class NotificationService implements INotificationService {
                 to.addAll(Arrays.asList(invitation.getEmails()));
             }
         }
-        message.setBcc(to.toArray(new String[] {}));
+        message.setBcc(to.toArray(new String[]{}));
 
         log.warn("Reminder-Mails are currently mocked.\nSending mail:\n" + message.toString());
         // mailService.sendMail(message);

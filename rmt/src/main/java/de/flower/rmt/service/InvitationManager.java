@@ -264,12 +264,12 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     @Override
     @Transactional(readOnly = false)
     public void markNoResponseReminderSent(final List<Invitation> invitations) {
-        invitationRepo.markNoResponseReminderSent(invitations);
+        invitationRepo.markNoResponseReminderSent(invitations, new Date());
     }
 
     @Override
     public void markUnsureReminderSent(final List<Invitation> invitations) {
-        invitationRepo.markUnsureReminderSent(invitations);
+        invitationRepo.markUnsureReminderSent(invitations, new Date());
     }
 
     @Override

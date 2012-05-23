@@ -35,10 +35,10 @@ public interface IInvitationRepo extends IRepository<Invitation, Long> {
     void markInvitationSent(@Param("event") Event event, @Param("addressList") List<String> addressList, @Param("date") Date date);
 
     @Modifying
-    @Query("update Invitation i set i.noResponseReminderSent = true where i in (:invitations)")
-    void markNoResponseReminderSent(@Param("invitations") List<Invitation> invitations);
+    @Query("update Invitation i set i.noResponseReminderSent = true, i.invitationSentDate = :date  where i in (:invitations)")
+    void markNoResponseReminderSent(@Param("invitations") List<Invitation> invitations, @Param("date") Date date);
 
     @Modifying
-    @Query("update Invitation i set i.unsureReminderSent = true where i in (:invitations)")
-    void markUnsureReminderSent(@Param("invitations") List<Invitation> invitations);
+    @Query("update Invitation i set i.unsureReminderSent = true, i.invitationSentDate = :date  where i in (:invitations)")
+    void markUnsureReminderSent(@Param("invitations") List<Invitation> invitations, @Param("date") Date date);
 }
