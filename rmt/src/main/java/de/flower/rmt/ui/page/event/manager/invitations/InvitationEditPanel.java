@@ -40,8 +40,8 @@ public class InvitationEditPanel extends ModalPanel<Invitation> {
         final RadioGroup group = new RadioGroup("status");
         form.add(group);
         group.add(new Radio<RSVPStatus>("accepted", Model.of(RSVPStatus.ACCEPTED)));
-        group.add(new Radio<RSVPStatus>("declined", Model.of(RSVPStatus.DECLINED)));
         group.add(new Radio<RSVPStatus>("unsure", Model.of(RSVPStatus.UNSURE)));
+        group.add(new Radio<RSVPStatus>("declined", Model.of(RSVPStatus.DECLINED)));
         group.add(new FeedbackPanel("feedback", new ComponentFeedbackMessageFilter(group)) {
             @Override
             public boolean isVisible() {
