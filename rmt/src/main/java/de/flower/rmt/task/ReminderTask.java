@@ -48,7 +48,8 @@ public class ReminderTask {
     private Integer unsureReminderHoursBeforeEvent;
 
     public void sendNoResponseReminder() {
-        Check.notNull(securityService.getUser().getClub());
+        checkPreconditions();
+
         // select events eligible for reminding users
         List<Event> events = eventManager.findAllNextNHours(noResponseDaysBeforeEvent * 24);
 
@@ -64,7 +65,7 @@ public class ReminderTask {
     }
 
     public void sendUnsureReminder() {
-        Check.notNull(securityService.getUser().getClub());
+        checkPreconditions();
         // select events eligible for reminding users
         List<Event> events = eventManager.findAllNextNHours(unsureReminderHoursBeforeEvent);
 
@@ -77,5 +78,14 @@ public class ReminderTask {
                 notificationService.sendUnsureReminder(event, invitations);
             }
         }
+    }
+
+    /**
+     * Since the task execution is not run inside wicket-request context there are some vital parts
+     * that the scheduler must setup.
+     */
+    private void checkPreconditions() {
+        // dao-calls need access to current club.
+        Check.notNull(securityService.getUser().getClub());
     }
 }

@@ -147,7 +147,7 @@ public class EventDetailsPanel extends BasePanel<Event> {
 
                 @Override
                 public String convertToString(final List<Surface> value, final Locale locale) {
-                    return SurfaceRenderer.renderList(value);
+                    return new SurfaceRenderer().renderList(value);
                 }
             };
         }

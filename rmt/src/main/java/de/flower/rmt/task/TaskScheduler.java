@@ -48,6 +48,9 @@ public class TaskScheduler {
             log.info("Checking reminders for [{}]", club);
             // must set security context with current club, so that dao-calls get filtered by correct club
             schs.getContext().setAuthentication(newAuthentication(club));
+            // NOTE (flowerrrr - 23.05.12) setup locale to use for message lookup (currently no-need, only have one language)
+            // LocaleContextHolder.setLocale(club.getLocale()).
+
             reminderTask.sendNoResponseReminder();
             reminderTask.sendUnsureReminder();
         }

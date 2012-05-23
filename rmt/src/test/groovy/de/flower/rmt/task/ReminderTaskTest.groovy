@@ -3,7 +3,7 @@ package de.flower.rmt.task;
 
 import de.flower.rmt.model.db.entity.Invitation_
 import de.flower.rmt.model.db.type.RSVPStatus
-import de.flower.rmt.test.AbstractRMTWicketIntegrationTests
+import de.flower.rmt.test.AbstractRMTIntegrationTests
 import org.joda.time.DateTime
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
@@ -14,12 +14,10 @@ import static org.testng.Assert.assertEquals
 import static org.testng.Assert.assertTrue
 
 /**
- * Must extend wicket tests as long as resource string lookup in notification service is done with wicket libs.
- *
  * @author flowerrrr
  */
 @ContextConfiguration(classes = [Config.class])
-public class ReminderTaskTest extends AbstractRMTWicketIntegrationTests {
+public class ReminderTaskTest extends AbstractRMTIntegrationTests {
 
     @Configuration
     public static class Config {
@@ -32,7 +30,6 @@ public class ReminderTaskTest extends AbstractRMTWicketIntegrationTests {
 
     @Autowired
     private ReminderTask reminderTask;
-
 
     @Test
     public void testSendNoResponseReminder() {

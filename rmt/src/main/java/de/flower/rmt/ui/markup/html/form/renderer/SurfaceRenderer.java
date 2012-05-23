@@ -23,7 +23,7 @@ public class SurfaceRenderer implements IChoiceRenderer<Surface> {
         return "" + object.ordinal();
     }
 
-    public static String renderList(List<Surface> surfaceList) {
+    public String renderList(List<Surface> surfaceList) {
         if (surfaceList == null || surfaceList.isEmpty()) {
             return getResourceString(Surface.getResourceKey(null));
         } else {
@@ -37,7 +37,12 @@ public class SurfaceRenderer implements IChoiceRenderer<Surface> {
         }
     }
 
-    private static String getResourceString(String key) {
+    /**
+     * Subclass can override if other resource lookup than wickets resource model is used
+     * @param key
+     * @return
+     */
+    protected String getResourceString(String key) {
         return new ResourceModel(key).getObject();
     }
 }

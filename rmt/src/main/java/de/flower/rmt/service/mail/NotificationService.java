@@ -3,6 +3,7 @@ package de.flower.rmt.service.mail;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Lists;
 import de.flower.rmt.model.db.entity.Invitation;
+import de.flower.rmt.model.db.entity.Uniform;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.*;
 import de.flower.rmt.model.db.type.EventType;
@@ -14,21 +15,17 @@ import de.flower.rmt.service.ILinkProvider;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.markup.html.form.renderer.SurfaceRenderer;
 import de.flower.rmt.util.Dates;
-import org.apache.wicket.model.Model;
-import org.apache.wicket.model.ResourceModel;
-import org.apache.wicket.model.StringResourceModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author flowerrrr
@@ -52,6 +49,9 @@ public class NotificationService implements INotificationService {
 
     @Autowired
     private ILinkProvider linkProvider;
+
+    @Autowired
+    private MessageSourceAccessor messageSource;
 
     @Override
     public void sendResetPasswordMail(final User user, final User manager) {
@@ -97,7 +97,7 @@ public class NotificationService implements INotificationService {
     }
 
     @Override
-    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED) // required to enable lazy fetching of event and event.created by user
     public void sendStatusChangedMessage(final Invitation invitationIn) {
         Invitation invitation = invitationManager.loadById(invitationIn.getId());
         SimpleMailMessage message = getStatusChangedMessage(invitation);
@@ -117,8 +117,8 @@ public class NotificationService implements INotificationService {
         model.put("user", user);
         model.put("event", invitation.getEvent());
         model.put("eventDateTime", Dates.formatDateTimeShortWithWeekday(event.getDateTimeAsDate()));
-        model.put("eventType", new ResourceModel(event.getEventType().getResourceKey()).getObject());
-        model.put("status", new ResourceModel(RSVPStatus.getResourceKey(invitation.getStatus())).getObject());
+        model.put("eventType", messageSource.getMessage(event.getEventType().getResourceKey()));
+        model.put("status", messageSource.getMessage(RSVPStatus.getResourceKey(invitation.getStatus())));
         String subject = templateService.mergeTemplate(EmailTemplate.INVITATION_STATUSCHANGED.getSubject(), model);
         String content = templateService.mergeTemplate(EmailTemplate.INVITATION_STATUSCHANGED.getContent(), model);
 
@@ -213,12 +213,14 @@ public class NotificationService implements INotificationService {
 
     @VisibleForTesting
     protected Map<String, Object> getEventDetailsModel(Event event, final String eventLink) {
+        final Locale locale = LocaleContextHolder.getLocale();
         final Map<String, Object> model = new HashMap<String, Object>();
         model.put("event", event);
         model.put("eventDate", Dates.formatDateMediumWithWeekday(event.getDate()));
         model.put("eventTime", Dates.formatTimeShort(event.getTime()));
         model.put("eventDateTime", Dates.formatDateTimeShortWithWeekday(event.getDateTimeAsDate()));
-        model.put("eventType", new ResourceModel(event.getEventType().getResourceKey()).getObject());
+        model.put("eventType", messageSource.getMessage(event.getEventType().getResourceKey()));
+        // model.put("eventType", new ResourceModel(event.getEventType().getResourceKey()).getObject());
         model.put("eventTypeMatch", EventType.Match);
         model.put("eventLink", eventLink);
         model.put("isSoccerEvent", EventType.isSoccerEvent(event));
@@ -229,9 +231,17 @@ public class NotificationService implements INotificationService {
             AbstractSoccerEvent soccerEvent = (AbstractSoccerEvent) event;
             model.put("kickoffTime", Dates.formatTimeShort(soccerEvent.getKickoff()));
             // TODO (flowerrrr - 08.05.12) reference to ui bundle!!!
-            model.put("surfaceList", SurfaceRenderer.renderList(soccerEvent.getSurfaceList()));
+            model.put("surfaceList", new SurfaceRenderer() {
+                @Override
+                protected String getResourceString(final String key) {
+                    return messageSource.getMessage(key);
+                }
+            }.renderList(soccerEvent.getSurfaceList()));
             if (soccerEvent.getUniform() != null) {
-                model.put("uniform", new StringResourceModel("uniform.set", Model.of(soccerEvent.getUniform())).getObject());
+                Uniform u = soccerEvent.getUniform();
+                final Object[] params = new Object[]{u.getShirt(), u.getShorts(), u.getSocks()};
+                model.put("uniform", messageSource.getMessage("uniform.set2", params));
+                // model.put("uniform", new StringResourceModel("uniform.set", Model.of(soccerEvent.getUniform())).getObject());
             }
         }
         return model;

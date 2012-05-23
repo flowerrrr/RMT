@@ -59,5 +59,19 @@
         <entry key="appUrl" value="${app.url}" />
     </util:map>
 
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>classpath:/de/flower/rmt/ui/app/RMTApplication</value>
+            </list>
+        </property>
+        <property name="cacheSeconds" value="10" /> <!-- only rarely used so reloading bundle should not impact performance -->
+    </bean>
+
+    <!-- use MessageSourceAccessor in order to utilize LocaleContextHolder transparently -->
+    <bean id="messageSourceAccessor" class="org.springframework.context.support.MessageSourceAccessor">
+        <constructor-arg ref="messageSource" />
+    </bean>
+
 
 </beans>

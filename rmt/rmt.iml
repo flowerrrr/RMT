@@ -60,7 +60,7 @@
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
-    <orderEntry type="library" name="groovy-1.8.6" level="project" />
+    <orderEntry type="library" scope="TEST" name="groovy-1.8.6" level="project" />
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
@@ -167,19 +167,6 @@
         </JAVADOC>
         <SOURCES>
           <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-devutils/1.5.5/source/3fcb37f22759ab6491be770888760ca3483e7247/wicket-devutils-1.5.5-sources.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.wicketstuff/wicketstuff-jsr303/1.5.5/jar/7e26d56ea4b5c583cd268247b2ebd67e7608c306/wicketstuff-jsr303-1.5.5.jar!/" />
-        </CLASSES>
-        <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.wicketstuff/wicketstuff-jsr303/1.5.5/javadoc/d23e4a9f00fa783ffd28ced91fc5e11dfe2efcb4/wicketstuff-jsr303-1.5.5-javadoc.jar!/" />
-        </JAVADOC>
-        <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.wicketstuff/wicketstuff-jsr303/1.5.5/source/8b54bd544c79fb7d3ec1b68886f2b4d150d16e3/wicketstuff-jsr303-1.5.5-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>

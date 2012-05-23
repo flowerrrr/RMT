@@ -9,7 +9,7 @@ import de.flower.rmt.model.db.entity.event.Match;
 import de.flower.rmt.model.db.type.EventType;
 import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.model.dto.Notification;
-import de.flower.rmt.test.AbstractRMTWicketIntegrationTests;
+import de.flower.rmt.test.AbstractRMTIntegrationTests;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -17,11 +17,10 @@ import java.util.List;
 import static org.testng.Assert.*;
 
 /**
- * Must extend wicket tests as long as resource string lookup is done with wicket libs.
  *
  * @author flowerrrr
  */
-public class NotificationServiceTest extends AbstractRMTWicketIntegrationTests {
+public class NotificationServiceTest extends AbstractRMTIntegrationTests {
 
     @Test
     public void testSendResetPasswordMail() {
