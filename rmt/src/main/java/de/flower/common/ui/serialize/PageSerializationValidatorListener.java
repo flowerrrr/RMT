@@ -51,7 +51,7 @@ public class PageSerializationValidatorListener implements ISerializerListener {
 
     @Override
     public void notify(Object object, byte[] data) {
-            objectSerializationListener.reset();
+        objectSerializationListener.reset();
         final String xml = xstream.toXML(object);
         if (data != null) {
             long length = data.length;
@@ -60,6 +60,7 @@ public class PageSerializationValidatorListener implements ISerializerListener {
         xstreamLog.trace(xml);
         ObjectSerializationListener.Context context = objectSerializationListener.getContext();
         checkSerializedObjects(context);
+        objectSerializationListener.reset();
     }
 
     /**
@@ -75,13 +76,13 @@ public class PageSerializationValidatorListener implements ISerializerListener {
         for (Multiset.Entry<Class<?>> entry : context.typeSet.entrySet()) {
             String className = entry.getElement().getName();
             switch (filter.matches(className)) {
-               case WHITELIST:
-                   break;
-               case BLACKLIST:
-                   blackListed.add(className);
-                   break;
-               default:
-                   undefinedList.add(className);
+                case WHITELIST:
+                    break;
+                case BLACKLIST:
+                    blackListed.add(className);
+                    break;
+                default:
+                    undefinedList.add(className);
             }
         }
 

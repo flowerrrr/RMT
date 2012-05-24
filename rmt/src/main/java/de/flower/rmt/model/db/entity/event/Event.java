@@ -82,7 +82,7 @@ public class Event extends AbstractClubRelatedEntity {
 
     @Column
     @Index(name = "ix_canceled")
-    private boolean canceled = false;
+    private Boolean canceled = false;
 
     @ManyToOne
     @NotNull
@@ -259,7 +259,8 @@ public class Event extends AbstractClubRelatedEntity {
     }
 
     public boolean isCanceled() {
-        return canceled;
+        // database field might be null as column was added later
+        return canceled == null ? false : canceled;
     }
 
     public void setCanceled(final boolean canceled) {
