@@ -23,11 +23,11 @@ public class ClazzTest {
     }
 
     @Test
-    public void testGetSuperClassName() {
+    public void testGetSuperClass() {
         Object o = new Object() {
         };
         o.getClass().getSuperclass();
         assertTrue(Clazz.isAnonymousInnerClass(o.getClass()));
-        assertEquals(Clazz.getSuperClassName(o.getClass()), Object.class.getSimpleName());
+        assertEquals(Clazz.getSuperClass(o.getClass()), Object.class);
     }
 }

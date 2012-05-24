@@ -15,12 +15,49 @@
     <bean class="org.wicketstuff.jsr303.spring.JSR303SpringConfig" />
 
     <bean id="filter" class="de.flower.common.ui.serialize.Filter">
-        <constructor-arg>
-            <array>
-                <value>"de\.flower\.rmt\.model\.db\.entity\.[^-]*?"</value>
-                <value>"ch\.qos\.logback\.classic\.Logger"</value>
-            </array>
-        </constructor-arg>
+        <property name="blackList">
+            <list>
+                <value>de\.flower\.rmt\.model\.db\.entity\..*</value>
+                <value>ch\.qos\.logback\.classic\.Logger</value>
+            </list>
+        </property>
+        <property name="whiteList">
+            <list>
+                <value>.*Behavior</value>
+                <value>.*Panel</value>
+                <value>.*EntityForm</value>
+                <value>.*FormComponent</value>
+                <value>.*Page</value>
+                <value>.*Model</value>
+                <value>org\.apache\.wicket\..*</value>
+                <value>de.flower.common.ui.ajax.event.AjaxEventListener</value>
+                <value>de.flower.common.ui.ajax.markup.html.AjaxLink$NoIndicatingAjaxLink</value>
+                <value>de.flower.common.ui.ajax.markup.html.AjaxLink</value>
+                <value>de.flower.common.ui.ajax.markup.html.AjaxLinkWithConfirmation</value>
+                <value>de.flower.common.ui.ajax.markup.html.form.AjaxSubmitLink</value>
+                <value>de.flower.common.ui.ajax.markup.repeater.AjaxAppendingRefreshingView</value>
+                <value>de.flower.common.ui.markup.html..*l</value>
+                <value>de.flower.common.ui.modal.ModalDialogWindow</value>
+                <value>de.flower.common.ui.modal.ModalDialogWindowPanel</value>
+                <value>de.flower.common.util.geo.LatLng</value>
+                <value>de.flower.rmt.model.dto..*</value>
+                <value>de.flower.rmt.ui.feedback.MessageOfTheDayMessage</value>
+                <value>de.flower.rmt.ui.feedback.NoInvitationSentMessage</value>
+                <value>de.flower.rmt.ui.feedback.PasswordChangeRequiredMessage</value>
+                <value>de.flower.rmt.ui.markup.html.form.EntityForm</value>
+                <value>de.flower.rmt.ui.markup.html.form.renderer.RSVPStatusRenderer</value>
+                <value>de.flower.rmt.ui.page.event.EventDetailsPanel$SurfaceListLabel</value>
+                <value>de.flower.rmt.ui.page.event.EventDetailsPanel$UniformLabel</value>
+                <value>de.flower.rmt.ui.panel.QuickResponseLabel</value>
+                <value>java.lang.Object</value>
+                <value>java.util.AbstractList</value>
+                <value>javax.mail.internet.InternetAddress</value>
+                <value>org.wicketstuff.jsr303.validator.FormComponentBeanValidator</value>
+                <value>org.wicketstuff.jsr303.validator.PropertyValidator</value>
+                <value>de.flower.common.util.geo.LatLng</value>
+                <value>wicket.contrib.gmap3..*</value>
+            </list>
+        </property>
     </bean>
 
 </beans>

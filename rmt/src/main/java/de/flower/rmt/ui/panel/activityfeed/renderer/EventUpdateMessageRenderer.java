@@ -12,12 +12,15 @@ public class EventUpdateMessageRenderer extends AbstractEventMessageRenderer imp
     @Override
     public String toString(final EventUpdateMessage message) {
         String key;
-        Object[] params = new Object[]{linkProvider.deepLinkEvent(message.getEventId())};
-        if (message.isCreated()) {
+        Object[] params = new Object[]{ getEventArticle(message), getEventLink(message), linkProvider.deepLinkEvent(message.getEventId())};
+        if (message.getType() == EventUpdateMessage.Type.CREATED) {
             key = "activity.event.create.message";
-        } else {
+        } else if (message.getType() == EventUpdateMessage.Type.UPDATED) {
             key = "activity.event.update.message";
-            params = new Object[]{ getEventLink(message)};
+        } else if (message.getType() == EventUpdateMessage.Type.CANCELED) {
+            key = "activity.event.cancel.message";
+        } else {
+            throw new RuntimeException("Unkonwn message type [" + message + "].");
         }
         String s = new StringResourceModel(key, Model.of(message), params).getObject();
         return s;

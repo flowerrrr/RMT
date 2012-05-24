@@ -1,5 +1,6 @@
 package de.flower.rmt.ui.page.base.manager;
 
+import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.ui.app.IEventListProvider;
 import de.flower.rmt.ui.app.View;
@@ -51,6 +52,7 @@ public class NavigationPanel extends AbstractNavigationPanel {
 //        add(createMenuItem(HOME, ManagerHomePage.class, page));
         WebMarkupContainer events = createMenuItem(EVENTS, EventsPage.class, page);
         add(events);
+        events.add(new AjaxEventListener(Event.class));
         events.add(new ListView<Event>("eventList", getEventListModel()) {
             @Override
             protected void populateItem(final ListItem<Event> item) {

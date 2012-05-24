@@ -51,7 +51,7 @@ public abstract class QuickResponseLabel extends AjaxEditableChoiceLabel<RSVPSta
         if (isEnabled()) {
             return super.getLabelAjaxEvent();
         } else {
-            return "disabled";
+            return "foobar-event";
         }
     }
 

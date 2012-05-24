@@ -8,12 +8,18 @@ import org.hibernate.validator.constraints.NotBlank;
  */
 public class EventUpdateMessage extends AbstractEventMessage {
 
+    public enum Type {
+        CREATED,
+        UPDATED,
+        CANCELED;
+    }
+
     /**
      * Must have a serialVersionUID as instances are stored in database.
      */
     private static final long serialVersionUID = 1L;
 
-    private boolean created;
+    private Type type;
 
     private String teamName;
 
@@ -32,12 +38,12 @@ public class EventUpdateMessage extends AbstractEventMessage {
         this.managerName = managerName;
     }
 
-    public boolean isCreated() {
-        return created;
+    public Type getType() {
+        return type;
     }
 
-    public void setCreated(final boolean created) {
-        this.created = created;
+    public void setType(final Type type) {
+        this.type = type;
     }
 
     public String getTeamName() {
@@ -51,7 +57,7 @@ public class EventUpdateMessage extends AbstractEventMessage {
     @Override
     public String toString() {
         return "EventUpdateMessage{" +
-                "created=" + created +
+                "type=" + type +
                 ", teamName='" + teamName + '\'' +
                 ", managerName='" + managerName + '\'' +
                 "} " + super.toString();

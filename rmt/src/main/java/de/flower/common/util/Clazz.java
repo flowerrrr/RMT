@@ -66,8 +66,8 @@ public final class Clazz {
         return clazz.getEnclosingClass() != null && clazz.getName().contains("$");
     }
 
-    public static String getSuperClassName(Class<?> anonymousClass) {
+    public static Class<?> getSuperClass(Class<?> anonymousClass) {
         Check.isTrue(isAnonymousInnerClass(anonymousClass));
-        return anonymousClass.getSuperclass().getSimpleName();
+        return anonymousClass.getSuperclass();
     }
 }

@@ -1,5 +1,6 @@
 package de.flower.rmt.ui.page.event.manager;
 
+import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.app.View;
@@ -7,7 +8,9 @@ import de.flower.rmt.ui.feedback.NoInvitationSentMessage;
 import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.page.base.manager.ManagerBasePage;
 import de.flower.rmt.ui.page.base.manager.NavigationPanel;
+import de.flower.rmt.ui.page.event.EventCanceledPanel;
 import de.flower.rmt.ui.page.event.EventDetailsPanel;
+import de.flower.rmt.ui.page.event.manager.edit.EventEditSecondaryPanel;
 import de.flower.rmt.ui.page.event.manager.invitees.InviteeSecondaryPanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
@@ -54,7 +57,7 @@ public class EventPage extends ManagerBasePage {
         init(model);
     }
 
-    private void init(IModel<Event> model) {
+    private void init(final IModel<Event> model) {
         setDefaultModel(model);
         setHeading("manager.event.edit.heading", null);
         final EventTabPanel tabPanel = new EventTabPanel(model) {
@@ -66,7 +69,8 @@ public class EventPage extends ManagerBasePage {
         };
         addMainPanel(tabPanel);
 
-        addSecondaryPanel(new EventDetailsPanel(model, View.MANAGER) {
+        getSecondaryPanel().add(new EventCanceledPanel(model));
+        getSecondaryPanel().add(new EventDetailsPanel(model, View.MANAGER) {
             @Override
             public boolean isVisible() {
                 return tabPanel.getSelectedTab() == EventTabPanel.INVITATIONS_PANEL_INDEX
@@ -79,6 +83,13 @@ public class EventPage extends ManagerBasePage {
                 return tabPanel.getSelectedTab() == EventTabPanel.INVITEES_PANEL_INDEX;
             }
         });
+        getSecondaryPanel().add(new EventEditSecondaryPanel(model) {
+            @Override
+            public boolean isVisible() {
+                return tabPanel.getSelectedTab() == EventTabPanel.EVENT_EDIT_PANEL_INDEX;
+            }
+        });
+        getSecondaryPanel().add(new AjaxEventListener(Event.class));
     }
 
     @Override

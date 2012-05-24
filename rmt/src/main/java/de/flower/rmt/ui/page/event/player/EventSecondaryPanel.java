@@ -12,6 +12,7 @@ import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.model.InvitationModel;
+import de.flower.rmt.ui.page.event.EventCanceledPanel;
 import de.flower.rmt.ui.page.event.EventDetailsPanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.AbstractReadOnlyModel;
@@ -33,6 +34,8 @@ public class EventSecondaryPanel extends BasePanel {
     public EventSecondaryPanel(final IModel<Event> model) {
         // treat subpanels as top level secondary panels to have spacer between them
         setRenderBodyOnly(true);
+
+        add(new EventCanceledPanel(model));
 
         final IModel<Invitation> invitationModel = getInvitationModel(model);
         add(new SlideableInvitationFormPanel(invitationModel));
@@ -84,17 +87,17 @@ public class EventSecondaryPanel extends BasePanel {
                 }
             };
 
-            add(new AjaxSlideTogglePanel("invitationFormPanel", "player.event.invitationform.heading", invitationFormPanel) {
-                @Override
-                public boolean isVisible() {
-                    // completely hide panel if user is not invitee of this event.
-                    return SlideableInvitationFormPanel.this.getModel().getObject() != null;
-                }
-            });
+            add(new AjaxSlideTogglePanel("invitationFormPanel", "player.event.invitationform.heading", invitationFormPanel));
 
             // make form visible if user hasn't responded yet
             // must be called after adding to AjaxSlideTogglePanel
             invitationFormPanel.setVisible(invitationModel.getObject() != null && invitationModel.getObject().getStatus() == RSVPStatus.NORESPONSE);
+        }
+
+        @Override
+        public boolean isVisible() {
+            // completely hide panel if user is not invitee of this event.
+            return getModel().getObject() != null;
         }
 
         @Override

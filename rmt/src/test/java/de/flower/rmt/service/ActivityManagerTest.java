@@ -4,6 +4,7 @@ import de.flower.rmt.model.db.entity.Activity;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.RSVPStatus;
+import de.flower.rmt.model.db.type.activity.EventUpdateMessage;
 import de.flower.rmt.test.AbstractRMTIntegrationTests;
 import org.testng.annotations.Test;
 
@@ -20,7 +21,7 @@ public class ActivityManagerTest extends AbstractRMTIntegrationTests {
     @Test
     public void testOnEventCreatedOrUpdated() {
         Event event = testData.createEvent();
-        activityManager.onCreateOrUpdate(event, true);
+        activityManager.onCreateOrUpdateEvent(event, EventUpdateMessage.Type.CREATED);
     }
 
     @Test

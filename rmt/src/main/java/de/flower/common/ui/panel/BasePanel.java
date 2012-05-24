@@ -90,7 +90,7 @@ public class BasePanel<T> extends GenericPanel<T> {
 
     private static String getClassName(Class<?> clazz) {
         if (Clazz.isAnonymousInnerClass(clazz)) {
-            return Clazz.getSuperClassName(clazz);
+            return Clazz.getSuperClass(clazz).getSimpleName();
         } else {
             return clazz.getSimpleName();
         }

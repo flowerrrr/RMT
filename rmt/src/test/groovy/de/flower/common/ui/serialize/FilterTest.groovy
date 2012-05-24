@@ -1,9 +1,8 @@
 package de.flower.common.ui.serialize
 
-import de.flower.rmt.model.db.type.RSVPStatus
+import de.flower.common.ui.serialize.Filter.MatchType
 import org.testng.annotations.Test
 import static org.testng.Assert.assertEquals
-import static org.testng.Assert.assertTrue
 
 /**
  *
@@ -13,12 +12,12 @@ import static org.testng.Assert.assertTrue
 class FilterTest {
 
     @Test
-    def void testFilter() {
-        def filter = new Filter("\"de\\.flower\\.rmt\\.model\\.db\\.entity[^-]*?\"")
-        filter.addExclusion(RSVPStatus.class.getName())
-        def matches = filter.matches("<class=\"de.flower.rmt.model.db.entity.Event\" />")
-        assertEquals(matches.size(), 1)
-        matches = filter.matches("<class=\"de.flower.rmt.model.db.type.RSVPStatus\" />")
-        assertTrue(matches.isEmpty())
+    public void testFilter() {
+        def filter = new Filter();
+        filter.setBlackList(["de.flower.rmt.model.db.entity..*", "org.logger..*"])
+        filter.setWhiteList([".*Panel", ".*Behavior", "java.lang..*"])
+        assertEquals(filter.matches("de.flower.rmt.model.db.entity.subpacke.Event"), MatchType.BLACKLIST)
+        assertEquals(filter.matches("org.wicket.MyPanel"), MatchType.WHITELIST)
+        assertEquals(filter.matches("foobar"), MatchType.NOMATCH)
     }
 }

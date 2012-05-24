@@ -1,5 +1,6 @@
 package de.flower.rmt.ui.page.event.manager.edit;
 
+import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.common.ui.js.JQuery;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.event.Event;
@@ -44,6 +45,9 @@ public class EventEditPanel extends BasePanel<Event> {
 
     public EventEditPanel(String id, final IModel<Event> m) {
         super(id, m);
+
+        add(new AjaxEventListener(Event.class)); // in case cancelEventButton is clicked.
+
         final IModel<Event> model = ModelFactory.eventModelWithAllAssociations(m.getObject());
 
         final EntityForm<Event> form = new CancelableEntityForm<Event>("form", model, createCancelLink(model)) {

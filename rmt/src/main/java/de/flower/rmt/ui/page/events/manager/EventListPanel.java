@@ -63,6 +63,9 @@ public class EventListPanel extends BasePanel {
                 if (de.flower.rmt.ui.page.events.player.EventListPanel.isNextEvent(event, getList())) {
                     item.add(AttributeModifier.append("class", "next-event"));
                 }
+                if (event.isCanceled()) {
+                    item.add(AttributeModifier.append("class", "canceled-event"));
+                }
 
                 Link link = createInvitationsLink("invitationsLink", item.getModel());
                 link.add(new Label("date", Dates.formatDateShortWithWeekday(event.getDateTimeAsDate())));

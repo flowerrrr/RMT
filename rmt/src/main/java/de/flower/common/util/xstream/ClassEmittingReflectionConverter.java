@@ -16,6 +16,8 @@ public class ClassEmittingReflectionConverter extends ReflectionConverter {
 
     private final static Logger log = LoggerFactory.getLogger(ClassEmittingReflectionConverter.class);
 
+    private IObjectSerializationListener listener;
+
     public ClassEmittingReflectionConverter(XStream xstream) {
         super(xstream.getMapper(), new JVM().bestReflectionProvider());
     }
@@ -26,14 +28,26 @@ public class ClassEmittingReflectionConverter extends ReflectionConverter {
             log.trace("marshal([" + original + "]");
         }
         writer.addAttribute("type", original.getClass().getName());
+        if (listener != null) {
+            listener.notify(original);
+        }
         try {
             super.marshal(original, writer, context);
         } catch (RuntimeException e) {
+            // what exactly was this for?
             if (original instanceof SingularAttributeImpl) {
                 SingularAttributeImpl attr = (SingularAttributeImpl) original;
                 log.error(attr.getName());
             }
             throw e;
         }
+    }
+
+    public IObjectSerializationListener getListener() {
+        return listener;
+    }
+
+    public void setListener(final IObjectSerializationListener listener) {
+        this.listener = listener;
     }
 }

@@ -6,37 +6,47 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- *
  * @author flowerrrr
  */
 public class Filter {
 
-    private List<String> inclusionPatterns = new ArrayList<String>();
+    public enum MatchType {
+        WHITELIST,
+        BLACKLIST,
+        NOMATCH;
+    }
 
-    private List<String> exclusionPatterns = new ArrayList<String>();
+    private List<String> whiteList = new ArrayList<String>();
 
-    public Filter(final String ... inclusionPatterns) {
-        for (String inclusionPattern : inclusionPatterns) {
-            this.inclusionPatterns.add(inclusionPattern);
+    private List<String> blackList = new ArrayList<String>();
+
+    public Filter() {
+    }
+
+    public List<String> getWhiteList() {
+        return whiteList;
+    }
+
+    public void setWhiteList(final List<String> whiteList) {
+        this.whiteList = whiteList;
+    }
+
+    public List<String> getBlackList() {
+        return blackList;
+    }
+
+    public void setBlackList(final List<String> blackList) {
+        this.blackList = blackList;
+    }
+
+    public MatchType matches(final String string) {
+        if (!matches(blackList, string).isEmpty()) {
+            return MatchType.BLACKLIST;
+        } else if (!matches(whiteList, string).isEmpty()) {
+            return MatchType.WHITELIST;
+        } else {
+            return MatchType.NOMATCH;
         }
-    }
-
-    public void addInclusion(final String pattern) {
-        this.inclusionPatterns.add(pattern);
-    }
-
-    public void addExclusion(final String pattern) {
-        this.exclusionPatterns.add(pattern);
-    }
-
-    public List<String> matches(final String string) {
-        final List<String> matches = matches(inclusionPatterns, string);
-        for (String match : new ArrayList<String>(matches)) {
-            if (!matches(exclusionPatterns, match).isEmpty()) {
-                matches.remove(match);
-            }
-        }
-        return matches;
     }
 
     public static List<String> matches(List<String> patterns, String string) {

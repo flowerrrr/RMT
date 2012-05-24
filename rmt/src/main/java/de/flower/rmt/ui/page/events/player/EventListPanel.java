@@ -66,6 +66,9 @@ public class EventListPanel extends BasePanel {
                 if (isNextEvent(event, getList())) {
                     item.add(AttributeModifier.append("class", "next-event"));
                 }
+                if (event.isCanceled()) {
+                    item.add(AttributeModifier.append("class", "canceled-event"));
+                }
 
                 Link link = Links.eventLink("invitationsLink", event.getId());
                 item.add(link);

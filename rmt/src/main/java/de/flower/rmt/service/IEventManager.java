@@ -76,4 +76,6 @@ public interface IEventManager {
     Event initAssociations(Event event, Attribute... attributes);
 
     boolean isEventClosed(Event event);
+
+    void cancelEvent(Long id);
 }

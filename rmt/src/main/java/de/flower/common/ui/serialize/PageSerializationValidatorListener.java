@@ -1,7 +1,11 @@
 package de.flower.common.ui.serialize;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Multiset;
 import com.thoughtworks.xstream.XStream;
 import de.flower.common.util.xstream.ClassEmittingReflectionConverter;
+import de.flower.common.util.xstream.ObjectSerializationListener;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,35 +36,61 @@ public class PageSerializationValidatorListener implements ISerializerListener {
 
     private Filter filter;
 
+    private ObjectSerializationListener objectSerializationListener = new ObjectSerializationListener();
+
     @Autowired
     public PageSerializationValidatorListener(Filter filter) {
         xstream = new XStream();
         // by default xstream does not output the classname of serialized fields.
-        xstream.registerConverter(new ClassEmittingReflectionConverter(xstream), XStream.PRIORITY_VERY_LOW);
+        ClassEmittingReflectionConverter converter = new ClassEmittingReflectionConverter(xstream);
+        converter.setListener(objectSerializationListener);
+        xstream.registerConverter(converter, XStream.PRIORITY_VERY_LOW);
 
         this.filter = filter;
     }
 
     @Override
     public void notify(Object object, byte[] data) {
+            objectSerializationListener.reset();
         final String xml = xstream.toXML(object);
         if (data != null) {
             long length = data.length;
             log.info("Size of serialized page: " + (length / 1024) + " KB.");
         }
         xstreamLog.trace(xml);
-        checkSerializedString(xml);
+        ObjectSerializationListener.Context context = objectSerializationListener.getContext();
+        checkSerializedObjects(context);
     }
 
-    private void checkSerializedString(String xml) {
-        List<String> matches = filter.matches(xml);
-        boolean error = false;
-        for (String match : matches) {
-            error = true;
-            log.error("Serialized class [" + match + "].");
+    /**
+     * <pre>
+     * class on whitelist -> ok
+     * class on blacklist -> exception
+     * otherwise -> log.warn
+     * </pre>
+     */
+    private void checkSerializedObjects(ObjectSerializationListener.Context context) {
+        List<String> blackListed = Lists.newArrayList();
+        List<String> undefinedList = Lists.newArrayList();
+        for (Multiset.Entry<Class<?>> entry : context.typeSet.entrySet()) {
+            String className = entry.getElement().getName();
+            switch (filter.matches(className)) {
+               case WHITELIST:
+                   break;
+               case BLACKLIST:
+                   blackListed.add(className);
+                   break;
+               default:
+                   undefinedList.add(className);
+            }
         }
-        if (error) {
-            log.error("Turn on TRACE level for 'xstream' logger and check serialized xml output for domain objects.");
+
+        if (!undefinedList.isEmpty()) {
+            log.warn("Unknown classes. Consider adding them to white/blacklist:\n{}", StringUtils.join(undefinedList, "\n"));
+        }
+        if (!blackListed.isEmpty()) {
+            log.error("Blacklisted serialized classes in page: {}", blackListed);
+            log.error("Turn on TRACE level for 'xstream' logger and check serialized xml output for violating objects.");
             throw new PageSerializationException("Serialized domain objects in your wicket pages! Use AbstractEntityModels instead.");
         }
     }

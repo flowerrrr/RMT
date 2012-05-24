@@ -62,16 +62,17 @@ public class ActivityManager extends AbstractService implements IActivityManager
 
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-    public void onCreateOrUpdate(Event event, final boolean isNew) {
+    public void onCreateOrUpdateEvent(Event event, EventUpdateMessage.Type type) {
         event = eventManager.loadById(event.getId(), Event_.team);
         Activity entity = newInstance();
         EventUpdateMessage message = new EventUpdateMessage(event);
-        message.setCreated(isNew);
+        message.setType(type);
         message.setTeamName(event.getTeam().getName());
         message.setManagerName(entity.getUser().getFullname());
         entity.setMessage(message);
         save(entity);
     }
+
 
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)

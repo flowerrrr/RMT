@@ -82,7 +82,7 @@ public class Event extends AbstractClubRelatedEntity {
 
     @Column
     @Index(name = "ix_canceled")
-    private Boolean canceled = false;
+    private boolean canceled = false;
 
     @ManyToOne
     @NotNull
@@ -234,7 +234,7 @@ public class Event extends AbstractClubRelatedEntity {
         this.comment = comment;
     }
 
-    public Boolean isInvitationSent() {
+    public boolean isInvitationSent() {
         return invitationSent;
     }
 
@@ -258,11 +258,11 @@ public class Event extends AbstractClubRelatedEntity {
         return createdBy;
     }
 
-    public Boolean getCanceled() {
+    public boolean isCanceled() {
         return canceled;
     }
 
-    public void setCanceled(final Boolean canceled) {
+    public void setCanceled(final boolean canceled) {
         this.canceled = canceled;
     }
 

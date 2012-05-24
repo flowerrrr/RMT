@@ -3,6 +3,7 @@ package de.flower.rmt.service;
 import de.flower.rmt.model.db.entity.Activity;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.event.Event;
+import de.flower.rmt.model.db.type.activity.EventUpdateMessage;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public interface IActivityManager {
 //
 //    void delete(Long id);
 
-    void onCreateOrUpdate(Event event, boolean isNew);
+    void onCreateOrUpdateEvent(Event event, EventUpdateMessage.Type type);
 
     void onInvitationMailSent(Event event);
 
@@ -31,4 +32,5 @@ public interface IActivityManager {
     void onInvitationUpdated(Invitation invitation);
 
     List<Activity> findLastN(int num, final int i);
+
 }

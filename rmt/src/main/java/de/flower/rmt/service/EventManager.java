@@ -11,6 +11,7 @@ import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.entity.event.Event_;
 import de.flower.rmt.model.db.entity.event.QEvent;
 import de.flower.rmt.model.db.type.EventType;
+import de.flower.rmt.model.db.type.activity.EventUpdateMessage;
 import de.flower.rmt.model.dto.Notification;
 import de.flower.rmt.repository.IEventRepo;
 import de.flower.rmt.service.mail.IMailService;
@@ -18,6 +19,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
@@ -56,13 +58,16 @@ public class EventManager extends AbstractService implements IEventManager {
     @Value("${event.closed.before.hours}")
     private Integer eventClosedBeforeHours;
 
+    @Autowired
+    private MessageSourceAccessor messageSource;
+
     @Override
     @Transactional(readOnly = false)
     public void save(Event entity) {
         validate(entity);
-        boolean isNew = entity.isNew();
+        EventUpdateMessage.Type type = (entity.isNew()) ? EventUpdateMessage.Type.CREATED : EventUpdateMessage.Type.UPDATED;
         eventRepo.save(entity);
-        activityManager.onCreateOrUpdate(entity, isNew);
+        activityManager.onCreateOrUpdateEvent(entity, type);
     }
 
     @Override
@@ -201,5 +206,23 @@ public class EventManager extends AbstractService implements IEventManager {
         DateTime now = new DateTime();
         eventRepo.reattach(event);
         return now.minusHours(eventClosedBeforeHours).isAfter(event.getDateTime());
+    }
+
+    @Override
+    public void cancelEvent(final Long id) {
+        Event event = loadById(id);
+        event.setCanceled(true);
+        String summary = messageSource.getMessage("event.summary.canceled.prefix") + " " + event.getSummary();
+        event.setSummary(summary);
+        eventRepo.save(event);
+
+        // notify accepted and unsure invitees
+        sendCancelationMail(event);
+
+        activityManager.onCreateOrUpdateEvent(event, EventUpdateMessage.Type.CANCELED);
+    }
+
+    private void sendCancelationMail(final Event event) {
+        log.info("Send cancelation mail ... not yet implemented");
     }
 }

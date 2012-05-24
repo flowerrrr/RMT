@@ -103,11 +103,14 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
     }
 
     protected void addSecondaryPanel(Component... components) {
-        secondaryPanel = new WrappingPanel("secondaryPanel", components);
-        container.add(secondaryPanel);
+        getSecondaryPanel().add(components);
     }
 
     public Panel getSecondaryPanel() {
+        if (secondaryPanel == null) {
+            secondaryPanel = new WrappingPanel("secondaryPanel");
+            container.add(secondaryPanel);
+        }
         return secondaryPanel;
     }
 

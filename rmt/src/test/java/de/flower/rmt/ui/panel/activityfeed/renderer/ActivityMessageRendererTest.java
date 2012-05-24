@@ -32,7 +32,7 @@ public class ActivityMessageRendererTest extends AbstractRMTWicketMockitoTests {
     @Test
     public void testEventCreated() {
         EventUpdateMessage message = new EventUpdateMessage(testData.newEvent());
-        message.setCreated(true);
+        message.setType(EventUpdateMessage.Type.CREATED);
         message.setManagerName("Uli Hoeneß");
         message.setTeamName("FC Bayern");
         message.setEventId(1L);
@@ -45,7 +45,22 @@ public class ActivityMessageRendererTest extends AbstractRMTWicketMockitoTests {
     @Test
     public void testEventUpdated() {
         EventUpdateMessage message = new EventUpdateMessage(testData.newEvent());
-        message.setCreated(false);
+        message.setType(EventUpdateMessage.Type.UPDATED);
+        message.setManagerName("Uli Hoeneß");
+        message.setTeamName("FC Bayern");
+        message.setEventDate(new Date());
+        message.setEventId(1L);
+        for (EventType eventType : EventType.values()) {
+            message.setEventType(eventType);
+            String s = ActivityMessageRenderer.toString(message);
+            log.info(message + " rendered to [" + s + "]");
+        }
+    }
+
+    @Test
+    public void testEventCanceled() {
+        EventUpdateMessage message = new EventUpdateMessage(testData.newEvent());
+        message.setType(EventUpdateMessage.Type.CANCELED);
         message.setManagerName("Uli Hoeneß");
         message.setTeamName("FC Bayern");
         message.setEventDate(new Date());

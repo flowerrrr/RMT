@@ -4,11 +4,15 @@ import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.event.IEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Attach this behavior to any component that wants to be added to an ajaxRequestTarget on certain events.
  */
 public final class AjaxEventListener extends Behavior {
+
+    private final static Logger log = LoggerFactory.getLogger(AjaxEventListener.class);
 
     /**
      * Events that this behavior listens for.
@@ -53,6 +57,8 @@ public final class AjaxEventListener extends Behavior {
                     // detach models so that component loads fresh data when it is repainted.
                     component.detach();
                     target.add(component);
+                } else {
+                    log.warn("Cannot add component [{}] to ajax request target.", component);
                 }
             }
         }
