@@ -7,4 +7,6 @@ public interface IApplicationService {
 
     String getMessageOfTheDay();
 
+    String getProperty(String key);
+
 }

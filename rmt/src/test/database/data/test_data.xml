@@ -4,6 +4,8 @@
     <club id="1" name="Juventus Urin" lat="48.13724243994332" lng="11.575392225925508" objectstatus="0"/>
     <club id="2" name="FC Bayern" lat="48.13724243994332" lng="11.575392225925508" objectstatus="0"/>
 
+    <property id="1" club_id="1" key="uservoice.token" value="mNTsoCUuSEaF5qjGfDGIuQ"/>
+
     <users id="1" enabled="true" status="FIT" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="admin-rmt@mailinator.com" fullname="Flowerrrr" club_id="1" objectstatus="0" />
     <users id="2" enabled="true" status="FIT" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="manager-rmt@mailinator.com" fullname="Sepp" club_id="1" objectstatus="0" />
     <users id="3" enabled="true" status="FIT" password="81dc9bdb52d04dc20036dbd8313ed055" initialpassword="1234" username="player-rmt@mailinator.com" fullname="Ingo" club_id="1" objectstatus="0" />

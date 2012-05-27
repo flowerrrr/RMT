@@ -1,7 +1,10 @@
 package de.flower.rmt.ui.page.base;
 
 import de.flower.common.ui.ajax.behavior.test.SeleniumWaitForAjaxSupportBehavior;
+import de.flower.common.ui.behavior.UserVoiceBehavior;
 import de.flower.common.ui.modal.ModalDialogWindowPanel;
+import de.flower.rmt.service.ApplicationService;
+import de.flower.rmt.service.IApplicationService;
 import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.service.security.UserDetailsBean;
 import de.flower.rmt.ui.app.Resource;
@@ -27,6 +30,9 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
     @SpringBean
     private ISecurityService securityService;
 
+    @SpringBean
+    private IApplicationService applicationService;
+
     public AbstractBasePage() {
         this(null);
     }
@@ -44,6 +50,17 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
 
         ModalDialogWindowPanel modalDialogWindowPanel = new ModalDialogWindowPanel();
         add(modalDialogWindowPanel);
+
+        add(new UserVoiceBehavior() {
+            @Override
+            protected String getToken() {
+                if (isCurrentUserLoggedIn()) {
+                    return applicationService.getProperty(ApplicationService.USERVOICE_TOKEN);
+                } else {
+                    return null;
+                }
+            }
+        });
     }
 
     @Override
@@ -90,5 +107,4 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
     public boolean isCurrentUserLoggedIn() {
         return securityService.isCurrentUserLoggedIn();
     }
-
 }
