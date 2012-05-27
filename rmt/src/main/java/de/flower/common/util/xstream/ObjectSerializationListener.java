@@ -25,6 +25,14 @@ public class ObjectSerializationListener implements IObjectSerializationListener
                 return o1.getName().compareTo(o2.getName());
             }
         });
+
+        public String toString() {
+            String s = "";
+            for (Multiset.Entry<Class<?>> entry : typeSet.entrySet()) {
+                s += entry.getElement().getName() + " = " + entry.getCount() + "\n";
+            }
+            return s;
+        }
     }
 
     private static ThreadLocal<Context> threadLocal = new ThreadLocal<Context>();
