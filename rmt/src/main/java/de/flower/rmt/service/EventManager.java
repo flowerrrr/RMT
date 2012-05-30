@@ -83,6 +83,8 @@ public class EventManager extends AbstractService implements IEventManager {
         Event entity = eventRepo.findOne(where(eq(Event_.id, id)).and(fetch));
         Check.notNull(entity, "Event [" + id + "] not found");
         assertClub(entity);
+        // init transient date fields
+        entity.initTransientFields();
         return entity;
     }
 

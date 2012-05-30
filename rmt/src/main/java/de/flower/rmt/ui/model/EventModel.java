@@ -60,8 +60,6 @@ public class EventModel<T extends Event> extends AbstractEntityModel<T> {
         } else {
             entity = manager.loadById(id);
         }
-        // init transient date fields
-        entity.initTransientFields();
         return (T) entity;
     }
 
