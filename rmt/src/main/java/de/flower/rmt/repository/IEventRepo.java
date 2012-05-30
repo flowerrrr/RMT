@@ -1,12 +1,8 @@
 package de.flower.rmt.repository;
 
 import de.flower.rmt.model.db.entity.Team;
-import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,12 +13,6 @@ import java.util.List;
  * @author flowerrrr
  */
 public interface IEventRepo extends IRepository<Event, Long> {
-
-    /**
-     * Make join to table team to eager fetch this association. it is needed in the eventlistpanel.
-     */
-    @Query("select e from Event e left join FETCH e.team t  join e.invitations i where i.user = :user and e.date >= :date and e.objectStatus <> 1 order by e.date")
-    List<Event> findAllUpcomingByInvitee(@Param("user") User user, @Param("date") Date date);
 
     List<Event> findAllByTeam(Team team);
 

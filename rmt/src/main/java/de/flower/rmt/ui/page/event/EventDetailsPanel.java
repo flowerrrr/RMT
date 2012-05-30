@@ -25,6 +25,7 @@ import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.*;
 import org.apache.wicket.util.convert.IConverter;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -38,9 +39,9 @@ public class EventDetailsPanel extends BasePanel<Event> {
 
         add(new Label("team.name"));
 
-        add(DateLabel.forDatePattern("date", Dates.DATE_MEDIUM_WITH_WEEKDAY));
+        add(DateLabel.forDatePattern("date", new PropertyModel<Date>(getModel(), "dateTimeAsDate"), Dates.DATE_MEDIUM_WITH_WEEKDAY));
 
-        add(DateLabel.forDateStyle("dateTimeAsDate", "-S"));
+        add(DateLabel.forDateStyle("time", new PropertyModel<Date>(getModel(), "dateTimeAsDate"), "-S"));
 
         add(new WebMarkupContainer("kickoffContainer") {
             {

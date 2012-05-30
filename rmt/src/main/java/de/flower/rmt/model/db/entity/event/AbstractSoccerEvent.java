@@ -18,6 +18,10 @@ import java.util.List;
 @MappedSuperclass
 public abstract class AbstractSoccerEvent extends Event {
 
+    /**
+     * Will be stored in database as millis from 1.1.1970. Shows one hour more than actual time due to conversion to UTC.
+     * See RMT-669.
+     */
     @Column
     @NotNull
     @Type(type = "org.joda.time.contrib.hibernate.PersistentLocalTimeAsTime")

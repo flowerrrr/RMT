@@ -108,7 +108,7 @@ public class EventManager extends AbstractService implements IEventManager {
         Check.notNull(user);
         BooleanExpression beforeNow = QEvent.event.dateTime.before(new DateTime());
         BooleanExpression isUser = QEvent.event.invitations.any().user.eq(user);
-        return eventRepo.findAll(beforeNow.and(isUser), new PageRequest(0, num, Sort.Direction.DESC, Event_.date.getName()), attributes).getContent();
+        return eventRepo.findAll(beforeNow.and(isUser), new PageRequest(0, num, Sort.Direction.DESC, Event_.dateTime.getName()), attributes).getContent();
     }
 
     @Override

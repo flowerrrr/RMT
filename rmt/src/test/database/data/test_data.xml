@@ -68,14 +68,14 @@
     <player id="11" team_id="3" user_id="13" optional="0" notification="1" retired="0" objectstatus="0" />
 
     <!-- use far away future dates so that tests of event dates againts now() yield always same results. -->
-    <event eventType="Match" id="3" summary="Spiel im November" dateTime="2021-11-01 17:00:00.0" date="2021-11-01 00:00:00.0" time="17:00:00" kickoff="12:00:00" club_id="1" team_id="1" venue_id="1" invitationsent="0" objectstatus="0" />
-    <event eventType="Training" id="1" summary="Saisonopening" dateTime="2021-10-01 17:00:00.0" date="2021-10-01 00:00:00.0" time="17:00:00" club_id="1" team_id="3" venue_id="1" invitationsent="0" objectstatus="0" />
-    <event eventType="Training" id="2" summary="2. Training" dateTime="2012-10-08 17:00:00.0" date="2012-10-08 00:00:00.0" time="17:00:00" club_id="1" team_id="1" venue_id="1" invitationsent="0" objectstatus="0" />
-    <event eventType="Event" id="4" summary="Weihnachtsfeier" dateTime="2021-12-15 17:00:00.0" date="2021-12-15 00:00:00.0" time="17:00:00" club_id="1" team_id="1" venue_id="1" invitationsent="0" objectstatus="0" />
-    <event eventType="Training" id="5" summary="Saisonopening" dateTime="2021-10-07 17:00:00.0" date="2021-10-07 00:00:00.0" time="17:00:00" club_id="1" team_id="3" venue_id="1" invitationsent="0" objectstatus="0" />
-    <event eventType="Training" id="6" summary="Saisonopening" dateTime="2021-10-14 17:00:00.0" date="2021-10-14 00:00:00.0" time="17:00:00" club_id="1" team_id="3" venue_id="1" invitationsent="0" objectstatus="0" />
-    <event eventType="Training" id="7" summary="Saisonopening" dateTime="2021-10-21 17:00:00.0" date="2021-10-21 00:00:00.0" time="17:00:00" club_id="1" team_id="3" venue_id="1" invitationsent="0" objectstatus="0" />
-    <event eventType="Training" id="8" summary="Saisonopening" dateTime="2021-10-28 17:00:00.0" date="2021-10-28 00:00:00.0" time="17:00:00" club_id="1" team_id="3" venue_id="1" invitationsent="0" objectstatus="0" />
+    <event eventType="Match" id="3" summary="Spiel im November" dateTime="2021-11-01 17:00:00.0" kickoff="12:00:00" club_id="1" team_id="1" venue_id="1" invitationsent="0" objectstatus="0" />
+    <event eventType="Training" id="1" summary="Saisonopening" dateTime="2021-10-01 17:00:00.0" club_id="1" team_id="3" venue_id="1" invitationsent="0" objectstatus="0" />
+    <event eventType="Training" id="2" summary="2. Training" dateTime="2012-10-08 17:00:00.0" club_id="1" team_id="1" venue_id="1" invitationsent="0" objectstatus="0" />
+    <event eventType="Event" id="4" summary="Weihnachtsfeier" dateTime="2021-12-15 17:00:00.0" club_id="1" team_id="1" venue_id="1" invitationsent="0" objectstatus="0" />
+    <event eventType="Training" id="5" summary="Saisonopening" dateTime="2021-10-07 17:00:00.0" club_id="1" team_id="3" venue_id="1" invitationsent="0" objectstatus="0" />
+    <event eventType="Training" id="6" summary="Saisonopening" dateTime="2021-10-14 17:00:00.0" club_id="1" team_id="3" venue_id="1" invitationsent="0" objectstatus="0" />
+    <event eventType="Training" id="7" summary="Saisonopening" dateTime="2021-10-21 17:00:00.0" club_id="1" team_id="3" venue_id="1" invitationsent="0" objectstatus="0" />
+    <event eventType="Training" id="8" summary="Saisonopening" dateTime="2021-10-28 17:00:00.0" club_id="1" team_id="3" venue_id="1" invitationsent="0" objectstatus="0" />
 
     <invitation id="1" status="ACCEPTED" date="2011-12-15 00:00:00.0" event_id="1" user_id="7" comment="endlich wieder" invitationsent="0" objectstatus="0" />
     <invitation id="2" status="ACCEPTED" date="2011-12-05 00:00:00.0" event_id="1" user_id="8" comment="gfrei mi" invitationsent="0" objectstatus="0" />

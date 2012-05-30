@@ -146,8 +146,8 @@ public class EventManagerTest extends AbstractRMTIntegrationTests {
         List<Event> events = eventManager.findAllUpcomingAndLastNByUser(user, 100);
         Date last = new DateTime().plusYears(1000).toDate();
         for (Event event : events) {
-            assertTrue(event.getDate().getTime() <= last.getTime());
-            last = event.getDate();
+            assertTrue(event.getDateTimeAsDate().getTime() <= last.getTime());
+            last = event.getDateTimeAsDate();
         }
     }
 }

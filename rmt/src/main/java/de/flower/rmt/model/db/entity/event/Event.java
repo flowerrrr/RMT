@@ -42,25 +42,28 @@ public class Event extends AbstractClubRelatedEntity {
     /**
      * Two separate fields to make form validation easier.
      * Modelled as java.util.Date instead of joda-date cause this makes handling the field
-     * in wicket forms much easier.
+     * in wicket forms much easier. Also required to have validation constraint for datepicker.
      * Time part of this field is always midnight 00:00:00.
      */
-    @Column
     @NotNull
-    @Index(name = "ix_date")
+    @Transient
     private Date date;
 
-    @Column
+    /**
+     * Only the time part of the meeting time.
+     */
     @NotNull
-    @Type(type = "org.joda.time.contrib.hibernate.PersistentLocalTimeAsTime")
+    @Transient
     private LocalTime time;
 
     /**
+     * Derived field. Mostly used when searching for event by date and ordering by date.
      * Field is updated whenever #setDate() or #setTime() is called.
      */
     @Column
     @NotNull
     @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+    @Index(name = "ix_datetime")
     private DateTime dateTime;
 
     @Column
@@ -120,7 +123,7 @@ public class Event extends AbstractClubRelatedEntity {
     // **************************************************
     // Date functions
     // **************************************************
-
+    @Deprecated // only used for wicket form
     public Date getDate() {
         // must return raw value, otherwise validator would fail.
         return date;
@@ -136,6 +139,7 @@ public class Event extends AbstractClubRelatedEntity {
         updateDateTime(this.date);
     }
 
+    @Deprecated // only used for wicket form
     public LocalTime getTime() {
         // must return raw value, otherwise validator would fail.
         return time;
@@ -201,6 +205,13 @@ public class Event extends AbstractClubRelatedEntity {
                 dateTime = new DateTime(date).withFields(time);
             }
         }
+    }
+
+    /**
+     * called before object is used in edit form.
+     */
+    public void initTransientFields() {
+        setDateTime(getDateTime());
     }
 
     // **************************************************
@@ -272,4 +283,5 @@ public class Event extends AbstractClubRelatedEntity {
                 ", summary='" + summary + '\'' +
                 '}';
     }
+
 }

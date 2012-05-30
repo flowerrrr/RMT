@@ -29,7 +29,7 @@ public abstract class AbstractEventMessage implements Serializable {
     public AbstractEventMessage(final Event event) {
         setEventId(event.getId());
         setEventType(event.getEventType());
-        setEventDate(event.getDate());
+        setEventDate(event.getDateTimeAsDate());
     }
 
     public Long getEventId() {

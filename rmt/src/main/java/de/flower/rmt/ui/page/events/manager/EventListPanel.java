@@ -65,8 +65,8 @@ public class EventListPanel extends BasePanel {
                 }
 
                 Link link = createInvitationsLink("invitationsLink", item.getModel());
-                link.add(new Label("date", Dates.formatDateShortWithWeekday(event.getDate())));
-                link.add(new Label("time", Dates.formatTimeShort(event.getTime())));
+                link.add(new Label("date", Dates.formatDateShortWithWeekday(event.getDateTimeAsDate())));
+                link.add(new Label("time", Dates.formatTimeShort(event.getDateTimeAsDate())));
                 item.add(link);
                 item.add(new Label("type", new ResourceModel(EventType.from(event).getResourceKey())));
                 item.add(new Label("team", event.getTeam().getName()));

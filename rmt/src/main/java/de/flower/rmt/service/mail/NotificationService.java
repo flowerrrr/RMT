@@ -216,8 +216,8 @@ public class NotificationService implements INotificationService {
         final Locale locale = LocaleContextHolder.getLocale();
         final Map<String, Object> model = new HashMap<String, Object>();
         model.put("event", event);
-        model.put("eventDate", Dates.formatDateMediumWithWeekday(event.getDate()));
-        model.put("eventTime", Dates.formatTimeShort(event.getTime()));
+        model.put("eventDate", Dates.formatDateMediumWithWeekday(event.getDateTimeAsDate()));
+        model.put("eventTime", Dates.formatTimeShort(event.getDateTimeAsDate()));
         model.put("eventDateTime", Dates.formatDateTimeShortWithWeekday(event.getDateTimeAsDate()));
         model.put("eventType", messageSource.getMessage(event.getEventType().getResourceKey()));
         model.put("eventTypeMatch", EventType.Match);
