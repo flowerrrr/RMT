@@ -17,3 +17,9 @@
 /twitter-bootstrap
 /rmt/src/main/resources-target/dev/credentials.properties
 /rmt/src/main/resources-target/prod/credentials.properties
+/rmt/src/test/resources/credentials.properties
+/rmt/src/generated
+/rmt/src/generated
+/bootstrap-2.0.2
+/database
+/smtp4dev
