@@ -35,7 +35,7 @@ public class WicketLinkProvider implements ILinkProvider {
     private void assertUrl(String url, Long eventId) {
         String otherUrl = linkProvider.deepLinkEvent(eventId);
         if (!otherUrl.equals(url)) {
-            log.error(this.getClass().getSimpleName() + " = " + url + " <> " + linkProvider.getClass().getSimpleName() + " = " + otherUrl);
+            log.warn(this.getClass().getSimpleName() + " = " + url + " <> " + linkProvider.getClass().getSimpleName() + " = " + otherUrl);
         }
     }
 
