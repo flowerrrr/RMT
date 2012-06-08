@@ -73,7 +73,6 @@ public class BaseRepository<T extends AbstractBaseEntity, ID extends Serializabl
     //***************************************************************
 
     @Override
-    @Deprecated // currently not used
     public T findOne(final Predicate predicate, final EntityPath<?>... attributes) {
         // TODO (flowerrrr - 29.04.12) use paging call with setMaxresult = 2
         List<T> list = super.findAll(predicate, attributes);

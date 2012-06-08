@@ -40,7 +40,7 @@ public class AlertMessagePanel extends Panel {
 
             @Override
             public boolean isVisible() {
-                return alertMessage.getLabelModel() != null;
+                return alertMessage.getButtonLabelModel() != null;
             }
 
             /**
@@ -55,7 +55,7 @@ public class AlertMessagePanel extends Panel {
         };
 
         add(link);
-        link.add(new Label("label", alertMessage.getLabelModel()));
+        link.add(new Label("label", alertMessage.getButtonLabelModel()));
 
         AjaxLink closeButton = new AjaxLink("closeButton") {
             @Override

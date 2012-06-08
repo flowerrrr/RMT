@@ -1,7 +1,12 @@
 package de.flower.rmt.ui.page.event.player;
 
+import de.flower.common.ui.ajax.event.AjaxEventSender;
+import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.event.Event;
+import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.service.IEventManager;
+import de.flower.rmt.service.IInvitationManager;
+import de.flower.rmt.ui.feedback.ConfirmEventCanceledMessage;
 import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.page.base.player.NavigationPanel;
 import de.flower.rmt.ui.page.base.player.PlayerBasePage;
@@ -23,6 +28,11 @@ public class EventPage extends PlayerBasePage {
 
     @SpringBean
     private IEventManager eventManager;
+
+    @SpringBean
+    private IInvitationManager invitationManager;
+
+    private EventInvitationModel invitationModel;
 
     /**
      * Deep link support
@@ -56,11 +66,36 @@ public class EventPage extends PlayerBasePage {
         final InvitationListPanel invitationListPanel = new InvitationListPanel(model);
 
         addMainPanel(invitationListPanel);
-        addSecondaryPanel(new EventSecondaryPanel(model));
+        invitationModel = new EventInvitationModel(model);
+        addSecondaryPanel(new EventSecondaryPanel(model, invitationModel));
+
+    }
+
+    @Override
+    protected void onBeforeRender() {
+        super.onBeforeRender();
+        // makes messages back-button and reload-save. must be called after super.onBeforeRender to have this
+        // message listed after messages of super-page
+        // check if user must confirm cancellation of event
+        info(new ConfirmEventCanceledMessage(invitationModel) {
+            @Override
+            protected void confirm() {
+                Invitation invitation = invitationModel.getObject();
+                invitation.setStatus(RSVPStatus.DECLINED);
+                invitationManager.save(invitation);
+                AjaxEventSender.entityEvent(EventPage.this, Invitation.class);
+            }
+        });
     }
 
      @Override
     public String getActiveTopBarItem() {
         return NavigationPanel.EVENTS;
+    }
+
+    @Override
+    protected void onDetach() {
+        invitationModel.detach();
+        super.onDetach();
     }
 }

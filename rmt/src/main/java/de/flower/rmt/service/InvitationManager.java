@@ -3,6 +3,7 @@ package de.flower.rmt.service;
 import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
+import com.mysema.query.types.EntityPath;
 import com.mysema.query.types.expr.BooleanExpression;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.*;
@@ -199,8 +200,10 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     }
 
     @Override
-    public Invitation findByEventAndUser(Event event, User user) {
-        Invitation invitation = invitationRepo.findByEventAndUser(event, user);
+    public Invitation findByEventAndUser(Event event, User user, EntityPath<?>... attributes) {
+        BooleanExpression isEvent = QInvitation.invitation.event.eq(event);
+        BooleanExpression isUser = QInvitation.invitation.user.eq(user);
+        Invitation invitation = invitationRepo.findOne(isEvent.and(isUser), attributes);
         return invitation;
     }
 

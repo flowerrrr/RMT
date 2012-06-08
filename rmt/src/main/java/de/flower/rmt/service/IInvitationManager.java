@@ -1,5 +1,6 @@
 package de.flower.rmt.service;
 
+import com.mysema.query.types.EntityPath;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
@@ -54,7 +55,7 @@ public interface IInvitationManager {
 
     Invitation loadByEventAndUser(Event event, User user);
 
-    Invitation findByEventAndUser(Event event, User user);
+    Invitation findByEventAndUser(Event event, User user, EntityPath<?>... attributes);
 
     void save(Invitation invitation);
 

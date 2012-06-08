@@ -11,13 +11,23 @@ public abstract class AlertMessage implements Serializable {
 
     private IModel<String> messageModel;
 
-    private IModel<String> labelModel;
+    private IModel<String> buttonLabelModel;
 
-    public AlertMessage(final IModel<String> messageModel, IModel<String> labelModel) {
+    /**
+     *
+     * @param messageModel
+     * @param buttonLabelModel if null, no link is rendered.
+     */
+    public AlertMessage(final IModel<String> messageModel, IModel<String> buttonLabelModel) {
         this.messageModel = messageModel;
-        this.labelModel = labelModel;
+        this.buttonLabelModel = buttonLabelModel;
     }
 
+    /**
+     *
+     * @param alertMessagePanel
+     * @return true if message should be dismissed after clicking button.
+     */
     protected abstract boolean onClick(final AlertMessagePanel alertMessagePanel);
 
     public IModel<String> getMessageModel() {
@@ -28,8 +38,8 @@ public abstract class AlertMessage implements Serializable {
         this.messageModel = messageModel;
     }
 
-    public IModel<String> getLabelModel() {
-        return labelModel;
+    public IModel<String> getButtonLabelModel() {
+        return buttonLabelModel;
     }
 
     protected boolean isVisible(final AlertMessagePanel alertMessagePanel) {

@@ -1,7 +1,6 @@
 package de.flower.rmt.repository;
 
 import de.flower.rmt.model.db.entity.Invitation;
-import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.RSVPStatus;
 import org.springframework.data.jpa.repository.Modifying;
@@ -24,10 +23,6 @@ public interface IInvitationRepo extends IRepository<Invitation, Long> {
 
     @Query("select count(r) from Invitation r where r.event = :event and r.status = :status")
     Long numByEventAndStatus(@Param("event") Event event, @Param("status") RSVPStatus rsvpStatus);
-
-    Invitation findByEventAndUser(Event event, User user);
-
-    // List<Invitation> findAllByEvent(Event event);
 
     // TODO (flowerrrr - 22.05.12) match addresslist also against secondary email
     @Modifying

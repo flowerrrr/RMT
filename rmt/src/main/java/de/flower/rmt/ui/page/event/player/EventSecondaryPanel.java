@@ -8,16 +8,13 @@ import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.service.IInvitationManager;
-import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.app.View;
-import de.flower.rmt.ui.model.InvitationModel;
 import de.flower.rmt.ui.page.event.EventCanceledPanel;
 import de.flower.rmt.ui.page.event.EventDetailsPanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
@@ -26,18 +23,14 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public class EventSecondaryPanel extends BasePanel {
 
     @SpringBean
-    private ISecurityService securityService;
-
-    @SpringBean
     private IInvitationManager invitationManager;
 
-    public EventSecondaryPanel(final IModel<Event> model) {
+    public EventSecondaryPanel(final IModel<Event> model, final IModel<Invitation> invitationModel) {
         // treat subpanels as top level secondary panels to have spacer between them
         setRenderBodyOnly(true);
 
         add(new EventCanceledPanel(model));
 
-        final IModel<Invitation> invitationModel = getInvitationModel(model);
         add(new SlideableInvitationFormPanel(invitationModel));
 
         add(new EventDetailsPanel(model, View.PLAYER));
@@ -45,16 +38,6 @@ public class EventSecondaryPanel extends BasePanel {
         add(Links.mailLink("allMailLink", invitationManager.getAddressesForfAllInvitees(model.getObject())));
 
         add(Links.mailLink("managerMailLink", getManagerEmailAddress(model.getObject()), null));
-    }
-
-    private IModel<Invitation> getInvitationModel(final IModel<Event> model) {
-        final Invitation invitation = invitationManager.findByEventAndUser(model.getObject(), securityService.getUser());
-        if (invitation != null) {
-            return new InvitationModel(invitation);
-        } else {
-            //noinspection unchecked
-            return new Model();
-        }
     }
 
     private static String getManagerEmailAddress(final Event event) {

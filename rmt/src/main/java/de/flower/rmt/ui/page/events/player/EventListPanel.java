@@ -3,6 +3,7 @@ package de.flower.rmt.ui.page.events.player;
 import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.common.ui.panel.BasePanel;
+import de.flower.common.ui.tooltips.TooltipBehavior;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
@@ -77,6 +78,7 @@ public class EventListPanel extends BasePanel {
                 item.add(new Label("type", new ResourceModel(EventType.from(event).getResourceKey())));
                 item.add(new Label("team", event.getTeam().getName()));
                 item.add(new Label("summary", event.getSummary()));
+
                 final Invitation invitation = getInvitation(event, userModel.getObject());
                 RSVPStatus status = invitation.getStatus();
                 item.add(new QuickResponseLabel("rsvpStatus", status == RSVPStatus.NORESPONSE ? null : status) {
@@ -89,7 +91,18 @@ public class EventListPanel extends BasePanel {
                     public boolean isEnabled() {
                         return !eventManager.isEventClosed(item.getModelObject());
                     }
+
+                    @Override
+                    public boolean isVisible() {
+                        return !event.isCanceled();
+                    }
                 });
+
+                Link confirmCancelationLink = Links.eventLink("confirmCancelationLink", event.getId());
+                confirmCancelationLink.setVisible(event.isCanceled() && status != RSVPStatus.DECLINED);
+                item.add(confirmCancelationLink);
+                confirmCancelationLink.add(new TooltipBehavior(new ResourceModel("player.events.tooltip.confirm.cancelation")));
+
             }
 
             private Invitation getInvitation(final Event event, final User user) {
