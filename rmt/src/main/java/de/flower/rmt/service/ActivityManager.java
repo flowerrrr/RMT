@@ -93,6 +93,12 @@ public class ActivityManager extends AbstractService implements IActivityManager
         InvitationUpdateMessage message = new InvitationUpdateMessage(origInvitation.getEvent());
         message.setUserName(origInvitation.getName());
         boolean changed = false;
+
+        if (origInvitation.getEvent().isCanceled()) {
+            // RMT-676: avoid useless 'user xy is not attending event ...' messages.
+            return;
+        }
+
         if (!entity.getUser().equals(origInvitation.getUser())) {
             // manager has updated invitation
             message.setManagerName(entity.getUser().getFullname());

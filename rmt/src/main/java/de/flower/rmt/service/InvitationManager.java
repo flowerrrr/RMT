@@ -230,7 +230,8 @@ public class InvitationManager extends AbstractService implements IInvitationMan
                 if (origInvitation.getStatus() == RSVPStatus.ACCEPTED) {
                     // if status changes from accepted to any other state -> notify manager
                     // but only if it's not the manager himself who changes the status.
-                    if (!securityService.getUser().isManager()) {
+                    // but only if event is not cancelled -> all users will switch from ACCEPTED to DECLINED.
+                    if (!securityService.getUser().isManager() && !origInvitation.getEvent().isCanceled()) {
                         isNotifyManager = true;
                     }
                 }
