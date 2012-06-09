@@ -5,16 +5,19 @@ import com.mysema.query.types.expr.BooleanExpression;
 import de.flower.common.model.EntityHelper;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.Invitation;
+import de.flower.rmt.model.db.entity.Invitation_;
 import de.flower.rmt.model.db.entity.Team;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.entity.event.Event_;
 import de.flower.rmt.model.db.entity.event.QEvent;
 import de.flower.rmt.model.db.type.EventType;
+import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.model.db.type.activity.EventUpdateMessage;
 import de.flower.rmt.model.dto.Notification;
 import de.flower.rmt.repository.IEventRepo;
 import de.flower.rmt.service.mail.IMailService;
+import de.flower.rmt.service.mail.INotificationService;
 import org.apache.commons.lang3.ArrayUtils;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +48,9 @@ public class EventManager extends AbstractService implements IEventManager {
 
     @Autowired
     private IInvitationManager invitationManager;
+
+    @Autowired
+    private INotificationService notificationService;
 
     @Autowired
     private IUserManager userManager;
@@ -217,12 +223,14 @@ public class EventManager extends AbstractService implements IEventManager {
         eventRepo.save(event);
 
         // notify accepted and unsure invitees
-        sendCancelationMail(event);
+        sendEventCanceledMessage(event);
 
         activityManager.onCreateOrUpdateEvent(event, EventUpdateMessage.Type.CANCELED);
     }
 
-    private void sendCancelationMail(final Event event) {
-        log.info("Send cancelation mail ... not yet implemented");
+    private void sendEventCanceledMessage(final Event event) {
+        List<Invitation> invitations = invitationManager.findAllByEventAndStatus(event, RSVPStatus.ACCEPTED, Invitation_.user);
+        invitations.addAll(invitationManager.findAllByEventAndStatus(event, RSVPStatus.UNSURE, Invitation_.user));
+        notificationService.sendEventCanceledMessage(event, invitations);
     }
 }

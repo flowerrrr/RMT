@@ -3,3 +3,4 @@
 
 $eventDetails
 
+#parse('footer-include.vm')

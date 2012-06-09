@@ -86,4 +86,11 @@ public class NotificationServiceTest extends AbstractRMTIntegrationTests {
         List<Invitation> invitations = invitationManager.findAllByEvent(event, Invitation_.user);
         notificationService.sendUnsureReminder(event, invitations);
     }
+
+    @Test
+    public void testSendEventCanceledMessage() {
+        Event event = testData.createEvent();
+        List<Invitation> invitations = invitationManager.findAllByEvent(event, Invitation_.user);
+        notificationService.sendEventCanceledMessage(event, invitations);
+    }
 }

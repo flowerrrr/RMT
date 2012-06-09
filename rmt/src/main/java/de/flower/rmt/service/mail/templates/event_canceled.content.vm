@@ -1,0 +1,7 @@
+Der nachfolgende Termin wurde abgesagt.
+
+Bitte bestätige, dass Du die Absage erhalten hast und trage Dich aus dem Termin aus.
+
+$eventDetails
+
+#parse('footer-include.vm')

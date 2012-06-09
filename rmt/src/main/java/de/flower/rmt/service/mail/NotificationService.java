@@ -2,6 +2,7 @@ package de.flower.rmt.service.mail;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Lists;
+import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.Uniform;
 import de.flower.rmt.model.db.entity.User;
@@ -149,6 +150,7 @@ public class NotificationService implements INotificationService {
 
     @Override
     public void sendNoResponseReminder(Event event, final List<Invitation> invitations) {
+        Check.isTrue(!event.isCanceled(), "Trying to send reminder mail for canceled event.");
         log.info("Sending no-response reminder to [{}]", invitations);
         String eventLink = linkProvider.deepLinkEvent(event.getId());
         SimpleMailMessage message = getNoResponseReminderMessage(event, eventLink);
@@ -181,6 +183,7 @@ public class NotificationService implements INotificationService {
 
     @Override
     public void sendUnsureReminder(final Event event, final List<Invitation> invitations) {
+        Check.isTrue(!event.isCanceled(), "Trying to send reminder mail for canceled event.");
         log.info("Sending unsure reminder to [{}]", invitations);
         String eventLink = linkProvider.deepLinkEvent(event.getId());
         SimpleMailMessage message = getUnsureReminderMessage(event, eventLink);
@@ -210,6 +213,38 @@ public class NotificationService implements INotificationService {
 
         return message;
     }
+
+    @Override
+    public void sendEventCanceledMessage(final Event event, final List<Invitation> invitations) {
+        log.info("Sending event canceled notification to [{}]", invitations);
+        String eventLink = linkProvider.deepLinkEvent(event.getId());
+        SimpleMailMessage message = getEventCanceledMessage(event, eventLink);
+
+        List<String> to = Lists.newArrayList();
+        for (Invitation invitation : invitations) {
+            if (invitation.hasEmail()) {
+                to.addAll(Arrays.asList(invitation.getEmails()));
+            }
+        }
+        message.setBcc(to.toArray(new String[]{}));
+
+        mailService.sendMail(message);
+    }
+
+    @VisibleForTesting
+    protected SimpleMailMessage getEventCanceledMessage(final Event event, final String eventLink) {
+        SimpleMailMessage message = new SimpleMailMessage();
+
+        final Map<String, Object> model = getEventDetailsModel(event, eventLink);
+        String eventDetails = templateService.mergeTemplate(EmailTemplate.EVENT_DETAILS.getTemplate(), model);
+        model.put("eventDetails", eventDetails);
+
+        message.setSubject(templateService.mergeTemplate(EmailTemplate.EVENT_CANCELED.getSubject(), model));
+        message.setText(templateService.mergeTemplate(EmailTemplate.EVENT_CANCELED.getContent(), model));
+
+        return message;
+    }
+
 
     @VisibleForTesting
     protected Map<String, Object> getEventDetailsModel(Event event, final String eventLink) {

@@ -40,6 +40,7 @@ public interface IEventManager {
     /**
      * Returns all events scheduled inside the next <code>hours</code>.
      * Calculated against Event.date - Event.time (not kickOff).
+     * Does not return canceled events.
      */
     List<Event> findAllNextNHours(int hours);
 

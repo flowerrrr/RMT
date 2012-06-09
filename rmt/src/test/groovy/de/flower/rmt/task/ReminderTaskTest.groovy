@@ -79,4 +79,22 @@ public class ReminderTaskTest extends AbstractRMTIntegrationTests {
         assertEquals(invitationManager.findAllForUnsureReminder(event).size(), 0)
 
     }
+
+    /**
+     * Verify that canceled events are ignored when sending reminder mails.
+     */
+    @Test
+    public void testNoReminderSendForCanceledEvent() {
+        def hours = 12
+        def event = testData.createEvent();
+        event.setDateTime(new DateTime().plusHours(12));
+        eventManager.save(event);
+        def events = eventManager.findAllNextNHours(20);
+        assertTrue(!events.isEmpty());
+
+        event.setCanceled(true);
+        eventManager.save(event);
+        events = eventManager.findAllNextNHours(20);
+        assertTrue(events.isEmpty());
+    }
 }

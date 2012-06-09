@@ -35,4 +35,6 @@ public interface INotificationService {
     void sendNoResponseReminder(Event event, List<Invitation> invitations);
 
     void sendUnsureReminder(Event event, List<Invitation> invitations);
+
+    void sendEventCanceledMessage(final Event event, final List<Invitation> invitations);
 }

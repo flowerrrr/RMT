@@ -3,3 +3,4 @@ Dich noch nicht für den folgenden Termin zurückgemeldet hast.
 
 $eventDetails
 
+#parse('footer-include.vm')

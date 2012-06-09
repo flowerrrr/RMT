@@ -3,3 +3,4 @@ für den folgenden Termin noch nicht zu- oder abgesagt hast.
 
 $eventDetails
 
+#parse('footer-include.vm')

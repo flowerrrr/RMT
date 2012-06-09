@@ -11,6 +11,7 @@ public enum EmailTemplate {
     NOTIFICATION_EVENT,
     NORESPONSE_REMINDER,
     UNSURE_REMINDER,
+    EVENT_CANCELED,
     EVENT_DETAILS;
 
     public String getTemplate() {

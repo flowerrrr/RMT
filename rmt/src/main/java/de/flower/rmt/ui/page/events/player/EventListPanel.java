@@ -94,7 +94,7 @@ public class EventListPanel extends BasePanel {
 
                     @Override
                     public boolean isVisible() {
-                        return !event.isCanceled();
+                        return !item.getModelObject().isCanceled();
                     }
                 });
 

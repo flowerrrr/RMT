@@ -150,4 +150,10 @@ public class EventManagerTest extends AbstractRMTIntegrationTests {
             last = event.getDateTimeAsDate();
         }
     }
+
+    @Test
+    public void testCancelEvent() {
+        Event event = testData.createEventWithResponses();
+        eventManager.cancelEvent(event.getId());
+    }
 }
