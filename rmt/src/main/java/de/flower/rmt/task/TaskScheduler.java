@@ -24,9 +24,9 @@ public class TaskScheduler {
     private final static Logger log = LoggerFactory.getLogger(TaskScheduler.class);
 
     /**
-     * Run scheduled task every 10 minutes. Increase when feature becomes stable.
+     * Run scheduled task every 60 minutes. Increase when feature becomes stable.
      */
-    private final static long rate = 10 * 60 * 1000;
+    private final static long rate = 60 * 60 * 1000;
 
     @Autowired
     private SecurityContextHolderStrategy schs;

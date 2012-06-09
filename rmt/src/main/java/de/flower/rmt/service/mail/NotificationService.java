@@ -163,8 +163,7 @@ public class NotificationService implements INotificationService {
         }
         message.setBcc(to.toArray(new String[]{}));
 
-        log.warn("Reminder-Mails are currently mocked.\nSending mail:\n" + message.toString());
-        // mailService.sendMail(message);
+        mailService.sendMail(message);
     }
 
     @VisibleForTesting
@@ -196,8 +195,7 @@ public class NotificationService implements INotificationService {
         }
         message.setBcc(to.toArray(new String[]{}));
 
-        log.warn("Reminder-Mails are currently mocked.\nSending mail:\n" + message.toString());
-        // mailService.sendMail(message);
+        mailService.sendMail(message);
     }
 
     @VisibleForTesting
