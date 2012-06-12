@@ -7,7 +7,6 @@ import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -18,25 +17,11 @@ public class WicketLinkProvider implements ILinkProvider {
 
     private final static Logger log = LoggerFactory.getLogger(WicketLinkProvider.class);
 
-    /**
-     * Inject server-layer linkprovider to test generated urls.
-     */
-    @Autowired
-    private ILinkProvider linkProvider;
-
     @Override
     public String deepLinkEvent(final Long eventId) {
         String relativeUrl = urlForEvent(eventId).toString();
         String url = toAbsoluteUrl(relativeUrl);
-        assertUrl(url, eventId);
         return url;
-    }
-
-    private void assertUrl(String url, Long eventId) {
-        String otherUrl = linkProvider.deepLinkEvent(eventId);
-        if (!otherUrl.equals(url)) {
-            log.warn(this.getClass().getSimpleName() + " = " + url + " <> " + linkProvider.getClass().getSimpleName() + " = " + otherUrl);
-        }
     }
 
     private static CharSequence urlForEvent(Long eventId) {
