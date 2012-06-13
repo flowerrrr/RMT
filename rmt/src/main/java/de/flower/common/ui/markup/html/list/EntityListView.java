@@ -16,7 +16,7 @@ public abstract class EntityListView<T extends IEntity> extends ListView<T> {
     }
 
     @Override
-     protected IModel<T> getListItemModel(final IModel<? extends List<T>> listViewModel, final int index) {
-         return new ListItemEntityModel<T>(listViewModel, index);
-     }
+    protected IModel<T> getListItemModel(final IModel<? extends List<T>> listViewModel, final int index) {
+        return new ListItemEntityModel<T>(listViewModel, index);
+    }
 }

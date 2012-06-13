@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * Enhanced version of ListItemModel that is stable against deleting or adding items to the list that backs the model.
- * Instead of storing index this model stores the id of the item and looks up items by id. Might be ineffictive if backing
+ * Instead of storing index this model stores the id of the item and looks up items by id. Might be ineffective if backing
  * list is super-long.
  *
  * @param <T> the generic type
@@ -17,7 +17,7 @@ public final class ListItemEntityModel<T extends IEntity> implements IModel<T> {
 
     private final IModel<? extends List<? extends T>> listModel;
 
-    private final Long id;
+    private Long id;
 
     /**
      * Fallback in case the id is not set. Mostly to be able to use this model in unit tests with transient objects.
@@ -32,7 +32,7 @@ public final class ListItemEntityModel<T extends IEntity> implements IModel<T> {
      */
     public ListItemEntityModel(final IModel<? extends List<? extends T>> listModel, final int index) {
         this.listModel = listModel;
-        this.id = listModel.getObject().get(index).getId();
+        // this.id = listModel.getObject().get(index).getId();
         this.index = index;
     }
 
@@ -49,11 +49,13 @@ public final class ListItemEntityModel<T extends IEntity> implements IModel<T> {
                     return object;
                 }
             }
+            throw new EntityNotFoundException("Entity [" + id + "] was not returned by listmodel.");
         } else {
-            // fallback for unit tests with transient objects
-            return listModel.getObject().get(index);
+            // first time object is loaded use index. subsequent lookups use the id.
+            T object = listModel.getObject().get(index);
+            this.id = object.getId();
+            return object;
         }
-        throw new EntityNotFoundException("Entity [" + id + "] could not be loaded from database.");
     }
 
     @Override

@@ -98,7 +98,8 @@ public class NotificationService implements INotificationService {
     }
 
     @Override
-    @Transactional(readOnly = true, propagation = Propagation.REQUIRED) // required to enable lazy fetching of event and event.created by user
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+    // required to enable lazy fetching of event and event.created by user
     public void sendStatusChangedMessage(final Invitation invitationIn) {
         Invitation invitation = invitationManager.loadById(invitationIn.getId());
         SimpleMailMessage message = getStatusChangedMessage(invitation);
@@ -159,8 +160,16 @@ public class NotificationService implements INotificationService {
         for (Invitation invitation : invitations) {
             if (invitation.hasEmail()) {
                 to.addAll(Arrays.asList(invitation.getEmails()));
+            } else {
+                log.info("Cannot send reminder for invitation without email address [{}].", invitation);
             }
         }
+
+        if (to.isEmpty()) {
+            log.warn("#sendNoResponseReminder() called with inviations that have no email address assigned.");
+            return;
+        }
+
         message.setBcc(to.toArray(new String[]{}));
 
         mailService.sendMail(message);
@@ -191,8 +200,16 @@ public class NotificationService implements INotificationService {
         for (Invitation invitation : invitations) {
             if (invitation.hasEmail()) {
                 to.addAll(Arrays.asList(invitation.getEmails()));
+            } else {
+                log.info("Cannot send reminder for invitation without email address [{}].", invitation);
             }
         }
+
+        if (to.isEmpty()) {
+            log.warn("#sendUnsureReminder() called with inviations that have no email address assigned.");
+            return;
+        }
+
         message.setBcc(to.toArray(new String[]{}));
 
         mailService.sendMail(message);
@@ -242,7 +259,6 @@ public class NotificationService implements INotificationService {
 
         return message;
     }
-
 
     @VisibleForTesting
     protected Map<String, Object> getEventDetailsModel(Event event, final String eventLink) {
