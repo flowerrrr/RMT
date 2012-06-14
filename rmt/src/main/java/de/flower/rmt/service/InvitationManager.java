@@ -3,7 +3,7 @@ package de.flower.rmt.service;
 import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
-import com.mysema.query.types.EntityPath;
+import com.mysema.query.types.Path;
 import com.mysema.query.types.expr.BooleanExpression;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.*;
@@ -51,6 +51,9 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     @Autowired
     private INotificationService notificationService;
 
+    @Autowired
+    private ICommentManager commentManager;
+
     @Override
     public Invitation newInstance(final Event event, User user) {
         Check.notNull(event);
@@ -94,9 +97,11 @@ public class InvitationManager extends AbstractService implements IInvitationMan
         // filter out those that do not want to receive email notifications
         Iterable<Invitation> filtered = Iterables.filter(list, new Predicate<Invitation>() {
             private List<Player> players;
+
             {
                 players = playerManager.findAllByTeam(event.getTeam());
             }
+
             @Override
             public boolean apply(@Nullable final Invitation invitation) {
                 if (!invitation.hasEmail()) {
@@ -121,16 +126,16 @@ public class InvitationManager extends AbstractService implements IInvitationMan
         List<Invitation> list = findAllByEventSortedByName(event);
         // convert to list of internet addresses
         List<InternetAddress[]> internetAddresses = de.flower.common.util.Collections.convert(list,
-                new de.flower.common.util.Collections.IElementConverter<Invitation, InternetAddress[]>(){
-            @Override
-            public InternetAddress[] convert(final Invitation element) {
-                if (element.hasEmail()) {
-                    return element.getInternetAddresses();
-                } else {
-                    return null;
-                }
-            }
-        });
+                new de.flower.common.util.Collections.IElementConverter<Invitation, InternetAddress[]>() {
+                    @Override
+                    public InternetAddress[] convert(final Invitation element) {
+                        if (element.hasEmail()) {
+                            return element.getInternetAddresses();
+                        } else {
+                            return null;
+                        }
+                    }
+                });
         return de.flower.common.util.Collections.flattenArray(internetAddresses);
     }
 
@@ -200,7 +205,7 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     }
 
     @Override
-    public Invitation findByEventAndUser(Event event, User user, EntityPath<?>... attributes) {
+    public Invitation findByEventAndUser(Event event, User user, Path<?>... attributes) {
         BooleanExpression isEvent = QInvitation.invitation.event.eq(event);
         BooleanExpression isUser = QInvitation.invitation.user.eq(user);
         Invitation invitation = invitationRepo.findOne(isEvent.and(isUser), attributes);
@@ -210,6 +215,17 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     @Override
     @Transactional(readOnly = false)
     public void save(final Invitation invitation) {
+        save(invitation, null, false);
+    }
+
+    @Override
+    @Transactional(readOnly = false)
+    public void save(final Invitation invitation, String comment) {
+        save(invitation, comment, true);
+    }
+
+    private void save(final Invitation invitation, String comment, boolean updateComment) {
+
         validate(invitation);
         boolean isNew = invitation.isNew();
         boolean isNotifyManager = false;
@@ -239,11 +255,18 @@ public class InvitationManager extends AbstractService implements IInvitationMan
             if (invitation.getDate() == null) {
                 invitation.setDate(new Date());
             }
+
             // invitations are created when event is created. that's not interesting to track. we'd only
             // like to know when invitation is updated.
             activityManager.onInvitationUpdated(invitation);
         }
         invitationRepo.save(invitation);
+
+        // update comment
+        if (updateComment) {
+            commentManager.updateComment(invitation, comment);
+        }
+
         if (isNotifyManager) {
             try {
                 notificationService.sendStatusChangedMessage(invitation);

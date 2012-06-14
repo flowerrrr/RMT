@@ -106,6 +106,9 @@ public class AbstractRMTIntegrationTests extends AbstractTestNGSpringContextTest
     protected IInvitationManager invitationManager;
 
     @Autowired
+    protected ICommentManager commentManager;
+
+    @Autowired
     protected IUniformManager uniformManager;
 
     @Autowired
@@ -219,7 +222,9 @@ public class AbstractRMTIntegrationTests extends AbstractTestNGSpringContextTest
         log.info("Resetting test data in database.");
 
         db.deleteAll(Database.createDataSet("/data/test_data_delete.xml"));
+
         db.cleanInsert(Database.createDataSet("/data/test_data.xml"));
+        // testData.insertTestData();
 
         testData.checkDataConsistency(em);
     }

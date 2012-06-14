@@ -11,7 +11,7 @@ import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.service.IPlayerManager;
 import de.flower.rmt.ui.app.Links;
-import org.apache.commons.lang3.StringUtils;
+import de.flower.rmt.ui.page.event.CommentsPanel;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.ExternalLink;
@@ -71,8 +71,7 @@ public class InvitationListPanel extends BasePanel {
         label.setVisible(printOrder);
         frag.add(label);
         frag.add(new Label("name", invitation.getName()));
-        frag.add(new Label("comment", invitation.getComment()).setVisible(!StringUtils.isBlank(invitation.getComment())));
-        frag.add(new Label("managerComment", invitation.getManagerComment()).setVisible(!StringUtils.isBlank(invitation.getManagerComment())));
+        frag.add(new CommentsPanel(item.getModel()));
         ExternalLink link = Links.mailLink("emailLink", (invitation.hasEmail() ? invitation.getEmail() : ""), null);
         link.setVisible(invitation.hasEmail());
         frag.add(link);
@@ -83,7 +82,7 @@ public class InvitationListPanel extends BasePanel {
         return new LoadableDetachableModel<List<Invitation>>() {
             @Override
             protected List<Invitation> load() {
-                return invitationManager.findAllByEventAndStatus(model.getObject(), rsvpStatus, Invitation_.user);
+                return invitationManager.findAllByEventAndStatus(model.getObject(), rsvpStatus, Invitation_.user, Invitation_.comments);
             }
         };
     }

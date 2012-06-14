@@ -1,7 +1,7 @@
 package de.flower.rmt.repository;
 
-import com.mysema.query.types.EntityPath;
 import com.mysema.query.types.OrderSpecifier;
+import com.mysema.query.types.Path;
 import com.mysema.query.types.Predicate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -37,14 +37,14 @@ public interface IRepository<T, ID extends Serializable> extends JpaRepository<T
      */
     void softDelete(T entity);
 
-    T findOne(Predicate predicate, EntityPath<?>... attributes);
+    T findOne(Predicate predicate, Path<?>... attributes);
 
     List<T> findAll(Predicate predicate);
 
-    List<T> findAll(Predicate predicate, EntityPath<?>... fetchAttributes);
+    List<T> findAll(Predicate predicate, Path<?>... fetchAttributes);
 
-    Page<T> findAll(Predicate predicate, Pageable pageable, EntityPath<?>... fetchAttributes);
+    Page<T> findAll(Predicate predicate, Pageable pageable, Path<?>... fetchAttributes);
 
-    List<T> findAll(Predicate predicate, OrderSpecifier<?> order, EntityPath<?>... attributes);
+    List<T> findAll(Predicate predicate, OrderSpecifier<?> order, Path<?>... attributes);
 
 }

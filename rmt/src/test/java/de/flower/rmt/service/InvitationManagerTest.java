@@ -1,5 +1,6 @@
 package de.flower.rmt.service;
 
+import de.flower.rmt.model.db.entity.Comment;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.Invitation_;
 import de.flower.rmt.model.db.entity.Player;
@@ -19,6 +20,26 @@ import static org.testng.Assert.*;
  */
 
 public class InvitationManagerTest extends AbstractRMTIntegrationTests {
+
+    @Test
+    public void testInvitationSave() {
+        Event event = testData.createEvent();
+        Invitation invitation = invitationManager.findAllByEvent(event).get(0);
+        invitationManager.save(invitation, "some comment");
+        invitation = invitationManager.loadById(invitation.getId(), Invitation_.comments);
+        assertEquals(invitation.getComments().size(), 1);
+        Comment comment = invitation.getComments().get(0);
+        assertEquals(comment.getAuthor(), securityService.getUser());
+        assertEquals(comment.getText(), "some comment");
+
+        // update comment
+        invitationManager.save(invitation, "new comment");
+        invitation = invitationManager.loadById(invitation.getId(), Invitation_.comments);
+        assertEquals(invitation.getComments().size(), 1);
+        comment = invitation.getComments().get(0);
+        assertEquals(comment.getText(), "new comment");
+
+    }
 
     @Test
     public void testMarkInvitationSent() {

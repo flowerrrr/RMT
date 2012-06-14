@@ -9,7 +9,9 @@ import javax.mail.internet.InternetAddress;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author flowerrrr
@@ -29,13 +31,16 @@ public class Invitation extends AbstractBaseEntity {
     @Index(name = "ix_date")
     private Date date;
 
-    @Column(length = 255)
-    @Size(max = 255)
-    private String comment;
+    @OneToMany(mappedBy = "invitation", cascade = CascadeType.REMOVE)
+    @OrderBy("createDate")
+    private List<Comment> comments = new ArrayList<>();
 
-    @Column(length = 255)
-    @Size(max = 255)
-    private String managerComment;
+    /**
+     * First comment of context user.
+     * Used for ui forms. Initialized when invitation is loaded.
+     */
+    @Transient
+    private String comment;
 
     @Column
     @Size(max = 50)
@@ -104,20 +109,16 @@ public class Invitation extends AbstractBaseEntity {
         this.date = date;
     }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
+
     public String getComment() {
         return comment;
     }
 
     public void setComment(final String comment) {
         this.comment = comment;
-    }
-
-    public String getManagerComment() {
-        return managerComment;
-    }
-
-    public void setManagerComment(final String managerComment) {
-        this.managerComment = managerComment;
     }
 
     public String getGuestName() {
@@ -208,4 +209,5 @@ public class Invitation extends AbstractBaseEntity {
                 ", date=" + date +
                 "}";
     }
+
 }

@@ -65,7 +65,7 @@ public class EventSecondaryPanel extends BasePanel {
                 @Override
                 protected void onSubmit(final Invitation invitation, final AjaxRequestTarget target) {
                     // save invitation and update invitationlistpanel
-                    invitationManager.save(invitation);
+                    invitationManager.save(invitation, invitation.getComment());
                     AjaxEventSender.entityEvent(this, Invitation.class);
                 }
             };

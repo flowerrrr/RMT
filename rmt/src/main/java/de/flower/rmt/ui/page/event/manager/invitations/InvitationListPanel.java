@@ -12,8 +12,8 @@ import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.ui.app.Links;
+import de.flower.rmt.ui.page.event.CommentsPanel;
 import de.flower.rmt.ui.panel.DropDownMenuPanel;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
@@ -75,8 +75,7 @@ public class InvitationListPanel extends BasePanel {
         Fragment frag = new Fragment("itemPanel", "itemFragment", this);
         frag.add(new Label("name", invitation.getName()));
         frag.add(DateLabel.forDateStyle("date", Model.of(invitation.getDate()), "SS"));
-        frag.add(new Label("comment", invitation.getComment()).setVisible(!StringUtils.isBlank(invitation.getComment())));
-        frag.add(new Label("managerComment", invitation.getManagerComment()).setVisible(!StringUtils.isBlank(invitation.getManagerComment())));
+        frag.add(new CommentsPanel(item.getModel()));
         // now the dropdown menu
         DropDownMenuPanel menuPanel = new DropDownMenuPanel();
         menuPanel.addLink(createEditLink("link", item), "button.edit");
@@ -102,7 +101,7 @@ public class InvitationListPanel extends BasePanel {
         return new LoadableDetachableModel<List<Invitation>>() {
             @Override
             protected List<Invitation> load() {
-                return invitationManager.findAllByEventAndStatus(model.getObject(), rsvpStatus, Invitation_.user);
+                return invitationManager.findAllByEventAndStatus(model.getObject(), rsvpStatus, Invitation_.user, Invitation_.comments);
             }
         };
     }

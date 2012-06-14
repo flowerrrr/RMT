@@ -22,12 +22,12 @@ public class ResponseManagerTest extends AbstractRMTIntegrationTests {
         Event event = testData.createEvent();
         List<Player> players = event.getTeam().getPlayers();
         assertTrue(invitationManager.findAllByEventAndStatus(event, RSVPStatus.ACCEPTED).isEmpty());
-        Invitation invitation = responseManager.respond(event, players.get(0).getUser(), RSVPStatus.ACCEPTED, "some comment");
+        Invitation invitation = responseManager.respond(event.getId(), players.get(0).getUser().getId(), RSVPStatus.ACCEPTED);
         List<Invitation> invitations = invitationManager.findAllByEventAndStatus(event, RSVPStatus.ACCEPTED);
         assertEquals(invitation, invitations.get(0));
         assertEquals((long) invitationManager.numByEventAndStatus(event, RSVPStatus.ACCEPTED), invitations.size());
 
-        invitation = responseManager.respond(event, players.get(1).getUser(), RSVPStatus.ACCEPTED, "some comment");
+        invitation = responseManager.respond(event.getId(), players.get(1).getUser().getId(), RSVPStatus.ACCEPTED);
         invitations = invitationManager.findAllByEventAndStatus(event, RSVPStatus.ACCEPTED);
         assertTrue(invitations.size() == 2);
         assertEquals((long) invitationManager.numByEventAndStatus(event, RSVPStatus.ACCEPTED), invitations.size());
@@ -37,18 +37,14 @@ public class ResponseManagerTest extends AbstractRMTIntegrationTests {
     public void testRespond() {
         Event event = testData.createEvent();
         Player player = event.getTeam().getPlayers().get(0);
-        String comment = "Comment #1";
         RSVPStatus status = RSVPStatus.ACCEPTED;
         // first initial invitation
-        Invitation invitation = responseManager.respond(event, player.getUser(), status, comment);
+        Invitation invitation = responseManager.respond(event.getId(), player.getUser().getId(), status);
         assertEquals(invitation.getStatus(), status);
-        assertEquals(invitation.getComment(), comment);
 
         // update invitation for player
-        comment = "Comment #2";
         status = RSVPStatus.DECLINED;
-        invitation = responseManager.respond(event, player.getUser(), status, comment);
+        invitation = responseManager.respond(event.getId(), player.getUser().getId(), status);
         assertEquals(invitation.getStatus(), status);
-        assertEquals(invitation.getComment(), comment);
     }
 }

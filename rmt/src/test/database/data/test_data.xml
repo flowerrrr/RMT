@@ -77,13 +77,18 @@
     <event eventType="Training" id="7" summary="Saisonopening" dateTime="2021-10-21 17:00:00.0" club_id="1" team_id="3" venue_id="1" invitationsent="0" objectstatus="0" />
     <event eventType="Training" id="8" summary="Saisonopening" dateTime="2021-10-28 17:00:00.0" club_id="1" team_id="3" venue_id="1" invitationsent="0" objectstatus="0" />
 
-    <invitation id="1" status="ACCEPTED" date="2011-12-15 00:00:00.0" event_id="1" user_id="7" comment="endlich wieder" invitationsent="0" objectstatus="0" />
-    <invitation id="2" status="ACCEPTED" date="2011-12-05 00:00:00.0" event_id="1" user_id="8" comment="gfrei mi" invitationsent="0" objectstatus="0" />
-    <invitation id="3" status="DECLINED" date="2011-12-11 00:00:00.0" event_id="1" user_id="9" comment="family" invitationsent="0" objectstatus="0" />
-    <invitation id="4" status="UNSURE" date="2011-12-15 01:00:00.0" event_id="1" user_id="10" comment="falls wieder nüchtern."  invitationsent="0" objectstatus="0" />
+    <invitation id="1" status="ACCEPTED" date="2011-12-15 00:00:00.0" event_id="1" user_id="7" invitationsent="0" objectstatus="0" />
+    <invitation id="2" status="ACCEPTED" date="2011-12-05 00:00:00.0" event_id="1" user_id="8" invitationsent="0" objectstatus="0" />
+    <invitation id="3" status="DECLINED" date="2011-12-11 00:00:00.0" event_id="1" user_id="9" invitationsent="0" objectstatus="0" />
+    <invitation id="4" status="UNSURE" date="2011-12-15 01:00:00.0" event_id="1" user_id="10"  invitationsent="0" objectstatus="0" />
     <invitation id="5" status="UNSURE" date="2011-12-15 00:05:00.0" event_id="1" user_id="11" invitationsent="0"  objectstatus="0" />
     <invitation id="6" status="ACCEPTED" date="2011-12-15 00:00:20.0" event_id="1" user_id="12" invitationsent="0"  objectstatus="0" />
     <invitation id="7" status="ACCEPTED" date="2011-12-14 00:00:20.0" event_id="1" guestname="Gastspieler Bert" invitationsent="0"  objectstatus="0" />
+
+    <comment id="1" invitation_id="1" text="endlich wieder" author_id="7"  objectstatus="0" />
+    <comment id="2" invitation_id="2" text="gfrei mi" author_id="8" objectstatus="0"  />
+    <comment id="3" invitation_id="3" text="family" author_id="9" objectstatus="0"  />
+    <comment id="4" invitation_id="4" text="falls wieder nüchtern" author_id="10" objectstatus="0"  />
 
 
 </dataset>

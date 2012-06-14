@@ -5,6 +5,7 @@ import org.hibernate.annotations.Index;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author flowerrrr
@@ -25,6 +26,20 @@ public abstract class AbstractBaseEntity implements Serializable, IEntity, IObje
     @Column
     @Index(name = "ix_objectstatus")
     private ObjectStatus objectStatus;
+
+    /**
+     * Using default values is not so easy. See http://opensource.atlassian.com/projects/hibernate/browse/ANN-604.
+     */
+    @Column
+    @Index(name = "ix_createDate")
+    private Date createDate = new Date();
+
+    /**
+     * @Version ensures that hibernate will always update the value when saving an entity.
+     */
+    // @Version (would require to init all existing records with an value. until necessary feature is not used)
+    @Column
+    private Date updateDate;
 
     protected AbstractBaseEntity() {
         this.objectStatus = ObjectStatus.ACTIVE;
@@ -76,7 +91,7 @@ public abstract class AbstractBaseEntity implements Serializable, IEntity, IObje
 
     @Override
     public String toString() {
-        return "AbstractBaseEntity@" + super.hashCode()  + "{" +
+        return "AbstractBaseEntity@" + super.hashCode() + "{" +
                 "id=" + id +
                 '}';
     }

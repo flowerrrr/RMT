@@ -17,9 +17,7 @@ package de.flower.common.repository;
 
 import com.mysema.query.jpa.JPQLQuery;
 import com.mysema.query.jpa.impl.JPAQuery;
-import com.mysema.query.types.EntityPath;
-import com.mysema.query.types.OrderSpecifier;
-import com.mysema.query.types.Predicate;
+import com.mysema.query.types.*;
 import de.flower.common.util.ReflectionUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -36,34 +34,40 @@ import java.util.List;
  *
  * @author flower
  */
-public class QueryDslJpaRepository2<T, ID extends Serializable> extends QueryDslJpaRepository<T, ID> {
+public class QueryDslJpaRepositoryExtended<T, ID extends Serializable> extends QueryDslJpaRepository<T, ID> {
 
     private EntityManager em;
 
-    public QueryDslJpaRepository2(JpaEntityInformation<T, ID> entityMetadata, EntityManager entityManager) {
+    public QueryDslJpaRepositoryExtended(JpaEntityInformation<T, ID> entityMetadata, EntityManager entityManager) {
         super(entityMetadata, entityManager);
         this.em = entityManager;
     }
 
-    public List<T> findAll(final Predicate predicate, final EntityPath<?>... fetchAttributes) {
+    public List<T> findAll(final Predicate predicate, final Path<?>... fetchAttributes) {
         return createQuery(fetchAttributes).where(predicate).list(getPath());
     }
 
-    public Page<T> findAll(final Predicate predicate, Pageable pageable, final EntityPath<?>... fetchAttributes) {
+    public Page<T> findAll(final Predicate predicate, Pageable pageable, final Path<?>... fetchAttributes) {
         JPQLQuery countQuery = createQuery(predicate);
         JPQLQuery query = applyPagination(createQuery(fetchAttributes).where(predicate), pageable);
 
         return new PageImpl<T>(query.list(getPath()), pageable, countQuery.count());
     }
 
-    public List<T> findAll(final Predicate predicate, final OrderSpecifier<?> order, final EntityPath<?>... fetchAttributes) {
+    public List<T> findAll(final Predicate predicate, final OrderSpecifier<?> order, final Path<?>... fetchAttributes) {
         return createQuery(fetchAttributes).where(predicate).orderBy(order).list(getPath());
     }
 
-    protected JPQLQuery createQuery(EntityPath<?>... fetchAttributes) {
+    protected JPQLQuery createQuery(Path<?>... fetchAttributes) {
         JPAQuery query = new JPAQuery(em).from(getPath());
-        for (EntityPath<?> path : fetchAttributes) {
-            query.leftJoin(path).fetch();
+        for (Path<?> path : fetchAttributes) {
+            if (path instanceof EntityPath) {
+                query.leftJoin((EntityPath<?>) path).fetch();
+            } else if (path instanceof CollectionExpression) {
+                query.leftJoin((CollectionExpression<?,?>) path).fetch();
+            } else {
+                throw new RuntimeException("Unknown path type [" + path + "].");
+            }
         }
         query.distinct(); // fetching one-to-many associations would multiply the result set.
         return query;

@@ -2,13 +2,16 @@ package de.flower.rmt.repository.impl;
 
 import com.google.common.collect.Lists;
 import com.mysema.query.support.Expressions;
-import com.mysema.query.types.*;
+import com.mysema.query.types.Ops;
+import com.mysema.query.types.OrderSpecifier;
+import com.mysema.query.types.Path;
+import com.mysema.query.types.Predicate;
 import com.mysema.query.types.expr.BooleanExpression;
 import de.flower.common.model.db.entity.AbstractBaseEntity;
 import de.flower.common.model.db.entity.AbstractBaseEntity_;
 import de.flower.common.model.db.entity.QAbstractBaseEntity;
 import de.flower.common.model.db.type.ObjectStatus;
-import de.flower.common.repository.QueryDslJpaRepository2;
+import de.flower.common.repository.QueryDslJpaRepositoryExtended;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.AbstractClubRelatedEntity;
 import de.flower.rmt.model.db.entity.AbstractClubRelatedEntity_;
@@ -32,7 +35,7 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class BaseRepository<T extends AbstractBaseEntity, ID extends Serializable> extends QueryDslJpaRepository2<T, ID> implements IRepository<T, ID> {
+public class BaseRepository<T extends AbstractBaseEntity, ID extends Serializable> extends QueryDslJpaRepositoryExtended<T, ID> implements IRepository<T, ID> {
 
     private EntityManager em;
 
@@ -73,7 +76,7 @@ public class BaseRepository<T extends AbstractBaseEntity, ID extends Serializabl
     //***************************************************************
 
     @Override
-    public T findOne(final Predicate predicate, final EntityPath<?>... attributes) {
+    public T findOne(final Predicate predicate, final Path<?>... attributes) {
         // TODO (flowerrrr - 29.04.12) use paging call with setMaxresult = 2
         List<T> list = super.findAll(predicate, attributes);
         if (list.isEmpty()) {
@@ -114,17 +117,17 @@ public class BaseRepository<T extends AbstractBaseEntity, ID extends Serializabl
     }
 
     @Override
-    public List<T> findAll(final Predicate predicate, final EntityPath<?>... fetchAttributes) {
+    public List<T> findAll(final Predicate predicate, final Path<?>... fetchAttributes) {
         return super.findAll(getDefaultPredicate().and(predicate), fetchAttributes);
     }
 
     @Override
-    public Page<T> findAll(final Predicate predicate, final Pageable pageable, final EntityPath<?>... fetchAttributes) {
+    public Page<T> findAll(final Predicate predicate, final Pageable pageable, final Path<?>... fetchAttributes) {
         return super.findAll(getDefaultPredicate().and(predicate), pageable, fetchAttributes);
     }
 
     @Override
-    public List<T> findAll(final Predicate predicate, final OrderSpecifier<?> order, final EntityPath<?>... fetchAttributes) {
+    public List<T> findAll(final Predicate predicate, final OrderSpecifier<?> order, final Path<?>... fetchAttributes) {
         return super.findAll(getDefaultPredicate().and(predicate), order, fetchAttributes);
     }
 

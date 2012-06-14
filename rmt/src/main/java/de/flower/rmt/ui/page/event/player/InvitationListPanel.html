@@ -4,7 +4,7 @@
 <body>
 <wicket:panel>
 
-    <table class="table invitationListTable player">
+    <table class="table invitationListTable player" style="table-layout: fixed;">
         <colgroup>
             <col class="position" />
             <col class="name" />
@@ -15,7 +15,7 @@
         <tr class="thead">
             <td class="th" colspan="4">
                 <wicket:message key="invitation.accepted">[Accepted]</wicket:message>
-            </td>
+             </td>
         </tr>
         <tr wicket:id="acceptedList">
             <wicket:container wicket:id="itemPanel"/>
@@ -50,7 +50,7 @@
     <wicket:fragment wicket:id="itemFragment">
         <td class="position"><span wicket:id="position"/></td>
         <td class="name"><span wicket:id="name"/></td>
-        <td class="comments"><span wicket:id="comment"/><span wicket:id="managerComment" class="manager-comment" wicket:message="title:invitations.commentbymanager"/></td>
+        <td class="comments"><div wicket:id="commentsPanel" /></td>
         <td class="menu align-right"><a wicket:id="emailLink" class="show-on-hover"><i class="icon-envelope"></i></a></td>
     </wicket:fragment>
 

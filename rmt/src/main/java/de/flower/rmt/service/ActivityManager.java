@@ -105,6 +105,8 @@ public class ActivityManager extends AbstractService implements IActivityManager
             changed = true;
         }
         // do not track when comments are removed. what to display then?
+        log.warn("Tracking comment updates not implemented yet.");
+        /*
         if (invitation.getComment() != null && ObjectUtils.notEqual(invitation.getComment(), origInvitation.getComment())) {
             message.setComment(invitation.getComment());
             changed = true;
@@ -113,6 +115,7 @@ public class ActivityManager extends AbstractService implements IActivityManager
             message.setManagerComment(invitation.getManagerComment());
             changed = true;
         }
+        */
         if (ObjectUtils.notEqual(invitation.getStatus(), origInvitation.getStatus())) {
             message.setStatus(invitation.getStatus());
             changed = true;

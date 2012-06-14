@@ -71,6 +71,9 @@ public class TestData {
     protected IInvitationManager invitationManager;
 
     @Autowired
+    protected ICommentManager commentManager;
+
+    @Autowired
     private IVenueManager venueManager;
 
     @Autowired
@@ -296,6 +299,11 @@ public class TestData {
         respond(invitations.get(9), RSVPStatus.DECLINED, "some comment");
         respond(invitations.get(11), RSVPStatus.ACCEPTED, "some comment");
         respond(invitations.get(12), RSVPStatus.ACCEPTED, "some comment");
+        // test multi-comment comments
+        Comment comment = new Comment("some other comment", invitations.get(0), invitations.get(1).getUser());
+        commentManager.save(comment);
+        comment = new Comment("manager has to say something", invitations.get(0), event.getCreatedBy());
+        commentManager.save(comment);
         // init collections
         event.getTeam().getPlayers().size();
         event.getTeam().getPlayers().get(0).getUser();
@@ -304,8 +312,7 @@ public class TestData {
 
     private void respond(Invitation invitation, RSVPStatus status, String comment) {
         invitation.setStatus(status);
-        invitation.setComment(comment);
-        invitationManager.save(invitation);
+        invitationManager.save(invitation, comment);
     }
 
     public User getTestUser() {
@@ -370,4 +377,31 @@ public class TestData {
             activityRepo.save(entity);
         }
     }
+
+    /**
+     * Method replaces dbUnit xml file. Seems to have more advantages to use programmatic approach.
+     */
+//    public void insertTestData() {
+//        Club juve = createClub("Juventus Urin", 48.13724243994332, 11.575392225925508);
+//        Club fcb = createClub("FC Bayern", 48.13724243994332, 11.575392225925508);
+//
+//        createProperty(juve, "uservoice.token", "mNTsoCUuSEaF5qjGfDGIuQ");
+//
+//        User user1 = createUser("81dc9bdb52d04dc20036dbd8313ed055", "1234", "admin-rmt@mailinator.com", "Flowerrr", juve);
+//        User user2 = createUser("81dc9bdb52d04dc20036dbd8313ed055", "1234", "manager-rmt@mailinator.com", "Sepp", juve);
+//        User user3 = createUser("81dc9bdb52d04dc20036dbd8313ed055", "1234", "player-rmt@mailinator.com", "Ingo", juve);
+//        User user4 = createUser("81dc9bdb52d04dc20036dbd8313ed055", "1234", "both-rmt@mailinator.com", "Maik", juve);
+//        User user5 = createUser("81dc9bdb52d04dc20036dbd8313ed055", "1234", "bayern-rmt@mailinator.com", "Uli Hoeneß", juve);
+//        User user6 = createUser("81dc9bdb52d04dc20036dbd8313ed055", "1234", "player1-rmt@mailinator.com", "Hansi", juve);
+//        User user7 = createUser("81dc9bdb52d04dc20036dbd8313ed055", "1234", "player2-rmt@mailinator.com", "Horst", juve);
+//        User user8 = createUser("81dc9bdb52d04dc20036dbd8313ed055", "1234", "player3-rmt@mailinator.com", "Thorsten", juve);
+//        User user9 = createUser("81dc9bdb52d04dc20036dbd8313ed055", "1234", "player4-rmt@mailinator.com", "Michi", juve);
+//        User user10 = createUser("81dc9bdb52d04dc20036dbd8313ed055", "1234", "player5-rmt@mailinator.com", "Paul", juve);
+//        User user11 = createUser("81dc9bdb52d04dc20036dbd8313ed055", "1234", "player6-rmt@mailinator.com", "Hugo", juve);
+//        User user12 = createUser("81dc9bdb52d04dc20036dbd8313ed055", "1234", "player7-rmt@mailinator.com", "Alder", juve);
+//        User user13 = createUser("81dc9bdb52d04dc20036dbd8313ed055", "1234", "player8-rmt@mailinator.com", "Dragan", juve);
+//        User user14 = createUser("81dc9bdb52d04dc20036dbd8313ed055", "1234", "player9-rmt@mailinator.com", "Stefan", juve);
+//        User user15 = createUser("81dc9bdb52d04dc20036dbd8313ed055", "1234", "player10-rmt@mailinator.com", "Erkan", juve);
+//        User user16 = createUser("81dc9bdb52d04dc20036dbd8313ed055", "1234", "player11-rmt@mailinator.com", "Süpür", juve);
+//    }
 }

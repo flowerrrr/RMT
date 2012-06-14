@@ -1,6 +1,6 @@
 package de.flower.rmt.service;
 
-import com.mysema.query.types.EntityPath;
+import com.mysema.query.types.Path;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
@@ -55,9 +55,16 @@ public interface IInvitationManager {
 
     Invitation loadByEventAndUser(Event event, User user);
 
-    Invitation findByEventAndUser(Event event, User user, EntityPath<?>... attributes);
+    Invitation findByEventAndUser(Event event, User user, Path<?>... attributes);
 
     void save(Invitation invitation);
+
+    /**
+     *
+     * @param invitation
+     * @param comment sets/overrides the first comment of the author (current security context user)
+     */
+    void save(Invitation invitation, String comment);
 
     void delete(Long id);
 

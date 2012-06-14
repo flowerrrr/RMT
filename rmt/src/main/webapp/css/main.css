@@ -639,7 +639,7 @@ table th, .table thead th, .table .th {
 
 td {
     border-bottom: 1px solid #CCCCCC;
-    word-wrap: break-word;
+    word-wrap: break-word; // to avoid long text overflowing table cells
 }
 
 
@@ -756,6 +756,7 @@ td.rsvpstatus {
     a {
         color: @grayDark;
     }
+    word-wrap: break-word;
 }
 
 .event-details-panel {
@@ -851,20 +852,42 @@ td.rsvpstatus {
     font-weight: normal;
 }
 
-// only display border if both comments are visible
-.invitationListTable .comments span:nth-child(2) {
-    border-top: 1px solid @borderColor;
-}
-
-.manager-comment {
-    display: block;
-    &:before {
-        content: 'M ';
-        color: #999999;
-        font-size: 10px;
+.comments-panel {
+    ul {
+        margin-bottom: 0px;
     }
-}
+    // display top-border for 2,3,... comment
+    li:nth-child(n+2) {
+        border-top: 1px solid @borderColor;
+        textarea {
+            margin-top: 2px; // some gap to top-border;
+        }
+    }
+    .author {
+        color: #BBBBBB;
+        font-size: 9px;
+        margin-left: 5px;
+        // display: block;
+    }
+    .text {
+        // override default settings
+        div {
+            cursor: pointer;
+            display: inline;
+        }
+        p {
+            margin-bottom: 0px;
+            display: inline;
+        }
+    }
+    textarea {
+        // no border glowing
+        box-shadow: none;
+        border-color: #CCCCCC;
+        width: 100%;
+    }
 
+}
 
 /*************************************************************************
     Invitation form
@@ -951,7 +974,7 @@ td.rsvpstatus {
         width: 36px;
     }
     .name {
-        width: 130px;
+        width: 110px;
     }
     .menu {
         width: 30px;

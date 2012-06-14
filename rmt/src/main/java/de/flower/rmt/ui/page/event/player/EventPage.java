@@ -95,7 +95,9 @@ public class EventPage extends PlayerBasePage {
 
     @Override
     protected void onDetach() {
-        invitationModel.detach();
+        if (invitationModel != null) {
+            invitationModel.detach();
+        }
         super.onDetach();
     }
 }

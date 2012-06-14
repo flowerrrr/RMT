@@ -108,65 +108,65 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-core/1.5.5/jar/ca4ee50dfadbe773118fcda4485981ab22a1077c/wicket-core-1.5.5.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-core/1.5.7/jar/83001c7e1806d1d37a8aaa9cf2c272504ee5f932/wicket-core-1.5.7.jar!/" />
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-core/1.5.5/javadoc/1b14eb4d26e05dc42a4d610690e001b6ea26068c/wicket-core-1.5.5-javadoc.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-core/1.5.7/javadoc/e851790a8a910d341cb309361814a68dd34d8abc/wicket-core-1.5.7-javadoc.jar!/" />
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-core/1.5.5/source/e00d7ddb1eec3387bd374c9db19675cf366f6937/wicket-core-1.5.5-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-core/1.5.7/source/624223ed5292f8c067b77563d13bdc3092289f9/wicket-core-1.5.7-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-extensions/1.5.5/jar/919702e4626a46c0532c8a4fb9e4e096f7d45eec/wicket-extensions-1.5.5.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-extensions/1.5.7/jar/7b33aca6048cc03923602e67400fd6baff1c9973/wicket-extensions-1.5.7.jar!/" />
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-extensions/1.5.5/javadoc/bac08ea363c61013f036ea80ee0a2cef42bab624/wicket-extensions-1.5.5-javadoc.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-extensions/1.5.7/javadoc/fa6557c16626ce2cdc4f372286fbc1b0d96b7306/wicket-extensions-1.5.7-javadoc.jar!/" />
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-extensions/1.5.5/source/2a912631ef3ed58c8576c23226b3f8d0c1ab5bcd/wicket-extensions-1.5.5-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-extensions/1.5.7/source/3ca41b7f57e71b2c08de0805bbc2166909bc538f/wicket-extensions-1.5.7-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-spring/1.5.5/jar/bded55b6d7742e8fbdab28c3c1f4889b2d417878/wicket-spring-1.5.5.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-spring/1.5.7/jar/30537a5a0e0d16bd1723ead50feca4d807117896/wicket-spring-1.5.7.jar!/" />
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-spring/1.5.5/javadoc/f49c6e4bdab2b7d885e23d17673871644bc5bdf9/wicket-spring-1.5.5-javadoc.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-spring/1.5.7/javadoc/9a07934616d36daf1659f2013e0828adc5ba8599/wicket-spring-1.5.7-javadoc.jar!/" />
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-spring/1.5.5/source/159de7dff817f71a1ea7350a702964f4b6ce74f7/wicket-spring-1.5.5-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-spring/1.5.7/source/68340bf7049b0c0e2e3b425a7275502211cfe61e/wicket-spring-1.5.7-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-datetime/1.5.5/jar/80f8c658460fd5dc1335192f42240c770047bfce/wicket-datetime-1.5.5.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-datetime/1.5.7/jar/7e27feaf23524ec94ade66d62e91a6a57ca4d293/wicket-datetime-1.5.7.jar!/" />
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-datetime/1.5.5/javadoc/9efa9291f2687e8ba84569519a47213619edcea7/wicket-datetime-1.5.5-javadoc.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-datetime/1.5.7/javadoc/27e44dbe587a979afd2dfeb2351666cbb0b31c6f/wicket-datetime-1.5.7-javadoc.jar!/" />
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-datetime/1.5.5/source/d6313db3e5e77795402f59e8c6421a91fb1b3dae/wicket-datetime-1.5.5-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-datetime/1.5.7/source/d6f95440bfe215131fdd99c181e45382e753475/wicket-datetime-1.5.7-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-devutils/1.5.5/jar/b8969cc8ec0656541cea78db1246d08e564f0a19/wicket-devutils-1.5.5.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-devutils/1.5.7/jar/1d16d1a16f9c76ee2f6ffc0298480424c23c0d4b/wicket-devutils-1.5.7.jar!/" />
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-devutils/1.5.5/javadoc/6e3ba1fb46f65ebcd38a5c14806b8a9e1a23d627/wicket-devutils-1.5.5-javadoc.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-devutils/1.5.7/javadoc/81c15276b4c2365d2f53b88b372ada44c6861cfe/wicket-devutils-1.5.7-javadoc.jar!/" />
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-devutils/1.5.5/source/3fcb37f22759ab6491be770888760ca3483e7247/wicket-devutils-1.5.5-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-devutils/1.5.7/source/5d6808130869f8404cbc87b92cc328d900f7e36d/wicket-devutils-1.5.7-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -579,26 +579,26 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-util/1.5.5/jar/7f9d9698a0b6a24986748bc5dda7ff49aebf30fa/wicket-util-1.5.5.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-util/1.5.7/jar/6f3eb0a8a333b73a3f36ccb4dfdfa358a25c2d37/wicket-util-1.5.7.jar!/" />
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-util/1.5.5/javadoc/cc069dc87158d6f9378eb014d66259e79104f597/wicket-util-1.5.5-javadoc.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-util/1.5.7/javadoc/404dd2cb8a2c8faee9e20c43af6875874d83023e/wicket-util-1.5.7-javadoc.jar!/" />
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-util/1.5.5/source/fd2d0a4a35d6f83b5f62de6c49eb03be191e25dd/wicket-util-1.5.5-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-util/1.5.7/source/12c3afc462d9773011352151858ac14b7fabb1b2/wicket-util-1.5.7-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-request/1.5.5/jar/ae9059cc00bfc98dc6506c38afeed0e1bf94b99b/wicket-request-1.5.5.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-request/1.5.7/jar/17a8eb811b0a566ac6712587ac0b23deeb17af8b/wicket-request-1.5.7.jar!/" />
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-request/1.5.5/javadoc/f1c74beccdf693075c724449944da88789727b30/wicket-request-1.5.5-javadoc.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-request/1.5.7/javadoc/31629cd5f4f044b53c0e4bde9fa991f418663c5/wicket-request-1.5.7-javadoc.jar!/" />
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-request/1.5.5/source/fde36b7e4d1d7a0d292ca1c265e1224b49a892de/wicket-request-1.5.5-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-request/1.5.7/source/e3b6f94fbaad6cc45c2b679e4c8a56c37371e2e6/wicket-request-1.5.7-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -629,13 +629,13 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-ioc/1.5.5/jar/fc1e854938bdd1dfe597bcce56d338b69ec72871/wicket-ioc-1.5.5.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-ioc/1.5.7/jar/bde15ee58bcfb401d032ac1425bbc0301c0bb66f/wicket-ioc-1.5.7.jar!/" />
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-ioc/1.5.5/javadoc/2614fc78f355be33df0aa8eb96414d1dca776e0b/wicket-ioc-1.5.5-javadoc.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-ioc/1.5.7/javadoc/80358be5c355d787a80f5f7d8d264c8b6b8b6c90/wicket-ioc-1.5.7-javadoc.jar!/" />
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-ioc/1.5.5/source/40fc302cabc417a6d3b0b5225aac74302141f4ca/wicket-ioc-1.5.5-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-ioc/1.5.7/source/d6f26f87d4e7b1d1c56dd00cf2052a9071c52453/wicket-ioc-1.5.7-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
