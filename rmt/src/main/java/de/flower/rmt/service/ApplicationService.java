@@ -57,12 +57,12 @@ public class ApplicationService extends AbstractService implements IApplicationS
 
     /**
      * tries to find club-property.
-     * @param key
+     * @param name
      * @return null, if no property is found.
      */
     @Override
-    public String getProperty(String key) {
-        Property property = propertyRepo.findByClubAndKey(getClub(), key);
+    public String getProperty(String name) {
+        Property property = propertyRepo.findByClubAndName(getClub(), name);
         return property == null ? null : property.getValue();
     }
 

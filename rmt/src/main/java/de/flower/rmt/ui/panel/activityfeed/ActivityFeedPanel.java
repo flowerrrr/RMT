@@ -91,7 +91,9 @@ public class ActivityFeedPanel extends BasePanel {
         try {
             message = ActivityMessageRenderer.toString(activity.getMessage());
         } catch (Exception e) {
-            log.error("Could not render [" + activity + "]: " + e.toString(), e);
+            // changing the message types used to persist activities often causes errors when rendering old messages.
+            // use warn level as it is not a core feature of the app.
+            log.warn("Could not render [" + activity + "]: " + e.toString());
         }
         return message;
     }

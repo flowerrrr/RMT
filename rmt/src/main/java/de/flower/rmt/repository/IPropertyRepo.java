@@ -9,5 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface IPropertyRepo extends JpaRepository<Property, Long> {
 
-    Property findByClubAndKey(Club club, String key);
+    Property findByClubAndName(Club club, String name);
 }

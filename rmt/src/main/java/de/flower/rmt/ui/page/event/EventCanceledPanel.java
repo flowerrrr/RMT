@@ -23,6 +23,6 @@ public class EventCanceledPanel extends BasePanel<Event> {
 
     @Override
     protected String getPanelMarkup() {
-        return "<h4><wicket:message key='event.canceled.heading'/></h4><p><wicket:message key='event.canceled.text'/></p>";
+        return "<h4><wicket:message key='event.canceled.heading'/></h4><wicket:message key='event.canceled.text'/>";
     }
 }

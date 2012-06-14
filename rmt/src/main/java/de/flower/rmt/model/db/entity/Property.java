@@ -25,8 +25,7 @@ public class Property extends AbstractBaseEntity {
 
     @NotBlank
     @Size(max = 80)
-    @Column
-    private String key;
+    private String name;
 
     @Size(max = 255)
     @Column
@@ -39,12 +38,12 @@ public class Property extends AbstractBaseEntity {
         this.club = club;
     }
 
-    public String getKey() {
-        return key;
+    public String getName() {
+        return name;
     }
 
-    public void setKey(final String key) {
-        this.key = key;
+    public void setName(final String name) {
+        this.name = name;
     }
 
     public String getValue() {
