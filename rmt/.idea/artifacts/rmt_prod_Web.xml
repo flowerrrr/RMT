@@ -73,6 +73,14 @@
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/com.google.code.gson/gson/1.7.2/jar/112366d8158749e25532ebce162232c6e0fb20a5/gson-1.7.2.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/joda-time/joda-time/2.0/jar/752c0fe8a5b2d6704c9d9d6f06d9abdcacf4045d/joda-time-2.0.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.springframework.security/spring-security-core/3.1.0.RELEASE/jar/8cc7e31a255ec3ce6a42f79747b97d14aa3f8b0f/spring-security-core-3.1.0.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-core/1.5.7/jar/83001c7e1806d1d37a8aaa9cf2c272504ee5f932/wicket-core-1.5.7.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-datetime/1.5.7/jar/7e27feaf23524ec94ade66d62e91a6a57ca4d293/wicket-datetime-1.5.7.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-devutils/1.5.7/jar/1d16d1a16f9c76ee2f6ffc0298480424c23c0d4b/wicket-devutils-1.5.7.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-extensions/1.5.7/jar/7b33aca6048cc03923602e67400fd6baff1c9973/wicket-extensions-1.5.7.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-ioc/1.5.7/jar/bde15ee58bcfb401d032ac1425bbc0301c0bb66f/wicket-ioc-1.5.7.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-request/1.5.7/jar/17a8eb811b0a566ac6712587ac0b23deeb17af8b/wicket-request-1.5.7.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-spring/1.5.7/jar/30537a5a0e0d16bd1723ead50feca4d807117896/wicket-spring-1.5.7.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-util/1.5.7/jar/6f3eb0a8a333b73a3f36ccb4dfdfa358a25c2d37/wicket-util-1.5.7.jar" />
         </element>
         <element id="file-copy" path="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <element id="directory" name="classes">
