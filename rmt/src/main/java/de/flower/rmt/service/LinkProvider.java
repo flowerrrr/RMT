@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
- * Link provider used when WicketLinkProvider is not available.
+ * Link provider used when WicketLinkProvider is not available (i.e. when called from service layer without an wicket request).
  *
  * @author flowerrrr
  */

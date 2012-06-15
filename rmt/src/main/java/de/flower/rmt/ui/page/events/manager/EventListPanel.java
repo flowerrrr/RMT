@@ -19,6 +19,7 @@ import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.model.IModel;
@@ -103,29 +104,15 @@ public class EventListPanel extends BasePanel {
     }
 
     private Link createInvitationsLink(String id, final IModel<Event> model) {
-        return new Link(id) {
-            @Override
-            public void onClick() {
-                setResponsePage(EventPage.class, EventPage.getPageParams(model.getObject().getId(), EventTabPanel.INVITATIONS_PANEL_INDEX));
-            }
-        };
+        return new BookmarkablePageLink(id, EventPage.class, EventPage.getPageParams(model.getObject().getId(), EventTabPanel.INVITATIONS_PANEL_INDEX));
     }
 
     private Link createEditLink(String id, final IModel<Event> model) {
-        return new Link(id) {
-            @Override
-            public void onClick() {
-                setResponsePage(EventPage.class, EventPage.getPageParams(model.getObject().getId()));
-            }
-        };
+        return new BookmarkablePageLink(id, EventPage.class, EventPage.getPageParams(model.getObject().getId()));
     }
 
     private Link createNotificationLink(final IModel<Event> model) {
-        Link link = new Link("notificationLink") {
-            @Override
-            public void onClick() {
-                setResponsePage(EventPage.class, EventPage.getPageParams(model.getObject().getId(), EventTabPanel.NOTIFICATION_PANEL_INDEX));
-            }
+        Link link = new BookmarkablePageLink("notificationLink", EventPage.class, EventPage.getPageParams(model.getObject().getId())) {
 
             @Override
             public boolean isVisible() {
