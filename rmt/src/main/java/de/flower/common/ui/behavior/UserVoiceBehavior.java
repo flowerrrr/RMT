@@ -6,9 +6,10 @@ import org.apache.wicket.markup.html.IHeaderResponse;
 
 /**
  * Renders uservoice feedback tab into page.
+ *
  * @author flowerrrr
  */
-public class UserVoiceBehavior extends Behavior {
+public abstract class UserVoiceBehavior extends Behavior {
 
     @Override
     public void renderHead(final Component component, final IHeaderResponse response) {
@@ -22,9 +23,9 @@ public class UserVoiceBehavior extends Behavior {
         response.renderOnDomReadyJavaScript(javascript);
     }
 
-    protected String getToken() {
-        // return "mNTsoCUuSEaF5qjGfDGIuQ";
-         return null;
-    }
-
+    /**
+     * Subclass should override
+     * @return
+     */
+    protected abstract String getToken();
 }

@@ -54,9 +54,15 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
         add(new UserVoiceBehavior() {
             @Override
             protected String getToken() {
-                if (isCurrentUserLoggedIn()) {
-                    return applicationService.getProperty(ApplicationService.USERVOICE_TOKEN);
-                } else {
+                // if next lines fail -> no subpage can be rendered including error pages. so better tolerate errors.
+                try {
+                    if (isCurrentUserLoggedIn()) {
+                        return applicationService.getProperty(ApplicationService.USERVOICE_TOKEN);
+                    } else {
+                        return null;
+                    }
+                } catch (RuntimeException e) {
+                    log.error("Error in UserVoiceBehavior: " + e.getMessage(), e);
                     return null;
                 }
             }
