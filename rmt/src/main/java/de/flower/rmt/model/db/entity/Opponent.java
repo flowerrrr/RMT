@@ -13,8 +13,6 @@ import javax.validation.groups.Default;
 
 /**
  * Opponents for matches.
- * // TODO (flowerrrr - 23.09.11) need to clarify if entities can be
- * stored together with Team-instances in same table.
  *
  * @author flowerrrr
  */

@@ -33,7 +33,6 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-// TODO (flowerrrr - 23.10.11) unite with players InvitationListPanel
 public class InvitationListPanel extends BasePanel {
 
     @SpringBean

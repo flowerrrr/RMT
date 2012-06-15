@@ -28,7 +28,6 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-// TODO (flowerrrr - 04.04.12) make this panel undependend from event and template service.
 public class NotificationPanel extends BasePanel {
 
     @SpringBean
