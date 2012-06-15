@@ -67,7 +67,7 @@ public class NotificationPanel extends BasePanel {
         final TextFieldPanel subject;
         form.add(subject = new TextFieldPanel("subject"));
         final TextAreaPanel body = new BodyTextAreaPanel("body");
-        // disabling word wraping in firefox cannot be done by only using css. need wrap attribute on element as well
+        // disabling word wrapping in firefox cannot be done by only using css. need wrap attribute on element as well
         body.getFormComponent().add(AttributeModifier.replace("wrap", "off"));
         body.add(new SelectTemplatePanel() {
             @Override
