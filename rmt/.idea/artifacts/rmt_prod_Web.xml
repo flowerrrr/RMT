@@ -21,18 +21,14 @@
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/joda-time/joda-time-hibernate/1.3/jar/2b8773a3d2834d2c0901ac9b3c4a49b79b278f3a/joda-time-hibernate-1.3.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.springframework/spring-aop/3.1.0.RELEASE/jar/5d998ce239b87cbf66fd18a01dad854de13e2f06/spring-aop-3.1.0.RELEASE.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.springframework/spring-core/3.1.0.RELEASE/jar/3a18c725dd321e457cfb48547d40c2862216bb3b/spring-core-3.1.0.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-request/1.5.5/jar/ae9059cc00bfc98dc6506c38afeed0e1bf94b99b/wicket-request-1.5.5.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-datetime/1.5.5/jar/80f8c658460fd5dc1335192f42240c770047bfce/wicket-datetime-1.5.5.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.hibernate/hibernate-entitymanager/3.6.7.Final/jar/ba5389c85494273e6d09d7edc1499b6e8b008746/hibernate-entitymanager-3.6.7.Final.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/com.thoughtworks.xstream/xstream/1.4.1/jar/b26f5cf4df3999b3b6df58511481e899c459fa72/xstream-1.4.1.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-core/1.5.5/jar/ca4ee50dfadbe773118fcda4485981ab22a1077c/wicket-core-1.5.5.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.springframework/spring-jdbc/3.0.6.RELEASE/jar/a1c6b3faae62dfb76f88e636dbf896990c8aba2d/spring-jdbc-3.0.6.RELEASE.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.hibernate/hibernate-validator/4.2.0.Final/jar/eac2db0a9d86a9749724fe93d43afffa8106f25e/hibernate-validator-4.2.0.Final.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/commons-lang/commons-lang/2.4/jar/16313e02a793435009f1e458fa4af5d879f6fb11/commons-lang-2.4.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/javax.activation/activation/1.1/jar/e6cb541461c2834bdea3eb920f1884d1eb508b50/activation-1.1.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/javax.transaction/jta/1.1/jar/2ca09f0b36ca7d71b762e14ea2ff09d5eac57558/jta-1.1.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.springframework.security/spring-security-crypto/3.1.0.RELEASE/jar/5d00d9c9ac8067c323b517c1fe3a81984bcfc1d/spring-security-crypto-3.1.0.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-util/1.5.5/jar/7f9d9698a0b6a24986748bc5dda7ff49aebf30fa/wicket-util-1.5.5.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.springframework/spring-context-support/3.1.0.RELEASE/jar/379bb71a6eb9f1a965cd7d6d94524deab2a3da07/spring-context-support-3.1.0.RELEASE.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/com.mysema.querydsl/querydsl-jpa/2.5.0/jar/7ae821dd361698352dd0d27910c9d04f70ec7505/querydsl-jpa-2.5.0.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/javax.inject/javax.inject/1/jar/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar" />
@@ -46,14 +42,11 @@
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.springframework/spring-context/3.1.0.RELEASE/jar/d36e9ab580dccc8311704bc11f2434f230bdec28/spring-context-3.1.0.RELEASE.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.hibernate/hibernate-commons-annotations/3.2.0.Final/jar/ce990611448fc2865469e3b68d2fe76b050e3c4f/hibernate-commons-annotations-3.2.0.Final.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/commons-codec/commons-codec/1.4/jar/4216af16d38465bbab0f3dff8efa14204f7a399a/commons-codec-1.4.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-extensions/1.5.5/jar/919702e4626a46c0532c8a4fb9e4e096f7d45eec/wicket-extensions-1.5.5.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/javassist/javassist/3.12.0.GA/jar/88b21d1ef06323beff58664cffa62848c033ecd2/javassist-3.12.0.GA.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-devutils/1.5.5/jar/b8969cc8ec0656541cea78db1246d08e564f0a19/wicket-devutils-1.5.5.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.hibernate/hibernate-core/3.6.7.Final/jar/152a97fc12d8d288763e19ae5b672c0b4943ba26/hibernate-core-3.6.7.Final.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/commons-collections/commons-collections/3.2.1/jar/761ea405b9b37ced573d2df0d1e3a4e0f9edc668/commons-collections-3.2.1.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.hibernate.javax.persistence/hibernate-jpa-2.0-api/1.0.1.Final/jar/3306a165afa81938fc3d8a0948e891de9f6b192b/hibernate-jpa-2.0-api-1.0.1.Final.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.springframework/spring-orm/3.0.5.RELEASE/jar/cff2c955d1a510bab6e1eb2d1ced309f6ec37ce9/spring-orm-3.0.5.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-spring/1.5.5/jar/bded55b6d7742e8fbdab28c3c1f4889b2d417878/wicket-spring-1.5.5.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/com.google.code.findbugs/jsr305/1.3.9/jar/40719ea6961c0cb6afaeb6a921eaa1f6afd4cfdf/jsr305-1.3.9.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/asm/asm/3.1/jar/c157def142714c544bdea2e6144645702adf7097/asm-3.1.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/mysql/mysql-connector-java/5.1.16/jar/2780fb82cc9c7083f06724432b4f1d1607548d77/mysql-connector-java-5.1.16.jar" />
@@ -61,7 +54,6 @@
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/aopalliance/aopalliance/1.0/jar/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/com.google.guava/guava/11.0.2/jar/35a3c69e19d72743cac83778aecbee68680f63eb/guava-11.0.2.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/dom4j/dom4j/1.6.1/jar/5d3ccc056b6f056dbf0dddfdf43894b9065a8f94/dom4j-1.6.1.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-ioc/1.5.5/jar/fc1e854938bdd1dfe597bcce56d338b69ec72871/wicket-ioc-1.5.5.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.httpcomponents/httpclient/4.1.2/jar/9003011c1b6d28a7331f04251a25e7ccf63c98f8/httpclient-4.1.2.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.springframework/spring-asm/3.1.0.RELEASE/jar/de7cf38491d3243c98c7d61ccdb40756df92c6d1/spring-asm-3.1.0.RELEASE.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.springframework.data/spring-data-commons-core/1.1.0.RELEASE/jar/819de0255a354869a046cc4b3ba6fe59f147b110/spring-data-commons-core-1.1.0.RELEASE.jar" />
