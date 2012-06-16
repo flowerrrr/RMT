@@ -9,9 +9,10 @@ import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.entity.event.Event_;
 import de.flower.rmt.model.db.type.activity.EmailSentMessage;
 import de.flower.rmt.model.db.type.activity.EventUpdateMessage;
-import de.flower.rmt.model.db.type.activity.InvitationUpdateMessage;
+import de.flower.rmt.model.db.type.activity.InvitationUpdateMessage2;
 import de.flower.rmt.repository.IActivityRepo;
 import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -86,49 +87,40 @@ public class ActivityManager extends AbstractService implements IActivityManager
 
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-    public void onInvitationUpdated(final Invitation invitation) {
-        Invitation origInvitation = invitationManager.loadById(invitation.getId(), Invitation_.event, Invitation_.user);
+    public void onInvitationUpdated(final Invitation invitation, final Invitation origInvitation, final String comment, final String origComment) {
         Check.isTrue(invitation != origInvitation);
-        Activity entity = newInstance();
-        InvitationUpdateMessage message = new InvitationUpdateMessage(origInvitation.getEvent());
-        message.setUserName(origInvitation.getName());
-        boolean changed = false;
 
         if (origInvitation.getEvent().isCanceled()) {
             // RMT-676: avoid useless 'user xy is not attending event ...' messages.
             return;
         }
 
-        if (!entity.getUser().equals(origInvitation.getUser())) {
-            // manager has updated invitation
-            message.setManagerName(entity.getUser().getFullname());
-            changed = true;
-        }
-        // do not track when comments are removed. what to display then?
-        log.warn("Tracking comment updates not implemented yet.");
-        /*
-        if (invitation.getComment() != null && ObjectUtils.notEqual(invitation.getComment(), origInvitation.getComment())) {
-            message.setComment(invitation.getComment());
-            changed = true;
-        }
-        if (invitation.getManagerComment() != null && ObjectUtils.notEqual(invitation.getManagerComment(), origInvitation.getManagerComment())) {
-            message.setManagerComment(invitation.getManagerComment());
-            changed = true;
-        }
-        */
+        boolean changed = false;
+
+        InvitationUpdateMessage2 message = new InvitationUpdateMessage2(origInvitation.getEvent());
+        message.setInvitationUserName(origInvitation.getName());
+        message.setAuthorUserName(securityService.getUser().getFullname());
+
         if (ObjectUtils.notEqual(invitation.getStatus(), origInvitation.getStatus())) {
             message.setStatus(invitation.getStatus());
             changed = true;
         }
-        entity.setMessage(message);
+
+        // do not track when comments are removed. what to display then?
+        if (!StringUtils.isBlank(comment) && ObjectUtils.notEqual(comment, origComment)) {
+            message.setComment(comment);
+            changed = true;
+        }
 
         if (changed) {
-            removeDuplicates(entity, message);
-            save(entity);
+            Activity activity = newInstance();
+            activity.setMessage(message);
+            removeDuplicates(activity, message);
+            save(activity);
         }
     }
 
-    private void removeDuplicates(final Activity entity, final InvitationUpdateMessage message) {
+    private void removeDuplicates(final Activity entity, final InvitationUpdateMessage2 message) {
         // reading the activity table is always a bit unsafe due to the de-serialization errors
         // that might occur when the message classes are changed. so better try/catch.
         try {
@@ -155,7 +147,7 @@ public class ActivityManager extends AbstractService implements IActivityManager
      *
      * </pre>
      */
-    private Collection<Activity> findDuplicates(final Activity entity, final InvitationUpdateMessage message) {
+    private Collection<Activity> findDuplicates(final Activity entity, final InvitationUpdateMessage2 message) {
         BooleanExpression isSameUser = QActivity.activity.user.eq(entity.getUser());
         BooleanExpression isInsideOneHour = QActivity.activity.date.after(new DateTime().minusHours(1).toDate());
         Collection<Activity> list = activityRepo.findAll(isSameUser.and(isInsideOneHour));
@@ -163,12 +155,13 @@ public class ActivityManager extends AbstractService implements IActivityManager
             @Override
             public boolean apply(@Nullable final Activity activity) {
                 Serializable msg = activity.getMessage();
-                if (msg instanceof InvitationUpdateMessage) {
-                    InvitationUpdateMessage ium = (InvitationUpdateMessage) msg;
+                if (msg instanceof InvitationUpdateMessage2) {
+                    InvitationUpdateMessage2 ium = (InvitationUpdateMessage2) msg;
                     // event and user must match. event alone is not ok cause manager might update
                     // several invitations.
+                    // equality of authorUserName is ensured by isSameUser expression above.
                     if (ium.getEventId().equals(message.getEventId())
-                            && ium.getUserName().equals(message.getUserName())) {
+                            && ium.getInvitationUserName().equals(message.getInvitationUserName())) {
                         return true;
                     }
                 }
@@ -179,6 +172,32 @@ public class ActivityManager extends AbstractService implements IActivityManager
             log.warn("Error in findDuplicates(): There should only be one duplicate.");
         }
         return list;
+    }
+
+    @Override
+    public void onCommentUpdated(final Comment comment, final Comment origComment) {
+        boolean changed = false;
+
+        Invitation invitation = invitationManager.loadById(comment.getInvitation().getId(), Invitation_.event, Invitation_.user);
+        InvitationUpdateMessage2 message = new InvitationUpdateMessage2(invitation.getEvent());
+        message.setInvitationUserName(invitation.getName());
+        message.setAuthorUserName(securityService.getUser().getFullname());
+
+        String text = comment.getText();
+        String origText = (origComment == null) ? null : origComment.getText();
+
+        // do not track when comments are removed. what to display then?
+        if (!StringUtils.isBlank(text) && ObjectUtils.notEqual(text, origText)) {
+            message.setComment(text);
+            changed = true;
+        }
+
+        if (changed) {
+            Activity activity = newInstance();
+            activity.setMessage(message);
+            removeDuplicates(activity, message);
+            save(activity);
+        }
     }
 
     @Override

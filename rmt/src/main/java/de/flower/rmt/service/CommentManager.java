@@ -22,6 +22,9 @@ public class CommentManager extends AbstractService implements ICommentManager {
     @Autowired
     private ICommentRepo commentRepo;
 
+    @Autowired
+    private IActivityManager activityManager;
+
     @Override
     public Comment newInstance(final Invitation invitation) {
         Comment comment = new Comment(invitation, securityService.getUser());
@@ -32,6 +35,12 @@ public class CommentManager extends AbstractService implements ICommentManager {
     @Transactional(readOnly = false)
     public void save(final Comment comment) {
         validate(comment);
+
+        Comment origComment = null;
+        if (!comment.isNew()) {
+            origComment = commentRepo.findOne(comment.getId());
+        }
+        activityManager.onCommentUpdated(comment, origComment); // must be called before saving comment. otherwise origComment would be overriden with new values.
         commentRepo.save(comment);
     }
 
@@ -50,6 +59,7 @@ public class CommentManager extends AbstractService implements ICommentManager {
             comment = new Comment(text, invitation, author);
         }
         commentRepo.save(comment);
+        // activityManager.onCommentUpdated(comment); // activity is logged in InvitationManager
     }
 
     @Override

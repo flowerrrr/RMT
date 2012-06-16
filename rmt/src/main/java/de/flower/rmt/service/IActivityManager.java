@@ -1,6 +1,7 @@
 package de.flower.rmt.service;
 
 import de.flower.rmt.model.db.entity.Activity;
+import de.flower.rmt.model.db.entity.Comment;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.activity.EventUpdateMessage;
@@ -28,8 +29,13 @@ public interface IActivityManager {
      * Method must be called before invitation is saved.
      *
      * @param invitation
+     * @param origInvitation
+     * @param comment
+     * @param origComment
      */
-    void onInvitationUpdated(Invitation invitation);
+    void onInvitationUpdated(Invitation invitation, final Invitation origInvitation, final String comment, final String origComment);
+
+    void onCommentUpdated(Comment comment, Comment origComment);
 
     List<Activity> findLastN(int num, final int i);
 

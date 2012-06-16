@@ -2,6 +2,7 @@ package de.flower.rmt.service;
 
 import de.flower.rmt.model.db.entity.Activity;
 import de.flower.rmt.model.db.entity.Invitation;
+import de.flower.rmt.model.db.entity.Invitation_;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.model.db.type.activity.EventUpdateMessage;
@@ -33,13 +34,13 @@ public class ActivityManagerTest extends AbstractRMTIntegrationTests {
     @Test
     public void testOnInvitationUpdate() {
         Event event = testData.createEvent();
-        Invitation old = invitationManager.findAllByEventSortedByName(event).get(0);
+        Invitation origInvitation = invitationManager.findAllByEvent(event, Invitation_.event, Invitation_.user).get(0);
         // load copy of invitation
-        Invitation updated = invitationManager.findAllByEventSortedByName(event).get(0);
-        assertFalse(old == updated);
-        assertTrue(old.equals(updated));
-        updated.setStatus(RSVPStatus.ACCEPTED);
-        activityManager.onInvitationUpdated(updated);
+        Invitation updatedInvitation = invitationManager.findAllByEvent(event).get(0);
+        assertFalse(origInvitation == updatedInvitation);
+        assertTrue(origInvitation.equals(updatedInvitation));
+        updatedInvitation.setStatus(RSVPStatus.ACCEPTED);
+        activityManager.onInvitationUpdated(updatedInvitation, origInvitation, "some comment", null);
     }
 
     @Test

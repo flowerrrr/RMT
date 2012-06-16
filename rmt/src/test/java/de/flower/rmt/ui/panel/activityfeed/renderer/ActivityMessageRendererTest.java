@@ -5,6 +5,7 @@ import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.model.db.type.activity.EmailSentMessage;
 import de.flower.rmt.model.db.type.activity.EventUpdateMessage;
 import de.flower.rmt.model.db.type.activity.InvitationUpdateMessage;
+import de.flower.rmt.model.db.type.activity.InvitationUpdateMessage2;
 import de.flower.rmt.service.ILinkProvider;
 import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -85,6 +86,8 @@ public class ActivityMessageRendererTest extends AbstractRMTWicketMockitoTests {
         }
     }
 
+    // tests for old InvitationUpdateMessage
+
     @Test
     public void testInvitationStatusUpdated() {
         InvitationUpdateMessage message = new InvitationUpdateMessage(testData.newEvent());
@@ -147,7 +150,23 @@ public class ActivityMessageRendererTest extends AbstractRMTWicketMockitoTests {
     }
 
     @Test
-    public void testInvitationStatusAndManagerCommentUpdated() {
+    public void testInvitationCommentUpdatedByManager() {
+        InvitationUpdateMessage message = new InvitationUpdateMessage(testData.newEvent());
+        message.setUserName("Gerd Müller");
+        message.setManagerName("Uli Hoeneß");
+        // message.setStatus(RSVPStatus.ACCEPTED);
+        message.setManagerComment("Gfrei mi narrisch aufs Spiel und auf die 3. Halbzeit hinterher umso mehr.");
+        message.setEventId(1L);
+        message.setEventDate(new Date());
+        for (EventType eventType : EventType.values()) {
+            message.setEventType(eventType);
+            String s = ActivityMessageRenderer.toString(message);
+            log.info(message + " rendered to [" + s + "]");
+        }
+    }
+
+    @Test
+    public void testInvitationStatusAndCommentUpdatedByManager() {
         InvitationUpdateMessage message = new InvitationUpdateMessage(testData.newEvent());
         message.setUserName("Gerd Müller");
         message.setManagerName("Uli Hoeneß");
@@ -166,13 +185,99 @@ public class ActivityMessageRendererTest extends AbstractRMTWicketMockitoTests {
         }
     }
 
+    // tests for new InvitationUpdateMessage2
+
     @Test
-    public void testInvitationManagerCommentUpdated() {
-        InvitationUpdateMessage message = new InvitationUpdateMessage(testData.newEvent());
-        message.setUserName("Gerd Müller");
-        message.setManagerName("Uli Hoeneß");
+    public void testInvitationStatusUpdated2() {
+        InvitationUpdateMessage2 message = new InvitationUpdateMessage2(testData.newEvent());
+        message.setInvitationUserName("Gerd Müller");
+        message.setAuthorUserName("Gerd Müller");
+        message.setEventDate(new Date());
+        message.setEventId(1L);
+        for (EventType eventType : EventType.values()) {
+            message.setEventType(eventType);
+            for (RSVPStatus status : RSVPStatus.values()) {
+                if (status == RSVPStatus.NORESPONSE) continue;
+                message.setStatus(status);
+                String s = ActivityMessageRenderer.toString(message);
+                log.info(message + " rendered to [" + s + "]");
+            }
+        }
+    }
+
+    @Test
+    public void testInvitationCommentUpdated2() {
+        InvitationUpdateMessage2 message = new InvitationUpdateMessage2(testData.newEvent());
+        message.setInvitationUserName("Gerd Müller");
+        message.setAuthorUserName("Gerd Müller");
+        message.setComment("Gfrei mi narrisch aufs Spiel und auf die 3. Halbzeit hinterher umso mehr.");
+        message.setEventId(1L);
+        message.setEventDate(new Date());
+        for (EventType eventType : EventType.values()) {
+            message.setEventType(eventType);
+            String s = ActivityMessageRenderer.toString(message);
+            log.info(message + " rendered to [" + s + "]");
+        }
+    }
+
+    @Test
+    public void testInvitationStatusAndCommentUpdated2() {
+        InvitationUpdateMessage2 message = new InvitationUpdateMessage2(testData.newEvent());
+        message.setInvitationUserName("Gerd Müller");
+        message.setAuthorUserName("Gerd Müller");
+        message.setStatus(RSVPStatus.ACCEPTED);
+        message.setComment("Gfrei mi narrisch aufs Spiel und auf die 3. Halbzeit hinterher umso mehr.");
+        message.setEventId(1L);
+        message.setEventDate(new Date());
+        for (EventType eventType : EventType.values()) {
+            message.setEventType(eventType);
+            String s = ActivityMessageRenderer.toString(message);
+            log.info(message + " rendered to [" + s + "]");
+        }
+    }
+
+    @Test
+    public void testInvitationStatusUpdatedByManager2() {
+        InvitationUpdateMessage2 message = new InvitationUpdateMessage2(testData.newEvent());
+        message.setInvitationUserName("Gerd Müller");
+        message.setAuthorUserName("Uli Hoeneß");
+        message.setStatus(RSVPStatus.ACCEPTED);
+        message.setEventId(1L);
+        message.setEventDate(new Date());
+        for (EventType eventType : EventType.values()) {
+            message.setEventType(eventType);
+            String s = ActivityMessageRenderer.toString(message);
+            log.info(message + " rendered to [" + s + "]");
+        }
+    }
+
+    @Test
+    public void testInvitationStatusAndCommentUpdatedByManager2() {
+        InvitationUpdateMessage2 message = new InvitationUpdateMessage2(testData.newEvent());
+        message.setInvitationUserName("Gerd Müller");
+        message.setAuthorUserName("Uli Hoeneß");
+        message.setStatus(RSVPStatus.ACCEPTED);
+        message.setComment("Gfrei mi narrisch aufs Spiel und auf die 3. Halbzeit hinterher umso mehr.");
+        message.setEventId(1L);
+        message.setEventDate(new Date());
+        for (EventType eventType : EventType.values()) {
+            message.setEventType(eventType);
+            for (RSVPStatus status : RSVPStatus.values()) {
+                if (status == RSVPStatus.NORESPONSE) continue;
+                message.setStatus(status);
+                String s = ActivityMessageRenderer.toString(message);
+                log.info(message + " rendered to [" + s + "]");
+            }
+        }
+    }
+
+    @Test
+    public void testInvitationCommentUpdatedByOther2() {
+        InvitationUpdateMessage2 message = new InvitationUpdateMessage2(testData.newEvent());
+        message.setInvitationUserName("Gerd Müller");
+        message.setAuthorUserName("Uli Hoeneß");
         // message.setStatus(RSVPStatus.ACCEPTED);
-        message.setManagerComment("Gfrei mi narrisch aufs Spiel und auf die 3. Halbzeit hinterher umso mehr.");
+        message.setComment("Gfrei mi narrisch aufs Spiel und auf die 3. Halbzeit hinterher umso mehr.");
         message.setEventId(1L);
         message.setEventDate(new Date());
         for (EventType eventType : EventType.values()) {

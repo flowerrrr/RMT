@@ -31,19 +31,13 @@
                 <value>.*Model</value>
                 <value>org\.apache\.wicket\..*</value>
                 <value>de.flower.common.ui.ajax.event.AjaxEventListener</value>
-                <value>de.flower.common.ui.ajax.markup.html.AjaxLink$NoIndicatingAjaxLink</value>
-                <value>de.flower.common.ui.ajax.markup.html.AjaxLink</value>
-                <value>de.flower.common.ui.ajax.markup.html.AjaxLinkWithConfirmation</value>
-                <value>de.flower.common.ui.ajax.markup.html.form.AjaxSubmitLink</value>
-                <value>de.flower.common.ui.ajax.markup.repeater.AjaxAppendingRefreshingView</value>
-                <value>de.flower.common.ui.markup.html..*l</value>
+                <value>de.flower.common.ui.ajax.markup..*</value>
+                <value>de.flower.common.ui.markup..*</value>
                 <value>de.flower.common.ui.modal.ModalDialogWindow</value>
                 <value>de.flower.common.ui.modal.ModalDialogWindowPanel</value>
                 <value>de.flower.common.util.geo.LatLng</value>
                 <value>de.flower.rmt.model.dto..*</value>
-                <value>de.flower.rmt.ui.feedback.MessageOfTheDayMessage</value>
-                <value>de.flower.rmt.ui.feedback.NoInvitationSentMessage</value>
-                <value>de.flower.rmt.ui.feedback.PasswordChangeRequiredMessage</value>
+                <value>de.flower.rmt.ui.feedback..*Message</value>
                 <value>de.flower.rmt.ui.markup.html.form.EntityForm</value>
                 <value>de.flower.rmt.ui.markup.html.form.renderer.RSVPStatusRenderer</value>
                 <value>de.flower.rmt.ui.page.event.EventDetailsPanel$SurfaceListLabel</value>

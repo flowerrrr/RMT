@@ -215,16 +215,20 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     @Override
     @Transactional(readOnly = false)
     public void save(final Invitation invitation) {
-        save(invitation, null, false);
+        _save(invitation, null);
     }
 
     @Override
     @Transactional(readOnly = false)
     public void save(final Invitation invitation, String comment) {
-        save(invitation, comment, true);
+        _save(invitation, (comment == null) ? "" : comment);
     }
 
-    private void save(final Invitation invitation, String comment, boolean updateComment) {
+    /**
+     * @param invitation
+     * @param comment    if not-null comment will be updated
+     */
+    private void _save(final Invitation invitation, String comment) {
 
         validate(invitation);
         boolean isNew = invitation.isNew();
@@ -258,12 +262,14 @@ public class InvitationManager extends AbstractService implements IInvitationMan
 
             // invitations are created when event is created. that's not interesting to track. we'd only
             // like to know when invitation is updated.
-            activityManager.onInvitationUpdated(invitation);
+            Comment origComment = commentManager.findByInvitationAndAuthor(origInvitation, securityService.getUser(), 0);
+            // must be called before invitation is persisted. otherwise origInvitation would contain the new values.
+            activityManager.onInvitationUpdated(invitation, origInvitation, comment, (origComment == null) ? null : origComment.getText());
         }
         invitationRepo.save(invitation);
 
         // update comment
-        if (updateComment) {
+        if (comment != null) {
             commentManager.updateComment(invitation, comment);
         }
 

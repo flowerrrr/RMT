@@ -18,6 +18,7 @@ public class ActivityMessageRenderer {
             add(new EventUpdateMessageRenderer());
             add(new EmailSentMessageRenderer());
             add(new InvitationUpdateMessageRenderer());
+            add(new InvitationUpdateMessageRenderer2());
         }
     };
 

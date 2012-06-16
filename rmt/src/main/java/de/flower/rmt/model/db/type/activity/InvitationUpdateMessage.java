@@ -6,6 +6,7 @@ import de.flower.rmt.model.db.type.RSVPStatus;
 /**
  * @author flowerrrr
  */
+@Deprecated // kept for backwards compatibility of old messages.
 public class InvitationUpdateMessage extends AbstractEventMessage {
 
     /**

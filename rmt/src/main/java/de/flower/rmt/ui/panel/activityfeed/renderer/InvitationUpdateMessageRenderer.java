@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author flowerrrr
  */
+@Deprecated // left-over to be backwards compatible with old messages.
 public class InvitationUpdateMessageRenderer extends AbstractEventMessageRenderer implements IMessageRenderer<InvitationUpdateMessage> {
 
     private final static Logger log = LoggerFactory.getLogger(InvitationUpdateMessageRenderer.class);
