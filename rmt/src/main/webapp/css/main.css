@@ -316,9 +316,6 @@ input[readonly].reset {
     }
     li:hover {
         background-color: #f5f5f5;
-        .close {
-            display: inline;
-        }
     }
     small {
         font-size: 80%;
@@ -643,11 +640,11 @@ td {
 }
 
 
-tr .show-on-hover {
+.show-on-hover {
     display: none;
 }
 
-tr:hover .show-on-hover {
+tr:hover .show-on-hover, li:hover .show-on-hover {
     display: inline;
 }
 
@@ -1062,9 +1059,6 @@ td.rsvpstatus {
             padding: 8px 0px;
             color: @grayDark;
             display: block;
-            &:hover {
-                text-decoration: none;
-            }
         }
     }
 }

@@ -51,6 +51,7 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
         ModalDialogWindowPanel modalDialogWindowPanel = new ModalDialogWindowPanel();
         add(modalDialogWindowPanel);
 
+        // TODO (flowerrrr - 18.06.12) move to some subclass
         add(new UserVoiceBehavior() {
             @Override
             protected String getToken() {
@@ -73,8 +74,12 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
     public void renderHead(final IHeaderResponse response) {
         response.renderCSSReference(Resource.bootstrapCssUrl);
         // main.css is a less file and needs special type attribute. cannot use wicket #renderCss..
-        response.renderString("<link href=\"" + relative(Resource.mainCssUrl) + "\" rel=\"stylesheet\" type=\"text/less\"/>\n");
+        response.renderString(String.format(Resource.lessLink, relative(Resource.mainCssUrl)));
+
         response.renderCSSReference(Resource.ieCssUrl, null, "IE");
+        String includeTouchCss = "if (window.Touch) { document.write('" + String.format(Resource.lessLink, relative(Resource.touchCssUrl)) + "'); }";
+        response.renderJavaScript(includeTouchCss, "touchCss");
+
         response.renderJavaScriptReference(Resource.jqueryJsUrl);
         response.renderJavaScriptReference(Resource.lessJsUrl);
         response.renderJavaScriptReference(Resource.bootstrapJsUrl);
@@ -82,6 +87,8 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
         // script should be rendered at the very end cause it overrides wicket javascript functions.
         response.renderJavaScriptReference(Resource.mainJsUrl);
     }
+
+
 
     /**
      * copied from HeaderResponse#relative

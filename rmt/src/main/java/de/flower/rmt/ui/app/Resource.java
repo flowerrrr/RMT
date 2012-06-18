@@ -20,7 +20,11 @@ public interface Resource {
 
     public static final String ieCssUrl = "css/ie.css?" + Version.VERSION;
 
+    public static final String touchCssUrl = "css/touch.css?" + Version.VERSION;
+
     public static final String mainJsUrl = "js/main.js?" + Version.VERSION;
 
     public static final String searchFilterJsUrl = "js/search-filter.js?" + Version.VERSION;
+
+    public static final String lessLink = "<link href=\"%s\" rel=\"stylesheet/less\" type=\"text/css\"/>";
 }

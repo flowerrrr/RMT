@@ -1,0 +1,6 @@
+/* css for touch devices. */
+
+/* override hover and always display elements. */
+.show-on-hover {
+    display: inherit !important;
+}
