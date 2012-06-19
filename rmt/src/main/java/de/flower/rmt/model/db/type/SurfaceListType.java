@@ -1,7 +1,5 @@
 package de.flower.rmt.model.db.type;
 
-import de.flower.rmt.model.db.entity.Surface;
-
 /**
  * @author flowerrrr
  */

@@ -1,7 +1,6 @@
 package de.flower.rmt.model.db.entity;
 
 import de.flower.common.model.db.entity.AbstractBaseEntity;
-import de.flower.rmt.model.db.type.SplitDateTime;
 import org.hibernate.annotations.Index;
 import org.joda.time.DateTime;
 
@@ -18,6 +17,10 @@ public class CalItem extends AbstractBaseEntity {
         HOLIDAY,
         INJURY,
         OTHER;
+
+        public static String getResourceKey(final Type object) {
+            return "calitem.type." + object.name().toLowerCase();
+        }
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -25,15 +28,15 @@ public class CalItem extends AbstractBaseEntity {
 
     @NotNull
     @Column
-    @org.hibernate.annotations.Type(type = "de.flower.rmt.model.db.type.PersistentSplitDateTime")
+    @org.hibernate.annotations.Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
     @Index(name = "ix_startDate")
-    private SplitDateTime startDate = new SplitDateTime();
+    private DateTime startDateTime;
 
     @NotNull
     @Column
-    @org.hibernate.annotations.Type(type = "de.flower.rmt.model.db.type.PersistentSplitDateTime")
+    @org.hibernate.annotations.Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
     @Index(name = "ix_endDate")
-    private SplitDateTime endDate = new SplitDateTime();
+    private DateTime endDateTime;
 
     @Column
     private boolean allDay;
@@ -49,6 +52,9 @@ public class CalItem extends AbstractBaseEntity {
     @Column
     private String summary;
 
+    @Column
+    boolean autoDecline;
+
     public CalItem() {
     }
 
@@ -60,28 +66,20 @@ public class CalItem extends AbstractBaseEntity {
         this.user = user;
     }
 
-    public SplitDateTime getStartDate() {
-        return startDate;
+    public DateTime getStartDateTime() {
+        return startDateTime;
     }
 
-    public void setStartDate(final SplitDateTime startDate) {
-        this.startDate = startDate;
+    public void setStartDateTime(final DateTime startDateTime) {
+        this.startDateTime = startDateTime;
     }
 
-    public void setStartDate(final DateTime dateTime) {
-        this.startDate = new SplitDateTime(dateTime);
+    public DateTime getEndDateTime() {
+        return endDateTime;
     }
 
-    public SplitDateTime getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(final SplitDateTime endDate) {
-        this.endDate = endDate;
-    }
-
-    public void setEndDate(final DateTime dateTime) {
-        this.endDate = new SplitDateTime(dateTime);
+    public void setEndDateTime(final DateTime endDateTime) {
+        this.endDateTime = endDateTime;
     }
 
     public boolean isAllDay() {
@@ -108,14 +106,23 @@ public class CalItem extends AbstractBaseEntity {
         this.summary = summary;
     }
 
+    public boolean isAutoDecline() {
+        return autoDecline;
+    }
+
+    public void setAutoDecline(final boolean autoDecline) {
+        this.autoDecline = autoDecline;
+    }
+
     @Override
     public String toString() {
         return "CalItem{" +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
+                "startDateTime=" + startDateTime +
+                ", endDateTime=" + endDateTime +
                 ", allDay=" + allDay +
                 ", type=" + type +
                 ", summary='" + summary + '\'' +
                 "} " + super.toString();
     }
+
 }

@@ -2,6 +2,7 @@ package de.flower.rmt.service;
 
 import de.flower.rmt.model.db.entity.CalItem;
 import de.flower.rmt.model.db.entity.User;
+import de.flower.rmt.model.dto.CalItemDto;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public interface ICalendarManager {
 
     CalItem loadById(Long id);
 
-    void save(CalItem entity);
+    void save(CalItemDto dto);
 
     List<CalItem> findAllByUser(User object);
 

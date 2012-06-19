@@ -34,6 +34,8 @@ public class SplitDateTimeTest {
         splitDateTime.setTime(time);
         log.info(splitDateTime.toString());
 
+        splitDateTime = new SplitDateTime(dt);
+        log.info(splitDateTime.toString());
+        assertEquals(splitDateTime.getTime(), dt.toLocalTime());
     }
-
 }

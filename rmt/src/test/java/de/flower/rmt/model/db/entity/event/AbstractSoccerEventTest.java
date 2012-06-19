@@ -1,6 +1,6 @@
 package de.flower.rmt.model.db.entity.event;
 
-import de.flower.rmt.model.db.entity.Surface;
+import de.flower.rmt.model.db.type.Surface;
 import de.flower.rmt.test.AbstractRMTIntegrationTests;
 import org.springframework.transaction.TransactionStatus;
 import org.testng.annotations.Test;

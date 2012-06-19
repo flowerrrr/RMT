@@ -2,11 +2,11 @@ package de.flower.rmt.ui.page.event.manager.edit;
 
 import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.common.ui.js.JQuery;
+import de.flower.common.ui.markup.html.link.HistoryBackLink;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.EventType;
 import de.flower.rmt.service.IEventManager;
-import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.markup.html.form.*;
 import de.flower.rmt.ui.markup.html.form.field.*;
 import de.flower.rmt.ui.model.ModelFactory;
@@ -155,7 +155,7 @@ public class EventEditPanel extends BasePanel<Event> {
      * @return
      */
     private AbstractLink createCancelLink(final IModel<Event> model) {
-        return new Links.HistoryBackLink("cancelButton") {
+        return new HistoryBackLink("cancelButton") {
             @Override
             public boolean isVisible() {
                 return model.getObject().isNew();

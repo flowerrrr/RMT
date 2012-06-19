@@ -10,7 +10,7 @@
     <form wicket:id="form" class="invitationForm">
         <div wicket:id="formFeedbackPanel" />
         <ul class="unstyled ul-form">
-            <li>
+            <li class="status">
                 <span wicket:id="status">
                     <div class="alert error feedback" wicket:id="feedback"></div>
                     <label class="radio"><input wicket:id="accepted" type="radio"/> <wicket:message key="invitation.form.accept"/></label>
@@ -22,7 +22,7 @@
             <li>
                 <textarea wicket:id="comment"/>
             </li>
-            <li>
+            <li class="ul-form-actions">
                 <a class="btn btn-primary" wicket:id="submitButton">
                     <wicket:message key="button.update"/>
                 </a>

@@ -14,6 +14,8 @@ public interface Resource {
 
     public static final String datepickerJsUrl = "js/bootstrap/bootstrap-datepicker.js?" + Version.VERSION;
 
+    public static final String datepickerCssUrl = "css/bootstrap/datepicker.css?" + Version.VERSION;
+
     public static final String bootstrapCssUrl = "bootstrap/css/bootstrap.min.css?" + Version.VERSION;
 
     public static final String mainCssUrl = "css/main.css?" + Version.VERSION;

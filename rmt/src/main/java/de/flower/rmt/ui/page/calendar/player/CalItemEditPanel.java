@@ -6,27 +6,36 @@ import de.flower.common.ui.ajax.markup.html.AjaxLink;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.CalItem;
+import de.flower.rmt.model.dto.CalItemDto;
 import de.flower.rmt.service.ICalendarManager;
+import de.flower.rmt.ui.markup.html.form.DatePicker;
 import de.flower.rmt.ui.markup.html.form.EntityForm;
 import de.flower.rmt.ui.markup.html.form.TimeDropDownChoice;
-import de.flower.rmt.ui.markup.html.form.field.DateFieldPanel;
-import de.flower.rmt.ui.markup.html.form.field.DropDownChoicePanel;
+import de.flower.rmt.ui.markup.html.form.renderer.CalItemTypeRenderer;
+import de.flower.rmt.util.Dates;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.form.AjaxCheckBox;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.*;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import java.util.Arrays;
+
 /**
  * @author flowerrrr
  */
-public class CalItemEditPanel extends BasePanel<CalItem> {
+public class CalItemEditPanel extends BasePanel<CalItemDto> {
 
     @SpringBean
     private ICalendarManager calendarManager;
 
-    public CalItemEditPanel(final IModel<CalItem> model) {
+    private FormComponent startDateTime;
+
+    private FormComponent endDateTime;
+
+    public CalItemEditPanel(final IModel<CalItemDto> model) {
         super(model);
         Check.notNull(model);
 
@@ -34,9 +43,9 @@ public class CalItemEditPanel extends BasePanel<CalItem> {
 
         add(new Label("heading", new StringResourceModel("calendar.editpanel.new.${new}.heading", model)));
 
-        EntityForm<CalItem> form = new EntityForm<CalItem>("form", model) {
+        final EntityForm<CalItemDto> form = new EntityForm<CalItemDto>("form", model) {
             @Override
-            protected void onSubmit(final AjaxRequestTarget target, final Form<CalItem> form) {
+            protected void onSubmit(final AjaxRequestTarget target, final Form<CalItemDto> form) {
                 calendarManager.save(form.getModelObject());
                 AjaxEventSender.entityEvent(this, CalItem.class);
                 onClose(target);
@@ -44,13 +53,40 @@ public class CalItemEditPanel extends BasePanel<CalItem> {
         };
         add(form);
 
-        form.add(new DateFieldPanel("startDate.date"));
+        form.add(new CalItemTypeDropDownChoice("type"));
 
-        form.add(new DropDownChoicePanel("startDate.time", new TimeDropDownChoice("input")));
+        form.add(new TextField("summary"));
 
-        form.add(new DateFieldPanel("endDate.date"));
+        form.add(new AjaxCheckBox("allDay") {
 
-        form.add(new DropDownChoicePanel("endDate.time", new TimeDropDownChoice("input")));
+            @Override
+            protected void onUpdate(final AjaxRequestTarget target) {
+                target.add(startDateTime);
+                target.add(endDateTime);
+            }
+        });
+
+        form.add(new DatePicker("startDate", Dates.DATE_MEDIUM));
+
+        form.add(startDateTime = new TimeDropDownChoice("startTime") {
+            @Override
+            public boolean isVisible() {
+                return !form.getModelObject().isAllDay();
+            }
+        });
+        startDateTime.setOutputMarkupPlaceholderTag(true);
+
+        form.add(new DatePicker("endDate", Dates.DATE_MEDIUM));
+
+        form.add(endDateTime = new TimeDropDownChoice("endTime") {
+            @Override
+            public boolean isVisible() {
+                return !form.getModelObject().isAllDay();
+            }
+        });
+        endDateTime.setOutputMarkupPlaceholderTag(true);
+
+        form.add(new CheckBox("autoDecline"));
 
         form.add(new AjaxLink("cancelButton") {
             @Override
@@ -58,5 +94,14 @@ public class CalItemEditPanel extends BasePanel<CalItem> {
                 onClose(target);
             }
         });
+    }
+
+    public static class CalItemTypeDropDownChoice extends DropDownChoice<CalItem.Type> {
+
+        public CalItemTypeDropDownChoice(String id) {
+            super(id);
+            setChoices(Arrays.asList(CalItem.Type.values()));
+            setChoiceRenderer(new CalItemTypeRenderer());
+        }
     }
 }

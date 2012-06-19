@@ -13,8 +13,9 @@ import java.util.List;
  */
 public class TimeDropDownChoice extends DropDownChoice<LocalTime> {
 
-   public TimeDropDownChoice(String id) {
+    public TimeDropDownChoice(String id) {
         super(id);
+        setOutputMarkupId(true);
         setChoices(getTimeChoices());
         setChoiceRenderer(new IChoiceRenderer<LocalTime>() {
             @Override
@@ -41,5 +42,6 @@ public class TimeDropDownChoice extends DropDownChoice<LocalTime> {
         }
         return list;
     }
+
 
 }

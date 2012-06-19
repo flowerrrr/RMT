@@ -5,27 +5,63 @@
 
 <wicket:panel>
 
-    <h4><span wicket:id="heading" /></h4>
+    <h4><span wicket:id="heading"/></h4>
 
     <form class="form-vertical" wicket:id="form">
-        <fieldset>
-            <wicket:container wicket:id="formFeedbackPanel"/>
+        <wicket:container wicket:id="formFeedbackPanel"/>
 
-            <rmt:input wicket:id="startDate.date" labelKey="calendar.startdate"/>
-            <rmt:select wicket:id="startDate.time" class="input-small" />
+        <ul class="unstyled ul-form">
+            <li>
+                <label>
+                    <h6><wicket:message key="calendar.type"/></h6>
+                </label>
+                <select wicket:id="type"/>
+            </li>
+            <li>
+                <label>
+                    <h6><wicket:message key="calendar.summary"/></h6>
+                </label>
+                <input wicket:id="summary"/>
+            </li>
+            <li class="control-group">
+                <label class="checkbox">
+                    <input wicket:id="allDay" type="checkbox"/>
+                    <wicket:message key="calendar.allday"/>
+                </label>
+            </li>
 
-            <rmt:input wicket:id="endDate.date" labelKey="calendar.enddate"/>
-            <rmt:select wicket:id="endDate.time" class="input-small" />
+            <li>
+                <label>
+                    <h6><wicket:message key="calendar.startdate"/></h6>
+                </label>
+                <input wicket:id="startDate" data-datepicker="datepicker" class="input-small reset" readonly="readonly"/>
+                <select wicket:id="startTime" class="input-small"/>
+            </li>
 
-            <div class="form-actions">
+            <li>
+                <label>
+                    <h6><wicket:message key="calendar.enddate"/></h6>
+                </label>
+                <input wicket:id="endDate" data-datepicker="datepicker" class="input-small reset" readonly="readonly"/>
+                <select wicket:id="endTime" class="input-small"/>
+            </li>
+
+            <li class="control-group">
+                <label class="checkbox">
+                    <input wicket:id="autoDecline" type="checkbox"/>
+                    <wicket:message key="calendar.autodecline"/>
+                </label>
+            </li>
+
+            <li class="ul-form-actions">
                 <a class="btn btn-primary" wicket:id="submitButton">
                     <wicket:message key="button.save"/>
                 </a>
                 <a class="btn" wicket:id="cancelButton">
                     <wicket:message key="button.cancel"/>
                 </a>
-            </div>
-        </fieldset>
+            </li>
+        </ul>
     </form>
 
 </wicket:panel>

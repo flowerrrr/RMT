@@ -3,8 +3,10 @@ package de.flower.rmt.service;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.CalItem;
 import de.flower.rmt.model.db.entity.User;
+import de.flower.rmt.model.dto.CalItemDto;
 import de.flower.rmt.repository.ICalItemRepo;
 import de.flower.rmt.service.security.ISecurityService;
+import org.joda.time.LocalTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -40,7 +42,14 @@ public class CalendarManager extends AbstractService implements ICalendarManager
     }
 
     @Override
-    public void save(final CalItem entity) {
+    public void save(final CalItemDto dto) {
+        if (dto.isAllDay()) {
+            // set start time to 0:00 and end time to 23:59
+            dto.setStartTime(new LocalTime(0, 0));
+            dto.setEndTime(new LocalTime(0, 0).minusMillis(1));
+        }
+        CalItem entity = (dto.isNew()) ? newInstance() : loadById(dto.getId());
+        dto.copyTo(entity);
         validate(entity);
         calItemRepo.save(entity);
     }

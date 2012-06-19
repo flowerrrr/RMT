@@ -1,10 +1,14 @@
 package de.flower.rmt.service;
 
-import de.flower.rmt.model.db.entity.*;
+import de.flower.rmt.model.db.entity.Invitation;
+import de.flower.rmt.model.db.entity.Invitation_;
+import de.flower.rmt.model.db.entity.Team;
+import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.entity.event.Match;
 import de.flower.rmt.model.db.entity.event.QEvent;
 import de.flower.rmt.model.db.type.EventType;
+import de.flower.rmt.model.db.type.Surface;
 import de.flower.rmt.test.AbstractRMTIntegrationTests;
 import org.hibernate.LazyInitializationException;
 import org.joda.time.DateTime;

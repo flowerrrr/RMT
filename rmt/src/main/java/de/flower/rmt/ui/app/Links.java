@@ -5,7 +5,6 @@ import de.flower.common.util.geo.LatLng;
 import de.flower.rmt.ui.page.about.AboutPage;
 import de.flower.rmt.ui.page.event.player.EventPage;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.ExternalLink;
@@ -82,13 +81,5 @@ public class Links {
 
     public static Component logoutLink(final String id) {
         return new ExternalLink(id, "/j_spring_security_logout").setContextRelative(true);
-    }
-
-    public static class HistoryBackLink extends ExternalLink {
-
-        public HistoryBackLink(final String id) {
-            super(id, "#");
-            add(AttributeModifier.replace("onclick", "window.history.back();return false;"));
-        }
     }
 }

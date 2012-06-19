@@ -888,12 +888,43 @@ td.rsvpstatus {
 }
 
 /*************************************************************************
+    Vertical form in secondary panel
+**************************************************************************/
+.ul-form {
+    li {
+        margin-bottom: 0px;
+        &.control-group {
+            padding-bottom: 9px;
+        }
+    }
+    .ul-form-actions {
+        margin-top: 5px;
+        .btn {
+            width: auto; // must reset default width of buttons in secondary panel
+        }
+    }
+    label {
+        padding-left: 2px;
+        margin-bottom: 2px;
+        &.checkbox, &.radio {
+            padding-left: 19px; // restore bootstrap value
+        }
+    }
+    select {
+        padding-left: 0px; // to align text of selectbox with text of text input field.
+    }
+}
+
+/*************************************************************************
     Invitation form
 **************************************************************************/
 .invitationForm {
     margin-bottom: 0px;
     ul {
         margin-bottom: 0px;
+    }
+    .status {
+        margin-bottom: 9px; // same margin as input or textarea
     }
     .radio {
         display: block;
@@ -902,9 +933,11 @@ td.rsvpstatus {
         margin-top: 10px;
     }
 }
-.ul-form li {
-    margin-top: 10px;
-}
+
+/*************************************************************************
+    Calendar edit panel form
+**************************************************************************/
+
 
 /*************************************************************************
     Table width for several tables

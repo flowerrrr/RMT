@@ -1,4 +1,4 @@
-package de.flower.rmt.model.db.entity;
+package de.flower.rmt.model.db.type;
 
 /**
  * @author flowerrrr

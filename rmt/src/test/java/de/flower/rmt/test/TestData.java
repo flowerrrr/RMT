@@ -8,6 +8,7 @@ import de.flower.rmt.model.db.entity.event.Event_;
 import de.flower.rmt.model.db.entity.event.Match;
 import de.flower.rmt.model.db.type.EventType;
 import de.flower.rmt.model.db.type.RSVPStatus;
+import de.flower.rmt.model.dto.CalItemDto;
 import de.flower.rmt.repository.*;
 import de.flower.rmt.service.*;
 import org.apache.commons.lang.math.RandomUtils;
@@ -378,16 +379,14 @@ public class TestData {
         }
     }
 
-    public CalItem newCalItem() {
+    public CalItemDto newCalItemDto() {
         CalItem entity = new CalItem();
-        entity.setStartDate(new DateTime());
-        entity.getStartDate().setTime(new LocalTime(2, 15));
-        entity.setEndDate(new DateTime());
-        entity.getEndDate().setTime(new LocalTime(22, 30));
+        entity.setStartDateTime(new DateTime().withTime(2, 15, 0, 0));
+        entity.setEndDateTime(new DateTime().withTime(22, 30, 0, 0));
         entity.setSummary("summary");
         entity.setType(CalItem.Type.OTHER);
         entity.setUser(new User(new Club("new club")));
-        return entity;
+        return CalItemDto.fromEntity(entity);
     }
 
 

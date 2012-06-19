@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.markup.html.form;
 
-import de.flower.rmt.ui.app.Links;
+import de.flower.common.ui.markup.html.link.HistoryBackLink;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.model.IModel;
 
@@ -22,7 +22,7 @@ public abstract class CancelableEntityForm<T> extends EntityForm<T> {
         if (cancelLink != null) {
             add(cancelLink);
         } else {
-            add(new Links.HistoryBackLink("cancelButton"));
+            add(new HistoryBackLink("cancelButton"));
         }
     }
 }

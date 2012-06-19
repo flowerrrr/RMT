@@ -38,8 +38,7 @@
                 <value>de.flower.common.util.geo.LatLng</value>
                 <value>de.flower.rmt.model.dto..*</value>
                 <value>de.flower.rmt.ui.feedback..*Message</value>
-                <value>de.flower.rmt.ui.markup.html.form.EntityForm</value>
-                <value>de.flower.rmt.ui.markup.html.form.renderer.RSVPStatusRenderer</value>
+                <value>de.flower.rmt.ui.markup.html.form..*</value>
                 <value>de.flower.rmt.ui.page.event.EventDetailsPanel$SurfaceListLabel</value>
                 <value>de.flower.rmt.ui.page.event.EventDetailsPanel$UniformLabel</value>
                 <value>de.flower.rmt.ui.panel.QuickResponseLabel</value>
@@ -50,6 +49,9 @@
                 <value>org.wicketstuff.jsr303.validator.PropertyValidator</value>
                 <value>de.flower.common.util.geo.LatLng</value>
                 <value>wicket.contrib.gmap3..*</value>
+                <!-- for TimeDropDownChoice -->
+                <value>org.joda.time.LocalTime</value>
+                <value>org.joda.time.tz.FixedDateTimeZone</value>
             </list>
         </property>
     </bean>

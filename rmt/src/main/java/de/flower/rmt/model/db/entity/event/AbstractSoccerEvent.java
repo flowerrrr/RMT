@@ -1,8 +1,8 @@
 package de.flower.rmt.model.db.entity.event;
 
 import de.flower.rmt.model.db.entity.Club;
-import de.flower.rmt.model.db.entity.Surface;
 import de.flower.rmt.model.db.entity.Uniform;
+import de.flower.rmt.model.db.type.Surface;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalTime;
 

@@ -109,6 +109,9 @@ public class AbstractRMTIntegrationTests extends AbstractTestNGSpringContextTest
     protected ICommentManager commentManager;
 
     @Autowired
+    protected ICalendarManager calendarManager;
+
+    @Autowired
     protected IUniformManager uniformManager;
 
     @Autowired
