@@ -378,6 +378,19 @@ public class TestData {
         }
     }
 
+    public CalItem newCalItem() {
+        CalItem entity = new CalItem();
+        entity.setStartDate(new DateTime());
+        entity.getStartDate().setTime(new LocalTime(2, 15));
+        entity.setEndDate(new DateTime());
+        entity.getEndDate().setTime(new LocalTime(22, 30));
+        entity.setSummary("summary");
+        entity.setType(CalItem.Type.OTHER);
+        entity.setUser(new User(new Club("new club")));
+        return entity;
+    }
+
+
     /**
      * Method replaces dbUnit xml file. Seems to have more advantages to use programmatic approach.
      */

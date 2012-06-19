@@ -6,6 +6,7 @@ import de.flower.rmt.ui.page.about.AboutPage;
 import de.flower.rmt.ui.page.account.AccountPage;
 import de.flower.rmt.ui.page.base.manager.ManagerHomePage;
 import de.flower.rmt.ui.page.base.player.PlayerHomePage;
+import de.flower.rmt.ui.page.calendar.player.CalendarPage;
 import de.flower.rmt.ui.page.error.AccessDenied403Page;
 import de.flower.rmt.ui.page.error.InternalError500Page;
 import de.flower.rmt.ui.page.error.PageNotFound404Page;
@@ -94,6 +95,7 @@ public class RMTApplication extends WebApplication {
         mountPage("player/event/${" + EventPage.PARAM_EVENTID + "}", de.flower.rmt.ui.page.event.player.EventPage.class);
         mountPage("player/venues", de.flower.rmt.ui.page.venues.player.VenuesPage.class);
         mountPage("player/venue/${" + VenuePage.PARAM_VENUEID + "}", VenuePage.class);
+        mountPage("player/calendar", CalendarPage.class);
         mountPage("player/account", AccountPage.class);
         mountPage("login", LoginPage.class);
         mountPage("about", AboutPage.class);

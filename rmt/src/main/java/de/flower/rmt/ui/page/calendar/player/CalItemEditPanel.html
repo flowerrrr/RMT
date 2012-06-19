@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head></head>
+<body>
+
+<wicket:panel>
+
+    <h4><span wicket:id="heading" /></h4>
+
+    <form class="form-vertical" wicket:id="form">
+        <fieldset>
+            <wicket:container wicket:id="formFeedbackPanel"/>
+
+            <rmt:input wicket:id="startDate.date" labelKey="calendar.startdate"/>
+            <rmt:select wicket:id="startDate.time" class="input-small" />
+
+            <rmt:input wicket:id="endDate.date" labelKey="calendar.enddate"/>
+            <rmt:select wicket:id="endDate.time" class="input-small" />
+
+            <div class="form-actions">
+                <a class="btn btn-primary" wicket:id="submitButton">
+                    <wicket:message key="button.save"/>
+                </a>
+                <a class="btn" wicket:id="cancelButton">
+                    <wicket:message key="button.cancel"/>
+                </a>
+            </div>
+        </fieldset>
+    </form>
+
+</wicket:panel>
+
+</body>
+</html>

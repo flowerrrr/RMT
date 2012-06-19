@@ -109,15 +109,14 @@ public abstract class AbstractFormFieldPanel extends Panel {
             }
         }
 
-
         formComponent.setLabel(new LoadableDetachableModel<String>() {
             /**
              * Have to delay lookup of resourceKey until component is rendered.
              */
             @Override
             protected String load() {
-                String resourceKey = Check.notNull(getLabelKey());
-                return new ResourceModel(resourceKey).getObject();
+                String resourceKey = getLabelKey();
+                return (resourceKey == null) ? "" : new ResourceModel(resourceKey).getObject();
             }
         });
     }

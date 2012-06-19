@@ -6,6 +6,7 @@ import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.markup.html.form.renderer.EventRenderer;
 import de.flower.rmt.ui.page.base.AbstractNavigationPanel;
 import de.flower.rmt.ui.page.base.INavigationPanelAware;
+import de.flower.rmt.ui.page.calendar.player.CalendarPage;
 import de.flower.rmt.ui.page.event.player.EventPage;
 import de.flower.rmt.ui.page.events.player.EventsPage;
 import de.flower.rmt.ui.page.venues.player.VenuesPage;
@@ -30,10 +31,12 @@ public class NavigationPanel extends AbstractNavigationPanel {
 
     public static final String VENUES = "venues";
 
+    public static final String CALENDAR = "calendar";
+
     @SpringBean
     private IEventListProvider eventListProvider;
 
-     public NavigationPanel(INavigationPanelAware page) {
+    public NavigationPanel(INavigationPanelAware page) {
         super(View.PLAYER);
 
         WebMarkupContainer events = createMenuItem(EVENTS, EventsPage.class, page);
@@ -41,12 +44,13 @@ public class NavigationPanel extends AbstractNavigationPanel {
         events.add(new ListView<Event>("eventList", getEventListModel()) {
             @Override
             protected void populateItem(final ListItem<Event> item) {
-                Link link = new BookmarkablePageLink("link", EventPage.class,  EventPage.getPageParams(item.getModelObject().getId()));
+                Link link = new BookmarkablePageLink("link", EventPage.class, EventPage.getPageParams(item.getModelObject().getId()));
                 link.add(new Label("label", EventRenderer.getTypeDateSummary(item.getModelObject())));
                 item.add(link);
             }
         });
         add(createMenuItem(VENUES, VenuesPage.class, page));
+        add(createMenuItem(CALENDAR, CalendarPage.class, page));
     }
 
     private IModel<List<Event>> getEventListModel() {
@@ -57,7 +61,6 @@ public class NavigationPanel extends AbstractNavigationPanel {
             }
         };
     }
-
 }
 
 

@@ -112,9 +112,6 @@ public class EventEditPanel extends BasePanel<Event> {
                     timeDDCPanel.getFormComponent().setModelObject(((LocalTime) getDefaultModelObject()).minusMinutes(EventType.from(model.getObject()).getMeetBeforeKickOffMinutes()));
                     target.add(timeDDCPanel);
                 }
-                System.out.println("kickoff: " + getDefaultModelObjectAsString());
-                System.out.println("time cached: " + timeDDCPanel.getStateSavingModel().getSavedObject());
-                System.out.println("time: " + timeDDCPanel.getDefaultModel().getObject());
             }
         });
 
