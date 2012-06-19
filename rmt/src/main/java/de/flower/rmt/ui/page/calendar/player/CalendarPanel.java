@@ -2,6 +2,7 @@ package de.flower.rmt.ui.page.calendar.player;
 
 import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.common.ui.ajax.markup.html.AjaxLink;
+import de.flower.common.ui.calendar.FullCalendarPanel;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.CalItem;
 import de.flower.rmt.model.db.entity.User;
@@ -16,6 +17,7 @@ import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.joda.time.DateTime;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,7 +33,7 @@ public abstract class CalendarPanel extends BasePanel<User> {
 
         add(new AjaxEventListener(CalItem.class));
 
-        IModel<List<CalItem>> listModel = getListModel(model);
+        final IModel<List<CalItem>> listModel = getListModel(model);
 
         ListView<CalItem> list = new ListView<CalItem>("list", listModel) {
             @Override
@@ -43,7 +45,7 @@ public abstract class CalendarPanel extends BasePanel<User> {
                         CalItemDto dto = CalItemDto.fromEntity(item.getModelObject());
                         onEdit(target, dto);
                     }
-                })      ;
+                });
                 item.add(new Label("item", s));
             }
         };
@@ -60,6 +62,19 @@ public abstract class CalendarPanel extends BasePanel<User> {
                 dto.setStartDateTime(dt);
                 dto.setEndDateTime(dt.plusHours(12));
                 onEdit(target, dto);
+            }
+        });
+
+        add(new FullCalendarPanel() {
+            @Override
+            protected List<CalItem> loadCalItems(final Date start, final Date end) {
+                return listModel.getObject();
+            }
+
+            @Override
+            protected void onEdit(final AjaxRequestTarget target, final long id) {
+                CalItemDto dto = CalItemDto.fromEntity(calendarManager.loadById(id));
+                CalendarPanel.this.onEdit(target, dto);
             }
         });
     }

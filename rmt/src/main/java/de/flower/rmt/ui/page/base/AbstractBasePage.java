@@ -13,6 +13,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.ajax.IAjaxIndicatorAware;
 import org.apache.wicket.markup.html.IHeaderResponse;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.cycle.RequestCycle;
@@ -51,6 +52,11 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
         ModalDialogWindowPanel modalDialogWindowPanel = new ModalDialogWindowPanel();
         add(modalDialogWindowPanel);
 
+        // include dummy component to force rendering of css and js references. must be after modalwindow to keep
+        // original order (first wicket.js/css, then ours) and overriding
+        add(new AbstractBasePageHead("head"));
+
+
         // TODO (flowerrrr - 18.06.12) move to some subclass
         add(new UserVoiceBehavior() {
             @Override
@@ -68,34 +74,6 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
                 }
             }
         });
-    }
-
-    @Override
-    public void renderHead(final IHeaderResponse response) {
-        response.renderCSSReference(Resource.bootstrapCssUrl);
-        // main.css is a less file and needs special type attribute. cannot use wicket #renderCss..
-        response.renderString(String.format(Resource.lessLink, relative(Resource.mainCssUrl)));
-
-        response.renderCSSReference(Resource.ieCssUrl, null, "IE");
-        String includeTouchCss = "if (window.Touch) { document.write('" + String.format(Resource.lessLink, relative(Resource.touchCssUrl)) + "'); }";
-        response.renderJavaScript(includeTouchCss, "touchCss");
-
-        response.renderJavaScriptReference(Resource.jqueryJsUrl);
-        response.renderJavaScriptReference(Resource.lessJsUrl);
-        response.renderJavaScriptReference(Resource.bootstrapJsUrl);
-        super.renderHead(response);
-        // script should be rendered at the very end cause it overrides wicket javascript functions.
-        response.renderJavaScriptReference(Resource.mainJsUrl);
-    }
-
-
-
-    /**
-     * copied from HeaderResponse#relative
-     */
-    private String relative(final String url) {
-        RequestCycle rc = RequestCycle.get();
-        return rc.getUrlRenderer().renderContextRelativeUrl(url);
     }
 
     /**
@@ -119,5 +97,41 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
 
     public boolean isCurrentUserLoggedIn() {
         return securityService.isCurrentUserLoggedIn();
+    }
+
+    /**
+     * Have resource contribution in separate behavior cause page's renderHead is called at the very last after
+     * all child elements have been processed.
+     */
+    public static class AbstractBasePageHead extends WebMarkupContainer {
+
+        public AbstractBasePageHead(String id) {
+            super(id);
+        }
+
+        @Override
+        public void renderHead(final IHeaderResponse response) {
+            response.renderCSSReference(Resource.bootstrapCssUrl);
+            // main.css is a less file and needs special type attribute. cannot use wicket #renderCss..
+            response.renderString(String.format(Resource.lessLink, relative(Resource.mainCssUrl)));
+
+            response.renderCSSReference(Resource.ieCssUrl, null, "IE");
+            String includeTouchCss = "if (window.Touch) { document.write('" + String.format(Resource.lessLink, relative(Resource.touchCssUrl)) + "'); }";
+            response.renderJavaScript(includeTouchCss, "touchCss");
+
+            response.renderJavaScriptReference(Resource.jqueryJsUrl);
+            response.renderJavaScriptReference(Resource.lessJsUrl);
+            response.renderJavaScriptReference(Resource.bootstrapJsUrl);
+            // script should be rendered at the very end cause it overrides wicket javascript functions.
+            response.renderJavaScriptReference(Resource.mainJsUrl);
+        }
+
+        /**
+         * copied from HeaderResponse#relative
+         */
+        private String relative(final String url) {
+            RequestCycle rc = RequestCycle.get();
+            return rc.getUrlRenderer().renderContextRelativeUrl(url);
+        }
     }
 }

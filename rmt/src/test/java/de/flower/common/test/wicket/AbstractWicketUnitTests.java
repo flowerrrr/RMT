@@ -17,7 +17,7 @@ public class AbstractWicketUnitTests {
     protected WicketTester wicketTester;
 
     @BeforeMethod
-    public void setUp() {
+    public final void _setUp() {
         wicketTester = new WicketTester();
         wicketTester.getApplication().getResourceSettings().getStringResourceLoaders().add(new MockStringResourceLoader());
     }
