@@ -1,13 +1,9 @@
 package de.flower.common.ui.calendar;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Collections2;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import de.flower.common.ui.panel.BasePanel;
-import de.flower.rmt.model.db.entity.CalItem;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.wicket.ajax.AbstractDefaultAjaxBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.behavior.AbstractAjaxBehavior;
 import org.apache.wicket.markup.html.IHeaderResponse;
@@ -15,9 +11,11 @@ import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.handler.TextRequestHandler;
 import org.apache.wicket.util.string.StringValue;
+import org.joda.time.DateTime;
 
-import javax.annotation.Nullable;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Calendar widget based on wonderful http://arshaw.com/fullcalendar/.
@@ -32,17 +30,32 @@ public abstract class FullCalendarPanel extends BasePanel {
 
     private AbstractAjaxBehavior jsonEventSourceBehavior;
 
-    private AbstractDefaultAjaxBehavior eventClickBehavior;
+    private EventClickCallbackBehavior eventClickCallbackBehavior;
+
+    private SelectCallbackBehavior selectCallbackBehavior;
 
     public FullCalendarPanel() {
 
-        add(jsonEventSourceBehavior = new JSONEventSourceBehavior());
-
-        add(eventClickBehavior = new AbstractDefaultAjaxBehavior() {
+        add(jsonEventSourceBehavior = new JSONEventSourceBehavior() {
             @Override
-            protected void respond(final AjaxRequestTarget target) {
-                StringValue id = RequestCycle.get().getRequest().getRequestParameters().getParameterValue("id");
-                onEdit(target, id.toLong());
+            protected List<CalEvent> loadCalEvents(final DateTime start, final DateTime end) {
+                return FullCalendarPanel.this.loadCalEvents(start, end);
+            }
+        });
+
+        add(eventClickCallbackBehavior = new EventClickCallbackBehavior() {
+
+            @Override
+            protected void onEdit(final AjaxRequestTarget target, final CalEvent calEvent) {
+                FullCalendarPanel.this.onEdit(target, calEvent);
+            }
+        });
+
+        add(selectCallbackBehavior = new SelectCallbackBehavior() {
+
+            @Override
+            protected void onEdit(final AjaxRequestTarget target, final CalEvent calEvent) {
+                FullCalendarPanel.this.onEdit(target, calEvent);
             }
         });
     }
@@ -54,60 +67,58 @@ public abstract class FullCalendarPanel extends BasePanel {
 
     @Override
     public void renderHead(final IHeaderResponse response) {
-        super.renderHead(response);
         response.renderCSSReference(fullCalendarCssUrl);
         response.renderJavaScriptReference(fullCalendarJsUrl);
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String options = gson.toJson(getOptions());
-        // remove qoutes on function literals (gson does not allow serializing function literals without quotes)
-        options = options.replace("\"_eventClick_\"", String.format("function(event) { wicketAjaxGet('%s&id=' + event.id); return false; }", eventClickBehavior.getCallbackUrl()));
-        System.out.println(options);
-        String initScript = "$('#" + getMarkupId() + "').fullCalendar(" + options + ");";
+        super.renderHead(response);
+        String initScript = "$('#" + getMarkupId() + "').fullCalendar(" + getJsonOptions() + ");";
         response.renderOnDomReadyJavaScript(initScript);
     }
 
-    private Options getOptions() {
-        Options o = new Options();
-        o.events = jsonEventSourceBehavior.getCallbackUrl().toString();
-        o.eventClick = "_eventClick_"; // will be substituted after converting to json
-        o.monthNames = StringUtils.split(getResourceString("monthNames"), ",");
-        o.monthNamesShort = StringUtils.split(getResourceString("monthNamesShort"), ",");
-        o.dayNames = StringUtils.split(getResourceString("dayNames"), ",");
-        o.dayNamesShort = StringUtils.split(getResourceString("dayNamesShort"), ",");
-        o.buttonText.put("today", getResourceString("today"));
-        return o;
+    private String getJsonOptions() {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String options = gson.toJson(getOptions());
+
+        // replace placeholder with function literal (gson does not allow serializing function literals without quotes)
+        options = options.replace("\"_eventClick_\"", eventClickCallbackBehavior.getCallbackFunction());
+
+        options = options.replace("\"_select_\"", selectCallbackBehavior.getCallbackFunction());
+
+        return options;
+    }
+
+    private Map<String, Object> getOptions() {
+        Map<String, Object> options = new HashMap<>();
+        options.put("events", jsonEventSourceBehavior.getCallbackUrl().toString());
+        options.put("eventClick", "_eventClick_"); // will be substituted after converting to json
+        options.put("selectable", true);
+        options.put("select", "_select_");
+        options.put("firstDay", 1); // start week on monday
+        options.put("timeFormat", ""); // no time on events
+        options.put("monthNames", StringUtils.split(getResourceString("monthNames"), ","));
+        options.put("monthNamesShort", StringUtils.split(getResourceString("monthNamesShort"), ","));
+        options.put("dayNames", StringUtils.split(getResourceString("dayNames"), ","));
+        options.put("dayNamesShort", StringUtils.split(getResourceString("dayNamesShort"), ","));
+
+        Map<String, Object> buttonText = new HashMap<>();
+        buttonText.put("today", getResourceString("today"));
+
+        options.put("buttonText", buttonText);
+
+        return options;
     }
 
     private String getResourceString(String property) {
         return new ResourceModel(property).wrapOnAssignment(this).getObject();
     }
 
-    protected abstract List<CalItem> loadCalItems(final Date start, final Date end);
+    protected abstract List<CalEvent> loadCalEvents(final DateTime start, final DateTime end);
 
-    protected abstract void onEdit(AjaxRequestTarget target, long id);
+    protected abstract void onEdit(AjaxRequestTarget target, CalEvent calEvent);
 
-    public static class Options {
-
-        public String events;
-
-        public String eventClick;
-
-        public int firstDay = 1; // start week on monday;
-
-        public String timeFormat = ""; // no time on events
-
-        public String[] monthNames;
-
-        public String[] monthNamesShort;
-
-        public String[] dayNames;
-
-        public String[] dayNamesShort;
-
-        public Map<String, String> buttonText = new HashMap<>();
-    }
-
-    public class JSONEventSourceBehavior extends AbstractAjaxBehavior {
+    /**
+     * Providing json feed of calendar events.
+     */
+    public abstract static class JSONEventSourceBehavior extends AbstractAjaxBehavior {
 
         @Override
         public void onRequest() {
@@ -115,38 +126,14 @@ public abstract class FullCalendarPanel extends BasePanel {
             StringValue start = requestCycle.getRequest().getRequestParameters().getParameterValue("start");
             StringValue end = requestCycle.getRequest().getRequestParameters().getParameterValue("end");
 
-            List<CalItem> list = loadCalItems(new Date(start.toLong()), new Date(end.toLong()));
-
-            Collection<CalEvent> events = Collections2.transform(list, new Function<CalItem, CalEvent>() {
-                @Override
-                public CalEvent apply(@Nullable final CalItem item) {
-                    CalEvent o = new CalEvent();
-                    o.id = item.getId();
-                    o.title = new ResourceModel(CalItem.Type.getResourceKey(item.getType())).getObject() + ": " + item.getSummary();
-                    o.start = item.getStartDateTime().toDate();
-                    o.end = item.getEndDateTime().toDate();
-                    o.allDay = item.isAllDay();
-                    return o;
-                }
-            });
+            List<CalEvent> events = loadCalEvents(new DateTime(start.toLong() * 1000), new DateTime(end.toLong() * 1000));
 
             Gson gson = new Gson();
             String json = gson.toJson(events);
 
             requestCycle.scheduleRequestHandlerAfterCurrent(new TextRequestHandler("application/json", "UTF-8", json));
         }
-    }
 
-    public static class CalEvent {
-
-        public Long id;
-
-        public String title;
-
-        public Date start;
-
-        public Date end;
-
-        public boolean allDay;
+        protected abstract List<CalEvent> loadCalEvents(final DateTime start, final DateTime end);
     }
 }

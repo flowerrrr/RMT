@@ -142,6 +142,12 @@ public class EventManager extends AbstractService implements IEventManager {
     }
 
     @Override
+    public List<Event> findAllByDateRange(final DateTime start, final DateTime end) {
+        BooleanExpression isBeetween = QEvent.event.dateTime.between(start, end);
+        return eventRepo.findAll(isBeetween);
+    }
+
+    @Override
     @Transactional(readOnly = false)
     public void delete(Long id) {
         Event entity = loadById(id);

@@ -1,5 +1,6 @@
 package de.flower.rmt.model.db.entity;
 
+import com.mysema.query.annotations.QueryInit;
 import de.flower.common.model.db.entity.AbstractBaseEntity;
 import org.hibernate.annotations.Index;
 import org.joda.time.DateTime;
@@ -24,6 +25,7 @@ public class CalItem extends AbstractBaseEntity {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @QueryInit("club") // required when using QCalItem.calItem.user.club.eq(getClub()) in a query.
     private User user;
 
     @NotNull

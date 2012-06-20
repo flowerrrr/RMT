@@ -1,12 +1,10 @@
 package de.flower.common.ui.calendar;
 
-import com.google.common.collect.Lists;
 import de.flower.common.test.wicket.AbstractWicketUnitTests;
-import de.flower.rmt.model.db.entity.CalItem;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.joda.time.DateTime;
 import org.testng.annotations.Test;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,12 +21,12 @@ public class FullCalendarPanelTest extends AbstractWicketUnitTests {
     public static class TestFullCalendarPanel extends FullCalendarPanel {
 
         @Override
-        protected List<CalItem> loadCalItems(final Date start, final Date end) {
-            return Lists.newArrayList();
+        protected List<CalEvent> loadCalEvents(final DateTime start, final DateTime end) {
+            return null;  //To change body of implemented methods use File | Settings | File Templates.
         }
 
         @Override
-        protected void onEdit(final AjaxRequestTarget target, final long id) {
+        protected void onEdit(final AjaxRequestTarget target, final CalEvent calEvent) {
         }
     }
 }

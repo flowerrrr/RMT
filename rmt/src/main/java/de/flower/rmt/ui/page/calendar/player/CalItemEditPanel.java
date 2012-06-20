@@ -35,13 +35,16 @@ public class CalItemEditPanel extends BasePanel<CalItemDto> {
 
     private FormComponent endDateTime;
 
-    public CalItemEditPanel(final IModel<CalItemDto> model) {
+    /**
+     * Not correct to use readonly direct instead of a model. but who cares. panel is always created on request.
+     */
+    public CalItemEditPanel(final IModel<CalItemDto> model, final boolean readOnly) {
         super(model);
         Check.notNull(model);
 
         add(new AjaxEventListener(CalItem.class));
 
-        add(new Label("heading", new StringResourceModel("calendar.editpanel.new.${new}.heading", model)));
+        add(new Label("heading", new StringResourceModel("calendar.editpanel.new.${new}.readonly." + readOnly + ".heading", model)));
 
         final EntityForm<CalItemDto> form = new EntityForm<CalItemDto>("form", model) {
             @Override
@@ -53,7 +56,12 @@ public class CalItemEditPanel extends BasePanel<CalItemDto> {
         };
         add(form);
 
-        form.add(new CalItemTypeDropDownChoice("type"));
+        form.add(new CalItemTypeDropDownChoice("type") {
+            @Override
+            public boolean isEnabled() {
+                return !readOnly;
+            }
+        });
 
         form.add(new TextField("summary"));
 
@@ -94,6 +102,8 @@ public class CalItemEditPanel extends BasePanel<CalItemDto> {
                 onClose(target);
             }
         });
+
+
     }
 
     public static class CalItemTypeDropDownChoice extends DropDownChoice<CalItem.Type> {

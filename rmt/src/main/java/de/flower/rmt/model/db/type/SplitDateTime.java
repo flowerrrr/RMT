@@ -13,6 +13,7 @@ import java.util.Date;
  *
  * @author flowerrrr
  */
+@Deprecated // not used
 public class SplitDateTime {
 
     private DateTime dateTime;

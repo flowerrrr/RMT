@@ -76,7 +76,8 @@ public class BasePanel<T> extends GenericPanel<T> {
         if (id != null) {
             return id;
         } else {
-            String className = Clazz.getCallingClassStatic().getSimpleName();
+            Class<?> callingClass = Clazz.getCallingClassStatic();
+            String className = Clazz.getShortName(callingClass);
             return Strings.uncapitalize(className);
         }
     }

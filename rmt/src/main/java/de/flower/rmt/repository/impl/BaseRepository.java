@@ -19,6 +19,7 @@ import de.flower.rmt.model.db.entity.Club;
 import de.flower.rmt.repository.IRepository;
 import de.flower.rmt.repository.Specs;
 import de.flower.rmt.service.security.ISecurityService;
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.LockOptions;
 import org.hibernate.Session;
 import org.springframework.data.domain.Page;
@@ -169,7 +170,8 @@ public class BaseRepository<T extends AbstractBaseEntity, ID extends Serializabl
     private BooleanExpression isNotDeleted() {
         // next line does not work, will cause runtime error
         // QAbstractBaseEntity.abstractBaseEntity.objectStatus.ne(ObjectStatus.DELETED);
-        Path<? extends AbstractBaseEntity> root = Expressions.path(entityInformation.getJavaType(), entityInformation.getEntityName().toLowerCase());
+        String variable = StringUtils.uncapitalize(entityInformation.getEntityName());
+        Path<? extends AbstractBaseEntity> root = Expressions.path(entityInformation.getJavaType(), variable);
         return new QAbstractBaseEntity(root).objectStatus.ne(ObjectStatus.DELETED);
     }
 

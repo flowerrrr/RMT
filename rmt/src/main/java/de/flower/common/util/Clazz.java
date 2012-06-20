@@ -49,6 +49,14 @@ public final class Clazz {
         return ccg.getClass(frame);
     }
 
+    public static String getShortName(final Class<?> clazz) {
+        if (isAnonymousInnerClass(clazz)) {
+            return clazz.getName().substring(clazz.getName().lastIndexOf(".") + 1);
+        } else {
+            return clazz.getSimpleName();
+        }
+    }
+
     private static class CurrentClassGetter extends SecurityManager {
 
         public Class getClass(int frame) {
@@ -63,7 +71,7 @@ public final class Clazz {
 
     public static boolean isAnonymousInnerClass(Class<?> clazz) {
         // return clazz.getName().contains("$") && clazz.getSimpleName().equals("");
-        return clazz.getEnclosingClass() != null && clazz.getName().contains("$");
+        return clazz.getEnclosingClass() != null && clazz.getName().contains("$") && clazz.getSimpleName().equals("");
     }
 
     public static Class<?> getSuperClass(Class<?> anonymousClass) {

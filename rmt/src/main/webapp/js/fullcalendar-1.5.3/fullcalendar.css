@@ -9,6 +9,7 @@
  *
  */
 
+/* PATCHES are listed at the end of the file. flowerrrr. */
 
 .fc {
 	direction: ltr;
@@ -614,5 +615,15 @@ table.fc-border-separate {
 .fc-agenda .ui-resizable-resizing { /* TODO: better selector */
 	_overflow: hidden;
 	}
-	
-	
+
+/**
+ * PATCHES start here.
+ */
+
+.fc-widget-content, .fc-event {
+    cursor: pointer; // to indicate the clicking a day will trigger 'add'
+}
+
+.fc-header-title h2 {
+    font-size: 14px; // adjust to same size as secondary panel headings
+}

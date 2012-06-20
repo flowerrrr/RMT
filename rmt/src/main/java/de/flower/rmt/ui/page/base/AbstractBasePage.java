@@ -12,6 +12,7 @@ import org.apache.wicket.Application;
 import org.apache.wicket.Component;
 import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.ajax.IAjaxIndicatorAware;
+import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.html.IHeaderResponse;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
@@ -55,7 +56,7 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
         // include dummy component to force rendering of css and js references. must be after modalwindow to keep
         // original order (first wicket.js/css, then ours) and overriding
         add(new AbstractBasePageHead("head"));
-
+        add(new RenderCSSBehavior());
 
         // TODO (flowerrrr - 18.06.12) move to some subclass
         add(new UserVoiceBehavior() {
@@ -111,6 +112,21 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
 
         @Override
         public void renderHead(final IHeaderResponse response) {
+
+            response.renderJavaScriptReference(Resource.jqueryJsUrl);
+            response.renderJavaScriptReference(Resource.bootstrapJsUrl);
+            // script should be rendered at the very end cause it overrides wicket javascript functions.
+            response.renderJavaScriptReference(Resource.mainJsUrl);
+        }
+    }
+
+    /**
+     * Custom Css should be rendered at end of head. Add this behavior to page -> rendered last.
+     */
+    public static class RenderCSSBehavior extends Behavior {
+
+        @Override
+        public void renderHead(final Component component, final IHeaderResponse response) {
             response.renderCSSReference(Resource.bootstrapCssUrl);
             // main.css is a less file and needs special type attribute. cannot use wicket #renderCss..
             response.renderString(String.format(Resource.lessLink, relative(Resource.mainCssUrl)));
@@ -118,18 +134,14 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
             response.renderCSSReference(Resource.ieCssUrl, null, "IE");
             String includeTouchCss = "if (window.Touch) { document.write('" + String.format(Resource.lessLink, relative(Resource.touchCssUrl)) + "'); }";
             response.renderJavaScript(includeTouchCss, "touchCss");
-
-            response.renderJavaScriptReference(Resource.jqueryJsUrl);
+            // less script must be loaded after css-files.
             response.renderJavaScriptReference(Resource.lessJsUrl);
-            response.renderJavaScriptReference(Resource.bootstrapJsUrl);
-            // script should be rendered at the very end cause it overrides wicket javascript functions.
-            response.renderJavaScriptReference(Resource.mainJsUrl);
         }
 
         /**
          * copied from HeaderResponse#relative
          */
-        private String relative(final String url) {
+        public static String relative(final String url) {
             RequestCycle rc = RequestCycle.get();
             return rc.getUrlRenderer().renderContextRelativeUrl(url);
         }

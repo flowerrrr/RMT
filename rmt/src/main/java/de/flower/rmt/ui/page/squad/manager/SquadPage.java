@@ -4,6 +4,7 @@ import de.flower.rmt.model.db.entity.Team;
 import de.flower.rmt.ui.page.base.manager.ManagerBasePage;
 import de.flower.rmt.ui.page.base.manager.NavigationPanel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.ResourceModel;
 
 /**
  * @author flowerrrr
@@ -11,12 +12,11 @@ import org.apache.wicket.model.IModel;
 public class SquadPage extends ManagerBasePage {
 
     public SquadPage(final IModel<Team> model) {
-        super();
         setHeadingText(model.getObject().getName());
+        setSubheadingText(new ResourceModel("squad.heading.sub").getObject());
         addMainPanel(new PlayerListPanel(model));
         addSecondaryPanel(new SquadSecondaryPanel(model));
-
-   }
+    }
 
     @Override
     public String getActiveTopBarItem() {

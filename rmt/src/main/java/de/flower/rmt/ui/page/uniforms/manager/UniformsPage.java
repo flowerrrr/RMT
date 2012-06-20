@@ -12,7 +12,6 @@ import org.apache.wicket.model.ResourceModel;
 public class UniformsPage extends ManagerBasePage {
 
     public UniformsPage(final IModel<Team> model) {
-        super();
         setHeadingText(model.getObject().getName());
         setSubheadingText(new ResourceModel("manager.uniforms.heading.sub").getObject());
         addMainPanel(new UniformListPanel(model));

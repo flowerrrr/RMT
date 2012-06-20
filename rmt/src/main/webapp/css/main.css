@@ -150,6 +150,10 @@ li {
     width: auto;
 }
 
+.secondary form {
+    margin-bottom: 0px; // form-margin would add to bottom-padding of divs
+}
+
 /*************************************************************************
     reset wicket styling of modal window and use twitter styles instead
 **************************************************************************/
@@ -919,7 +923,6 @@ td.rsvpstatus {
     Invitation form
 **************************************************************************/
 .invitationForm {
-    margin-bottom: 0px;
     ul {
         margin-bottom: 0px;
     }
@@ -1186,4 +1189,29 @@ iframe.wetteronline {
         margin-left: auto;
         margin-right: auto;
     }
+}
+
+/*************************************************************************
+    Calendar
+    see also fullcalendar.css (patches at end of file)
+**************************************************************************/
+
+.fc-event-skin {
+    background-color: inherit;
+    border-color:  inherit;
+}
+
+.cal-type-user {
+    background-color: #3366EE;
+    background-color: #3366EE;
+}
+
+.cal-type-others {
+    background-color: #336699;
+    border-color: #336699;
+}
+
+.cal-type-event {
+    background-color: #996644;
+    border-color: #996644;
 }

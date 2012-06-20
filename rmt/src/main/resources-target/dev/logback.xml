@@ -75,7 +75,7 @@
         <appender-ref ref="XSTREAM_FILE"/>
     </logger>
 
-    <logger name="de.flower.common.util.xstream.ObjectSerializationListener" levelt="DEBUG">
+    <logger name="de.flower.common.util.xstream.ObjectSerializationListener" level="DEBUG">
         <appender-ref ref="XSTREAM_FILE"/>
     </logger>
 

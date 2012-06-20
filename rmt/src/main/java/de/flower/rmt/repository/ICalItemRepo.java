@@ -1,9 +1,6 @@
 package de.flower.rmt.repository;
 
 import de.flower.rmt.model.db.entity.CalItem;
-import de.flower.rmt.model.db.entity.User;
-
-import java.util.List;
 
 /**
  * Uses Spring Data JPA library to define a XXXRepistory
@@ -14,5 +11,5 @@ import java.util.List;
  */
 public interface ICalItemRepo extends IRepository<CalItem, Long> {
 
-    List<CalItem> findAllByUser(User user);
+    // List<CalItem> findAllByUser(User user);
 }

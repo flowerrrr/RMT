@@ -6,6 +6,7 @@ import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.EventType;
 import de.flower.rmt.model.dto.Notification;
+import org.joda.time.DateTime;
 
 import javax.persistence.metamodel.Attribute;
 import java.util.List;
@@ -36,6 +37,8 @@ public interface IEventManager {
     List<Event> findAll(Attribute... attributes);
 
     List<Event> findAllUpcomingAndLastNByUser(User user, int num, EntityPath<?>... attributes);
+
+    List<Event> findAllByDateRange(DateTime start, DateTime end);
 
     /**
      * Returns all events scheduled inside the next <code>hours</code>.
@@ -79,4 +82,5 @@ public interface IEventManager {
     boolean isEventClosed(Event event);
 
     void cancelEvent(Long id);
+
 }
