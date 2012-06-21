@@ -104,5 +104,7 @@ public abstract class AbstractEntityModel<T extends IEntity> extends LoadableDet
 
     abstract protected T load(Long id);
 
-    abstract protected T newInstance();
+    protected T newInstance() {
+        throw new UnsupportedOperationException("Method not implemented. Model should only be used for persisted entities!");
+    }
 }

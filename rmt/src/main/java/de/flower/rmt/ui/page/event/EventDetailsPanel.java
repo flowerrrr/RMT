@@ -35,17 +35,21 @@ import java.util.Locale;
 public class EventDetailsPanel extends BasePanel<Event> {
 
     public EventDetailsPanel(final IModel<? extends Event> model, final View view) {
-        setDefaultModel(new CompoundPropertyModel<Object>(ModelFactory.eventModelWithAllAssociations(model.getObject())));
+        this(null, model, view);
+    }
+
+    public EventDetailsPanel(final String id, final IModel<? extends Event> model, final View view) {
+        super(id, new CompoundPropertyModel<Event>(ModelFactory.eventModelWithAllAssociations(model.getObject())));
 
         add(new Label("team.name"));
 
         add(DateLabel.forDatePattern("date", new PropertyModel<Date>(getModel(), "dateTimeAsDate"), Dates.DATE_MEDIUM_WITH_WEEKDAY));
 
-        add(DateLabel.forDateStyle("time", new PropertyModel<Date>(getModel(), "dateTimeAsDate"), "-S"));
+        add(DateLabel.forDatePattern("time", new PropertyModel<Date>(getModel(), "dateTimeAsDate"), Dates.TIME_SHORT));
 
         add(new WebMarkupContainer("kickoffContainer") {
             {
-                add(DateLabel.forDateStyle("kickoffAsDate", "-S"));
+                add(DateLabel.forDatePattern("kickoffAsDate", Dates.TIME_SHORT));
             }
 
             @Override

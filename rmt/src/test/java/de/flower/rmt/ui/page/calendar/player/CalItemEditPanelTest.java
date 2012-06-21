@@ -13,7 +13,7 @@ public class CalItemEditPanelTest extends AbstractRMTWicketMockitoTests {
     @Test
     public void testRender() {
         CalItemDto dto = testData.newCalItemDto();
-        wicketTester.startComponentInPage(new CalItemEditPanel(Model.of(dto), false));
+        wicketTester.startComponentInPage(new CalItemEditPanel("calendarSecondaryPanel", Model.of(dto)));
         wicketTester.dumpComponentWithPage();
     }
 

@@ -13,9 +13,13 @@ public interface ICommentManager {
 
     void save(Comment comment);
 
-    void updateComment(Invitation invitation, String comment);
+    /**
+     * Updates the "first" or "main" comment of a user.
+     */
+    void updateComment(Invitation invitation, String comment, User author);
 
     Comment findByInvitationAndAuthor(Invitation invitation, User user, int index);
 
     void remove(Comment comment);
+
 }

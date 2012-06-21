@@ -34,11 +34,17 @@ public abstract class FullCalendarPanel extends BasePanel {
 
     private SelectCallbackBehavior selectCallbackBehavior;
 
+    /**
+     * tracks current date of calendar so that ajax-refresh of this panel stays on previous selected date.
+     */
+    private DateTime currentDate;
+
     public FullCalendarPanel() {
 
         add(jsonEventSourceBehavior = new JSONEventSourceBehavior() {
             @Override
             protected List<CalEvent> loadCalEvents(final DateTime start, final DateTime end) {
+                currentDate = getCurrentDate(start, end);
                 return FullCalendarPanel.this.loadCalEvents(start, end);
             }
         });
@@ -47,7 +53,7 @@ public abstract class FullCalendarPanel extends BasePanel {
 
             @Override
             protected void onEdit(final AjaxRequestTarget target, final CalEvent calEvent) {
-                FullCalendarPanel.this.onEdit(target, calEvent);
+                FullCalendarPanel.this.onEventClick(target, calEvent);
             }
         });
 
@@ -55,7 +61,7 @@ public abstract class FullCalendarPanel extends BasePanel {
 
             @Override
             protected void onEdit(final AjaxRequestTarget target, final CalEvent calEvent) {
-                FullCalendarPanel.this.onEdit(target, calEvent);
+                FullCalendarPanel.this.onEventClick(target, calEvent);
             }
         });
     }
@@ -63,6 +69,15 @@ public abstract class FullCalendarPanel extends BasePanel {
     @Override
     protected String getPanelMarkup() {
         return "";
+    }
+
+    /**
+     * Need to save currently displayed month.
+     * start could be before current month, and end most likely is currentMonth + 1.
+     * so, find date in the middle and use its month.
+     */
+    private DateTime getCurrentDate(DateTime start, DateTime end) {
+       return new DateTime((start.getMillis() + end.getMillis()) / 2);
     }
 
     @Override
@@ -93,11 +108,16 @@ public abstract class FullCalendarPanel extends BasePanel {
         options.put("selectable", true);
         options.put("select", "_select_");
         options.put("firstDay", 1); // start week on monday
+        options.put("weekMode", "liquid");
         options.put("timeFormat", ""); // no time on events
         options.put("monthNames", StringUtils.split(getResourceString("monthNames"), ","));
         options.put("monthNamesShort", StringUtils.split(getResourceString("monthNamesShort"), ","));
         options.put("dayNames", StringUtils.split(getResourceString("dayNames"), ","));
         options.put("dayNamesShort", StringUtils.split(getResourceString("dayNamesShort"), ","));
+        if (currentDate != null) {
+            options.put("year", currentDate.getYear());
+            options.put("month", currentDate.getMonthOfYear() - 1);
+        }
 
         Map<String, Object> buttonText = new HashMap<>();
         buttonText.put("today", getResourceString("today"));
@@ -113,7 +133,7 @@ public abstract class FullCalendarPanel extends BasePanel {
 
     protected abstract List<CalEvent> loadCalEvents(final DateTime start, final DateTime end);
 
-    protected abstract void onEdit(AjaxRequestTarget target, CalEvent calEvent);
+    protected abstract void onEventClick(AjaxRequestTarget target, CalEvent calEvent);
 
     /**
      * Providing json feed of calendar events.

@@ -34,4 +34,6 @@ public class CalEvent {
     public boolean isNew() {
         return entityId == null;
     }
+
+
 }

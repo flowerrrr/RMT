@@ -2,7 +2,6 @@ package de.flower.rmt.model.dto;
 
 import de.flower.common.model.db.entity.IEntity;
 import de.flower.rmt.model.db.entity.CalItem;
-import de.flower.rmt.model.db.entity.User;
 import org.hibernate.validator.constraints.ScriptAssert;
 import org.joda.time.DateTime;
 import org.joda.time.LocalTime;
@@ -37,11 +36,6 @@ public class CalItemDto implements IEntity, Serializable {
     private String summary;
 
     private boolean autoDecline;
-
-    /**
-     * transient field -> bean safe to serialize and use in wicket panels.
-     */
-    private transient User user;
 
     public Long getId() {
         return id;
@@ -138,14 +132,6 @@ public class CalItemDto implements IEntity, Serializable {
         this.autoDecline = autoDecline;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(final User user) {
-        this.user = user;
-    }
-
     public boolean isStartBeforeEnd() {
         if (isAllDay()) {
             return startDate.getTime() <= endDate.getTime(); // start == end is ok
@@ -179,7 +165,6 @@ public class CalItemDto implements IEntity, Serializable {
         type = entity.getType();
         summary = entity.getSummary();
         autoDecline = entity.isAutoDecline();
-        user = entity.getUser();
     }
 
     @Override

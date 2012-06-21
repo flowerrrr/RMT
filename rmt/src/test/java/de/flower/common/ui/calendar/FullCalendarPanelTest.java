@@ -26,7 +26,7 @@ public class FullCalendarPanelTest extends AbstractWicketUnitTests {
         }
 
         @Override
-        protected void onEdit(final AjaxRequestTarget target, final CalEvent calEvent) {
+        protected void onEventClick(final AjaxRequestTarget target, final CalEvent calEvent) {
         }
     }
 }

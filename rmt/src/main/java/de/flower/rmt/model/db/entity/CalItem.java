@@ -127,4 +127,12 @@ public class CalItem extends AbstractBaseEntity {
                 "} " + super.toString();
     }
 
+    /**
+     * @return true if start and end date are on same day.
+     */
+    public boolean isSingleDay() {
+        return startDateTime.toLocalDate().equals(endDateTime.toLocalDate());
+    }
+
+
 }

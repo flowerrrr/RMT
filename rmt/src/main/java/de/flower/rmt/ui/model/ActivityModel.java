@@ -21,9 +21,4 @@ public class ActivityModel extends AbstractEntityModel<Activity> {
         return manager.loadById(id);
     }
 
-    @Override
-    protected Activity newInstance() {
-        throw new UnsupportedOperationException("Model should only be used for persisted entities!");
-    }
-
 }

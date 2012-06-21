@@ -11,8 +11,10 @@ import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.repository.IInvitationRepo;
 import de.flower.rmt.service.mail.INotificationService;
+import de.flower.rmt.util.Dates;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -53,6 +55,12 @@ public class InvitationManager extends AbstractService implements IInvitationMan
 
     @Autowired
     private ICommentManager commentManager;
+
+    @Autowired
+    private ICalendarManager calendarManager;
+
+    @Autowired
+    private MessageSourceAccessor messageSource;
 
     @Override
     public Invitation newInstance(final Event event, User user) {
@@ -177,26 +185,6 @@ public class InvitationManager extends AbstractService implements IInvitationMan
         return invitationRepo.findAll(isEvent.and(isUnsure).and(isNotReminderSent), QInvitation.invitation.user);
     }
 
-    /*
-        @Override
-        public List<Invitation> findAlByEmails(final Event event, final List<String> addressList) {
-            List<Invitation> list = findAllByEvent(event);
-            Iterator<Invitation> iterator = list.iterator();
-            while (iterator.hasNext()) {
-                Invitation invitation = iterator.next();
-                if (invitation.getEmail() != null) {
-                    if (!addressList.contains(invitation.getEmail())) {
-                         iterator.remove();
-                    }
-                } else {
-                    // guest player
-                    iterator.remove();
-                }
-            }
-            return list;
-        }
-    */
-
     @Override
     public Invitation loadByEventAndUser(Event event, User user) {
         Invitation invitation = findByEventAndUser(event, user);
@@ -270,7 +258,7 @@ public class InvitationManager extends AbstractService implements IInvitationMan
 
         // update comment
         if (comment != null) {
-            commentManager.updateComment(invitation, comment);
+            commentManager.updateComment(invitation, comment, securityService.getUser());
         }
 
         if (isNotifyManager) {
@@ -312,7 +300,44 @@ public class InvitationManager extends AbstractService implements IInvitationMan
             User user = userManager.loadById(userId);
             Invitation invitation = newInstance(entity, user);
             save(invitation);
+            checkForAutoDecline(invitation);
         }
+    }
+
+    /**
+     * Searches for user-cal-items that match the event date. if autoDecline is true
+     * the invitation will be declined.
+     *
+     * @return true if invitation is auto declined.
+     */
+    private boolean checkForAutoDecline(Invitation invitation) {
+        DateTime eventDate = invitation.getEvent().getDateTime();
+        List<CalItem> list = calendarManager.findAllByUserAndRange(invitation.getUser(), eventDate, eventDate);
+        for (CalItem calItem : list) {
+            if (calItem.isAutoDecline()) {
+                invitation.setStatus(RSVPStatus.DECLINED);
+                // no validation, no acitivity log, just plain save
+                invitationRepo.save(invitation);
+
+                // set comment
+                String comment;
+                if (calItem.getType() == CalItem.Type.OTHER) {
+                    comment = calItem.getSummary();
+                } else {
+                    comment = messageSource.getMessage(CalItem.Type.getResourceKey(calItem.getType()));
+                }
+                if (calItem.isSingleDay()) {
+                    comment += String.format(" (%s)", Dates.formatDateShort(calItem.getStartDateTime().toDate()));
+                } else {
+                    comment += String.format(" (%s - %s)", Dates.formatDateShort(calItem.getStartDateTime().toDate()),
+                            Dates.formatDateShort(calItem.getEndDateTime().toDate()));
+                }
+
+                commentManager.updateComment(invitation, comment, invitation.getUser());
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

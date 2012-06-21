@@ -6,6 +6,7 @@ import com.mysema.query.types.expr.BooleanExpression;
 import de.flower.common.ui.calendar.CalEvent;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.CalItem;
+import de.flower.rmt.model.db.entity.CalItem_;
 import de.flower.rmt.model.db.entity.QCalItem;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
@@ -16,13 +17,19 @@ import org.joda.time.DateTime;
 import org.joda.time.LocalTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.MessageSourceAccessor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Nullable;
+import javax.persistence.metamodel.Attribute;
 import java.util.Collection;
 import java.util.List;
+
+import static de.flower.rmt.repository.Specs.eq;
+import static de.flower.rmt.repository.Specs.fetch;
+import static org.springframework.data.jpa.domain.Specifications.where;
 
 /**
  * @author flowerrrr
@@ -50,8 +57,9 @@ public class CalendarManager extends AbstractService implements ICalendarManager
     }
 
     @Override
-    public CalItem loadById(final Long id) {
-        CalItem entity = calItemRepo.findOne(id);
+    public CalItem loadById(final Long id, Attribute... attributes) {
+        Specification fetch = fetch(attributes);
+        CalItem entity = calItemRepo.findOne(where(eq(CalItem_.id, id)).and(fetch));
         Check.notNull(entity, "CalItem [" + id + "] not found");
         return entity;
     }
@@ -85,7 +93,8 @@ public class CalendarManager extends AbstractService implements ICalendarManager
         return transform(list);
     }
 
-    private List<CalItem> findAllByUserAndRange(final User user, final DateTime calStart, final DateTime calEnd) {
+    @Override
+    public List<CalItem> findAllByUserAndRange(final User user, final DateTime calStart, final DateTime calEnd) {
         BooleanExpression isUser = QCalItem.calItem.user.eq(user);
         BooleanExpression isNotStartAfterCalEnd = QCalItem.calItem.startDateTime.after(calEnd).not();
         BooleanExpression isNotEndBeforeCalStart = QCalItem.calItem.endDateTime.before(calStart).not();
@@ -141,10 +150,20 @@ public class CalendarManager extends AbstractService implements ICalendarManager
             calEvent.title = messageSource.getMessage(CalItem.Type.getResourceKey(calItem.getType()));
             calEvent.title += (calItem.getSummary() == null) ? "" : ": " + calItem.getSummary();
         }
+        calEvent.title = calItem.getUser().getFullname() + ": " + calEvent.title;
         calEvent.start = calItem.getStartDateTime().toDate();
         calEvent.end = calItem.getEndDateTime().toDate();
         calEvent.allDay = calItem.isAllDay();
         calEvent.className = (securityService.isCurrentUser(calItem.getUser())) ? "cal-type-user" : "cal-type-others";
         return calEvent;
     }
+
+    @Override
+    public void delete(final Long id) {
+        CalItem entity = loadById(id);
+        // no security assertions yet.
+        calItemRepo.delete(entity);
+
+    }
+
 }

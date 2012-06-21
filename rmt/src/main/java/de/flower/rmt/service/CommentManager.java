@@ -46,9 +46,8 @@ public class CommentManager extends AbstractService implements ICommentManager {
 
     @Override
     @Transactional(readOnly = false)
-    public void updateComment(Invitation invitation, String text) {
+    public void updateComment(Invitation invitation, String text, User author) {
         Check.isTrue(!invitation.isNew());
-        User author = securityService.getUser();
 
         // find existing comment
         Comment comment = findByInvitationAndAuthor(invitation, author, 0);

@@ -379,16 +379,19 @@ public class TestData {
         }
     }
 
-    public CalItemDto newCalItemDto() {
+    public CalItem newCalItem() {
         CalItem entity = new CalItem();
         entity.setStartDateTime(new DateTime().withTime(2, 15, 0, 0));
         entity.setEndDateTime(new DateTime().withTime(22, 30, 0, 0));
         entity.setSummary("summary");
         entity.setType(CalItem.Type.OTHER);
         entity.setUser(new User(new Club("new club")));
-        return CalItemDto.fromEntity(entity);
+        return entity;
     }
 
+    public CalItemDto newCalItemDto() {
+        return CalItemDto.fromEntity(newCalItem());
+    }
 
     /**
      * Method replaces dbUnit xml file. Seems to have more advantages to use programmatic approach.

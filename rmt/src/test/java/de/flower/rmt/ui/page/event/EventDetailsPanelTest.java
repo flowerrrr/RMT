@@ -31,6 +31,10 @@ public class EventDetailsPanelTest extends AbstractRMTWicketMockitoTests {
         when(eventManager.loadById(anyLong(), Matchers.<Attribute>anyVararg())).thenReturn(event);
         wicketTester.startComponentInPage(new EventDetailsPanel(Model.of(event), View.MANAGER));
         wicketTester.dumpComponentWithPage();
+        // assert RMT-690
+        wicketTester.assertContainsNot("AM");
+        wicketTester.assertContainsNot("PM");
+
         wicketTester.assertContains(event.getSummary());
         wicketTester.clickLink("eventDetailsPanel:venue");
 

@@ -904,7 +904,7 @@ td.rsvpstatus {
     .ul-form-actions {
         margin-top: 5px;
         .btn {
-            width: auto; // must reset default width of buttons in secondary panel
+            width: 35%; // must reset default width of buttons in secondary panel
         }
     }
     label {

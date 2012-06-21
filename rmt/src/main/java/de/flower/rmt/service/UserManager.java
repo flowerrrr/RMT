@@ -216,4 +216,5 @@ public class UserManager extends AbstractService implements IUserManager {
         user.setInvitationSent(true);
         userRepo.save(user);
     }
+
 }

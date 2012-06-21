@@ -120,7 +120,7 @@ public class User extends AbstractClubRelatedEntity {
     @OneToMany(mappedBy = "user")
     private List<Player> players = new ArrayList<Player>();
 
-    protected User() {
+    public User() {
     }
 
     public User(String email, String encryptedPassword, boolean enabled, String fullname, Club club) {
