@@ -14,7 +14,8 @@ public class VenueEditPanelTest extends AbstractRMTWicketIntegrationTests {
     public void testRender() {
         wicketTester.startComponentInPage(new VenueEditPanel(new VenueModel()));
         wicketTester.dumpComponentWithPage();
-        wicketTester.assertContains("http://maps.google.com/maps/api/js?v=3&sensor=false");
+        // script link is part of header, wicketTester.contains() will not find the asserted string.
+        wicketTester.getComponentWithPage().contains("http://maps.google.com/maps/api/js?v=3&amp;sensor=false");
     }
 
     @Test
