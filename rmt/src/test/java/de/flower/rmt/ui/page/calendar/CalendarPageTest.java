@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.page.calendar.player;
+package de.flower.rmt.ui.page.calendar;
 
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.test.AbstractRMTWicketIntegrationTests;

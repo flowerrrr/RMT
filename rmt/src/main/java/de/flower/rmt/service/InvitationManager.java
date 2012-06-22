@@ -316,7 +316,7 @@ public class InvitationManager extends AbstractService implements IInvitationMan
         for (CalItem calItem : list) {
             if (calItem.isAutoDecline()) {
                 invitation.setStatus(RSVPStatus.DECLINED);
-                // no validation, no acitivity log, just plain save
+                // no validation, no activity log, just plain save
                 invitationRepo.save(invitation);
 
                 // set comment

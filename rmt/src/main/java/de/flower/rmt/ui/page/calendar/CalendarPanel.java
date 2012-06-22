@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.page.calendar.player;
+package de.flower.rmt.ui.page.calendar;
 
 import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.common.ui.calendar.CalEvent;
@@ -6,6 +6,7 @@ import de.flower.common.ui.calendar.FullCalendarPanel;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.CalItem;
 import de.flower.rmt.model.db.entity.CalItem_;
+import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.CalendarType;
 import de.flower.rmt.model.dto.CalItemDto;
@@ -45,23 +46,25 @@ public abstract class CalendarPanel extends BasePanel {
             protected void onEventClick(final AjaxRequestTarget target, final CalEvent calEvent) {
                 if (CalItem.class.getName().equals(calEvent.clazzName)) {
                     CalItem calItem = calendarManager.loadById(calEvent.entityId, CalItem_.user);
-                    boolean readonly = (securityService.isCurrentUser(calItem.getUser())) ? false : true;
+                    boolean readonly = !securityService.isCurrentUserOrManager(calItem.getUser());
                     if (readonly) {
                         CalendarPanel.this.onEventClick(target, calItem);
                     } else {
                         CalItemDto dto = CalItemDto.fromEntity(calItem);
-                        CalendarPanel.this.onEventClick(target, dto);
+                        CalendarPanel.this.onEventClick(target, dto, calItem.getUser());
                     }
                 } else if (Event.class.getName().equals(calEvent.clazzName)) {
                     Event clubEvent = eventManager.loadById(calEvent.entityId);
                     CalendarPanel.this.onEventClick(target, clubEvent);
                 } else if (calEvent.isNew()) {
                     CalItemDto dto = new CalItemDto();
-                    dto.setStartDateTime(new DateTime(calEvent.start));
-                    dto.setEndDateTime(new DateTime(calEvent.end));
+                    // init time fields. when saved as allDay the time is adjusted to 0:00 - 23:59.
+                    // helps displaying reasonable default values when displaying time fields the first time.
+                    dto.setStartDateTime(new DateTime(calEvent.start).withTime(8,0,0,0));
+                    dto.setEndDateTime(new DateTime(calEvent.end).withTime(20,0,0,0));
                     dto.setAllDay(calEvent.allDay);
                     dto.setAutoDecline(true);
-                    CalendarPanel.this.onEventClick(target, dto);
+                    CalendarPanel.this.onEventClick(target, dto, securityService.getUser());
                 } else {
                     throw new IllegalArgumentException(calEvent.toString());
                 }
@@ -75,7 +78,7 @@ public abstract class CalendarPanel extends BasePanel {
         });
     }
 
-    protected abstract void onEventClick(AjaxRequestTarget target, CalItemDto calItemDto);
+    protected abstract void onEventClick(AjaxRequestTarget target, CalItemDto calItemDto, User user);
 
     protected abstract void onEventClick(AjaxRequestTarget target, CalItem calItem);
 

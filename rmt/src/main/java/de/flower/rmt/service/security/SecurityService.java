@@ -48,6 +48,11 @@ public class SecurityService implements ISecurityService {
     }
 
     @Override
+    public boolean isCurrentUserOrManager(final User user) {
+        return isCurrentUser(user) || getUser().isManager();
+    }
+
+    @Override
     public User getUser() {
         return getCurrentUser().getUser();
     }

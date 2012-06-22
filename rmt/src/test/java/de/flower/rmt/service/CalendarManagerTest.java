@@ -43,7 +43,7 @@ public class CalendarManagerTest extends AbstractRMTIntegrationTests {
         List<CalendarType> types = Arrays.asList(CalendarType.USER);
         // verify database is empty.
         assertTrue(calendarManager.findAllByCalendarAndRange(types, new DateTime(0), new DateTime(Long.MAX_VALUE)).isEmpty());
-        calendarManager.save(calItemDto);
+        calendarManager.save(calItemDto, securityService.getUser());
 
         assertEquals(calendarManager.findAllByCalendarAndRange(types, startDate, endDate).size(), 1);
         assertEquals(calendarManager.findAllByCalendarAndRange(types, startDate, endDate.plusDays(1)).size(), 1);
@@ -55,7 +55,7 @@ public class CalendarManagerTest extends AbstractRMTIntegrationTests {
         // let event span several months
         calItemDto.setStartDateTime(startDate.minusYears(1));
         calItemDto.setEndDateTime(endDate.plusYears(1));
-        calendarManager.save(calItemDto);
+        calendarManager.save(calItemDto, securityService.getUser());
 
         assertEquals(calendarManager.findAllByCalendarAndRange(types, startDate.minusDays(1), endDate).size(), 1);
         assertEquals(calendarManager.findAllByCalendarAndRange(types, startDate.minusYears(2), endDate).size(), 1);

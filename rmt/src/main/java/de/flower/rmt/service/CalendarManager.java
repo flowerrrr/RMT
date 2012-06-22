@@ -50,12 +50,6 @@ public class CalendarManager extends AbstractService implements ICalendarManager
     @Autowired
     private ILinkProvider linkProvider;
 
-    public CalItem newInstance() {
-        CalItem entity = new CalItem();
-        entity.setUser(securityService.getUser());
-        return entity;
-    }
-
     @Override
     public CalItem loadById(final Long id, Attribute... attributes) {
         Specification fetch = fetch(attributes);
@@ -65,13 +59,19 @@ public class CalendarManager extends AbstractService implements ICalendarManager
     }
 
     @Override
-    public void save(final CalItemDto dto) {
+    public void save(final CalItemDto dto, final User user) {
         if (dto.isAllDay()) {
             // set start time to 0:00 and end time to 23:59
             dto.setStartTime(new LocalTime(0, 0));
             dto.setEndTime(new LocalTime(0, 0).minusMillis(1));
         }
-        CalItem entity = (dto.isNew()) ? newInstance() : loadById(dto.getId());
+        CalItem entity;
+        if (dto.isNew()) {
+            entity = new CalItem();
+            entity.setUser(user);
+        } else {
+            entity = loadById(dto.getId());
+        }
         dto.copyTo(entity);
         validate(entity);
         calItemRepo.save(entity);
@@ -163,7 +163,5 @@ public class CalendarManager extends AbstractService implements ICalendarManager
         CalItem entity = loadById(id);
         // no security assertions yet.
         calItemRepo.delete(entity);
-
     }
-
 }

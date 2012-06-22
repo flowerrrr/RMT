@@ -17,7 +17,7 @@ public interface ICalendarManager {
 
     CalItem loadById(Long id, Attribute... attributes);
 
-    void save(CalItemDto dto);
+    void save(CalItemDto dto, final User user);
 
     List<CalEvent> findAllByCalendarAndRange(List<CalendarType> calendarTypes, final DateTime start, final DateTime end);
 

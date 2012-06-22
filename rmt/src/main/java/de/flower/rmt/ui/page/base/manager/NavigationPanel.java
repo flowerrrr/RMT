@@ -7,6 +7,7 @@ import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.markup.html.form.renderer.EventRenderer;
 import de.flower.rmt.ui.page.base.AbstractNavigationPanel;
 import de.flower.rmt.ui.page.base.INavigationPanelAware;
+import de.flower.rmt.ui.page.calendar.CalendarPage;
 import de.flower.rmt.ui.page.event.manager.EventPage;
 import de.flower.rmt.ui.page.event.manager.EventTabPanel;
 import de.flower.rmt.ui.page.events.manager.EventsPage;
@@ -35,6 +36,8 @@ public class NavigationPanel extends AbstractNavigationPanel {
 
     public static final String EVENTS = "events";
 
+    public static final String CALENDAR = "calendar";
+
     public static final String TEAMS = "teams";
 
     public static final String PLAYERS = "players";
@@ -61,6 +64,7 @@ public class NavigationPanel extends AbstractNavigationPanel {
                 item.add(link);
             }
         });
+        add(createMenuItem(CALENDAR, CalendarPage.class, page));
         add(createMenuItem(TEAMS, TeamsPage.class, page));
         add(createMenuItem(PLAYERS, PlayersPage.class, page));
         add(createMenuItem(OPPONENTS, OpponentsPage.class, page));

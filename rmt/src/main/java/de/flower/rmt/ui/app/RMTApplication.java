@@ -6,7 +6,7 @@ import de.flower.rmt.ui.page.about.AboutPage;
 import de.flower.rmt.ui.page.account.AccountPage;
 import de.flower.rmt.ui.page.base.manager.ManagerHomePage;
 import de.flower.rmt.ui.page.base.player.PlayerHomePage;
-import de.flower.rmt.ui.page.calendar.player.CalendarPage;
+import de.flower.rmt.ui.page.calendar.CalendarPage;
 import de.flower.rmt.ui.page.error.AccessDenied403Page;
 import de.flower.rmt.ui.page.error.InternalError500Page;
 import de.flower.rmt.ui.page.error.PageNotFound404Page;

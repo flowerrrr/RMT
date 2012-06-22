@@ -6,7 +6,7 @@ import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.markup.html.form.renderer.EventRenderer;
 import de.flower.rmt.ui.page.base.AbstractNavigationPanel;
 import de.flower.rmt.ui.page.base.INavigationPanelAware;
-import de.flower.rmt.ui.page.calendar.player.CalendarPage;
+import de.flower.rmt.ui.page.calendar.CalendarPage;
 import de.flower.rmt.ui.page.event.player.EventPage;
 import de.flower.rmt.ui.page.events.player.EventsPage;
 import de.flower.rmt.ui.page.venues.player.VenuesPage;

@@ -1,5 +1,6 @@
-package de.flower.rmt.ui.page.calendar.player;
+package de.flower.rmt.ui.page.calendar;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Lists;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.CalItem;
@@ -13,10 +14,11 @@ import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.model.CalItemModel;
 import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.model.UserModel;
+import de.flower.rmt.ui.page.base.AbstractCommonBasePage;
 import de.flower.rmt.ui.page.base.player.NavigationPanel;
-import de.flower.rmt.ui.page.base.player.PlayerBasePage;
 import de.flower.rmt.ui.page.event.EventDetailsPanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -30,7 +32,7 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class CalendarPage extends PlayerBasePage {
+public class CalendarPage extends AbstractCommonBasePage {
 
     private final static Logger log = LoggerFactory.getLogger(CalendarPage.class);
 
@@ -46,7 +48,8 @@ public class CalendarPage extends PlayerBasePage {
         init(new UserModel(getUserDetails().getUser()));
     }
 
-    public CalendarPage(IModel<User> model) {
+    @VisibleForTesting
+    protected CalendarPage(IModel<User> model) {
         init(model);
     }
 
@@ -56,10 +59,18 @@ public class CalendarPage extends PlayerBasePage {
         setHeading("player.calendar.heading");
 
         final Panel placeHolderContainer = new BasePanel(CALENDAR_SECONDARY_PANEL_ID) {
+            {
+                add(new WebMarkupContainer("hint") {
+                    @Override
+                    public boolean isVisible() {
+                        return view == View.PLAYER;
+                    }
+                });
+            }
 
             @Override
             protected String getPanelMarkup() {
-                return "<wicket:message key=\"player.calendar.hint\" />";
+                return "<span wicket:id=\"hint\"><wicket:message key=\"player.calendar.hint\" /></span>";
             }
         };
 
@@ -68,8 +79,8 @@ public class CalendarPage extends PlayerBasePage {
         addMainPanel(new CalendarPanel(CALENDAR_SECONDARY_PANEL_ID, selectedCalendarsModel) {
 
             @Override
-            protected void onEventClick(final AjaxRequestTarget target, final CalItemDto calItemDto) {
-                Panel panel = new CalItemEditPanel("calendarSecondaryPanel", Model.of(calItemDto)) {
+            protected void onEventClick(final AjaxRequestTarget target, final CalItemDto calItemDto, User user) {
+                Panel panel = new CalItemEditPanel("calendarSecondaryPanel", Model.of(calItemDto), new UserModel(user)) {
                     @Override
                     protected void onClose(final AjaxRequestTarget target) {
                         getSecondaryPanel().replace(placeHolderContainer);

@@ -1,16 +1,17 @@
 package de.flower.rmt.service;
 
-import de.flower.rmt.model.db.entity.Comment;
-import de.flower.rmt.model.db.entity.Invitation;
-import de.flower.rmt.model.db.entity.Invitation_;
-import de.flower.rmt.model.db.entity.Player;
+import de.flower.rmt.model.db.entity.*;
 import de.flower.rmt.model.db.entity.event.Event;
+import de.flower.rmt.model.db.type.RSVPStatus;
+import de.flower.rmt.model.dto.CalItemDto;
 import de.flower.rmt.test.AbstractRMTIntegrationTests;
+import de.flower.rmt.util.Dates;
 import org.testng.annotations.Test;
 
 import javax.mail.internet.InternetAddress;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.testng.Assert.*;
@@ -106,6 +107,29 @@ public class InvitationManagerTest extends AbstractRMTIntegrationTests {
     public void testFindAllForUnsureReminder() {
         Event event = testData.createEvent();
         invitationManager.findAllForUnsureReminder(event);
+    }
+
+    @Test
+    public void testAutoDecline() {
+        Team team = testData.createTeamWithPlayers("FCB " + System.currentTimeMillis(), 15);
+        Event event = testData.createEvent(team, false);
+        // now create calendar holiday event for a user
+        CalItemDto dto = new CalItemDto();
+        dto.setType(CalItem.Type.HOLIDAY);
+        dto.setSummary("South Tirol");
+        dto.setStartDateTime(event.getDateTime());
+        dto.setEndDateTime(event.getDateTime());
+        dto.setAllDay(true);
+        dto.setAutoDecline(true);
+        User user = team.getPlayers().get(0).getUser();
+        calendarManager.save(dto, user);
+        // now create invitation for this user
+        invitationManager.addUsers(event, Arrays.asList(user.getId()));
+        // find invitation and assert status
+        Invitation invitation = invitationManager.findByEventAndUser(event, user);
+        assertEquals(invitation.getStatus(), RSVPStatus.DECLINED);
+        Comment comment = commentManager.findByInvitationAndAuthor(invitation, user, 0);
+        assertEquals(comment.getText(), String.format("Urlaub (%s)", Dates.formatDateShort(dto.getStartDateTime().toDate())));
     }
 
 }

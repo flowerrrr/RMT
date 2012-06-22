@@ -13,5 +13,7 @@ public interface ISecurityService {
 
     boolean isCurrentUser(User user);
 
+    boolean isCurrentUserOrManager(User user);
+
     User getUser();
 }

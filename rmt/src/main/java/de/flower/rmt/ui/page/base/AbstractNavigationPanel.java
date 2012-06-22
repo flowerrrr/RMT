@@ -15,6 +15,7 @@ import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
@@ -25,12 +26,15 @@ public class AbstractNavigationPanel extends BasePanel {
     @SpringBean
     private ISecurityService securityService;
 
+    private View view;
+
     public AbstractNavigationPanel(View view) {
         super("navigationPanel");
+        this.view = view;
 
         add(Links.aboutLink("about"));
 
-        add(new BookmarkablePageLink("account", AccountPage.class));
+        add(new BookmarkablePageLink("account", AccountPage.class, getViewParameter()));
         add(createSwitchViewLink("switchView", view));
         add(Links.logoutLink("logoutLink"));
         add(new Label("user", securityService.getUser().getFullname()));
@@ -58,9 +62,11 @@ public class AbstractNavigationPanel extends BasePanel {
         return link;
     }
 
-    public static WebMarkupContainer createMenuItem(String pageName, Class<?> pageClass, final INavigationPanelAware page) {
+    public WebMarkupContainer createMenuItem(String pageName, Class<?> pageClass, final INavigationPanelAware page) {
         WebMarkupContainer li = new WebMarkupContainer(pageName);
-        li.add(new BookmarkablePageLink(pageName, pageClass));
+        BookmarkablePageLink link = new BookmarkablePageLink(pageName, pageClass);
+        link.getPageParameters().mergeWith(getViewParameter());
+        li.add(link);
         if (page != null && page.getActiveTopBarItem().equals(pageName)) {
             li.add(AttributeModifier.append("class", "active"));
         }
@@ -85,4 +91,11 @@ public class AbstractNavigationPanel extends BasePanel {
         return li;
     }
 
+    public PageParameters getViewParameter() {
+        if (securityService.getUser().isManager() && view == View.PLAYER) {
+            return View.getPageParams(view);
+        } else {
+            return new PageParameters();
+        }
+    }
 }
