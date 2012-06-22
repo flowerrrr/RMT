@@ -24,6 +24,7 @@ public class CalItem extends AbstractBaseEntity {
         }
     }
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @QueryInit("club") // required when using QCalItem.calItem.user.club.eq(getClub()) in a query.
     private User user;
@@ -133,6 +134,7 @@ public class CalItem extends AbstractBaseEntity {
     public boolean isSingleDay() {
         return startDateTime.toLocalDate().equals(endDateTime.toLocalDate());
     }
+
 
 
 }

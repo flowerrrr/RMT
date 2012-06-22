@@ -2,6 +2,7 @@ package de.flower.rmt.model.dto;
 
 import de.flower.common.model.db.entity.IEntity;
 import de.flower.rmt.model.db.entity.CalItem;
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.validator.constraints.ScriptAssert;
 import org.joda.time.DateTime;
 import org.joda.time.LocalTime;
@@ -13,9 +14,14 @@ import java.util.Date;
 /**
  * @author flowerrrr
  */
-@ScriptAssert(script = "_this.isStartBeforeEnd()",
-        message = "{validation.calitem.endbeforestart}", lang = "javascript"
-)
+@ScriptAssert.List({
+        @ScriptAssert(script = "_this.isStartBeforeEnd()",
+                message = "{validation.calitem.endbeforestart}", lang = "javascript"
+        ),
+        @ScriptAssert(script = "_this.isSummaryNotNull()",
+                message = "{validation.calitem.summary.notnull}", lang = "javascript"
+        )
+})
 public class CalItemDto implements IEntity, Serializable {
 
     private Long id;
@@ -88,10 +94,10 @@ public class CalItemDto implements IEntity, Serializable {
     }
 
     public DateTime getEndDateTime() {
-         return new DateTime(endDate).withFields(endTime);
-     }
+        return new DateTime(endDate).withFields(endTime);
+    }
 
-     public void setEndDateTime(DateTime dateTime) {
+    public void setEndDateTime(DateTime dateTime) {
         this.endDate = dateTime.toLocalDate().toDate();
         this.endTime = dateTime.toLocalTime();
     }
@@ -139,6 +145,14 @@ public class CalItemDto implements IEntity, Serializable {
             DateTime s = getStartDateTime();
             DateTime e = getEndDateTime();
             return !s.isAfter(e);
+        }
+    }
+
+    public boolean isSummaryNotNull() {
+        if (CalItem.Type.OTHER.equals(type)) {
+            return StringUtils.isNotBlank(summary);
+        } else {
+            return true;
         }
     }
 
