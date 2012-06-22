@@ -1128,6 +1128,13 @@ iframe.wetteronline {
             font-size: 10px;
         }
     }
+    h6 {
+        display: inline;
+        font-size: 9px;
+    }
+    .btn-link-external {
+        color: @grayDark;
+    }
     .date {
         color: #999999;
     }
