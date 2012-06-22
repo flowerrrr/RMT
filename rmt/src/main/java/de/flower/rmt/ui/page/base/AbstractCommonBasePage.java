@@ -9,7 +9,7 @@ import org.apache.wicket.request.cycle.RequestCycle;
 /**
  * @author flowerrrr
  */
-public abstract class AbstractCommonBasePage extends AbstractBaseLayoutPage implements INavigationPanelAware {
+public abstract class AbstractCommonBasePage extends AbstractBaseLayoutPage implements INavigationPanelAware, IViewAware {
 
     // by default view is set to player. will be overridden on demand.
     protected View view = View.PLAYER;
@@ -38,5 +38,9 @@ public abstract class AbstractCommonBasePage extends AbstractBaseLayoutPage impl
         } else {
             add(new de.flower.rmt.ui.page.base.player.NavigationPanel(this));
         }
+    }
+
+    public View getView() {
+        return view;
     }
 }

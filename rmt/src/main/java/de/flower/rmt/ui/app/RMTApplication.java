@@ -15,6 +15,7 @@ import de.flower.rmt.ui.page.events.manager.EventsPage;
 import de.flower.rmt.ui.page.login.LoginPage;
 import de.flower.rmt.ui.page.opponents.manager.OpponentsPage;
 import de.flower.rmt.ui.page.teams.manager.TeamsPage;
+import de.flower.rmt.ui.page.users.UsersPage;
 import de.flower.rmt.ui.page.users.manager.PlayersPage;
 import de.flower.rmt.ui.page.venues.manager.VenuesPage;
 import de.flower.rmt.ui.page.venues.player.VenuePage;
@@ -52,6 +53,9 @@ public class RMTApplication extends WebApplication {
         getComponentInstantiationListeners().add(getSpringComponentInjector());
         // google maps have problems when wicket tags are rendered in development mode, so strip those tags
         getMarkupSettings().setStripWicketTags(true);
+        // don't use <em>link</em> when disabling links.
+        getMarkupSettings().setDefaultBeforeDisabledLink(null);
+        getMarkupSettings().setDefaultAfterDisabledLink(null);
 
         if (usesDevelopmentConfig()) {
             getDebugSettings().setDevelopmentUtilitiesEnabled(true);
@@ -93,9 +97,10 @@ public class RMTApplication extends WebApplication {
         mountPage("player", PlayerHomePage.class);
         mountPage("player/events", de.flower.rmt.ui.page.events.player.EventsPage.class);
         mountPage("player/event/${" + EventPage.PARAM_EVENTID + "}", de.flower.rmt.ui.page.event.player.EventPage.class);
+        mountPage("player/calendar", CalendarPage.class);
+        mountPage("player/users", UsersPage.class);
         mountPage("player/venues", de.flower.rmt.ui.page.venues.player.VenuesPage.class);
         mountPage("player/venue/${" + VenuePage.PARAM_VENUEID + "}", VenuePage.class);
-        mountPage("player/calendar", CalendarPage.class);
         mountPage("player/account", AccountPage.class);
         mountPage("login", LoginPage.class);
         mountPage("about", AboutPage.class);

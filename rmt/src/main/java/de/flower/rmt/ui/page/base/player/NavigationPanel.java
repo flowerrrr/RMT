@@ -9,6 +9,7 @@ import de.flower.rmt.ui.page.base.INavigationPanelAware;
 import de.flower.rmt.ui.page.calendar.CalendarPage;
 import de.flower.rmt.ui.page.event.player.EventPage;
 import de.flower.rmt.ui.page.events.player.EventsPage;
+import de.flower.rmt.ui.page.users.UsersPage;
 import de.flower.rmt.ui.page.venues.player.VenuesPage;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -33,6 +34,8 @@ public class NavigationPanel extends AbstractNavigationPanel {
 
     public static final String CALENDAR = "calendar";
 
+    public static final String USERS = "users";
+
     @SpringBean
     private IEventListProvider eventListProvider;
 
@@ -49,8 +52,9 @@ public class NavigationPanel extends AbstractNavigationPanel {
                 item.add(link);
             }
         });
-        add(createMenuItem(VENUES, VenuesPage.class, page));
         add(createMenuItem(CALENDAR, CalendarPage.class, page));
+        add(createMenuItem(USERS, UsersPage.class, page));
+        add(createMenuItem(VENUES, VenuesPage.class, page));
     }
 
     private IModel<List<Event>> getEventListModel() {

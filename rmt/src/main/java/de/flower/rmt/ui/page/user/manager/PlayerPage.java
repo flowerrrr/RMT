@@ -50,6 +50,6 @@ public class PlayerPage extends ManagerBasePage {
 
     @Override
     public String getActiveTopBarItem() {
-        return NavigationPanel.PLAYERS;
+        return NavigationPanel.USERS;
     }
 }

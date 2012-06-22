@@ -215,6 +215,12 @@ a.no-hover:hover {
     text-decoration: none;
 }
 
+/*************************************************************************
+  support for hiding/displaying manager-only stuff
+**************************************************************************/
+.view-player .manager-only {
+    display: none;
+}
 
 /*************************************************************************
   links
@@ -638,7 +644,7 @@ table th, .table thead th, .table .th {
     background-color: #FFFFFF; // disable for special invitation table
 }
 
-td {
+.table td {
     border-bottom: 1px solid #CCCCCC;
     word-wrap: break-word; // to avoid long text overflowing table cells
 }
@@ -945,7 +951,7 @@ td.rsvpstatus {
 /*************************************************************************
     Table width for several tables
 **************************************************************************/
-.player-list-panel {
+.player-list-panel, .user-list-panel {
     .table {
         .menu {
             width: 69px;
@@ -1209,8 +1215,8 @@ iframe.wetteronline {
 }
 
 .cal-type-user {
-    background-color: #3366EE;
-    background-color: #3366EE;
+    background-color: #6666CC;
+    background-color: #6666CC;
 }
 
 .cal-type-others {

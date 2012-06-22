@@ -13,7 +13,7 @@ import de.flower.rmt.ui.page.event.manager.EventTabPanel;
 import de.flower.rmt.ui.page.events.manager.EventsPage;
 import de.flower.rmt.ui.page.opponents.manager.OpponentsPage;
 import de.flower.rmt.ui.page.teams.manager.TeamsPage;
-import de.flower.rmt.ui.page.users.manager.PlayersPage;
+import de.flower.rmt.ui.page.users.UsersPage;
 import de.flower.rmt.ui.page.venues.manager.VenuesPage;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -40,7 +40,7 @@ public class NavigationPanel extends AbstractNavigationPanel {
 
     public static final String TEAMS = "teams";
 
-    public static final String PLAYERS = "players";
+    public static final String USERS = "users";
 
     public static final String OPPONENTS = "opponents";
 
@@ -66,7 +66,7 @@ public class NavigationPanel extends AbstractNavigationPanel {
         });
         add(createMenuItem(CALENDAR, CalendarPage.class, page));
         add(createMenuItem(TEAMS, TeamsPage.class, page));
-        add(createMenuItem(PLAYERS, PlayersPage.class, page));
+        add(createMenuItem(USERS, UsersPage.class, page));
         add(createMenuItem(OPPONENTS, OpponentsPage.class, page));
         add(createMenuItem(VENUES, VenuesPage.class, page));
     }
