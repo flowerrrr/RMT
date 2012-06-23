@@ -37,6 +37,8 @@ public class CommentsPanel extends BasePanel<Invitation> {
     @SpringBean
     private ISecurityService securityService;
 
+    private boolean addNew;
+
     public CommentsPanel(final IModel<Invitation> model) {
         super(model);
 
@@ -46,7 +48,13 @@ public class CommentsPanel extends BasePanel<Invitation> {
 
             @Override
             protected List<Comment> load() {
-                return model.getObject().getComments();
+                List<Comment> list = model.getObject().getComments();
+                if (addNew) {
+                    // append transient object
+                    Comment comment = commentManager.newInstance(model.getObject());
+                    list.add(comment);
+                }
+                return list;
             }
         };
 
@@ -65,12 +73,13 @@ public class CommentsPanel extends BasePanel<Invitation> {
                         super.onSubmit(target);
                         Comment comment = item.getModelObject();
                         if (StringUtils.isBlank(comment.getText())) {
-                            commentManager.remove(comment);
+                            if (!comment.isNew()) commentManager.remove(comment);
                             // update this list to remove line
                             AjaxEventSender.send(this, model);
                         } else {
                             commentManager.save(item.getModelObject());
                         }
+                        addNew = false;
                     }
 
                     @Override
@@ -81,7 +90,7 @@ public class CommentsPanel extends BasePanel<Invitation> {
                     @Override
                     protected void onInitialize() {
                         super.onInitialize();
-                        if (this.getDefaultModelObject() == null && AjaxRequestTarget.get() != null) {
+                        if (item.getModelObject().isNew() && AjaxRequestTarget.get() != null) {
                             // this is a new comment created after clicking the add-new-comment icon.
                             // put label in edit mode.
                             getLabel().setVisible(false);
@@ -118,9 +127,7 @@ public class CommentsPanel extends BasePanel<Invitation> {
 
             @Override
             public void onClick(final AjaxRequestTarget target) {
-                // create empty comment and start editor. if user does not type anything the comment will be removed when the editor is closed.
-                Comment comment = commentManager.newInstance(model.getObject());
-                commentManager.save(comment);
+                addNew = true;
                 AjaxEventSender.send(this, model);
             }
         });

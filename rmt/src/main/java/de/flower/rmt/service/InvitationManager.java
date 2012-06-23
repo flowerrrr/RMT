@@ -258,7 +258,7 @@ public class InvitationManager extends AbstractService implements IInvitationMan
 
         // update comment
         if (comment != null) {
-            commentManager.updateComment(invitation, comment, securityService.getUser());
+            commentManager.updateOrRemoveComment(invitation, comment, securityService.getUser());
         }
 
         if (isNotifyManager) {
@@ -333,7 +333,7 @@ public class InvitationManager extends AbstractService implements IInvitationMan
                             Dates.formatDateShort(calItem.getEndDateTime().toDate()));
                 }
 
-                commentManager.updateComment(invitation, comment, invitation.getUser());
+                commentManager.updateOrRemoveComment(invitation, comment, invitation.getUser());
                 return true;
             }
         }

@@ -5,6 +5,7 @@ import de.flower.rmt.model.db.entity.Comment;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.repository.ICommentRepo;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -46,19 +47,28 @@ public class CommentManager extends AbstractService implements ICommentManager {
 
     @Override
     @Transactional(readOnly = false)
-    public void updateComment(Invitation invitation, String text, User author) {
+    public void updateOrRemoveComment(Invitation invitation, String text, User author) {
         Check.isTrue(!invitation.isNew());
 
         // find existing comment
         Comment comment = findByInvitationAndAuthor(invitation, author, 0);
-        if (comment != null) {
-            comment.setText(text);
+
+        if (StringUtils.isBlank(text)) {
+            // remove existing comment
+            if (comment != null) {
+                remove(comment);
+            }
         } else {
-            // no comment for author found -> create new one
-            comment = new Comment(text, invitation, author);
+            // update or create comment
+            if (comment != null) {
+                comment.setText(text);
+            } else {
+                // no comment for author found -> create new one
+                comment = new Comment(text, invitation, author);
+            }
+            commentRepo.save(comment);
+            // activityManager.onCommentUpdated(comment); // activity is logged in InvitationManager
         }
-        commentRepo.save(comment);
-        // activityManager.onCommentUpdated(comment); // activity is logged in InvitationManager
     }
 
     @Override

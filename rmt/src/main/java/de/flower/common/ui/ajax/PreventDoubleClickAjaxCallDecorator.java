@@ -4,22 +4,33 @@ import org.apache.wicket.Component;
 import org.apache.wicket.ajax.IAjaxCallDecorator;
 
 /**
- * @author flowerrrr
+ * Prevents double clicking of ajax links.
+ *
+ * Taken from Apache Wicket Cookbook, page 165.
+ *
  */
 public class PreventDoubleClickAjaxCallDecorator implements IAjaxCallDecorator {
 
+    private static final String DATA_WICKET_BLOCKED = "data-wicket-blocked";
+
+    private static final String LATCH = "var locked=this.hasAttribute('" + DATA_WICKET_BLOCKED + "');"
+            + "if (locked) { return false; } "
+            + "this.setAttribute('" + DATA_WICKET_BLOCKED + "','locked');";
+
+    private static final String RESET = "this.removeAttribute('" + DATA_WICKET_BLOCKED + "');";
+
     @Override
-    public CharSequence decorateScript(Component component, CharSequence script) {
-        return "this.disabled=true;" + script;
+    public CharSequence decorateScript(final Component component, final CharSequence script) {
+        return LATCH + script;
     }
 
     @Override
-    public CharSequence decorateOnSuccessScript(Component component, CharSequence script) {
-        return "this.disabled=false;";
+    public CharSequence decorateOnSuccessScript(final Component component, final CharSequence script) {
+        return RESET + script;
     }
 
     @Override
-    public CharSequence decorateOnFailureScript(Component component, CharSequence script) {
-        return "this.disabled=false;";
+    public CharSequence decorateOnFailureScript(final Component component, final CharSequence script) {
+        return RESET + script;
     }
 }
