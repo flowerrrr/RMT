@@ -27,15 +27,22 @@ public final class Clazz {
      * B is returned.
      *
      * @return
+     * @param callee
      */
-    public static Class<?> getCallingClassStatic() {
+    public static Class<?> getCallingClassStatic(final Class<?> callee) {
         CurrentClassGetter ccg = new CurrentClassGetter();
         final Class[] classContext = ccg.getClassContext2();
-        Class<?> clazz = classContext[3];
+        int index = -1;
+        for (int i = 0; i < classContext.length; i++) {
+            if (classContext[i].equals(callee)) {
+                index = i;
+                break;
+            }
+        }
         // search for next class in stack that differs from clazz
-        for (int i = 4; i < classContext.length; i++) {
+        for (int i = index; i < classContext.length; i++) {
             Class<?> callingClass = classContext[i];
-            if (!callingClass.equals(clazz)) {
+            if (!callingClass.equals(callee)) {
                 return callingClass;
             }
         }

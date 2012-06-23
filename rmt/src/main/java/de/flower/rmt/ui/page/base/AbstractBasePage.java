@@ -6,13 +6,13 @@ import de.flower.common.ui.modal.ModalDialogWindowPanel;
 import de.flower.rmt.service.ApplicationService;
 import de.flower.rmt.service.IApplicationService;
 import de.flower.rmt.service.security.ISecurityService;
-import de.flower.rmt.service.security.UserDetailsBean;
 import de.flower.rmt.ui.app.Resource;
 import org.apache.wicket.Application;
 import org.apache.wicket.Component;
 import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.ajax.IAjaxIndicatorAware;
 import org.apache.wicket.behavior.Behavior;
+import org.apache.wicket.devutils.debugbar.DebugBar;
 import org.apache.wicket.markup.html.IHeaderResponse;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
@@ -64,7 +64,7 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
             protected String getToken() {
                 // if next lines fail -> no subpage can be rendered including error pages. so better tolerate errors.
                 try {
-                    if (isCurrentUserLoggedIn()) {
+                    if (securityService.isCurrentUserLoggedIn()) {
                         return applicationService.getProperty(ApplicationService.USERVOICE_TOKEN);
                     } else {
                         return null;
@@ -75,6 +75,8 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
                 }
             }
         });
+
+        add(new DebugBar("debugBar"));
     }
 
     /**
@@ -85,19 +87,6 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
     @Override
     public String getAjaxIndicatorMarkupId() {
         return "veil";
-    }
-
-    /**
-     * Shortcut to get current user from security context.
-     *
-     * @return
-     */
-    public UserDetailsBean getUserDetails() {
-        return securityService.getCurrentUser();
-    }
-
-    public boolean isCurrentUserLoggedIn() {
-        return securityService.isCurrentUserLoggedIn();
     }
 
     /**

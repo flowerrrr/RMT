@@ -3,9 +3,9 @@ package de.flower.rmt.ui.app;
 import de.flower.common.ui.serialize.ISerializerListener;
 import de.flower.common.ui.serialize.SerializerWrapper;
 import de.flower.rmt.ui.page.about.AboutPage;
+import de.flower.rmt.ui.page.about.ChangeLogPage;
 import de.flower.rmt.ui.page.account.AccountPage;
 import de.flower.rmt.ui.page.base.manager.ManagerHomePage;
-import de.flower.rmt.ui.page.base.player.PlayerHomePage;
 import de.flower.rmt.ui.page.calendar.CalendarPage;
 import de.flower.rmt.ui.page.error.AccessDenied403Page;
 import de.flower.rmt.ui.page.error.InternalError500Page;
@@ -20,7 +20,6 @@ import de.flower.rmt.ui.page.users.manager.PlayersPage;
 import de.flower.rmt.ui.page.venues.manager.VenuesPage;
 import de.flower.rmt.ui.page.venues.player.VenuePage;
 import org.apache.wicket.RuntimeConfigurationType;
-import org.apache.wicket.devutils.inspector.RenderPerformanceListener;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.serialize.ISerializer;
 import org.apache.wicket.settings.IExceptionSettings;
@@ -58,11 +57,12 @@ public class RMTApplication extends WebApplication {
         getMarkupSettings().setDefaultAfterDisabledLink(null);
 
         if (usesDevelopmentConfig()) {
+            // enable debug bar
             getDebugSettings().setDevelopmentUtilitiesEnabled(true);
             getDebugSettings().setOutputComponentPath(true);
             getDebugSettings().setOutputMarkupContainerClassName(true);
 
-            getComponentInstantiationListeners().add(new RenderPerformanceListener());
+            // getComponentInstantiationListeners().add(new RenderPerformanceListener());
             initSerializer();
         }
 
@@ -94,29 +94,31 @@ public class RMTApplication extends WebApplication {
         mountPage("manager/event/${" + EventPage.PARAM_EVENTID + "}", EventPage.class);
         mountPage("manager/opponents", OpponentsPage.class);
         mountPage("manager/venues", VenuesPage.class);
-        mountPage("player", PlayerHomePage.class);
-        mountPage("player/events", de.flower.rmt.ui.page.events.player.EventsPage.class);
+        mountPage("events", de.flower.rmt.ui.page.events.player.EventsPage.class);
+        mountPage("event/${" + EventPage.PARAM_EVENTID + "}", de.flower.rmt.ui.page.event.player.EventPage.class);
+        // TODO (flowerrrr - 23.06.12) remove next line in july
         mountPage("player/event/${" + EventPage.PARAM_EVENTID + "}", de.flower.rmt.ui.page.event.player.EventPage.class);
-        mountPage("player/calendar", CalendarPage.class);
-        mountPage("player/users", UsersPage.class);
-        mountPage("player/venues", de.flower.rmt.ui.page.venues.player.VenuesPage.class);
-        mountPage("player/venue/${" + VenuePage.PARAM_VENUEID + "}", VenuePage.class);
-        mountPage("player/account", AccountPage.class);
+        mountPage("calendar", CalendarPage.class);
+        mountPage("users", UsersPage.class);
+        mountPage("venues", de.flower.rmt.ui.page.venues.player.VenuesPage.class);
+        mountPage("venue/${" + VenuePage.PARAM_VENUEID + "}", VenuePage.class);
+        mountPage("account", AccountPage.class);
         mountPage("login", LoginPage.class);
         mountPage("about", AboutPage.class);
+        mountPage("changelog", ChangeLogPage.class);
     }
 
     private void initErrorPages() {
         // same url as in web.xml
-        mountPage("error404", PageNotFound404Page.class);
+        mountPage("error/404", PageNotFound404Page.class);
 
-        mountPage("error500", InternalError500Page.class);
+        mountPage("error/500", InternalError500Page.class);
         getRequestCycleListeners().add(new ExceptionRequestCycleListener());
         getApplicationSettings().setInternalErrorPage(InternalError500Page.class);
         getExceptionSettings().setUnexpectedExceptionDisplay(IExceptionSettings.SHOW_INTERNAL_ERROR_PAGE);
 
         // access denied is not handled by wicket. spring security will redirect request to this url
-        mountPage("error403", AccessDenied403Page.class);
+        mountPage("error/403", AccessDenied403Page.class);
     }
 
     @Override

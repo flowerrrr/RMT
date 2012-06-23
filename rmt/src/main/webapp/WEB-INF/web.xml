@@ -4,22 +4,7 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          version="2.4">
 
-    <display-name>Das Tool</display-name>
-
-    <!--
-       <filter>
-           <filter-name>openEntityManagerInViewFilter</filter-name>
-           <filter-class>
-               org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter
-           </filter-class>
-       </filter>
-
-
-       <filter-mapping>
-           <filter-name>openEntityManagerInViewFilter</filter-name>
-           <url-pattern>/*</url-pattern>
-       </filter-mapping>
-    -->
+    <display-name>das tool</display-name>
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
@@ -78,7 +63,7 @@
 
     <error-page>
         <error-code>404</error-code>
-        <location>/error404</location>
+        <location>/error/404</location>
     </error-page>
 
 </web-app>

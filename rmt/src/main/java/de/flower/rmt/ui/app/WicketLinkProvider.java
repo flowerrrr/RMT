@@ -1,9 +1,9 @@
 package de.flower.rmt.ui.app;
 
 import de.flower.rmt.service.ILinkProvider;
+import de.flower.rmt.ui.page.event.player.EventPage;
 import org.apache.wicket.request.Url;
 import org.apache.wicket.request.cycle.RequestCycle;
-import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.springframework.stereotype.Component;
 
 /**
@@ -20,6 +20,6 @@ public class WicketLinkProvider implements ILinkProvider {
     }
 
     private static CharSequence urlForEvent(Long eventId) {
-        return RequestCycle.get().urlFor(de.flower.rmt.ui.page.event.player.EventPage.class, new PageParameters().set(de.flower.rmt.ui.page.event.player.EventPage.PARAM_EVENTID, eventId));
+        return RequestCycle.get().urlFor(EventPage.class, EventPage.getPageParams(eventId));
     }
 }

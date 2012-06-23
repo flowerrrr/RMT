@@ -1,8 +1,8 @@
 package de.flower.rmt.ui.page.squad.manager;
 
 import de.flower.rmt.model.db.entity.Team;
+import de.flower.rmt.ui.page.base.NavigationPanel;
 import de.flower.rmt.ui.page.base.manager.ManagerBasePage;
-import de.flower.rmt.ui.page.base.manager.NavigationPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 

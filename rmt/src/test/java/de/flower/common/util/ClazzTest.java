@@ -10,6 +10,36 @@ import static org.testng.Assert.*;
 public class ClazzTest {
 
     @Test
+    public void testGetCallingClassStatic() {
+        class A {
+
+            public Class<?> callingClass;
+
+            public A() {
+                callingClass = Clazz.getCallingClassStatic(A.class);
+            }
+        }
+        ;
+        class B extends A {
+
+            public B() {
+                callingClass = Clazz.getCallingClassStatic(B.class);
+            }
+        }
+        ;
+        class C extends B {
+
+            public C() {
+                callingClass = Clazz.getCallingClassStatic(C.class);
+            }
+        }
+
+        assertEquals(new A().callingClass, ClazzTest.class);
+        assertEquals(new B().callingClass, ClazzTest.class);
+        assertEquals(new C().callingClass, ClazzTest.class);
+    }
+
+    @Test
     public void testIsAnonymousClass() {
         Object o = new Object();
         assertFalse(Clazz.isAnonymousInnerClass(o.getClass()));
@@ -36,7 +66,8 @@ public class ClazzTest {
     @Test
     public void testGetShortName() {
         assertEquals(Clazz.getShortName(String.class), "String");
-        assertEquals(Clazz.getShortName(new Object() {}.getClass()), "ClazzTest$3");
+        assertEquals(Clazz.getShortName(new Object() {
+        }.getClass()), "ClazzTest$3");
         assertEquals(Clazz.getShortName(InnerStaticClass.class), "InnerStaticClass");
         assertEquals(Clazz.getShortName(InnerClass.class), "InnerClass");
     }

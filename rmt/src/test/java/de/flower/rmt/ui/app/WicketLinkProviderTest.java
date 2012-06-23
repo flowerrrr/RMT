@@ -27,6 +27,5 @@ public class WicketLinkProviderTest extends AbstractRMTWicketIntegrationTests {
         BookmarkablePageLink link = Links.eventLink("id", eventId);
         url = (CharSequence) ReflectionTestUtils.invokeGetterMethod(link, "getURL");
         assertEquals(url.toString(), "./player/event/1"); // ./ prefix required after upgrading to wicket 1.5.7
-
     }
 }

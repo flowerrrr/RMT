@@ -35,7 +35,7 @@ public class BasePanel<T> extends GenericPanel<T> {
     }
 
     protected BasePanel(String id, IModel<T> model) {
-        super(getId(id), model);
+        super(getId(id, BasePanel.class), model);
         if (log.isTraceEnabled()) log.trace("new " + getId());
         setOutputMarkupId(true);
         // always append a css class to the panels
@@ -69,14 +69,15 @@ public class BasePanel<T> extends GenericPanel<T> {
     /**
      * Most panels let the basepanel determine the id. using default id provides a
      * good naming strategy in your code.
-     * @param id
-     * @return
+     * Must use static method cause it is used in super() call.
+     *
+     * @param basePanelClass@return
      */
-    protected static String getId(String id) {
+    protected static String getId(String id, final Class<?> callee) {
         if (id != null) {
             return id;
         } else {
-            Class<?> callingClass = Clazz.getCallingClassStatic();
+            Class<?> callingClass = Clazz.getCallingClassStatic(callee);
             String className = Clazz.getShortName(callingClass);
             return Strings.uncapitalize(className);
         }

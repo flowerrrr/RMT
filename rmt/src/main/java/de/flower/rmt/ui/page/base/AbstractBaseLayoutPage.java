@@ -1,8 +1,10 @@
 package de.flower.rmt.ui.page.base;
 
 import de.flower.common.ui.feedback.AlertMessageFeedbackPanel;
+import de.flower.common.ui.feedback.AlertMessagePanel;
 import de.flower.common.ui.markup.html.panel.WrappingPanel;
 import de.flower.common.ui.panel.BasePanel;
+import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.ui.app.IPropertyProvider;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.feedback.MessageOfTheDayMessage;
@@ -28,6 +30,9 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
     @SpringBean
     private IPropertyProvider propertyProvider;
 
+    @SpringBean
+    private ISecurityService securityService;
+
     private Panel secondaryPanel;
 
     private Label heading;
@@ -47,7 +52,12 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
         add(container);
         container.add(AttributeModifier.append("class", BasePanel.getCssClass(getClass())));
 
-        container.add(new AlertMessageFeedbackPanel("alertMessagesPanel"));
+        container.add(new AlertMessageFeedbackPanel("alertMessagesPanel") {
+            @Override
+            public boolean isVisible() {
+                return showAlertMessages();
+            }
+        });
 
         container.add(heading = new Label("heading", Model.of(getClass().getSimpleName())));
         container.add(subheading = new Label("subheading", Model.of("")));
@@ -73,8 +83,13 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
         // makes messages back-button and reload-save
         if (showAlertMessages()) {
             info(new MessageOfTheDayMessage());
-            if (isCurrentUserLoggedIn()) {
-                info(new PasswordChangeRequiredMessage());
+            if (securityService.isCurrentUserLoggedIn()) {
+                info(new PasswordChangeRequiredMessage() {
+                    @Override
+                    public boolean isVisible(final AlertMessagePanel alertMessagePanel) {
+                        return securityService.getUser().hasInitialPassword();
+                    }
+                });
             }
         }
     }
@@ -116,6 +131,7 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
 
     /**
      * Allow subclasses to disable alert messages (e.g. Error pages).
+     *
      * @return
      */
     protected boolean showAlertMessages() {

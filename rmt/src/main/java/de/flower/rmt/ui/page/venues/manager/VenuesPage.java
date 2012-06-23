@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.page.venues.manager;
 
+import de.flower.rmt.ui.page.base.NavigationPanel;
 import de.flower.rmt.ui.page.base.manager.ManagerBasePage;
-import de.flower.rmt.ui.page.base.manager.NavigationPanel;
 
 /**
  * @author flowerrrr

@@ -8,7 +8,7 @@ import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.ui.feedback.ConfirmEventCanceledMessage;
 import de.flower.rmt.ui.model.EventModel;
-import de.flower.rmt.ui.page.base.player.NavigationPanel;
+import de.flower.rmt.ui.page.base.NavigationPanel;
 import de.flower.rmt.ui.page.base.player.PlayerBasePage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.http.flow.AbortWithHttpErrorCodeException;
@@ -23,8 +23,6 @@ import org.slf4j.LoggerFactory;
 public class EventPage extends PlayerBasePage {
 
     private final static Logger log = LoggerFactory.getLogger(EventPage.class);
-
-    public final static String PARAM_EVENTID = de.flower.rmt.ui.page.event.manager.EventPage.PARAM_EVENTID;
 
     @SpringBean
     private IEventManager eventManager;
@@ -42,7 +40,7 @@ public class EventPage extends PlayerBasePage {
     public EventPage(PageParameters params) {
         Event event = null;
         try {
-            Long eventId = params.get(PARAM_EVENTID).toLong();
+            Long eventId = params.get(de.flower.rmt.ui.page.event.manager.EventPage.PARAM_EVENTID).toLong();
             event = eventManager.loadById(eventId);
         } catch (Exception e) {
             log.warn("EventPage accessed with invalid parameter: " + e.toString());
@@ -52,7 +50,7 @@ public class EventPage extends PlayerBasePage {
     }
 
     public static PageParameters getPageParams(Long eventId) {
-        return new PageParameters().set(PARAM_EVENTID, eventId);
+        return de.flower.rmt.ui.page.event.manager.EventPage.getPageParams(eventId);
     }
 
     public EventPage(final IModel<Event> model) {

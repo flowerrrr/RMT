@@ -17,7 +17,7 @@ public class InternalError500Panel extends BasePanel {
     private IPropertyProvider propertyProvider;
 
     public InternalError500Panel(final Exception exception) {
-        add(Links.homePage("home"));
+        add(Links.contextRoot("home"));
         add(Links.mailLink("adminMail", propertyProvider.getAdminEmail(), true));
         add(new StacktracePanel(exception) {
             {

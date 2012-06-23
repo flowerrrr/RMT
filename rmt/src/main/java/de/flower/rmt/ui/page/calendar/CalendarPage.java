@@ -10,12 +10,13 @@ import de.flower.rmt.model.db.type.CalendarType;
 import de.flower.rmt.model.dto.CalItemDto;
 import de.flower.rmt.service.ICalendarManager;
 import de.flower.rmt.service.security.ISecurityService;
+import de.flower.rmt.ui.app.IViewResolver;
 import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.model.CalItemModel;
 import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.model.UserModel;
 import de.flower.rmt.ui.page.base.AbstractCommonBasePage;
-import de.flower.rmt.ui.page.base.player.NavigationPanel;
+import de.flower.rmt.ui.page.base.NavigationPanel;
 import de.flower.rmt.ui.page.event.EventDetailsPanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -44,8 +45,11 @@ public class CalendarPage extends AbstractCommonBasePage {
     @SpringBean
     private ISecurityService securityService;
 
+    @SpringBean
+    private IViewResolver viewResolver;
+
     public CalendarPage() {
-        init(new UserModel(getUserDetails().getUser()));
+        init(new UserModel(securityService.getUser()));
     }
 
     @VisibleForTesting
@@ -63,7 +67,7 @@ public class CalendarPage extends AbstractCommonBasePage {
                 add(new WebMarkupContainer("hint") {
                     @Override
                     public boolean isVisible() {
-                        return view == View.PLAYER;
+                        return viewResolver.getView() == View.PLAYER;
                     }
                 });
             }

@@ -20,7 +20,7 @@ public class PageNotFound404Panel extends BasePanel {
     private Label message;
 
     public PageNotFound404Panel() {
-        add(Links.homePage("home"));
+        add(Links.contextRoot("home"));
     }
 
     @Override

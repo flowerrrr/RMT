@@ -9,6 +9,6 @@ import de.flower.rmt.ui.app.Links;
 public class AccessDenied403Panel extends BasePanel {
 
     public AccessDenied403Panel() {
-        add(Links.homePage("home"));
+        add(Links.contextRoot("home"));
     }
 }

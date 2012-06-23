@@ -1228,3 +1228,10 @@ iframe.wetteronline {
     background-color: #996644;
     border-color: #996644;
 }
+
+/*************************************************************************
+    Wicket debug bar
+**************************************************************************/
+#wicketDebugBar {
+    z-index: 99999999; // to stay on top of navbar
+}

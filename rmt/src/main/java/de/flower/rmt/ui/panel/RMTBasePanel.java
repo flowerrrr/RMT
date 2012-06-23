@@ -1,9 +1,10 @@
 package de.flower.rmt.ui.panel;
 
 import de.flower.common.ui.panel.BasePanel;
+import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.service.security.ISecurityService;
+import de.flower.rmt.ui.app.IViewResolver;
 import de.flower.rmt.ui.app.View;
-import de.flower.rmt.ui.page.base.IViewAware;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -16,7 +17,11 @@ public class RMTBasePanel<T> extends BasePanel<T> {
     @SpringBean
     private ISecurityService securityService;
 
+    @SpringBean
+    private IViewResolver viewResolver;
+
     public RMTBasePanel() {
+        super(getId(null, RMTBasePanel.class));
         // always append a css class indicating the view
         add(AttributeModifier.append("class", new AbstractReadOnlyModel<String>() {
             @Override
@@ -31,6 +36,10 @@ public class RMTBasePanel<T> extends BasePanel<T> {
     }
 
     protected View getView() {
-        return ((IViewAware) getPage()).getView();
+        return viewResolver.getView();
+    }
+
+    protected User getUser() {
+        return securityService.getUser();
     }
 }

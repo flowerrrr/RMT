@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.page.users;
 
 import de.flower.rmt.ui.page.base.AbstractCommonBasePage;
-import de.flower.rmt.ui.page.base.player.NavigationPanel;
+import de.flower.rmt.ui.page.base.NavigationPanel;
 
 /**
  * @author flowerrrr

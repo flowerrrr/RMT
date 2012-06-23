@@ -6,10 +6,11 @@ import de.flower.rmt.ui.page.about.AboutPage;
 import de.flower.rmt.ui.page.event.player.EventPage;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.Component;
+import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.link.Link;
-import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.apache.wicket.protocol.http.WebApplication;
 
 import javax.mail.internet.InternetAddress;
 import java.net.URLEncoder;
@@ -24,17 +25,14 @@ import java.util.Locale;
 public class Links {
 
     public static BookmarkablePageLink eventLink(String id, Long eventId) {
-        return new BookmarkablePageLink(id, EventPage.class, new PageParameters().set(EventPage.PARAM_EVENTID, eventId));
+        return new BookmarkablePageLink(id, EventPage.class, EventPage.getPageParams(eventId));
     }
 
-    public static Link homePage(final String id) {
-        return new Link(id) {
-
-            @Override
-            public void onClick() {
-                setResponsePage(getApplication().getHomePage());
-            }
-        };
+    /**
+     * @return /das-tool
+     */
+    public static AbstractLink contextRoot(final String id) {
+        return new ExternalLink(id, WebApplication.get().getServletContext().getContextPath());
     }
 
     public static ExternalLink mailLink(String id, String emailAddress, boolean label) {
@@ -82,5 +80,4 @@ public class Links {
     public static Component logoutLink(final String id) {
         return new ExternalLink(id, "/j_spring_security_logout").setContextRelative(true);
     }
-
 }

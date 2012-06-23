@@ -15,7 +15,7 @@ public class AnonymousNavigationPanel extends BasePanel {
 
         add(Links.aboutLink("about"));
 
-        add(AbstractNavigationPanel.createMenuItem(HOME, Links.homePage("home"), null));
+        add(NavigationPanel.createMenuItem(HOME, Links.contextRoot("home"), null));
     }
 
 }

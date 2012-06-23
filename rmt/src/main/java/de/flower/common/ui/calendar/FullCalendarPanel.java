@@ -24,9 +24,10 @@ import java.util.Map;
  */
 public abstract class FullCalendarPanel extends BasePanel {
 
-    private final static String fullCalendarCssUrl = "js/fullcalendar-1.5.3/fullcalendar.css";
+    // TODO (flowerrrr - 23.06.12) let wicket inject url
+    private final static String fullCalendarCssUrl = "static/js/fullcalendar-1.5.3/fullcalendar.css";
 
-    private final static String fullCalendarJsUrl = "js/fullcalendar-1.5.3/fullcalendar.js";
+    private final static String fullCalendarJsUrl = "static/js/fullcalendar-1.5.3/fullcalendar.js";
 
     private AbstractAjaxBehavior jsonEventSourceBehavior;
 
