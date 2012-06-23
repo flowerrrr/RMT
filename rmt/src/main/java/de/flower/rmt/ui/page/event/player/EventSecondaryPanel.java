@@ -9,7 +9,6 @@ import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.ui.app.Links;
-import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.page.event.EventCanceledPanel;
 import de.flower.rmt.ui.page.event.EventDetailsPanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -33,7 +32,7 @@ public class EventSecondaryPanel extends BasePanel {
 
         add(new SlideableInvitationFormPanel(invitationModel));
 
-        add(new EventDetailsPanel(model, View.PLAYER));
+        add(new EventDetailsPanel(model));
 
         add(Links.mailLink("allMailLink", invitationManager.getAddressesForfAllInvitees(model.getObject())));
 

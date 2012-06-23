@@ -129,11 +129,11 @@ li {
     border-bottom: 0px;
 }
 
-.secondary .btn {
+.secondary .btn-wide {
     width: 198px; // 220 - padding - border
 }
 
-.secondary button.btn {
+.secondary button.btn-wide {
     width: 218px; // 220 - border
 }
 
@@ -146,9 +146,6 @@ li {
     width: 198px; // 220 - padding - border
 }
 
-.secondary .btn-primary {
-    width: auto;
-}
 
 .secondary form {
     margin-bottom: 0px; // form-margin would add to bottom-padding of divs
@@ -237,6 +234,11 @@ a.btn-link-external:after {
     content: '\00A0 \21D2';
     // float: right;
 }
+
+.btn-link-external, .btn-link {
+    color: @grayDark;
+}
+
 
 /*************************************************************************
     ajax loading
@@ -760,9 +762,6 @@ td.rsvpstatus {
         margin-bottom: 5px;
     }
 
-    a {
-        color: @grayDark;
-    }
     word-wrap: break-word;
 }
 
@@ -1137,9 +1136,6 @@ iframe.wetteronline {
     h6 {
         display: inline;
         font-size: 9px;
-    }
-    .btn-link-external {
-        color: @grayDark;
     }
     .date {
         color: #999999;

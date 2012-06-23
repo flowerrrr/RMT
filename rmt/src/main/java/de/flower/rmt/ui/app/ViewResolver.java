@@ -18,7 +18,7 @@ public class ViewResolver implements IViewResolver {
     @Override
     public View getView() {
         // RMT-693
-        // nav bar depends on view-parameter, then user role
+        // nav bar depends on view-page-parameter, then session-stored value, then user role
 
         // by default view is set to player. will be overridden on demand.
         View view = View.PLAYER;
@@ -27,9 +27,16 @@ public class ViewResolver implements IViewResolver {
             String param = RequestCycle.get().getRequest().getRequestParameters().getParameterValue(View.PARAM_VIEW).toString();
             View v = EnumUtils.getEnum(View.class, param);
             if (v != null) {
+                // store in session
+                RMTSession.get().setView(v);
                 view = v;
             } else {
-                view = View.MANAGER;
+                view = RMTSession.get().getView();
+                if (view != null) {
+                    return view;
+                } else {
+                    view = View.MANAGER;
+                }
             }
         }
         return view;

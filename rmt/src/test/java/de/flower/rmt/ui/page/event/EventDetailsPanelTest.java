@@ -4,6 +4,7 @@ import de.flower.rmt.model.db.entity.event.Match;
 import de.flower.rmt.model.db.type.EventType;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
+import de.flower.rmt.ui.app.IViewResolver;
 import de.flower.rmt.ui.app.View;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -23,13 +24,17 @@ public class EventDetailsPanelTest extends AbstractRMTWicketMockitoTests {
     @SpringBean
     private IEventManager eventManager;
 
+    @SpringBean
+    private IViewResolver viewResolver;
+
     @Test
     public void testRender() {
         testData.setEventType(EventType.Match);
         Match event = (Match) testData.newEvent();
         event.setId(100L);
         when(eventManager.loadById(anyLong(), Matchers.<Attribute>anyVararg())).thenReturn(event);
-        wicketTester.startComponentInPage(new EventDetailsPanel(Model.of(event), View.MANAGER));
+        when(viewResolver.getView()).thenReturn(View.MANAGER);
+        wicketTester.startComponentInPage(new EventDetailsPanel(Model.of(event)));
         wicketTester.dumpComponentWithPage();
         // assert RMT-690
         wicketTester.assertContainsNot("AM");
@@ -40,7 +45,8 @@ public class EventDetailsPanelTest extends AbstractRMTWicketMockitoTests {
 
         event.setUniform(null);
         event.setVenue(null);
-        wicketTester.startComponentInPage(new EventDetailsPanel(Model.of(event), View.PLAYER));
+        when(viewResolver.getView()).thenReturn(View.PLAYER);
+        wicketTester.startComponentInPage(new EventDetailsPanel(Model.of(event)));
         wicketTester.dumpComponentWithPage();
     }
 }

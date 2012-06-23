@@ -110,7 +110,7 @@ public class CalendarPage extends AbstractCommonBasePage {
 
             @Override
             protected void onEventClick(final AjaxRequestTarget target, final Event event) {
-                Panel panel = new EventDetailsPanel(CALENDAR_SECONDARY_PANEL_ID, new EventModel(event), View.PLAYER) {
+                Panel panel = new EventDetailsPanel(CALENDAR_SECONDARY_PANEL_ID, new EventModel(event)) {
                     @Override
                     protected void onClose(final AjaxRequestTarget target) {
                         getSecondaryPanel().replace(placeHolderContainer);

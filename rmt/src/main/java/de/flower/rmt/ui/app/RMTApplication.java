@@ -16,11 +16,13 @@ import de.flower.rmt.ui.page.login.LoginPage;
 import de.flower.rmt.ui.page.opponents.manager.OpponentsPage;
 import de.flower.rmt.ui.page.teams.manager.TeamsPage;
 import de.flower.rmt.ui.page.users.UsersPage;
-import de.flower.rmt.ui.page.users.manager.PlayersPage;
 import de.flower.rmt.ui.page.venues.manager.VenuesPage;
 import de.flower.rmt.ui.page.venues.player.VenuePage;
 import org.apache.wicket.RuntimeConfigurationType;
+import org.apache.wicket.Session;
 import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.wicket.request.Request;
+import org.apache.wicket.request.Response;
 import org.apache.wicket.serialize.ISerializer;
 import org.apache.wicket.settings.IExceptionSettings;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
@@ -89,15 +91,14 @@ public class RMTApplication extends WebApplication {
     private void initBookmarkablePages() {
         mountPage("manager", ManagerHomePage.class);
         mountPage("manager/teams", TeamsPage.class);
-        mountPage("manager/players", PlayersPage.class);
         mountPage("manager/events", EventsPage.class);
         mountPage("manager/event/${" + EventPage.PARAM_EVENTID + "}", EventPage.class);
         mountPage("manager/opponents", OpponentsPage.class);
         mountPage("manager/venues", VenuesPage.class);
         mountPage("events", de.flower.rmt.ui.page.events.player.EventsPage.class);
-        mountPage("event/${" + EventPage.PARAM_EVENTID + "}", de.flower.rmt.ui.page.event.player.EventPage.class);
         // TODO (flowerrrr - 23.06.12) remove next line in july
         mountPage("player/event/${" + EventPage.PARAM_EVENTID + "}", de.flower.rmt.ui.page.event.player.EventPage.class);
+        mountPage("event/${" + EventPage.PARAM_EVENTID + "}", de.flower.rmt.ui.page.event.player.EventPage.class);
         mountPage("calendar", CalendarPage.class);
         mountPage("users", UsersPage.class);
         mountPage("venues", de.flower.rmt.ui.page.venues.player.VenuesPage.class);
@@ -124,6 +125,11 @@ public class RMTApplication extends WebApplication {
     @Override
     public Class getHomePage() {
         return HomePageResolver.getHomePage();
+    }
+
+    @Override
+    public Session newSession(final Request request, final Response response) {
+        return new RMTSession(request);
     }
 
     /**

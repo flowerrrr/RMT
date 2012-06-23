@@ -3,7 +3,6 @@ package de.flower.rmt.ui.page.event.manager;
 import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.service.IEventManager;
-import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.feedback.NoInvitationSentMessage;
 import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.page.base.NavigationPanel;
@@ -70,7 +69,7 @@ public class EventPage extends ManagerBasePage {
         addMainPanel(tabPanel);
 
         getSecondaryPanel().add(new EventCanceledPanel(model));
-        getSecondaryPanel().add(new EventDetailsPanel(model, View.MANAGER) {
+        getSecondaryPanel().add(new EventDetailsPanel(model) {
             @Override
             public boolean isVisible() {
                 return tabPanel.getSelectedTab() == EventTabPanel.INVITATIONS_PANEL_INDEX

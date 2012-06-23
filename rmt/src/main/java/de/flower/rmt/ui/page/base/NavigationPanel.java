@@ -130,11 +130,13 @@ public class NavigationPanel extends RMTBasePanel {
         Link link;
         if (view == View.MANAGER) {
             // manager can always switch to player view.
-            link = new BookmarkablePageLink(id, de.flower.rmt.ui.page.events.player.EventsPage.class);
+            link = new BookmarkablePageLink(id, de.flower.rmt.ui.page.events.player.EventsPage.class, View.getPageParams(View.PLAYER));
+            link.add(new Label("label", new ResourceModel("navigation.switch.player").getObject()));
         } else {
             // player can only switch to manager mode if he has MANAGER role
             link = new BookmarkablePageLink(id, ManagerHomePage.class);
             link.setVisible(getUser().isManager());
+            link.add(new Label("label", new ResourceModel("navigation.switch.manager").getObject()));
         }
         return link;
     }

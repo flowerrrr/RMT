@@ -2,7 +2,6 @@ package de.flower.rmt.ui.page.event;
 
 import de.flower.common.ui.markup.html.basic.FallbackLabel;
 import de.flower.common.ui.model.AbstractChainingModel;
-import de.flower.common.ui.panel.BasePanel;
 import de.flower.common.ui.util.convert.AbstractConverter;
 import de.flower.rmt.model.db.entity.Uniform;
 import de.flower.rmt.model.db.entity.Venue;
@@ -15,6 +14,7 @@ import de.flower.rmt.ui.model.ModelFactory;
 import de.flower.rmt.ui.model.VenueModel;
 import de.flower.rmt.ui.page.venues.manager.VenueEditPage;
 import de.flower.rmt.ui.page.venues.player.VenuePage;
+import de.flower.rmt.ui.panel.RMTBasePanel;
 import de.flower.rmt.util.Dates;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
@@ -32,13 +32,13 @@ import java.util.Locale;
 /**
  * @author flowerrrr
  */
-public class EventDetailsPanel extends BasePanel<Event> {
+public class EventDetailsPanel extends RMTBasePanel<Event> {
 
-    public EventDetailsPanel(final IModel<? extends Event> model, final View view) {
-        this(null, model, view);
+    public EventDetailsPanel(final IModel<? extends Event> model) {
+        this(null, model);
     }
 
-    public EventDetailsPanel(final String id, final IModel<? extends Event> model, final View view) {
+    public EventDetailsPanel(final String id, final IModel<? extends Event> model) {
         super(id, new CompoundPropertyModel<Event>(ModelFactory.eventModelWithAllAssociations(model.getObject())));
 
         add(new Label("team.name"));
@@ -76,7 +76,7 @@ public class EventDetailsPanel extends BasePanel<Event> {
             @Override
             public void onClick() {
                 IModel<Venue> model = new VenueModel(getModel());
-                WebPage page = view == View.MANAGER ? new VenueEditPage(model) : new VenuePage(model);
+                WebPage page = getView() == View.MANAGER ? new VenueEditPage(model) : new VenuePage(model);
                 setResponsePage(page);
             }
 
