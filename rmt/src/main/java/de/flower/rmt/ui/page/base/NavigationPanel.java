@@ -63,7 +63,7 @@ public class NavigationPanel extends RMTBasePanel {
         add(Links.aboutLink("about"));
 
         WebMarkupContainer events = new WebMarkupContainer("events");
-        if (getView() == View.MANAGER) {
+        if (isManagerView()) {
             addMenuItem(events, EVENTS, EventsPage.class, page, true);
         } else {
             addMenuItem(events, EVENTS, de.flower.rmt.ui.page.events.player.EventsPage.class, page, true);
@@ -74,7 +74,7 @@ public class NavigationPanel extends RMTBasePanel {
             @Override
             protected void populateItem(final ListItem<Event> item) {
                 Link link;
-                if (getView() == View.MANAGER) {
+                if (isManagerView()) {
                     link = new BookmarkablePageLink("link", EventPage.class, EventPage.getPageParams(item.getModelObject().getId(), EventTabPanel.INVITATIONS_PANEL_INDEX));
                 } else {
                     link = new BookmarkablePageLink("link", de.flower.rmt.ui.page.event.player.EventPage.class, EventPage.getPageParams(item.getModelObject().getId()));
@@ -112,7 +112,7 @@ public class NavigationPanel extends RMTBasePanel {
         return new LoadableDetachableModel<List<Event>>() {
             @Override
             protected List<Event> load() {
-                if (getView() == View.MANAGER) {
+                if (isManagerView()) {
                     return eventListModelProvider.getManagerNavbarList();
                 } else {
                     return eventListModelProvider.getPlayerNavbarList();

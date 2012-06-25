@@ -63,7 +63,9 @@ public class NotificationService implements INotificationService {
     protected SimpleMailMessage getResetPasswordMessage(final User user, final User manager) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(user.getEmails());
-        message.setBcc(manager.getEmail());
+        if (manager != null) {
+            message.setBcc(manager.getEmail());
+        }
 
         Map<String, Object> model = new HashMap<String, Object>();
         model.put("user", user);

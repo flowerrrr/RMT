@@ -54,6 +54,6 @@ public class SecurityService implements ISecurityService {
 
     @Override
     public User getUser() {
-        return getCurrentUser().getUser();
+        return (getCurrentUser() == null) ? null: getCurrentUser().getUser();
     }
 }

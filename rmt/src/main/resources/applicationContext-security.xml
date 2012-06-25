@@ -19,10 +19,12 @@
     <security:http create-session="ifRequired" auto-config="true" use-expressions="true">
         <security:remember-me key="remember-me-key-v-1" token-validity-seconds="31536000"/><!-- cookie expires after 1 year. -->
         <security:intercept-url pattern="/manager/**" access="hasRole('ROLE_MANAGER')"/>
-        <security:intercept-url pattern="/login" access="permitAll" />
+        <security:intercept-url pattern="/login/**" access="permitAll" />
         <security:intercept-url pattern="/about" access="permitAll" />
         <security:intercept-url pattern="/changelog" access="permitAll" />
         <security:intercept-url pattern="/error/**" access="permitAll" />
+        <!-- needed to get ajax-submit in password-forgotten-page to work -->
+        <security:intercept-url pattern="/wicket/page/**" access="permitAll" />
         <security:intercept-url pattern="/**" access="isAuthenticated()"/>
         <security:form-login login-page="/login" authentication-failure-url="/login?error=1"/>
         <security:logout logout-success-url="/"/>

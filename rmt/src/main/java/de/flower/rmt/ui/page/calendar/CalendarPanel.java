@@ -3,7 +3,6 @@ package de.flower.rmt.ui.page.calendar;
 import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.common.ui.calendar.CalEvent;
 import de.flower.common.ui.calendar.FullCalendarPanel;
-import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.CalItem;
 import de.flower.rmt.model.db.entity.CalItem_;
 import de.flower.rmt.model.db.entity.User;
@@ -13,6 +12,7 @@ import de.flower.rmt.model.dto.CalItemDto;
 import de.flower.rmt.service.ICalendarManager;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.service.security.ISecurityService;
+import de.flower.rmt.ui.panel.RMTBasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public abstract class CalendarPanel extends BasePanel {
+public abstract class CalendarPanel extends RMTBasePanel {
 
     @SpringBean
     private ICalendarManager calendarManager;
@@ -46,7 +46,7 @@ public abstract class CalendarPanel extends BasePanel {
             protected void onEventClick(final AjaxRequestTarget target, final CalEvent calEvent) {
                 if (CalItem.class.getName().equals(calEvent.clazzName)) {
                     CalItem calItem = calendarManager.loadById(calEvent.entityId, CalItem_.user);
-                    boolean readonly = !securityService.isCurrentUserOrManager(calItem.getUser());
+                    boolean readonly = !(securityService.isCurrentUser(calItem.getUser()) || isManagerView());
                     if (readonly) {
                         CalendarPanel.this.onEventClick(target, calItem);
                     } else {

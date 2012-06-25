@@ -14,6 +14,7 @@ import de.flower.rmt.ui.page.error.PageNotFound404Page;
 import de.flower.rmt.ui.page.event.manager.EventPage;
 import de.flower.rmt.ui.page.events.manager.EventsPage;
 import de.flower.rmt.ui.page.login.LoginPage;
+import de.flower.rmt.ui.page.login.PasswordForgottenPage;
 import de.flower.rmt.ui.page.opponents.manager.OpponentsPage;
 import de.flower.rmt.ui.page.teams.manager.TeamsPage;
 import de.flower.rmt.ui.page.users.UsersPage;
@@ -68,6 +69,7 @@ public class RMTApplication extends WebApplication {
             getDebugSettings().setDevelopmentUtilitiesEnabled(true);
             getDebugSettings().setOutputComponentPath(true);
             getDebugSettings().setOutputMarkupContainerClassName(true);
+            getRequestLoggerSettings().setRequestLoggerEnabled(true);
 
             // getComponentInstantiationListeners().add(new RenderPerformanceListener());
             initSerializer();
@@ -109,6 +111,7 @@ public class RMTApplication extends WebApplication {
         mountPage("venues", de.flower.rmt.ui.page.venues.player.VenuesPage.class);
         mountPage("venue/${" + VenuePage.PARAM_VENUEID + "}", VenuePage.class);
         mountPage("account", AccountPage.class);
+        mountPage("login/passwordforgotten", PasswordForgottenPage.class);
         mountPage("login", LoginPage.class);
         mountPage("about", AboutPage.class);
         mountPage("changelog", ChangeLogPage.class);

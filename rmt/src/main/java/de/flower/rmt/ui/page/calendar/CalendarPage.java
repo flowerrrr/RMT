@@ -11,6 +11,7 @@ import de.flower.rmt.model.dto.CalItemDto;
 import de.flower.rmt.service.ICalendarManager;
 import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.ui.app.IViewResolver;
+import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.model.CalItemModel;
 import de.flower.rmt.ui.model.EventModel;
@@ -18,6 +19,7 @@ import de.flower.rmt.ui.model.UserModel;
 import de.flower.rmt.ui.page.base.AbstractCommonBasePage;
 import de.flower.rmt.ui.page.base.NavigationPanel;
 import de.flower.rmt.ui.page.event.EventDetailsPanel;
+import de.flower.rmt.ui.panel.RMTBasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -110,7 +112,7 @@ public class CalendarPage extends AbstractCommonBasePage {
 
             @Override
             protected void onEventClick(final AjaxRequestTarget target, final Event event) {
-                Panel panel = new EventDetailsPanel(CALENDAR_SECONDARY_PANEL_ID, new EventModel(event)) {
+                Panel panel = new EventDetailsPanelExtended(CALENDAR_SECONDARY_PANEL_ID, new EventModel(event)) {
                     @Override
                     protected void onClose(final AjaxRequestTarget target) {
                         getSecondaryPanel().replace(placeHolderContainer);
@@ -130,5 +132,19 @@ public class CalendarPage extends AbstractCommonBasePage {
     @Override
     public String getActiveTopBarItem() {
         return NavigationPanel.CALENDAR;
+    }
+
+    public static class EventDetailsPanelExtended extends RMTBasePanel {
+
+        public EventDetailsPanelExtended(final String id, final IModel<Event> eventModel) {
+            super(id);
+            add(new EventDetailsPanel(eventModel));
+            add(Links.eventLink("link", eventModel.getObject().getId(), getView()));
+        }
+
+        @Override
+        protected String getPanelMarkup() {
+            return "<div wicket:id='eventDetailsPanel'/><a class='btn-link' wicket:id='link'><wicket:message key='calendar.link.event'/></a>";
+        }
     }
 }

@@ -35,8 +35,6 @@ public class AddGuestPlayerPanel extends BasePanel<Event> {
 
         form.add(new TextField("guestName"));
 
-        // add and cancel buttons
-
         form.add(new AjaxSubmitLink("addButton") {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {

@@ -131,12 +131,12 @@ public class CalendarManager extends AbstractService implements ICalendarManager
         calEvent.id = Event.class.getSimpleName() + "|" + event.getId();
         calEvent.entityId = event.getId();
         calEvent.clazzName = Event.class.getName();
-        calEvent.title = messageSource.getMessage(event.getEventType().getResourceKey());
+        calEvent.title = event.getTeam().getName() + ": " + messageSource.getMessage(event.getEventType().getResourceKey());
         calEvent.start = event.getDateTime().toDate();
         calEvent.end = event.getDateTime().plusHours(1).toDate();
         calEvent.allDay = false;
         calEvent.className = "cal-type-event";
-        calEvent.url = linkProvider.deepLinkEvent(event.getId());
+        // calEvent.url = linkProvider.deepLinkEvent(event.getId());
         return calEvent;
     }
 

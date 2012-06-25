@@ -25,7 +25,15 @@ import java.util.Locale;
 public class Links {
 
     public static BookmarkablePageLink eventLink(String id, Long eventId) {
-        return new BookmarkablePageLink(id, EventPage.class, EventPage.getPageParams(eventId));
+        return eventLink(id, eventId, View.PLAYER);
+    }
+
+    public static BookmarkablePageLink eventLink(String id, Long eventId, View view) {
+        if (view == View.MANAGER) {
+            return new BookmarkablePageLink(id, de.flower.rmt.ui.page.event.manager.EventPage.class, EventPage.getPageParams(eventId));
+        } else {
+            return new BookmarkablePageLink(id, EventPage.class, EventPage.getPageParams(eventId));
+        }
     }
 
     /**
