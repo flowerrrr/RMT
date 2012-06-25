@@ -703,7 +703,7 @@ tr:hover .show-on-hover, li:hover .show-on-hover {
     margin-top: 1px
 }
 
-#loginForm .password-forgotten {
+#loginForm .password-forgotten, .email-forgotten {
     display: inline-block;
     a {
         font-size: 10px;
