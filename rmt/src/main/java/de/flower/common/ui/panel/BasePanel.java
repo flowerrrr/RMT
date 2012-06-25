@@ -18,7 +18,7 @@ import java.io.Serializable;
  */
 public class BasePanel<T> extends GenericPanel<T> {
 
-    protected static final Logger log = LoggerFactory.getLogger(BasePanel.class);
+    private static final Logger log = LoggerFactory.getLogger(BasePanel.class);
 
     private IOnCloseCallback onCloseCallback;
 

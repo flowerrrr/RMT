@@ -103,6 +103,7 @@ public class CalendarManager extends AbstractService implements ICalendarManager
 
     private List<CalItem> findAllByOthersAndRange(final DateTime calStart, final DateTime calEnd) {
         BooleanExpression isNotCurrentUser = QCalItem.calItem.user.ne(securityService.getUser());
+        // NOTE (flowerrrr - 25.06.12) make calitem extend abstractclubrelatedentity and remove this expression
         BooleanExpression isClub = QCalItem.calItem.user.club.eq(getClub());
         BooleanExpression isNotStartAfterCalEnd = QCalItem.calItem.startDateTime.after(calEnd).not();
         BooleanExpression isNotEndBeforeCalStart = QCalItem.calItem.endDateTime.before(calStart).not();

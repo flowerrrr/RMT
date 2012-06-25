@@ -1,17 +1,23 @@
 package de.flower.rmt.ui.page.error;
 
 import de.flower.common.ui.panel.BasePanel;
+import de.flower.common.ui.util.LoggingUtils;
 import de.flower.rmt.ui.app.IPropertyProvider;
 import de.flower.rmt.ui.app.Links;
 import org.apache.wicket.Application;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.RuntimeConfigurationType;
+import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author flowerrrr
  */
 public class InternalError500Panel extends BasePanel {
+
+    private final static Logger log = LoggerFactory.getLogger(InternalError500Panel.class);
 
     @SpringBean
     private IPropertyProvider propertyProvider;
@@ -30,4 +36,11 @@ public class InternalError500Panel extends BasePanel {
             }
         });
     }
+
+    @Override
+    protected void onBeforeRender() {
+        log.warn("Server error 500 [{}]", LoggingUtils.toString(RequestCycle.get().getRequest()));
+        super.onBeforeRender();
+    }
+
 }

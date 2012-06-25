@@ -12,6 +12,8 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.util.ListModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Collections;
 import java.util.List;
@@ -20,6 +22,8 @@ import java.util.List;
  * @author flowerrrr
  */
 public abstract class GeocodePanel extends BasePanel {
+
+    private final static Logger log = LoggerFactory.getLogger(GeocodePanel.class);
 
     @SpringBean
     private IGeocodingService geocodingService;

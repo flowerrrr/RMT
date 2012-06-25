@@ -19,6 +19,8 @@ import org.apache.wicket.markup.repeater.util.ModelIteratorAdapter;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Collections;
 import java.util.Date;
@@ -31,6 +33,8 @@ import java.util.List;
  * @author flowerrrr
  */
 public class ActivityFeedPanel extends BasePanel {
+
+    private final static Logger log = LoggerFactory.getLogger(ActivityFeedPanel.class);
 
     @SpringBean
     private IActivityManager activityManager;

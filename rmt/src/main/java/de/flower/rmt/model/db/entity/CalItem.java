@@ -27,6 +27,7 @@ public class CalItem extends AbstractBaseEntity {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @QueryInit("club") // required when using QCalItem.calItem.user.club.eq(getClub()) in a query.
+    @Index(name = "ix_user")
     private User user;
 
     @NotNull
