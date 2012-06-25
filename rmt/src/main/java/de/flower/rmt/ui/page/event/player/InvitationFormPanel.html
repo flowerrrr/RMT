@@ -7,6 +7,8 @@
 
     <!--<h4><wicket:message key="player.event.invitationform.heading" /></h4>-->
 
+    <div wicket:id="invitationClosedMessage" class="info-text"/>
+
     <form wicket:id="form" class="invitationForm">
         <div wicket:id="formFeedbackPanel" />
         <ul class="unstyled ul-form">
@@ -17,7 +19,6 @@
                     <label class="radio"><input wicket:id="unsure" type="radio"/> <wicket:message key="invitation.form.unsure"/></label>
                     <label class="radio"><input wicket:id="declined" type="radio"/> <wicket:message key="invitation.form.decline"/></label>
                 </span>
-                <span wicket:id="invitationClosedMessage" />
             </li>
             <li>
                 <textarea wicket:id="comment"/>

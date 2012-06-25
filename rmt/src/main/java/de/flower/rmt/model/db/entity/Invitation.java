@@ -40,6 +40,7 @@ public class Invitation extends AbstractBaseEntity {
      * Used for ui forms. Initialized when invitation is loaded.
      */
     @Transient
+    @Size(max = Comment.MAXLENGTH)
     private String comment;
 
     @Column

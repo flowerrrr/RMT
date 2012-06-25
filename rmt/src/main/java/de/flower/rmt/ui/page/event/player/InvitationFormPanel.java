@@ -1,6 +1,8 @@
 package de.flower.rmt.ui.page.event.player;
 
+import de.flower.common.ui.markup.html.form.TextAreaMaxLengthBehavior;
 import de.flower.common.ui.panel.BasePanel;
+import de.flower.rmt.model.db.entity.Comment;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.type.RSVPStatus;
@@ -39,14 +41,19 @@ public abstract class InvitationFormPanel extends BasePanel {
                 // don't have to display success message. not necessary on this form.
                 return false;
             }
+
+            @Override
+            public boolean isVisible() {
+                return !eventClosedModel.getObject();
+            }
         };
         add(form);
 
         final RadioGroup group = new RadioGroup("status") {
             @Override
-             public boolean isVisible() {
+            public boolean isVisible() {
                 return !eventClosedModel.getObject();
-             }
+            }
         };
         form.add(group);
         group.add(new Radio<RSVPStatus>("accepted", Model.of(RSVPStatus.ACCEPTED)));
@@ -59,14 +66,18 @@ public abstract class InvitationFormPanel extends BasePanel {
             }
         });
 
-        form.add(new Label("invitationClosedMessage", new StringResourceModel("player.event.closed.message", new PropertyModel<User>(model, "event.createdBy"))) {
+        form.add(new TextArea("comment") {
+            {
+                add(new TextAreaMaxLengthBehavior(Comment.MAXLENGTH));
+            }
+        });
+
+        add(new Label("invitationClosedMessage", new StringResourceModel("player.event.closed.message", new PropertyModel<User>(model, "event.createdBy"))) {
             @Override
             public boolean isVisible() {
                 return eventClosedModel.getObject();
             }
         }.setEscapeModelStrings(false));
-
-        form.add(new TextArea("comment"));
     }
 
     protected abstract void onSubmit(Invitation invitation, AjaxRequestTarget target);

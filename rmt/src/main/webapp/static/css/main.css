@@ -924,6 +924,7 @@ td.rsvpstatus {
     }
 }
 
+
 /*************************************************************************
     Invitation form
 **************************************************************************/
@@ -1023,9 +1024,9 @@ td.rsvpstatus {
 
 
 /*************************************************************************
-    Squad Page - Add player panel
+    Squad Page - Add player panel + Invitation Form
 **************************************************************************/
-.add-player-panel, .add-invitee-panel, .add-guest-player-panel {
+.add-player-panel, .add-invitee-panel, .add-guest-player-panel, .invitation-form-panel {
     .info-text {
         margin-top: 10px;
         margin-bottom: 10px;
