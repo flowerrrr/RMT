@@ -9,6 +9,7 @@ import de.flower.rmt.ui.page.base.manager.ManagerHomePage;
 import de.flower.rmt.ui.page.calendar.CalendarPage;
 import de.flower.rmt.ui.page.error.AccessDenied403Page;
 import de.flower.rmt.ui.page.error.InternalError500Page;
+import de.flower.rmt.ui.page.error.PageExpiredPage;
 import de.flower.rmt.ui.page.error.PageNotFound404Page;
 import de.flower.rmt.ui.page.event.manager.EventPage;
 import de.flower.rmt.ui.page.events.manager.EventsPage;
@@ -124,6 +125,9 @@ public class RMTApplication extends WebApplication {
 
         // access denied is not handled by wicket. spring security will redirect request to this url
         mountPage("error/403", AccessDenied403Page.class);
+
+        mountPage("error/page-expired", PageExpiredPage.class);
+        getApplicationSettings().setPageExpiredErrorPage(PageExpiredPage.class);
     }
 
     @Override

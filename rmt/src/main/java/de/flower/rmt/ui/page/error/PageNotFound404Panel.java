@@ -2,7 +2,6 @@ package de.flower.rmt.ui.page.error;
 
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.ui.app.Links;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.protocol.http.servlet.ErrorAttributes;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.slf4j.Logger;
@@ -16,8 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 public class PageNotFound404Panel extends BasePanel {
 
     private final static Logger log = LoggerFactory.getLogger(PageNotFound404Panel.class);
-
-    private Label message;
 
     public PageNotFound404Panel() {
         add(Links.contextRoot("home"));
