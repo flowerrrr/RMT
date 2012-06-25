@@ -4,7 +4,6 @@ import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.ajax.markup.html.AjaxLink;
 import de.flower.common.ui.ajax.markup.html.AjaxLinkWithConfirmation;
-import de.flower.common.ui.panel.BasePanel;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.CalItem;
 import de.flower.rmt.model.db.entity.User;
@@ -17,6 +16,7 @@ import de.flower.rmt.ui.markup.html.form.EntityForm;
 import de.flower.rmt.ui.markup.html.form.TimeDropDownChoice;
 import de.flower.rmt.ui.markup.html.form.UserDropDownChoice;
 import de.flower.rmt.ui.markup.html.form.renderer.CalItemTypeRenderer;
+import de.flower.rmt.ui.panel.RMTBasePanel;
 import de.flower.rmt.util.Dates;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxCheckBox;
@@ -34,7 +34,7 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class CalItemEditPanel extends BasePanel<CalItemDto> {
+public class CalItemEditPanel extends RMTBasePanel<CalItemDto> {
 
     @SpringBean
     private ICalendarManager calendarManager;
@@ -73,7 +73,7 @@ public class CalItemEditPanel extends BasePanel<CalItemDto> {
         form.add(new UserDropDownChoice("user", userModel, getUserListModel()) {
             @Override
             public boolean isVisible() {
-                return securityService.getUser().isManager();
+                return isManagerView();
             }
         });
 

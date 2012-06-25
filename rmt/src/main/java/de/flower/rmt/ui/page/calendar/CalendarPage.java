@@ -80,7 +80,10 @@ public class CalendarPage extends AbstractCommonBasePage {
             }
         };
 
-        final IModel<List<CalendarType>> selectedCalendarsModel = Model.of((Collection) Lists.newArrayList(CalendarType.values()));
+        final IModel<List<CalendarType>> selectedCalendarsModel = Model.of((Collection) Lists.newArrayList(CalendarType.USER, CalendarType.CLUB));
+        if (viewResolver.getView() == View.MANAGER) {
+            selectedCalendarsModel.getObject().add(CalendarType.OTHERS);
+        }
 
         addMainPanel(new CalendarPanel(CALENDAR_SECONDARY_PANEL_ID, selectedCalendarsModel) {
 
