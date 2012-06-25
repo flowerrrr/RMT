@@ -52,6 +52,7 @@
                 <!-- for TimeDropDownChoice -->
                 <value>org.joda.time.LocalTime</value>
                 <value>org.joda.time.tz.FixedDateTimeZone</value>
+                <value>java.util.Arrays$ArrayList</value>
             </list>
         </property>
     </bean>

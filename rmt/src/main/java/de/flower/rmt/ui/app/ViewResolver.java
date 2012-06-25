@@ -19,6 +19,7 @@ public class ViewResolver implements IViewResolver {
     public View getView() {
         // RMT-693
         // nav bar depends on view-page-parameter, then session-stored value, then user role
+        // but: currently view-parameter is not used, only session-value.
 
         // by default view is set to player. will be overridden on demand.
         View view = View.PLAYER;

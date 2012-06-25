@@ -30,7 +30,6 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.ResourceModel;
-import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import java.io.Serializable;
@@ -90,7 +89,9 @@ public class NavigationPanel extends RMTBasePanel {
         menuItems.add(new MenuItem(TEAMS, TeamsPage.class, page, getView() == View.MANAGER));
         menuItems.add(new MenuItem(USERS, UsersPage.class, page, true));
         menuItems.add(new MenuItem(OPPONENTS, OpponentsPage.class, page, getView() == View.MANAGER));
+        // TODO (flowerrrr - 24.06.12) unify both pages
         menuItems.add(new MenuItem(VENUES, VenuesPage.class, page, getView() == View.MANAGER));
+        menuItems.add(new MenuItem(VENUES, de.flower.rmt.ui.page.venues.player.VenuesPage.class, page, getView() != View.MANAGER));
 
         ListView<MenuItem> menuList = new ListView<MenuItem>("menuList", menuItems) {
             @Override
@@ -101,7 +102,7 @@ public class NavigationPanel extends RMTBasePanel {
         };
         add(menuList);
 
-        add(new BookmarkablePageLink("account", AccountPage.class, getViewParameter()));
+        add(new BookmarkablePageLink("account", AccountPage.class));
         add(createSwitchViewLink("switchView", getView()));
         add(Links.logoutLink("logoutLink"));
         add(new Label("user", getUser().getFullname()));
@@ -130,7 +131,7 @@ public class NavigationPanel extends RMTBasePanel {
         Link link;
         if (view == View.MANAGER) {
             // manager can always switch to player view.
-            link = new BookmarkablePageLink(id, de.flower.rmt.ui.page.events.player.EventsPage.class, View.getPageParams(View.PLAYER));
+            link = new BookmarkablePageLink(id, de.flower.rmt.ui.page.events.player.EventsPage.class);
             link.add(new Label("label", new ResourceModel("navigation.switch.player").getObject()));
         } else {
             // player can only switch to manager mode if he has MANAGER role
@@ -143,7 +144,6 @@ public class NavigationPanel extends RMTBasePanel {
 
     public void addMenuItem(final WebMarkupContainer item, String pageName, Class<?> pageClass, final INavigationPanelAware page, boolean visible) {
         BookmarkablePageLink link = new BookmarkablePageLink("link", pageClass);
-        link.getPageParameters().mergeWith(getViewParameter());
         link.add(new Label("label", new ResourceModel("navigation." + pageName.toLowerCase())));
         item.add(link);
         if (page != null && page.getActiveTopBarItem().equals(pageName)) {
@@ -168,14 +168,6 @@ public class NavigationPanel extends RMTBasePanel {
             li.add(AttributeModifier.append("class", "active"));
         }
         return li;
-    }
-
-    public PageParameters getViewParameter() {
-        if (getUser().isManager() && getView() == View.PLAYER) {
-            return View.getPageParams(View.PLAYER);
-        } else {
-            return new PageParameters();
-        }
     }
 
     public static class MenuItem implements Serializable {

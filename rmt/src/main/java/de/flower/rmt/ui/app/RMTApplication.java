@@ -58,6 +58,10 @@ public class RMTApplication extends WebApplication {
         getMarkupSettings().setDefaultBeforeDisabledLink(null);
         getMarkupSettings().setDefaultAfterDisabledLink(null);
 
+        // wicket tries to survive session timeout by recreating the original page. but that leads to strange behavior
+        // when clicking links as nothing happens (only current page is refreshed).
+        getPageSettings().setRecreateMountedPagesAfterExpiry(false);
+
         if (usesDevelopmentConfig()) {
             // enable debug bar
             getDebugSettings().setDevelopmentUtilitiesEnabled(true);
