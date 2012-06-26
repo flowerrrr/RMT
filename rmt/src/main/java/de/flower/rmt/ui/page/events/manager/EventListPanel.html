@@ -14,7 +14,6 @@
             <colgroup>
                 <col class="date" />
                 <col class="team" />
-                <col class="summary" />
                 <col class="invitations" />
                 <col class="menu" />
             </colgroup>
@@ -24,20 +23,14 @@
                     <div>
                         <wicket:message key="manager.event.date"/>
                     </div>
-                    <div>
-                        <!--<wicket:message key="manager.event.time"/>-->
-                    </div>
                 </th>
                 <th>
                     <div>
                         <wicket:message key="manager.event.team"/>
                     </div>
                     <div>
-                        <wicket:message key="manager.event.type"/>
+                        <wicket:message key="manager.event.summary"/>
                     </div>
-                </th>
-                <th>
-                    <wicket:message key="manager.event.summary"/>
                 </th>
                 <th>
                     <wicket:message key="manager.events.invitations"/>
@@ -47,7 +40,7 @@
             </thead>
             <tfoot>
                 <tr>
-                    <td colspan="5">
+                    <td colspan="4">
                         <div wicket:id="pager" class="paging">[dataview navigator]</div>
                     </td>
                 </tr>
@@ -55,14 +48,12 @@
             <tbody>
             <tr wicket:id="list">
                 <td>
-                    <a wicket:id="invitationsLink"><div wicket:id="date">[Date #1]</div>
-                    <div wicket:id="time">[Time #1]</div></a>
+                    <div><a wicket:id="invitationsLink"><div wicket:id="date" /><div wicket:id="time" /></a></div>
                 </td>
                 <td>
-                    <div wicket:id="team">[Team]</div>
-                    <div wicket:id="type">[Event Type]</div>
+                    <span wicket:id="team" /> - <span wicket:id="type" />
+                    <div wicket:id="summary" />
                 </td>
-                <td><span wicket:id="summary">[Summary]</span></td>
                 <td><div wicket:id="invitationSummaryPanel">[Invitations]</div></td>
                 <td>
                     <div class="pull-right">

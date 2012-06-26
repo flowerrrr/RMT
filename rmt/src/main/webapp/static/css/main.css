@@ -1246,19 +1246,36 @@ iframe.wetteronline {
     border-color:  inherit;
 }
 
+.fc-event {
+    height: 18px;
+}
+.fc-event:hover {
+    height: auto;
+    z-index: 100 !important; // to overlap other events
+}
+.fc-view {
+    overflow: visible; // to make events at bottom of calendar overflow calendar when hovering
+}
+
+.fc-styled-event(@color) {
+    background-color: @color;
+    border-color: @color;
+    &:hover {
+        background-color: darken(@color, 10%);
+        border-color: darken(@color, 20%);
+    }
+}
+
 .cal-type-user {
-    background-color: #6666CC;
-    background-color: #6666CC;
+    .fc-styled-event(#6666CC);
 }
 
 .cal-type-others {
-    background-color: #336699;
-    border-color: #336699;
+    .fc-styled-event(#336699);
 }
 
 .cal-type-event {
-    background-color: #996644;
-    border-color: #996644;
+    .fc-styled-event(#996644);
 }
 
 /*************************************************************************

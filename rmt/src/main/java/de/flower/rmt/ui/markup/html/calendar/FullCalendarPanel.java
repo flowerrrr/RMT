@@ -123,7 +123,7 @@ public abstract class FullCalendarPanel extends BasePanel {
         options.put("select", "_select_");
         options.put("firstDay", 1); // start week on monday
         options.put("weekMode", "liquid");
-        options.put("timeFormat", ""); // no time on events
+        options.put("timeFormat", "H:mm");
         options.put("monthNames", StringUtils.split(getResourceString("monthNames"), ","));
         options.put("monthNamesShort", StringUtils.split(getResourceString("monthNamesShort"), ","));
         options.put("dayNames", StringUtils.split(getResourceString("dayNames"), ","));
