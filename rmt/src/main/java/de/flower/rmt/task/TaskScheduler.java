@@ -24,9 +24,9 @@ public class TaskScheduler {
     private final static Logger log = LoggerFactory.getLogger(TaskScheduler.class);
 
     /**
-     * Run scheduled task every 60 minutes. Increase when feature becomes stable.
+     * Run scheduled task every 12 hours.
      */
-    private final static long rate = 60 * 60 * 1000;
+    private final static long rate = 12 * 60 * 60 * 1000;
 
     @Autowired
     private SecurityContextHolderStrategy schs;
@@ -39,7 +39,7 @@ public class TaskScheduler {
 
     @Scheduled(fixedRate = rate)
     public void sendReminderMails() throws InterruptedException {
-        // delay execution for some seconds so that app startup is fully finished.
+        // delay execution for some seconds so that wicket app startup is fully finished.
         // this is not required but makes reading the log-files easier.
         Thread.sleep(3000);
         log.info("Running job [sendReminderMails]");
