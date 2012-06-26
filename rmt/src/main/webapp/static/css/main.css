@@ -953,6 +953,15 @@ td.rsvpstatus {
 **************************************************************************/
 .player-list-panel, .user-list-panel {
     .table {
+        .name {
+            width: 100px;
+        }
+        .email {
+            // width: auto;
+        }
+        .teams {
+            width: 120px;
+        }
         .menu {
             width: 69px;
         }

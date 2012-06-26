@@ -7,6 +7,7 @@ import de.flower.rmt.model.db.entity.Venue;
 import de.flower.rmt.service.IVenueManager;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.model.IModel;
@@ -34,17 +35,11 @@ public class VenueListPanel extends BasePanel {
                 link.add(new Label("name", item.getModelObject().getName()));
                 item.add(link);
             }
-
         });
         listContainer.add(new AjaxEventListener(Venue.class));
     }
 
     private Link createViewLink(String id, final ListItem<Venue> item) {
-        return new Link(id) {
-            @Override
-            public void onClick() {
-                setResponsePage(VenuePage.class, VenuePage.getPageParams(item.getModelObject().getId()));
-            }
-        };
+        return new BookmarkablePageLink(id, VenuePage.class, VenuePage.getPageParams(item.getModelObject().getId()));
     }
 }
