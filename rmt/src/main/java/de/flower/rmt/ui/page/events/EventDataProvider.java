@@ -58,7 +58,8 @@ public class EventDataProvider extends InjectorAwareObject implements IDataProvi
      */
     public boolean isNextEvent(Event event) {
         if (nextEventId == null) {
-            nextEventId = eventManager.findNextEvent(getUser()).getId();
+            Event nextEvent = eventManager.findNextEvent(getUser());
+            nextEventId = (nextEvent == null) ? -1 : nextEvent.getId();
         }
         return event.getId().equals(nextEventId);
     }
