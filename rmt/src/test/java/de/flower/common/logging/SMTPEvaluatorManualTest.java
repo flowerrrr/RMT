@@ -6,6 +6,7 @@ import ch.qos.logback.core.joran.spi.JoranException;
 import ch.qos.logback.core.util.StatusPrinter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -45,14 +46,18 @@ public class SMTPEvaluatorManualTest {
         StatusPrinter.printInCaseOfErrorsOrWarnings(lc);
     }
 
+    @AfterMethod
+    public void tearDown()  throws InterruptedException{
+        // give asynchronous mail sending thread time to sent mail.
+        Thread.sleep(1000);
+    }
+
     @Test
-    public void testIdleTime() throws InterruptedException {
+    public void testIdleTime() {
         log.error("Trigger mail");
         log.error("Don't trigger");
         log.error("Don't trigger");
 
-        // give thread time to sent mail.
-        // Thread.sleep(1000);
     }
 
     @Test
@@ -60,5 +65,18 @@ public class SMTPEvaluatorManualTest {
         log.error("Illegal argument on static metamodel field injection : de.flower.rmt.model.event.AbstractSoccerEvent_#surfaceList; expected type :  org.hibernate.ejb.metamodel.SingularAttributeImpl; encountered type : javax.persistence.metamodel.ListAttribute");
         log.error("Send email");
     }
-}
 
+    /**
+     * Tests logback.xml logger configuration.
+     * Ideally you should see the messag in the log-file but no mail is send.
+     */
+    @Test
+    public void testExcludeLogger() {
+        ExcludeMeClass.log.error("Do not send mail");
+    }
+
+    public static class ExcludeMeClass  {
+
+        public final static Logger log = LoggerFactory.getLogger(ExcludeMeClass.class);
+    }
+}

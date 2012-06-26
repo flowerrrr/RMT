@@ -61,6 +61,14 @@
         <evaluator class="de.flower.common.logging.SMTPEvaluator" />
     </appender>
 
+    <!-- to avoid sending error-mails for well known error -->
+    <logger name="org.hibernate.ejb.metamodel.MetadataContext" additivity="false">
+        <!-- add to all but the EMAIL appender -->
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="FILE-ERROR"/>
+    </logger>
+
 
     <logger name="org.apache.wicket" level="INFO" />
     <logger name="org.apache.wicket.devutils" level="INFO" />
