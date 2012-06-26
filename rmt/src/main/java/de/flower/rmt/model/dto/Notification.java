@@ -2,6 +2,8 @@ package de.flower.rmt.model.dto;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.InputStreamSource;
 
 import javax.mail.internet.InternetAddress;
 import java.io.Serializable;
@@ -24,6 +26,8 @@ public class Notification implements Serializable {
     private String body;
 
     private Boolean bccMySelf;
+
+    private Attachment attachment;
 
     public List<InternetAddress> getRecipients() {
         return recipients;
@@ -76,5 +80,26 @@ public class Notification implements Serializable {
             list.add(iAddress.getAddress());
         }
         return list;
+    }
+
+    public Attachment getAttachment() {
+        return attachment;
+    }
+
+    public void setAttachment(final Attachment attachment) {
+        this.attachment = attachment;
+    }
+
+    public static class Attachment implements Serializable {
+
+        public String name;
+
+        public String contentType;
+
+        public byte[] data;
+
+        public InputStreamSource getInputStreamSource() {
+            return new ByteArrayResource(data);
+        }
     }
 }

@@ -8,12 +8,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
-import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMailMessage;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import javax.mail.Address;
+import javax.mail.Message;
+import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +35,7 @@ public class MailService implements IMailService {
     private SimpleMailMessage templateMessage;
 
     @Autowired
-    private MailSender mailSender;
+    private JavaMailSender mailSender;
 
     @Autowired
     private ISecurityService securityService;
@@ -45,9 +50,31 @@ public class MailService implements IMailService {
         }
     }
 
+    private MimeMailMessage newMimeMailMessage() {
+        MimeMailMessage message = null;
+        try {
+            message = new MimeMailMessage(new MimeMessageHelper(mailSender.createMimeMessage(), true));
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+        // preset with defaults from templateMessage
+        templateMessage.copyTo(message);
+        // use default undisclosed recipients address if no recipient is defined (like in mass mails)
+        // check if template is configured correctly.
+        Address[] tmp;
+        try {
+            tmp = message.getMimeMessageHelper().getMimeMessage().getRecipients(Message.RecipientType.TO);
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+        Check.isTrue(tmp.length > 0);
+        return message;
+    }
+
     @Override
     public void sendMassMail(final Notification notification) {
-        SimpleMailMessage message = new SimpleMailMessage();
+        // fields like sender, reply-to, to are preset by default mail template.
+        MimeMailMessage message = newMimeMailMessage();
         List<String> recipients = new ArrayList<String>();
         for (InternetAddress iAddress : notification.getRecipients()) {
             recipients.add(iAddress.toString());
@@ -55,21 +82,30 @@ public class MailService implements IMailService {
         if (notification.isBccMySelf()) {
             recipients.add(getCurrentUserEmail());
         }
-        message.setBcc(recipients.toArray(new String[] {}));
+        message.setBcc(recipients.toArray(new String[]{}));
         message.setReplyTo(getCurrentUserEmail());
         message.setSubject(notification.getSubject());
         message.setText(notification.getBody());
-         // fields like sender, reply-to, to are preset by default mail template.
+        Notification.Attachment attachment = notification.getAttachment();
+        if (attachment != null) {
+            try {
+                message.getMimeMessageHelper().addAttachment(attachment.name, attachment.getInputStreamSource(), attachment.contentType);
+            } catch (MessagingException e) {
+                throw new RuntimeException(e);
+            }
+        }
         sendMail(message);
     }
 
     @Override
     public void sendMail(final String receiver, final String bcc, final String subject, final String content) {
         // mail to single person gets managers email as reply to.
-        SimpleMailMessage message = new SimpleMailMessage();
+        MimeMailMessage message = newMimeMailMessage();
         message.setReplyTo(getCurrentUserEmail());
         message.setTo(receiver);
-        message.setBcc(bcc);
+        if (bcc != null) {
+            message.setBcc(bcc);
+        }
         message.setSubject(subject);
         message.setText(content);
         sendMail(message);
@@ -78,33 +114,28 @@ public class MailService implements IMailService {
     /**
      * Send mail.
      *
-     * @param sender  the sender
-     * @param toList  the to list
-     * @param ccList  the cc list
-     * @param subject the subject
-     * @param content the content
-     * @param bccList the bcc list
      * @throws RuntimeException the mail interface exception
      */
-    public final void sendMail(SimpleMailMessage message) {
-        // Create a thread safe "copy" of the template message and customize it
-        SimpleMailMessage msg = new SimpleMailMessage(templateMessage);
-        message.copyTo(msg);
-        // use default undisclosed recipients address if no recipient is defined (like in mass mails)
-        // check if template is configured correctly.
-        String[] tmp = msg.getTo();
-        Check.isTrue(tmp.length > 0);
+    private final void sendMail(MimeMailMessage message) {
 
         try {
-            this.mailSender.send(msg);
+            mailSender.send(message.getMimeMessage());
         } catch (MailException e) {
             log.error("Error sending mail.", e);
             throw new RuntimeException(e);
         }
     }
 
+    public final void sendMail(SimpleMailMessage message) {
+        // Create a thread safe "copy" of the template message and customize it
+        MimeMailMessage msg = newMimeMailMessage();
+        message.copyTo(msg);
+        sendMail(msg);
+    }
+
     /**
      * Preset reply-to address with email of user that is triggering the email.
+     *
      * @return
      */
     private String getCurrentUserEmail() {
@@ -115,5 +146,4 @@ public class MailService implements IMailService {
             return null;
         }
     }
-
- }
+}
