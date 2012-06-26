@@ -1,4 +1,4 @@
-package de.flower.common.ui.calendar;
+package de.flower.rmt.ui.markup.html.calendar;
 
 import de.flower.common.test.wicket.AbstractWicketUnitTests;
 import org.apache.wicket.ajax.AjaxRequestTarget;

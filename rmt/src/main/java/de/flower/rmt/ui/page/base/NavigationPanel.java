@@ -7,7 +7,6 @@ import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.markup.html.form.renderer.EventRenderer;
 import de.flower.rmt.ui.page.account.AccountPage;
-import de.flower.rmt.ui.page.base.manager.ManagerHomePage;
 import de.flower.rmt.ui.page.calendar.CalendarPage;
 import de.flower.rmt.ui.page.event.manager.EventPage;
 import de.flower.rmt.ui.page.event.manager.EventTabPanel;
@@ -135,7 +134,7 @@ public class NavigationPanel extends RMTBasePanel {
             link.add(new Label("label", new ResourceModel("navigation.switch.player").getObject()));
         } else {
             // player can only switch to manager mode if he has MANAGER role
-            link = new BookmarkablePageLink(id, ManagerHomePage.class);
+            link = new BookmarkablePageLink(id, EventsPage.class);
             link.setVisible(getUser().isManager());
             link.add(new Label("label", new ResourceModel("navigation.switch.manager").getObject()));
         }

@@ -1,4 +1,4 @@
-package de.flower.common.ui.calendar;
+package de.flower.rmt.ui.markup.html.calendar;
 
 import org.joda.time.DateTime;
 

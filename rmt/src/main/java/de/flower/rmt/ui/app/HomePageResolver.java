@@ -1,7 +1,6 @@
 package de.flower.rmt.ui.app;
 
 import de.flower.rmt.model.db.entity.Role;
-import de.flower.rmt.ui.page.base.manager.ManagerHomePage;
 import de.flower.rmt.ui.page.events.player.EventsPage;
 import de.flower.rmt.ui.page.login.LoginPage;
 import org.apache.wicket.request.component.IRequestablePage;
@@ -19,7 +18,7 @@ public class HomePageResolver {
     public static Class<? extends IRequestablePage> getHomePage() {
         // get roles
         if (Authentication.hasRole(Role.Roles.MANAGER.getRoleName())) {
-            return ManagerHomePage.class;
+            return de.flower.rmt.ui.page.events.manager.EventsPage.class;
         } else if (Authentication.hasRole(Role.Roles.PLAYER.getRoleName())){
             return EventsPage.class;
         } else {

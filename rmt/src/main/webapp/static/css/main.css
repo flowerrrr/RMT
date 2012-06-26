@@ -46,6 +46,9 @@
 .navbar .caret {
     opacity: 0.6;
 }
+.navbar .dropdown-menu li > h6 {
+    padding-left: 15px;
+}
 
 /*************************************************************************
     base layout for pages
@@ -957,6 +960,7 @@ td.rsvpstatus {
             width: 100px;
         }
         .email {
+
             // width: auto;
         }
         .teams {

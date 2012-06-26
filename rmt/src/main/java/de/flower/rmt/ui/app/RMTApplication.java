@@ -5,7 +5,6 @@ import de.flower.common.ui.serialize.SerializerWrapper;
 import de.flower.rmt.ui.page.about.AboutPage;
 import de.flower.rmt.ui.page.about.ChangeLogPage;
 import de.flower.rmt.ui.page.account.AccountPage;
-import de.flower.rmt.ui.page.base.manager.ManagerHomePage;
 import de.flower.rmt.ui.page.calendar.CalendarPage;
 import de.flower.rmt.ui.page.error.AccessDenied403Page;
 import de.flower.rmt.ui.page.error.InternalError500Page;
@@ -96,7 +95,7 @@ public class RMTApplication extends WebApplication {
     }
 
     private void initBookmarkablePages() {
-        mountPage("manager", ManagerHomePage.class);
+        mountPage("manager", EventsPage.class);
         mountPage("manager/teams", TeamsPage.class);
         mountPage("manager/events", EventsPage.class);
         mountPage("manager/event/${" + EventPage.PARAM_EVENTID + "}", EventPage.class);
@@ -129,7 +128,7 @@ public class RMTApplication extends WebApplication {
         // access denied is not handled by wicket. spring security will redirect request to this url
         mountPage("error/403", AccessDenied403Page.class);
 
-        mountPage("error/page-expired", PageExpiredPage.class);
+        mountPage("error/" + PageExpiredPage.SC, PageExpiredPage.class);
         getApplicationSettings().setPageExpiredErrorPage(PageExpiredPage.class);
     }
 

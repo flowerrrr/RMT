@@ -1,10 +1,10 @@
 package de.flower.rmt.service;
 
-import de.flower.common.ui.calendar.CalEvent;
 import de.flower.rmt.model.db.entity.CalItem;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.type.CalendarType;
 import de.flower.rmt.model.dto.CalItemDto;
+import de.flower.rmt.ui.markup.html.calendar.CalEvent;
 import org.joda.time.DateTime;
 
 import javax.persistence.metamodel.Attribute;

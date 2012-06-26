@@ -1,8 +1,6 @@
 package de.flower.rmt.ui.page.calendar;
 
 import de.flower.common.ui.ajax.event.AjaxEventListener;
-import de.flower.common.ui.calendar.CalEvent;
-import de.flower.common.ui.calendar.FullCalendarPanel;
 import de.flower.rmt.model.db.entity.CalItem;
 import de.flower.rmt.model.db.entity.CalItem_;
 import de.flower.rmt.model.db.entity.User;
@@ -12,6 +10,8 @@ import de.flower.rmt.model.dto.CalItemDto;
 import de.flower.rmt.service.ICalendarManager;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.service.security.ISecurityService;
+import de.flower.rmt.ui.markup.html.calendar.CalEvent;
+import de.flower.rmt.ui.markup.html.calendar.FullCalendarPanel;
 import de.flower.rmt.ui.panel.RMTBasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;

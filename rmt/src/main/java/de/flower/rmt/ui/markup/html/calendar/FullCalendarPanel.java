@@ -1,8 +1,10 @@
-package de.flower.common.ui.calendar;
+package de.flower.rmt.ui.markup.html.calendar;
 
+import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import de.flower.common.ui.panel.BasePanel;
+import de.flower.rmt.ui.page.error.PageExpiredPage;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.behavior.AbstractAjaxBehavior;
@@ -99,12 +101,23 @@ public abstract class FullCalendarPanel extends BasePanel {
 
         options = options.replace("\"_select_\"", selectCallbackBehavior.getCallbackFunction());
 
+        int status = PageExpiredPage.SC;
+        CharSequence url = this.urlFor(PageExpiredPage.class, null);
+        options = options.replace("\"_error_\"", "function(jqXHR, textStatus, errorThrown) { " +
+            "if (jqXHR.status == " + status + ") window.location.href = '" + url + "'; " +
+            "}");
+
         return options;
     }
 
     private Map<String, Object> getOptions() {
         Map<String, Object> options = new HashMap<>();
-        options.put("events", jsonEventSourceBehavior.getCallbackUrl().toString());
+
+        Map<String, Object> eventSource = new HashMap<>();
+        eventSource.put("url", jsonEventSourceBehavior.getCallbackUrl().toString());
+        eventSource.put("error", "_error_");
+
+        options.put("eventSources", Lists.newArrayList(eventSource));
         options.put("eventClick", "_eventClick_"); // will be substituted after converting to json
         options.put("selectable", true);
         options.put("select", "_select_");
