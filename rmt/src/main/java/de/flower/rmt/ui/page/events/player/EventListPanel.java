@@ -25,7 +25,6 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
-import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.joda.time.DateTime;
@@ -50,7 +49,7 @@ public class EventListPanel extends BasePanel {
 
     public EventListPanel(final UserModel userModel) {
 
-        final IDataProvider<Event> dataProvider = new EventDataProvider(ITEMS_PER_PAGE, userModel);
+        final EventDataProvider dataProvider = new EventDataProvider(ITEMS_PER_PAGE, userModel);
         final WebMarkupContainer listContainer = new WebMarkupContainer("listContainer");
         add(listContainer);
         final DataView<Event> dataView = new DataView<Event>("list", dataProvider) {
@@ -64,9 +63,9 @@ public class EventListPanel extends BasePanel {
                 final Event event = item.getModelObject();
                 final EventModel eventModel = new EventModel(item.getModel());
 
-//                if (isNextEvent(event, getList())) {
-//                    item.add(AttributeModifier.append("class", "next-event"));
-//                }
+                if (dataProvider.isNextEvent(event)) {
+                    item.add(AttributeModifier.append("class", "next-event"));
+                }
                 if (event.isCanceled()) {
                     item.add(AttributeModifier.append("class", "canceled-event"));
                 }

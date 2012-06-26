@@ -19,6 +19,7 @@ import de.flower.rmt.repository.IEventRepo;
 import de.flower.rmt.service.mail.IMailService;
 import de.flower.rmt.service.mail.INotificationService;
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.support.MessageSourceAccessor;
@@ -116,6 +117,17 @@ public class EventManager extends AbstractService implements IEventManager {
             isUser = QEvent.event.invitations.any().user.eq(user);
         }
         return eventRepo.findAll(isUser, new PageRequest(page, size, Sort.Direction.DESC, Event_.dateTime.getName()), attributes).getContent();
+    }
+
+    @Override
+    public Event findNextEvent(final User user) {
+        BooleanExpression isUser = null;
+        if (user != null) {
+            isUser = QEvent.event.invitations.any().user.eq(user);
+        }
+        BooleanExpression isUpcomming = QEvent.event.dateTime.after(new LocalDate().toDateTimeAtStartOfDay());
+        List<Event> upcoming = eventRepo.findAll(isUpcomming.and(isUser), new PageRequest(0, 1, Sort.Direction.ASC, Event_.dateTime.getName())).getContent();
+        return (upcoming.isEmpty()) ? null : upcoming.get(0);
     }
 
     @Override

@@ -27,6 +27,8 @@ public class EventDataProvider extends InjectorAwareObject implements IDataProvi
 
     private IModel<User> userModel;
 
+    private Long nextEventId;
+
     public EventDataProvider(final int itemsPerPage) {
         this(itemsPerPage, null);
     }
@@ -51,6 +53,16 @@ public class EventDataProvider extends InjectorAwareObject implements IDataProvi
         return size.intValue();
     }
 
+    /**
+     * Get the next upcoming event.
+     */
+    public boolean isNextEvent(Event event) {
+        if (nextEventId == null) {
+            nextEventId = eventManager.findNextEvent(getUser()).getId();
+        }
+        return event.getId().equals(nextEventId);
+    }
+
     @Override
     public IModel<Event> model(final Event object) {
         return new EventModel<Event>(object);
@@ -62,10 +74,10 @@ public class EventDataProvider extends InjectorAwareObject implements IDataProvi
         if (userModel != null) {
             this.userModel.detach();
         }
+        this.nextEventId = null;
     }
 
     private User getUser() {
         return (userModel == null) ? null : userModel.getObject();
     }
-
 }

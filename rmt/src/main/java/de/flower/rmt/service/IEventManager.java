@@ -38,6 +38,8 @@ public interface IEventManager {
 
     List<Event> findAll(int page, int size, final User user, EntityPath<?>... attributes);
 
+    Event findNextEvent(User user);
+
     List<Event> findAllByDateRange(DateTime start, DateTime end, EntityPath<?>... attributes);
 
     List<Event> findAllByDateRangeAndUser(DateTime start, DateTime end, final User user, EntityPath<?>... attributes);

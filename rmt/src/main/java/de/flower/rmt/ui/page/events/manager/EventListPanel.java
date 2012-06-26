@@ -23,7 +23,6 @@ import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
-import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -40,7 +39,7 @@ public class EventListPanel extends BasePanel {
 
     public EventListPanel() {
 
-        final IDataProvider<Event> dataProvider = new EventDataProvider(ITEMS_PER_PAGE);
+        final EventDataProvider dataProvider = new EventDataProvider(ITEMS_PER_PAGE);
         final WebMarkupContainer listContainer = new WebMarkupContainer("listContainer");
         add(listContainer);
         final DataView<Event> dataView = new DataView<Event>("list", dataProvider) {
@@ -53,9 +52,9 @@ public class EventListPanel extends BasePanel {
             protected void populateItem(final Item<Event> item) {
                 final Event event = item.getModelObject();
 
-//                if (de.flower.rmt.ui.page.events.player.EventListPanel.isNextEvent(event, getList())) {
-//                    item.add(AttributeModifier.append("class", "next-event"));
-//                }
+                if (dataProvider.isNextEvent(event)) {
+                    item.add(AttributeModifier.append("class", "next-event"));
+                }
                 if (event.isCanceled()) {
                     item.add(AttributeModifier.append("class", "canceled-event"));
                 }
