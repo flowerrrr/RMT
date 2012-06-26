@@ -202,6 +202,7 @@ public class UserManager extends AbstractService implements IUserManager {
         validate(password);
         user.setInitialPassword(null);
         user.setEncryptedPassword(encodePassword(password.getNewPassword()));
+        userRepo.save(user);
     }
 
     private String encodePassword(String password) {

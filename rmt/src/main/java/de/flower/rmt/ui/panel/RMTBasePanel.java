@@ -35,7 +35,7 @@ public class RMTBasePanel<T> extends BasePanel<T> {
         add(AttributeModifier.append("class", new AbstractReadOnlyModel<String>() {
             @Override
             public String getObject() {
-                return "view-" + getView().toString().toLowerCase();
+                return (getView() == null) ? "" : "view-" + getView().toString().toLowerCase();
             }
         }));
     }

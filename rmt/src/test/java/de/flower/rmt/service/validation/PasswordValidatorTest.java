@@ -18,11 +18,12 @@ public class PasswordValidatorTest extends AbstractRMTIntegrationTests {
     @Test
     public void testValidation() {
         User user = testData.createUser();
+        String oldPassword = user.getInitialPassword();
         Password password = new Password(user.getId());
         String newPassword = "foobar";
         password.setNewPassword(newPassword);
         password.setNewPasswordRepeat(newPassword);
-        password.setOldPassword(passwordGenerator.generatePassword());
+        password.setOldPassword(oldPassword);
         Set<ConstraintViolation<Password>> violations = validator.validate(password);
         assertTrue(violations.isEmpty(), violations.toString());
 
