@@ -5,6 +5,7 @@
 @black:             #000;
 @grayDark:          lighten(@black, 25%);
 @grayMedium:        lighten(@black, 50%);
+@grayLight:         lighten(@black, 75%);
 @borderColor:       #DDDDDD;
 @widthContent:      560px;
 
@@ -649,11 +650,29 @@ table th, .table thead th, .table .th {
     background-color: #FFFFFF; // disable for special invitation table
 }
 
-.table td {
+.table tbody td {
     border-bottom: 1px solid #CCCCCC;
     word-wrap: break-word; // to avoid long text overflowing table cells
 }
 
+.table .paging {
+    text-align: right;
+    a {
+        color: @grayDark;
+    }
+    > span {
+        color: @grayLight; // disabled link.
+    }
+    a:hover {
+        text-decoration: none;
+    }
+    > * {
+        padding: 0px 5px; // more gaps between controls
+    }
+    .goto {
+        padding: 0px 2px; // less between pages
+    }
+}
 
 .show-on-hover {
     display: none;
@@ -733,7 +752,7 @@ td.rsvpstatus {
     padding-left: 4px;
     &:not(:last-child) {
         padding-right: 3px;
-        width: 14px; // both single and double digits should fit into
+        width: 15px; // both single and double digits should fit into
         display: inline-block;
     }
 }
@@ -1188,6 +1207,9 @@ iframe.wetteronline {
     overflow-y: scroll;
     overflow-x: hidden;
     padding-right: 5px; // to have some padding when scrollbar appears
+    ul {
+        width: 220px; // need for ipad
+    }
     li {
         padding: 5px 0px;
         border-bottom: 1px dotted #CCCCCC;

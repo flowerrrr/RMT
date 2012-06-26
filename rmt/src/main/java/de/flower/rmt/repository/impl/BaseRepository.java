@@ -148,6 +148,16 @@ public class BaseRepository<T extends AbstractBaseEntity, ID extends Serializabl
         throw new UnsupportedOperationException("Feature not implemented!");
     }
 
+    @Override
+    public long count() {
+        return super.count(getDefaultPredicate());
+    }
+
+    @Override
+    public long count(final Predicate predicate) {
+        return super.count(getDefaultPredicate().and(predicate));
+    }
+
     private BooleanExpression getDefaultPredicate() {
         BooleanExpression predicate = isNotDeleted();
         Class<T> domainClass = entityInformation.getJavaType();

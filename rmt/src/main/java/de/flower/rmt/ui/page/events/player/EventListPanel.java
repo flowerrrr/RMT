@@ -1,7 +1,6 @@
 package de.flower.rmt.ui.page.events.player;
 
 import de.flower.common.ui.ajax.event.AjaxEventListener;
-import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.common.ui.tooltips.TooltipBehavior;
 import de.flower.rmt.model.db.entity.Invitation;
@@ -15,14 +14,18 @@ import de.flower.rmt.service.IResponseManager;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.model.UserModel;
+import de.flower.rmt.ui.page.events.EventDataProvider;
 import de.flower.rmt.ui.panel.QuickResponseLabel;
 import de.flower.rmt.util.Dates;
 import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.navigation.paging.AjaxPagingNavigator;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
-import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.model.IModel;
+import org.apache.wicket.markup.repeater.Item;
+import org.apache.wicket.markup.repeater.data.DataView;
+import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.joda.time.DateTime;
@@ -43,30 +46,27 @@ public class EventListPanel extends BasePanel {
     @SpringBean
     private IEventManager eventManager;
 
-    public EventListPanel(final UserModel userModel, final IModel<List<Event>> listModel) {
+    private static final int ITEMS_PER_PAGE = de.flower.rmt.ui.page.events.manager.EventListPanel.ITEMS_PER_PAGE;
 
-        WebMarkupContainer listContainer = new WebMarkupContainer("listContainer");
+    public EventListPanel(final UserModel userModel) {
+
+        final IDataProvider<Event> dataProvider = new EventDataProvider(ITEMS_PER_PAGE, userModel);
+        final WebMarkupContainer listContainer = new WebMarkupContainer("listContainer");
         add(listContainer);
-        listContainer.add(new WebMarkupContainer("noEntry") {
+        final DataView<Event> dataView = new DataView<Event>("list", dataProvider) {
             @Override
             public boolean isVisible() {
-                return listModel.getObject().isEmpty();
-            }
-        });
-        listContainer.add(new EntityListView<Event>("list", listModel) {
-            @Override
-            public boolean isVisible() {
-                return !getList().isEmpty();
+                return getItemCount() > 0;
             }
 
             @Override
-            protected void populateItem(final ListItem<Event> item) {
+            protected void populateItem(final Item<Event> item) {
                 final Event event = item.getModelObject();
                 final EventModel eventModel = new EventModel(item.getModel());
 
-                if (isNextEvent(event, getList())) {
-                    item.add(AttributeModifier.append("class", "next-event"));
-                }
+//                if (isNextEvent(event, getList())) {
+//                    item.add(AttributeModifier.append("class", "next-event"));
+//                }
                 if (event.isCanceled()) {
                     item.add(AttributeModifier.append("class", "canceled-event"));
                 }
@@ -102,13 +102,29 @@ public class EventListPanel extends BasePanel {
                 confirmCancelationLink.setVisible(event.isCanceled() && status != RSVPStatus.DECLINED);
                 item.add(confirmCancelationLink);
                 confirmCancelationLink.add(new TooltipBehavior(new ResourceModel("player.events.tooltip.confirm.cancelation")));
-
             }
 
             private Invitation getInvitation(final Event event, final User user) {
                 return invitationManager.loadByEventAndUser(event, user);
             }
+        };
+        dataView.setItemsPerPage(ITEMS_PER_PAGE);
+        listContainer.add(dataView);
+
+        listContainer.add(new WebMarkupContainer("noEntry") {
+            @Override
+            public boolean isVisible() {
+                return dataView.getItemCount() == 0;
+            }
         });
+
+        listContainer.add(new AjaxPagingNavigator("pager", dataView) {
+            @Override
+            protected void onAjaxEvent(AjaxRequestTarget target) {
+                target.add(listContainer);
+            }
+        });
+
         listContainer.add(new AjaxEventListener(Event.class));
     }
 
@@ -133,5 +149,4 @@ public class EventListPanel extends BasePanel {
         }
         return true;
     }
-
 }

@@ -26,44 +26,6 @@ import static org.testng.Assert.*;
 public class EventManagerTest extends AbstractRMTIntegrationTests {
 
     @Test
-    public void testFindUpcomingAndLastNByUser() {
-        // create team with some events in the future and some in the past
-        Team team = testData.createTeamWithPlayers("test team", 5);
-        int numFuture = 4;
-        List<Event> events = testData.createEventsWithInvitations(team, numFuture, false);
-        User user = team.getPlayers().get(0).getUser();
-        // need to reload user to get fresh instance from database
-        user = userRepo.findOne(user.getId());
-
-        // now do the tests
-        events = eventManager.findAllUpcomingAndLastNByUser(user, 5);
-        assertEquals(events.size(), numFuture);
-
-        // two events in the past
-        testData.createEventsWithInvitations(team, 2, true);
-        events = eventManager.findAllUpcomingAndLastNByUser(user, 5);
-        assertEquals(events.size(), numFuture + 2);
-    }
-
-    @Test
-    public void testFindLastNByUser() {
-        // create team with some events in the future and some in the past
-        Team team = testData.createTeamWithPlayers("test team", 4);
-        List<Event> events = testData.createEventsWithInvitations(team, 2, true);
-        User user = team.getPlayers().get(0).getUser();
-        // need to reload user to get fresh instance from database
-        user = userRepo.findOne(user.getId());
-
-        events = eventManager.findAllUpcomingAndLastNByUser(user, 5);
-        assertEquals(events.size(), 2);
-
-        // create more past events
-        testData.createEventsWithInvitations(team, 10, true);
-        events = eventManager.findAllUpcomingAndLastNByUser(user, 5);
-        assertEquals(events.size(), 5);
-    }
-
-    @Test
     public void testFindAllNextNHours() {
         Event event = testData.createEvent();
         List<Event> events;
@@ -96,11 +58,11 @@ public class EventManagerTest extends AbstractRMTIntegrationTests {
     }
 
     @Test
-    public void testUpcomingEventsByUserEagerFetchesTeams() {
+    public void testFindAllEventsByUserEagerFetchesTeams() {
         Team team = testData.createTeamWithPlayers("test team", 10);
         List<Event> events = testData.createEventsWithInvitations(team, 3, true);
         List<Invitation> invitations = invitationManager.findAllByEvent(events.get(0), Invitation_.user);
-        List<Event> list = eventManager.findAllUpcomingAndLastNByUser(invitations.get(0).getUser(), 3, QEvent.event.team);
+        List<Event> list = eventManager.findAll(0, 10, invitations.get(0).getUser(), QEvent.event.team);
         assertEquals(list.size(), 3);
         for (Event event : list) {
             // check if team can be accessed without LIE
@@ -147,7 +109,7 @@ public class EventManagerTest extends AbstractRMTIntegrationTests {
         User user = team.getPlayers().get(0).getUser();
         testData.createEventsWithInvitations(team, 10, true);
         testData.createEventsWithInvitations(team, 10, false);
-        List<Event> events = eventManager.findAllUpcomingAndLastNByUser(user, 100);
+        List<Event> events = eventManager.findAll(0, 20, user);
         Date last = new DateTime().plusYears(1000).toDate();
         for (Event event : events) {
             assertTrue(event.getDateTimeAsDate().getTime() <= last.getTime());

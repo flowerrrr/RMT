@@ -2,7 +2,8 @@ package de.flower.rmt.ui.page.base;
 
 import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.ui.app.IEventListProvider;
+import de.flower.rmt.model.db.entity.event.QEvent;
+import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.markup.html.form.renderer.EventRenderer;
@@ -30,6 +31,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.joda.time.DateTime;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -53,7 +55,7 @@ public class NavigationPanel extends RMTBasePanel {
     public static final String VENUES = "venues";
 
     @SpringBean
-    private IEventListProvider eventListModelProvider;
+    private IEventManager eventManager;
 
     public NavigationPanel(INavigationPanelAware page) {
 
@@ -111,10 +113,11 @@ public class NavigationPanel extends RMTBasePanel {
         return new LoadableDetachableModel<List<Event>>() {
             @Override
             protected List<Event> load() {
+                // from yesterday to next three month.
                 if (isManagerView()) {
-                    return eventListModelProvider.getManagerNavbarList();
+                    return eventManager.findAllByDateRangeAndUser(new DateTime().minusDays(1), new DateTime().plusMonths(3), null, QEvent.event.team);
                 } else {
-                    return eventListModelProvider.getPlayerNavbarList();
+                    return eventManager.findAllByDateRangeAndUser(new DateTime().minusDays(1), new DateTime().plusMonths(3), getUser(), QEvent.event.team);
                 }
             }
         };

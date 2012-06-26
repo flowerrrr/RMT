@@ -18,7 +18,6 @@ import de.flower.rmt.model.dto.Notification;
 import de.flower.rmt.repository.IEventRepo;
 import de.flower.rmt.service.mail.IMailService;
 import de.flower.rmt.service.mail.INotificationService;
-import org.apache.commons.lang3.ArrayUtils;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,7 +32,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.metamodel.Attribute;
 import java.util.List;
 
-import static de.flower.rmt.repository.Specs.*;
+import static de.flower.rmt.repository.Specs.eq;
+import static de.flower.rmt.repository.Specs.fetch;
 import static org.springframework.data.jpa.domain.Specifications.where;
 
 /**
@@ -100,36 +100,22 @@ public class EventManager extends AbstractService implements IEventManager {
     }
 
     @Override
-    public List<Event> findAll(Attribute... attributes) {
-        List<Event> list = eventRepo.findAll(where(desc(Event_.dateTime)).and(fetch(attributes)));
-        return list;
-    }
-
-    // @Override
-    public List<Event> findAllUpcomingAndLastNByManager(Attribute... attributes) {
-        throw new UnsupportedOperationException("Method not implemented!");
-    }
-
-    private List<Event> findAllUpcomingByUser(final User user, EntityPath<?>... attributes) {
-        Check.notNull(user);
-        BooleanExpression future = QEvent.event.dateTime.after(new DateTime());
-        BooleanExpression isUser = QEvent.event.invitations.any().user.eq(user);
-        return eventRepo.findAll(future.and(isUser), QEvent.event.dateTime.desc(), attributes);
-    }
-
-    private List<Event> findLastNByUser(final User user, final int num, EntityPath<?>... attributes) {
-        Check.notNull(user);
-        BooleanExpression beforeNow = QEvent.event.dateTime.before(new DateTime());
-        BooleanExpression isUser = QEvent.event.invitations.any().user.eq(user);
-        return eventRepo.findAll(beforeNow.and(isUser), new PageRequest(0, num, Sort.Direction.DESC, Event_.dateTime.getName()), attributes).getContent();
+    public long getNumEventsByUser(final User user) {
+        if (user != null) {
+            BooleanExpression isUser = QEvent.event.invitations.any().user.eq(user);
+            return eventRepo.count(isUser);
+        } else {
+            return eventRepo.count();
+        }
     }
 
     @Override
-    public List<Event> findAllUpcomingAndLastNByUser(final User user, int num, EntityPath<?>... attributes) {
-        List<Event> upcoming = findAllUpcomingByUser(user, attributes);
-        List<Event> lastN = findLastNByUser(user, num, attributes);
-        upcoming.addAll(lastN);
-        return upcoming;
+    public List<Event> findAll(final int page, final int size, final User user, final EntityPath<?>... attributes) {
+        BooleanExpression isUser = null;
+        if (user != null) {
+            isUser = QEvent.event.invitations.any().user.eq(user);
+        }
+        return eventRepo.findAll(isUser, new PageRequest(page, size, Sort.Direction.DESC, Event_.dateTime.getName()), attributes).getContent();
     }
 
     @Override
@@ -142,9 +128,19 @@ public class EventManager extends AbstractService implements IEventManager {
     }
 
     @Override
-    public List<Event> findAllByDateRange(final DateTime start, final DateTime end) {
+    public List<Event> findAllByDateRange(final DateTime start, final DateTime end, EntityPath<?>... attributes) {
         BooleanExpression isBeetween = QEvent.event.dateTime.between(start, end);
-        return eventRepo.findAll(isBeetween);
+        return eventRepo.findAll(isBeetween, attributes);
+    }
+
+    @Override
+    public List<Event> findAllByDateRangeAndUser(final DateTime start, final DateTime end, final User user, EntityPath<?>... attributes) {
+        BooleanExpression isBeetween = QEvent.event.dateTime.between(start, end);
+        BooleanExpression isUser = null;
+        if (user != null) {
+            isUser = QEvent.event.invitations.any().user.eq(user);
+        }
+        return eventRepo.findAll(isBeetween.and(isUser), attributes);
     }
 
     @Override
@@ -175,15 +171,6 @@ public class EventManager extends AbstractService implements IEventManager {
         return event;
     }
 
-    @Override
-    public Event loadByIdAndUser(final Long id, final User user) {
-        Event event = loadById(id);
-        // is this event related to the club of the user?
-        Check.isEqual(event.getClub(), user.getClub());
-        // is user an invitee of this event
-        Invitation invitation = invitationManager.loadByEventAndUser(event, user);
-        return event;
-    }
 
     @Override
     public void sendInvitationMail(final Long eventId, final Notification notification) {
@@ -194,23 +181,6 @@ public class EventManager extends AbstractService implements IEventManager {
         // update all invitations and mark them also with invitationSent = true (allows to later add invitations and send mails to new participants)
         invitationManager.markInvitationSent(event, notification.getAddressList(), null);
         activityManager.onInvitationMailSent(event);
-    }
-
-    /**
-     * Initializes (fetches) associations of entity.
-     * Not sure if this way or  #loadById(event.getId(), attributes) is better, faster, more reliable.
-     */
-    @Override
-    @Deprecated // experimental
-    public Event initAssociations(final Event event, final Attribute... attributes) {
-        eventRepo.reattach(event);
-        if (ArrayUtils.contains(attributes, Event_.team)) {
-            event.getTeam().getName();
-        }
-        if (ArrayUtils.contains(attributes, Event_.venue)) {
-            event.getVenue().getName();
-        }
-        return event;
     }
 
     @Override

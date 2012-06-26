@@ -34,11 +34,13 @@ public interface IEventManager {
 
     Event loadById(Long id, Attribute... attributes);
 
-    List<Event> findAll(Attribute... attributes);
+    long getNumEventsByUser(final User user);
 
-    List<Event> findAllUpcomingAndLastNByUser(User user, int num, EntityPath<?>... attributes);
+    List<Event> findAll(int page, int size, final User user, EntityPath<?>... attributes);
 
-    List<Event> findAllByDateRange(DateTime start, DateTime end);
+    List<Event> findAllByDateRange(DateTime start, DateTime end, EntityPath<?>... attributes);
+
+    List<Event> findAllByDateRangeAndUser(DateTime start, DateTime end, final User user, EntityPath<?>... attributes);
 
     /**
      * Returns all events scheduled inside the next <code>hours</code>.
@@ -64,20 +66,7 @@ public interface IEventManager {
 
     Event newInstance(EventType eventType);
 
-    /**
-     * Used for deep links. Loads event and checks if user has access rights to this event.
-     *
-     * @param id
-     * @param user
-     * @return
-     */
-    Event loadByIdAndUser(Long id, User user);
-
     void sendInvitationMail(Long id, Notification notification);
-
-    @Deprecated
-        // experimental
-    Event initAssociations(Event event, Attribute... attributes);
 
     boolean isEventClosed(Event event);
 

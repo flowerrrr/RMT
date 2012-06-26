@@ -3,67 +3,59 @@ package de.flower.rmt.ui.page.events.manager;
 import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.ajax.markup.html.AjaxLinkWithConfirmation;
-import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.common.ui.tooltips.TooltipBehavior;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.EventType;
 import de.flower.rmt.service.IEventManager;
-import de.flower.rmt.ui.app.IEventListProvider;
 import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.page.event.manager.EventPage;
 import de.flower.rmt.ui.page.event.manager.EventTabPanel;
+import de.flower.rmt.ui.page.events.EventDataProvider;
 import de.flower.rmt.ui.panel.DropDownMenuPanel;
 import de.flower.rmt.util.Dates;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.navigation.paging.AjaxPagingNavigator;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
-import org.apache.wicket.markup.html.list.ListItem;
+import org.apache.wicket.markup.repeater.Item;
+import org.apache.wicket.markup.repeater.data.DataView;
+import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-
-import java.util.List;
 
 /**
  * @author flowerrrr
  */
 public class EventListPanel extends BasePanel {
 
+    public static final int ITEMS_PER_PAGE = 10;
+
     @SpringBean
     private IEventManager eventManager;
 
-    @SpringBean
-    private IEventListProvider eventListProvider;
-
     public EventListPanel() {
 
-        final IModel<List<Event>> listModel = getListModel();
-        WebMarkupContainer listContainer = new WebMarkupContainer("listContainer");
+        final IDataProvider<Event> dataProvider = new EventDataProvider(ITEMS_PER_PAGE);
+        final WebMarkupContainer listContainer = new WebMarkupContainer("listContainer");
         add(listContainer);
-        listContainer.add(new WebMarkupContainer("noEntry") {
+        final DataView<Event> dataView = new DataView<Event>("list", dataProvider) {
             @Override
             public boolean isVisible() {
-                return listModel.getObject().isEmpty();
-            }
-        });
-        listContainer.add(new EntityListView<Event>("list", listModel) {
-            @Override
-            public boolean isVisible() {
-                return !getList().isEmpty();
+                return getItemCount() > 0;
             }
 
             @Override
-            protected void populateItem(final ListItem<Event> item) {
+            protected void populateItem(final Item<Event> item) {
                 final Event event = item.getModelObject();
 
-                if (de.flower.rmt.ui.page.events.player.EventListPanel.isNextEvent(event, getList())) {
-                    item.add(AttributeModifier.append("class", "next-event"));
-                }
+//                if (de.flower.rmt.ui.page.events.player.EventListPanel.isNextEvent(event, getList())) {
+//                    item.add(AttributeModifier.append("class", "next-event"));
+//                }
                 if (event.isCanceled()) {
                     item.add(AttributeModifier.append("class", "canceled-event"));
                 }
@@ -90,18 +82,29 @@ public class EventListPanel extends BasePanel {
                         }, "button.delete");
                 item.add(menuPanel);
             }
+
+        };
+        dataView.setItemsPerPage(ITEMS_PER_PAGE);
+        listContainer.add(dataView);
+
+        listContainer.add(new WebMarkupContainer("noEntry") {
+            @Override
+            public boolean isVisible() {
+                return dataView.getItemCount() == 0;
+            }
         });
+
+        listContainer.add(new AjaxPagingNavigator("pager", dataView) {
+            @Override
+            protected void onAjaxEvent(AjaxRequestTarget target) {
+                target.add(listContainer);
+            }
+        });
+
         listContainer.add(new AjaxEventListener(Event.class));
+
     }
 
-    private IModel<List<Event>> getListModel() {
-        return new LoadableDetachableModel<List<Event>>() {
-            @Override
-            protected List<Event> load() {
-                return eventListProvider.getManagerEventListPanelList();
-            }
-        };
-    }
 
     private Link createInvitationsLink(String id, final IModel<Event> model) {
         return new BookmarkablePageLink(id, EventPage.class, EventPage.getPageParams(model.getObject().getId(), EventTabPanel.INVITATIONS_PANEL_INDEX));

@@ -39,9 +39,10 @@
                 <value>de.flower.rmt.model.dto..*</value>
                 <value>de.flower.rmt.ui.feedback..*Message</value>
                 <value>de.flower.rmt.ui.markup.html.form..*</value>
-                <value>de.flower.rmt.ui.page.event.EventDetailsPanel$SurfaceListLabel</value>
-                <value>de.flower.rmt.ui.page.event.EventDetailsPanel$UniformLabel</value>
+                <value>de.flower.rmt.ui.page.event.EventDetailsPanel\$SurfaceListLabel</value>
+                <value>de.flower.rmt.ui.page.event.EventDetailsPanel\$UniformLabel</value>
                 <value>de.flower.rmt.ui.panel.QuickResponseLabel</value>
+                <value>de.flower.rmt.ui.page.events.EventDataProvider</value>
                 <value>java.lang.Object</value>
                 <value>java.util.AbstractList</value>
                 <value>javax.mail.internet.InternetAddress</value>
@@ -52,7 +53,7 @@
                 <!-- for TimeDropDownChoice -->
                 <value>org.joda.time.LocalTime</value>
                 <value>org.joda.time.tz.FixedDateTimeZone</value>
-                <value>java.util.Arrays$ArrayList</value>
+                <value>java.util.Arrays\$ArrayList</value>
             </list>
         </property>
     </bean>
