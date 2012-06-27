@@ -26,11 +26,11 @@ public interface INotificationService {
 
     /**
      * Presets notification with template strings.
+     *
      * @param event
-     * @param eventLink
      * @return
      */
-    Notification newEventNotification(Event event, String eventLink);
+    Notification newEventNotification(Event event);
 
     void sendNoResponseReminder(Event event, List<Invitation> invitations);
 

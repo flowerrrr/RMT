@@ -66,6 +66,13 @@ public class Event extends AbstractClubRelatedEntity {
     @Index(name = "ix_datetime")
     private DateTime dateTime;
 
+    /**
+     * Optional field. Needed for iCalender objects
+     */
+    @Column
+    @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+    private DateTime dateTimeEnd;
+
     @Column
     @NotBlank
     @Size(max = 50)
@@ -212,6 +219,19 @@ public class Event extends AbstractClubRelatedEntity {
      */
     public void initTransientFields() {
         setDateTime(getDateTime());
+    }
+
+    public DateTime getDateTimeEnd() {
+        if (dateTimeEnd == null & getDateTime() != null && getEventType() != null) {
+             // guess duration of event.
+             return getDateTime().plusMinutes(getEventType().getDurationMinutes());
+         }  else {
+            return dateTimeEnd;
+        }
+    }
+
+    public void setDateTimeEnd(final DateTime dateTimeEnd) {
+        this.dateTimeEnd = dateTimeEnd;
     }
 
     // **************************************************

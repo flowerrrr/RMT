@@ -5,6 +5,7 @@ import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.dto.Password;
 
+import javax.mail.internet.InternetAddress;
 import javax.persistence.metamodel.Attribute;
 import java.util.List;
 
@@ -74,4 +75,5 @@ public interface IUserManager {
 
     void sendInvitation(Long userId);
 
+    List<InternetAddress> getAddressesForfAllUsers();
 }

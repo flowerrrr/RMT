@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
  * @author flowerrrr
  */
 @Component
+@Deprecated // should use LinkProvider instead
 public class WicketLinkProvider implements ILinkProvider {
 
     @Override

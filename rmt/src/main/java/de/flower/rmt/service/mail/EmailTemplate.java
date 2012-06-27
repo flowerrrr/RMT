@@ -12,7 +12,8 @@ public enum EmailTemplate {
     NORESPONSE_REMINDER,
     UNSURE_REMINDER,
     EVENT_CANCELED,
-    EVENT_DETAILS;
+    EVENT_DETAILS,
+    EVENT_ICALENDAR;
 
     public String getTemplate() {
         return (this.name() + ".vm").toLowerCase();

@@ -45,17 +45,13 @@ public class InviteeListPanel extends BasePanel {
 
             // @Override
             protected void populateItem(final ListItem<Invitation> item) {
+                Invitation invitation = item.getModelObject();
                 Link editLink = createEditLink("editLink", item);
                 editLink.add(new Label("name", item.getModelObject().getName()));
                 item.add(editLink);
 
-                WebMarkupContainer invitationNotSent = new WebMarkupContainer("invitationNotSent") {
-
-                    @Override
-                    public boolean isVisible() {
-                        return !item.getModelObject().isInvitationSent();
-                    }
-                };
+                WebMarkupContainer invitationNotSent = new WebMarkupContainer("invitationNotSent");
+                invitationNotSent.setVisible(!invitation.isInvitationSent() && invitation.hasEmail());
                 invitationNotSent.add(new TooltipBehavior(new ResourceModel("manager.invitee.tooltip.invitiation.not.send")));
                 item.add(invitationNotSent);
 

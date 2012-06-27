@@ -23,7 +23,7 @@ public class Dates {
 
     public static final String DATE_MEDIUM_WITH_WEEKDAY = "EE. dd.MM.yy";
 
-    public static final String TIME_SHORT = "hh:mm";
+    public static final String TIME_SHORT = "HH:mm";
 
     public static final String DATE_TIME_SHORT = DATE_SHORT + " " + TIME_SHORT;
 

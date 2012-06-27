@@ -8,18 +8,21 @@ import de.flower.rmt.model.db.entity.event.*;
  */
 public enum EventType {
 
-    Event(Event.class, 0),
-    Match(Match.class, 45),
-    Training(Training.class, 15),
-    Tournament(Tournament.class, 45);
+    Event(Event.class, 0, 4*60 /* only a guess */),
+    Match(Match.class, 45, 45 + 115 /* pre-action + match */),
+    Training(Training.class, 15, 15 + 90),
+    Tournament(Tournament.class, 45, 45 + 6 * 60);
 
     private Class<? extends Event> clazz;
 
     private int meetBeforeKickOffMinutes;
 
-    private EventType(Class<? extends Event> clazz, int meetBeforeKickOffMinutes) {
+    private int durationMinutes;
+
+    private EventType(Class<? extends Event> clazz, int meetBeforeKickOffMinutes, int durationMinutes) {
         this.clazz = clazz;
         this.meetBeforeKickOffMinutes = meetBeforeKickOffMinutes;
+        this.durationMinutes = durationMinutes;
     }
 
     public String getResourceKey() {
@@ -70,4 +73,9 @@ public enum EventType {
     public int getMeetBeforeKickOffMinutes() {
         return meetBeforeKickOffMinutes;
     }
+
+    public int getDurationMinutes() {
+        return durationMinutes;
+    }
+
 }

@@ -1,6 +1,8 @@
 package de.flower.rmt.service;
 
+import com.google.common.base.Function;
 import com.google.common.base.Predicate;
+import com.google.common.collect.Lists;
 import de.flower.common.service.security.IPasswordGenerator;
 import de.flower.common.util.Check;
 import de.flower.common.util.NameFinder;
@@ -18,6 +20,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Nullable;
+import javax.mail.internet.InternetAddress;
 import javax.persistence.metamodel.Attribute;
 import javax.validation.Validator;
 import java.util.List;
@@ -218,4 +222,17 @@ public class UserManager extends AbstractService implements IUserManager {
         userRepo.save(user);
     }
 
+    @Override
+    public List<InternetAddress> getAddressesForfAllUsers() {
+        List<User> users = findAll();
+        // convert to list of internet addresses
+        List<InternetAddress[]> internetAddresses = Lists.transform(users, new Function<User, InternetAddress[]>() {
+
+            @Override
+            public InternetAddress[] apply(@Nullable final User user) {
+                return user.getInternetAddresses();
+            }
+        });
+        return de.flower.common.util.Collections.flattenArray(internetAddresses);
+    }
 }

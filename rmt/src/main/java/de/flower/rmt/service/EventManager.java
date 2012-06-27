@@ -126,7 +126,8 @@ public class EventManager extends AbstractService implements IEventManager {
             isUser = QEvent.event.invitations.any().user.eq(user);
         }
         BooleanExpression isUpcomming = QEvent.event.dateTime.after(new LocalDate().toDateTimeAtStartOfDay());
-        List<Event> upcoming = eventRepo.findAll(isUpcomming.and(isUser), new PageRequest(0, 1, Sort.Direction.ASC, Event_.dateTime.getName())).getContent();
+        BooleanExpression notCanceled = QEvent.event.canceled.isTrue().not();
+        List<Event> upcoming = eventRepo.findAll(isUpcomming.and(isUser).and(notCanceled), new PageRequest(0, 1, Sort.Direction.ASC, Event_.dateTime.getName())).getContent();
         return (upcoming.isEmpty()) ? null : upcoming.get(0);
     }
 

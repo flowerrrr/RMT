@@ -142,6 +142,9 @@ public class AbstractRMTIntegrationTests extends AbstractTestNGSpringContextTest
     protected IApplicationService applicationService;
 
     @Autowired
+    protected ILinkProvider linkProvider;
+
+    @Autowired
     protected SecurityContextHolderStrategy securityContextHolderStrategy;
 
     @Autowired

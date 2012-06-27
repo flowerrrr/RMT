@@ -25,7 +25,7 @@ public class Notification implements Serializable {
     @NotBlank
     private String body;
 
-    private Boolean bccMySelf;
+    private boolean bccMySelf;
 
     private Attachment attachment;
 
@@ -53,11 +53,11 @@ public class Notification implements Serializable {
         this.body = body;
     }
 
-    public Boolean isBccMySelf() {
+    public boolean isBccMySelf() {
         return bccMySelf;
     }
 
-    public void setBccMySelf(final Boolean bccMySelf) {
+    public void setBccMySelf(final boolean bccMySelf) {
         this.bccMySelf = bccMySelf;
     }
 
@@ -98,8 +98,34 @@ public class Notification implements Serializable {
 
         public byte[] data;
 
+        public String getName() {
+            return name;
+        }
+
+        public void setName(final String name) {
+            this.name = name;
+        }
+
+        public String getContentType() {
+            return contentType;
+        }
+
+        public void setContentType(final String contentType) {
+            this.contentType = contentType;
+        }
+
+
         public InputStreamSource getInputStreamSource() {
             return new ByteArrayResource(data);
+        }
+
+        @Override
+        public String toString() {
+            return "Attachment{" +
+                    "name='" + name + '\'' +
+                    ", contentType='" + contentType + '\'' +
+                    ", data=" + data == null ? "" : new String(data) +
+                    '}';
         }
     }
 }

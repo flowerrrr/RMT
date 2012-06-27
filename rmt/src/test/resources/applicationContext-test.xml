@@ -8,7 +8,7 @@
 
     <!-- overriding mailsender to avoid sending mails by unit tests -->
     <!-- overriding in javaconfig doesn't seem to work -->
-    <bean id="mailSender" class="de.flower.common.test.mock.MockMailSender">
+    <bean id="mailSender" class="de.flower.common.test.mock.MockJavaMailSender">
 
     </bean>
 

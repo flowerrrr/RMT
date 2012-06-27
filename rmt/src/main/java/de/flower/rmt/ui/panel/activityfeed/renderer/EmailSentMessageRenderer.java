@@ -11,7 +11,7 @@ public class EmailSentMessageRenderer extends AbstractEventMessageRenderer imple
 
     @Override
     public String toString(final EmailSentMessage message) {
-        Object[] params = new Object[]{ getEventLink(message) };
+        Object[] params = new Object[]{ getEventArticle(message), getEventLink(message) };
         String s = new StringResourceModel("activity.event.notification.sent.message", Model.of(message), params).getObject();
         return s;
     }

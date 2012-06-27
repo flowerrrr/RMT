@@ -50,9 +50,10 @@ public class NotificationServiceTest extends AbstractRMTIntegrationTests {
         event = eventManager.loadById(event.getId());
         Uniform uniform = uniformManager.findAllByTeam(event.getTeam()).get(0); // must be same as in create event
         String eventLink = "http://flower.de/event/4";
-        Notification notification = notificationService.newEventNotification(event, eventLink);
+        Notification notification = notificationService.newEventNotification(event);
         log.info(notification.getSubject());
         log.info(notification.getBody());
+        log.info(notification.getAttachment().toString());
         assertFalse(notification.getBody().contains("Gegner"));
         assertTrue(notification.getBody().contains("Trikotsatz: Hemd: " + uniform.getShirt()
                 + ", Hose: " + uniform.getShorts() + ", Stutzen: " + uniform.getSocks()));
@@ -64,9 +65,10 @@ public class NotificationServiceTest extends AbstractRMTIntegrationTests {
         match.getSurfaceList().clear();
         match.setUniform(null);
         eventManager.save(match);
-        notification = notificationService.newEventNotification(match, eventLink);
+        notification = notificationService.newEventNotification(match);
         log.info(notification.getSubject());
         log.info(notification.getBody());
+        log.info(notification.getAttachment().toString());
         assertTrue(notification.getBody().contains("Ort: <noch nicht festgelegt>"));
         assertTrue(notification.getBody().contains("Untergrund: <unbekannt>"));
         assertTrue(notification.getBody().contains("Trikotsatz: <nicht festgelegt>"));

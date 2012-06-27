@@ -80,7 +80,7 @@ public class NavigationPanel extends RMTBasePanel {
                 } else {
                     link = new BookmarkablePageLink("link", de.flower.rmt.ui.page.event.player.EventPage.class, EventPage.getPageParams(item.getModelObject().getId()));
                 }
-                link.add(new Label("label", EventRenderer.getTypeDateSummary(item.getModelObject())));
+                link.add(new Label("label", EventRenderer.getDateTeamTypeSummary(item.getModelObject())));
                 item.add(link);
             }
         });

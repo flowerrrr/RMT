@@ -15,15 +15,9 @@ import java.net.URLConnection;
  */
 public class IO {
 
-    /**
-     * The Constant log.
-     */
     private final static Logger log = LoggerFactory.getLogger(IO.class);
 
     // prefix for all property keys
-    /**
-     * The Constant KEYPREFIX.
-     */
     private static final String KEYPREFIX = IO.class.getName() + ".";
 
     /**

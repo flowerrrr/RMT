@@ -1,5 +1,6 @@
 package de.flower.rmt.service.mail;
 
+import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.dto.Notification;
 import de.flower.rmt.test.AbstractRMTIntegrationTests;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -42,7 +43,6 @@ public class MailServiceTest extends AbstractRMTIntegrationTests {
     public void setUp() {
         log.info("Tests require local smtp server.");
         securityService.getUser().setEmail("no-reply@mailinator.com");
-        // mailSender.setHost("mail.flower.de");
     }
 
     /**
@@ -74,11 +74,27 @@ public class MailServiceTest extends AbstractRMTIntegrationTests {
             notification.addRecipient(prefix + "@mailinator.com", RandomStringUtils.random(20));
             Notification.Attachment attachment = new Notification.Attachment();
             attachment.name = "attachment-" + i;
-            attachment.contentType = "text/calendar";
+            attachment.contentType = ICalendarHelper.CONTENT_TYPE_MAIL;
             InputStream is = this.getClass().getResourceAsStream("MailServiceTest.ics.vm");
-            attachment.data = IOUtils.toByteArray(is);
+            String text = IOUtils.toString(is);
+            attachment.data = ICalendarHelper.getBytes(text);
             notification.setAttachment(attachment);
         }
         mailService.sendMassMail(notification);
     }
+
+    /**
+     * Test uses real smtp server.
+     * Set to enabled=false before committing.
+     */
+    @Test(enabled = false)
+    public void testICalendarAttachment() {
+        mailSender.setHost("mail.flower.de");
+        Event event = testData.createEvent();
+        Notification notification = notificationService.newEventNotification(event);
+        String address = "oliver@flower.de";
+        notification.addRecipient(address, null);
+        mailService.sendMassMail(notification);
+        log.info("Check postbox at [{}] for email.", address);
+     }
 }

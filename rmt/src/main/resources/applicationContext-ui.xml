@@ -43,6 +43,7 @@
                 <value>de.flower.rmt.ui.page.event.EventDetailsPanel\$UniformLabel</value>
                 <value>de.flower.rmt.ui.panel.QuickResponseLabel</value>
                 <value>de.flower.rmt.ui.page.events.EventDataProvider</value>
+                <value>de.flower.rmt.ui.panel..*</value>
                 <value>java.lang.Object</value>
                 <value>java.util.AbstractList</value>
                 <value>javax.mail.internet.InternetAddress</value>

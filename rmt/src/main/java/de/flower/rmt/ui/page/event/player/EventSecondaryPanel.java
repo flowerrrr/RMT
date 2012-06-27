@@ -11,6 +11,7 @@ import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.page.event.EventCanceledPanel;
 import de.flower.rmt.ui.page.event.EventDetailsPanel;
+import de.flower.rmt.ui.panel.DownloadIcsLink;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
@@ -37,6 +38,8 @@ public class EventSecondaryPanel extends BasePanel {
         add(Links.mailLink("allMailLink", invitationManager.getAddressesForfAllInvitees(model.getObject())));
 
         add(Links.mailLink("managerMailLink", getManagerEmailAddress(model.getObject()), null));
+
+        add(new DownloadIcsLink("icsLink", model, "event.ics"));
     }
 
     private static String getManagerEmailAddress(final Event event) {

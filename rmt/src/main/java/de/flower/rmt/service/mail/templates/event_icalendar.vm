@@ -1,0 +1,14 @@
+BEGIN:VCALENDAR
+PRODID:-//flower.de//das-tool Event Calendar//EN
+VERSION:2.0
+METHOD:PUBLISH
+BEGIN:VEVENT
+DTSTART:$dtstart
+DTEND:$dtend
+UID:$uid
+DTSTAMP:$dtstamp
+LOCATION:$location
+SUMMARY:$summary
+DESCRIPTION:$description
+END:VEVENT
+END:VCALENDAR

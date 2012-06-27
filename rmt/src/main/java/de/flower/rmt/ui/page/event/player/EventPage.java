@@ -46,7 +46,8 @@ public class EventPage extends PlayerBasePage {
             log.warn("EventPage accessed with invalid parameter: " + e.toString());
             throw new AbortWithHttpErrorCodeException(404, "Invalid page parameter: " + e.getMessage());
         }
-        init(new EventModel(event));
+        // as associations are often needed use a fully initialized event object model.
+        init(new EventModel(event, true));
     }
 
     public static PageParameters getPageParams(Long eventId) {

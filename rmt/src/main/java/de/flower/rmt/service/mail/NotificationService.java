@@ -2,6 +2,7 @@ package de.flower.rmt.service.mail;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.Uniform;
@@ -11,6 +12,7 @@ import de.flower.rmt.model.db.type.EventType;
 import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.model.dto.Notification;
 import de.flower.rmt.service.IEventManager;
+import de.flower.rmt.service.IICalendarProvider;
 import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.service.ILinkProvider;
 import de.flower.rmt.ui.app.Links;
@@ -32,7 +34,7 @@ import java.util.*;
  * @author flowerrrr
  */
 @Service
-public class NotificationService implements INotificationService {
+public class NotificationService implements INotificationService, IICalendarProvider {
 
     private final static Logger log = LoggerFactory.getLogger(NotificationService.class);
 
@@ -132,31 +134,61 @@ public class NotificationService implements INotificationService {
     }
 
     @Override
-    public Notification newEventNotification(final Event eventIn, String eventLink) {
+    public Notification newEventNotification(final Event eventIn) {
         Event event = eventManager.loadById(eventIn.getId(), Event_.venue, Event_.team, AbstractSoccerEvent_.uniform, Match_.opponent);
-        return getNewEventNotification(event, eventLink);
+        return getNewEventNotification(event);
     }
 
     @VisibleForTesting
-    protected Notification getNewEventNotification(Event event, String eventLink) {
+    protected Notification getNewEventNotification(Event event) {
 
         Notification notification = new Notification();
 
-        final Map<String, Object> model = getEventDetailsModel(event, eventLink);
+        final Map<String, Object> model = getEventDetailsModel(event);
         String eventDetails = templateService.mergeTemplate(EmailTemplate.EVENT_DETAILS.getTemplate(), model);
         model.put("eventDetails", eventDetails);
 
         notification.setSubject(templateService.mergeTemplate(EmailTemplate.NOTIFICATION_EVENT.getSubject(), model));
         notification.setBody(templateService.mergeTemplate(EmailTemplate.NOTIFICATION_EVENT.getContent(), model));
+
+        // create iCalendar attachment
+        notification.setAttachment(getCalendarAttachment(event));
+
         return notification;
+    }
+
+    @Override
+    public String getICalendar(final Event event) {
+        final Map<String, Object> model = Maps.newHashMap();
+        ICalendarHelper iCalendarHelper = new ICalendarHelper(event);
+        model.put("uid", iCalendarHelper.getUid());
+        model.put("dtstart", iCalendarHelper.getDtstart());
+        model.put("dtend", iCalendarHelper.getDtend());
+        model.put("dtstamp", iCalendarHelper.getDtstamp());
+        model.put("summary", iCalendarHelper.getSummary());
+        model.put("description", iCalendarHelper.getDescription(getEventDetails(event)));
+        model.put("location", iCalendarHelper.getLocation());
+
+        String iCalender = templateService.mergeTemplate(EmailTemplate.EVENT_ICALENDAR.getTemplate(), model);
+        return iCalender;
+    }
+
+    @VisibleForTesting
+    protected Notification.Attachment getCalendarAttachment(Event event) {
+
+        Notification.Attachment attachment = new Notification.Attachment();
+        attachment.name = messageSource.getMessage("icalendar.name");
+        attachment.contentType = ICalendarHelper.CONTENT_TYPE_MAIL;
+
+        attachment.data = ICalendarHelper.getBytes(getICalendar(event));
+        return attachment;
     }
 
     @Override
     public void sendNoResponseReminder(Event event, final List<Invitation> invitations) {
         Check.isTrue(!event.isCanceled(), "Trying to send reminder mail for canceled event.");
         log.info("Sending no-response reminder to [{}]", invitations);
-        String eventLink = linkProvider.deepLinkEvent(event.getId());
-        SimpleMailMessage message = getNoResponseReminderMessage(event, eventLink);
+        SimpleMailMessage message = getNoResponseReminderMessage(event);
 
         List<String> to = Lists.newArrayList();
         for (Invitation invitation : invitations) {
@@ -178,10 +210,10 @@ public class NotificationService implements INotificationService {
     }
 
     @VisibleForTesting
-    protected SimpleMailMessage getNoResponseReminderMessage(final Event event, final String eventLink) {
+    protected SimpleMailMessage getNoResponseReminderMessage(final Event event) {
         SimpleMailMessage message = new SimpleMailMessage();
 
-        final Map<String, Object> model = getEventDetailsModel(event, eventLink);
+        final Map<String, Object> model = getEventDetailsModel(event);
         String eventDetails = templateService.mergeTemplate(EmailTemplate.EVENT_DETAILS.getTemplate(), model);
         model.put("eventDetails", eventDetails);
 
@@ -195,8 +227,7 @@ public class NotificationService implements INotificationService {
     public void sendUnsureReminder(final Event event, final List<Invitation> invitations) {
         Check.isTrue(!event.isCanceled(), "Trying to send reminder mail for canceled event.");
         log.info("Sending unsure reminder to [{}]", invitations);
-        String eventLink = linkProvider.deepLinkEvent(event.getId());
-        SimpleMailMessage message = getUnsureReminderMessage(event, eventLink);
+        SimpleMailMessage message = getUnsureReminderMessage(event);
 
         List<String> to = Lists.newArrayList();
         for (Invitation invitation : invitations) {
@@ -218,10 +249,10 @@ public class NotificationService implements INotificationService {
     }
 
     @VisibleForTesting
-    protected SimpleMailMessage getUnsureReminderMessage(final Event event, final String eventLink) {
+    protected SimpleMailMessage getUnsureReminderMessage(final Event event) {
         SimpleMailMessage message = new SimpleMailMessage();
 
-        final Map<String, Object> model = getEventDetailsModel(event, eventLink);
+        final Map<String, Object> model = getEventDetailsModel(event);
         String eventDetails = templateService.mergeTemplate(EmailTemplate.EVENT_DETAILS.getTemplate(), model);
         model.put("eventDetails", eventDetails);
 
@@ -234,8 +265,7 @@ public class NotificationService implements INotificationService {
     @Override
     public void sendEventCanceledMessage(final Event event, final List<Invitation> invitations) {
         log.info("Sending event canceled notification to [{}]", invitations);
-        String eventLink = linkProvider.deepLinkEvent(event.getId());
-        SimpleMailMessage message = getEventCanceledMessage(event, eventLink);
+        SimpleMailMessage message = getEventCanceledMessage(event);
 
         List<String> to = Lists.newArrayList();
         for (Invitation invitation : invitations) {
@@ -249,10 +279,10 @@ public class NotificationService implements INotificationService {
     }
 
     @VisibleForTesting
-    protected SimpleMailMessage getEventCanceledMessage(final Event event, final String eventLink) {
+    protected SimpleMailMessage getEventCanceledMessage(final Event event) {
         SimpleMailMessage message = new SimpleMailMessage();
 
-        final Map<String, Object> model = getEventDetailsModel(event, eventLink);
+        final Map<String, Object> model = getEventDetailsModel(event);
         String eventDetails = templateService.mergeTemplate(EmailTemplate.EVENT_DETAILS.getTemplate(), model);
         model.put("eventDetails", eventDetails);
 
@@ -262,8 +292,14 @@ public class NotificationService implements INotificationService {
         return message;
     }
 
+    protected String getEventDetails(Event event) {
+        final Map<String, Object> model = getEventDetailsModel(event);
+        String eventDetails = templateService.mergeTemplate(EmailTemplate.EVENT_DETAILS.getTemplate(), model);
+        return eventDetails;
+    }
+
     @VisibleForTesting
-    protected Map<String, Object> getEventDetailsModel(Event event, final String eventLink) {
+    protected Map<String, Object> getEventDetailsModel(Event event) {
         final Locale locale = LocaleContextHolder.getLocale();
         final Map<String, Object> model = new HashMap<String, Object>();
         model.put("event", event);
@@ -272,7 +308,8 @@ public class NotificationService implements INotificationService {
         model.put("eventDateTime", Dates.formatDateTimeShortWithWeekday(event.getDateTimeAsDate()));
         model.put("eventType", messageSource.getMessage(event.getEventType().getResourceKey()));
         model.put("eventTypeMatch", EventType.Match);
-        model.put("eventLink", eventLink);
+        model.put("eventLink", linkProvider.deepLinkEvent(event.getId()));
+
         model.put("isSoccerEvent", EventType.isSoccerEvent(event));
         if (event.getVenue() != null) {
             model.put("directionsLink", Links.getDirectionsUrl(event.getVenue().getLatLng()));

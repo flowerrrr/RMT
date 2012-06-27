@@ -13,7 +13,7 @@ public class EventRenderer implements IChoiceRenderer<Event> {
 
     @Override
     public Object getDisplayValue(final Event event) {
-        return getTypeDateSummary(event);
+        return getDateTeamTypeSummary(event);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class EventRenderer implements IChoiceRenderer<Event> {
         }
     }
 
-    public static String getTypeDateSummary(final Event event) {
+    public static String getDateTeamTypeSummary(final Event event) {
         String team = event.getTeam().getName();
         String eventType = new ResourceModel(EventType.from(event).getResourceKey()).getObject();
         String date = Dates.formatDateTimeShortWithWeekday(event.getDateTimeAsDate());
