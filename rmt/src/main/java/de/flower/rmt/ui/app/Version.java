@@ -5,5 +5,5 @@ package de.flower.rmt.ui.app;
  */
 public class Version {
 
-    public final static String VERSION = "6.3";
+    public final static String VERSION = "7.0";
 }
