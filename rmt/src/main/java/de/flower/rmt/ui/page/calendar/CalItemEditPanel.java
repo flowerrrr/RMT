@@ -90,7 +90,7 @@ public class CalItemEditPanel extends RMTBasePanel<CalItemDto> {
             }
         });
 
-        form.add(new DatePicker("startDate", Dates.DATE_MEDIUM));
+        form.add(new DatePicker("startDate", Dates.DATE_LONG));
 
         form.add(startDateTime = new TimeDropDownChoice("startTime") {
             @Override
@@ -100,7 +100,7 @@ public class CalItemEditPanel extends RMTBasePanel<CalItemDto> {
         });
         startDateTime.setOutputMarkupPlaceholderTag(true);
 
-        form.add(new DatePicker("endDate", Dates.DATE_MEDIUM));
+        form.add(new DatePicker("endDate", Dates.DATE_LONG));
 
         form.add(endDateTime = new TimeDropDownChoice("endTime") {
             @Override

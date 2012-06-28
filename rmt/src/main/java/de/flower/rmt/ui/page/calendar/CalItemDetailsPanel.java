@@ -27,11 +27,11 @@ public class CalItemDetailsPanel extends BasePanel<CalItem> {
 
         add(new Label("summary"));
 
-        add(DateLabel.forDatePattern("startDate", new PropertyModel<Date>(getModel(), "startDateTime.toDate()"), Dates.DATE_MEDIUM));
+        add(DateLabel.forDatePattern("startDate", new PropertyModel<Date>(getModel(), "startDateTime.toDate()"), Dates.DATE_LONG));
 
         add(DateLabel.forDatePattern("startTime", new PropertyModel<Date>(getModel(), "startDateTime.toDate()"), Dates.TIME_SHORT).setVisible(!model.getObject().isAllDay()));
 
-        add(DateLabel.forDatePattern("endDate", new PropertyModel<Date>(getModel(), "endDateTime.toDate()"), Dates.DATE_MEDIUM));
+        add(DateLabel.forDatePattern("endDate", new PropertyModel<Date>(getModel(), "endDateTime.toDate()"), Dates.DATE_LONG));
 
         add(DateLabel.forDatePattern("endTime", new PropertyModel<Date>(getModel(), "endDateTime.toDate()"), Dates.TIME_SHORT).setVisible(!model.getObject().isAllDay()));
 

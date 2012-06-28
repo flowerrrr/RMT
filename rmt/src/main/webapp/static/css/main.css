@@ -72,6 +72,7 @@ body {
 ul {
     list-style: none;
     margin-left: 0;
+    maring-bottom: 0px;
 }
 
 li {
@@ -403,17 +404,12 @@ form .help-inline {
     ul {
         list-style: disc;
         margin-left: 25px;
-        margin-bottom: 0px;
+        // margin-bottom: 0px;
     }
 }
 
 // non-form feedback message
-.simple-feedback-panel {
-    ul {
-        // correct default bootstrap margin
-        margin-bottom: 0px;
-    }
-}
+
 
 /*************************************************************************
    readonly view of form-data
@@ -600,7 +596,6 @@ td .drop-down-menu-panel {
 **************************************************************************/
 ul.dropdown {
     text-align: left; // in case parent container defines different alignment
-    margin-bottom: 0px; // override default setting.
 
     .dropdown-menu {
         right: 0px;
@@ -881,9 +876,6 @@ td.rsvpstatus {
 }
 
 .comments-panel {
-    ul {
-        margin-bottom: 0px;
-    }
     // display top-border for 2,3,... comment
     li:nth-child(n+2) {
         border-top: 1px solid @borderColor;
@@ -951,9 +943,6 @@ td.rsvpstatus {
     Invitation form
 **************************************************************************/
 .invitationForm {
-    ul {
-        margin-bottom: 0px;
-    }
     .status {
         margin-bottom: 9px; // same margin as input or textarea
     }
@@ -974,6 +963,9 @@ td.rsvpstatus {
     Table width for several tables
 **************************************************************************/
 .player-list-panel, .user-list-panel {
+    .date {
+        font-size: 80%;
+    }
     .table {
         .name {
             width: 100px;
@@ -983,7 +975,7 @@ td.rsvpstatus {
             // width: auto;
         }
         .teams {
-            width: 120px;
+            width: 140px;
         }
         .menu {
             width: 69px;

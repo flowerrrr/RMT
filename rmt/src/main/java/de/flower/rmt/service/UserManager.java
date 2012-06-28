@@ -13,6 +13,7 @@ import de.flower.rmt.repository.IRoleRepo;
 import de.flower.rmt.repository.IUserRepo;
 import de.flower.rmt.repository.Specs;
 import de.flower.rmt.service.mail.INotificationService;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
@@ -234,5 +235,12 @@ public class UserManager extends AbstractService implements IUserManager {
             }
         });
         return de.flower.common.util.Collections.flattenArray(internetAddresses);
+    }
+
+    @Override
+    public void onLoginSuccess(final User userIn) {
+        User user = loadById(userIn.getId());
+        user.setLastLogin(new DateTime());
+        userRepo.save(user);
     }
 }

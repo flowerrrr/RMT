@@ -15,7 +15,9 @@ import java.util.Date;
  */
 public class Dates {
 
-    public static final String DATE_MEDIUM = "dd.MM.yyyy";
+    public static final String DATE_LONG = "dd.MM.yyyy";
+
+    public static final String DATE_MEDIUM = "dd.MM.yy";
 
     public static final String DATE_SHORT = "dd.MM.";
 
@@ -26,6 +28,8 @@ public class Dates {
     public static final String TIME_SHORT = "HH:mm";
 
     public static final String DATE_TIME_SHORT = DATE_SHORT + " " + TIME_SHORT;
+
+    public static final String DATE_TIME_MEDIUM_SHORT = DATE_MEDIUM + " " + TIME_SHORT;
 
     public static String formatDateTimeMedium(final Date date) {
         return DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM).format(date);

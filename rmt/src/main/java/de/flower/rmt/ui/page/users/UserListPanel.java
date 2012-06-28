@@ -17,17 +17,16 @@ import de.flower.rmt.ui.model.UserModel;
 import de.flower.rmt.ui.page.user.manager.PlayerPage;
 import de.flower.rmt.ui.panel.DropDownMenuPanel;
 import de.flower.rmt.ui.panel.RMTBasePanel;
+import de.flower.rmt.util.Dates;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
-import org.apache.wicket.model.AbstractReadOnlyModel;
-import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.LoadableDetachableModel;
-import org.apache.wicket.model.ResourceModel;
+import org.apache.wicket.model.*;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import javax.mail.internet.InternetAddress;
@@ -67,6 +66,8 @@ public class UserListPanel extends RMTBasePanel {
 
                 // list of teams the user belongs to
                 item.add(createTeamList(item.getModel()));
+
+                item.add(DateLabel.forDatePattern("lastLogin", Model.of(user.getLastLoginAsDate()), Dates.DATE_TIME_MEDIUM_SHORT));
 
                 Component manager;
                 item.add(manager = new WebMarkupContainer("manager"));

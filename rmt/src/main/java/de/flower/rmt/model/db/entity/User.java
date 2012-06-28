@@ -2,8 +2,10 @@ package de.flower.rmt.model.db.entity;
 
 import de.flower.common.validation.unique.Unique;
 import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
+import org.joda.time.DateTime;
 
 import javax.mail.internet.InternetAddress;
 import javax.persistence.*;
@@ -11,10 +13,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.validation.groups.Default;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author flowerrrr
@@ -113,6 +112,10 @@ public class User extends AbstractClubRelatedEntity {
      */
     @Column
     private Boolean invitationSent;
+
+    @Column
+    @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+    private DateTime lastLogin;
 
     /**
      * A user can be part of several teams.
@@ -221,6 +224,18 @@ public class User extends AbstractClubRelatedEntity {
 
     public void setInvitationSent(final boolean invitationSent) {
         this.invitationSent = invitationSent;
+    }
+
+    public DateTime getLastLogin() {
+        return lastLogin;
+    }
+
+    public Date getLastLoginAsDate() {
+        return lastLogin == null ? null : lastLogin.toDate();
+    }
+
+    public void setLastLogin(final DateTime lastLogin) {
+        this.lastLogin = lastLogin;
     }
 
     public boolean mustChangePassword() {

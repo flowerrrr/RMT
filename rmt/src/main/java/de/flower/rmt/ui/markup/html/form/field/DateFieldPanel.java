@@ -9,7 +9,7 @@ import de.flower.rmt.util.Dates;
 public class DateFieldPanel extends AbstractFormFieldPanel {
 
     public DateFieldPanel(String id) {
-        super(id, new DatePicker(ID, Dates.DATE_MEDIUM));
+        super(id, new DatePicker(ID, Dates.DATE_LONG));
     }
 
     /**

@@ -23,6 +23,7 @@
                     <wicket:message key="manager.players.email"/>
                 </th>
                 <th><wicket:message key="manager.player.teams"/></th>
+
                 <th><wicket:message key="manager.players.manager.role"/></th>
                 <th class="manager-only"></th>
             </tr>
@@ -31,6 +32,7 @@
             <tr class="filterable" wicket:id="playerList">
                 <td>
                     <a wicket:id="editLink"><span wicket:id="fullname" class="filtered">Gerd Müller</span></a>
+                    <div class="date manager-only" wicket:id="lastLogin" wicket:message="title:manager.player.lastlogin.title" />
                 </td>
                 <td>
                     <ul>

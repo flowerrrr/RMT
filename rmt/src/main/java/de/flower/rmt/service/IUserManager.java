@@ -76,4 +76,6 @@ public interface IUserManager {
     void sendInvitation(Long userId);
 
     List<InternetAddress> getAddressesForfAllUsers();
+
+    void onLoginSuccess(User user);
 }
