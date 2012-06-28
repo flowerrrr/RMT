@@ -15,7 +15,7 @@ public abstract class AbstractCommonBasePage extends AbstractBaseLayoutPage impl
 
     public AbstractCommonBasePage(final IModel<?> model, View view) {
         super(model);
-        // subpages can force certain view
+        // sub-pages can force certain view
         if (view != null) RMTSession.get().setView(view);
 
         add(new NavigationPanel(this));

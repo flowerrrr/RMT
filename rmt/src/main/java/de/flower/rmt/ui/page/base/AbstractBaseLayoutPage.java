@@ -1,7 +1,6 @@
 package de.flower.rmt.ui.page.base;
 
 import de.flower.common.ui.feedback.AlertMessageFeedbackPanel;
-import de.flower.common.ui.feedback.AlertMessagePanel;
 import de.flower.common.ui.markup.html.panel.WrappingPanel;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.service.security.ISecurityService;
@@ -83,13 +82,8 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
         // makes messages back-button and reload-save
         if (showAlertMessages()) {
             info(new MessageOfTheDayMessage());
-            if (securityService.isCurrentUserLoggedIn()) {
-                info(new PasswordChangeRequiredMessage() {
-                    @Override
-                    public boolean isVisible(final AlertMessagePanel alertMessagePanel) {
-                        return securityService.getUser().hasInitialPassword();
-                    }
-                });
+            if (securityService.isCurrentUserLoggedIn() && securityService.getUser().hasInitialPassword()) {
+                info(new PasswordChangeRequiredMessage());
             }
         }
     }
