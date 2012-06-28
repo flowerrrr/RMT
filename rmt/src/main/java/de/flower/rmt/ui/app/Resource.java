@@ -6,7 +6,7 @@ package de.flower.rmt.ui.app;
 // TODO (flowerrrr - 21.04.12) replace with ContextRelativeResource and use wickets caching support.
 public interface Resource {
 
-    public static final String bootstrapJsUrl = "static/bootstrap/js/bootstrap.js?" + Version.VERSION;
+    public static final String bootstrapJsUrl = "static/bootstrap/js/bootstrap.min.js?" + Version.VERSION;
 
     public static final String lessJsUrl = "static/js/less-1.3.0.min.js";
 

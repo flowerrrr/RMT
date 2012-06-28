@@ -29,7 +29,7 @@ public abstract class FullCalendarPanel extends BasePanel {
     // TODO (flowerrrr - 23.06.12) let wicket inject url
     private final static String fullCalendarCssUrl = "static/js/fullcalendar-1.5.3/fullcalendar.css";
 
-    private final static String fullCalendarJsUrl = "static/js/fullcalendar-1.5.3/fullcalendar.js";
+    private final static String fullCalendarJsUrl = "static/js/fullcalendar-1.5.3/fullcalendar.min.js";
 
     private AbstractAjaxBehavior jsonEventSourceBehavior;
 
