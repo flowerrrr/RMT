@@ -62,6 +62,9 @@ public class EventManager extends AbstractService implements IEventManager {
     @Autowired
     private IActivityManager activityManager;
 
+    @Autowired
+    private ILineupManager lineupManager;
+
     @Value("${event.closed.before.hours}")
     private Integer eventClosedBeforeHours;
 
@@ -86,6 +89,8 @@ public class EventManager extends AbstractService implements IEventManager {
             // for every user that is a player of the team of this event a invitation will be created
             List<User> users = userManager.findAllByTeam(entity.getTeam());
             invitationManager.addUsers(entity, EntityHelper.convertEntityListToIdList(users));
+
+            lineupManager.createLineup(entity);
         }
     }
 

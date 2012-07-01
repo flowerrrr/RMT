@@ -909,6 +909,58 @@ td.rsvpstatus {
     }
 
 }
+/*************************************************************************
+    Lineup
+**************************************************************************/
+.invitee-list-panel {
+    ul {
+        margin-bottom: 10px;
+    }
+    .draggable-container {
+        position: relative;
+        height: 21px;
+    }
+   .placeholder {
+        position: absolute;
+        color: #BBBBBB;
+        text-align: center;
+        width: 100px;
+    }
+}
+
+.lineup-grid {
+    width: 540px;
+    height: 262px;
+    background-image: url('../img/football-field.jpg');
+    .draggable-player-panel {
+        background-color: #3A87AD;
+        color: white;
+    }
+}
+
+.draggable-player-panel {
+    background-color: white;
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    height: 18px;
+    overflow: hidden;
+    padding: 0 4px;
+    text-align: center;
+    width: 100px;
+    cursor: move;
+    span {
+        overflow: hidden;
+        display: block;
+        float: left;
+        width: 90px;
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+.lineup-edit-panel {
+    padding-top: 20px;
+}
 
 /*************************************************************************
     Vertical form in secondary panel

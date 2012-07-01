@@ -56,7 +56,7 @@ dependencies {
             // NOTE - jar needed for idea to use apt during compilation. possible to move to other configuration?
             'org.hibernate:hibernate-jpamodelgen:1.1.1.Final',
             'com.mysema.querydsl:querydsl-jpa:2.5.0',
-            'javax.servlet:servlet-api:2.5'
+            'javax.servlet:servlet-api:2.5',
     )
     annotations(
             'com.mysema.querydsl:querydsl-apt:2.5.0',
@@ -75,6 +75,9 @@ dependencies {
             'org.apache.tomcat:tomcat-catalina:7.0.25',
             'org.apache.tomcat:tomcat-util:7.0.25',
             'org.apache.tomcat:tomcat-coyote:7.0.25',
+            // to have code examples right at hand
+            'org.odlabs.wiquery:wiquery-core:' + versions.wicket,
+            'org.odlabs.wiquery:wiquery-jquery-ui:' + versions.wicket,
     )
     testCompile(
             'org.springframework:spring-test:' + versions.spring,

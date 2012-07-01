@@ -103,6 +103,7 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
         public void renderHead(final IHeaderResponse response) {
 
             response.renderJavaScriptReference(Resource.jqueryJsUrl);
+            response.renderJavaScriptReference(Resource.jqueryUiJsUrl);
             response.renderJavaScriptReference(Resource.bootstrapJsUrl);
             // script should be rendered at the very end cause it overrides wicket javascript functions.
             response.renderJavaScriptReference(Resource.mainJsUrl);

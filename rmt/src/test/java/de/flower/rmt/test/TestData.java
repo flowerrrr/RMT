@@ -1,5 +1,6 @@
 package de.flower.rmt.test;
 
+import de.flower.common.util.Check;
 import de.flower.common.util.geo.LatLng;
 import de.flower.rmt.model.db.entity.*;
 import de.flower.rmt.model.db.entity.event.AbstractSoccerEvent;
@@ -67,6 +68,9 @@ public class TestData {
 
     @Autowired
     private IEventManager eventManager;
+
+    @Autowired
+    private ILineupManager lineupManager;
 
     @Autowired
     protected IInvitationManager invitationManager;
@@ -309,6 +313,33 @@ public class TestData {
         event.getTeam().getPlayers().size();
         event.getTeam().getPlayers().get(0).getUser();
         return event;
+    }
+
+    public Lineup newLineup(Event event) {
+        Lineup lineup = new Lineup(event);
+        lineup.setName("Lineup #" + RandomUtils.nextInt(100));
+        for (Invitation invitation : event.getInvitations()) {
+            LineupItem item = new LineupItem(lineup, invitation);
+            item.setTop(RandomUtils.nextInt(500), 500);
+            item.setLeft(RandomUtils.nextInt(400), 400);
+            lineup.getItems().add(item);
+        }
+        return lineup;
+    }
+
+    public Lineup createLineup(Event event) {
+        Lineup lineup = lineupManager.findLineup(event);
+        Check.notNull(lineup);
+        List<Invitation> accepted = invitationManager.findAllByEventAndStatus(event, RSVPStatus.ACCEPTED);
+        Check.notEmpty(accepted);
+        for (Invitation invitation : accepted) {
+            LineupItem item = new LineupItem(lineup, invitation);
+            item.setTop(RandomUtils.nextInt(500), 500);
+            item.setLeft(RandomUtils.nextInt(400), 400);
+            lineup.getItems().add(item);
+            lineupManager.save(item);
+        }
+        return lineup;
     }
 
     private void respond(Invitation invitation, RSVPStatus status, String comment) {

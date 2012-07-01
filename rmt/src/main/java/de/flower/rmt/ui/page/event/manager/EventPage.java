@@ -11,6 +11,7 @@ import de.flower.rmt.ui.page.event.EventCanceledPanel;
 import de.flower.rmt.ui.page.event.EventDetailsPanel;
 import de.flower.rmt.ui.page.event.manager.edit.EventEditSecondaryPanel;
 import de.flower.rmt.ui.page.event.manager.invitees.InviteeSecondaryPanel;
+import de.flower.rmt.ui.page.event.manager.lineup.LineupSecondaryPanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.http.flow.AbortWithHttpErrorCodeException;
@@ -88,6 +89,15 @@ public class EventPage extends ManagerBasePage {
                 return tabPanel.getSelectedTab() == EventTabPanel.EVENT_EDIT_PANEL_INDEX;
             }
         });
+        getSecondaryPanel().add(new LineupSecondaryPanel(model) {
+            @Override
+            public boolean isVisible() {
+                return tabPanel.getSelectedTab() == EventTabPanel.LINEUP_PANEL_INDEX;
+            }
+        });
+
+
+
         getSecondaryPanel().add(new AjaxEventListener(Event.class));
     }
 

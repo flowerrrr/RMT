@@ -78,9 +78,10 @@ public class InvitationManager extends AbstractService implements IInvitationMan
 
     @Override
     public Invitation loadById(Long id, final Attribute... attributes) {
+        Check.notNull(id);
         Specification fetch = fetch(attributes);
         Invitation entity = invitationRepo.findOne(where(eq(Invitation_.id, id)).and(fetch));
-        Check.notNull(entity, "No invitation found");
+        Check.notNull(entity, "No invitation found for id [" + id + "]");
         return entity;
     }
 
@@ -91,9 +92,16 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     }
 
     @Override
-    public List<Invitation> findAllByEventSortedByName(final Event event) {
-        List<Invitation> list = findAllByEvent(event, Invitation_.user);
+    public List<Invitation> findAllByEventSortedByName(final Event event, Attribute... attributes) {
+        List<Invitation> list = findAllByEvent(event, attributes);
         // use in-memory sorting cause field username is derived and would required complicated sql-query to sort after.
+        return sortByName(list);
+    }
+
+    @Override
+    public List<Invitation> findAllByEventAndStatusSortedByName(final Event event, final RSVPStatus status, final Attribute... attributes) {
+        List<Invitation> list = findAllByEventAndStatus(event, status, attributes);
+        // list is sorted by date -> resort
         return sortByName(list);
     }
 

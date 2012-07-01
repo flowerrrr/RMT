@@ -33,10 +33,6 @@ public class InviteeListPanel extends BasePanel {
     @SpringBean
     private IInvitationManager invitationManager;
 
-    public InviteeListPanel(IModel<Event> model) {
-        this(null, model);
-    }
-
     public InviteeListPanel(String id, IModel<Event> model) {
         super(id);
         Check.notNull(model);

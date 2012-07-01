@@ -430,6 +430,32 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.odlabs.wiquery/wiquery-core/1.5.7/jar/a82a5902ac24c49f18317dfa20e42ab9b62caf94/wiquery-core-1.5.7.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.odlabs.wiquery/wiquery-core/1.5.7/javadoc/2929f7c77999a00d78f9407033683327c3666417/wiquery-core-1.5.7-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.odlabs.wiquery/wiquery-core/1.5.7/source/73f3f17421f288330df4933b0290430bf12a78b6/wiquery-core-1.5.7-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.odlabs.wiquery/wiquery-jquery-ui/1.5.7/jar/7deb181f992f89cd80e3ee05de589622a1cc75fe/wiquery-jquery-ui-1.5.7.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.odlabs.wiquery/wiquery-jquery-ui/1.5.7/javadoc/85c94c01005b693fa4700bec1698b75a54455aaf/wiquery-jquery-ui-1.5.7-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.odlabs.wiquery/wiquery-jquery-ui/1.5.7/source/a4839055749916ffe7535d543dab16b071eedf85/wiquery-jquery-ui-1.5.7-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
           <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.codehaus.groovy/groovy-all/1.8.6/jar/96a26bfa6e5aea2e3c46df44a19de93a2acd2366/groovy-all-1.8.6.jar!/" />
         </CLASSES>
         <JAVADOC>
@@ -889,6 +915,28 @@
         <SOURCES>
           <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/com.mysema.querydsl/querydsl-core/2.5.0/source/c4dffba1c66cb17960c14c70675a7e0ad5d29033/querydsl-core-2.5.0-sources.jar!/" />
         </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/rhino/js/1.7R2/jar/b95d5212ff4cea92cee1c3c6fa50aa82c9d4905b/js-1.7R2.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/rhino/js/1.7R2/javadoc/550eebbe250ba14a216d72b8f669f53ee972e2e7/js-1.7R2-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/rhino/js/1.7R2/source/88a99147faee9b49f40cb4f27d4628d688be9af3/js-1.7R2-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/unresolved dependency - org.codehaus.jackson#jackson-mapper-asl;[1.8,1.8.6],[1.9,1.9.7]" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="" scope="RUNTIME">

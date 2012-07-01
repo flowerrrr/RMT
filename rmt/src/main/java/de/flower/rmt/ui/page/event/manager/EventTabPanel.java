@@ -5,6 +5,7 @@ import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.ui.page.event.manager.edit.EventEditPanel;
 import de.flower.rmt.ui.page.event.manager.invitations.InvitationListPanel;
 import de.flower.rmt.ui.page.event.manager.invitees.InviteeListPanel;
+import de.flower.rmt.ui.page.event.manager.lineup.LineupEditPanel;
 import de.flower.rmt.ui.page.event.manager.notification.NotificationPanel;
 import org.apache.wicket.extensions.markup.html.tabs.AbstractTab;
 import org.apache.wicket.extensions.markup.html.tabs.ITab;
@@ -26,6 +27,8 @@ public class EventTabPanel extends AbstractAjaxTabbedPanel<Event> {
     public static final int NOTIFICATION_PANEL_INDEX = 2;
 
     public static final int INVITATIONS_PANEL_INDEX = 3;
+
+    public static final int LINEUP_PANEL_INDEX = 4;
 
     public EventTabPanel(IModel<Event> model) {
         super(model);
@@ -66,6 +69,17 @@ public class EventTabPanel extends AbstractAjaxTabbedPanel<Event> {
             @Override
             public Panel getPanel(String panelId) {
                 return new InvitationListPanel(panelId, model);
+            }
+
+            @Override
+            public boolean isVisible() {
+                return !model.getObject().isNew();
+            }
+        });
+        tabs.add(new AbstractTab(new ResourceModel("manager.event.tab.lineup")) {
+            @Override
+            public Panel getPanel(String panelId) {
+                return new LineupEditPanel(panelId, model);
             }
 
             @Override

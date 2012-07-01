@@ -23,13 +23,16 @@ public interface IInvitationManager {
 
     Invitation loadById(Long id, Attribute... attributes);
 
-    List<Invitation> findAllByEvent(Event event, Attribute... attributes);
+    List<Invitation> findAllByEvent(Event entity, Attribute... attributes);
 
-    List<Invitation> findAllByEventSortedByName(Event event);
+    List<Invitation> findAllByEventSortedByName(Event event, Attribute... attributes);
+
+    List<Invitation> findAllByEventAndStatusSortedByName(Event event, RSVPStatus status, Attribute... attributes);
 
     /**
      * Returns all invitees that have an email address (no guest players) and
      * that have email-notification turned on in their player settings.
+     *
      * @param event
      * @return
      */
@@ -38,6 +41,7 @@ public interface IInvitationManager {
     /**
      * Returns all invitees with an email address, also those with email notifications
      * turned off.
+     *
      * @param event
      * @return string for usage in href="mailto: ..."
      */
@@ -60,19 +64,17 @@ public interface IInvitationManager {
     void save(Invitation invitation);
 
     /**
-     *
      * @param invitation
-     * @param comment sets/overrides the first comment of the author (current security context user)
+     * @param comment    sets/overrides the first comment of the author (current security context user)
      */
     void save(Invitation invitation, String comment);
 
     void delete(Long id);
 
     /**
-     *
      * @param event
      * @param addressList list of email-addresses (matched against user-email, not secondary email)
-     * @param date visible for testing, if null will be replaced with current date
+     * @param date        visible for testing, if null will be replaced with current date
      */
     void markInvitationSent(Event event, List<String> addressList, Date date);
 

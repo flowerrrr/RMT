@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head></head>
+<body>
+
+<wicket:panel>
+
+    <div wicket:id="grid" class="lineup-grid" style="position: relative;">
+        <ul wicket:id="itemContainer">
+            <li wicket:id="items">
+                <div wicket:id="draggablePlayerPanel"/>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        $(function() {
+            $('.lineup-grid').droppable({
+                        drop: function(event, ui) {
+                            var top = ui.offset.top - $(this).position().top;
+                            var left = ui.offset.left - $(this).position().left;
+                            var width = $(this).width();
+                            var height = $(this).height();
+                            var url = $('.lineup-grid').attr('url');
+                            var callback = eval(url);
+                            wicketAjaxGet(callback);
+                        }
+                    });
+        });
+
+    </script>
+
+</wicket:panel>
+
+
+</body>
+</html>
