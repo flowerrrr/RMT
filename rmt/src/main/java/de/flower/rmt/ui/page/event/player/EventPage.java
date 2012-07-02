@@ -62,9 +62,7 @@ public class EventPage extends PlayerBasePage {
         setDefaultModel(model);
         setHeading("player.event.heading");
 
-        final InvitationListPanel invitationListPanel = new InvitationListPanel(model);
-
-        addMainPanel(invitationListPanel);
+        addMainPanel(new EventTabPanel(model));
         invitationModel = new EventInvitationModel(model);
         addSecondaryPanel(new EventSecondaryPanel(model, invitationModel));
 

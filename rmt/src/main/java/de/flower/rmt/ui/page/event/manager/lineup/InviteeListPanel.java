@@ -72,7 +72,7 @@ public class InviteeListPanel extends BasePanel {
 
         frag.add(new Label("placeholder", invitation.getName()));
 
-        DraggablePlayerPanel draggablePlayer = new DraggablePlayerPanel(item.getModelObject(), false);
+        DraggablePlayerPanel draggablePlayer = new DraggablePlayerPanel(item.getModelObject(), null, false);
         draggablePlayer.setVisible(!isInLineup(invitation));
         frag.add(draggablePlayer);
 

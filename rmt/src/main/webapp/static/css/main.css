@@ -925,6 +925,14 @@ td.rsvpstatus {
         color: #BBBBBB;
         text-align: center;
         width: 100px;
+        padding: 0px 4px;
+        border: 1px solid #F3F3F3;
+        border-radius: 3px 3px 3px 3px;
+    }
+    .draggable-player-panel {
+        span {
+            width: 100%; // since no remove button is visible
+        }
     }
 }
 
@@ -933,8 +941,8 @@ td.rsvpstatus {
     height: 262px;
     background-image: url('../img/football-field.jpg');
     .draggable-player-panel {
-        background-color: #3A87AD;
-        color: white;
+        background-color: #F3F3F3;
+        border-color: #C9C9C9;
     }
 }
 
@@ -947,7 +955,6 @@ td.rsvpstatus {
     padding: 0 4px;
     text-align: center;
     width: 100px;
-    cursor: move;
     span {
         overflow: hidden;
         display: block;
@@ -957,10 +964,19 @@ td.rsvpstatus {
         text-overflow: ellipsis;
         white-space: nowrap;
     }
+    &.edit {
+        cursor: move;
+    }
+    &.view {
+        span {
+            width: 100%; // since no remove button is shown
+        }
+    }
 }
-.lineup-edit-panel {
-    padding-top: 20px;
+.lineup-edit-panel, .lineup-panel {
+    padding-top: 40px;
 }
+
 
 /*************************************************************************
     Vertical form in secondary panel

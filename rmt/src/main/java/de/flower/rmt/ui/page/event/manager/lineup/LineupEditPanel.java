@@ -48,13 +48,13 @@ public class LineupEditPanel extends BasePanel {
         itemContainer.add(new AjaxEventListener(LineupItem.class));
         grid.add(itemContainer);
 
-        // render existing lineupitems
+        // render existing lineup items
         ListView<LineupItem> items = new ListView<LineupItem>("items", getListModel(model)) {
             @Override
             protected void populateItem(final ListItem<LineupItem> item) {
                 LineupItem lineupItem = item.getModelObject();
 
-                DraggablePlayerPanel draggablePlayer = new DraggablePlayerPanel(lineupItem.getInvitation(), true) {
+                DraggablePlayerPanel draggablePlayer = new DraggablePlayerPanel(lineupItem.getInvitation(), lineupItem, true) {
                     @Override
                     protected void onRemove(final AjaxRequestTarget target, final Long invitationId) {
                         // remove lineupitem

@@ -9,7 +9,6 @@ import de.flower.rmt.model.db.entity.Invitation_;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.service.IInvitationManager;
-import de.flower.rmt.service.IPlayerManager;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.page.event.CommentsPanel;
 import org.apache.wicket.Component;
@@ -32,10 +31,8 @@ public class InvitationListPanel extends BasePanel {
     @SpringBean
     private IInvitationManager invitationManager;
 
-    @SpringBean
-    private IPlayerManager playerManager;
-
-    public InvitationListPanel(IModel<Event> model) {
+    public InvitationListPanel(String id, IModel<Event> model) {
+        super(id);
         Check.notNull(model);
         add(createListView("acceptedList", RSVPStatus.ACCEPTED, model, true));
         add(createListView("unsureList", RSVPStatus.UNSURE, model, false));
