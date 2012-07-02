@@ -914,6 +914,7 @@ td.rsvpstatus {
 **************************************************************************/
 .invitee-list-panel {
     ul {
+        margin-top: 5px;
         margin-bottom: 10px;
     }
     .draggable-container {

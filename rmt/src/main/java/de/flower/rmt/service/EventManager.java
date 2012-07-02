@@ -4,10 +4,7 @@ import com.mysema.query.types.EntityPath;
 import com.mysema.query.types.expr.BooleanExpression;
 import de.flower.common.model.EntityHelper;
 import de.flower.common.util.Check;
-import de.flower.rmt.model.db.entity.Invitation;
-import de.flower.rmt.model.db.entity.Invitation_;
-import de.flower.rmt.model.db.entity.Team;
-import de.flower.rmt.model.db.entity.User;
+import de.flower.rmt.model.db.entity.*;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.entity.event.Event_;
 import de.flower.rmt.model.db.entity.event.QEvent;
@@ -170,6 +167,10 @@ public class EventManager extends AbstractService implements IEventManager {
         for (Invitation invitation : invitations) {
             invitationManager.delete(invitation.getId());
         }
+        Lineup lineup = lineupManager.findLineup(entity);
+        if (lineup != null) {
+            lineupManager.delete(lineup.getId());
+        }
         eventRepo.delete(entity);
     }
 
@@ -188,7 +189,6 @@ public class EventManager extends AbstractService implements IEventManager {
         event.setCreatedBy(securityService.getUser());
         return event;
     }
-
 
     @Override
     public void sendInvitationMail(final Long eventId, final Notification notification) {

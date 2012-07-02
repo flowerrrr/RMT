@@ -16,7 +16,7 @@ public class LineupManagerTest extends AbstractRMTIntegrationTests {
 
     @Test
     public void testFindLineupItems() throws Exception {
-        Event event = testData.createEvent();
+        Event event = testData.createEventWithResponses();
         Lineup lineup = testData.createLineup(event);
         List<LineupItem> items = lineupManager.findLineupItems(event, QLineupItem.lineupItem.invitation);
         for (LineupItem item : items) {

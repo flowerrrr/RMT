@@ -28,4 +28,5 @@ public interface ILineupManager {
     @VisibleForTesting
     void save(LineupItem item);
 
+    void delete(Long lineupId);
 }

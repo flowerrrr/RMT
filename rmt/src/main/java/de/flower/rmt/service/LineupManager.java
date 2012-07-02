@@ -91,4 +91,9 @@ public class LineupManager extends AbstractService implements ILineupManager {
         validate(item);
         lineupItemRepo.save(item);
     }
+
+    @Override
+    public void delete(final Long lineupId) {
+        lineupRepo.delete(lineupId); // delete is cascaded to lineupitems
+    }
 }

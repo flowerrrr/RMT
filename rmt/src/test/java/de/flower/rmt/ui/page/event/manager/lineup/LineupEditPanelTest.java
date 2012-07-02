@@ -13,7 +13,7 @@ public class LineupEditPanelTest extends AbstractRMTWicketIntegrationTests {
 
     @Test
     public void testRender() {
-        Event event = testData.createEvent();
+        Event event = testData.createEventWithResponses();
         Lineup lineup = testData.createLineup(event);
         wicketTester.startComponentInPage(new LineupEditPanel("panel", new EventModel(event)));
         wicketTester.dumpComponentWithPage();
