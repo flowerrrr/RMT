@@ -26,10 +26,10 @@ public class LineupItem extends AbstractBaseEntity {
     private Double relTop;
 
     @Column
-    private Long top;
+    private Long absTop;
 
     @Column 
-    private Long left;
+    private Long absLeft;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
@@ -67,11 +67,11 @@ public class LineupItem extends AbstractBaseEntity {
     }
 
     public Long getTop() {
-        return top;
+        return absTop;
     }
 
     public void setTop(final Long top) {
-        this.top = top;
+        this.absTop = top;
     }
 
 
@@ -81,11 +81,11 @@ public class LineupItem extends AbstractBaseEntity {
     }
 
     public Long getLeft() {
-        return left;
+        return absLeft;
     }
 
     public void setLeft(final Long left) {
-        this.left = left;
+        this.absLeft = left;
     }
 
     public void setLeft(final long left, final long maxLeft) {

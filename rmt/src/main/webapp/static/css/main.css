@@ -957,6 +957,18 @@ td.rsvpstatus {
     }
 }
 
+.draggable-player-panel, .placeholder {
+    .name {
+        overflow: hidden;
+        display: block;
+        float: left;
+        width: 90px;
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
 .draggable-player-panel {
     background-color: white;
     border: 1px solid #CCCCCC;
@@ -966,15 +978,6 @@ td.rsvpstatus {
     padding: 0 4px;
     text-align: center;
     width: 100px;
-    span {
-        overflow: hidden;
-        display: block;
-        float: left;
-        width: 90px;
-        text-align: center;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
     &.edit {
         cursor: move;
     }

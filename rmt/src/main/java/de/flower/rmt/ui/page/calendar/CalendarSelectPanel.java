@@ -36,10 +36,9 @@ public class CalendarSelectPanel extends BasePanel {
             @Override
             public Object getDisplayValue(final CalendarFilter object) {
                 String s;
-                if (object.type != CalendarFilter.Type.TEAM) {
-                    s = new ResourceModel(CalendarFilter.Type.getResourceKey(object.type)).getObject();
-                } else {
-                    s = object.team.getName();
+                s = new ResourceModel(CalendarFilter.Type.getResourceKey(object.type)).getObject();
+                if (object.type == CalendarFilter.Type.TEAM) {
+                    s += " " + object.team.getName();
                 }
                 return s;
             }

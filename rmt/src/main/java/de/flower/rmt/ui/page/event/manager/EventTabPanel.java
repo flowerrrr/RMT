@@ -2,6 +2,7 @@ package de.flower.rmt.ui.page.event.manager;
 
 import de.flower.common.ui.ajax.markup.html.tab.AbstractAjaxTabbedPanel;
 import de.flower.rmt.model.db.entity.event.Event;
+import de.flower.rmt.model.db.type.EventType;
 import de.flower.rmt.ui.page.event.manager.edit.EventEditPanel;
 import de.flower.rmt.ui.page.event.manager.invitations.InvitationListPanel;
 import de.flower.rmt.ui.page.event.manager.invitees.InviteeListPanel;
@@ -84,7 +85,7 @@ public class EventTabPanel extends AbstractAjaxTabbedPanel<Event> {
 
             @Override
             public boolean isVisible() {
-                return !model.getObject().isNew();
+                return !model.getObject().isNew() && (model.getObject().getEventType() != EventType.Event);
             }
         });
     }
