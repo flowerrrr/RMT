@@ -945,6 +945,16 @@ td.rsvpstatus {
         background-color: #F3F3F3;
         border-color: #C9C9C9;
     }
+    .no-lineup {
+        position: relative;
+        margin: 0px auto;
+        text-align: center;
+        top: 100px;
+        width: 200px;
+        background-color: white;
+        border: 1px solid #CCCCCC;
+        border-radius: 3px 3px 3px 3px;
+    }
 }
 
 .draggable-player-panel {

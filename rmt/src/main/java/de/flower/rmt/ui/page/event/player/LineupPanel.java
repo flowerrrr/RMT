@@ -41,7 +41,8 @@ public class LineupPanel extends BasePanel {
         grid.add(itemContainer);
 
         // render existing lineup items
-        ListView<LineupItem> items = new ListView<LineupItem>("items", getListModel(model)) {
+        final IModel<List<LineupItem>> listModel = getListModel(model);
+        ListView<LineupItem> items = new ListView<LineupItem>("items", listModel) {
             @Override
             protected void populateItem(final ListItem<LineupItem> item) {
                 LineupItem lineupItem = item.getModelObject();
@@ -57,6 +58,14 @@ public class LineupPanel extends BasePanel {
             }
         };
         itemContainer.add(items);
+
+        grid.add(new WebMarkupContainer("noLineup") {
+            @Override
+            public boolean isVisible() {
+                return listModel.getObject().isEmpty();
+            }
+        });
+
     }
 
     private IModel<List<LineupItem>> getListModel(final IModel<Event> model) {
