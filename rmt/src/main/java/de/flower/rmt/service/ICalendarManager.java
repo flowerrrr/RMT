@@ -2,7 +2,7 @@ package de.flower.rmt.service;
 
 import de.flower.rmt.model.db.entity.CalItem;
 import de.flower.rmt.model.db.entity.User;
-import de.flower.rmt.model.db.type.CalendarType;
+import de.flower.rmt.model.db.type.CalendarFilter;
 import de.flower.rmt.model.dto.CalItemDto;
 import de.flower.rmt.ui.markup.html.calendar.CalEvent;
 import org.joda.time.DateTime;
@@ -19,9 +19,11 @@ public interface ICalendarManager {
 
     void save(CalItemDto dto, final User user);
 
-    List<CalEvent> findAllByCalendarAndRange(List<CalendarType> calendarTypes, final DateTime start, final DateTime end);
+    List<CalEvent> findAllByCalendarAndRange(List<CalendarFilter> calendarFilters, final DateTime start, final DateTime end);
 
     List<CalItem> findAllByUserAndRange(final User user, final DateTime calStart, final DateTime calEnd);
 
     void delete(Long id);
+
+    List<CalendarFilter> getCalendarFilters();
 }

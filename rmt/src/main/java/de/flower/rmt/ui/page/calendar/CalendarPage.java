@@ -6,7 +6,7 @@ import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.CalItem;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.model.db.type.CalendarType;
+import de.flower.rmt.model.db.type.CalendarFilter;
 import de.flower.rmt.model.dto.CalItemDto;
 import de.flower.rmt.service.ICalendarManager;
 import de.flower.rmt.service.security.ISecurityService;
@@ -80,10 +80,10 @@ public class CalendarPage extends AbstractCommonBasePage {
             }
         };
 
-        final IModel<List<CalendarType>> selectedCalendarsModel = Model.of((Collection) Lists.newArrayList(CalendarType.USER, CalendarType.CLUB));
-        if (viewResolver.getView() == View.MANAGER) {
-            selectedCalendarsModel.getObject().add(CalendarType.OTHERS);
-        }
+        final IModel<List<CalendarFilter>> selectedCalendarsModel = Model.of((Collection) Lists.newArrayList(CalendarFilter.USER, CalendarFilter.CLUB));
+//        if (viewResolver.getView() == View.MANAGER) {
+//            selectedCalendarsModel.getObject().add(CalendarFilter.OTHERS);
+//        }
 
         addMainPanel(new CalendarPanel(CALENDAR_SECONDARY_PANEL_ID, selectedCalendarsModel) {
 

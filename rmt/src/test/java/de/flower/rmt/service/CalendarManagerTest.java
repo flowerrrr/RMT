@@ -2,7 +2,8 @@ package de.flower.rmt.service;
 
 import de.flower.common.test.Violations;
 import de.flower.rmt.model.db.entity.CalItem;
-import de.flower.rmt.model.db.type.CalendarType;
+import de.flower.rmt.model.db.entity.Team;
+import de.flower.rmt.model.db.type.CalendarFilter;
 import de.flower.rmt.model.dto.CalItemDto;
 import de.flower.rmt.test.AbstractRMTIntegrationTests;
 import org.joda.time.DateTime;
@@ -40,25 +41,25 @@ public class CalendarManagerTest extends AbstractRMTIntegrationTests {
         DateTime endDate = startDate;
         calItemDto.setStartDateTime(startDate);
         calItemDto.setEndDateTime(endDate);
-        List<CalendarType> types = Arrays.asList(CalendarType.USER);
+        List<CalendarFilter> filters = Arrays.asList(CalendarFilter.USER);
         // verify database is empty.
-        assertTrue(calendarManager.findAllByCalendarAndRange(types, new DateTime(0), new DateTime(Long.MAX_VALUE)).isEmpty());
+        assertTrue(calendarManager.findAllByCalendarAndRange(filters, new DateTime(0), new DateTime(Long.MAX_VALUE)).isEmpty());
         calendarManager.save(calItemDto, securityService.getUser());
 
-        assertEquals(calendarManager.findAllByCalendarAndRange(types, startDate, endDate).size(), 1);
-        assertEquals(calendarManager.findAllByCalendarAndRange(types, startDate, endDate.plusDays(1)).size(), 1);
-        assertEquals(calendarManager.findAllByCalendarAndRange(types, startDate.minusDays(1), endDate).size(), 1);
-        assertEquals(calendarManager.findAllByCalendarAndRange(types, startDate.minusDays(1), endDate.plusDays(1)).size(), 1);
+        assertEquals(calendarManager.findAllByCalendarAndRange(filters, startDate, endDate).size(), 1);
+        assertEquals(calendarManager.findAllByCalendarAndRange(filters, startDate, endDate.plusDays(1)).size(), 1);
+        assertEquals(calendarManager.findAllByCalendarAndRange(filters, startDate.minusDays(1), endDate).size(), 1);
+        assertEquals(calendarManager.findAllByCalendarAndRange(filters, startDate.minusDays(1), endDate.plusDays(1)).size(), 1);
 
-        assertEquals(calendarManager.findAllByCalendarAndRange(types, startDate.plusMillis(1), endDate).size(), 0);
+        assertEquals(calendarManager.findAllByCalendarAndRange(filters, startDate.plusMillis(1), endDate).size(), 0);
 
         // let event span several months
         calItemDto.setStartDateTime(startDate.minusYears(1));
         calItemDto.setEndDateTime(endDate.plusYears(1));
         calendarManager.save(calItemDto, securityService.getUser());
 
-        assertEquals(calendarManager.findAllByCalendarAndRange(types, startDate.minusDays(1), endDate).size(), 1);
-        assertEquals(calendarManager.findAllByCalendarAndRange(types, startDate.minusYears(2), endDate).size(), 1);
+        assertEquals(calendarManager.findAllByCalendarAndRange(filters, startDate.minusDays(1), endDate).size(), 1);
+        assertEquals(calendarManager.findAllByCalendarAndRange(filters, startDate.minusYears(2), endDate).size(), 1);
     }
 
     @Test
@@ -66,14 +67,25 @@ public class CalendarManagerTest extends AbstractRMTIntegrationTests {
         DateTime startDate = new DateTime();
         DateTime endDate = startDate;
         // simply verify that method executes without exception.
-        List<CalendarType> types = Arrays.asList(CalendarType.OTHERS);
-        calendarManager.findAllByCalendarAndRange(types, startDate, endDate);
+        List<CalendarFilter> filters = Arrays.asList(CalendarFilter.OTHERS);
+        calendarManager.findAllByCalendarAndRange(filters, startDate, endDate);
+    }
+
+    @Test
+    public void testFindAllByTeamAndRange() {
+        Team team = testData.createTeamWithPlayers("FC Foobar", 20);
+
+        DateTime startDate = new DateTime();
+        DateTime endDate = startDate;
+        // simply verify that method executes without exception.
+        List<CalendarFilter> filters = Arrays.asList(new CalendarFilter(CalendarFilter.Type.TEAM, team));
+        calendarManager.findAllByCalendarAndRange(filters, startDate, endDate);
     }
 
     @Test
     public void testFindAllByCalenderAndRange() {
         DateTime startDate = new DateTime();
         DateTime endDate = startDate;
-        calendarManager.findAllByCalendarAndRange(Arrays.asList(CalendarType.values()), startDate, endDate);
+        calendarManager.findAllByCalendarAndRange(calendarManager.getCalendarFilters(), startDate, endDate);
     }
 }

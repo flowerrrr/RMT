@@ -334,9 +334,7 @@ public class InvitationManager extends AbstractService implements IInvitationMan
                 } else {
                     comment = messageSource.getMessage(CalItem.Type.getResourceKey(calItem.getType()));
                 }
-                if (calItem.isSingleDay()) {
-                    comment += String.format(" (%s)", Dates.formatDateShort(calItem.getStartDateTime().toDate()));
-                } else {
+                if (!calItem.isSingleDay() && calItem.getType() == CalItem.Type.HOLIDAY) {
                     comment += String.format(" (%s - %s)", Dates.formatDateShort(calItem.getStartDateTime().toDate()),
                             Dates.formatDateShort(calItem.getEndDateTime().toDate()));
                 }

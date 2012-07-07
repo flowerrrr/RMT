@@ -118,7 +118,7 @@ public class InvitationManagerTest extends AbstractRMTIntegrationTests {
         dto.setType(CalItem.Type.HOLIDAY);
         dto.setSummary("South Tirol");
         dto.setStartDateTime(event.getDateTime());
-        dto.setEndDateTime(event.getDateTime());
+        dto.setEndDateTime(event.getDateTime().plusDays(3));
         dto.setAllDay(true);
         dto.setAutoDecline(true);
         User user = team.getPlayers().get(0).getUser();
@@ -129,7 +129,7 @@ public class InvitationManagerTest extends AbstractRMTIntegrationTests {
         Invitation invitation = invitationManager.findByEventAndUser(event, user);
         assertEquals(invitation.getStatus(), RSVPStatus.DECLINED);
         Comment comment = commentManager.findByInvitationAndAuthor(invitation, user, 0);
-        assertEquals(comment.getText(), String.format("Urlaub (%s)", Dates.formatDateShort(dto.getStartDateTime().toDate())));
+        assertEquals(comment.getText(), String.format("Urlaub (%s - %s)", Dates.formatDateShort(dto.getStartDateTime().toDate()), Dates.formatDateShort(dto.getEndDateTime().toDate())));
     }
 
 }

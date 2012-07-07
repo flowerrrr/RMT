@@ -5,7 +5,7 @@ import de.flower.rmt.model.db.entity.CalItem;
 import de.flower.rmt.model.db.entity.CalItem_;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.model.db.type.CalendarType;
+import de.flower.rmt.model.db.type.CalendarFilter;
 import de.flower.rmt.model.dto.CalItemDto;
 import de.flower.rmt.service.ICalendarManager;
 import de.flower.rmt.service.IEventManager;
@@ -34,7 +34,7 @@ public abstract class CalendarPanel extends RMTBasePanel {
     @SpringBean
     private ISecurityService securityService;
 
-    public CalendarPanel(String id, final IModel<List<CalendarType>> model) {
+    public CalendarPanel(String id, final IModel<List<CalendarFilter>> model) {
         super(id, model);
 
         add(new AjaxEventListener(CalItem.class));

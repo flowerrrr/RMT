@@ -2,14 +2,12 @@ package de.flower.rmt.service;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import com.mysema.query.types.expr.BooleanExpression;
 import de.flower.common.util.Check;
-import de.flower.rmt.model.db.entity.CalItem;
-import de.flower.rmt.model.db.entity.CalItem_;
-import de.flower.rmt.model.db.entity.QCalItem;
-import de.flower.rmt.model.db.entity.User;
+import de.flower.rmt.model.db.entity.*;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.model.db.type.CalendarType;
+import de.flower.rmt.model.db.type.CalendarFilter;
 import de.flower.rmt.model.dto.CalItemDto;
 import de.flower.rmt.repository.ICalItemRepo;
 import de.flower.rmt.ui.markup.html.calendar.CalEvent;
@@ -43,6 +41,9 @@ public class CalendarManager extends AbstractService implements ICalendarManager
 
     @Autowired
     private IEventManager eventManager;
+
+    @Autowired
+    private ITeamManager teamManager;
 
     @Autowired
     private MessageSourceAccessor messageSource;
@@ -79,16 +80,21 @@ public class CalendarManager extends AbstractService implements ICalendarManager
     }
 
     @Override
-    public List<CalEvent> findAllByCalendarAndRange(List<CalendarType> calendarTypes, final DateTime start, final DateTime end) {
+    public List<CalEvent> findAllByCalendarAndRange(List<CalendarFilter> calendarFilters, final DateTime start, final DateTime end) {
         List<?> list = Lists.newArrayList();
-        if (calendarTypes.contains(CalendarType.USER)) {
-            list.addAll((Collection) findAllByUserAndRange(securityService.getUser(), start, end));
-        }
-        if (calendarTypes.contains(CalendarType.OTHERS)) {
-            list.addAll((Collection) findAllByOthersAndRange(start, end));
-        }
-        if (calendarTypes.contains(CalendarType.CLUB)) {
-            list.addAll((Collection) eventManager.findAllByDateRange(start, end));
+        for (CalendarFilter filter : calendarFilters) {
+            if (filter.type == CalendarFilter.Type.USER) {
+                list.addAll((Collection) findAllByUserAndRange(securityService.getUser(), start, end));
+            }
+            if (filter.type == CalendarFilter.Type.OTHERS) {
+                list.addAll((Collection) findAllByOthersAndRange(start, end));
+            }
+            if (filter.type == CalendarFilter.Type.CLUB) {
+                list.addAll((Collection) eventManager.findAllByDateRange(start, end));
+            }
+            if (filter.type == CalendarFilter.Type.TEAM) {
+                list.addAll((Collection) findAllByTeamAndRange(filter.team, start, end));
+            }
         }
         return transform(list);
     }
@@ -110,6 +116,13 @@ public class CalendarManager extends AbstractService implements ICalendarManager
         return calItemRepo.findAll(isNotCurrentUser.and(isClub).and(isNotEndBeforeCalStart).and(isNotStartAfterCalEnd));
     }
 
+    private List<CalItem> findAllByTeamAndRange(final Team team, final DateTime calStart, final DateTime calEnd) {
+        BooleanExpression isTeam = QCalItem.calItem.user.players.any().team.eq(team);
+        BooleanExpression isNotStartAfterCalEnd = QCalItem.calItem.startDateTime.after(calEnd).not();
+        BooleanExpression isNotEndBeforeCalStart = QCalItem.calItem.endDateTime.before(calStart).not();
+        return calItemRepo.findAll(isTeam.and(isNotEndBeforeCalStart).and(isNotStartAfterCalEnd));
+    }
+
     private List<CalEvent> transform(List<?> items) {
         List<CalEvent> events = Lists.transform(items, new Function<Object, CalEvent>() {
             @Override
@@ -123,7 +136,7 @@ public class CalendarManager extends AbstractService implements ICalendarManager
                 }
             }
         });
-        return Lists.newArrayList(events); // copy as recommended in javadoc.
+        return Lists.newArrayList(Sets.newHashSet(events)); // filter duplicates
     }
 
     private CalEvent toCalEvent(final Event event) {
@@ -164,5 +177,17 @@ public class CalendarManager extends AbstractService implements ICalendarManager
         CalItem entity = loadById(id);
         // no security assertions yet.
         calItemRepo.delete(entity);
+    }
+
+    @Override
+    public List<CalendarFilter> getCalendarFilters() {
+        List<CalendarFilter> filters = Lists.newArrayList();
+        filters.add(CalendarFilter.USER);
+        filters.add(CalendarFilter.CLUB);
+        filters.add(CalendarFilter.OTHERS);
+        for (Team team : teamManager.findAll()) {
+            filters.add(new CalendarFilter(CalendarFilter.Type.TEAM, team));
+        }
+        return filters;
     }
 }
