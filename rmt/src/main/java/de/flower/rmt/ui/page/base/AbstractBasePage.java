@@ -104,6 +104,9 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
 
             response.renderJavaScriptReference(Resource.jqueryJsUrl);
             response.renderJavaScriptReference(Resource.jqueryUiJsUrl);
+            // enable drag n drop for ipad
+            String includeTouchJs = "if (window.Touch) { document.write('" + String.format(Resource.scriptLink, relative(Resource.touchJsUrl)) + "'); }";
+            response.renderJavaScript(includeTouchJs, "touchJs");
             response.renderJavaScriptReference(Resource.bootstrapJsUrl);
             // script should be rendered at the very end cause it overrides wicket javascript functions.
             response.renderJavaScriptReference(Resource.mainJsUrl);
@@ -127,13 +130,13 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
             // less script must be loaded after css-files.
             response.renderJavaScriptReference(Resource.lessJsUrl);
         }
+    }
 
-        /**
-         * copied from HeaderResponse#relative
-         */
-        public static String relative(final String url) {
-            RequestCycle rc = RequestCycle.get();
-            return rc.getUrlRenderer().renderContextRelativeUrl(url);
-        }
+    /**
+     * copied from HeaderResponse#relative
+     */
+    public static String relative(final String url) {
+        RequestCycle rc = RequestCycle.get();
+        return rc.getUrlRenderer().renderContextRelativeUrl(url);
     }
 }

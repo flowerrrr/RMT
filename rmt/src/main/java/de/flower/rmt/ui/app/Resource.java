@@ -14,6 +14,8 @@ public interface Resource {
 
     public static final String jqueryUiJsUrl = "static/js/jquery-ui-1.8.21.custom.min.js";
 
+    public static final String touchJsUrl = "static/js/jquery.ui.touch-punch.min.js?" + Version.VERSION;
+
     public static final String datepickerJsUrl = "static/js/bootstrap/bootstrap-datepicker.js?" + Version.VERSION;
 
     public static final String datepickerCssUrl = "static/css/bootstrap/datepicker.css?" + Version.VERSION;
@@ -31,4 +33,6 @@ public interface Resource {
     public static final String searchFilterJsUrl = "static/js/search-filter.js?" + Version.VERSION;
 
     public static final String lessLink = "<link href=\"%s\" rel=\"stylesheet/less\" type=\"text/css\" media=\"all\"/>";
+
+    public static final String scriptLink = "<script type=\"text/javascript\" src=\"%s\"><\\/script>";
 }
