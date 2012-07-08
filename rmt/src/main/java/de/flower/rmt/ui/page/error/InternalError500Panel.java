@@ -2,6 +2,7 @@ package de.flower.rmt.ui.page.error;
 
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.common.ui.util.LoggingUtils;
+import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.ui.app.IPropertyProvider;
 import de.flower.rmt.ui.app.Links;
 import org.apache.wicket.Application;
@@ -22,6 +23,9 @@ public class InternalError500Panel extends BasePanel {
     @SpringBean
     private IPropertyProvider propertyProvider;
 
+    @SpringBean
+    private ISecurityService securityService;
+
     public InternalError500Panel(final Exception exception) {
         add(Links.contextRoot("home"));
         add(Links.mailLink("adminMail", propertyProvider.getAdminEmail(), true));
@@ -40,6 +44,7 @@ public class InternalError500Panel extends BasePanel {
     @Override
     protected void onBeforeRender() {
         log.warn("Server error 500 [{}]", LoggingUtils.toString(RequestCycle.get().getRequest()));
+        log.warn("Userdetails: " + securityService.getCurrentUser());
         super.onBeforeRender();
     }
 

@@ -30,5 +30,5 @@ public interface Resource {
 
     public static final String searchFilterJsUrl = "static/js/search-filter.js?" + Version.VERSION;
 
-    public static final String lessLink = "<link href=\"%s\" rel=\"stylesheet/less\" type=\"text/css\"/>";
+    public static final String lessLink = "<link href=\"%s\" rel=\"stylesheet/less\" type=\"text/css\" media=\"all\"/>";
 }
