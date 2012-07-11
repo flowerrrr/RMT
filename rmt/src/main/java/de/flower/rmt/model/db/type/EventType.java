@@ -9,9 +9,9 @@ import de.flower.rmt.model.db.entity.event.*;
 public enum EventType {
 
     Event(Event.class, 0, 4*60 /* only a guess */),
-    Match(Match.class, 45, 45 + 115 /* pre-action + match */),
-    Training(Training.class, 15, 15 + 90),
-    Tournament(Tournament.class, 45, 45 + 6 * 60);
+    Match(Match.class, 45, 105),
+    Training(Training.class, 15, 90),
+    Tournament(Tournament.class, 45, 6 * 60);
 
     private Class<? extends Event> clazz;
 

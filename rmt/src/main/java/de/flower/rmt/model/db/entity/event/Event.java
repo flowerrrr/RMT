@@ -57,6 +57,13 @@ public class Event extends AbstractClubRelatedEntity {
     private LocalTime time;
 
     /**
+     * Will be translated to dateTimeEnd by service layer when saved.
+     */
+    // @NotNull
+    @Transient
+    private LocalTime timeEnd;
+
+    /**
      * Derived field. Mostly used when searching for event by date and ordering by date.
      * Field is updated whenever #setDate() or #setTime() is called.
      */
@@ -219,12 +226,13 @@ public class Event extends AbstractClubRelatedEntity {
      */
     public void initTransientFields() {
         setDateTime(getDateTime());
+        setDateTimeEnd(getDateTimeEnd());
     }
 
     public DateTime getDateTimeEnd() {
         if (dateTimeEnd == null & getDateTime() != null && getEventType() != null) {
              // guess duration of event.
-             return getDateTime().plusMinutes(getEventType().getDurationMinutes());
+             return getDateTime().plusMinutes(getEventType().getMeetBeforeKickOffMinutes() + getEventType().getDurationMinutes());
          }  else {
             return dateTimeEnd;
         }
@@ -232,6 +240,19 @@ public class Event extends AbstractClubRelatedEntity {
 
     public void setDateTimeEnd(final DateTime dateTimeEnd) {
         this.dateTimeEnd = dateTimeEnd;
+        if (this.dateTimeEnd == null) {
+            this.timeEnd = null;
+        } else {
+            this.timeEnd = dateTimeEnd.toLocalTime();
+        }
+    }
+
+    public LocalTime getTimeEnd() {
+        return timeEnd;
+    }
+
+    public void setTimeEnd(final LocalTime timeEnd) {
+        this.timeEnd = timeEnd;
     }
 
     // **************************************************

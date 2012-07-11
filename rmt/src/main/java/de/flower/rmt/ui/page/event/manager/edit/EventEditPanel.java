@@ -20,6 +20,7 @@ import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.joda.time.DateTime;
 import org.joda.time.LocalTime;
 
 /**
@@ -39,6 +40,8 @@ public class EventEditPanel extends BasePanel<Event> {
 
     private DropDownChoicePanel<?> kickOffDDCPanel;
 
+    private DropDownChoicePanel<?> timeEndDDCPanel;
+
     public EventEditPanel(final IModel<Event> model) {
         this(null, model);
     }
@@ -55,6 +58,15 @@ public class EventEditPanel extends BasePanel<Event> {
             @Override
             protected void onSubmit(final AjaxRequestTarget target, final Form<Event> form) {
                 final Event event = form.getModelObject();
+                // adjust endTime; must be past begin
+                if (event.getTimeEnd() != null) {
+                    DateTime dateTimeEnd = event.getDateTime().withFields(event.getTimeEnd());
+                    if (dateTimeEnd.isBefore(event.getDateTime())) {
+                        dateTimeEnd = dateTimeEnd.plusDays(1);
+                    }
+                    event.setDateTimeEnd(dateTimeEnd);
+                }
+
                 if (event.isNew()) {
                     eventManager.create(event, true);
                     // jump to email tab
@@ -92,10 +104,14 @@ public class EventEditPanel extends BasePanel<Event> {
             @Override
             protected void onChange(final AjaxRequestTarget target) {
                 // preset kickoff time (if it is not set yet)
+                LocalTime time = (LocalTime) getDefaultModelObject();
                 if (kickOffDDCPanel.isVisible() && kickOffDDCPanel.getStateSavingModel().getSavedObject() == null) {
-                    kickOffDDCPanel.getFormComponent().setModelObject(form.getModelObject().getTime().plusMinutes(EventType.from(model.getObject()).getMeetBeforeKickOffMinutes()));
+                    kickOffDDCPanel.getFormComponent().setModelObject(time.plusMinutes(EventType.from(model.getObject()).getMeetBeforeKickOffMinutes()));
                     target.add(kickOffDDCPanel);
                 }
+                // preset end time
+                timeEndDDCPanel.getFormComponent().setModelObject(time.plusMinutes(EventType.from(model.getObject()).getMeetBeforeKickOffMinutes() + EventType.from(model.getObject()).getDurationMinutes()));
+                target.add(timeEndDDCPanel);
             }
         });
 
@@ -108,12 +124,18 @@ public class EventEditPanel extends BasePanel<Event> {
             @Override
             protected void onChange(final AjaxRequestTarget target) {
                 // preset meeting time (if it is not set yet)
+                LocalTime time = (LocalTime) getDefaultModelObject();
                 if (timeDDCPanel.getStateSavingModel().getSavedObject() == null) {
-                    timeDDCPanel.getFormComponent().setModelObject(((LocalTime) getDefaultModelObject()).minusMinutes(EventType.from(model.getObject()).getMeetBeforeKickOffMinutes()));
+                    timeDDCPanel.getFormComponent().setModelObject(time.minusMinutes(EventType.from(model.getObject()).getMeetBeforeKickOffMinutes()));
                     target.add(timeDDCPanel);
                 }
+                // preset end time
+                timeEndDDCPanel.getFormComponent().setModelObject(time.plusMinutes(EventType.from(model.getObject()).getDurationMinutes()));
+                target.add(timeEndDDCPanel);
             }
         });
+
+        form.add(timeEndDDCPanel = new DropDownChoicePanel("timeEnd", new TimeDropDownChoice("input")));
 
         form.add(new OpponentDropDownChoicePanel("opponent") {
             @Override

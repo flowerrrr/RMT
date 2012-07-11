@@ -82,7 +82,12 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
             }
         });
 
-        add(new DebugBar("debugBar").setVisible(false));
+        add(new DebugBar("debugBar") {
+            @Override
+            public boolean isVisible() {
+                return false;
+            }
+        });
     }
 
     /**
