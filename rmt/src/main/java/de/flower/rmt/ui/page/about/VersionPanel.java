@@ -8,8 +8,7 @@ import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 /**
  * @author flowerrrr
  */
-public class
-        VersionPanel extends BasePanel {
+public class VersionPanel extends BasePanel {
 
     public VersionPanel() {
         add(new Label("version", Version.VERSION));

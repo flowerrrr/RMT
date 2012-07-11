@@ -50,8 +50,14 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
             }
         });
 
-        ModalDialogWindowPanel modalDialogWindowPanel = new ModalDialogWindowPanel();
-        add(modalDialogWindowPanel);
+        // RMT-718 - avoid rendering of wicket-modal-js when no modal window is required in page
+        if (hasModalWindow()) {
+            ModalDialogWindowPanel modalDialogWindowPanel = new ModalDialogWindowPanel();
+            add(modalDialogWindowPanel);
+        } else {
+            // need markup container to satisfy html-wicket-element
+            add(new WebMarkupContainer("modalDialogWindowPanel").setVisible(false));
+        }
 
         // include dummy component to force rendering of css and js references. must be after modalwindow to keep
         // original order (first wicket.js/css, then ours) and overriding
@@ -76,7 +82,7 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
             }
         });
 
-        add(new DebugBar("debugBar"));
+        add(new DebugBar("debugBar").setVisible(false));
     }
 
     /**
@@ -138,5 +144,12 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
     public static String relative(final String url) {
         RequestCycle rc = RequestCycle.get();
         return rc.getUrlRenderer().renderContextRelativeUrl(url);
+    }
+
+    /**
+     * Subclasses that need to access a modal window must override and return true;
+     */
+    protected boolean hasModalWindow() {
+        return false;
     }
 }

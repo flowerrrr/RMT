@@ -114,4 +114,9 @@ public class EventPage extends ManagerBasePage {
     public String getActiveTopBarItem() {
         return NavigationPanel.EVENTS;
     }
+
+    @Override
+    protected boolean hasModalWindow() {
+        return true;
+    }
 }
