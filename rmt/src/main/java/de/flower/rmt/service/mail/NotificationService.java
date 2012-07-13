@@ -18,6 +18,7 @@ import de.flower.rmt.service.ILinkProvider;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.markup.html.form.renderer.SurfaceRenderer;
 import de.flower.rmt.util.Dates;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -207,6 +208,28 @@ public class NotificationService implements INotificationService, IICalendarProv
         message.setBcc(to.toArray(new String[]{}));
 
         mailService.sendMail(message);
+
+        // send mail to manager
+        sendSummaryToManager(event, to, "No response to invitation mail.");
+    }
+
+    private void sendSummaryToManager(final Event event, final List<String> to, final String reason) {
+        final SimpleMailMessage message;
+        message = new SimpleMailMessage();
+        message.setTo(event.getCreatedBy().getEmail());
+        message.setSubject("das tool: Reminder-Mail summary");
+
+        String body = "An auto-reminder-mail was sent to the following recpients.\n"
+                + "Event: " + linkProvider.deepLinkEvent(event.getId()) + "\n"
+                + "Reason: " + reason + "\n"
+                + "Users:\n";
+        body += StringUtils.join(to, "\n");
+        body += "\n"
+                + "_____________________________________________________\n"
+                + "Sent by das-tool reminder task.";
+        message.setText(body);
+
+        mailService.sendMail(message);
     }
 
     @VisibleForTesting
@@ -246,6 +269,9 @@ public class NotificationService implements INotificationService, IICalendarProv
         message.setBcc(to.toArray(new String[]{}));
 
         mailService.sendMail(message);
+
+        // send mail to manager
+        sendSummaryToManager(event, to, "Response status set to 'maybe'.");
     }
 
     @VisibleForTesting
