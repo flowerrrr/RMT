@@ -1,6 +1,8 @@
 package de.flower.rmt.ui.page.users;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSortedSet;
+import com.google.common.collect.Lists;
 import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.ajax.markup.html.AjaxLinkWithConfirmation;
@@ -26,11 +28,13 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
-import org.apache.wicket.model.*;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.LoadableDetachableModel;
+import org.apache.wicket.model.Model;
+import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import javax.mail.internet.InternetAddress;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -114,20 +118,25 @@ public class UserListPanel extends RMTBasePanel {
         };
     }
 
+    /**
+     * @param userModel players and teams are already loaded.
+     * @return
+     */
     private ListView createTeamList(final IModel<User> userModel) {
-        IModel<List<Player>> playerListModel = new AbstractReadOnlyModel<List<Player>>() {
+        List<String> teamList = Lists.newArrayList();
+        // because of pre-fetching multiple associations the list of players can contain
+        // duplicate entries (e.g. when user has two roles assigned).
+        // filter out duplicate entries by using a set
+        for (Player player : new HashSet<Player>(userModel.getObject().getPlayers())) {
+            teamList.add(player.getTeam().getName());
+        }
+        // sort teamlist
+        teamList = ImmutableSortedSet.copyOf(teamList).asList();
+
+        return new ListView<String>("teams", teamList) {
             @Override
-            public List<Player> getObject() {
-                // because of pre-fetching multiple associations the list of players can contain
-                // duplicate entries (e.g. when user has two roles assigned).
-                // filter out duplicate entries
-                return new ArrayList(new HashSet(userModel.getObject().getPlayers()));
-            }
-        };
-        return new ListView<Player>("teams", playerListModel) {
-            @Override
-            protected void populateItem(final ListItem<Player> item) {
-                item.add(new Label("team", item.getModelObject().getTeam().getName()));
+            protected void populateItem(final ListItem<String> item) {
+                item.add(new Label("team", item.getModelObject()));
             }
         };
     }
