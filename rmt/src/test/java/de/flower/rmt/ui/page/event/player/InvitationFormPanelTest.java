@@ -20,6 +20,7 @@ public class InvitationFormPanelTest extends AbstractRMTWicketMockitoTests {
         Invitation invitation = new Invitation(event, (User) null);
         wicketTester.startComponentInPage(new InvitationFormTestPanel(Model.of(invitation), Model.of(false)));
         wicketTester.dumpComponentWithPage();
+        wicketTester.assertInvisible("invitationClosedMessage");
     }
 
     @Test
@@ -28,6 +29,7 @@ public class InvitationFormPanelTest extends AbstractRMTWicketMockitoTests {
         Invitation invitation = new Invitation(event, (User) null);
         wicketTester.startComponentInPage(new InvitationFormTestPanel(Model.of(invitation), Model.of(true)));
         wicketTester.dumpComponentWithPage();
+        wicketTester.assertVisible("invitationClosedMessage");
     }
 
     private static class InvitationFormTestPanel extends InvitationFormPanel {
