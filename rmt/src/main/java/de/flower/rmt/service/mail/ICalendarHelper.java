@@ -22,7 +22,7 @@ public class ICalendarHelper {
 
     public static final String CONTENT_TYPE_HTTP = "text/calendar; charset=" + CHARSET;
 
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd'T'HHmmss'Z'");
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd'T'HHmmss");
 
     private Event event;
 
