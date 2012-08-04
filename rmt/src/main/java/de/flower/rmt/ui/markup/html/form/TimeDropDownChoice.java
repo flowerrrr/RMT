@@ -47,7 +47,7 @@ public class TimeDropDownChoice extends DropDownChoice<LocalTime> {
             // PATCH BEGIN
             if (index == -1) {
                 log.warn("Could not match [{}] to available choices. Returning closest match");
-                index = closestMatch(object);
+                index = closestMatch(object, getChoices());
             }
             // PATCH END
             return getChoiceRenderer().getIdValue(object, index);
@@ -58,10 +58,10 @@ public class TimeDropDownChoice extends DropDownChoice<LocalTime> {
         }
     }
 
-    private int closestMatch(final LocalTime object) {
-        for (int i = 0; i < getChoices().size() - 1; i++) {
-            LocalTime a = getChoices().get(i);
-            LocalTime b = getChoices().get(i + 1);
+    public static int closestMatch(final LocalTime object, List<? extends LocalTime> choices) {
+        for (int i = 0; i < choices.size() - 1; i++) {
+            LocalTime a = choices.get(i);
+            LocalTime b = choices.get(i + 1);
             if (a.isBefore(object) && b.isAfter(object)) {
                 if (object.getMillisOfDay() - a.getMillisOfDay() > b.getMillisOfDay() - object.getMillisOfDay()) {
                     return i + 1;
@@ -70,10 +70,12 @@ public class TimeDropDownChoice extends DropDownChoice<LocalTime> {
                 }
             }
         }
-        throw new RuntimeException("Could not match [" + object + "]");
+        // RMT-732
+        // match everything past 23:45 to last entry in choices.
+        return choices.size() - 1;
     }
 
-    private List<LocalTime> getTimeChoices() {
+    public static List<LocalTime> getTimeChoices() {
         List<LocalTime> list = new ArrayList<LocalTime>();
         LocalTime start = LocalTime.fromMillisOfDay(0);
         LocalTime end = start.minusMillis(1);
