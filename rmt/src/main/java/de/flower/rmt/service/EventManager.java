@@ -1,6 +1,8 @@
 package de.flower.rmt.service;
 
 import com.mysema.query.types.EntityPath;
+import com.mysema.query.types.Order;
+import com.mysema.query.types.OrderSpecifier;
 import com.mysema.query.types.expr.BooleanExpression;
 import de.flower.common.model.EntityHelper;
 import de.flower.common.util.Check;
@@ -155,7 +157,7 @@ public class EventManager extends AbstractService implements IEventManager {
         if (user != null) {
             isUser = QEvent.event.invitations.any().user.eq(user);
         }
-        return eventRepo.findAll(isBeetween.and(isUser), attributes);
+        return eventRepo.findAll(isBeetween.and(isUser), new OrderSpecifier(Order.DESC, QEvent.event.dateTime), attributes);
     }
 
     @Override
