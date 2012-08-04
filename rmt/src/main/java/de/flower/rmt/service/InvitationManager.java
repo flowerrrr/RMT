@@ -323,6 +323,7 @@ public class InvitationManager extends AbstractService implements IInvitationMan
         List<CalItem> list = calendarManager.findAllByUserAndRange(invitation.getUser(), eventDate, eventDate);
         for (CalItem calItem : list) {
             if (calItem.isAutoDecline()) {
+                log.info("Auto declining user [{}] for event [{}] due to calendar item [{}]", new Object[] { invitation.getUser().getEmail(), invitation.getEvent(), calItem });
                 invitation.setStatus(RSVPStatus.DECLINED);
                 // no validation, no activity log, just plain save
                 invitationRepo.save(invitation);

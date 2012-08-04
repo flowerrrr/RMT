@@ -39,7 +39,6 @@ public class InvitationManagerTest extends AbstractRMTIntegrationTests {
         assertEquals(invitation.getComments().size(), 1);
         comment = invitation.getComments().get(0);
         assertEquals(comment.getText(), "new comment");
-
     }
 
     @Test
@@ -116,7 +115,7 @@ public class InvitationManagerTest extends AbstractRMTIntegrationTests {
         // now create calendar holiday event for a user
         CalItemDto dto = new CalItemDto();
         dto.setType(CalItem.Type.HOLIDAY);
-        dto.setSummary("South Tirol");
+        dto.setSummary("South Tyrol");
         dto.setStartDateTime(event.getDateTime());
         dto.setEndDateTime(event.getDateTime().plusDays(3));
         dto.setAllDay(true);
@@ -130,6 +129,21 @@ public class InvitationManagerTest extends AbstractRMTIntegrationTests {
         assertEquals(invitation.getStatus(), RSVPStatus.DECLINED);
         Comment comment = commentManager.findByInvitationAndAuthor(invitation, user, 0);
         assertEquals(comment.getText(), String.format("Urlaub (%s - %s)", Dates.formatDateShort(dto.getStartDateTime().toDate()), Dates.formatDateShort(dto.getEndDateTime().toDate())));
-    }
 
+        // try another player with a holiday not matching the event date (RMT-731)
+        dto = new CalItemDto();
+        dto.setType(CalItem.Type.HOLIDAY);
+        dto.setSummary("North Tyrol");
+        dto.setStartDateTime(event.getDateTime().plusDays(20));
+        dto.setEndDateTime(dto.getStartDateTime().plusDays(3));
+        dto.setAllDay(true);
+        dto.setAutoDecline(true);
+        user = team.getPlayers().get(1).getUser();
+        calendarManager.save(dto, user);
+        // now create invitation for this user
+        invitationManager.addUsers(event, Arrays.asList(user.getId()));
+        // find invitation and assert status
+        invitation = invitationManager.findByEventAndUser(event, user);
+        assertEquals(invitation.getStatus(), RSVPStatus.NORESPONSE);
+    }
 }
