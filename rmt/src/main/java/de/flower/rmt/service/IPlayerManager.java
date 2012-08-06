@@ -34,9 +34,10 @@ public interface IPlayerManager {
     /**
      * Soft deletes all players of the team.
      * Soft in case deletion of team was human error to be able to recover.
+     *
      * @param entity
      */
     void deleteByTeam(Team entity);
 
-
+    List<Player> sortByTeam(List<Player> list);
 }

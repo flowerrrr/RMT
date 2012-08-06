@@ -1,7 +1,10 @@
 package de.flower.rmt.ui.page.account;
 
+import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.test.AbstractRMTWicketIntegrationTests;
+import de.flower.rmt.ui.model.UserModel;
 import org.apache.wicket.Component;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.testng.annotations.Test;
 
@@ -14,7 +17,8 @@ public class AccountTabPanelTest extends AbstractRMTWicketIntegrationTests {
 
     @Test
     public void testRender() {
-        wicketTester.startComponentInPage(new AccountTabPanel());
+        final IModel<User> model = new UserModel(securityService.getUser());
+        wicketTester.startComponentInPage(new AccountTabPanel(model));
         wicketTester.dumpComponentWithPage();
     }
 

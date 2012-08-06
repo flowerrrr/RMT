@@ -15,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.metamodel.Attribute;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static de.flower.rmt.repository.Specs.*;
@@ -120,5 +122,17 @@ public class PlayerManager extends AbstractService implements IPlayerManager {
             // in case recovery is needed just re-add the users to the undeleted team.
             delete(player);
         }
+    }
+
+    @Override
+    public List<Player> sortByTeam(List<Player> list) {
+        // return sorted by team name
+        Collections.sort(list, new Comparator<Player>() {
+            @Override
+            public int compare(final Player o1, final Player o2) {
+                return o1.getTeam().getName().compareTo(o2.getTeam().getName());
+            }
+        });
+        return list;
     }
 }
