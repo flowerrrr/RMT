@@ -5,6 +5,8 @@ import de.flower.common.ui.serialize.SerializerWrapper;
 import de.flower.rmt.ui.page.about.AboutPage;
 import de.flower.rmt.ui.page.about.ChangeLogPage;
 import de.flower.rmt.ui.page.account.AccountPage;
+import de.flower.rmt.ui.page.blog.ArticlePage;
+import de.flower.rmt.ui.page.blog.BlogPage;
 import de.flower.rmt.ui.page.calendar.CalendarPage;
 import de.flower.rmt.ui.page.error.AccessDenied403Page;
 import de.flower.rmt.ui.page.error.InternalError500Page;
@@ -106,6 +108,8 @@ public class RMTApplication extends WebApplication {
         mountPage("player/event/${" + EventPage.PARAM_EVENTID + "}", de.flower.rmt.ui.page.event.player.EventPage.class);
         mountPage("event/${" + EventPage.PARAM_EVENTID + "}", de.flower.rmt.ui.page.event.player.EventPage.class);
         mountPage("calendar", CalendarPage.class);
+        mountPage("blog", BlogPage.class);
+        mountPage("blog/${" + ArticlePage.PARAM_ARTICLEID + "}", ArticlePage.class);
         mountPage("users", UsersPage.class);
         mountPage("venues", de.flower.rmt.ui.page.venues.player.VenuesPage.class);
         mountPage("venue/${" + VenuePage.PARAM_VENUEID + "}", VenuePage.class);

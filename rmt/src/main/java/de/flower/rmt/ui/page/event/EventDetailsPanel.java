@@ -34,7 +34,7 @@ import java.util.Locale;
 public class EventDetailsPanel extends RMTBasePanel<Event> {
 
     public EventDetailsPanel(final IModel<? extends Event> model) {
-        super(null, new CompoundPropertyModel<Event>(ModelFactory.eventModelWithAllAssociations(model.getObject())));
+        super(new CompoundPropertyModel<Event>(ModelFactory.eventModelWithAllAssociations(model.getObject())));
 
         add(new Label("team.name"));
 

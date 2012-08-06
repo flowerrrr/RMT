@@ -8,6 +8,7 @@ import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.markup.html.form.renderer.EventRenderer;
 import de.flower.rmt.ui.page.account.AccountPage;
+import de.flower.rmt.ui.page.blog.BlogPage;
 import de.flower.rmt.ui.page.calendar.CalendarPage;
 import de.flower.rmt.ui.page.event.manager.EventPage;
 import de.flower.rmt.ui.page.event.manager.EventTabPanel;
@@ -43,6 +44,8 @@ import java.util.List;
 public class NavigationPanel extends RMTBasePanel {
 
     public static final String EVENTS = "events";
+
+    public static final String BLOG = "blog";
 
     public static final String CALENDAR = "calendar";
 
@@ -86,6 +89,7 @@ public class NavigationPanel extends RMTBasePanel {
         });
 
         List<MenuItem> menuItems = new ArrayList<>();
+        menuItems.add(new MenuItem(BLOG, BlogPage.class, page, true));
         menuItems.add(new MenuItem(CALENDAR, CalendarPage.class, page, true));
         menuItems.add(new MenuItem(TEAMS, TeamsPage.class, page, getView() == View.MANAGER));
         menuItems.add(new MenuItem(USERS, UsersPage.class, page, true));

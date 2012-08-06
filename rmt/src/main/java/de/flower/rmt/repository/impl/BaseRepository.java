@@ -192,7 +192,8 @@ public class BaseRepository<T extends AbstractBaseEntity, ID extends Serializabl
     }
 
     private BooleanExpression hasClub() {
-        Path<?> root = Expressions.path(entityInformation.getJavaType(), entityInformation.getEntityName().toLowerCase());
+        String variable = StringUtils.uncapitalize(entityInformation.getEntityName());
+        Path<?> root = Expressions.path(entityInformation.getJavaType(), variable);
         Path<Club> club = Expressions.path(Club.class, root, "club");
         return Expressions.predicate(Ops.EQ_OBJECT, club, Expressions.constant(getClub()));
     }

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head></head>
+<body>
+
+<wicket:panel>
+
+    <form wicket:id="form">
+
+        <wicket:container wicket:id="formFeedbackPanel"/>
+
+        <rmt:input wicket:id="text" labelKey="article.text"/>
+
+        <div class="form-actions">
+            <a class="btn btn-primary" wicket:id="submitButton">
+                <wicket:message key="button.save"/>
+            </a>
+        </div>
+    </form>
+
+</wicket:panel>
+
+
+</body>
+</html>

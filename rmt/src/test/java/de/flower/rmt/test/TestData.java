@@ -88,6 +88,9 @@ public class TestData {
     private IUserManager userManager;
 
     @Autowired
+    private IBlogManager blogManager;
+
+    @Autowired
     private IActivityManager activityManager;
 
     private Random random = new Random();
@@ -450,4 +453,32 @@ public class TestData {
 //        User user15 = createUser("81dc9bdb52d04dc20036dbd8313ed055", "1234", "player10-rmt@mailinator.com", "Erkan", juve);
 //        User user16 = createUser("81dc9bdb52d04dc20036dbd8313ed055", "1234", "player11-rmt@mailinator.com", "Süpür", juve);
 //    }
+
+    public void createBlogArticles(int num) {
+        for (int i = 0; i < num; i++) {
+            createBlogArticle(true);
+        }
+    }
+
+    private void createBlogArticle(final boolean createComments) {
+        Team team = getJuveAmateure();
+        List<User> authors = userManager.findAll();
+        User author = authors.get(RandomUtils.nextInt(authors.size()));
+        BArticle article = blogManager.newArticle(author);
+        article.setHeading("Some random heading " + RandomStringUtils.randomAlphabetic(4));
+        article.setText(RandomStringUtils.randomAlphabetic(RandomUtils.nextInt(8000)));
+        if (RandomUtils.nextBoolean()) {
+            article.setEvent(createEvent(team, true));
+        }
+        blogManager.save(article);
+
+        if (createComments) {
+            for (int i = 0; i < RandomUtils.nextInt(30); i++) {
+                author = authors.get(RandomUtils.nextInt(authors.size()));
+                BComment comment = blogManager.newComment(article, author);
+                comment.setText(RandomStringUtils.randomAlphabetic(RandomUtils.nextInt(BComment.MAXLENGTH)));
+                blogManager.save(comment);
+            }
+        }
+    }
 }

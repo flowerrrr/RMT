@@ -124,6 +124,9 @@ public class AbstractRMTIntegrationTests extends AbstractTestNGSpringContextTest
     protected IClubManager clubManager;
 
     @Autowired
+    protected IBlogManager blogManager;
+
+    @Autowired
     protected UserDetailsService userDetailService;
 
     @Autowired

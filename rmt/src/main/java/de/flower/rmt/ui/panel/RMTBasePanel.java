@@ -29,6 +29,10 @@ public class RMTBasePanel<T> extends BasePanel<T> {
         this(id, null);
     }
 
+    public RMTBasePanel(final IModel<T> model) {
+        this(null, model);
+    }
+
     public RMTBasePanel(final String id, final IModel<T> model) {
         super(getId(id, RMTBasePanel.class), model);
         // always append a css class indicating the view

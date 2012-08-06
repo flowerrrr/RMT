@@ -99,6 +99,11 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
         }
     }
 
+    protected void setHeadingModel(IModel<String> headingModel, IModel<String> subHeadingModel) {
+        heading.setDefaultModel(headingModel);
+        subheading.setDefaultModel(subHeadingModel);
+    }
+
     protected void setHeadingText(String text) {
         heading.setDefaultModel(Model.of(text));
     }

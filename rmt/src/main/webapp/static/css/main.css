@@ -794,10 +794,11 @@ td.rsvpstatus {
 /*************************************************************************
     Notification
 **************************************************************************/
+textarea.input-xlarge, input.input-xlarge, .recipient-list-panel {
+    width: 375px;
+}
+
 .notification-panel {
-    textarea.input-xlarge, input.input-xlarge, .recipient-list-panel {
-        width: 375px;
-    }
     textarea {
         height: 200px;
         white-space: pre;

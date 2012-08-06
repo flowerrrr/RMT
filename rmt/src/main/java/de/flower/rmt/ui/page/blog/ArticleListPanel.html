@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head></head>
+<body>
+
+<wicket:panel>
+
+    <div wicket:id="listContainer">
+        <div wicket:id="noEntry">
+            <wicket:message key="blog.noentry">[List is empty]</wicket:message>
+        </div>
+        <wicket:enclosure child="list">
+
+            <ul>
+            <li wicket:id="list">
+                <span wicket:id="heading"/>
+                <br>
+                <span wicket:id="author" />
+                <span wicket:id="date" />
+                <span wicket:id="numComments" />
+                <br>
+                <span wicket:id="text"/>
+                <br>
+                <a wicket:id="moreLink"><wicket:message key="button.read.more"/></a>
+            </li>
+            </ul>
+
+            <div wicket:id="pager" class="paging">[dataview navigator]</div>
+
+        </wicket:enclosure>
+    </div>
+
+</wicket:panel>
+
+
+</body>
+</html>

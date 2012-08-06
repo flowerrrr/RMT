@@ -89,6 +89,22 @@ public abstract class AbstractBaseEntity implements Serializable, IEntity, IObje
         return objectStatus == ObjectStatus.FIXED;
     }
 
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(final Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(final Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
     @Override
     public String toString() {
         return "AbstractBaseEntity@" + super.hashCode() + "{" +
