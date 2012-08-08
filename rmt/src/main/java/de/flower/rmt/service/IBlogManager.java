@@ -22,10 +22,14 @@ public interface IBlogManager {
 
     Long getNumArticles();
 
+    Long getNumComments(BArticle article);
+
     List<BComment> findAllComments(BArticle entity, EntityPath<?>... attributes);
 
     void save(BArticle article);
 
     void save(BComment comment);
+
+    void remove(BComment comment);
 
 }

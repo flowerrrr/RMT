@@ -29,6 +29,7 @@
                 <value>.*FormComponent</value>
                 <value>.*Page</value>
                 <value>.*Model</value>
+                <value>.*DataProvider</value>
                 <value>org\.apache\.wicket\..*</value>
                 <value>de.flower.common.ui.ajax.event.AjaxEventListener</value>
                 <value>de.flower.common.ui.ajax.markup..*</value>
@@ -42,7 +43,6 @@
                 <value>de.flower.rmt.ui.page.event.EventDetailsPanel\$SurfaceListLabel</value>
                 <value>de.flower.rmt.ui.page.event.EventDetailsPanel\$UniformLabel</value>
                 <value>de.flower.rmt.ui.panel.QuickResponseLabel</value>
-                <value>de.flower.rmt.ui.page.events.EventDataProvider</value>
                 <value>de.flower.rmt.ui.panel..*</value>
                 <value>java.lang.Object</value>
                 <value>java.util.AbstractList</value>

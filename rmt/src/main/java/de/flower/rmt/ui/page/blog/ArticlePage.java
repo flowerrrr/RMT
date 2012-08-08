@@ -6,6 +6,7 @@ import de.flower.rmt.ui.model.BArticleModel;
 import de.flower.rmt.ui.page.base.AbstractCommonBasePage;
 import de.flower.rmt.ui.page.base.NavigationPanel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.http.flow.AbortWithHttpErrorCodeException;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -53,8 +54,9 @@ public class ArticlePage extends AbstractCommonBasePage {
 
     private void init(IModel<BArticle> model) {
         setDefaultModel(model);
-        setHeading("blog.heading", null);
+        setHeadingModel(new PropertyModel(model, "heading"), null);
         addMainPanel(new ArticlePanel(model));
+        addSecondaryPanel(new BlogSecondaryPanel());
     }
 
     @Override

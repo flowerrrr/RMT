@@ -3,6 +3,9 @@ package de.flower.common.util;
 import com.google.common.base.Splitter;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * @author flowerrrr
  */
@@ -60,4 +63,13 @@ public final class Strings {
         }
     }
 
+    public static String substring(final String text, final String regexp) {
+        Pattern p = Pattern.compile("(" + regexp + ")");
+        Matcher m = p.matcher(text);
+        if (m.find()) {
+            return m.group(0);
+        } else {
+            return null;
+        }
+    }
 }

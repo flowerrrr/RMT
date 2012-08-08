@@ -156,6 +156,14 @@ li {
     margin-bottom: 0px; // form-margin would add to bottom-padding of divs
 }
 
+.ajaxEditableMultiLineLabel {
+    .enabled {
+        cursor: pointer;
+
+
+    }
+}
+
 /*************************************************************************
     reset wicket styling of modal window and use twitter styles instead
 **************************************************************************/
@@ -650,7 +658,7 @@ table th, .table thead th, .table .th {
     word-wrap: break-word; // to avoid long text overflowing table cells
 }
 
-.table .paging {
+.table .paging, .paging {
     text-align: right;
     a {
         color: @grayDark;
@@ -1140,6 +1148,59 @@ textarea.input-xlarge, input.input-xlarge, .recipient-list-panel {
     }
     .team {
         font-weight: bold;
+    }
+}
+
+
+/*************************************************************************
+    Blog
+**************************************************************************/
+.article-list-panel, .article-panel {
+    .article {
+        border-bottom: 1px solid #CCCCCC;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+
+        a.heading {
+            color: @grayDark;
+        }
+        h1 {
+            font-size: 22px;
+        }
+        .meta {
+            margin-bottom: 5px;
+
+            .numComments {
+                float: right;
+            }
+        }
+    }
+    .comments {
+        margin-top: 10px;
+    }
+    .comment {
+        border-bottom: 1px dotted #CCCCCC;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+
+        .meta {
+            margin-bottom: 5px;
+        }
+    }
+    .comment, .comment-form-panel {
+        textarea {
+            // no border glowing
+            box-shadow: none;
+            border-color: #CCCCCC;
+            width: 98%;
+            height: 150px;
+        }
+    }
+}
+
+.article-edit-panel {
+    textarea {
+        height: 300px;
     }
 }
 

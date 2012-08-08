@@ -20,6 +20,7 @@ import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.basic.MultiLineLabel;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.*;
 import org.apache.wicket.util.convert.IConverter;
@@ -100,7 +101,7 @@ public class EventDetailsPanel extends RMTBasePanel<Event> {
 
         add(new Label("summary"));
 
-        add(new Label("comment") {
+        add(new MultiLineLabel("comment") {
             @Override
             public boolean isVisible() {
                 return StringUtils.isNotBlank(getDefaultModelObjectAsString());

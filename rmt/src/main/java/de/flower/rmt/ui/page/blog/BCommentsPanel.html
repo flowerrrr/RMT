@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head></head>
+<body>
+
+<wicket:panel>
+
+    <wicket:enclosure child="comments">
+
+        <h3 wicket:id="numComments" />
+
+        <ul class="comments">
+            <li class="comment" wicket:id="comments">
+                <div class="meta">
+                    <h6>
+                        <span wicket:id="author"/>
+                        - <span wicket:id="date"/>
+                    </h6>
+                </div>
+                <div wicket:id="text"/>
+                <wicket:enclosure>
+                    <a wicket:id="removeLink"><wicket:message key="button.delete"/></a>
+                </wicket:enclosure>
+            </li>
+        </ul>
+
+    </wicket:enclosure>
+
+    <div wicket:id="commentFormPanel"/>
+
+</wicket:panel>
+
+
+</body>
+</html>

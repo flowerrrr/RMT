@@ -5,29 +5,22 @@
 
 <wicket:panel>
 
-    <span wicket:id="heading"/>
-    <br>
-    <span wicket:id="author" />
-    <span wicket:id="date" />
-    <span wicket:id="numComments" />
-    <br>
-    <span wicket:id="text"/>
+    <div class="article">
+        <!--<h1 wicket:id="heading"/>-->
 
-    <wicket:enclosure child="comments">
+        <div class="meta">
+            <h6>
+                <span class="author" wicket:id="author"/> -  <span class="date" wicket:id="date"/>
+                <span class="numComments" wicket:id="numComments"/>
+            </h6>
+        </div>
+        <div class="text" wicket:id="text"/>
+        <wicket:enclosure>
+            <a wicket:id="editLink">Edit</a>
+        </wicket:enclosure>
+    </div>
 
-        <ul>
-        <li wicket:id="comments">
-            <span wicket:id="author"/>
-            <br>
-            <span wicket:id="date" />
-            <br>
-            <span wicket:id="text"/>
-        </li>
-        </ul>
-
-    </wicket:enclosure>
-
-    <div wicket:id="commentFormPanel"/>
+    <div wicket:id="bCommentsPanel"/>
 
 </wicket:panel>
 

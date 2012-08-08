@@ -5,17 +5,16 @@
 
 <wicket:panel>
 
+    <h3><wicket:message key="blog.comment.new.heading"/></h3>
+
     <form wicket:id="form">
 
-        <wicket:container wicket:id="formFeedbackPanel"/>
+        <div wicket:id="formFeedbackPanel"/>
+        <textarea wicket:id="text"/>
 
-        <rmt:input wicket:id="text" labelKey="article.text"/>
-
-        <div class="form-actions">
-            <a class="btn btn-primary" wicket:id="submitButton">
-                <wicket:message key="button.save"/>
-            </a>
-        </div>
+        <a class="btn btn-primary" wicket:id="submitButton">
+            <wicket:message key="button.save"/>
+        </a>
     </form>
 
 </wicket:panel>

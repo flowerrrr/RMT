@@ -58,8 +58,15 @@ public class BlogManager extends AbstractService implements IBlogManager {
     }
 
     @Override
+    public void remove(final BComment comment) {
+        commentRepo.delete(comment.getId());
+    }
+
+    @Override
     public BArticle loadArticleById(final Long id) {
-        return articleRepo.findOne(id);
+        BArticle article = articleRepo.findOne(id);
+        assertClub(article);
+        return article;
     }
 
     @Override
@@ -70,6 +77,12 @@ public class BlogManager extends AbstractService implements IBlogManager {
     @Override
     public Long getNumArticles() {
         return articleRepo.count();
+    }
+
+    @Override
+    public Long getNumComments(final BArticle article) {
+        BooleanExpression isArticle = QBComment.bComment.article.eq(article);
+        return commentRepo.count(isArticle);
     }
 
     @Override

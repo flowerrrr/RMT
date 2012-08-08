@@ -12,17 +12,20 @@
         <wicket:enclosure child="list">
 
             <ul>
-            <li wicket:id="list">
-                <span wicket:id="heading"/>
-                <br>
-                <span wicket:id="author" />
-                <span wicket:id="date" />
-                <span wicket:id="numComments" />
-                <br>
-                <span wicket:id="text"/>
-                <br>
-                <a wicket:id="moreLink"><wicket:message key="button.read.more"/></a>
-            </li>
+                <li class="article" wicket:id="list">
+                    <a wicket:id="articleLink" class="heading"><h1 wicket:id="heading"/></a>
+
+                    <div class="meta">
+                        <h6>
+                            <span class="author" wicket:id="author"/> - <span class="date" wicket:id="date"/>
+                            <span class="numComments" wicket:id="numComments"/>
+                        </h6>
+                    </div>
+                    <div class="text" wicket:id="text"/>
+                    <a wicket:id="moreLink">
+                        <wicket:message key="button.read.more"/>
+                    </a>
+                </li>
             </ul>
 
             <div wicket:id="pager" class="paging">[dataview navigator]</div>

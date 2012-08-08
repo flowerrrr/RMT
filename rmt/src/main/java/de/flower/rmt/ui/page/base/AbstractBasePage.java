@@ -1,9 +1,7 @@
 package de.flower.rmt.ui.page.base;
 
 import de.flower.common.ui.ajax.behavior.test.SeleniumWaitForAjaxSupportBehavior;
-import de.flower.common.ui.behavior.UserVoiceBehavior;
 import de.flower.common.ui.modal.ModalDialogWindowPanel;
-import de.flower.rmt.service.ApplicationService;
 import de.flower.rmt.service.IApplicationService;
 import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.ui.app.Resource;
@@ -63,24 +61,6 @@ public abstract class AbstractBasePage extends WebPage implements IAjaxIndicator
         // original order (first wicket.js/css, then ours) and overriding
         add(new AbstractBasePageHead("head"));
         add(new RenderCSSBehavior());
-
-        // TODO (flowerrrr - 18.06.12) move to some subclass
-        add(new UserVoiceBehavior() {
-            @Override
-            protected String getToken() {
-                // if next lines fail -> no subpage can be rendered including error pages. so better tolerate errors.
-                try {
-                    if (securityService.isCurrentUserLoggedIn()) {
-                        return applicationService.getProperty(ApplicationService.USERVOICE_TOKEN);
-                    } else {
-                        return null;
-                    }
-                } catch (RuntimeException e) {
-                    log.error("Error in UserVoiceBehavior: " + e.getMessage(), e);
-                    return null;
-                }
-            }
-        });
 
         add(new DebugBar("debugBar") {
             @Override

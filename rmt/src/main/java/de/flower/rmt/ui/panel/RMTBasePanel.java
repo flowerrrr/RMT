@@ -16,7 +16,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public class RMTBasePanel<T> extends BasePanel<T> {
 
     @SpringBean
-    private ISecurityService securityService;
+    protected ISecurityService securityService;
 
     @SpringBean
     private IViewResolver viewResolver;

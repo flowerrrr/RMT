@@ -30,7 +30,7 @@ public class ArticleEditPanel extends RMTBasePanel {
                 BArticle article = form.getModelObject();
                 blogManager.save(article);
                 AjaxEventSender.entityEvent(this, BArticle.class);
-                setResponsePage(BlogPage.class);
+                setResponsePage(ArticlePage.class, ArticlePage.getPageParams(article.getId()));
             }
         };
         add(form);

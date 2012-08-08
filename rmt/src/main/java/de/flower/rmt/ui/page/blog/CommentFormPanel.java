@@ -6,10 +6,11 @@ import de.flower.rmt.model.db.entity.BArticle;
 import de.flower.rmt.model.db.entity.BComment;
 import de.flower.rmt.service.IBlogManager;
 import de.flower.rmt.ui.markup.html.form.EntityForm;
-import de.flower.rmt.ui.markup.html.form.field.TextAreaPanel;
 import de.flower.rmt.ui.panel.RMTBasePanel;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -37,15 +38,17 @@ public class CommentFormPanel extends RMTBasePanel {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<BComment> form) {
                 BComment comment = form.getModelObject();
-                blogManager.save(comment);
+                if (StringUtils.isNotBlank(comment.getText())) {
+                    blogManager.save(comment);
+                }
                 AjaxEventSender.entityEvent(this, BComment.class);
             }
         };
         add(form);
 
-        form.add(new TextAreaPanel("text") {
+        form.add(new TextArea("text") {
             {
-                getFormComponent().add(new TextAreaMaxLengthBehavior(BComment.MAXLENGTH));
+                add(new TextAreaMaxLengthBehavior(BComment.MAXLENGTH));
             }
         });
     }
