@@ -205,6 +205,10 @@ public class EventManager extends AbstractService implements IEventManager {
 
     @Override
     public boolean isEventClosed(Event event) {
+        // RMT-733
+        if (event.isCanceled()) {
+            return false;
+        }
         DateTime now = new DateTime();
         // eventRepo.reattach(event);
         return now.plusHours(eventClosedBeforeHours).isAfter(event.getDateTime());
