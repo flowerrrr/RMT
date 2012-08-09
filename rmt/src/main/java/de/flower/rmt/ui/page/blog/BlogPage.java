@@ -25,6 +25,7 @@ public class BlogPage extends AbstractCommonBasePage {
         return NavigationPanel.BLOG;
     }
 
+    // current solution is quite simple. whenever user is in blog-modul the all read flag is set.
     public static class BlogMarkReadBehavior extends Behavior {
 
         @SpringBean

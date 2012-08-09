@@ -63,6 +63,7 @@ public class BlogManager extends AbstractService implements IBlogManager {
         articleRepo.save(article);
         if (isNew) {
             activityManager.onBArticleCreate(article);
+            markAllRead(securityService.getUser());
         }
     }
 
@@ -73,6 +74,7 @@ public class BlogManager extends AbstractService implements IBlogManager {
         commentRepo.save(comment);
         if (isNew) {
             activityManager.onBCommentCreate(comment);
+            markAllRead(securityService.getUser());
         }
     }
 
