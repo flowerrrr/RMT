@@ -1,8 +1,6 @@
 package de.flower.rmt.service;
 
-import de.flower.rmt.model.db.entity.Activity;
-import de.flower.rmt.model.db.entity.Comment;
-import de.flower.rmt.model.db.entity.Invitation;
+import de.flower.rmt.model.db.entity.*;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.activity.EventUpdateMessage;
 
@@ -36,6 +34,10 @@ public interface IActivityManager {
     void onInvitationUpdated(Invitation invitation, final Invitation origInvitation, final String comment, final String origComment);
 
     void onCommentUpdated(Comment comment, Comment origComment);
+
+    void onBArticleCreate(BArticle article);
+
+    void onBCommentCreate(BComment comment);
 
     List<Activity> findLastN(int num, final int i);
 

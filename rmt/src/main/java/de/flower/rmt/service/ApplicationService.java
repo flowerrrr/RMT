@@ -2,6 +2,7 @@ package de.flower.rmt.service;
 
 import com.google.common.io.Files;
 import de.flower.rmt.model.db.entity.Property;
+import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.repository.IPropertyRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,8 +20,6 @@ import java.nio.charset.Charset;
  */
 @Service
 public class ApplicationService extends AbstractService implements IApplicationService {
-
-    public final static String USERVOICE_TOKEN = "uservoice.token";
 
     @Value("${resource.motd}")
     private Resource motdResource;
@@ -64,6 +63,25 @@ public class ApplicationService extends AbstractService implements IApplicationS
     public String getProperty(String name) {
         Property property = propertyRepo.findByClubAndName(getClub(), name);
         return property == null ? null : property.getValue();
+    }
+
+    @Override
+    public String getUserProperty(User user, String name) {
+        Property property = propertyRepo.findByUserAndName(user, name);
+        return property == null ? null : property.getValue();
+    }
+
+    @Override
+    public void saveUserProperty(User user, String name, String value) {
+        Property property = propertyRepo.findByUserAndName(user, name);
+        if (property == null) {
+            property = new Property(user);
+            property.setName(name);
+            property.setValue(value);
+        } else {
+            property.setValue(value);
+        }
+        propertyRepo.save(property);
     }
 
 }

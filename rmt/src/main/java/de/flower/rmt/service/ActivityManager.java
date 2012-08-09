@@ -7,6 +7,7 @@ import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.*;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.entity.event.Event_;
+import de.flower.rmt.model.db.type.activity.BlogUpdateMessage;
 import de.flower.rmt.model.db.type.activity.EmailSentMessage;
 import de.flower.rmt.model.db.type.activity.EventUpdateMessage;
 import de.flower.rmt.model.db.type.activity.InvitationUpdateMessage2;
@@ -175,6 +176,7 @@ public class ActivityManager extends AbstractService implements IActivityManager
     }
 
     @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void onCommentUpdated(final Comment comment, final Comment origComment) {
         boolean changed = false;
 
@@ -198,6 +200,24 @@ public class ActivityManager extends AbstractService implements IActivityManager
             removeDuplicates(activity, message);
             save(activity);
         }
+    }
+
+    @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+    public void onBArticleCreate(final BArticle article) {
+        BlogUpdateMessage message = new BlogUpdateMessage(article);
+        Activity activity = newInstance();
+        activity.setMessage(message);
+        save(activity);
+    }
+
+    @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+    public void onBCommentCreate(final BComment comment) {
+        BlogUpdateMessage message = new BlogUpdateMessage(comment.getArticle(), comment);
+        Activity activity = newInstance();
+        activity.setMessage(message);
+        save(activity);
     }
 
     @Override

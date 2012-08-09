@@ -26,10 +26,15 @@ public interface IBlogManager {
 
     List<BComment> findAllComments(BArticle entity, EntityPath<?>... attributes);
 
+    List<BComment> findLastNComments(int num, EntityPath<?>... attributes);
+
     void save(BArticle article);
 
     void save(BComment comment);
 
     void remove(BComment comment);
 
+    boolean hasUnreadArticleOrComment(User user);
+
+    void markAllRead(User user);
 }

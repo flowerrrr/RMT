@@ -34,5 +34,9 @@ public class WicketLinkProviderTest extends AbstractRMTWicketIntegrationTests {
 
         url = linkProvider.deepLinkEvent(eventId);
         assertEquals(url, "http://localhost/context/servlet/event/1");
+
+        Long articleId = 1L;
+        url = wicketLinkProvider.deepLinkBlog(articleId);
+        assertEquals(url, "http://localhost/context/servlet/blog/1");
     }
 }

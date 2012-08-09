@@ -7,4 +7,5 @@ public interface ILinkProvider {
 
     String deepLinkEvent(Long eventId);
 
+    String deepLinkBlog(Long articleId);
 }

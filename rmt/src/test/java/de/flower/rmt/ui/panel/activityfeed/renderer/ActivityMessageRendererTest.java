@@ -2,10 +2,7 @@ package de.flower.rmt.ui.panel.activityfeed.renderer;
 
 import de.flower.rmt.model.db.type.EventType;
 import de.flower.rmt.model.db.type.RSVPStatus;
-import de.flower.rmt.model.db.type.activity.EmailSentMessage;
-import de.flower.rmt.model.db.type.activity.EventUpdateMessage;
-import de.flower.rmt.model.db.type.activity.InvitationUpdateMessage;
-import de.flower.rmt.model.db.type.activity.InvitationUpdateMessage2;
+import de.flower.rmt.model.db.type.activity.*;
 import de.flower.rmt.service.ILinkProvider;
 import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -27,7 +24,8 @@ public class ActivityMessageRendererTest extends AbstractRMTWicketMockitoTests {
 
     @BeforeMethod
     public void setUp() {
-        when(linkProvider.deepLinkEvent(anyLong())).thenReturn("http://flower.de/das-tool/player/event/19");
+        when(linkProvider.deepLinkEvent(anyLong())).thenReturn("http://flower.de/das-tool/event/19");
+        when(linkProvider.deepLinkBlog(anyLong())).thenReturn("http://flower.de/das-tool/blog/19");
     }
 
     @Test
@@ -286,4 +284,27 @@ public class ActivityMessageRendererTest extends AbstractRMTWicketMockitoTests {
             log.info(message + " rendered to [" + s + "]");
         }
     }
+
+    @Test
+    public void testBlogArticleCreate() {
+        BlogUpdateMessage message = new BlogUpdateMessage();
+        message.setHeading("FC Bayern tries to buy CR7");
+        message.setArticleId(2L);
+        message.setAuthorUserName("Oliver Kahn");
+
+        String s = ActivityMessageRenderer.toString(message);
+        log.info(message + " rendered to [" + s + "]");
+    }
+
+    @Test
+    public void testBlogCommentCreate() {
+        BlogUpdateMessage message = new BlogUpdateMessage();
+        message.setHeading("FC Bayern tries to buy CR7");
+        message.setArticleId(2L);
+        message.setAuthorUserName("Oliver Kahn");
+        message.setCommment(true);
+        String s = ActivityMessageRenderer.toString(message);
+        log.info(message + " rendered to [" + s + "]");
+    }
+
 }

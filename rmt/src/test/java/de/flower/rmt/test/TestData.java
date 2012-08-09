@@ -455,13 +455,13 @@ public class TestData {
 //    }
 
     public void createBlogArticles(int num) {
+        Team team = getJuveAmateure();
         for (int i = 0; i < num; i++) {
-            createBlogArticle(true);
+            createBlogArticle(team, true);
         }
     }
 
-    private void createBlogArticle(final boolean createComments) {
-        Team team = getJuveAmateure();
+    public BArticle createBlogArticle(Team team, final boolean createComments) {
         List<User> authors = userManager.findAll();
         User author = authors.get(RandomUtils.nextInt(authors.size()));
         BArticle article = blogManager.newArticle(author);
@@ -480,5 +480,6 @@ public class TestData {
                 blogManager.save(comment);
             }
         }
+        return article;
     }
 }

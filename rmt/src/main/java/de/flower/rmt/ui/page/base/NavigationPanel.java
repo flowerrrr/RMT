@@ -3,6 +3,7 @@ package de.flower.rmt.ui.page.base;
 import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.entity.event.QEvent;
+import de.flower.rmt.service.IBlogManager;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.app.View;
@@ -60,6 +61,9 @@ public class NavigationPanel extends RMTBasePanel {
     @SpringBean
     private IEventManager eventManager;
 
+    @SpringBean
+    private IBlogManager blogManager;
+
     public NavigationPanel(INavigationPanelAware page) {
 
         setRenderBodyOnly(true);
@@ -88,8 +92,18 @@ public class NavigationPanel extends RMTBasePanel {
             }
         });
 
+        WebMarkupContainer blog = new WebMarkupContainer("blog");
+        Link link = addMenuItem(blog, BLOG, BlogPage.class, page, true);
+        link.add(new WebMarkupContainer("unreadBadge") {
+            @Override
+            public boolean isVisible() {
+                return blogManager.hasUnreadArticleOrComment(getUser());
+            }
+        });
+        add(blog);
+
         List<MenuItem> menuItems = new ArrayList<>();
-        menuItems.add(new MenuItem(BLOG, BlogPage.class, page, true));
+        // menuItems.add(new MenuItem(BLOG, BlogPage.class, page, true));
         menuItems.add(new MenuItem(CALENDAR, CalendarPage.class, page, true));
         menuItems.add(new MenuItem(TEAMS, TeamsPage.class, page, getView() == View.MANAGER));
         menuItems.add(new MenuItem(USERS, UsersPage.class, page, true));
@@ -148,7 +162,7 @@ public class NavigationPanel extends RMTBasePanel {
         return link;
     }
 
-    public void addMenuItem(final WebMarkupContainer item, String pageName, Class<?> pageClass, final INavigationPanelAware page, boolean visible) {
+    public Link addMenuItem(final WebMarkupContainer item, String pageName, Class<?> pageClass, final INavigationPanelAware page, boolean visible) {
         BookmarkablePageLink link = new BookmarkablePageLink("link", pageClass);
         link.add(new Label("label", new ResourceModel("navigation." + pageName.toLowerCase())));
         item.add(link);
@@ -156,6 +170,7 @@ public class NavigationPanel extends RMTBasePanel {
             item.add(AttributeModifier.append("class", "active"));
         }
         item.setVisible(visible);
+        return link;
     }
 
     public static WebMarkupContainer createDropDownMenuItem(String pageName, final INavigationPanelAware page) {

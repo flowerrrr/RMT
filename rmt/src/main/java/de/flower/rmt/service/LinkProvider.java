@@ -22,4 +22,9 @@ public class LinkProvider implements ILinkProvider {
     public String deepLinkEvent(final Long eventId) {
         return baseUrl + eventUrl + "/" + eventId;
     }
+
+    @Override
+    public String deepLinkBlog(final Long articleId) {
+        throw new UnsupportedOperationException("Use wicket link provider to generate blog perm links");
+    }
 }

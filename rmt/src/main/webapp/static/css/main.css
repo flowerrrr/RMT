@@ -1155,6 +1155,15 @@ textarea.input-xlarge, input.input-xlarge, .recipient-list-panel {
 /*************************************************************************
     Blog
 **************************************************************************/
+.blog-unread.badge {
+    margin-left: 1px;
+    padding-left: 2px;
+    padding-right: 4px;
+    i {
+        opacity: 1.0;
+    }
+}
+
 .article-list-panel, .article-panel {
     .article {
         border-bottom: 1px solid #CCCCCC;
@@ -1343,8 +1352,21 @@ iframe.wetteronline {
     overflow-y: scroll;
     overflow-x: hidden;
     padding-right: 5px; // to have some padding when scrollbar appears
+    .status {
+        font-style: italic;
+    }
+    .btn-more {
+        visibility: hidden; // hide initialy (for feeds without any content)
+    }
+    // center ajax-spinner
+    .btn-more .ajax-loader {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+.activity-feed, .latest-comments-panel {
     ul {
-        width: 220px; // need for ipad
+         width: 220px; // need for ipad
     }
     li {
         padding: 5px 0px;
@@ -1358,17 +1380,6 @@ iframe.wetteronline {
         .spacer {
             height: 3px;
         }
-    }
-    .status {
-        font-style: italic;
-    }
-    .btn-more {
-        visibility: hidden; // hide initialy (for feeds without any content)
-    }
-    // center ajax-spinner
-    .btn-more .ajax-loader {
-        margin-left: auto;
-        margin-right: auto;
     }
 }
 

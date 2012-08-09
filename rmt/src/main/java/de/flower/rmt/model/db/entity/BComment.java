@@ -62,4 +62,12 @@ public class BComment extends AbstractBaseEntity {
     public void setAuthor(final User author) {
         this.author = author;
     }
+
+    public BArticle getArticle() {
+        return article;
+    }
+
+    public void setArticle(final BArticle article) {
+        this.article = article;
+    }
 }

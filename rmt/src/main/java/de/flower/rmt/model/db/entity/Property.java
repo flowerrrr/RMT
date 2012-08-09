@@ -23,6 +23,10 @@ public class Property extends AbstractBaseEntity {
     @Index(name = "ix_club")
     private Club club;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Index(name = "ix_user")
+    private User user;
+
     @NotBlank
     @Size(max = 80)
     private String name;
@@ -36,6 +40,10 @@ public class Property extends AbstractBaseEntity {
 
     public Property(Club club) {
         this.club = club;
+    }
+
+    public Property(final User user) {
+        this.user = user;
     }
 
     public String getName() {
