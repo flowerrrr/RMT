@@ -1,5 +1,6 @@
 package de.flower.rmt.model.db.entity;
 
+import com.mysema.query.annotations.QueryInit;
 import de.flower.common.model.db.entity.AbstractBaseEntity;
 import org.hibernate.annotations.Index;
 
@@ -26,6 +27,7 @@ public class BComment extends AbstractBaseEntity {
     @Size(max = MAXLENGTH)
     private String text;
 
+    @QueryInit("club") // required when using QBComment.bcomment.article.club.eq(getClub()) in a query.
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @Index(name = "ix_barticle")

@@ -112,7 +112,8 @@ public class BlogManager extends AbstractService implements IBlogManager {
 
     @Override
     public List<BComment> findLastNComments(final int num, EntityPath<?>... attributes) {
-        return commentRepo.findAll(null, new PageRequest(0, num, Sort.Direction.DESC, BComment_.createDate.getName()), attributes).getContent();
+        BooleanExpression isClub = QBComment.bComment.article.club.eq(getClub());
+        return commentRepo.findAll(isClub, new PageRequest(0, num, Sort.Direction.DESC, BComment_.createDate.getName()), attributes).getContent();
     }
 
     @Override
@@ -125,7 +126,8 @@ public class BlogManager extends AbstractService implements IBlogManager {
         if (!list.isEmpty()) {
             lastCreated = new DateTime(list.get(0).getCreateDate());
         }
-        List<BComment> list2 = commentRepo.findAll((Predicate) null, new PageRequest(0, 1, Sort.Direction.DESC, BComment_.createDate.getName())).getContent();
+        BooleanExpression isClub = QBComment.bComment.article.club.eq(getClub());
+        List<BComment> list2 = commentRepo.findAll(isClub, new PageRequest(0, 1, Sort.Direction.DESC, BComment_.createDate.getName())).getContent();
         if (!list2.isEmpty()) {
             DateTime tmp = new DateTime(list2.get(0).getCreateDate());
             lastCreated = max(lastCreated, tmp);
