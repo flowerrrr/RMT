@@ -78,7 +78,8 @@ public class NavigationPanel extends RMTBasePanel {
         }
         add(events);
         events.add(new AjaxEventListener(Event.class));
-        events.add(new ListView<Event>("eventList", getEventListModel()) {
+        final IModel<List<Event>> upcomingEventsModel = getEventListModel();
+        events.add(new ListView<Event>("eventList", upcomingEventsModel) {
             @Override
             protected void populateItem(final ListItem<Event> item) {
                 Link link;
@@ -89,6 +90,12 @@ public class NavigationPanel extends RMTBasePanel {
                 }
                 link.add(new Label("label", EventRenderer.getDateTeamTypeSummary(item.getModelObject(), false)));
                 item.add(link);
+            }
+        });
+        events.add(new WebMarkupContainer("noUpcomingEvents") {
+            @Override
+            public boolean isVisible() {
+                return upcomingEventsModel.getObject().isEmpty();
             }
         });
 

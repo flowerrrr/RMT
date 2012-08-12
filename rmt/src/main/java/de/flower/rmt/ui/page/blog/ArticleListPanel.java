@@ -85,11 +85,9 @@ public class ArticleListPanel extends RMTBasePanel {
         // get first n chars (limt result to complete words), ?s = DOTALL
         String teaser = Strings.substring(text, "(?s).{0," + teaserLength + "}\\b") + " ...";
         // teaser might have open html tags. must sanitize string.
-        System.out.println("Raw:\n" + teaser);
         Document doc = Jsoup.parse("<html><body>" + teaser + "</body></html>");
         Element body = doc.select("body").first();
         String sanatized = body.html();
-        System.out.println("S:\n" + sanatized);
         if (!sanatized.contains(" ...")) {
             sanatized += " ...";
         }

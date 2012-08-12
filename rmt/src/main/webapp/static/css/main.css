@@ -509,6 +509,11 @@ div.form-horizontal {
     left: 48px;
 }
 
+.navbar .dropdown-menu .no-action {
+    padding: 3px 15px;
+    display: block;
+}
+
 /*************************************************************************
     welcome messages
 **************************************************************************/
@@ -1175,10 +1180,8 @@ textarea.input-xlarge, input.input-xlarge, .recipient-list-panel {
 /*************************************************************************
     Blog
 **************************************************************************/
-.blog-unread.badge {
+.blog-unread {
     margin-left: 1px;
-    padding-left: 2px;
-    padding-right: 4px;
     i {
         opacity: 1.0;
     }

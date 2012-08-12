@@ -25,12 +25,15 @@
                             <li wicket:id="eventList">
                                 <a wicket:id="link"><span wicket:id="label"></span></a>
                             </li>
+                            <li wicket:id="noUpcomingEvents">
+                                <span class="no-action"><wicket:message key="navigation.events.no.upcoming"/></span>
+                            </li>
                         </ul>
                     </li>
                     <li wicket:id="blog" class="blog">
                         <a wicket:id="link">
                             <span wicket:id="label"/>
-                            <span wicket:id="unreadBadge" class="blog-unread badge badge-warning" wicket:message="title:navigation.blog.unread"><i class="icon-star icon-white"></i></span>
+                            <span wicket:id="unreadBadge" class="blog-unread" wicket:message="title:navigation.blog.unread"><i class="icon-star icon-white"></i></span>
                         </a>
                     </li>
                     <li wicket:id="menuList">
