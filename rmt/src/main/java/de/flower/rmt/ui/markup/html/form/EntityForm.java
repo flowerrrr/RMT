@@ -18,6 +18,8 @@ import org.apache.wicket.model.IModel;
  */
 public abstract class EntityForm<T> extends Form<T> {
 
+    private AjaxSubmitLink ajaxSubmitLink;
+
     public EntityForm(String id, T entity) {
         super(id, new CompoundPropertyModel<T>(entity));
         Check.notNull(entity);
@@ -39,7 +41,7 @@ public abstract class EntityForm<T> extends Form<T> {
             }
         });
 
-        add(new AjaxSubmitLink("submitButton") {
+        ajaxSubmitLink = new AjaxSubmitLink("submitButton") {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 onBeforeValidation((T) form.getModelObject());
@@ -51,11 +53,13 @@ public abstract class EntityForm<T> extends Form<T> {
                     target.add(EntityForm.this);
                 }
             }
-        });
+        };
+        add(ajaxSubmitLink);
     }
 
     /**
      * Override this method to hide feedback panel after submit.
+     *
      * @return
      */
     protected boolean isShowSuccessFeedbackPanel() {
@@ -64,6 +68,10 @@ public abstract class EntityForm<T> extends Form<T> {
 
     protected void onBeforeValidation(T entity) {
 
+    }
+
+    public AjaxSubmitLink getAjaxSubmitLink() {
+        return ajaxSubmitLink;
     }
 
     protected abstract void onSubmit(AjaxRequestTarget target, Form<T> form);

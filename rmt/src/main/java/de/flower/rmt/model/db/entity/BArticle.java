@@ -23,11 +23,11 @@ public class BArticle extends AbstractClubRelatedEntity {
 
     @Column(length = HEADING_MAXLENGTH)
     @Size(max = HEADING_MAXLENGTH)
-    @NotBlank
+    @NotBlank(message = "{validation.blog.article.heading}")
     private String heading;
 
     @Lob
-    @NotBlank
+    @NotBlank(message = "{validation.blog.article.text}")
     private String text;
 
     /**

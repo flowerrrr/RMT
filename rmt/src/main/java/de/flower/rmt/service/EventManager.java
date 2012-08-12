@@ -32,8 +32,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.metamodel.Attribute;
 import java.util.List;
 
-import static de.flower.rmt.repository.Specs.eq;
-import static de.flower.rmt.repository.Specs.fetch;
+import static de.flower.rmt.repository.Specs.*;
 import static org.springframework.data.jpa.domain.Specifications.where;
 
 /**
@@ -112,6 +111,12 @@ public class EventManager extends AbstractService implements IEventManager {
         } else {
             return eventRepo.count();
         }
+    }
+
+    @Override
+    public List<Event> findAll(Attribute... attributes) {
+        Specification fetch = fetch(attributes);
+        return eventRepo.findAll(where(fetch).and(desc(Event_.dateTime)));
     }
 
     @Override

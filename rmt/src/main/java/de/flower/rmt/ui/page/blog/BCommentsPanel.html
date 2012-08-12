@@ -7,20 +7,23 @@
 
     <wicket:enclosure child="comments">
 
-        <h3 wicket:id="numComments" />
+        <h4 wicket:id="numComments"/>
 
         <ul class="comments">
             <li class="comment" wicket:id="comments">
-                <div class="meta">
+                <div class="meta" >
+                    <div class="pull-right" wicket:enclosure="">
+                        <a wicket:id="removeLink">
+                            <wicket:message key="button.delete"/>
+                        </a>
+                    </div>
                     <h6>
                         <span wicket:id="author"/>
                         - <span wicket:id="date"/>
                     </h6>
+
                 </div>
-                <div wicket:id="text"/>
-                <wicket:enclosure>
-                    <a wicket:id="removeLink"><wicket:message key="button.delete"/></a>
-                </wicket:enclosure>
+                <div wicket:id="text" class="text"/>
             </li>
         </ul>
 

@@ -35,4 +35,6 @@ public interface Resource {
     public static final String lessLink = "<link href=\"%s\" rel=\"stylesheet/less\" type=\"text/css\" media=\"all\"/>";
 
     public static final String scriptLink = "<script type=\"text/javascript\" src=\"%s\"><\\/script>";
+
+    public static final String ckeditorJsUrl = "static/js/ckeditor-3.6.4/ckeditor.js";
 }

@@ -57,6 +57,7 @@ dependencies {
             'org.hibernate:hibernate-jpamodelgen:1.1.1.Final',
             'com.mysema.querydsl:querydsl-jpa:2.5.0',
             'javax.servlet:servlet-api:2.5',
+            'org.jsoup:jsoup:1.6.3',
     )
     annotations(
             'com.mysema.querydsl:querydsl-apt:2.5.0',

@@ -15,6 +15,9 @@ public class PropertyProvider implements IPropertyProvider {
     @Value("${events.numpast}")
     private Integer eventsNumPast;
 
+    @Value("${blog.teaser.length}")
+    private Integer blogTeaserLength;
+
     @Override
     public String getAdminEmail() {
         return adminEmail;
@@ -23,5 +26,9 @@ public class PropertyProvider implements IPropertyProvider {
     @Override
     public int getEventsNumPast() {
         return eventsNumPast;
+    }
+
+    public Integer getBlogTeaserLength() {
+        return blogTeaserLength;
     }
 }

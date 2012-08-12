@@ -78,6 +78,7 @@
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-request/1.5.7/jar/17a8eb811b0a566ac6712587ac0b23deeb17af8b/wicket-request-1.5.7.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-spring/1.5.7/jar/30537a5a0e0d16bd1723ead50feca4d807117896/wicket-spring-1.5.7.jar" />
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.apache.wicket/wicket-util/1.5.7/jar/6f3eb0a8a333b73a3f36ccb4dfdfa358a25c2d37/wicket-util-1.5.7.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.jsoup/jsoup/1.6.3/jar/5cf4f55a71ae352d9c13ede8388974527540e506/jsoup-1.6.3.jar" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="rmt/web/Web" />

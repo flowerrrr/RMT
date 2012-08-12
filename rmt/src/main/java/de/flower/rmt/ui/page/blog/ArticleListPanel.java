@@ -3,13 +3,13 @@ package de.flower.rmt.ui.page.blog;
 import de.flower.common.util.Strings;
 import de.flower.rmt.model.db.entity.BArticle;
 import de.flower.rmt.service.IBlogManager;
+import de.flower.rmt.ui.app.IPropertyProvider;
 import de.flower.rmt.ui.panel.RMTBasePanel;
 import de.flower.rmt.util.Dates;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.navigation.paging.AjaxPagingNavigator;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.basic.MultiLineLabel;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.repeater.Item;
@@ -18,6 +18,9 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
 /**
  * @author flowerrrr
@@ -26,7 +29,8 @@ public class ArticleListPanel extends RMTBasePanel {
 
     private static final int ITEMS_PER_PAGE = 5;
 
-    private static final int TEASER_LENGTH = 240;
+    @SpringBean
+    private IPropertyProvider propertyProvider;
 
     @SpringBean
     private IBlogManager blogManager;
@@ -52,8 +56,8 @@ public class ArticleListPanel extends RMTBasePanel {
                 item.add(link);
                 item.add(new Label("author", article.getAuthor().getFullname()));
                 item.add(new Label("date", Dates.formatDateLongTimeShortWithWeekday(article.getCreateDate())));
-                item.add(new NumCommentsLabel("numComments", item.getModel()));
-                item.add(new MultiLineLabel("text", teaser(article.getText())));
+                item.add(new NumCommentsLabel("numComments", item.getModel(), true));
+                item.add(new Label("text", teaser(article.getText(), propertyProvider.getBlogTeaserLength())).setEscapeModelStrings(false));
                 item.add(new BookmarkablePageLink("moreLink", ArticlePage.class, ArticlePage.getPageParams(article.getId())));
             }
         };
@@ -77,9 +81,19 @@ public class ArticleListPanel extends RMTBasePanel {
         // listContainer.add(new AjaxEventListener(BArticle.class));
     }
 
-    public static String teaser(String text) {
+    public static String teaser(String text, final Integer teaserLength) {
         // get first n chars (limt result to complete words), ?s = DOTALL
-        return Strings.substring(text, "(?s).{0," + TEASER_LENGTH + "}\\b") + " ...";
+        String teaser = Strings.substring(text, "(?s).{0," + teaserLength + "}\\b") + " ...";
+        // teaser might have open html tags. must sanitize string.
+        System.out.println("Raw:\n" + teaser);
+        Document doc = Jsoup.parse("<html><body>" + teaser + "</body></html>");
+        Element body = doc.select("body").first();
+        String sanatized = body.html();
+        System.out.println("S:\n" + sanatized);
+        if (!sanatized.contains(" ...")) {
+            sanatized += " ...";
+        }
+        return sanatized;
     }
 
     public static class NumCommentsLabel extends Label {
@@ -87,9 +101,12 @@ public class ArticleListPanel extends RMTBasePanel {
         @SpringBean
         private IBlogManager blogManager;
 
-        public NumCommentsLabel(final String id, final IModel<BArticle> model) {
+        private boolean showWhenNoComments;
+
+        public NumCommentsLabel(final String id, final IModel<BArticle> model, boolean showWhenNoComments) {
             super(id);
             setDefaultModel(getNumComments(model));
+            this.showWhenNoComments = showWhenNoComments;
         }
 
         private IModel<String> getNumComments(final IModel<BArticle> model) {
@@ -98,7 +115,7 @@ public class ArticleListPanel extends RMTBasePanel {
                 protected String load() {
                     long num = blogManager.getNumComments(model.getObject());
                     if (num == 0) {
-                        return "";
+                        return showWhenNoComments ? new ResourceModel("blog.comments.num.none").getObject() : "";
                     } else if (num == 1) {
                         return num + " " + new ResourceModel("blog.comments.num.one").getObject();
                     } else {

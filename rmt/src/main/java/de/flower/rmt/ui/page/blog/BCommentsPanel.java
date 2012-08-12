@@ -39,7 +39,7 @@ public class BCommentsPanel extends RMTBasePanel {
 
         add(new AjaxEventListener(model, BComment.class));
 
-        add(new ArticleListPanel.NumCommentsLabel("numComments", model));
+        add(new ArticleListPanel.NumCommentsLabel("numComments", model, false));
 
         ListView<BComment> comments = new ListView<BComment>("comments", getListModel(model)) {
             @Override

@@ -36,6 +36,8 @@ public interface IEventManager {
 
     long getNumEventsByUser(final User user);
 
+    List<Event> findAll(Attribute... attributes);
+
     List<Event> findAll(int page, int size, final User user, EntityPath<?>... attributes);
 
     Event findNextEvent(User user);
@@ -73,5 +75,4 @@ public interface IEventManager {
     boolean isEventClosed(Event event);
 
     void cancelEvent(Long id);
-
 }

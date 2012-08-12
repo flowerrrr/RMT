@@ -60,13 +60,15 @@ public class QueryDslJpaRepositoryExtended<T, ID extends Serializable> extends Q
 
     protected JPQLQuery createQuery(Path<?>... fetchAttributes) {
         JPAQuery query = new JPAQuery(em).from(getPath());
-        for (Path<?> path : fetchAttributes) {
-            if (path instanceof EntityPath) {
-                query.leftJoin((EntityPath<?>) path).fetch();
-            } else if (path instanceof CollectionExpression) {
-                query.leftJoin((CollectionExpression<?,?>) path).fetch();
-            } else {
-                throw new RuntimeException("Unknown path type [" + path + "].");
+        if (fetchAttributes != null) {
+            for (Path<?> path : fetchAttributes) {
+                if (path instanceof EntityPath) {
+                    query.leftJoin((EntityPath<?>) path).fetch();
+                } else if (path instanceof CollectionExpression) {
+                    query.leftJoin((CollectionExpression<?, ?>) path).fetch();
+                } else {
+                    throw new RuntimeException("Unknown path type [" + path + "].");
+                }
             }
         }
         query.distinct(); // fetching one-to-many associations would multiply the result set.

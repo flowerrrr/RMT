@@ -3,12 +3,15 @@ package de.flower.common.ui.ajax.markup.html.form;
 import de.flower.common.ui.ajax.PreventDoubleClickAjaxCallDecorator;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.IAjaxCallDecorator;
+import org.apache.wicket.ajax.calldecorator.AjaxPreprocessingCallDecorator;
 import org.apache.wicket.markup.html.form.Form;
 
 /**
  * @author flowerrrr
  */
 public abstract class AjaxSubmitLink extends org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink {
+
+    private String preprocessingCallDecoratorScript;
 
     public AjaxSubmitLink(String id) {
         super(id);
@@ -19,8 +22,18 @@ public abstract class AjaxSubmitLink extends org.apache.wicket.ajax.markup.html.
     }
 
     @Override
-    protected final IAjaxCallDecorator getAjaxCallDecorator() {
-        return new PreventDoubleClickAjaxCallDecorator();
+    protected IAjaxCallDecorator getAjaxCallDecorator() {
+        IAjaxCallDecorator xdefault = new PreventDoubleClickAjaxCallDecorator();
+        if (preprocessingCallDecoratorScript != null) {
+            return new AjaxPreprocessingCallDecorator(xdefault) {
+                @Override
+                public CharSequence preDecorateScript(final CharSequence script) {
+                    return preprocessingCallDecoratorScript + script;
+                }
+            };
+        } else {
+            return xdefault;
+        }
     }
 
     @Override
@@ -28,4 +41,7 @@ public abstract class AjaxSubmitLink extends org.apache.wicket.ajax.markup.html.
         target.add(form);
     }
 
+    public void setPreprocessingCallDecoratorScript(final String script) {
+        this.preprocessingCallDecoratorScript = script;
+    }
 }

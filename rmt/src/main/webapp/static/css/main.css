@@ -358,6 +358,11 @@ input[readonly].reset {
     border-color: #b94a48;
 }
 
+// red border for ckEditor
+.control-group.error span.cke_skin_kama {
+    border-color: #b94a48;
+}
+
 option[selected] {
     font-weight: bold;
 }
@@ -371,11 +376,26 @@ form .alert {
     margin-bottom: 0px;
 }
 // for displaying validation messages in a div and not a span like in twitter
-form .field {
+form.form-horizontal .field {
     float: left;
     margin-right: 10px;
 }
-form .help-inline {
+form.form-vertical {
+    label {
+        padding-left: 6px;
+    }
+    .form-actions {
+        padding-left: 0px;
+    }
+    .input-xxlarge {
+        width: 98%;
+    }
+    .error input {
+        margin-bottom: 0px;
+    }
+}
+
+form.form-horizontal .help-inline {
     padding-top: 5px;
 }
 .error input, .error textarea {
@@ -1167,8 +1187,8 @@ textarea.input-xlarge, input.input-xlarge, .recipient-list-panel {
 .article-list-panel, .article-panel {
     .article {
         border-bottom: 1px solid #CCCCCC;
-        padding-bottom: 10px;
-        margin-bottom: 10px;
+        padding-bottom: 30px;
+        margin-bottom: 30px;
 
         a.heading {
             color: @grayDark;
@@ -1177,11 +1197,28 @@ textarea.input-xlarge, input.input-xlarge, .recipient-list-panel {
             font-size: 22px;
         }
         .meta {
-            margin-bottom: 5px;
+            margin-bottom: 10px;
 
             .numComments {
                 float: right;
             }
+        }
+        .text {
+            line-height: 22px;
+            * {
+                line-height: 22px;
+            }
+            ul {
+                // reset to default values
+                list-style: inherit;
+                margin-left:  25px;
+                margin-bottom: 9px;
+            }
+        }
+    }
+    .b-comments-panel {
+        h4 {
+            margin: 20px 0px;
         }
     }
     .comments {
@@ -1193,7 +1230,13 @@ textarea.input-xlarge, input.input-xlarge, .recipient-list-panel {
         margin-bottom: 10px;
 
         .meta {
-            margin-bottom: 5px;
+            margin-bottom: 10px;
+            font-size: 11px;
+        }
+        .text {
+            * {
+                line-height: 22px;
+            }
         }
     }
     .comment, .comment-form-panel {
@@ -1207,11 +1250,18 @@ textarea.input-xlarge, input.input-xlarge, .recipient-list-panel {
     }
 }
 
-.article-edit-panel {
-    textarea {
-        height: 300px;
-    }
+.article-list-panel {
+        .actions {
+            margin-top: 10px;
+        }
 }
+.article-panel {
+        .article .actions {
+            font-size: 11px;
+            margin-left: 10px;
+        }
+}
+
 
 
 /*************************************************************************
@@ -1424,6 +1474,13 @@ iframe.wetteronline {
 .cal-type-event {
     .fc-styled-event(#996644);
 }
+
+
+/*************************************************************************
+    CkEditor patches are located at the end of the original files.
+**************************************************************************/
+
+
 
 /*************************************************************************
     Wicket debug bar
