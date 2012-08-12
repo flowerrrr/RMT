@@ -5,8 +5,6 @@ import de.flower.rmt.model.db.entity.Opponent;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
 
 /**
  * @author flowerrrr
@@ -14,12 +12,6 @@ import javax.persistence.ManyToOne;
 @Entity
 @DiscriminatorValue("Match")
 public class Match extends AbstractSoccerEvent {
-
-    /**
-     * Can be null. Sometimes events are created without knowing who the opponent will be.
-     */
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Opponent opponent;
 
     protected Match() {
     }
@@ -29,11 +21,11 @@ public class Match extends AbstractSoccerEvent {
     }
 
     public Opponent getOpponent() {
-        return opponent;
+        return super._getOpponent();
     }
 
     public void setOpponent(final Opponent opponent) {
-        this.opponent = opponent;
+        super._setOpponent(opponent);
     }
 
 }

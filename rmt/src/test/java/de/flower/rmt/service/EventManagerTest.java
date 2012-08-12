@@ -122,4 +122,9 @@ public class EventManagerTest extends AbstractRMTIntegrationTests {
         Event event = testData.createEventWithResponses();
         eventManager.cancelEvent(event.getId());
     }
+
+    @Test
+    public void testFetchOpponent() {
+        List<Event> list = eventManager.findAll(QEvent.event.team, QEvent.event.opponent);
+    }
 }

@@ -105,6 +105,15 @@ public class Event extends AbstractClubRelatedEntity {
     @OneToMany(mappedBy = "event", cascade = CascadeType.REMOVE)
     private List<Invitation> invitations = new ArrayList<Invitation>();
 
+    /**
+     * Defined here to be able to eager fetch this association with query dsl.
+     * Can be null. Sometimes events are created without knowing who the opponent will be.
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Opponent opponent;
+
+
+
     protected Event() {
     }
 
@@ -314,6 +323,16 @@ public class Event extends AbstractClubRelatedEntity {
 
     public EventType getEventType() {
         return EventType.from(this);
+    }
+
+    @Deprecated // should only be called from Match instances
+    protected Opponent _getOpponent() {
+        return opponent;
+    }
+
+    @Deprecated // should only be called from Match instances
+    protected void _setOpponent(final Opponent opponent) {
+        this.opponent = opponent;
     }
 
     @Override

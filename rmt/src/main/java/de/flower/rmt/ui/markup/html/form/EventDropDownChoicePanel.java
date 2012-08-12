@@ -1,8 +1,7 @@
 package de.flower.rmt.ui.markup.html.form;
 
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.model.db.entity.event.Event_;
-import de.flower.rmt.model.db.entity.event.Match_;
+import de.flower.rmt.model.db.entity.event.QEvent;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.markup.html.form.field.AbstractFormFieldPanel;
 import de.flower.rmt.ui.markup.html.form.field.DropDownChoicePanel;
@@ -30,7 +29,7 @@ public class EventDropDownChoicePanel extends DropDownChoicePanel<Event> {
             @Override
             protected List<Event> load() {
                 // return eventManager.findAll(QEvent.event.team, QMatch.match.opponent);
-                List<Event> list = eventManager.findAll(Event_.team, Match_.opponent);
+                List<Event> list = eventManager.findAll(QEvent.event.team, QEvent.event.opponent);
                 return list.subList(0, Math.min(list.size(), 200));
             }
         };

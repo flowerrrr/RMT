@@ -140,9 +140,9 @@ public class NavigationPanel extends RMTBasePanel {
             protected List<Event> load() {
                 // from yesterday to next three month.
                 if (isManagerView()) {
-                    return eventManager.findAllByDateRangeAndUser(new DateTime().minusDays(1), new DateTime().plusMonths(3), null, QEvent.event.team);
+                    return eventManager.findAllByDateRangeAndUser(new DateTime().minusDays(1), new DateTime().plusMonths(3), null, QEvent.event.team, QEvent.event.opponent);
                 } else {
-                    return eventManager.findAllByDateRangeAndUser(new DateTime().minusDays(1), new DateTime().plusMonths(3), getUser(), QEvent.event.team);
+                    return eventManager.findAllByDateRangeAndUser(new DateTime().minusDays(1), new DateTime().plusMonths(3), getUser(), QEvent.event.team, QEvent.event.opponent);
                 }
             }
         };

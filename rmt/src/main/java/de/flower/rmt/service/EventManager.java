@@ -3,6 +3,7 @@ package de.flower.rmt.service;
 import com.mysema.query.types.EntityPath;
 import com.mysema.query.types.Order;
 import com.mysema.query.types.OrderSpecifier;
+import com.mysema.query.types.Predicate;
 import com.mysema.query.types.expr.BooleanExpression;
 import de.flower.common.model.EntityHelper;
 import de.flower.common.util.Check;
@@ -32,7 +33,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.metamodel.Attribute;
 import java.util.List;
 
-import static de.flower.rmt.repository.Specs.*;
+import static de.flower.rmt.repository.Specs.eq;
+import static de.flower.rmt.repository.Specs.fetch;
 import static org.springframework.data.jpa.domain.Specifications.where;
 
 /**
@@ -113,10 +115,12 @@ public class EventManager extends AbstractService implements IEventManager {
         }
     }
 
+    /**
+     * Uses spring data spec instead of querydsl in order to be able to eager fetch opponents.
+     */
     @Override
-    public List<Event> findAll(Attribute... attributes) {
-        Specification fetch = fetch(attributes);
-        return eventRepo.findAll(where(fetch).and(desc(Event_.dateTime)));
+    public List<Event> findAll(EntityPath<?>... attributes) {
+        return eventRepo.findAll((Predicate) null, attributes);
     }
 
     @Override
