@@ -17,7 +17,9 @@ public class BlogManagerTest extends AbstractRMTIntegrationTests {
         User user = securityService.getUser();
         assertFalse(blogManager.hasUnreadArticleOrComment(user));
 
-        testData.createBlogArticle(testData.getJuveAmateure(), true);
+        User author = userManager.loadById(3L);
+        assertNotEquals(user, author);
+        testData.createBlogArticle(author, false);
         assertTrue(blogManager.hasUnreadArticleOrComment(user));
 
         blogManager.markAllRead(user);

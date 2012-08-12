@@ -63,7 +63,7 @@ public class BlogManager extends AbstractService implements IBlogManager {
         articleRepo.save(article);
         if (isNew) {
             activityManager.onBArticleCreate(article);
-            markAllRead(securityService.getUser());
+            markAllRead(article.getAuthor());
         }
     }
 
@@ -74,7 +74,7 @@ public class BlogManager extends AbstractService implements IBlogManager {
         commentRepo.save(comment);
         if (isNew) {
             activityManager.onBCommentCreate(comment);
-            markAllRead(securityService.getUser());
+            markAllRead(comment.getAuthor());
         }
     }
 
@@ -139,7 +139,8 @@ public class BlogManager extends AbstractService implements IBlogManager {
         } else if (lastRead == null) {
             return true;
         } else {
-            return lastCreated.isAfter(new Long(lastRead));
+            DateTime lastReadDt = new DateTime(new Long(lastRead));
+            return lastCreated.isAfter(lastReadDt);
         }
     }
 

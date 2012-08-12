@@ -457,22 +457,20 @@ public class TestData {
     public void createBlogArticles(int num) {
         Team team = getJuveAmateure();
         for (int i = 0; i < num; i++) {
-            createBlogArticle(team, true);
+            List<User> authors = userManager.findAll();
+            User author = authors.get(RandomUtils.nextInt(authors.size()));
+            createBlogArticle(author, true);
         }
     }
 
-    public BArticle createBlogArticle(Team team, final boolean createComments) {
-        List<User> authors = userManager.findAll();
-        User author = authors.get(RandomUtils.nextInt(authors.size()));
+    public BArticle createBlogArticle(User author, final boolean createComments) {
         BArticle article = blogManager.newArticle(author);
         article.setHeading("Some random heading " + RandomStringUtils.randomAlphabetic(4));
         article.setText(RandomStringUtils.randomAlphabetic(RandomUtils.nextInt(8000)));
-        if (RandomUtils.nextBoolean()) {
-            article.setEvent(createEvent(team, true));
-        }
         blogManager.save(article);
 
         if (createComments) {
+            List<User> authors = userManager.findAll();
             for (int i = 0; i < RandomUtils.nextInt(30); i++) {
                 author = authors.get(RandomUtils.nextInt(authors.size()));
                 BComment comment = blogManager.newComment(article, author);
