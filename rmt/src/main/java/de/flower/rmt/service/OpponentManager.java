@@ -4,6 +4,7 @@ import com.google.common.base.Predicate;
 import de.flower.common.util.Check;
 import de.flower.common.util.NameFinder;
 import de.flower.rmt.model.db.entity.Opponent;
+import de.flower.rmt.model.db.entity.Opponent_;
 import de.flower.rmt.repository.IOpponentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
+import static de.flower.rmt.repository.Specs.asc;
+import static org.springframework.data.jpa.domain.Specifications.where;
 
 /**
  * @author flowerrrr
@@ -36,7 +40,7 @@ public class OpponentManager extends AbstractService implements IOpponentManager
 
     @Override
     public List<Opponent> findAll() {
-        return opponentRepo.findAll();
+        return opponentRepo.findAll(where(asc(Opponent_.name)));
     }
 
     @Override
