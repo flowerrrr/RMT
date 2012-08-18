@@ -57,6 +57,8 @@ public class ArticlePage extends AbstractCommonBasePage {
         setHeadingModel(new PropertyModel(model, "heading"), null);
         addMainPanel(new ArticlePanel(model));
         addSecondaryPanel(new BlogSecondaryPanel());
+
+        add(new BlogPage.BlogMarkAllReadBehavior());
     }
 
     @Override

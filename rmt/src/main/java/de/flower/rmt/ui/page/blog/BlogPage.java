@@ -17,7 +17,7 @@ public class BlogPage extends AbstractCommonBasePage {
         setHeading("blog.heading", "blog.heading.sub");
         addMainPanel(new ArticleListPanel());
         addSecondaryPanel(new BlogSecondaryPanel());
-        add(new BlogMarkReadBehavior());
+        add(new BlogMarkAllReadBehavior());
     }
 
     @Override
@@ -26,7 +26,7 @@ public class BlogPage extends AbstractCommonBasePage {
     }
 
     // current solution is quite simple. whenever user is in blog-modul the all read flag is set.
-    public static class BlogMarkReadBehavior extends Behavior {
+    public static class BlogMarkAllReadBehavior extends Behavior {
 
         @SpringBean
         private IBlogManager blogManager;
