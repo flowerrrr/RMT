@@ -42,7 +42,9 @@ public class EventRenderer implements IChoiceRenderer<Event> {
         String eventType = new ResourceModel(EventType.from(event).getResourceKey()).getObject();
         if (EventType.from(event).isMatch()) {
             Match match = (Match) event;
-            opponent = " : " + match.getOpponent().getName();
+            if (match.getOpponent() != null) {
+                opponent = " : " + match.getOpponent().getName();
+            }
         }
         String date;
         if (dateLong) {
