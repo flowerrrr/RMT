@@ -8,6 +8,7 @@ import static org.testng.Assert.assertEquals
 /**
  * @author flowerrrr
  */
+@groovy.transform.TypeChecked
 public class ClubManagerTest extends AbstractRMTIntegrationTests {
 
     @Test

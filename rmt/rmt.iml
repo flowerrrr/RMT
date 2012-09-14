@@ -60,7 +60,6 @@
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
-    <orderEntry type="library" scope="TEST" name="groovy-1.8.6" level="project" />
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
@@ -443,13 +442,13 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.codehaus.groovy/groovy-all/1.8.6/jar/96a26bfa6e5aea2e3c46df44a19de93a2acd2366/groovy-all-1.8.6.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.codehaus.groovy/groovy-all/2.0.2/jar/56c8df76e7688216c72842cda7c057257316ae49/groovy-all-2.0.2.jar!/" />
         </CLASSES>
         <JAVADOC>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.codehaus.groovy/groovy-all/1.8.6/javadoc/3c55878578272093f6b545072d46e3e8ee9a6639/groovy-all-1.8.6-javadoc.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.codehaus.groovy/groovy-all/2.0.2/javadoc/28834b72ead356512d86e553751d56be3156c236/groovy-all-2.0.2-javadoc.jar!/" />
         </JAVADOC>
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.codehaus.groovy/groovy-all/1.8.6/source/2ac423ad404db3e3d9053c626d4c15a84cd18b73/groovy-all-1.8.6-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.codehaus.groovy/groovy-all/2.0.2/source/2b13e375de185de153034cc4d658b9da0e0e5c13/groovy-all-2.0.2-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>

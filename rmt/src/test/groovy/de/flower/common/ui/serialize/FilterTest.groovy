@@ -8,7 +8,7 @@ import static org.testng.Assert.assertEquals
  *
  * @author flowerrrr
  */
-
+@groovy.transform.TypeChecked
 class FilterTest {
 
     @Test

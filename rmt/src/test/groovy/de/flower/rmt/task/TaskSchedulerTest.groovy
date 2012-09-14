@@ -11,6 +11,7 @@ import org.testng.annotations.Test
 /**
  * @author flowerrrr
  */
+@groovy.transform.TypeChecked
 @ContextConfiguration(classes = [Config.class])
 public class TaskSchedulerTest extends AbstractRMTIntegrationTests {
 

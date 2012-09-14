@@ -1,5 +1,6 @@
 package de.flower.common.util
 
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.testng.annotations.Test
 
@@ -8,9 +9,10 @@ import org.testng.annotations.Test
  * @author flowerrrr
  */
 
+@groovy.transform.TypeChecked
 class ReflectionUtilTest {
 
-    def log = LoggerFactory.getLogger(this.getClass());
+    Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Test
     def void testSuperClassProperties() {

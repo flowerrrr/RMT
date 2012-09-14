@@ -9,6 +9,7 @@ import static org.testng.Assert.*
 /**
  * @author flowerrrr
  */
+@groovy.transform.TypeChecked
 public class EventTest {
 
     @Test

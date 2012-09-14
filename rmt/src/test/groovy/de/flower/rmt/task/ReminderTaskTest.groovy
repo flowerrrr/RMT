@@ -1,7 +1,9 @@
 package de.flower.rmt.task;
 
 
+import de.flower.rmt.model.db.entity.Invitation
 import de.flower.rmt.model.db.entity.Invitation_
+import de.flower.rmt.model.db.entity.event.Event
 import de.flower.rmt.model.db.type.RSVPStatus
 import de.flower.rmt.test.AbstractRMTIntegrationTests
 import org.joda.time.DateTime
@@ -16,6 +18,7 @@ import static org.testng.Assert.assertTrue
 /**
  * @author flowerrrr
  */
+// @groovy.transform.TypeChecked  // problems with invitationRepo.findOne() or .save() calls.
 @ContextConfiguration(classes = [Config.class])
 public class ReminderTaskTest extends AbstractRMTIntegrationTests {
 
@@ -34,11 +37,11 @@ public class ReminderTaskTest extends AbstractRMTIntegrationTests {
     @Test
     public void testSendNoResponseReminder() {
         def hours = 48
-        def event = testData.createEvent();
+        Event event = testData.createEvent();
         event.setDateTime(new DateTime().plusHours(hours + 1))
         eventManager.save(event)
         // mark invitation sent
-        def addressList = invitationManager.findAllByEvent(event, Invitation_.user).collect { it.getUser().getEmail() }
+        def addressList = invitationManager.findAllByEvent(event, Invitation_.user).collect { ((Invitation) it).getUser().getEmail() }
         assertTrue(addressList.size() > 0)
         invitationManager.markInvitationSent(event, addressList, new DateTime().minusHours(hours + 1).toDate())
         def invitations = invitationManager.findAllForNoResponseReminder(event, hours)
@@ -47,8 +50,8 @@ public class ReminderTaskTest extends AbstractRMTIntegrationTests {
         reminderTask.sendNoResponseReminder();
 
         // refresh invitations from db
-        invitations = invitations.collect { invitationRepo.findOne(it.getId()) }
-        invitations.each { assertTrue(it.isNoResponseReminderSent()) }
+        invitations = invitations.collect { Invitation it -> invitationRepo.findOne(it.getId()) }
+        invitations.each { assertTrue(((Invitation) it).isNoResponseReminderSent()) }
 
         assertEquals(invitationManager.findAllForNoResponseReminder(event, hours).size(), 0)
     }
@@ -62,7 +65,7 @@ public class ReminderTaskTest extends AbstractRMTIntegrationTests {
 
         // mark some invitations as unsure
         def invitations = invitationManager.findAllByEvent(event)
-        invitations.each {
+        invitations.each { Invitation it ->
             it.setStatus(RSVPStatus.UNSURE)
             invitationRepo.save(it)
         }
@@ -73,8 +76,8 @@ public class ReminderTaskTest extends AbstractRMTIntegrationTests {
         reminderTask.sendUnsureReminder();
 
         // refresh invitations from db
-        invitations = invitations.collect { invitationRepo.findOne(it.getId()) }
-        invitations.each { assertTrue(it.isUnsureReminderSent()) }
+        invitations = invitations.collect { Invitation it -> invitationRepo.findOne(it.getId()) }
+        invitations.each { Invitation it -> assertTrue(it.isUnsureReminderSent()) }
 
         assertEquals(invitationManager.findAllForUnsureReminder(event).size(), 0)
 

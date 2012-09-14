@@ -8,6 +8,7 @@ import static org.testng.Assert.*
  * @author flowerrrr
  */
 
+// @groovy.transform.TypeChecked
 class MRUCacheTest {
 
     final shouldFail = new GroovyTestCase().&shouldFail
