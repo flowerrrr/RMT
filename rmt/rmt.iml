@@ -35,7 +35,7 @@
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="rmt-pu" />
-          <factory-entry name="rmt-test-pu" />
+          <factory-entry name="rmt-test-pu" value="dataSource" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
       </configuration>
