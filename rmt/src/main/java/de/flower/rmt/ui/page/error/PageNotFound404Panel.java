@@ -19,12 +19,16 @@ public class PageNotFound404Panel extends BasePanel {
     @SpringBean
     private ISecurityService securityService;
 
+    @SpringBean
+    private PageNotFoundAutoRedirecter pageNotFoundAutoRedirecter;
+
     public PageNotFound404Panel() {
         add(Links.contextRoot("home"));
     }
 
     @Override
     protected void onBeforeRender() {
+        pageNotFoundAutoRedirecter.checkAutoRedirect(RequestCycle.get().getRequest());
         log.warn("Page not found [{}]", LoggingUtils.toString(RequestCycle.get().getRequest()));
         log.warn("Userdetails: " + securityService.getCurrentUser());
         super.onBeforeRender();

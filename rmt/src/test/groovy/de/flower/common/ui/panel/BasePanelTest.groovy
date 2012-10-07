@@ -1,13 +1,14 @@
-package de.flower.rmt.ui.panel
+package de.flower.common.ui.panel
 
-import de.flower.common.ui.panel.BasePanel
 import org.testng.annotations.Test
+
 import static org.testng.Assert.assertEquals
 
 /**
  *
  * @author flowerrrr
  */
+@groovy.transform.TypeChecked
 class BasePanelTest {
 
     @Test
