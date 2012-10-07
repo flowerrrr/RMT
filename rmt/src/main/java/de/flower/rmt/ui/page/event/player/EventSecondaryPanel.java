@@ -15,7 +15,11 @@ import de.flower.rmt.ui.panel.DownloadIcsLink;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+
+import javax.mail.internet.InternetAddress;
+import java.util.List;
 
 /**
  * @author flowerrrr
@@ -35,7 +39,12 @@ public class EventSecondaryPanel extends BasePanel {
 
         add(new EventDetailsPanel(model));
 
-        add(Links.mailLink("allMailLink", invitationManager.getAddressesForfAllInvitees(model.getObject())));
+        add(Links.mailLink("allMailLink", new LoadableDetachableModel<List<InternetAddress>>() {
+            @Override
+            protected List<InternetAddress> load() {
+                return invitationManager.getAddressesForfAllInvitees(model.getObject());
+            }
+        } ));
 
         add(Links.mailLink("managerMailLink", getManagerEmailAddress(model.getObject()), null));
 

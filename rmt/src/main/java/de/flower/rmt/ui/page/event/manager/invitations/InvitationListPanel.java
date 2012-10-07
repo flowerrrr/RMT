@@ -18,17 +18,17 @@ import de.flower.rmt.util.Dates;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Fragment;
-import org.apache.wicket.model.AbstractReadOnlyModel;
-import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.LoadableDetachableModel;
-import org.apache.wicket.model.Model;
+import org.apache.wicket.model.*;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import javax.mail.internet.InternetAddress;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -46,21 +46,47 @@ public class InvitationListPanel extends BasePanel {
     public InvitationListPanel(String id, IModel<Event> model) {
         super(id);
         Check.notNull(model);
-        add(createListView("acceptedList", RSVPStatus.ACCEPTED, model));
-        add(createListView("unsureList", RSVPStatus.UNSURE, model));
-        add(createListView("declinedList", RSVPStatus.DECLINED, model));
-        add(createListView("noresponseList", RSVPStatus.NORESPONSE, model));
+        addList(RSVPStatus.ACCEPTED, model);
+        addList(RSVPStatus.UNSURE, model);
+        addList(RSVPStatus.DECLINED, model);
+        addList(RSVPStatus.NORESPONSE, model);
         add(new AjaxEventListener(Invitation.class));
     }
 
-    private Component createListView(String id, RSVPStatus status, IModel<Event> model) {
+    private void addList(RSVPStatus status, IModel<Event> model) {
         final IModel<List<Invitation>> listModel = getInvitationList(model, status);
-        add(new Label("num" + status.name(), new AbstractReadOnlyModel<String>() {
+        add(createHead(status.name().toLowerCase() + "ListHead", RSVPStatus.ACCEPTED, listModel));
+        add(createListView(status.name().toLowerCase() + "List", RSVPStatus.ACCEPTED, listModel));
+    }
+
+    private Component createHead(String id, RSVPStatus status, final IModel<List<Invitation>> listModel) {
+        WebMarkupContainer head = new WebMarkupContainer(id);
+        Fragment frag = new Fragment("tHead", "fragmentHead", this);
+        frag.add(new Label("heading", new ResourceModel("invitation." + status.name().toLowerCase())));
+        frag.add(new Label("num", new AbstractReadOnlyModel<String>() {
             @Override
             public String getObject() {
                 return "(" + listModel.getObject().size() + ")";
             }
         }));
+        final IModel<List<InternetAddress>> emailAddressesModel = new AbstractReadOnlyModel<List<InternetAddress>>() {
+            @Override
+            public List<InternetAddress> getObject() {
+                final List<InternetAddress> emailAddresses = new ArrayList<>();
+                for (Invitation invitation : listModel.getObject()) {
+                    if (invitation.hasEmail()) {
+                        emailAddresses.add(invitation.getInternetAddress());
+                    }
+                }
+                return emailAddresses;
+            }
+        };
+        frag.add(Links.mailLink("emailLink", emailAddressesModel));
+        head.add(frag);
+        return head;
+    }
+
+    private Component createListView(String id, RSVPStatus status, IModel<List<Invitation>> listModel) {
         ListView list = new EntityListView<Invitation>(id, listModel) {
             @Override
             protected void populateItem(ListItem<Invitation> item) {
@@ -72,7 +98,7 @@ public class InvitationListPanel extends BasePanel {
 
     private Component createInvitationFragement(ListItem<Invitation> item) {
         final Invitation invitation = item.getModelObject();
-        Fragment frag = new Fragment("itemPanel", "itemFragment", this);
+        Fragment frag = new Fragment("itemPanel", "fragmentRow", this);
         frag.add(new Label("name", invitation.getName()));
         frag.add(DateLabel.forDatePattern("date", Model.of(invitation.getDate()), Dates.DATE_TIME_SHORT));
         frag.add(new CommentsPanel(item.getModel()));

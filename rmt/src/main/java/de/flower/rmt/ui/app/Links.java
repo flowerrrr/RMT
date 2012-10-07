@@ -10,6 +10,8 @@ import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.model.AbstractReadOnlyModel;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.protocol.http.WebApplication;
 
 import javax.mail.internet.InternetAddress;
@@ -56,22 +58,27 @@ public class Links {
         }
     }
 
-    public static ExternalLink mailLink(final String id, List<InternetAddress> emailAddresses) {
-
-        List<String> stringList = Collections.convert(emailAddresses,
-                new Collections.IElementConverter<InternetAddress, String>() {
-                    @Override
-                    public String convert(final InternetAddress ia) {
-                        // fix for RMT-614 (umlaute pose problems in mailto-links)
-                        return ia.getAddress();
-                        // return ia.toString();
-                    }
-                });
-        // outlook likes ';', iphone mail client prefers ','. but according to most sources ';' is correct when used in mailto.
-        // could try to detect user agent
-        String href = StringUtils.join(stringList, ";");
-        href = "mailTo:" + URLEncoder.encode(href);
-        return new ExternalLink(id, href);
+    public static ExternalLink mailLink(final String id, final IModel<List<InternetAddress>> listModel) {
+        IModel<String> hrefModel = new AbstractReadOnlyModel<String>() {
+            @Override
+            public String getObject() {
+                List<InternetAddress> emailAddresses = listModel.getObject();
+                List<String> stringList = Collections.convert(emailAddresses,
+                        new Collections.IElementConverter<InternetAddress, String>() {
+                            @Override
+                            public String convert(final InternetAddress ia) {
+                                // fix for RMT-614 (umlaute pose problems in mailto-links)
+                                return ia.getAddress();
+                                // return ia.toString();
+                            }
+                        });
+                // outlook likes ';', iphone mail client prefers ','. but according to most sources ';' is correct when used in mailto.
+                // could try to detect user agent
+                String href = StringUtils.join(stringList, ";");
+                return "mailTo:" + URLEncoder.encode(href);
+            }
+        } ;
+        return new ExternalLink(id, hrefModel);
     }
 
     public static String getDirectionsUrl(final LatLng latLng) {

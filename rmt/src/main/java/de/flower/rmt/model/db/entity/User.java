@@ -33,6 +33,7 @@ import java.util.*;
 })
 public class User extends AbstractClubRelatedEntity {
 
+
     public interface Validation {
 
         public interface INameUnique {
@@ -265,6 +266,10 @@ public class User extends AbstractClubRelatedEntity {
         } else {
             return new String[]{email, secondEmail};
         }
+    }
+
+    public InternetAddress getInternetAddress() {
+        return getInternetAddresses()[0];
     }
 
     public InternetAddress[] getInternetAddresses() {

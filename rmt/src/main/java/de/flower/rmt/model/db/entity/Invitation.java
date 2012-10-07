@@ -195,6 +195,14 @@ public class Invitation extends AbstractBaseEntity {
         return user != null;
     }
 
+    public InternetAddress getInternetAddress() {
+        if (user == null) {
+            throw new IllegalStateException("Call #isEmail before accessing email-field.");
+        } else {
+            return user.getInternetAddress();
+        }
+    }
+
     public InternetAddress[] getInternetAddresses() {
         if (user == null) {
             throw new IllegalStateException("User required to lookup internet addresses.");
