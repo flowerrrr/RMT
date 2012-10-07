@@ -15,6 +15,6 @@ public class LineupSecondaryPanel extends BasePanel {
         // treat subpanels as top level secondary panels to have spacer between them
         setRenderBodyOnly(true);
 
-        add(new InviteeListPanel(model));
+        add(new LineupInviteeListPanel(model));
     }
 }

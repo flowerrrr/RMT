@@ -9,13 +9,13 @@ import org.testng.annotations.Test;
 /**
  * @author flowerrrr
  */
-public class InviteeListPanelTest extends AbstractRMTWicketIntegrationTests {
+public class LineupInviteeListPanelTest extends AbstractRMTWicketIntegrationTests {
 
     @Test
     public void testRender() {
         Event event = testData.createEventWithResponses();
         Lineup lineup = testData.createLineup(event);
-        wicketTester.startComponentInPage(new InviteeListPanel(new EventModel(event)));
+        wicketTester.startComponentInPage(new LineupInviteeListPanel(new EventModel(event)));
         wicketTester.dumpComponentWithPage();
     }
 }

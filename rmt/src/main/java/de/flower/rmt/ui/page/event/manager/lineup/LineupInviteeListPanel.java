@@ -26,7 +26,7 @@ import java.util.List;
  *
  * @author flowerrrr
  */
-public class InviteeListPanel extends BasePanel {
+public class LineupInviteeListPanel extends BasePanel {
 
     @SpringBean
     private IInvitationManager invitationManager;
@@ -37,7 +37,7 @@ public class InviteeListPanel extends BasePanel {
     // used to filter out those players that are already dragged to the lineup-grid.
     private IModel<List<LineupItem>> lineupItemListModel;
 
-    public InviteeListPanel(final IModel<Event> model) {
+    public LineupInviteeListPanel(final IModel<Event> model) {
 
         add(new AjaxEventListener(LineupItem.class));
 
