@@ -710,6 +710,19 @@ tr:hover .show-on-hover, li:hover .show-on-hover {
     display: inline;
 }
 
+.visible-on-hover {
+    visibility: hidden;
+}
+
+tr:hover .visible-on-hover, li:hover .visible-on-hover {
+    visibility: visible;
+}
+
+// when dropdown is open don't hide dropdown toggle
+.dropdown.open .visible-on-hover {
+    visibility: visible;
+}
+
 
 /*************************************************************************
     Inline editing

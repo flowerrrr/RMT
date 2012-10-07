@@ -4,3 +4,7 @@
 .show-on-hover {
     display: inherit !important;
 }
+
+.visible-on-hover {
+    visibility: inherit !important;
+}
