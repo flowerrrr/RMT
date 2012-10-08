@@ -34,11 +34,11 @@ import java.util.List;
  *
  * @author flower
  */
-public class QueryDslJpaRepositoryExtended<T, ID extends Serializable> extends QueryDslJpaRepository<T, ID> {
+public class ExtendedQueryDslJpaRepository<T, ID extends Serializable> extends QueryDslJpaRepository<T, ID> {
 
     private EntityManager em;
 
-    public QueryDslJpaRepositoryExtended(JpaEntityInformation<T, ID> entityMetadata, EntityManager entityManager) {
+    public ExtendedQueryDslJpaRepository(JpaEntityInformation<T, ID> entityMetadata, EntityManager entityManager) {
         super(entityMetadata, entityManager);
         this.em = entityManager;
     }

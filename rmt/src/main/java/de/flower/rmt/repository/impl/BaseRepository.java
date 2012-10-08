@@ -11,7 +11,7 @@ import de.flower.common.model.db.entity.AbstractBaseEntity;
 import de.flower.common.model.db.entity.AbstractBaseEntity_;
 import de.flower.common.model.db.entity.QAbstractBaseEntity;
 import de.flower.common.model.db.type.ObjectStatus;
-import de.flower.common.repository.QueryDslJpaRepositoryExtended;
+import de.flower.common.repository.ExtendedQueryDslJpaRepository;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.AbstractClubRelatedEntity;
 import de.flower.rmt.model.db.entity.AbstractClubRelatedEntity_;
@@ -36,7 +36,7 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class BaseRepository<T extends AbstractBaseEntity, ID extends Serializable> extends QueryDslJpaRepositoryExtended<T, ID> implements IRepository<T, ID> {
+public class BaseRepository<T extends AbstractBaseEntity, ID extends Serializable> extends ExtendedQueryDslJpaRepository<T, ID> implements IRepository<T, ID> {
 
     private EntityManager em;
 
