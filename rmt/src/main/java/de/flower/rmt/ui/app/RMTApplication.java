@@ -104,8 +104,6 @@ public class RMTApplication extends WebApplication {
         mountPage("manager/opponents", OpponentsPage.class);
         mountPage("manager/venues", VenuesPage.class);
         mountPage("events", de.flower.rmt.ui.page.events.player.EventsPage.class);
-        // TODO (flowerrrr - 23.06.12) remove next line in july
-        mountPage("player/event/${" + EventPage.PARAM_EVENTID + "}", de.flower.rmt.ui.page.event.player.EventPage.class);
         mountPage("event/${" + EventPage.PARAM_EVENTID + "}", de.flower.rmt.ui.page.event.player.EventPage.class);
         mountPage("calendar", CalendarPage.class);
         mountPage("blog", BlogPage.class);
