@@ -55,8 +55,8 @@ public class InvitationListPanel extends BasePanel {
 
     private void addList(RSVPStatus status, IModel<Event> model) {
         final IModel<List<Invitation>> listModel = getInvitationList(model, status);
-        add(createHead(status.name().toLowerCase() + "ListHead", RSVPStatus.ACCEPTED, listModel));
-        add(createListView(status.name().toLowerCase() + "List", RSVPStatus.ACCEPTED, listModel));
+        add(createHead(status.name().toLowerCase() + "ListHead", status, listModel));
+        add(createListView(status.name().toLowerCase() + "List", status, listModel));
     }
 
     private Component createHead(String id, RSVPStatus status, final IModel<List<Invitation>> listModel) {
