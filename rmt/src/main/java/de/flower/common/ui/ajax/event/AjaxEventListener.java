@@ -50,15 +50,16 @@ public final class AjaxEventListener extends Behavior {
             // add to ajax request target
             final AjaxRequestTarget target = AjaxRequestTarget.get();
             if (target != null) {
+                // detach models so that component loads fresh data when it is repainted.
+                component.detach();
                 // components that are not visible and don't have outputmarkupplaceholder cannot be
                 // updated.
                 if (component.isVisibleInHierarchy()
                         || (component.getParent().isVisibleInHierarchy() && component.getOutputMarkupPlaceholderTag())) {
-                    // detach models so that component loads fresh data when it is repainted.
-                    component.detach();
                     target.add(component);
                 } else {
-                    log.warn("Cannot add component [{}] to ajax request target.", component);
+                    // downgrad log level to info to avoid RMT-720.
+                    log.info("Cannot add component [{}] to ajax request target. Component or parent is not visible.", component);
                 }
             }
         }
