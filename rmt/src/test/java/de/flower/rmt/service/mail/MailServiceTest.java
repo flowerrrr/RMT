@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.test.context.ContextConfiguration;
 import org.testng.annotations.BeforeMethod;
@@ -96,5 +97,22 @@ public class MailServiceTest extends AbstractRMTIntegrationTests {
         notification.addRecipient(address, null);
         mailService.sendMassMail(notification);
         log.info("Check postbox at [{}] for email.", address);
-     }
+    }
+
+    /**
+     * Test uses real smtp server.
+     * Set to enabled=false before committing.
+     */
+    @Test(enabled = false)
+    public void testSpam() {
+        mailSender.setHost("mail.flower.de");
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("oliver@flower.de");
+        message.setReplyTo("oliver@flower.de");
+        message.setTo("oliver@flower.de");
+        message.setSubject("Nur ein kleiner Unit test");
+        message.setText("Test test, was man so kennt. Grüße, Wiedersehen.");
+        mailService.sendMail(message);
+        log.info("Check postbox at [{}] for email.");
+    }
 }

@@ -21,6 +21,8 @@
             <props>
                 <!-- required for using authentication. simply setting username is not sufficient. -->
                 <prop key="mail.smtp.auth">true</prop>
+                <!-- helps reduce spam detection. otherwise CT12384 is used which cannot be resolved by DNS. -->
+                <prop key="mail.smtp.localhost">${mail.smtp.localhost}</prop>
             </props>
         </property>
     </bean>
