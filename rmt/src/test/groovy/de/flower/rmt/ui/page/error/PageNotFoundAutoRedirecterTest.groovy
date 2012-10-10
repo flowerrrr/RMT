@@ -32,7 +32,7 @@ class PageNotFoundAutoRedirecterTest extends AbstractRMTIntegrationTests {
             Object getContainerRequest() {
                 MockHttpServletRequest request = new MockHttpServletRequest(null, null, null)
                 request.setAttribute("javax.servlet.forward.request_uri", "foo");
-              	request.setAttribute("javax.servlet.forward.servlet_path", "/events");
+              	request.setAttribute("javax.servlet.forward.servlet_path", "/event");
               	request.setAttribute("javax.servlet.forward.context_path", "for");
               	request.setAttribute("javax.servlet.forward.query_string", "foo");
                 return request;

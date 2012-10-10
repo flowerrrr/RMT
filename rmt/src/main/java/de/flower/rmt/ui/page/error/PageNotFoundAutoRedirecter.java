@@ -4,7 +4,6 @@ import de.flower.common.ui.util.LoggingUtils;
 import org.apache.wicket.protocol.http.servlet.ForwardAttributes;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.RequestHandlerStack;
-import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.http.handler.RedirectRequestHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +34,7 @@ public class PageNotFoundAutoRedirecter {
 
         String url = redirectMapping.get(forwardAttributes.getServletPath());
         if (url != null) {
-            log.info("Redirecting [{}] to [{}]", LoggingUtils.toString(RequestCycle.get().getRequest()), url);
+            log.info("Redirecting [{}] to [{}]", LoggingUtils.toString(request), url);
             throw new RequestHandlerStack.ReplaceHandlerException(new RedirectRequestHandler(url), false);
         }
     }
