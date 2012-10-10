@@ -61,7 +61,7 @@
 
     <util:map id="page404RedirectMapping">
         <entry key="/event" value="/events"/>
-        <entry key="/player/event" value="/events" />
+        <entry key="/player/event/" value="/events" />
     </util:map>
 
 </beans>
