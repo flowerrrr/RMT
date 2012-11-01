@@ -29,15 +29,18 @@ public abstract class AbstractWicketMockitoTests {
 
     protected WicketTester wicketTester;
 
-    protected MockitoFactoryApplicationContext mockCtx = new MockitoFactoryApplicationContext() {
-        {
-            putBean("wicketValidator", mock(Validator.class));
-            putBean("wicketLinkProvider", mock(ILinkProvider.class));
-        }
-    };
+    protected MockitoFactoryApplicationContext mockCtx;
 
     @BeforeMethod
     public void init() {
+        mockCtx = new MockitoFactoryApplicationContext() {
+                {
+                    putBean("wicketValidator", mock(Validator.class));
+                    putBean("wicketLinkProvider", mock(ILinkProvider.class));
+                }
+            };
+        mockCtx.setVerboseLogging(isMockitoVerboseLogging());
+
         wicketTester = createWicketTester(mockCtx);
         WebApplication webApp = wicketTester.getApplication();
         SpringComponentInjector injector = new SpringComponentInjector(webApp, mockCtx);
@@ -47,6 +50,10 @@ public abstract class AbstractWicketMockitoTests {
         // need pass paramater wrapInProxy 'false', cause mockito complains about proxied mocks (SpringComponentInjector wraps
         // a proxy around the inject bean by default).
         new SpringComponentInjector(webApp, mockCtx, false).inject(this);
+    }
+
+    protected boolean isMockitoVerboseLogging() {
+        return false;
     }
 
     protected WicketTester createWicketTester(final ApplicationContext mockCtx) {

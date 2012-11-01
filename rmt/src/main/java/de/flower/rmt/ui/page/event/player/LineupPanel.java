@@ -2,6 +2,7 @@ package de.flower.rmt.ui.page.event.player;
 
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.common.util.Check;
+import de.flower.rmt.model.db.entity.Lineup;
 import de.flower.rmt.model.db.entity.LineupItem;
 import de.flower.rmt.model.db.entity.QLineupItem;
 import de.flower.rmt.model.db.entity.event.Event;
@@ -34,6 +35,8 @@ public class LineupPanel extends BasePanel {
         super(id);
         Check.notNull(model);
 
+        final IModel<Lineup> lineupModel = getLineupModel(model);
+
         final WebMarkupContainer grid = new WebMarkupContainer("grid");
         add(grid);
 
@@ -42,7 +45,7 @@ public class LineupPanel extends BasePanel {
 
         // render existing lineup items
         final IModel<List<LineupItem>> listModel = getListModel(model);
-        ListView<LineupItem> items = new ListView<LineupItem>("items", listModel) {
+        final ListView<LineupItem> items = new ListView<LineupItem>("items", listModel) {
             @Override
             protected void populateItem(final ListItem<LineupItem> item) {
                 LineupItem lineupItem = item.getModelObject();
@@ -56,13 +59,19 @@ public class LineupPanel extends BasePanel {
 
                 item.add(draggablePlayer);
             }
+
+            @Override
+            public boolean isVisible() {
+                final Lineup lineup = lineupModel.getObject();
+                return lineup != null && lineup.isPublished();
+            }
         };
         itemContainer.add(items);
 
         grid.add(new WebMarkupContainer("noLineup") {
             @Override
             public boolean isVisible() {
-                return listModel.getObject().isEmpty();
+                return !items.isVisible();
             }
         });
 
@@ -73,6 +82,15 @@ public class LineupPanel extends BasePanel {
             @Override
             protected List<LineupItem> load() {
                 return lineupManager.findLineupItems(model.getObject(), QLineupItem.lineupItem.invitation);
+            }
+        };
+    }
+
+    private IModel<Lineup> getLineupModel(final IModel<Event> model) {
+        return new LoadableDetachableModel<Lineup>() {
+            @Override
+            protected Lineup load() {
+                return lineupManager.findLineup(model.getObject());
             }
         };
     }

@@ -29,4 +29,6 @@ public interface ILineupManager {
     void save(LineupItem item);
 
     void delete(Long lineupId);
+
+    void publishLineup(Event event);
 }

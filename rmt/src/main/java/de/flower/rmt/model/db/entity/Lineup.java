@@ -4,7 +4,12 @@ import de.flower.common.model.db.entity.AbstractBaseEntity;
 import de.flower.rmt.model.db.entity.event.Event;
 import org.hibernate.annotations.Index;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -15,6 +20,9 @@ import java.util.List;
  */
 @Entity
 public class Lineup extends AbstractBaseEntity {
+
+    @Column(nullable = false)
+    private Boolean published;
 
     @Column
     @Size(max = 20)
@@ -29,10 +37,20 @@ public class Lineup extends AbstractBaseEntity {
     private List<LineupItem> items = new ArrayList<LineupItem>();
 
     protected Lineup() {
+        published = false;
     }
 
     public Lineup(final Event event) {
+        this();
         this.event = event;
+    }
+
+    public Boolean isPublished() {
+        return published;
+    }
+
+    public void setPublished(final Boolean published) {
+        this.published = published;
     }
 
     public String getName() {

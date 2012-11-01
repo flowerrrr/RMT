@@ -4,12 +4,21 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 import com.mysema.query.types.expr.BooleanExpression;
 import de.flower.common.util.Check;
-import de.flower.rmt.model.db.entity.*;
+import de.flower.rmt.model.db.entity.Activity;
+import de.flower.rmt.model.db.entity.Activity_;
+import de.flower.rmt.model.db.entity.BArticle;
+import de.flower.rmt.model.db.entity.BComment;
+import de.flower.rmt.model.db.entity.Comment;
+import de.flower.rmt.model.db.entity.Invitation;
+import de.flower.rmt.model.db.entity.Invitation_;
+import de.flower.rmt.model.db.entity.Lineup;
+import de.flower.rmt.model.db.entity.QActivity;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.entity.event.Event_;
 import de.flower.rmt.model.db.type.activity.BlogUpdateMessage;
 import de.flower.rmt.model.db.type.activity.EmailSentMessage;
 import de.flower.rmt.model.db.type.activity.EventUpdateMessage;
+import de.flower.rmt.model.db.type.activity.EventUpdateMessage.Type;
 import de.flower.rmt.model.db.type.activity.InvitationUpdateMessage2;
 import de.flower.rmt.repository.IActivityRepo;
 import org.apache.commons.lang3.ObjectUtils;
@@ -75,6 +84,16 @@ public class ActivityManager extends AbstractService implements IActivityManager
         save(entity);
     }
 
+    @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+    public void onLineupPublished(final Lineup lineup) {
+        Activity entity = newInstance();
+        EventUpdateMessage message = new EventUpdateMessage(lineup.getEvent());
+        message.setType(Type.LINEUP_PUBLISHED);
+        message.setManagerName(entity.getUser().getFullname());
+        entity.setMessage(message);
+        save(entity);
+    }
 
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import java.util.Map;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.withSettings;
 
 /**
  * Extends wickets ApplicationContextMock by automatically creating mockito mocks whenever
@@ -25,9 +26,16 @@ public class MockitoFactoryApplicationContext extends ApplicationContextMock {
 
     private final static Logger log = LoggerFactory.getLogger(MockitoFactoryApplicationContext.class);
 
+    private boolean verboseLogging;
+
     protected void createAndAddMock(final Class type) {
         Check.notNull(type);
-        Object bean = mock(type);
+        Object bean;
+        if (verboseLogging) {
+            bean = mock(type, withSettings().verboseLogging());
+        } else {
+            bean = mock(type);
+        }
         String name = type.getSimpleName();
         log.info("Adding new mock [" + name + ", " + type.getName() + "] to mock context.");
         putBean(name, bean);
@@ -74,5 +82,9 @@ public class MockitoFactoryApplicationContext extends ApplicationContextMock {
      */
     public <T> T getMock(Class<T> type) {
         return getBean(type);
+    }
+
+    public void setVerboseLogging(final boolean verboseLogging) {
+        this.verboseLogging = verboseLogging;
     }
 }

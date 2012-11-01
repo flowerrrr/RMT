@@ -2,7 +2,12 @@ package de.flower.rmt.ui.panel.activityfeed.renderer;
 
 import de.flower.rmt.model.db.type.EventType;
 import de.flower.rmt.model.db.type.RSVPStatus;
-import de.flower.rmt.model.db.type.activity.*;
+import de.flower.rmt.model.db.type.activity.BlogUpdateMessage;
+import de.flower.rmt.model.db.type.activity.EmailSentMessage;
+import de.flower.rmt.model.db.type.activity.EventUpdateMessage;
+import de.flower.rmt.model.db.type.activity.EventUpdateMessage.Type;
+import de.flower.rmt.model.db.type.activity.InvitationUpdateMessage;
+import de.flower.rmt.model.db.type.activity.InvitationUpdateMessage2;
 import de.flower.rmt.service.ILinkProvider;
 import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -34,8 +39,6 @@ public class ActivityMessageRendererTest extends AbstractRMTWicketMockitoTests {
         message.setType(EventUpdateMessage.Type.CREATED);
         message.setManagerName("Uli Hoeneß");
         message.setTeamName("FC Bayern");
-        message.setEventId(1L);
-        message.setEventDate(new Date());
         message.setEventType(EventType.Match);
         String s = ActivityMessageRenderer.toString(message);
         log.info(message + " rendered to [" + s + "]");
@@ -47,8 +50,6 @@ public class ActivityMessageRendererTest extends AbstractRMTWicketMockitoTests {
         message.setType(EventUpdateMessage.Type.UPDATED);
         message.setManagerName("Uli Hoeneß");
         message.setTeamName("FC Bayern");
-        message.setEventDate(new Date());
-        message.setEventId(1L);
         for (EventType eventType : EventType.values()) {
             message.setEventType(eventType);
             String s = ActivityMessageRenderer.toString(message);
@@ -62,13 +63,20 @@ public class ActivityMessageRendererTest extends AbstractRMTWicketMockitoTests {
         message.setType(EventUpdateMessage.Type.CANCELED);
         message.setManagerName("Uli Hoeneß");
         message.setTeamName("FC Bayern");
-        message.setEventDate(new Date());
-        message.setEventId(1L);
         for (EventType eventType : EventType.values()) {
             message.setEventType(eventType);
             String s = ActivityMessageRenderer.toString(message);
             log.info(message + " rendered to [" + s + "]");
         }
+    }
+
+    @Test
+    public void testLineupPublished() {
+        EventUpdateMessage message = new EventUpdateMessage(testData.newEvent());
+        message.setType(Type.LINEUP_PUBLISHED);
+        message.setManagerName("Uli Hoeneß");
+        String s = ActivityMessageRenderer.toString(message);
+        log.info(message + " rendered to [" + s + "]");
     }
 
     @Test
@@ -306,5 +314,4 @@ public class ActivityMessageRendererTest extends AbstractRMTWicketMockitoTests {
         String s = ActivityMessageRenderer.toString(message);
         log.info(message + " rendered to [" + s + "]");
     }
-
 }

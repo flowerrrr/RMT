@@ -11,7 +11,8 @@ public class EventUpdateMessage extends AbstractEventMessage {
     public enum Type {
         CREATED,
         UPDATED,
-        CANCELED;
+        CANCELED,
+        LINEUP_PUBLISHED;
     }
 
     /**

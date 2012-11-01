@@ -1,6 +1,7 @@
 package de.flower.rmt.ui.panel.activityfeed.renderer;
 
 import de.flower.rmt.model.db.type.activity.EventUpdateMessage;
+import de.flower.rmt.model.db.type.activity.EventUpdateMessage.Type;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.StringResourceModel;
 
@@ -19,6 +20,8 @@ public class EventUpdateMessageRenderer extends AbstractEventMessageRenderer imp
             key = "activity.event.update.message";
         } else if (message.getType() == EventUpdateMessage.Type.CANCELED) {
             key = "activity.event.cancel.message";
+        } else if (message.getType() == Type.LINEUP_PUBLISHED) {
+            key = "activity.event.lineup.published.message";
         } else {
             throw new RuntimeException("Unkonwn message type [" + message + "].");
         }

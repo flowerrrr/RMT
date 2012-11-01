@@ -3,7 +3,12 @@ package de.flower.rmt.service;
 import com.mysema.query.types.Path;
 import com.mysema.query.types.expr.BooleanExpression;
 import de.flower.common.util.Check;
-import de.flower.rmt.model.db.entity.*;
+import de.flower.rmt.model.db.entity.Invitation;
+import de.flower.rmt.model.db.entity.Invitation_;
+import de.flower.rmt.model.db.entity.Lineup;
+import de.flower.rmt.model.db.entity.LineupItem;
+import de.flower.rmt.model.db.entity.QLineup;
+import de.flower.rmt.model.db.entity.QLineupItem;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.dto.LineupItemDto;
 import de.flower.rmt.repository.ILineupItemRepo;
@@ -19,7 +24,7 @@ import java.util.List;
  * @author flowerrrr
  */
 @Service
-@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+@Transactional(propagation = Propagation.REQUIRED)
 public class LineupManager extends AbstractService implements ILineupManager {
 
     @Autowired
@@ -31,6 +36,9 @@ public class LineupManager extends AbstractService implements ILineupManager {
     @Autowired
     private IInvitationManager invitationManager;
 
+    @Autowired
+    private IActivityManager activityManager;
+
     @Override
     public Lineup findLineup(final Event event, Path<?>... attributes) {
         BooleanExpression isEvent = QLineup.lineup.event.eq(event);
@@ -41,7 +49,7 @@ public class LineupManager extends AbstractService implements ILineupManager {
     public List<LineupItem> findLineupItems(final Event event, Path<?>... attributes) {
         Lineup lineup = findLineup(event);
         if (lineup == null) {
-            lineup = createLineup(event);
+            createLineup(event);
         }
         BooleanExpression isEvent = QLineupItem.lineupItem.lineup.event.eq(event);
         List<LineupItem> items = lineupItemRepo.findAll(isEvent, attributes);
@@ -95,5 +103,14 @@ public class LineupManager extends AbstractService implements ILineupManager {
     @Override
     public void delete(final Long lineupId) {
         lineupRepo.delete(lineupId); // delete is cascaded to lineupitems
+    }
+
+    @Override
+    public void publishLineup(final Event event) {
+        Lineup lineup = findLineup(event);
+        Check.notNull(lineup);
+        lineup.setPublished(true);
+        lineupRepo.save(lineup);
+        activityManager.onLineupPublished(lineup);
     }
 }

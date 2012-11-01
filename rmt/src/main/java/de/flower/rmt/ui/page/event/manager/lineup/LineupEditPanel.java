@@ -37,7 +37,7 @@ public class LineupEditPanel extends BasePanel {
     @SpringBean
     private ILineupManager lineupManager;
 
-    public LineupEditPanel(String id, IModel<Event> model) {
+    public LineupEditPanel(String id, final IModel<Event> model) {
         super(id);
         Check.notNull(model);
 
