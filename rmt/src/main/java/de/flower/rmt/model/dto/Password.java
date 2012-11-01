@@ -11,7 +11,6 @@ import java.io.Serializable;
 
 /**
  * Model class for usage in password-change form.
- * Lives in service package because of dependency to PasswordValidator.
  *
  * @author flowerrrr
  */
