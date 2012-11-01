@@ -82,7 +82,7 @@ public class Event extends AbstractClubRelatedEntity {
 
     @Column
     @NotBlank
-    @Size(max = 50)
+    @Size(max = 70)
     private String summary;
 
     @Column
