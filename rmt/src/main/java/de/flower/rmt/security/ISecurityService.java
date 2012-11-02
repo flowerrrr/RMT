@@ -1,4 +1,4 @@
-package de.flower.rmt.service.security;
+package de.flower.rmt.security;
 
 import de.flower.rmt.model.db.entity.User;
 

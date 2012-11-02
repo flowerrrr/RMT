@@ -1,5 +1,6 @@
 package de.flower.rmt.service.security;
 
+import de.flower.rmt.security.UserDetailsBean;
 import de.flower.rmt.service.IUserManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

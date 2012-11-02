@@ -2,6 +2,7 @@ package de.flower.rmt.service.security;
 
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.User_;
+import de.flower.rmt.security.UserDetailsBean;
 import de.flower.rmt.service.IUserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;

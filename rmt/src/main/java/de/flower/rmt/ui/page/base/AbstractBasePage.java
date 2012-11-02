@@ -2,8 +2,8 @@ package de.flower.rmt.ui.page.base;
 
 import de.flower.common.ui.ajax.behavior.test.SeleniumWaitForAjaxSupportBehavior;
 import de.flower.common.ui.modal.ModalDialogWindowPanel;
+import de.flower.rmt.security.ISecurityService;
 import de.flower.rmt.service.IApplicationService;
-import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.ui.app.Resource;
 import org.apache.wicket.Application;
 import org.apache.wicket.Component;

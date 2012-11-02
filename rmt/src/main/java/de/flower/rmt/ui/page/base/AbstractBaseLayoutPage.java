@@ -3,7 +3,7 @@ package de.flower.rmt.ui.page.base;
 import de.flower.common.ui.feedback.AlertMessageFeedbackPanel;
 import de.flower.common.ui.markup.html.panel.WrappingPanel;
 import de.flower.common.ui.panel.BasePanel;
-import de.flower.rmt.service.security.ISecurityService;
+import de.flower.rmt.security.ISecurityService;
 import de.flower.rmt.ui.app.IPropertyProvider;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.feedback.MessageOfTheDayMessage;

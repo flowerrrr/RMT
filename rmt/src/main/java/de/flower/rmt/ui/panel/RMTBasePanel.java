@@ -2,7 +2,7 @@ package de.flower.rmt.ui.panel;
 
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.User;
-import de.flower.rmt.service.security.ISecurityService;
+import de.flower.rmt.security.ISecurityService;
 import de.flower.rmt.ui.app.IViewResolver;
 import de.flower.rmt.ui.app.View;
 import org.apache.wicket.AttributeModifier;

@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.page.account;
 
 import de.flower.rmt.model.db.entity.User;
-import de.flower.rmt.service.security.ISecurityService;
+import de.flower.rmt.security.ISecurityService;
 import de.flower.rmt.ui.model.UserModel;
 import de.flower.rmt.ui.page.base.AbstractCommonBasePage;
 import org.apache.wicket.model.IModel;

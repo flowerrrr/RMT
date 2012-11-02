@@ -18,7 +18,7 @@ import de.flower.rmt.model.db.entity.AbstractClubRelatedEntity_;
 import de.flower.rmt.model.db.entity.Club;
 import de.flower.rmt.repository.IRepository;
 import de.flower.rmt.repository.Specs;
-import de.flower.rmt.service.security.ISecurityService;
+import de.flower.rmt.security.ISecurityService;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.LockOptions;
 import org.hibernate.Session;

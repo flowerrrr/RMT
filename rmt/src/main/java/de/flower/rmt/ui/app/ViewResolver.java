@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.app;
 
-import de.flower.rmt.service.security.ISecurityService;
+import de.flower.rmt.security.ISecurityService;
 import org.apache.commons.lang3.EnumUtils;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.springframework.beans.factory.annotation.Autowired;

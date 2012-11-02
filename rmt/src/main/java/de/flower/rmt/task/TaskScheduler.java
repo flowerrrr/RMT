@@ -2,8 +2,8 @@ package de.flower.rmt.task;
 
 import de.flower.rmt.model.db.entity.Club;
 import de.flower.rmt.model.db.entity.User;
+import de.flower.rmt.security.UserDetailsBean;
 import de.flower.rmt.service.IClubManager;
-import de.flower.rmt.service.security.UserDetailsBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

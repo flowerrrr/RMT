@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.page.blog;
 
+import de.flower.rmt.security.ISecurityService;
 import de.flower.rmt.service.IBlogManager;
-import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.ui.page.base.AbstractCommonBasePage;
 import de.flower.rmt.ui.page.base.NavigationPanel;
 import org.apache.wicket.Component;

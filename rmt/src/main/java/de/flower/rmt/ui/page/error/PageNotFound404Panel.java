@@ -2,7 +2,7 @@ package de.flower.rmt.ui.page.error;
 
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.common.ui.util.LoggingUtils;
-import de.flower.rmt.service.security.ISecurityService;
+import de.flower.rmt.security.ISecurityService;
 import de.flower.rmt.ui.app.Links;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.spring.injection.annot.SpringBean;

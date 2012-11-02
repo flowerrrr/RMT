@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.page.events.player;
 
-import de.flower.rmt.service.security.ISecurityService;
+import de.flower.rmt.security.ISecurityService;
 import de.flower.rmt.ui.model.UserModel;
 import de.flower.rmt.ui.page.base.NavigationPanel;
 import de.flower.rmt.ui.page.base.player.PlayerBasePage;

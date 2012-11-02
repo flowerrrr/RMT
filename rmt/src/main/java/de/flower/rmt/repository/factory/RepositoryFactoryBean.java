@@ -1,7 +1,7 @@
 package de.flower.rmt.repository.factory;
 
 import de.flower.rmt.repository.impl.BaseRepository;
-import de.flower.rmt.service.security.ISecurityService;
+import de.flower.rmt.security.ISecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
