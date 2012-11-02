@@ -8,10 +8,12 @@ import de.flower.rmt.ui.app.IPropertyProvider;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.feedback.MessageOfTheDayMessage;
 import de.flower.rmt.ui.feedback.PasswordChangeRequiredMessage;
+import de.flower.rmt.ui.page.about.AboutPage;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -61,7 +63,7 @@ public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
         container.add(heading = new Label("heading", Model.of(getClass().getSimpleName())));
         container.add(subheading = new Label("subheading", Model.of("")));
 
-        add(Links.aboutLink("aboutLink"));
+        add(new BookmarkablePageLink("aboutLink", AboutPage.class));
         add(Links.mailLink("adminLink", propertyProvider.getAdminEmail(), false));
     }
 

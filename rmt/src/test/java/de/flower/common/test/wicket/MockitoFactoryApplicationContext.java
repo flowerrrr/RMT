@@ -1,6 +1,7 @@
 package de.flower.common.test.wicket;
 
 import de.flower.common.util.Check;
+import org.apache.commons.lang.StringUtils;
 import org.apache.wicket.spring.test.ApplicationContextMock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +29,7 @@ public class MockitoFactoryApplicationContext extends ApplicationContextMock {
 
     private boolean verboseLogging;
 
-    protected void createAndAddMock(final Class type) {
+    protected void createAndAddMock(String name, final Class type) {
         Check.notNull(type);
         Object bean;
         if (verboseLogging) {
@@ -36,16 +37,30 @@ public class MockitoFactoryApplicationContext extends ApplicationContextMock {
         } else {
             bean = mock(type);
         }
-        String name = type.getSimpleName();
+        if (name == null) {
+            name = StringUtils.uncapitalize(type.getSimpleName());
+        }
         log.info("Adding new mock [" + name + ", " + type.getName() + "] to mock context.");
         putBean(name, bean);
+    }
+
+    @Override
+    public <T> T getBean(final String name, final Class<T> requiredType) throws BeansException {
+        T bean = null;
+        try {
+            bean = super.getBean(name, requiredType);
+        } catch (BeansException e) {
+            createAndAddMock(name, requiredType);
+            bean = super.getBean(name, requiredType);
+        }
+        return bean;
     }
 
     @Override
     public String[] getBeanNamesForType(final Class type) {
         String[] names = super.getBeanNamesForType(type);
         if (names.length == 0) {
-            createAndAddMock(type);
+            createAndAddMock(null, type);
             // now call will return our bean that we've just created.
             names = super.getBeanNamesForType(type);
         }
@@ -56,7 +71,7 @@ public class MockitoFactoryApplicationContext extends ApplicationContextMock {
     public <T> Map<String, T> getBeansOfType(final Class<T> type) throws BeansException {
         Map<String, T> map = super.getBeansOfType(type);
         if (map.isEmpty()) {
-            createAndAddMock(type);
+            createAndAddMock(null, type);
             map = super.getBeansOfType(type);
         }
         return map;

@@ -1,6 +1,8 @@
 package de.flower.rmt.ui.app ;
 
 import de.flower.rmt.ui.page.user.manager.PlayerPage;
+import de.flower.rmt.ui.site.BookmarkManager;
+import de.flower.rmt.ui.site.PageResolver;
 import org.apache.wicket.devutils.inspector.RenderPerformanceListener;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,7 @@ public class TestRMTApplication extends RMTApplication {
      * @param ctx the context
      */
     public TestRMTApplication(final ApplicationContext ctx) {
+        super(new PageResolver(), new BookmarkManager());
         appCtx = ctx;
     }
 

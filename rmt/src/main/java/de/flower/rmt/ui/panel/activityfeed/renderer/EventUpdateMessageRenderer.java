@@ -13,7 +13,7 @@ public class EventUpdateMessageRenderer extends AbstractEventMessageRenderer imp
     @Override
     public String toString(final EventUpdateMessage message) {
         String key;
-        Object[] params = new Object[]{ getEventArticle(message), getEventLink(message), linkProvider.deepLinkEvent(message.getEventId())};
+        Object[] params = new Object[]{ getEventArticle(message), getEventLink(message), urlProvider.deepLinkEvent(message.getEventId())};
         if (message.getType() == EventUpdateMessage.Type.CREATED) {
             key = "activity.event.create.message";
         } else if (message.getType() == EventUpdateMessage.Type.UPDATED) {

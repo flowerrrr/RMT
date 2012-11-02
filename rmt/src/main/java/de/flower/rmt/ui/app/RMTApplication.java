@@ -2,25 +2,6 @@ package de.flower.rmt.ui.app;
 
 import de.flower.common.ui.serialize.ISerializerListener;
 import de.flower.common.ui.serialize.SerializerWrapper;
-import de.flower.rmt.ui.page.about.AboutPage;
-import de.flower.rmt.ui.page.about.ChangeLogPage;
-import de.flower.rmt.ui.page.account.AccountPage;
-import de.flower.rmt.ui.page.blog.ArticlePage;
-import de.flower.rmt.ui.page.blog.BlogPage;
-import de.flower.rmt.ui.page.calendar.CalendarPage;
-import de.flower.rmt.ui.page.error.AccessDenied403Page;
-import de.flower.rmt.ui.page.error.InternalError500Page;
-import de.flower.rmt.ui.page.error.PageExpiredPage;
-import de.flower.rmt.ui.page.error.PageNotFound404Page;
-import de.flower.rmt.ui.page.event.manager.EventPage;
-import de.flower.rmt.ui.page.events.manager.EventsPage;
-import de.flower.rmt.ui.page.login.LoginPage;
-import de.flower.rmt.ui.page.login.PasswordForgottenPage;
-import de.flower.rmt.ui.page.opponents.manager.OpponentsPage;
-import de.flower.rmt.ui.page.teams.manager.TeamsPage;
-import de.flower.rmt.ui.page.users.UsersPage;
-import de.flower.rmt.ui.page.venues.manager.VenuesPage;
-import de.flower.rmt.ui.page.venues.player.VenuePage;
 import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.Session;
 import org.apache.wicket.protocol.http.WebApplication;
@@ -43,8 +24,22 @@ public class RMTApplication extends WebApplication {
     @Autowired
     private ISerializerListener pageSerializationValidatorListener;
 
+    @Autowired
+    private IPageResolver pageResolver;
+
+    @Autowired
+    private IBookmarkManager bookmarkManager;
+
     public static RMTApplication get() {
         return (RMTApplication) WebApplication.get();
+    }
+
+    public RMTApplication() {
+    }
+
+    protected RMTApplication(IPageResolver pageResolver, IBookmarkManager bookmarkManager) {
+        this.pageResolver = pageResolver;
+        this.bookmarkManager = bookmarkManager;
     }
 
     @Override
@@ -76,7 +71,7 @@ public class RMTApplication extends WebApplication {
             initSerializer();
         }
 
-        initBookmarkablePages();
+        bookmarkManager.initBookmarkablePages(this);
 
         initErrorPages();
     }
@@ -96,47 +91,25 @@ public class RMTApplication extends WebApplication {
         return new SpringComponentInjector(this);
     }
 
-    private void initBookmarkablePages() {
-        mountPage("manager", EventsPage.class);
-        mountPage("manager/teams", TeamsPage.class);
-        mountPage("manager/events", EventsPage.class);
-        mountPage("manager/event/${" + EventPage.PARAM_EVENTID + "}", EventPage.class);
-        mountPage("manager/opponents", OpponentsPage.class);
-        mountPage("manager/venues", VenuesPage.class);
-        mountPage("events", de.flower.rmt.ui.page.events.player.EventsPage.class);
-        mountPage("event/${" + EventPage.PARAM_EVENTID + "}", de.flower.rmt.ui.page.event.player.EventPage.class);
-        mountPage("calendar", CalendarPage.class);
-        mountPage("blog", BlogPage.class);
-        mountPage("blog/${" + ArticlePage.PARAM_ARTICLEID + "}", ArticlePage.class);
-        mountPage("users", UsersPage.class);
-        mountPage("venues", de.flower.rmt.ui.page.venues.player.VenuesPage.class);
-        mountPage("venue/${" + VenuePage.PARAM_VENUEID + "}", VenuePage.class);
-        mountPage("account", AccountPage.class);
-        mountPage("login/passwordforgotten", PasswordForgottenPage.class);
-        mountPage("login", LoginPage.class);
-        mountPage("about", AboutPage.class);
-        mountPage("changelog", ChangeLogPage.class);
-    }
-
     private void initErrorPages() {
         // same url as in web.xml
-        mountPage("error/404", PageNotFound404Page.class);
+        mountPage("error/404", pageResolver.getPageNotFoundPage());
 
-        mountPage("error/500", InternalError500Page.class);
+        mountPage("error/500", pageResolver.getInternalErrorPage());
         getRequestCycleListeners().add(new ExceptionRequestCycleListener());
-        getApplicationSettings().setInternalErrorPage(InternalError500Page.class);
+        getApplicationSettings().setInternalErrorPage(pageResolver.getInternalErrorPage());
         getExceptionSettings().setUnexpectedExceptionDisplay(IExceptionSettings.SHOW_INTERNAL_ERROR_PAGE);
 
         // access denied is not handled by wicket. spring security will redirect request to this url
-        mountPage("error/403", AccessDenied403Page.class);
+        mountPage("error/403", pageResolver.getAccessDeniedPage());
 
-        mountPage("error/" + PageExpiredPage.SC, PageExpiredPage.class);
-        getApplicationSettings().setPageExpiredErrorPage(PageExpiredPage.class);
+        // mountPage("error/" + PageExpiredPage.SC, pageResolver.getPageExpiredPage());
+        getApplicationSettings().setPageExpiredErrorPage(pageResolver.getPageExpiredPage());
     }
 
     @Override
     public Class getHomePage() {
-        return HomePageResolver.getHomePage();
+        return pageResolver.getHomePage();
     }
 
     @Override

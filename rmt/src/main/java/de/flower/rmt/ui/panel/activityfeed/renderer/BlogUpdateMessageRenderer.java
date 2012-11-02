@@ -2,7 +2,7 @@ package de.flower.rmt.ui.panel.activityfeed.renderer;
 
 import de.flower.common.ui.inject.InjectorAwareObject;
 import de.flower.rmt.model.db.type.activity.BlogUpdateMessage;
-import de.flower.rmt.service.ILinkProvider;
+import de.flower.rmt.service.IUrlProvider;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -13,7 +13,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public class BlogUpdateMessageRenderer extends InjectorAwareObject implements IMessageRenderer<BlogUpdateMessage> {
 
     @SpringBean(name = "wicketLinkProvider")
-    protected ILinkProvider linkProvider;
+    protected IUrlProvider urlProvider;
 
     @Override
     public String toString(final BlogUpdateMessage message) {
@@ -29,7 +29,7 @@ public class BlogUpdateMessageRenderer extends InjectorAwareObject implements IM
     }
 
     public String getArticleLink(BlogUpdateMessage message) {
-        return linkProvider.deepLinkBlog(message.getArticleId());
+        return urlProvider.deepLinkBlog(message.getArticleId());
     }
 
     @Override

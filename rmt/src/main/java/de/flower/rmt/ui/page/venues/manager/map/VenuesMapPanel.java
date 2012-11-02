@@ -3,7 +3,9 @@ package de.flower.rmt.ui.page.venues.manager.map;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.common.util.geo.LatLng;
 import de.flower.rmt.model.db.entity.Venue;
+import de.flower.rmt.service.IUrlProvider;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 import wicket.contrib.gmap3.GMap;
 import wicket.contrib.gmap3.overlay.GInfoWindow;
 import wicket.contrib.gmap3.overlay.GMarker;
@@ -21,6 +23,9 @@ public class VenuesMapPanel extends BasePanel {
     /** Google maps maximum zoom level in map mode is 19 (22 in satellite). */
     public static final int MAX_INITAL_ZOOM_LEVEL = 15;
 
+    @SpringBean(name = "urlProvider")
+    private IUrlProvider urlProvider;
+
     public VenuesMapPanel(IModel<List<Venue>> listModel) {
 
         final GMap map = new GMap("map");
@@ -35,7 +40,7 @@ public class VenuesMapPanel extends BasePanel {
                         venue.getLatLng(),
                         venue.getName()));
                 map.addOverlay(marker);
-                marker.addFunctionListener(GOverlayEvent.CLICK, GInfoWindow.getJSopenFunction(map, VenueMapPanel.getInfoWindowContent(venue), marker));
+                marker.addFunctionListener(GOverlayEvent.CLICK, GInfoWindow.getJSopenFunction(map, VenueMapPanel.getInfoWindowContent(venue, urlProvider.getDirectionsUrl(venue.getLatLng())), marker));
                 latLngs.add(venue.getLatLng());
             }
         }

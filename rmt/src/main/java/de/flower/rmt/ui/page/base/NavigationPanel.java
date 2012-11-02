@@ -8,6 +8,7 @@ import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.markup.html.form.renderer.EventRenderer;
+import de.flower.rmt.ui.page.about.AboutPage;
 import de.flower.rmt.ui.page.account.AccountPage;
 import de.flower.rmt.ui.page.blog.BlogPage;
 import de.flower.rmt.ui.page.calendar.CalendarPage;
@@ -68,7 +69,7 @@ public class NavigationPanel extends RMTBasePanel {
 
         setRenderBodyOnly(true);
 
-        add(Links.aboutLink("about"));
+        add(new BookmarkablePageLink("aboutLink", AboutPage.class));
 
         WebMarkupContainer events = new WebMarkupContainer("events");
         if (isManagerView()) {

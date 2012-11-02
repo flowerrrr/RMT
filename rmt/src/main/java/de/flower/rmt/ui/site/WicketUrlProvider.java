@@ -1,6 +1,7 @@
-package de.flower.rmt.ui.app;
+package de.flower.rmt.ui.site;
 
-import de.flower.rmt.service.ILinkProvider;
+import de.flower.common.util.geo.LatLng;
+import de.flower.rmt.service.IUrlProvider;
 import de.flower.rmt.ui.page.blog.ArticlePage;
 import de.flower.rmt.ui.page.event.player.EventPage;
 import org.apache.wicket.request.Url;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Deprecated // should use LinkProvider instead
-public class WicketLinkProvider implements ILinkProvider {
+public class WicketUrlProvider implements IUrlProvider {
 
     @Override
     public String deepLinkEvent(final Long eventId) {
@@ -24,6 +25,11 @@ public class WicketLinkProvider implements ILinkProvider {
     public String deepLinkBlog(final Long articleId) {
         String relativeUrl = urlForArticle(articleId).toString();
         return renderFullUrl(relativeUrl);
+    }
+
+    @Override
+    public String getDirectionsUrl(final LatLng latLng) {
+        throw new UnsupportedOperationException("Use LinkProvider to get URL!");
     }
 
     private String renderFullUrl(String relativeUrl) {

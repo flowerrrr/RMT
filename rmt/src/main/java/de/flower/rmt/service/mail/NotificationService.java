@@ -7,15 +7,18 @@ import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.Uniform;
 import de.flower.rmt.model.db.entity.User;
-import de.flower.rmt.model.db.entity.event.*;
+import de.flower.rmt.model.db.entity.event.AbstractSoccerEvent;
+import de.flower.rmt.model.db.entity.event.AbstractSoccerEvent_;
+import de.flower.rmt.model.db.entity.event.Event;
+import de.flower.rmt.model.db.entity.event.Event_;
+import de.flower.rmt.model.db.entity.event.Match_;
 import de.flower.rmt.model.db.type.EventType;
 import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.model.dto.Notification;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.service.IICalendarProvider;
 import de.flower.rmt.service.IInvitationManager;
-import de.flower.rmt.service.ILinkProvider;
-import de.flower.rmt.ui.app.Links;
+import de.flower.rmt.service.IUrlProvider;
 import de.flower.rmt.ui.markup.html.form.renderer.SurfaceRenderer;
 import de.flower.rmt.util.Dates;
 import org.apache.commons.lang3.StringUtils;
@@ -29,7 +32,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * @author flowerrrr
@@ -52,7 +59,7 @@ public class NotificationService implements INotificationService, IICalendarProv
     private IInvitationManager invitationManager;
 
     @Autowired
-    private ILinkProvider linkProvider;
+    private IUrlProvider urlProvider;
 
     @Autowired
     private MessageSourceAccessor messageSource;
@@ -220,7 +227,7 @@ public class NotificationService implements INotificationService, IICalendarProv
         message.setSubject("das tool: Reminder-Mail summary");
 
         String body = "An auto-reminder-mail was sent to the following recpients.\n"
-                + "Event: " + linkProvider.deepLinkEvent(event.getId()) + "\n"
+                + "Event: " + urlProvider.deepLinkEvent(event.getId()) + "\n"
                 + "Reason: " + reason + "\n"
                 + "Users:\n";
         body += StringUtils.join(to, "\n");
@@ -334,11 +341,11 @@ public class NotificationService implements INotificationService, IICalendarProv
         model.put("eventDateTime", Dates.formatDateTimeShortWithWeekday(event.getDateTimeAsDate()));
         model.put("eventType", messageSource.getMessage(event.getEventType().getResourceKey()));
         model.put("eventTypeMatch", EventType.Match);
-        model.put("eventLink", linkProvider.deepLinkEvent(event.getId()));
+        model.put("eventLink", urlProvider.deepLinkEvent(event.getId()));
 
         model.put("isSoccerEvent", EventType.isSoccerEvent(event));
         if (event.getVenue() != null) {
-            model.put("directionsLink", Links.getDirectionsUrl(event.getVenue().getLatLng()));
+            model.put("directionsLink", urlProvider.getDirectionsUrl(event.getVenue().getLatLng()));
         }
         if (EventType.isSoccerEvent(event)) {
             AbstractSoccerEvent soccerEvent = (AbstractSoccerEvent) event;

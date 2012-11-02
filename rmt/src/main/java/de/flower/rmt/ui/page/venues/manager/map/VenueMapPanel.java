@@ -3,13 +3,16 @@ package de.flower.rmt.ui.page.venues.manager.map;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.common.util.geo.LatLng;
 import de.flower.rmt.model.db.entity.Venue;
-import de.flower.rmt.ui.app.Links;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.util.string.Strings;
 import wicket.contrib.gmap3.GMap;
-import wicket.contrib.gmap3.overlay.*;
+import wicket.contrib.gmap3.overlay.GInfoWindow;
+import wicket.contrib.gmap3.overlay.GMarker;
+import wicket.contrib.gmap3.overlay.GMarkerOptions;
+import wicket.contrib.gmap3.overlay.GOverlayEvent;
+import wicket.contrib.gmap3.overlay.GOverlayEventHandler;
 
 /**
  * The model contains the latLng of the marker to display. If null no marker is displayed.
@@ -91,7 +94,7 @@ public class VenueMapPanel extends BasePanel<LatLng> {
         super.onBeforeRender();
     }
 
-    public static String getInfoWindowContent(final Venue venue) {
+    public static String getInfoWindowContent(final Venue venue, final String url) {
         String s = "<div><ul class='info-window'>" +
                 "<li>" +
                 "<span class='name'>" + venue.getName() + "</span>" +
@@ -100,7 +103,7 @@ public class VenueMapPanel extends BasePanel<LatLng> {
                 "<span>" + (venue.getAddress() != null ? Strings.toMultilineMarkup(venue.getAddress()) : "") + "</span>" +
                 "</li>" +
                 "<li>" +
-                "<span><a href='" + Links.getDirectionsUrl(venue.getLatLng()) + "' target='_blank' class='btn-link-external'>" +
+                "<span><a href='" + url + "' target='_blank' class='btn-link-external'>" +
                 new ResourceModel("venue.getdirections.link").getObject() + "</a></span>" +
                 "</li>" +
                 "</ul></div>";

@@ -2,7 +2,21 @@ package de.flower.rmt.test;
 
 import de.flower.common.util.Check;
 import de.flower.common.util.geo.LatLng;
-import de.flower.rmt.model.db.entity.*;
+import de.flower.rmt.model.db.entity.Activity;
+import de.flower.rmt.model.db.entity.BArticle;
+import de.flower.rmt.model.db.entity.BComment;
+import de.flower.rmt.model.db.entity.CalItem;
+import de.flower.rmt.model.db.entity.Club;
+import de.flower.rmt.model.db.entity.Comment;
+import de.flower.rmt.model.db.entity.Invitation;
+import de.flower.rmt.model.db.entity.Lineup;
+import de.flower.rmt.model.db.entity.LineupItem;
+import de.flower.rmt.model.db.entity.Player;
+import de.flower.rmt.model.db.entity.Role;
+import de.flower.rmt.model.db.entity.Team;
+import de.flower.rmt.model.db.entity.Uniform;
+import de.flower.rmt.model.db.entity.User;
+import de.flower.rmt.model.db.entity.Venue;
 import de.flower.rmt.model.db.entity.event.AbstractSoccerEvent;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.entity.event.Event_;
@@ -10,8 +24,23 @@ import de.flower.rmt.model.db.entity.event.Match;
 import de.flower.rmt.model.db.type.EventType;
 import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.model.dto.CalItemDto;
-import de.flower.rmt.repository.*;
-import de.flower.rmt.service.*;
+import de.flower.rmt.repository.IActivityRepo;
+import de.flower.rmt.repository.IClubRepo;
+import de.flower.rmt.repository.IEventRepo;
+import de.flower.rmt.repository.IPlayerRepo;
+import de.flower.rmt.repository.ITeamRepo;
+import de.flower.rmt.service.IActivityManager;
+import de.flower.rmt.service.IBlogManager;
+import de.flower.rmt.service.ICommentManager;
+import de.flower.rmt.service.IEventManager;
+import de.flower.rmt.service.IInvitationManager;
+import de.flower.rmt.service.ILineupManager;
+import de.flower.rmt.service.IOpponentManager;
+import de.flower.rmt.service.IPlayerManager;
+import de.flower.rmt.service.ITeamManager;
+import de.flower.rmt.service.IUniformManager;
+import de.flower.rmt.service.IUserManager;
+import de.flower.rmt.service.IVenueManager;
 import org.apache.commons.lang.math.RandomUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.Validate;
@@ -25,7 +54,12 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -359,6 +393,12 @@ public class TestData {
         venue.setName("Böglwiese");
         venue.setAddress("Putzbrunner Str. 13\n81739 München");
         venue.setLatLng(new LatLng(48.12123, 11.01231231));
+        return venue;
+    }
+
+    public Venue createVenue(Club club) {
+        Venue venue = newVenue(club);
+        venueManager.save(venue);
         return venue;
     }
 

@@ -11,7 +11,6 @@ import de.flower.rmt.model.dto.CalItemDto;
 import de.flower.rmt.service.ICalendarManager;
 import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.ui.app.IViewResolver;
-import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.model.CalItemModel;
 import de.flower.rmt.ui.model.EventModel;
@@ -20,6 +19,7 @@ import de.flower.rmt.ui.page.base.AbstractCommonBasePage;
 import de.flower.rmt.ui.page.base.NavigationPanel;
 import de.flower.rmt.ui.page.event.EventDetailsPanel;
 import de.flower.rmt.ui.panel.RMTBasePanel;
+import de.flower.rmt.ui.site.PageLinks;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -142,12 +142,13 @@ public class CalendarPage extends AbstractCommonBasePage {
         public EventDetailsPanelExtended(final String id, final IModel<Event> eventModel) {
             super(id);
             add(new EventDetailsPanel(eventModel));
-            add(Links.eventLink("link", eventModel.getObject().getId(), getView()));
+            add(PageLinks.eventLink("link", eventModel.getObject().getId(), getView()));
         }
 
         @Override
         protected String getPanelMarkup() {
             return "<div wicket:id='eventDetailsPanel'/><a class='btn-link' wicket:id='link'><wicket:message key='calendar.link.event'/></a>";
         }
+
     }
 }

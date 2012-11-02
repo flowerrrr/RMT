@@ -1,42 +1,22 @@
 package de.flower.rmt.ui.app;
 
 import de.flower.common.util.Collections;
-import de.flower.common.util.geo.LatLng;
-import de.flower.rmt.ui.page.about.AboutPage;
-import de.flower.rmt.ui.page.event.player.EventPage;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.link.AbstractLink;
-import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.ExternalLink;
-import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.protocol.http.WebApplication;
 
 import javax.mail.internet.InternetAddress;
 import java.net.URLEncoder;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * @author flowerrrr
  */
 public class Links {
-
-    public static BookmarkablePageLink eventLink(String id, Long eventId) {
-        return eventLink(id, eventId, View.PLAYER);
-    }
-
-    public static BookmarkablePageLink eventLink(String id, Long eventId, View view) {
-        if (view == View.MANAGER) {
-            return new BookmarkablePageLink(id, de.flower.rmt.ui.page.event.manager.EventPage.class, EventPage.getPageParams(eventId));
-        } else {
-            return new BookmarkablePageLink(id, EventPage.class, EventPage.getPageParams(eventId));
-        }
-    }
 
     /**
      * @return /das-tool
@@ -79,17 +59,6 @@ public class Links {
             }
         } ;
         return new ExternalLink(id, hrefModel);
-    }
-
-    public static String getDirectionsUrl(final LatLng latLng) {
-        DecimalFormat format = new DecimalFormat("##.##############", DecimalFormatSymbols.getInstance(Locale.US));
-        String lat = format.format(latLng.getLat());
-        String lng = format.format(latLng.getLng());
-        return "http://maps.google.com/maps?daddr=" + lat + "," + lng;
-    }
-
-    public static Link aboutLink(final String id) {
-        return new BookmarkablePageLink(id, AboutPage.class);
     }
 
     public static Component logoutLink(final String id) {

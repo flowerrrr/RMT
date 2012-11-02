@@ -22,12 +22,12 @@ import de.flower.rmt.service.ICommentManager;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.service.ILineupManager;
-import de.flower.rmt.service.ILinkProvider;
 import de.flower.rmt.service.IPlayerManager;
 import de.flower.rmt.service.IResponseManager;
 import de.flower.rmt.service.IRoleManager;
 import de.flower.rmt.service.ITeamManager;
 import de.flower.rmt.service.IUniformManager;
+import de.flower.rmt.service.IUrlProvider;
 import de.flower.rmt.service.IUserManager;
 import de.flower.rmt.service.geocoding.IGeocodingService;
 import de.flower.rmt.service.mail.IMailService;
@@ -168,7 +168,7 @@ public class AbstractRMTIntegrationTests extends AbstractTestNGSpringContextTest
     protected IApplicationService applicationService;
 
     @Autowired
-    protected ILinkProvider linkProvider;
+    protected IUrlProvider urlProvider;
 
     @Autowired
     protected SecurityContextHolderStrategy securityContextHolderStrategy;

@@ -11,17 +11,19 @@ import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.service.IResponseManager;
-import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.model.UserModel;
+import de.flower.rmt.ui.page.event.player.EventPage;
 import de.flower.rmt.ui.page.events.EventDataProvider;
 import de.flower.rmt.ui.panel.QuickResponseLabel;
+import de.flower.rmt.ui.site.PageLinks;
 import de.flower.rmt.util.Dates;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.navigation.paging.AjaxPagingNavigator;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
@@ -70,7 +72,7 @@ public class EventListPanel extends BasePanel {
                     item.add(AttributeModifier.append("class", "canceled-event"));
                 }
 
-                Link link = Links.eventLink("invitationsLink", event.getId());
+                Link link = new BookmarkablePageLink("invitationsLink", EventPage.class, EventPage.getPageParams(event.getId()));
                 item.add(link);
                 link.add(new Label("date", Dates.formatDateShortWithWeekday(event.getDateTimeAsDate())));
                 link.add(new Label("time", Dates.formatTimeShort(event.getDateTimeAsDate())));
@@ -97,7 +99,7 @@ public class EventListPanel extends BasePanel {
                     }
                 });
 
-                Link confirmCancelationLink = Links.eventLink("confirmCancelationLink", event.getId());
+                Link confirmCancelationLink = PageLinks.eventLink("confirmCancelationLink", event.getId());
                 confirmCancelationLink.setVisible(event.isCanceled() && status != RSVPStatus.DECLINED);
                 item.add(confirmCancelationLink);
                 confirmCancelationLink.add(new TooltipBehavior(new ResourceModel("player.events.tooltip.confirm.cancelation")));

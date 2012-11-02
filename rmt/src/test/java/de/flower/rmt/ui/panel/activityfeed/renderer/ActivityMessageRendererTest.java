@@ -8,7 +8,7 @@ import de.flower.rmt.model.db.type.activity.EventUpdateMessage;
 import de.flower.rmt.model.db.type.activity.EventUpdateMessage.Type;
 import de.flower.rmt.model.db.type.activity.InvitationUpdateMessage;
 import de.flower.rmt.model.db.type.activity.InvitationUpdateMessage2;
-import de.flower.rmt.service.ILinkProvider;
+import de.flower.rmt.service.IUrlProvider;
 import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.testng.annotations.BeforeMethod;
@@ -25,12 +25,12 @@ import static org.mockito.Mockito.when;
 public class ActivityMessageRendererTest extends AbstractRMTWicketMockitoTests {
 
     @SpringBean
-    private ILinkProvider linkProvider;
+    private IUrlProvider urlProvider;
 
     @BeforeMethod
     public void setUp() {
-        when(linkProvider.deepLinkEvent(anyLong())).thenReturn("http://flower.de/das-tool/event/19");
-        when(linkProvider.deepLinkBlog(anyLong())).thenReturn("http://flower.de/das-tool/blog/19");
+        when(urlProvider.deepLinkEvent(anyLong())).thenReturn("http://flower.de/das-tool/event/19");
+        when(urlProvider.deepLinkBlog(anyLong())).thenReturn("http://flower.de/das-tool/blog/19");
     }
 
     @Test
