@@ -89,19 +89,6 @@ public class ModalDialogWindow extends ModalWindow {
     }
 
     /**
-     * Sets the initial width. For CBS use setBootstrapColumns instead.
-     *
-     * @param initialWidth the inital Width
-     * @return this
-     * @deprecated use setBootrapColumns instead
-     */
-    @Override
-    @Deprecated
-    public final ModalWindow setInitialWidth(final int initialWidth) {
-        return super.setInitialWidth(initialWidth);
-    }
-
-    /**
      * Sets the content of the modal window.
      *
      * @param component component to set

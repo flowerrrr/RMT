@@ -155,8 +155,7 @@ try {
 	alert('Error in ImplicitWait: ' + error);
 }/**
  *
- * @fileoverview This file contains extensions to Selenium Core related
- * to cbs.
+ * @fileoverview This file contains extensions to Selenium Core.
  */
 
 Options = {
