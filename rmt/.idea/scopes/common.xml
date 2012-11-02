@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="common" pattern="src[rmt]:de.flower.common..*" />
+</component>

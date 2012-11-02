@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="rm-service-usage-allowed" pattern="src[rmt]:de.flower.rmt.task..*||src[rmt]:de.flower.rmt.ui..*||src[rmt]:de.flower.rmt.service..*||test[rmt]:de.flower.rmt.service..*||test[rmt]:de.flower.rmt.task..*||test[rmt]:de.flower.rmt.ui..*||[rmt]:de.flower.rmt.test..*" />
+</component>

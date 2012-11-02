@@ -1,5 +1,12 @@
 <component name="DependencyValidationManager">
   <state>
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
+    <unnamed_scope value="src[rmt]:de.flower.rmt.model..*" />
+    <deny_rule from_scope="common" to_scope="rmt" is_deny="true" />
+    <deny_rule from_scope="src[rmt]:de.flower.rmt.model..*" to_scope="src[rmt]:de.flower.rmt.service..*" is_deny="true" />
+    <deny_rule from_scope="src[rmt]:de.flower.rmt.repository..*" to_scope="src[rmt]:de.flower.rmt.service..*" is_deny="true" />
+    <deny_rule from_scope="src[rmt]:de.flower.rmt.service..*" to_scope="src[rmt]:de.flower.rmt.ui..*" is_deny="true" />
+    <deny_rule from_scope="rmt-service" to_scope="rmt-repository" is_deny="false" />
+    <deny_rule from_scope="rm-service-usage-allowed" to_scope="rmt-service" is_deny="false" />
   </state>
 </component>
