@@ -8,8 +8,27 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 import de.flower.common.service.security.IPasswordGenerator;
 import de.flower.common.test.mock.IListAppender;
 import de.flower.common.test.mock.LogBackListAppender;
-import de.flower.rmt.repository.*;
-import de.flower.rmt.service.*;
+import de.flower.rmt.repository.IClubRepo;
+import de.flower.rmt.repository.IEventRepo;
+import de.flower.rmt.repository.IInvitationRepo;
+import de.flower.rmt.repository.ITeamRepo;
+import de.flower.rmt.repository.IUserRepo;
+import de.flower.rmt.service.IActivityManager;
+import de.flower.rmt.service.IApplicationService;
+import de.flower.rmt.service.IBlogManager;
+import de.flower.rmt.service.ICalendarManager;
+import de.flower.rmt.service.IClubManager;
+import de.flower.rmt.service.ICommentManager;
+import de.flower.rmt.service.IEventManager;
+import de.flower.rmt.service.IInvitationManager;
+import de.flower.rmt.service.ILineupManager;
+import de.flower.rmt.service.ILinkProvider;
+import de.flower.rmt.service.IPlayerManager;
+import de.flower.rmt.service.IResponseManager;
+import de.flower.rmt.service.IRoleManager;
+import de.flower.rmt.service.ITeamManager;
+import de.flower.rmt.service.IUniformManager;
+import de.flower.rmt.service.IUserManager;
 import de.flower.rmt.service.geocoding.IGeocodingService;
 import de.flower.rmt.service.mail.IMailService;
 import de.flower.rmt.service.mail.INotificationService;
@@ -48,6 +67,7 @@ import java.util.Map;
  *
  * @author flowerrrr
  */
+@SuppressWarnings("Dependency")
 @Listeners({de.flower.common.test.ExceptionLoggerTestListener.class})
 @ContextConfiguration(classes = { AbstractRMTIntegrationTestsConfig.class })
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
