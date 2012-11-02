@@ -1,5 +1,6 @@
 package de.flower.rmt.service.mail;
 
+import de.flower.common.mail.MimeMessageUtils;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.dto.Notification;
@@ -20,8 +21,6 @@ import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -121,7 +120,7 @@ public class MailService implements IMailService {
     private final void sendMail(MimeMailMessage message) {
 
         try {
-            log.info("Sending mail:\n" + toString(message.getMimeMessage()));
+            log.info("Sending mail:\n" + MimeMessageUtils.toString(message.getMimeMessage()));
             mailSender.send(message.getMimeMessage());
         } catch (MailException e) {
             log.error("Error sending mail.", e);
@@ -148,15 +147,5 @@ public class MailService implements IMailService {
         } else {
             return null;
         }
-    }
-
-    public static String toString(MimeMessage mimeMessage) {
-        ByteArrayOutputStream os = new ByteArrayOutputStream();
-        try {
-            mimeMessage.writeTo(os);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return "<mime message>\n" + os.toString() + "\n</mime message>";
     }
 }

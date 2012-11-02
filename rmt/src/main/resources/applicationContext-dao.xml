@@ -15,6 +15,8 @@
     <context:component-scan base-package="de.flower.common"/>
     <jpa:repositories base-package="de.flower.rmt.repository" factory-class="de.flower.rmt.repository.factory.RepositoryFactoryBean">
     </jpa:repositories>
+    <!-- as ISecurityService is used by the repo layer we include it here. -->
+    <context:component-scan base-package="de.flower.rmt.security" />
 
     <!-- *********************************************************************** -->
     <!-- Dao Stuff                                                               -->

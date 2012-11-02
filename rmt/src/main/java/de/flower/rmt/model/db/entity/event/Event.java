@@ -1,7 +1,12 @@
 package de.flower.rmt.model.db.entity.event;
 
-import de.flower.rmt.model.db.entity.*;
-import de.flower.rmt.model.db.type.EventType;
+import de.flower.rmt.model.db.entity.AbstractClubRelatedEntity;
+import de.flower.rmt.model.db.entity.Club;
+import de.flower.rmt.model.db.entity.Invitation;
+import de.flower.rmt.model.db.entity.Opponent;
+import de.flower.rmt.model.db.entity.Team;
+import de.flower.rmt.model.db.entity.User;
+import de.flower.rmt.model.db.entity.Venue;
 import org.hibernate.annotations.Index;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
@@ -9,7 +14,18 @@ import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;

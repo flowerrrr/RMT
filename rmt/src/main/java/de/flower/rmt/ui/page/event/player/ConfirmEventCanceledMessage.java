@@ -1,7 +1,7 @@
-package de.flower.rmt.ui.feedback;
+package de.flower.rmt.ui.page.event.player;
 
-import de.flower.common.ui.feedback.AlertMessage;
-import de.flower.common.ui.feedback.AlertMessagePanel;
+import de.flower.common.ui.alert.AlertMessage;
+import de.flower.common.ui.alert.AlertMessagePanel;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.type.RSVPStatus;
 import org.apache.wicket.model.IModel;

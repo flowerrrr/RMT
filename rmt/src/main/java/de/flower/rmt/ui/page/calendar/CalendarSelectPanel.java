@@ -2,8 +2,8 @@ package de.flower.rmt.ui.page.calendar;
 
 import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.panel.BasePanel;
-import de.flower.rmt.model.db.type.CalendarFilter;
 import de.flower.rmt.service.ICalendarManager;
+import de.flower.rmt.service.type.CalendarFilter;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormChoiceComponentUpdatingBehavior;
 import org.apache.wicket.markup.html.form.CheckBoxMultipleChoice;

@@ -1,7 +1,7 @@
-package de.flower.rmt.ui.feedback;
+package de.flower.rmt.ui.page.base;
 
-import de.flower.common.ui.feedback.AlertMessage;
-import de.flower.common.ui.feedback.AlertMessagePanel;
+import de.flower.common.ui.alert.AlertMessage;
+import de.flower.common.ui.alert.AlertMessagePanel;
 import de.flower.rmt.ui.page.account.AccountPage;
 import de.flower.rmt.ui.page.account.AccountTabPanel;
 import org.apache.wicket.model.ResourceModel;

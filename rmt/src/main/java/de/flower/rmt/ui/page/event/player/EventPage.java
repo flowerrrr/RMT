@@ -6,9 +6,8 @@ import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.service.IInvitationManager;
-import de.flower.rmt.ui.feedback.ConfirmEventCanceledMessage;
 import de.flower.rmt.ui.model.EventModel;
-import de.flower.rmt.ui.page.base.NavigationPanel;
+import de.flower.rmt.ui.page.Pages;
 import de.flower.rmt.ui.page.base.player.PlayerBasePage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.http.flow.AbortWithHttpErrorCodeException;
@@ -87,7 +86,7 @@ public class EventPage extends PlayerBasePage {
 
      @Override
     public String getActiveTopBarItem() {
-        return NavigationPanel.EVENTS;
+        return Pages.EVENTS.name();
     }
 
     @Override

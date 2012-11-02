@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.page.teams.manager;
 
 import de.flower.rmt.service.ITeamManager;
-import de.flower.rmt.ui.page.base.NavigationPanel;
+import de.flower.rmt.ui.page.Pages;
 import de.flower.rmt.ui.page.base.manager.ManagerBasePage;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -21,7 +21,7 @@ public class TeamsPage extends ManagerBasePage {
 
     @Override
     public String getActiveTopBarItem() {
-        return NavigationPanel.TEAMS;
+        return Pages.TEAMS.name();
     }
 
 }

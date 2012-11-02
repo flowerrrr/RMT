@@ -3,9 +3,8 @@ package de.flower.rmt.ui.page.event.manager;
 import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.service.IEventManager;
-import de.flower.rmt.ui.feedback.NoInvitationSentMessage;
 import de.flower.rmt.ui.model.EventModel;
-import de.flower.rmt.ui.page.base.NavigationPanel;
+import de.flower.rmt.ui.page.Pages;
 import de.flower.rmt.ui.page.base.manager.ManagerBasePage;
 import de.flower.rmt.ui.page.event.EventCanceledPanel;
 import de.flower.rmt.ui.page.event.EventDetailsPanel;
@@ -112,7 +111,7 @@ public class EventPage extends ManagerBasePage {
 
     @Override
     public String getActiveTopBarItem() {
-        return NavigationPanel.EVENTS;
+        return Pages.EVENTS.name();
     }
 
     @Override

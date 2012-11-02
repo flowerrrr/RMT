@@ -3,7 +3,7 @@ package de.flower.rmt.ui.page.user.manager;
 import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.ui.model.UserModel;
-import de.flower.rmt.ui.page.base.NavigationPanel;
+import de.flower.rmt.ui.page.Pages;
 import de.flower.rmt.ui.page.base.manager.ManagerBasePage;
 import org.apache.wicket.model.IModel;
 
@@ -50,6 +50,6 @@ public class PlayerPage extends ManagerBasePage {
 
     @Override
     public String getActiveTopBarItem() {
-        return NavigationPanel.USERS;
+        return Pages.USERS.name();
     }
 }

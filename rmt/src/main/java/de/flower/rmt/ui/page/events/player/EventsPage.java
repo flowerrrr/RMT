@@ -2,7 +2,7 @@ package de.flower.rmt.ui.page.events.player;
 
 import de.flower.rmt.security.ISecurityService;
 import de.flower.rmt.ui.model.UserModel;
-import de.flower.rmt.ui.page.base.NavigationPanel;
+import de.flower.rmt.ui.page.Pages;
 import de.flower.rmt.ui.page.base.player.PlayerBasePage;
 import de.flower.rmt.ui.panel.activityfeed.ActivityFeedPanel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -25,7 +25,7 @@ public class EventsPage extends PlayerBasePage {
 
     @Override
      public String getActiveTopBarItem() {
-         return NavigationPanel.EVENTS;
+         return Pages.EVENTS.name();
      }
 
 }

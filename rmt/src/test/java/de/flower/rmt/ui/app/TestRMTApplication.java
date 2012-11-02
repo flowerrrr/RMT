@@ -1,6 +1,5 @@
-package de.flower.rmt.ui.app ;
+package de.flower.rmt.ui.app;
 
-import de.flower.rmt.ui.page.user.manager.PlayerPage;
 import de.flower.rmt.ui.site.BookmarkManager;
 import de.flower.rmt.ui.site.PageResolver;
 import org.apache.wicket.devutils.inspector.RenderPerformanceListener;
@@ -26,7 +25,7 @@ public class TestRMTApplication extends RMTApplication {
 
     /**
      * Used when unit testing without an spring application context (rather a mocked context is used).
-     *
+     * <p/>
      * Invokes the super class' default constructor and stores the given application context for looking up and
      * injecting Spring managed beans into Wicket components. This constructor is mainly intended to be used for testing
      * purposes since normally the application context will be determined using the standard Spring way via the servlet
@@ -48,14 +47,11 @@ public class TestRMTApplication extends RMTApplication {
         getComponentInstantiationListeners().add(new RenderPerformanceListener());
 
         // required for RMT-464
-        mountPage("foobar", PlayerPage.class);
-
+        // mountPage("foobar", PlayerPage.class);
     }
 
     @Override
     protected SpringComponentInjector getSpringComponentInjector() {
         return new SpringComponentInjector(this, appCtx);
     }
-
-
 }

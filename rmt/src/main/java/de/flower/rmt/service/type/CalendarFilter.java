@@ -1,4 +1,4 @@
-package de.flower.rmt.model.db.type;
+package de.flower.rmt.service.type;
 
 import de.flower.rmt.model.db.entity.Team;
 

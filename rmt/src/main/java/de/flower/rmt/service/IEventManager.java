@@ -4,7 +4,7 @@ import com.mysema.query.types.EntityPath;
 import de.flower.rmt.model.db.entity.Team;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.model.db.type.EventType;
+import de.flower.rmt.model.db.entity.event.EventType;
 import de.flower.rmt.model.dto.Notification;
 import org.joda.time.DateTime;
 

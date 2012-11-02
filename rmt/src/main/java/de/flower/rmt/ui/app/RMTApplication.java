@@ -21,6 +21,9 @@ public class RMTApplication extends WebApplication {
 
     private final static Logger log = LoggerFactory.getLogger(RMTApplication.class);
 
+    /** Arbitrary status code for page expired pages. Required to detect ajax-error in CalendarPanel. */
+    public static final int PAGE_EXPIRED_STATUS_CODE = 666;
+
     @Autowired
     private ISerializerListener pageSerializationValidatorListener;
 

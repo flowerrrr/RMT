@@ -1,4 +1,4 @@
-package de.flower.common.ui.feedback;
+package de.flower.common.ui.alert;
 
 import org.apache.wicket.model.IModel;
 

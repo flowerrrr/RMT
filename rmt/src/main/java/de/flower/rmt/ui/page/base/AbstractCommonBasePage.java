@@ -3,11 +3,15 @@ package de.flower.rmt.ui.page.base;
 import de.flower.rmt.ui.app.RMTSession;
 import de.flower.rmt.ui.app.View;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
  * @author flowerrrr
  */
 public abstract class AbstractCommonBasePage extends AbstractBaseLayoutPage implements INavigationPanelAware {
+
+    @SpringBean
+    private IPanelProvider panelProvider;
 
     public AbstractCommonBasePage() {
         this(null, null);
@@ -18,6 +22,7 @@ public abstract class AbstractCommonBasePage extends AbstractBaseLayoutPage impl
         // sub-pages can force certain view
         if (view != null) RMTSession.get().setView(view);
 
-        add(new NavigationPanel(this));
+        // use panelProvider to avoid cyclic dependency
+        add(panelProvider.getNavigationPanel(this));
     }
 }

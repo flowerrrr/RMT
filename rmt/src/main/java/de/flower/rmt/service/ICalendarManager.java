@@ -2,8 +2,8 @@ package de.flower.rmt.service;
 
 import de.flower.rmt.model.db.entity.CalItem;
 import de.flower.rmt.model.db.entity.User;
-import de.flower.rmt.model.db.type.CalendarFilter;
 import de.flower.rmt.model.dto.CalItemDto;
+import de.flower.rmt.service.type.CalendarFilter;
 import de.flower.rmt.ui.markup.html.calendar.CalEvent;
 import org.joda.time.DateTime;
 

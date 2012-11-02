@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.page.base;
+package de.flower.rmt.ui.site;
 
 import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.rmt.model.db.entity.event.Event;
@@ -8,8 +8,10 @@ import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.markup.html.form.renderer.EventRenderer;
+import de.flower.rmt.ui.page.Pages;
 import de.flower.rmt.ui.page.about.AboutPage;
 import de.flower.rmt.ui.page.account.AccountPage;
+import de.flower.rmt.ui.page.base.INavigationPanelAware;
 import de.flower.rmt.ui.page.blog.BlogPage;
 import de.flower.rmt.ui.page.calendar.CalendarPage;
 import de.flower.rmt.ui.page.event.manager.EventPage;
@@ -24,7 +26,6 @@ import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Page;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.link.Link;
@@ -45,20 +46,6 @@ import java.util.List;
  */
 public class NavigationPanel extends RMTBasePanel {
 
-    public static final String EVENTS = "events";
-
-    public static final String BLOG = "blog";
-
-    public static final String CALENDAR = "calendar";
-
-    public static final String TEAMS = "teams";
-
-    public static final String USERS = "users";
-
-    public static final String OPPONENTS = "opponents";
-
-    public static final String VENUES = "venues";
-
     @SpringBean
     private IEventManager eventManager;
 
@@ -69,13 +56,13 @@ public class NavigationPanel extends RMTBasePanel {
 
         setRenderBodyOnly(true);
 
-        add(new BookmarkablePageLink("aboutLink", AboutPage.class));
+        add(new BookmarkablePageLink("about", AboutPage.class));
 
         WebMarkupContainer events = new WebMarkupContainer("events");
         if (isManagerView()) {
-            addMenuItem(events, EVENTS, EventsPage.class, page, true);
+            addMenuItem(events, Pages.EVENTS.name(), EventsPage.class, page, true);
         } else {
-            addMenuItem(events, EVENTS, de.flower.rmt.ui.page.events.player.EventsPage.class, page, true);
+            addMenuItem(events, Pages.EVENTS.name(), de.flower.rmt.ui.page.events.player.EventsPage.class, page, true);
         }
         add(events);
         events.add(new AjaxEventListener(Event.class));
@@ -101,7 +88,7 @@ public class NavigationPanel extends RMTBasePanel {
         });
 
         WebMarkupContainer blog = new WebMarkupContainer("blog");
-        Link link = addMenuItem(blog, BLOG, BlogPage.class, page, true);
+        Link link = addMenuItem(blog, Pages.BLOG.name(), BlogPage.class, page, true);
         link.add(new WebMarkupContainer("unreadBadge") {
             @Override
             public boolean isVisible() {
@@ -112,13 +99,13 @@ public class NavigationPanel extends RMTBasePanel {
 
         List<MenuItem> menuItems = new ArrayList<>();
         // menuItems.add(new MenuItem(BLOG, BlogPage.class, page, true));
-        menuItems.add(new MenuItem(CALENDAR, CalendarPage.class, page, true));
-        menuItems.add(new MenuItem(TEAMS, TeamsPage.class, page, getView() == View.MANAGER));
-        menuItems.add(new MenuItem(USERS, UsersPage.class, page, true));
-        menuItems.add(new MenuItem(OPPONENTS, OpponentsPage.class, page, getView() == View.MANAGER));
+        menuItems.add(new MenuItem(Pages.CALENDAR.name(), CalendarPage.class, page, true));
+        menuItems.add(new MenuItem(Pages.TEAMS.name(), TeamsPage.class, page, getView() == View.MANAGER));
+        menuItems.add(new MenuItem(Pages.USERS.name(), UsersPage.class, page, true));
+        menuItems.add(new MenuItem(Pages.OPPONENTS.name(), OpponentsPage.class, page, getView() == View.MANAGER));
         // TODO (flowerrrr - 24.06.12) unify both pages
-        menuItems.add(new MenuItem(VENUES, VenuesPage.class, page, getView() == View.MANAGER));
-        menuItems.add(new MenuItem(VENUES, de.flower.rmt.ui.page.venues.player.VenuesPage.class, page, getView() != View.MANAGER));
+        menuItems.add(new MenuItem(Pages.VENUES.name(), VenuesPage.class, page, getView() == View.MANAGER));
+        menuItems.add(new MenuItem(Pages.VENUES.name(), de.flower.rmt.ui.page.venues.player.VenuesPage.class, page, getView() != View.MANAGER));
 
         ListView<MenuItem> menuList = new ListView<MenuItem>("menuList", menuItems) {
             @Override
@@ -151,7 +138,7 @@ public class NavigationPanel extends RMTBasePanel {
 
     /**
      * Depending on user role (manager or player) a link is generated that
-     * allows the user to switch beetween both views.
+     * allows the user to switch between both views.
      *
      * @return
      */
@@ -184,15 +171,6 @@ public class NavigationPanel extends RMTBasePanel {
     public static WebMarkupContainer createDropDownMenuItem(String pageName, final INavigationPanelAware page) {
         WebMarkupContainer li = new WebMarkupContainer(pageName);
         li.add(new ExternalLink(pageName, "#"));
-        if (page != null && page.getActiveTopBarItem().equals(pageName)) {
-            li.add(AttributeModifier.append("class", "active"));
-        }
-        return li;
-    }
-
-    public static WebMarkupContainer createMenuItem(String pageName, AbstractLink link, final INavigationPanelAware page) {
-        WebMarkupContainer li = new WebMarkupContainer(pageName);
-        li.add(link);
         if (page != null && page.getActiveTopBarItem().equals(pageName)) {
             li.add(AttributeModifier.append("class", "active"));
         }

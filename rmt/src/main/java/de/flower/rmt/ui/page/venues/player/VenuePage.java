@@ -2,10 +2,12 @@ package de.flower.rmt.ui.page.venues.player;
 
 import de.flower.rmt.model.db.entity.Venue;
 import de.flower.rmt.service.IVenueManager;
+import de.flower.rmt.ui.markup.html.weather.WeatherPanel;
 import de.flower.rmt.ui.model.VenueModel;
-import de.flower.rmt.ui.page.base.NavigationPanel;
+import de.flower.rmt.ui.page.Pages;
 import de.flower.rmt.ui.page.base.player.PlayerBasePage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.http.flow.AbortWithHttpErrorCodeException;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -50,7 +52,7 @@ public class VenuePage extends PlayerBasePage {
         init(model);
     }
 
-    private void init(IModel<Venue> model) {
+    private void init(final IModel<Venue> model) {
         setDefaultModel(model);
         setHeading("player.venue.heading", null);
         addMainPanel(new VenuePanel(model) {
@@ -59,11 +61,16 @@ public class VenuePage extends PlayerBasePage {
                 setResponsePage(VenuesPage.class);
             }
         });
-        addSecondaryPanel(new GetDirectionsPanel(model), new WeatherPanel(model));
+        addSecondaryPanel(new GetDirectionsPanel(model), new WeatherPanel(new AbstractReadOnlyModel<String>() {
+            @Override
+            public String getObject() {
+                return model.getObject().getAddress();
+            }
+        }));
     }
 
     @Override
     public String getActiveTopBarItem() {
-        return NavigationPanel.VENUES;
+        return Pages.VENUES.name();
     }
 }

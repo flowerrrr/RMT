@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.page.venues.player;
+package de.flower.rmt.ui.markup.html.weather;
 
 import org.testng.annotations.Test;
 

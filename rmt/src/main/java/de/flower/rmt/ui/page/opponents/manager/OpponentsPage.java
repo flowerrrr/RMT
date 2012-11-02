@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.page.opponents.manager;
 
-import de.flower.rmt.ui.page.base.NavigationPanel;
+import de.flower.rmt.ui.page.Pages;
 import de.flower.rmt.ui.page.base.manager.ManagerBasePage;
 
 /**
@@ -16,6 +16,6 @@ public class OpponentsPage extends ManagerBasePage {
 
     @Override
     public String getActiveTopBarItem() {
-        return NavigationPanel.OPPONENTS;
+        return Pages.OPPONENTS.name();
     }
 }

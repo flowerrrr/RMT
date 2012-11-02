@@ -14,10 +14,8 @@ public class HibernateColumnResolverTest extends AbstractRMTIntegrationTests {
 
     @Test
     public final void mapColumns2Attributes() {
-        final String[] columnNames = new String[] { "name", "club_id" };
-        final String[] expected = new String[] { "name", "club" };
+        final String[] columnNames = new String[]{"name", "club_id"};
+        final String[] expected = new String[]{"name", "club"};
         assertEquals(columnResolver.mapColumns2Attributes(Team.class, columnNames), expected);
     }
-
-
 }

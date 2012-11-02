@@ -1,7 +1,6 @@
-package de.flower.rmt.model.db.type;
+package de.flower.rmt.model.db.entity.event;
 
 import de.flower.rmt.model.db.entity.Club;
-import de.flower.rmt.model.db.entity.event.*;
 
 /**
  * @author flowerrrr

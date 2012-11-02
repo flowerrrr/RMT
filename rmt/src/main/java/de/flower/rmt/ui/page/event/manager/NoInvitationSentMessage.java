@@ -1,10 +1,8 @@
-package de.flower.rmt.ui.feedback;
+package de.flower.rmt.ui.page.event.manager;
 
-import de.flower.common.ui.feedback.AlertMessage;
-import de.flower.common.ui.feedback.AlertMessagePanel;
+import de.flower.common.ui.alert.AlertMessage;
+import de.flower.common.ui.alert.AlertMessagePanel;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.ui.page.event.manager.EventPage;
-import de.flower.rmt.ui.page.event.manager.EventTabPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;

@@ -3,8 +3,8 @@ package de.flower.rmt.ui.page.blog;
 import de.flower.rmt.model.db.entity.BArticle;
 import de.flower.rmt.service.IBlogManager;
 import de.flower.rmt.ui.model.BArticleModel;
+import de.flower.rmt.ui.page.Pages;
 import de.flower.rmt.ui.page.base.AbstractCommonBasePage;
-import de.flower.rmt.ui.page.base.NavigationPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.http.flow.AbortWithHttpErrorCodeException;
@@ -63,6 +63,6 @@ public class ArticlePage extends AbstractCommonBasePage {
 
     @Override
     public String getActiveTopBarItem() {
-        return NavigationPanel.BLOG;
+        return Pages.BLOG.name();
     }
 }

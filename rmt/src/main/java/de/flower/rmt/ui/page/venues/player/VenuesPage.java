@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.page.venues.player;
 
 import de.flower.rmt.model.db.entity.Venue;
-import de.flower.rmt.ui.page.base.NavigationPanel;
+import de.flower.rmt.ui.page.Pages;
 import de.flower.rmt.ui.page.base.player.PlayerBasePage;
 import de.flower.rmt.ui.page.venues.manager.VenueMainPanel;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -27,6 +27,6 @@ public class VenuesPage extends PlayerBasePage {
 
     @Override
     public String getActiveTopBarItem() {
-        return NavigationPanel.VENUES;
+        return Pages.VENUES.name();
     }
 }

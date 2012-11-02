@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.page.venues.manager;
 
-import de.flower.rmt.ui.page.base.NavigationPanel;
+import de.flower.rmt.ui.page.Pages;
 import de.flower.rmt.ui.page.base.manager.ManagerBasePage;
 
 /**
@@ -17,6 +17,6 @@ public class VenuesPage extends ManagerBasePage {
 
     @Override
     public String getActiveTopBarItem() {
-        return NavigationPanel.VENUES;
+        return Pages.VENUES.name();
     }
 }

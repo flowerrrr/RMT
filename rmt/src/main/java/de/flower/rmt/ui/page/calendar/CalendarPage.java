@@ -6,22 +6,23 @@ import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.CalItem;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.model.db.type.CalendarFilter;
 import de.flower.rmt.model.dto.CalItemDto;
 import de.flower.rmt.security.ISecurityService;
 import de.flower.rmt.service.ICalendarManager;
+import de.flower.rmt.service.type.CalendarFilter;
 import de.flower.rmt.ui.app.IViewResolver;
 import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.model.CalItemModel;
 import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.model.UserModel;
+import de.flower.rmt.ui.page.Pages;
 import de.flower.rmt.ui.page.base.AbstractCommonBasePage;
-import de.flower.rmt.ui.page.base.NavigationPanel;
 import de.flower.rmt.ui.page.event.EventDetailsPanel;
+import de.flower.rmt.ui.page.event.player.EventPage;
 import de.flower.rmt.ui.panel.RMTBasePanel;
-import de.flower.rmt.ui.site.PageLinks;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -134,7 +135,7 @@ public class CalendarPage extends AbstractCommonBasePage {
 
     @Override
     public String getActiveTopBarItem() {
-        return NavigationPanel.CALENDAR;
+        return Pages.CALENDAR.name();
     }
 
     public static class EventDetailsPanelExtended extends RMTBasePanel {
@@ -142,13 +143,22 @@ public class CalendarPage extends AbstractCommonBasePage {
         public EventDetailsPanelExtended(final String id, final IModel<Event> eventModel) {
             super(id);
             add(new EventDetailsPanel(eventModel));
-            add(PageLinks.eventLink("link", eventModel.getObject().getId(), getView()));
+            add(eventLink("link", eventModel.getObject().getId(), getView()));
         }
 
         @Override
         protected String getPanelMarkup() {
             return "<div wicket:id='eventDetailsPanel'/><a class='btn-link' wicket:id='link'><wicket:message key='calendar.link.event'/></a>";
         }
+
+        public static BookmarkablePageLink eventLink(String id, Long eventId, View view) {
+            if (view == View.MANAGER) {
+                return new BookmarkablePageLink(id, de.flower.rmt.ui.page.event.manager.EventPage.class, EventPage.getPageParams(eventId));
+            } else {
+                return new BookmarkablePageLink(id, EventPage.class, EventPage.getPageParams(eventId));
+            }
+        }
+
 
     }
 }

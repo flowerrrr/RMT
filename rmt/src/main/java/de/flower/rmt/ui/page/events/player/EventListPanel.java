@@ -6,7 +6,7 @@ import de.flower.common.ui.tooltips.TooltipBehavior;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.model.db.type.EventType;
+import de.flower.rmt.model.db.entity.event.EventType;
 import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.service.IInvitationManager;
@@ -16,7 +16,6 @@ import de.flower.rmt.ui.model.UserModel;
 import de.flower.rmt.ui.page.event.player.EventPage;
 import de.flower.rmt.ui.page.events.EventDataProvider;
 import de.flower.rmt.ui.panel.QuickResponseLabel;
-import de.flower.rmt.ui.site.PageLinks;
 import de.flower.rmt.util.Dates;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -99,7 +98,7 @@ public class EventListPanel extends BasePanel {
                     }
                 });
 
-                Link confirmCancelationLink = PageLinks.eventLink("confirmCancelationLink", event.getId());
+                Link confirmCancelationLink = new BookmarkablePageLink("confirmCancelationLink", EventPage.class, EventPage.getPageParams(event.getId()));
                 confirmCancelationLink.setVisible(event.isCanceled() && status != RSVPStatus.DECLINED);
                 item.add(confirmCancelationLink);
                 confirmCancelationLink.add(new TooltipBehavior(new ResourceModel("player.events.tooltip.confirm.cancelation")));

@@ -1,6 +1,7 @@
-package de.flower.rmt.service;
+package de.flower.rmt.service.ui;
 
 import de.flower.common.util.geo.LatLng;
+import de.flower.rmt.service.IUrlProvider;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 

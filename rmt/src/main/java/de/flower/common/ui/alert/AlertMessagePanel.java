@@ -1,4 +1,4 @@
-package de.flower.common.ui.feedback;
+package de.flower.common.ui.alert;
 
 import de.flower.common.ui.ajax.markup.html.AjaxLink;
 import org.apache.wicket.AttributeModifier;

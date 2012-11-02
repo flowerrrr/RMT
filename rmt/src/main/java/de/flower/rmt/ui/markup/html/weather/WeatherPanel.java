@@ -1,7 +1,6 @@
-package de.flower.rmt.ui.page.venues.player;
+package de.flower.rmt.ui.markup.html.weather;
 
 import de.flower.common.ui.panel.BasePanel;
-import de.flower.rmt.model.db.entity.Venue;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.model.IModel;
@@ -18,8 +17,8 @@ public class WeatherPanel extends BasePanel<String> {
 
     private static final String url = "http://www.wetteronline.de/cgi-bin/hpweather?PLZ={0}&FORMAT=long&MENU=dropdown&MAP=rainradar";
 
-    public WeatherPanel(final IModel<Venue> model) {
-        IModel<String> iframeSrcModel = getIframeSrcModel(model);
+    public WeatherPanel(final IModel<String> addressModel) {
+        IModel<String> iframeSrcModel = getIframeSrcModel(addressModel);
         setModel(iframeSrcModel);
 
         WebMarkupContainer iframe = new WebMarkupContainer("iframe");
@@ -32,11 +31,11 @@ public class WeatherPanel extends BasePanel<String> {
         return getModelObject() != null;
     }
 
-    private IModel<String> getIframeSrcModel(final IModel<Venue> model) {
+    private IModel<String> getIframeSrcModel(final IModel<String> addressModel) {
         return new LoadableDetachableModel<String>() {
             @Override
             protected String load() {
-                String address = model.getObject().getAddress();
+                String address = addressModel.getObject();
                 String zipCode = getZipCode(address);
                 return (zipCode == null) ? null : MessageFormat.format(url, zipCode);
             }

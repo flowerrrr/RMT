@@ -1,7 +1,6 @@
 package de.flower.rmt.model.dto;
 
 import de.flower.common.validation.spring.BeanAssert;
-import de.flower.rmt.service.validation.PasswordValidator;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.ScriptAssert;
 
@@ -18,7 +17,7 @@ import java.io.Serializable;
         message = Password.Validation.passwordNotEqualMessage, lang = "javascript",
         groups = { Password.Validation.IPasswordEquals.class, Default.class}
 )
-@BeanAssert(beanClass = PasswordValidator.class,
+@BeanAssert(beanClass = IPasswordValidator.class,
         message = Password.Validation.passwordNotValidMessage,
         groups = { Password.Validation.IPasswordMatches.class, Default.class }
 )

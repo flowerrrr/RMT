@@ -1,6 +1,6 @@
 package de.flower.common.test.mock;
 
-import de.flower.rmt.service.mail.MailService;
+import de.flower.common.mail.MimeMessageUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mail.MailException;
@@ -31,7 +31,7 @@ public class MockJavaMailSender extends JavaMailSenderImpl {
 
     @Override
     public void send(final MimeMessage mimeMessage) throws MailException {
-         log.info("NOT Sending mail:\n" + MailService.toString(mimeMessage));
+         log.info("NOT Sending mail:\n" + MimeMessageUtils.toString(mimeMessage));
     }
 
     @Override

@@ -1,4 +1,4 @@
-package de.flower.common.ui.feedback;
+package de.flower.common.ui.alert;
 
 import de.flower.common.test.wicket.AbstractWicketUnitTests;
 import de.flower.common.test.wicket.WicketTesterHelper;

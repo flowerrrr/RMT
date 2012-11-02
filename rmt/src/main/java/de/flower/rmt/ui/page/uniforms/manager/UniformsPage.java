@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.page.uniforms.manager;
 
 import de.flower.rmt.model.db.entity.Team;
-import de.flower.rmt.ui.page.base.NavigationPanel;
+import de.flower.rmt.ui.page.Pages;
 import de.flower.rmt.ui.page.base.manager.ManagerBasePage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
@@ -20,7 +20,7 @@ public class UniformsPage extends ManagerBasePage {
 
     @Override
     public String getActiveTopBarItem() {
-        return NavigationPanel.TEAMS;
+        return Pages.TEAMS.name();
     }
 
 

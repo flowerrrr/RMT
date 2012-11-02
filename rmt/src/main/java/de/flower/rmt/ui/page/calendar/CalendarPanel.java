@@ -6,14 +6,15 @@ import de.flower.rmt.model.db.entity.CalItem;
 import de.flower.rmt.model.db.entity.CalItem_;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.model.db.type.CalendarFilter;
 import de.flower.rmt.model.dto.CalItemDto;
 import de.flower.rmt.security.ISecurityService;
 import de.flower.rmt.service.ICalendarManager;
 import de.flower.rmt.service.IEventManager;
+import de.flower.rmt.service.type.CalendarFilter;
+import de.flower.rmt.ui.app.IPageResolver;
+import de.flower.rmt.ui.app.RMTApplication;
 import de.flower.rmt.ui.markup.html.calendar.CalEvent;
 import de.flower.rmt.ui.markup.html.calendar.FullCalendarPanel;
-import de.flower.rmt.ui.page.error.PageExpiredPage;
 import de.flower.rmt.ui.panel.RMTBasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
@@ -36,6 +37,9 @@ public abstract class CalendarPanel extends RMTBasePanel {
 
     @SpringBean
     private ISecurityService securityService;
+
+    @SpringBean
+    private IPageResolver pageResolver;
 
     public CalendarPanel(String id, final IModel<List<CalendarFilter>> model) {
         super(id, model);
@@ -81,7 +85,7 @@ public abstract class CalendarPanel extends RMTBasePanel {
 
             @Override
             protected Map<Integer, String> getErrorRedirectMap() {
-                return ImmutableMap.of(PageExpiredPage.SC, this.urlFor(PageExpiredPage.class, null).toString());
+                return ImmutableMap.of(RMTApplication.PAGE_EXPIRED_STATUS_CODE, this.urlFor(pageResolver.getPageExpiredPage(), null).toString());
             }
         });
     }

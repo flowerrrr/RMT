@@ -2,7 +2,7 @@ package de.flower.rmt.ui.page.opponents.manager;
 
 import de.flower.rmt.model.db.entity.Opponent;
 import de.flower.rmt.ui.model.OpponentModel;
-import de.flower.rmt.ui.page.base.NavigationPanel;
+import de.flower.rmt.ui.page.Pages;
 import de.flower.rmt.ui.page.base.manager.ManagerBasePage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
@@ -29,7 +29,7 @@ public class OpponentEditPage extends ManagerBasePage {
 
     @Override
     public String getActiveTopBarItem() {
-        return NavigationPanel.OPPONENTS;
+        return Pages.OPPONENTS.name();
     }
 
 }

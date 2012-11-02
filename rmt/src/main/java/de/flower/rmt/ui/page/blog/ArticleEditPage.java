@@ -1,8 +1,8 @@
 package de.flower.rmt.ui.page.blog;
 
 import de.flower.rmt.model.db.entity.BArticle;
+import de.flower.rmt.ui.page.Pages;
 import de.flower.rmt.ui.page.base.AbstractCommonBasePage;
-import de.flower.rmt.ui.page.base.NavigationPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.model.StringResourceModel;
@@ -21,6 +21,6 @@ public class ArticleEditPage extends AbstractCommonBasePage {
 
     @Override
     public String getActiveTopBarItem() {
-        return NavigationPanel.BLOG;
+        return Pages.BLOG.name();
     }
 }

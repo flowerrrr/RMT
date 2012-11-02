@@ -2,8 +2,8 @@ package de.flower.rmt.ui.page.blog;
 
 import de.flower.rmt.security.ISecurityService;
 import de.flower.rmt.service.IBlogManager;
+import de.flower.rmt.ui.page.Pages;
 import de.flower.rmt.ui.page.base.AbstractCommonBasePage;
-import de.flower.rmt.ui.page.base.NavigationPanel;
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -22,7 +22,7 @@ public class BlogPage extends AbstractCommonBasePage {
 
     @Override
     public String getActiveTopBarItem() {
-        return NavigationPanel.BLOG;
+        return Pages.BLOG.name();
     }
 
     // current solution is quite simple. whenever user is in blog-modul the all read flag is set.

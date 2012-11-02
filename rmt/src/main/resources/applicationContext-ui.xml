@@ -38,7 +38,7 @@
                 <value>de.flower.common.ui.modal.ModalDialogWindowPanel</value>
                 <value>de.flower.common.util.geo.LatLng</value>
                 <value>de.flower.rmt.model.dto..*</value>
-                <value>de.flower.rmt.ui.feedback..*Message</value>
+                <value>de.flower.rmt.ui.alert..*Message</value>
                 <value>de.flower.rmt.ui.markup.html.form..*</value>
                 <value>de.flower.rmt.ui.page.event.EventDetailsPanel\$SurfaceListLabel</value>
                 <value>de.flower.rmt.ui.page.event.EventDetailsPanel\$UniformLabel</value>
