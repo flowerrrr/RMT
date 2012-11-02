@@ -1,10 +1,10 @@
 package de.flower.rmt.ui.markup.html.calendar;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import de.flower.common.ui.panel.BasePanel;
-import de.flower.rmt.ui.page.error.PageExpiredPage;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.behavior.AbstractAjaxBehavior;
@@ -18,6 +18,7 @@ import org.joda.time.DateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * Calendar widget based on wonderful http://arshaw.com/fullcalendar/.
@@ -80,7 +81,7 @@ public abstract class FullCalendarPanel extends BasePanel {
      * so, find date in the middle and use its month.
      */
     private DateTime getCurrentDate(DateTime start, DateTime end) {
-       return new DateTime((start.getMillis() + end.getMillis()) / 2);
+        return new DateTime((start.getMillis() + end.getMillis()) / 2);
     }
 
     @Override
@@ -101,13 +102,24 @@ public abstract class FullCalendarPanel extends BasePanel {
 
         options = options.replace("\"_select_\"", selectCallbackBehavior.getCallbackFunction());
 
-        int status = PageExpiredPage.SC;
-        CharSequence url = this.urlFor(PageExpiredPage.class, null);
-        options = options.replace("\"_error_\"", "function(jqXHR, textStatus, errorThrown) { " +
-            "if (jqXHR.status == " + status + ") window.location.href = '" + url + "'; " +
-            "}");
+        String errorFunction = "function(jqXHR, textStatus, errorThrown) { ";
+        for (Entry<Integer, String> entry : getErrorRedirectMap().entrySet()) {
+            Integer status = entry.getKey();
+            String url = entry.getValue();
+            errorFunction += "if (jqXHR.status == " + status + ") window.location.href = '" + url + "'; ";
+        }
+        errorFunction += "}";
+        options = options.replace("\"_error_\"", errorFunction);
 
         return options;
+    }
+
+    /**
+     * Return map of http status code and the page url to be redirected to when an ajax-error occurs.
+     * @return
+     */
+    protected Map<Integer, String> getErrorRedirectMap() {
+        return Maps.newHashMap();
     }
 
     private Map<String, Object> getOptions() {

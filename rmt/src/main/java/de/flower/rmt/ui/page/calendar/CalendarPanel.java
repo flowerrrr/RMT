@@ -1,5 +1,6 @@
 package de.flower.rmt.ui.page.calendar;
 
+import com.google.common.collect.ImmutableMap;
 import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.rmt.model.db.entity.CalItem;
 import de.flower.rmt.model.db.entity.CalItem_;
@@ -12,6 +13,7 @@ import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.service.security.ISecurityService;
 import de.flower.rmt.ui.markup.html.calendar.CalEvent;
 import de.flower.rmt.ui.markup.html.calendar.FullCalendarPanel;
+import de.flower.rmt.ui.page.error.PageExpiredPage;
 import de.flower.rmt.ui.panel.RMTBasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
@@ -19,6 +21,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.joda.time.DateTime;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author flowerrrr
@@ -60,8 +63,8 @@ public abstract class CalendarPanel extends RMTBasePanel {
                     CalItemDto dto = new CalItemDto();
                     // init time fields. when saved as allDay the time is adjusted to 0:00 - 23:59.
                     // helps displaying reasonable default values when displaying time fields the first time.
-                    dto.setStartDateTime(new DateTime(calEvent.start).withTime(8,0,0,0));
-                    dto.setEndDateTime(new DateTime(calEvent.end).withTime(20,0,0,0));
+                    dto.setStartDateTime(new DateTime(calEvent.start).withTime(8, 0, 0, 0));
+                    dto.setEndDateTime(new DateTime(calEvent.end).withTime(20, 0, 0, 0));
                     dto.setAllDay(calEvent.allDay);
                     dto.setAutoDecline(true);
                     CalendarPanel.this.onEventClick(target, dto, securityService.getUser());
@@ -74,6 +77,11 @@ public abstract class CalendarPanel extends RMTBasePanel {
             public List<CalEvent> loadCalEvents(final DateTime start, final DateTime end) {
                 List<CalEvent> calEvents = calendarManager.findAllByCalendarAndRange(model.getObject(), start, end);
                 return calEvents;
+            }
+
+            @Override
+            protected Map<Integer, String> getErrorRedirectMap() {
+                return ImmutableMap.of(PageExpiredPage.SC, this.urlFor(PageExpiredPage.class, null).toString());
             }
         });
     }
