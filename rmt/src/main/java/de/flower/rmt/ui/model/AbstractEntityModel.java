@@ -77,7 +77,7 @@ public abstract class AbstractEntityModel<T extends IEntity> extends LoadableDet
     @Override
     protected T load() {
         // if we have a model then try to get the object from there.
-        T object = null;
+        T object;
         try {
             if (wrappedModel != null) {
                 object = wrappedModel.getObject();

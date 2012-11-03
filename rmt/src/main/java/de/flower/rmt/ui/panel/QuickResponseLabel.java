@@ -82,7 +82,6 @@ public abstract class QuickResponseLabel extends AjaxEditableChoiceLabel<RSVPSta
         getLabel().add(AttributeModifier.append("class", new AbstractReadOnlyModel<String>() {
             @Override
             public String getObject() {
-                String attr = "";
                 RSVPStatus status = getModel().getObject();
                 if (status == null) {
                     return "";

@@ -124,7 +124,7 @@ public class Notification implements Serializable {
             return "Attachment{" +
                     "name='" + name + '\'' +
                     ", contentType='" + contentType + '\'' +
-                    ", data=" + data == null ? "" : new String(data) +
+                    ", data=" + (data == null ? "" : new String(data)) +
                     '}';
         }
     }

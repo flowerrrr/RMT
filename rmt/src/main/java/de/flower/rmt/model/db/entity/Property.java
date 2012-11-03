@@ -13,6 +13,7 @@ import javax.validation.constraints.Size;
 /**
  * @author flowerrrr
  */
+@SuppressWarnings("FieldCanBeLocal")
 @Entity
 public class Property extends AbstractBaseEntity {
 

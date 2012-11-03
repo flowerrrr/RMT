@@ -40,7 +40,7 @@ public class EventPage extends ManagerBasePage {
     }
 
     public EventPage(PageParameters params) {
-        Event event = null;
+        Event event;
         try {
             Long eventId = params.get(EventPage.PARAM_EVENTID).toLong();
             event = eventManager.loadById(eventId);

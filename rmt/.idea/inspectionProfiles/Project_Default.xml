@@ -78,10 +78,12 @@
     <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="3">
+          <list size="5">
             <item index="0" class="java.lang.String" itemvalue="wicket:id" />
             <item index="1" class="java.lang.String" itemvalue="wicket:enclosure" />
             <item index="2" class="java.lang.String" itemvalue="labelkey" />
+            <item index="3" class="java.lang.String" itemvalue="wicket:for" />
+            <item index="4" class="java.lang.String" itemvalue="wicket:message" />
           </list>
         </value>
       </option>
@@ -90,7 +92,7 @@
     <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="22">
+          <list size="23">
             <item index="0" class="java.lang.String" itemvalue="nobr" />
             <item index="1" class="java.lang.String" itemvalue="noembed" />
             <item index="2" class="java.lang.String" itemvalue="comment" />
@@ -113,6 +115,7 @@
             <item index="19" class="java.lang.String" itemvalue="rmt:select" />
             <item index="20" class="java.lang.String" itemvalue="rmt:checkbox" />
             <item index="21" class="java.lang.String" itemvalue="wicket:fragment" />
+            <item index="22" class="java.lang.String" itemvalue="rmt:div" />
           </list>
         </value>
       </option>

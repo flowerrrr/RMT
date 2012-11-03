@@ -27,7 +27,7 @@ public class ResponseManagerTest extends AbstractRMTIntegrationTests {
         assertEquals(invitation, invitations.get(0));
         assertEquals((long) invitationManager.numByEventAndStatus(event, RSVPStatus.ACCEPTED), invitations.size());
 
-        invitation = responseManager.respond(event.getId(), players.get(1).getUser().getId(), RSVPStatus.ACCEPTED);
+        responseManager.respond(event.getId(), players.get(1).getUser().getId(), RSVPStatus.ACCEPTED);
         invitations = invitationManager.findAllByEventAndStatus(event, RSVPStatus.ACCEPTED);
         assertTrue(invitations.size() == 2);
         assertEquals((long) invitationManager.numByEventAndStatus(event, RSVPStatus.ACCEPTED), invitations.size());

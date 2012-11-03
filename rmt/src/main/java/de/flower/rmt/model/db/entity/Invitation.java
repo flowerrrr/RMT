@@ -6,7 +6,16 @@ import de.flower.rmt.model.db.type.RSVPStatus;
 import org.hibernate.annotations.Index;
 
 import javax.mail.internet.InternetAddress;
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -16,6 +25,7 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
+@SuppressWarnings("FieldCanBeLocal")
 @Entity
 public class Invitation extends AbstractBaseEntity {
 

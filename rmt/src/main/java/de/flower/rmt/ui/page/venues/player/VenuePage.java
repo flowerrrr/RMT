@@ -33,7 +33,7 @@ public class VenuePage extends PlayerBasePage {
      * @param params
      */
     public VenuePage(PageParameters params) {
-        Venue venue = null;
+        Venue venue;
         try {
             Long id = params.get(PARAM_VENUEID).toLong();
             venue = venueManager.loadById(id);

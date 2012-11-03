@@ -1,8 +1,5 @@
 package de.flower.rmt.ui.panel.activityfeed.renderer;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +7,6 @@ import java.util.List;
  * @author flowerrrr
  */
 public class ActivityMessageRenderer {
-
-    private final static Logger log = LoggerFactory.getLogger(ActivityMessageRenderer.class);
 
     private final static List<IMessageRenderer<?>> renderers = new ArrayList<IMessageRenderer<?>>() {
         {

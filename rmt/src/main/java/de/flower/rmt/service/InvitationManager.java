@@ -238,7 +238,7 @@ public class InvitationManager extends AbstractService implements IInvitationMan
         validate(invitation);
         boolean isNew = invitation.isNew();
         boolean isNotifyManager = false;
-        Invitation origInvitation = null;
+        Invitation origInvitation;
         if (!isNew) {
             // depending on the caller of this method the invitation might be detached or attached (when called
             // by ResponseManager. If object is attached it is not possible to check for modifications against the

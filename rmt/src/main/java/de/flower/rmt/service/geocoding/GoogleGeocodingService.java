@@ -73,7 +73,7 @@ public class GoogleGeocodingService implements IGeocodingService {
             log.debug("Geocode result for [" + address + "]: " + gr.getJson());
             return gr.getResultList();
         } catch (IOException e) {
-            log.error("Error issuing geocode request [" + httpGet.getURI() + "]", e);
+            log.error("Error issuing geocode request [" + (httpGet != null ? httpGet.getURI() : "") + "]", e);
             throw new RuntimeException(e);
         }
 

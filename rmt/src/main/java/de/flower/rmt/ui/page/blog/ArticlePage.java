@@ -35,7 +35,7 @@ public class ArticlePage extends AbstractCommonBasePage {
      * @param params
      */
     public ArticlePage(PageParameters params) {
-        BArticle article = null;
+        BArticle article;
         try {
             Long id = params.get(PARAM_ARTICLEID).toLong();
             article = blogManager.loadArticleById(id);

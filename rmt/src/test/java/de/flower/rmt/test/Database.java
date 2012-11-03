@@ -43,7 +43,7 @@ public class Database {
     }
 
     public void deleteAll(String[] tables)  {
-        IDatabaseConnection connection = null;
+        IDatabaseConnection connection;
         try {
             connection = getDatabaseConnection();
             IDataSet dataset = connection.createDataSet(tables);
@@ -74,7 +74,7 @@ public class Database {
     }
 
     private void execute(DatabaseOperation operation, IDataSet dataSet) {
-        IDatabaseConnection connection = null;
+        IDatabaseConnection connection;
         try {
             connection = getDatabaseConnection();
             TransactionOperation transOp = new TransactionOperation(operation);
@@ -86,7 +86,7 @@ public class Database {
     }
 
     private IDatabaseConnection getDatabaseConnection()  {
-        IDatabaseConnection connection = null;
+        IDatabaseConnection connection;
         try {
             connection = new DatabaseDataSourceConnection(Validate.notNull(dataSource));
         } catch (SQLException e) {

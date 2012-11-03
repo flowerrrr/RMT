@@ -13,11 +13,12 @@ import static org.testng.Assert.*;
 /**
  * Class tests all sorts of @Unique usages and missusages.
  */
+@SuppressWarnings("UnusedAssignment")
 public class UniqueDefFactoryTest {
 
     private final IColumnResolver columnResolver = new MockColumnResolver();
 
-    private final List<String> expectedAttributes = Arrays.asList(new String[] { "name", "email" });
+    private final List<String> expectedAttributes = Arrays.asList("name", "email");
 
     @Test
     public void testParseTableUniqueConstraint() {

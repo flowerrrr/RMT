@@ -25,7 +25,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
@@ -35,7 +34,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -333,7 +331,6 @@ public class NotificationService implements INotificationService, IICalendarProv
 
     @VisibleForTesting
     protected Map<String, Object> getEventDetailsModel(Event event) {
-        final Locale locale = LocaleContextHolder.getLocale();
         final Map<String, Object> model = new HashMap<String, Object>();
         model.put("event", event);
         model.put("eventDate", Dates.formatDateMediumWithWeekday(event.getDateTimeAsDate()));

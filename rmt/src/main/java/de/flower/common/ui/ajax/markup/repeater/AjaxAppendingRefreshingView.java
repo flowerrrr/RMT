@@ -70,16 +70,6 @@ public abstract class AjaxAppendingRefreshingView<T extends IIdentifiable<?>> ex
      * Instantiates a new self appending refreshing view.
      *
      * @param id the id
-     */
-    public AjaxAppendingRefreshingView(final String id) {
-        super(id);
-    }
-
-
-    /**
-     * Instantiates a new self appending refreshing view.
-     *
-     * @param id the id
      * @param model the model
      */
     public AjaxAppendingRefreshingView(final String id, final IModel<?> model) {

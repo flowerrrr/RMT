@@ -25,6 +25,7 @@ public class AbstractWicketMockitoTestsTest extends AbstractWicketMockitoTests {
         assertNotNull(testManager);
     }
 
+    @SuppressWarnings("UnusedDeclaration")
     public static interface ITestManager {
 
         void save(Object o);

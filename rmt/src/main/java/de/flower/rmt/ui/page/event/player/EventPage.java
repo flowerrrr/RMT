@@ -37,7 +37,7 @@ public class EventPage extends PlayerBasePage {
      * @param params
      */
     public EventPage(PageParameters params) {
-        Event event = null;
+        Event event;
         try {
             Long eventId = params.get(de.flower.rmt.ui.page.event.manager.EventPage.PARAM_EVENTID).toLong();
             event = eventManager.loadById(eventId);

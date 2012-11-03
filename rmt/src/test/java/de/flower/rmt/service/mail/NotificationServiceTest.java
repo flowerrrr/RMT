@@ -49,7 +49,6 @@ public class NotificationServiceTest extends AbstractRMTIntegrationTests {
         // load from db to get version with uninitialized associations
         event = eventManager.loadById(event.getId());
         Uniform uniform = uniformManager.findAllByTeam(event.getTeam()).get(0); // must be same as in create event
-        String eventLink = "http://flower.de/event/4";
         Notification notification = notificationService.newEventNotification(event);
         log.info(notification.getSubject());
         log.info(notification.getBody());

@@ -52,7 +52,7 @@ public class MailService implements IMailService {
     }
 
     private MimeMailMessage newMimeMailMessage() {
-        MimeMailMessage message = null;
+        MimeMailMessage message;
         try {
             message = new MimeMailMessage(new MimeMessageHelper(mailSender.createMimeMessage(), true));
         } catch (MessagingException e) {

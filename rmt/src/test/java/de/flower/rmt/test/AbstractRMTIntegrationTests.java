@@ -69,7 +69,7 @@ import java.util.Map;
  */
 @SuppressWarnings("Dependency")
 @Listeners({de.flower.common.test.ExceptionLoggerTestListener.class})
-@ContextConfiguration(classes = { AbstractRMTIntegrationTestsConfig.class })
+@ContextConfiguration(classes = {AbstractRMTIntegrationTestsConfig.class})
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 public class AbstractRMTIntegrationTests extends AbstractTestNGSpringContextTests {
 
@@ -215,7 +215,6 @@ public class AbstractRMTIntegrationTests extends AbstractTestNGSpringContextTest
             resetListAppender();
 
             initializeSecurityContextWithTestUser();
-
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             throw e;
@@ -258,7 +257,6 @@ public class AbstractRMTIntegrationTests extends AbstractTestNGSpringContextTest
         db.cleanInsert(Database.createDataSet("/data/test_data.xml"));
         // testData.insertTestData();
 
-        testData.checkDataConsistency(em);
     }
 
     /**

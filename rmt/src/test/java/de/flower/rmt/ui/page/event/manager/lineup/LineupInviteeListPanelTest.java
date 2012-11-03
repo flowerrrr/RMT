@@ -1,6 +1,5 @@
 package de.flower.rmt.ui.page.event.manager.lineup;
 
-import de.flower.rmt.model.db.entity.Lineup;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.test.AbstractRMTWicketIntegrationTests;
 import de.flower.rmt.ui.model.EventModel;
@@ -14,7 +13,7 @@ public class LineupInviteeListPanelTest extends AbstractRMTWicketIntegrationTest
     @Test
     public void testRender() {
         Event event = testData.createEventWithResponses();
-        Lineup lineup = testData.createLineup(event);
+        testData.createLineup(event);
         wicketTester.startComponentInPage(new LineupInviteeListPanel(new EventModel(event)));
         wicketTester.dumpComponentWithPage();
     }
