@@ -66,6 +66,7 @@ public abstract class EntityForm<T> extends Form<T> {
         return true;
     }
 
+    @SuppressWarnings("EmptyMethod")
     protected void onBeforeValidation(T entity) {
 
     }

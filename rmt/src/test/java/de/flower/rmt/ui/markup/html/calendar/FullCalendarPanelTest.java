@@ -22,7 +22,7 @@ public class FullCalendarPanelTest extends AbstractWicketUnitTests {
 
         @Override
         protected List<CalEvent> loadCalEvents(final DateTime start, final DateTime end) {
-            return null;  //To change body of implemented methods use File | Settings | File Templates.
+            return null;
         }
 
         @Override

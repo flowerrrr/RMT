@@ -26,7 +26,7 @@ public class NameFinderTest {
         // test iteration. let candidate #100 pass through
         name = NameFinder.delete(base, new Predicate<String>() {
             @Override
-            public boolean apply(@Nullable final String input) {
+            public boolean apply(final String input) {
                 return input.contains("100");
             }
         });

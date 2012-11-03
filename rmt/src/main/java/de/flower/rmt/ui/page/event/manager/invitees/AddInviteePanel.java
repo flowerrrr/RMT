@@ -55,7 +55,7 @@ public class AddInviteePanel extends BasePanel<Event> {
 
         // list of not-assigned players
 
-        final CheckGroup group = new CheckGroup("group", selectedUsers);
+        final CheckGroup group = new CheckGroup<Long>("group", selectedUsers);
         form.add(group);
         final WebMarkupContainer listContainer = new WebMarkupContainer("listContainer");
         listContainer.setOutputMarkupId(true);
@@ -65,7 +65,7 @@ public class AddInviteePanel extends BasePanel<Event> {
             @Override
             protected void populateItem(ListItem<User> item) {
                 User player = item.getModelObject();
-                item.add(new Check("checkbox", Model.of(item.getModelObject().getId())));
+                item.add(new Check<Long>("checkbox", Model.of(item.getModelObject().getId())));
                 item.add(new Label("name", player.getFullname()));
             }
         };

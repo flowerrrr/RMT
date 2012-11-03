@@ -54,7 +54,7 @@ public class ArticlePage extends AbstractCommonBasePage {
 
     private void init(IModel<BArticle> model) {
         setDefaultModel(model);
-        setHeadingModel(new PropertyModel(model, "heading"), null);
+        setHeadingModel(new PropertyModel<String>(model, "heading"), null);
         addMainPanel(new ArticlePanel(model));
         addSecondaryPanel(new BlogSecondaryPanel());
 

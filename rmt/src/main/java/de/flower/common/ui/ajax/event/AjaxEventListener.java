@@ -66,6 +66,7 @@ public final class AjaxEventListener extends Behavior {
     }
 
     // NOTE (oliverb - 13.10.2011): implement this method if typed payloads are to be used.
+    @SuppressWarnings("SameReturnValue")
     private boolean isAjaxEventPayload(final Object payload) {
         // return (payload instanceof AjaxEvent);
         return true;

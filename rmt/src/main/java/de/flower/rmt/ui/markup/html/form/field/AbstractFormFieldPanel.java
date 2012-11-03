@@ -14,7 +14,11 @@ import org.apache.wicket.markup.MarkupElement;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.*;
+import org.apache.wicket.model.AbstractReadOnlyModel;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.LoadableDetachableModel;
+import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.validation.IValidator;
 
 /**
@@ -205,6 +209,7 @@ public abstract class AbstractFormFieldPanel extends Panel {
         return this;
     }
 
+    @SuppressWarnings("SameReturnValue")
     protected boolean useStateSavingModel() {
         return true;
     }

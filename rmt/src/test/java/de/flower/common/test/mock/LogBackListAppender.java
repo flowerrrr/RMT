@@ -1,6 +1,5 @@
 package de.flower.common.test.mock;
 
-import ch.qos.logback.classic.PatternLayout;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.classic.spi.IThrowableProxy;
 import ch.qos.logback.core.Appender;
@@ -16,12 +15,9 @@ import java.util.List;
  */
 public class LogBackListAppender extends AppenderBase<ILoggingEvent> implements IListAppender<ILoggingEvent> {
 
-    private PatternLayout layout = new PatternLayout();
-
     private List<ILoggingEvent> list = new ArrayList<ILoggingEvent>();
 
     public LogBackListAppender() {
-        layout.setPattern("<%5p> - %t - %c{3} - %m%n");
     }
 
     public List<ILoggingEvent> getList() {

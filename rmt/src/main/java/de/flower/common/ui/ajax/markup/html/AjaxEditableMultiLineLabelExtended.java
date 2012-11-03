@@ -10,9 +10,9 @@ import org.apache.wicket.model.IModel;
  * Overrides some default behavior.
  * @author flowerrrr
  */
-public class AjaxEditableMultiLineLabelExtended extends AjaxEditableMultiLineLabel {
+public class AjaxEditableMultiLineLabelExtended<T> extends AjaxEditableMultiLineLabel<T> {
 
-    public AjaxEditableMultiLineLabelExtended(final String id, final IModel iModel) {
+    public AjaxEditableMultiLineLabelExtended(final String id, final IModel<T> iModel) {
         super(id, iModel);
         add(AttributeModifier.append("class", "ajaxEditableMultiLineLabel"));
         getLabel().add(AttributeModifier.append("class", new AbstractReadOnlyModel<String>() {

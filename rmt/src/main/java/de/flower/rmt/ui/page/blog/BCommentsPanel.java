@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class BCommentsPanel extends RMTBasePanel {
+public class BCommentsPanel extends RMTBasePanel<BArticle> {
 
     @SpringBean
     private IBlogManager blogManager;
@@ -47,7 +47,7 @@ public class BCommentsPanel extends RMTBasePanel {
                 BComment comment = item.getModelObject();
                 item.add(new Label("author", comment.getAuthor().getFullname()));
                 item.add(new Label("date", Dates.formatDateTimeShortWithWeekday(comment.getCreateDate())));
-                AjaxEditableMultiLineLabel<String> editLabel = new AjaxEditableMultiLineLabelExtended("text", new PropertyModel<String>(item.getModel(), "text")) {
+                AjaxEditableMultiLineLabel<String> editLabel = new AjaxEditableMultiLineLabelExtended<String>("text", new PropertyModel<String>(item.getModel(), "text")) {
                     {
                         setRows(7);
                         if (isEnabled()) {

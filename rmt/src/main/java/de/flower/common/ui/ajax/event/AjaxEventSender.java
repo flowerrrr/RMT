@@ -20,9 +20,8 @@ public final class AjaxEventSender {
      *
      * @param sender the sender
      * @param payload the payload
-     * @deprecated try to use typed methods of this class. e.g. {@link #entityEvent(Component, Class)}.
+     * NOTE: try to use typed methods of this class. e.g. {@link #entityEvent(Component, Class)}.
      */
-    @Deprecated
     public static void send(final Component sender, final Object payload) {
         sender.send(sender.getPage(), Broadcast.DEPTH, payload);
     }

@@ -3,7 +3,6 @@ package de.flower.rmt.service;
 import com.mysema.query.types.EntityPath;
 import com.mysema.query.types.Order;
 import com.mysema.query.types.OrderSpecifier;
-import com.mysema.query.types.Predicate;
 import com.mysema.query.types.expr.BooleanExpression;
 import de.flower.common.model.EntityHelper;
 import de.flower.common.util.Check;
@@ -124,7 +123,7 @@ public class EventManager extends AbstractService implements IEventManager {
      */
     @Override
     public List<Event> findAll(EntityPath<?>... attributes) {
-        return eventRepo.findAll((Predicate) null, attributes);
+        return eventRepo.findAll(null, attributes);
     }
 
     @Override

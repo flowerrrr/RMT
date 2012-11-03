@@ -3,7 +3,14 @@ package de.flower.common.model.db.entity;
 import de.flower.common.model.db.type.ObjectStatus;
 import org.hibernate.annotations.Index;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -121,14 +128,13 @@ public abstract class AbstractBaseEntity implements Serializable, IEntity, IObje
      */
     @Override
     public AbstractBaseEntity clone() {
-        AbstractBaseEntity clone = null;
         try {
-            clone = (AbstractBaseEntity) super.clone();
+            AbstractBaseEntity clone = (AbstractBaseEntity) super.clone();
+            clone.setId(null);
+            return clone;
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException(e);
         }
-        clone.setId(null);
-        return clone;
     }
 
     /**

@@ -201,7 +201,7 @@ public class AbstractRMTIntegrationTests extends AbstractTestNGSpringContextTest
     protected void initClass() {
         listAppender = LogBackListAppender.configureListAppender();
         // use db-unit to refresh the the test data
-        Map properties = new HashMap();
+        Map<String, Object> properties = new HashMap();
         properties.put("http://www.dbunit.org/properties/datatypeFactory", new org.dbunit.ext.h2.H2DataTypeFactory());
         db = new Database(properties);
         db.setDataSource(dataSource);

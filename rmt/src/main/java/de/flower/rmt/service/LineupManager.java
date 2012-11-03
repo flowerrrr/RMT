@@ -1,5 +1,6 @@
 package de.flower.rmt.service;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.mysema.query.types.Path;
 import com.mysema.query.types.expr.BooleanExpression;
 import de.flower.common.util.Check;
@@ -94,7 +95,7 @@ public class LineupManager extends AbstractService implements ILineupManager {
         lineupItemRepo.delete(item);
     }
 
-    @Override
+    @VisibleForTesting
     public void save(final LineupItem item) {
         validate(item);
         lineupItemRepo.save(item);

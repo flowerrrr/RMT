@@ -31,7 +31,7 @@ public class AddGuestPlayerPanel extends BasePanel<Event> {
         super(id);
 
         fEntity = new FEntity();
-        final Form<FEntity> form = new Form<FEntity>("form", new CompoundPropertyModel(fEntity));
+        final Form<FEntity> form = new Form<FEntity>("form", new CompoundPropertyModel<FEntity>(fEntity));
         add(form);
 
         form.add(new TextField("guestName"));

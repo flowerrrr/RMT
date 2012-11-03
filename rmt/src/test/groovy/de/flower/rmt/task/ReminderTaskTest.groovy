@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.test.context.ContextConfiguration
 import org.testng.annotations.Test
+
 import static org.testng.Assert.assertEquals
 import static org.testng.Assert.assertTrue
 
@@ -58,7 +59,6 @@ public class ReminderTaskTest extends AbstractRMTIntegrationTests {
 
     @Test
     public void testSendUnsureReminder() {
-        def hours = 12
         def event = testData.createEvent();
         event.setDateTime(new DateTime().plusHours(12))
         eventManager.save(event)
@@ -88,7 +88,6 @@ public class ReminderTaskTest extends AbstractRMTIntegrationTests {
      */
     @Test
     public void testNoReminderSendForCanceledEvent() {
-        def hours = 12
         def event = testData.createEvent();
         event.setDateTime(new DateTime().plusHours(12));
         eventManager.save(event);

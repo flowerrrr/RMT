@@ -51,11 +51,12 @@ public abstract class AbstractService {
         }
     }
 
-    protected void validate(Object entity) {
+    protected void validate(Object entity) throws ConstraintViolationException {
 
-        final Set<?> violations = validator.validate(entity);
+        Set<?> violations = validator.validate(entity);
         if (!violations.isEmpty()) {
             String message = violations.toString();
+            //noinspection unchecked
             throw new ConstraintViolationException(message, (Set<ConstraintViolation<?>>) violations);
         }
     }

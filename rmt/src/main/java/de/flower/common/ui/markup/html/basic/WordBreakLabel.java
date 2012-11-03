@@ -11,7 +11,7 @@ import org.apache.wicket.markup.html.basic.Label;
  */
 public class WordBreakLabel extends Label {
 
-    private int nChars = 5;
+    private final static int nChars = 5;
 
     public WordBreakLabel(final String id, final String label) {
         super(id, label);

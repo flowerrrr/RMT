@@ -61,7 +61,7 @@ public class CommentsPanel extends BasePanel<Invitation> {
         ListView<Comment> comments = new ListView<Comment>("comments", listModel) {
             @Override
             protected void populateItem(final ListItem<Comment> item) {
-                AjaxEditableMultiLineLabel<String> editLabel = new AjaxEditableMultiLineLabelExtended("text", new PropertyModel<String>(item.getModel(), "text")) {
+                AjaxEditableMultiLineLabel<String> editLabel = new AjaxEditableMultiLineLabelExtended<String>("text", new PropertyModel<String>(item.getModel(), "text")) {
                     {
                         setRows(3);
                         getEditor().add(new TextAreaMaxLengthBehavior(Comment.MAXLENGTH));

@@ -6,7 +6,13 @@ import com.google.common.collect.Iterables;
 import com.mysema.query.types.Path;
 import com.mysema.query.types.expr.BooleanExpression;
 import de.flower.common.util.Check;
-import de.flower.rmt.model.db.entity.*;
+import de.flower.rmt.model.db.entity.CalItem;
+import de.flower.rmt.model.db.entity.Comment;
+import de.flower.rmt.model.db.entity.Invitation;
+import de.flower.rmt.model.db.entity.Invitation_;
+import de.flower.rmt.model.db.entity.Player;
+import de.flower.rmt.model.db.entity.QInvitation;
+import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.repository.IInvitationRepo;
@@ -20,10 +26,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Nullable;
 import javax.mail.internet.InternetAddress;
 import javax.persistence.metamodel.Attribute;
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
 
 import static de.flower.rmt.repository.Specs.*;
 import static org.springframework.data.jpa.domain.Specifications.where;
@@ -119,7 +128,7 @@ public class InvitationManager extends AbstractService implements IInvitationMan
             }
 
             @Override
-            public boolean apply(@Nullable final Invitation invitation) {
+            public boolean apply(final Invitation invitation) {
                 if (!invitation.hasEmail()) {
                     return false;
                 } else {

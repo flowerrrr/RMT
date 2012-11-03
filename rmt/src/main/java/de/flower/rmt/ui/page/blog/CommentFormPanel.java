@@ -20,7 +20,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
  *
  * @author flowerrrr
  */
-public class CommentFormPanel extends RMTBasePanel {
+public class CommentFormPanel extends RMTBasePanel<BArticle> {
 
     @SpringBean
     private IBlogManager blogManager;

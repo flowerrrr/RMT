@@ -41,6 +41,7 @@ import de.flower.rmt.service.ITeamManager;
 import de.flower.rmt.service.IUniformManager;
 import de.flower.rmt.service.IUserManager;
 import de.flower.rmt.service.IVenueManager;
+import de.flower.rmt.service.LineupManager;
 import org.apache.commons.lang.math.RandomUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.Validate;
@@ -158,7 +159,7 @@ public class TestData {
         return Validate.notNull(clubRepo.findOne(1L));
     }
 
-    public static Club newClub() {
+    public Club newClub() {
         Club club = new Club("Foo FC");
         return club;
     }
@@ -374,7 +375,7 @@ public class TestData {
             item.setTop(RandomUtils.nextInt(500), 500);
             item.setLeft(RandomUtils.nextInt(400), 400);
             lineup.getItems().add(item);
-            lineupManager.save(item);
+            ((LineupManager)lineupManager).save(item);
         }
         return lineup;
     }

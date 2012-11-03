@@ -16,22 +16,20 @@ import static org.testng.Assert.*;
 
 public class UniqueValidatorTest {
 
-    private IColumnResolver columnResolver;
     private IRowCountChecker rowCountChecker;
     private UniqueValidator validator;
     private IEntity entity;
     private ConstraintValidatorContext context;
-    private UniqueDef constraintDef;
 
     @BeforeMethod
     public void init() {
-        columnResolver = mock(IColumnResolver.class);
+        final IColumnResolver columnResolver = mock(IColumnResolver.class);
         rowCountChecker = mock(IRowCountChecker.class);
         entity = mock(IEntity.class);
         when(entity.getId()).thenReturn(1L);
         context = mock(ConstraintValidatorContext.class);
 
-        constraintDef = new UniqueDef("foo", new String[] { "id" });
+        final UniqueDef constraintDef = new UniqueDef("foo", new String[]{"id"});
         validator = new UniqueValidator(columnResolver, rowCountChecker);
         ReflectionTestUtils.setField(validator, "constraintDef", constraintDef);
     }

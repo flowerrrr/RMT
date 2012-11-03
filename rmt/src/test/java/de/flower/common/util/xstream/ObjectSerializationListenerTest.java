@@ -16,7 +16,7 @@ public class ObjectSerializationListenerTest {
     @Test
     public void testCounting() {
         ObjectSerializationListener listener = new ObjectSerializationListener();
-        listener.reset();
+        ObjectSerializationListener.reset();
         listener.notify("hello world");
         listener.notify(new Integer(1));
         listener.notify(new Integer(2));
@@ -24,7 +24,7 @@ public class ObjectSerializationListenerTest {
             // to test filtering of inner classes
         });
         listener.notify(new ArrayList());
-        ObjectSerializationListener.Context context = listener.getContext();
+        ObjectSerializationListener.Context context = ObjectSerializationListener.getContext();
         log.info(context.toString());
     }
 }

@@ -39,15 +39,15 @@ public class ObjectSerializationListener implements IObjectSerializationListener
 
     @Override
     public void notify(final Object object) {
-        Context context = getContext();
         Class<?> clazz = object.getClass();
         if (Clazz.isAnonymousInnerClass(clazz)) {
             clazz = Clazz.getSuperClass(clazz);
         }
+        Context context = getContext();
         context.typeSet.add(clazz);
     }
 
-    public void reset() {
+    public static void reset() {
         threadLocal.set(new Context());
     }
 

@@ -31,7 +31,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Nullable;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -173,7 +172,7 @@ public class ActivityManager extends AbstractService implements IActivityManager
         Collection<Activity> list = activityRepo.findAll(isSameUser.and(isInsideOneHour));
         list = Collections2.filter(list, new Predicate<Activity>() {
             @Override
-            public boolean apply(@Nullable final Activity activity) {
+            public boolean apply(final Activity activity) {
                 Serializable msg = activity.getMessage();
                 if (msg instanceof InvitationUpdateMessage2) {
                     InvitationUpdateMessage2 ium = (InvitationUpdateMessage2) msg;

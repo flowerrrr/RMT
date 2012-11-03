@@ -41,7 +41,9 @@ public final class RowCountChecker implements IRowCountChecker {
             em = emFactory.createEntityManager();
             return rowCount(entity, attributeNames, em);
         } finally {
-            em.close();
+            if (em != null) {
+                em.close();
+            }
         }
     }
 

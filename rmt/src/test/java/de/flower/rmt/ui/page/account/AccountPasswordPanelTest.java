@@ -33,7 +33,7 @@ public class AccountPasswordPanelTest extends AbstractRMTWicketIntegrationTests 
         wicketTester.dumpComponentWithPage();
         String key = Password.Validation.passwordNotValidMessage.replace("{", "").replace("}", "");
         String message = new ResourceModel(key).getObject();
-        wicketTester.assertErrorMessagesContains(new String[] {message});
+        wicketTester.assertErrorMessagesContains(message);
         wicketTester.assertInvisible("form:formFeedbackPanel:feedback:feedbackul:messages");
         wicketTester.assertVisible("form:oldPassword:feedback:feedbackul:messages");
         wicketTester.assertContains(message);

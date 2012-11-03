@@ -54,7 +54,6 @@ public class CkEditorBehavior extends Behavior {
     @Override
     public void renderHead(final Component component, final IHeaderResponse response) {
         response.renderJavaScriptReference(jsUrl);
-        Map<String, Object> options = getOptions();
         String s = "delete CKEDITOR.instances." + component.getMarkupId() + "; "
                 + "CKEDITOR.replace('" + component.getMarkupId() + "', " + getJsonOptions() + ");";
         response.renderOnDomReadyJavaScript(s);

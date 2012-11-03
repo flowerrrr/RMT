@@ -20,7 +20,6 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-import javax.annotation.Nullable;
 import javax.mail.internet.InternetAddress;
 import java.util.List;
 
@@ -140,7 +139,7 @@ public class RecipientListPanel extends BasePanel<List<InternetAddress>> {
                 List<Invitation> list = invitationManager.findAllForNotificationByEventSortedByName(model.getObject());
                 return Lists.newArrayList(Collections2.filter(list, new Predicate<Invitation>() {
                     @Override
-                    public boolean apply(@Nullable final Invitation invitation) {
+                    public boolean apply(final Invitation invitation) {
                         return !invitation.isInvitationSent();
                     }
                 }));
@@ -155,7 +154,7 @@ public class RecipientListPanel extends BasePanel<List<InternetAddress>> {
                 List<Invitation> list = invitationManager.findAllForNotificationByEventSortedByName(model.getObject());
                 return Lists.newArrayList(Collections2.filter(list, new Predicate<Invitation>() {
                     @Override
-                    public boolean apply(@Nullable final Invitation invitation) {
+                    public boolean apply(final Invitation invitation) {
                         return invitation.getStatus() == RSVPStatus.NORESPONSE || invitation.getStatus() == RSVPStatus.UNSURE;
                     }
                 }));

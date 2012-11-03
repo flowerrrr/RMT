@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class CalendarSelectPanel extends BasePanel {
+public class CalendarSelectPanel extends BasePanel<List<CalendarFilter>> {
 
     @SpringBean
     private ICalendarManager calendarManager;
@@ -30,7 +30,7 @@ public class CalendarSelectPanel extends BasePanel {
         final Form form = new Form("form");
         add(form);
 
-        final CheckBoxMultipleChoice c = new CheckBoxMultipleChoice("calendars", model, getCalendarFilters());
+        final CheckBoxMultipleChoice<CalendarFilter> c = new CheckBoxMultipleChoice<>("calendars", model, getCalendarFilters());
         c.setChoiceRenderer(new IChoiceRenderer<CalendarFilter>() {
 
             @Override

@@ -43,7 +43,6 @@ public final class UniqueValidator implements ConstraintValidator<Unique, IEntit
     @Override
     public boolean isValid(final IEntity entity, final ConstraintValidatorContext context) {
         LOG.debug("Validating [{}] against constraint [{}].", entity, constraintDef);
-        boolean valid = true;
         // Unique-Validator does not handle null values correctly
         for (final String attributeName : constraintDef.getAttributeNames()) {
             try {
@@ -56,7 +55,7 @@ public final class UniqueValidator implements ConstraintValidator<Unique, IEntit
                 throw new RuntimeException(e);
             }
         }
-        valid = rowCountChecker.rowCount(entity, constraintDef.getAttributeNames()).intValue() == 0;
+        boolean valid = rowCountChecker.rowCount(entity, constraintDef.getAttributeNames()).intValue() == 0;
         return valid;
     }
 

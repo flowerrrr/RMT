@@ -15,7 +15,7 @@ import org.wicketstuff.jsr303.validator.FormComponentBeanValidator;
 /**
  * @author flowerrrr
  */
-public class AccountPasswordPanel extends BasePanel {
+public class AccountPasswordPanel extends BasePanel<User> {
 
     @SpringBean
     private IUserManager userManager;

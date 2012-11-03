@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * @author flowerrrr
  */
-public abstract class CalendarPanel extends RMTBasePanel {
+public abstract class CalendarPanel extends RMTBasePanel<List<CalendarFilter>> {
 
     @SpringBean
     private ICalendarManager calendarManager;

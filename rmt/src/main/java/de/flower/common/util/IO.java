@@ -4,7 +4,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.UrlResource;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -187,7 +198,7 @@ public class IO {
         try (BufferedReader input = new BufferedReader(new InputStreamReader(in, charsetName)))
         {
 
-            String line = null; // not declared within while loop
+            String line; // not declared within while loop
             /*
                 * readLine is a bit quirky : it returns the content of a line MINUS the
                 * newline. it returns null only for the END of the stream. it returns
@@ -350,7 +361,7 @@ public class IO {
      */
     public static InputStream loadResourceAsStream(String resourcePath,
                                                    int timeoutMs, String postBody) throws IOException {
-        InputStream is = null;
+        InputStream is;
 
         log.debug("Fetching resource from " + resourcePath);
         switch (getResourceType(resourcePath)) {

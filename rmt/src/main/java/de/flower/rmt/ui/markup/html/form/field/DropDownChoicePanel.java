@@ -12,11 +12,11 @@ import java.util.List;
 public class DropDownChoicePanel<T> extends AbstractFormFieldPanel {
 
     public DropDownChoicePanel(String id) {
-        super(id, new DropDownChoice(ID));
+        super(id, new DropDownChoice<T>(ID));
     }
 
     public DropDownChoicePanel(String id, final List<? extends T> choices) {
-        super(id, new DropDownChoice(ID, choices));
+        super(id, new DropDownChoice<T>(ID, choices));
     }
 
     public DropDownChoicePanel(final String id, final DropDownChoice<?> dropDownChoice) {
@@ -31,8 +31,8 @@ public class DropDownChoicePanel<T> extends AbstractFormFieldPanel {
         getDropDownChoice().setChoices(entityChoices);
     }
 
-    private DropDownChoice getDropDownChoice() {
-        return (DropDownChoice) getFormComponent();
+    private DropDownChoice<T> getDropDownChoice() {
+        return (DropDownChoice<T>) getFormComponent();
     }
 
     public static class NonValidatingDropDownChoicePanel extends DropDownChoicePanel {

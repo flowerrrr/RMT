@@ -4,12 +4,14 @@ import de.flower.rmt.model.db.entity.event.Event
 import org.joda.time.DateTime
 import org.joda.time.LocalTime
 import org.testng.annotations.Test
+
 import static org.testng.Assert.assertFalse
 import static org.testng.Assert.assertTrue
 
 /**
  * @author flowerrrr
  */
+@SuppressWarnings("GroovyAccessibility")
 public class EventListPanelTest {
 
     @Test

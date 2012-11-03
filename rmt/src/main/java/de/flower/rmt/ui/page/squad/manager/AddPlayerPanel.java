@@ -50,14 +50,14 @@ public class AddPlayerPanel extends BasePanel<Team> {
         // list of not-assigned players
         WebMarkupContainer playerListContainer = new WebMarkupContainer("playerListContainer");
         form.add(playerListContainer);
-        CheckGroup group = new CheckGroup("group", selectedPlayers);
+        CheckGroup group = new CheckGroup<User>("group", selectedPlayers);
         playerListContainer.add(group);
         ListView playerList = new EntityListView<User>("playerList", getListModel(model)) {
 
             @Override
             protected void populateItem(ListItem<User> item) {
                 User player = item.getModelObject();
-                item.add(new Check("checkbox", item.getModel()));
+                item.add(new Check<User>("checkbox", item.getModel()));
                 item.add(new Label("name", player.getFullname()));
             }
         };

@@ -38,6 +38,7 @@ public class TooltipBehavior extends Behavior {
      * @param component
      * @param response
      */
+    @SuppressWarnings("EmptyMethod")
     protected void renderJavaScriptReference(final Component component, final IHeaderResponse response) {
     }
 

@@ -9,6 +9,7 @@ import org.aspectj.lang.annotation.Pointcut;
 /**
  * @author flowerrrr
  */
+@SuppressWarnings("EmptyMethod")
 @Aspect
 public abstract class AbstractLoggingAspect {
 

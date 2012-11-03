@@ -54,7 +54,7 @@ public class ModalDialogWindow extends ModalWindow {
     }
 
     /**
-     * Obtain the modal window from the InstallerBasePage.
+     * Obtain the modal window.
      *
      * @param page the page holding reference to a modal window.
      * @return the current modal window
@@ -70,7 +70,7 @@ public class ModalDialogWindow extends ModalWindow {
     /**
      * Helper to easily show a modal window.
      *
-     * @param parent     the component added to an installer base page wanting to show a modal dialog
+     * @param parent     the component added to an base page wanting to show a modal dialog
      * @param content    the content (panel) to be shown in the modal dialog
      * @param numColumns the required number of bootstrap columns for the content
      */
@@ -86,19 +86,6 @@ public class ModalDialogWindow extends ModalWindow {
      */
     public final ModalDialogWindow setBootstrapColumns(final int numColumns) {
         return (ModalDialogWindow) super.setInitialWidth(numColumns * COLUMN_WIDTH + ADDITIONAL_WIDTH);
-    }
-
-    /**
-     * Sets the content of the modal window.
-     *
-     * @param component component to set
-     * @return this;
-     * @deprecated Use #setContent(component, numColumns) instead.
-     */
-    @Override
-    @Deprecated
-    public final ModalWindow setContent(final Component component) {
-        return super.setContent(component);
     }
 
     /**

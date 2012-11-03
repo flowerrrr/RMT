@@ -11,7 +11,8 @@ import de.flower.rmt.model.db.entity.Club
 import de.flower.rmt.model.db.entity.Team
 import org.slf4j.LoggerFactory
 import org.testng.annotations.BeforeMethod
-import static org.testng.Assert.assertTrue
+
+import static org.testng.Assert.assertFalse
 
 /**
  *
@@ -42,7 +43,7 @@ class LoggingAspectTest {
         team.setName("foobar")
         team.getUrl()
         team == new Team(new Club("foo club 2"))
-        assertTrue(listAppender.getList().isEmpty() == false, "No tracing log output found.")
+        assertFalse(listAppender.getList().isEmpty(), "No tracing log output found.")
     }
 
     static runTest() {

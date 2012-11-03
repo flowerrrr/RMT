@@ -5,7 +5,6 @@ import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
-import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.protocol.http.WebSession;
@@ -61,7 +60,6 @@ public class AlertMessagePanel extends Panel {
             @Override
             public void onClick(final AjaxRequestTarget target) {
                 setHideMessage(getSessionKey(), true);
-                FeedbackPanel feedbackPanel = findParent(FeedbackPanel.class);
                 target.add(AlertMessagePanel.this);
             }
 

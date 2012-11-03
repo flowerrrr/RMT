@@ -28,9 +28,9 @@ public class Database {
 
     private DataSource dataSource;
 
-    private Map<String, ?> properties;
+    private Map<String, Object> properties;
 
-    public Database(Map properties) {
+    public Database(Map<String, Object> properties) {
         this.properties = properties;
     }
 

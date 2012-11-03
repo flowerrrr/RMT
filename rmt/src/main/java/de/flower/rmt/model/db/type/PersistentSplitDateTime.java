@@ -29,6 +29,7 @@ import java.sql.SQLException;
  * 
  * @author flowerrrr
  */
+@Deprecated // not used
 public class PersistentSplitDateTime extends PersistentDateTime {
 
     public static final PersistentSplitDateTime INSTANCE = new PersistentSplitDateTime();

@@ -6,7 +6,11 @@ import com.google.common.collect.Lists;
 import de.flower.common.service.security.IPasswordGenerator;
 import de.flower.common.util.Check;
 import de.flower.common.util.NameFinder;
-import de.flower.rmt.model.db.entity.*;
+import de.flower.rmt.model.db.entity.Player_;
+import de.flower.rmt.model.db.entity.Role;
+import de.flower.rmt.model.db.entity.Team;
+import de.flower.rmt.model.db.entity.User;
+import de.flower.rmt.model.db.entity.User_;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.dto.Password;
 import de.flower.rmt.repository.IRoleRepo;
@@ -21,7 +25,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Nullable;
 import javax.mail.internet.InternetAddress;
 import javax.persistence.metamodel.Attribute;
 import javax.validation.Validator;
@@ -230,7 +233,7 @@ public class UserManager extends AbstractService implements IUserManager {
         List<InternetAddress[]> internetAddresses = Lists.transform(users, new Function<User, InternetAddress[]>() {
 
             @Override
-            public InternetAddress[] apply(@Nullable final User user) {
+            public InternetAddress[] apply(final User user) {
                 return user.getInternetAddresses();
             }
         });

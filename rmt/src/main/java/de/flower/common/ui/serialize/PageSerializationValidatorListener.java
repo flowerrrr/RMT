@@ -36,13 +36,12 @@ public class PageSerializationValidatorListener implements ISerializerListener {
 
     private Filter filter;
 
-    private ObjectSerializationListener objectSerializationListener = new ObjectSerializationListener();
-
     @Autowired
     public PageSerializationValidatorListener(Filter filter) {
         xstream = new XStream();
         // by default xstream does not output the classname of serialized fields.
         ClassEmittingReflectionConverter converter = new ClassEmittingReflectionConverter(xstream);
+        final ObjectSerializationListener objectSerializationListener = new ObjectSerializationListener();
         converter.setListener(objectSerializationListener);
         xstream.registerConverter(converter, XStream.PRIORITY_VERY_LOW);
 
@@ -51,16 +50,16 @@ public class PageSerializationValidatorListener implements ISerializerListener {
 
     @Override
     public void notify(Object object, byte[] data) {
-        objectSerializationListener.reset();
+        ObjectSerializationListener.reset();
         final String xml = xstream.toXML(object);
         if (data != null) {
             long length = data.length;
             log.info("Size of serialized page: " + (length / 1024) + " KB.");
         }
         xstreamLog.trace(xml);
-        ObjectSerializationListener.Context context = objectSerializationListener.getContext();
+        ObjectSerializationListener.Context context = ObjectSerializationListener.getContext();
         checkSerializedObjects(context);
-        objectSerializationListener.reset();
+        ObjectSerializationListener.reset();
     }
 
     /**

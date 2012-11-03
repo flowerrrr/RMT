@@ -26,7 +26,7 @@ public class GoogleGeocodingService implements IGeocodingService {
 
     private final static Logger log = LoggerFactory.getLogger(GoogleGeocodingService.class);
 
-    private String format = "json";
+    private final static String format = "json";
 
     @Value("${geocoding.default.region}")
     private String defaultRegion;

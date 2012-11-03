@@ -16,7 +16,7 @@ import java.util.Date;
 /**
  * @author flowerrrr
  */
-public class ArticlePanel extends RMTBasePanel {
+public class ArticlePanel extends RMTBasePanel<BArticle> {
 
     @SpringBean
     private IBlogManager blogManager;
