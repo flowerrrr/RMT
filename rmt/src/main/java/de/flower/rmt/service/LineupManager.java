@@ -96,6 +96,7 @@ public class LineupManager extends AbstractService implements ILineupManager {
     }
 
     @VisibleForTesting
+    @Override
     public void save(final LineupItem item) {
         validate(item);
         lineupItemRepo.save(item);

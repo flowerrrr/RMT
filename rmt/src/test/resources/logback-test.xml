@@ -20,12 +20,12 @@
     </appender>
 
     <logger name="org.hibernate.cfg" level="WARN"/>
-    <logger name="org.hibernate.SQL" level="DEBUG"/>
+    <logger name="org.hibernate.SQL" level="INFO"/>
     <!-- set to TRACE to see sql parameter values -->
-    <logger name="org.hibernate.type" level="DEBUG"/>
-    <logger name="de.flower.rmt.model.db.type" level="DEBUG" />
+    <logger name="org.hibernate.type" level="INFO"/>
+    <logger name="de.flower.rmt.model.db.type" level="INFO" />
     <logger name="org.hibernate" level="INFO"/>
-    <logger name="org.hibernate.tool.hbm2ddl" level="DEBUG" />
+    <logger name="org.hibernate.tool.hbm2ddl" level="INFO" />
     <!--
     <logger name="org.springframework" level="DEBUG" />
     <logger name="org.springframework.aop" level="DEBUG" />
@@ -56,7 +56,7 @@
         <appender-ref ref="FILE" />
     </logger>
 
-    <logger name="org.wicketstuff" level="DEBUG" />
+    <logger name="org.wicketstuff" level="INFO" />
 
     <root level="INFO">
         <appender-ref ref="STDOUT"/>

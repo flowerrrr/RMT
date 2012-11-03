@@ -1,5 +1,6 @@
 package de.flower.rmt.service;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.mysema.query.types.Path;
 import de.flower.rmt.model.db.entity.Lineup;
 import de.flower.rmt.model.db.entity.LineupItem;
@@ -26,4 +27,8 @@ public interface ILineupManager {
     void delete(Long lineupId);
 
     void publishLineup(Event event);
+
+    @VisibleForTesting
+    @Deprecated
+    void save(LineupItem item);
 }

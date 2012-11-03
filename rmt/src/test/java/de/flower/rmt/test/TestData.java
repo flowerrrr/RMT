@@ -41,7 +41,6 @@ import de.flower.rmt.service.ITeamManager;
 import de.flower.rmt.service.IUniformManager;
 import de.flower.rmt.service.IUserManager;
 import de.flower.rmt.service.IVenueManager;
-import de.flower.rmt.service.LineupManager;
 import org.apache.commons.lang.math.RandomUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.Validate;
@@ -375,7 +374,7 @@ public class TestData {
             item.setTop(RandomUtils.nextInt(500), 500);
             item.setLeft(RandomUtils.nextInt(400), 400);
             lineup.getItems().add(item);
-            ((LineupManager)lineupManager).save(item);
+            lineupManager.save(item);
         }
         return lineup;
     }
