@@ -30,14 +30,14 @@ public abstract class AbstractRMTWicketIntegrationTests extends AbstractRMTInteg
     }
 
     @BeforeMethod
-    public void init() {
+    public final void init() {
         if (wicketTester == null) {
             createTester(applicationContext);
         }
     }
 
     @AfterMethod
-    public void cleanup() {
+    public final void cleanup() {
         Mockito.validateMockitoUsage();
     }
 

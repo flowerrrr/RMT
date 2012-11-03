@@ -11,8 +11,6 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.util.tester.FormTester;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-
 import static org.mockito.Mockito.*;
 
 /**
@@ -23,6 +21,11 @@ public class PlayerTeamsPanelTest extends AbstractRMTWicketMockitoTests {
     @SpringBean
     private IPlayerManager playerManager;
 
+    @Override
+    protected boolean isMockitoVerboseLogging() {
+        return true;
+    }
+
     @Test
     public void testRender() {
         final User user = testData.newUserWithTeams();
@@ -31,6 +34,9 @@ public class PlayerTeamsPanelTest extends AbstractRMTWicketMockitoTests {
         when(playerManager.sortByTeam(user.getPlayers())).thenReturn(user.getPlayers());
         wicketTester.startComponentInPage(new PlayerTeamsPanel("panel", Model.of(user)));
         wicketTester.dumpComponentWithPage();
+
+        verify(playerManager, times(1)).findAllByUser(user, Player_.team);
+
         wicketTester.assertVisible("list");
         wicketTester.assertInvisible("noTeam");
 
@@ -47,9 +53,11 @@ public class PlayerTeamsPanelTest extends AbstractRMTWicketMockitoTests {
     @Test
     public void testNoTeam() {
         final User user = testData.newUser();
-        when(playerManager.findAllByUser(user)).thenReturn(new ArrayList());
         wicketTester.startComponentInPage(new PlayerTeamsPanel("panel", Model.of(user)));
         wicketTester.dumpComponentWithPage();
+
+        verify(playerManager, never()).findAllByUser(user);
+
         wicketTester.assertVisible("noTeam");
         wicketTester.assertInvisible("list");
     }

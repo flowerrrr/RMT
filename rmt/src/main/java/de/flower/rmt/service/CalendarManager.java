@@ -24,7 +24,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Nullable;
 import javax.persistence.metamodel.Attribute;
 import java.util.Collection;
 import java.util.List;
@@ -130,7 +129,7 @@ public class CalendarManager extends AbstractService implements ICalendarManager
     private List<CalEvent> transform(List<?> items) {
         List<CalEvent> events = Lists.transform(items, new Function<Object, CalEvent>() {
             @Override
-            public CalEvent apply(@Nullable final Object item) {
+            public CalEvent apply(final Object item) {
                 if (item instanceof CalItem) {
                     return toCalEvent((CalItem) item);
                 } else if (item instanceof Event) {

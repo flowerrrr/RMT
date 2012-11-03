@@ -8,6 +8,7 @@ import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.mockito.Mockito;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.mockito.Matchers.any;
@@ -24,6 +25,11 @@ public class LineupPanelTest extends AbstractRMTWicketMockitoTests {
     @Override
     protected boolean isMockitoVerboseLogging() {
         return true;
+    }
+
+    @BeforeMethod
+    public void setUp() {
+        // lineupManager = getBean(ILineupManager.class);
     }
 
     @Test

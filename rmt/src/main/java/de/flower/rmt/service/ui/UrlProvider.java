@@ -10,7 +10,7 @@ import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
 /**
- * Link provider used when WicketLinkProvider is not available (i.e. when called from service layer without an wicket request).
+ * Url provider used when WicketUrlProvider is not available (i.e. when called from service layer without an wicket request).
  *
  * @author flowerrrr
  */

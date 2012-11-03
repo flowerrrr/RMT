@@ -3,8 +3,6 @@ package de.flower.common.util;
 import com.google.common.base.Predicate;
 import org.testng.annotations.Test;
 
-import javax.annotation.Nullable;
-
 import static org.testng.Assert.*;
 
 /**
@@ -17,7 +15,7 @@ public class NameFinderTest {
         String base = "base";
         String name = NameFinder.delete(base, new Predicate<String>() {
             @Override
-            public boolean apply(@Nullable final String input) {
+            public boolean apply(final String input) {
                 return true;
             }
         });

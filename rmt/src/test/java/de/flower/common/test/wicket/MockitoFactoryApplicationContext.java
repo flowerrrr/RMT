@@ -1,6 +1,7 @@
 package de.flower.common.test.wicket;
 
 import de.flower.common.util.Check;
+import de.flower.common.util.ReflectionUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.wicket.spring.test.ApplicationContextMock;
 import org.slf4j.Logger;
@@ -46,7 +47,7 @@ public class MockitoFactoryApplicationContext extends ApplicationContextMock {
 
     @Override
     public <T> T getBean(final String name, final Class<T> requiredType) throws BeansException {
-        T bean = null;
+        T bean;
         try {
             bean = super.getBean(name, requiredType);
         } catch (BeansException e) {
@@ -101,5 +102,9 @@ public class MockitoFactoryApplicationContext extends ApplicationContextMock {
 
     public void setVerboseLogging(final boolean verboseLogging) {
         this.verboseLogging = verboseLogging;
+    }
+
+    public Map<String, Object> getBeans() {
+        return (Map<String, Object>) ReflectionUtil.getField(this, "beans");
     }
 }

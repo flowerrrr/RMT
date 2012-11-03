@@ -198,7 +198,7 @@ public class AbstractRMTIntegrationTests extends AbstractTestNGSpringContextTest
     public static final String testUserName = "manager-rmt@mailinator.com";
 
     @BeforeClass
-    protected void initClass() {
+    protected final void initClass() {
         listAppender = LogBackListAppender.configureListAppender();
         // use db-unit to refresh the the test data
         Map<String, Object> properties = new HashMap();
@@ -208,7 +208,7 @@ public class AbstractRMTIntegrationTests extends AbstractTestNGSpringContextTest
     }
 
     @BeforeMethod
-    protected void initTest() throws Exception {
+    protected final void initTest() throws Exception {
         try {
             // reset database
             resetTestdata();
@@ -223,7 +223,7 @@ public class AbstractRMTIntegrationTests extends AbstractTestNGSpringContextTest
     }
 
     @AfterMethod
-    protected void afterTest() throws Exception {
+    protected final void afterTest() throws Exception {
         try {
             // dump database to disk
             // full database export (cannot export users table: always a dbunit error wiht this table.)

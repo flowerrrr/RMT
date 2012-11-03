@@ -12,7 +12,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
  */
 public class BlogUpdateMessageRenderer extends InjectorAwareObject implements IMessageRenderer<BlogUpdateMessage> {
 
-    @SpringBean(name = "wicketLinkProvider")
+    @SpringBean(name = "wicketUrlProvider")
     protected IUrlProvider urlProvider;
 
     @Override

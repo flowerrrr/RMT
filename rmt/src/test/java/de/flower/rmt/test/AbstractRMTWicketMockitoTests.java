@@ -1,13 +1,13 @@
 package de.flower.rmt.test;
 
 import de.flower.common.test.wicket.AbstractWicketMockitoTests;
+import de.flower.common.test.wicket.MockitoFactoryApplicationContext;
 import de.flower.common.test.wicket.WicketTester;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.security.ISecurityService;
 import de.flower.rmt.security.UserDetailsBean;
 import de.flower.rmt.ui.app.TestRMTApplication;
 import org.apache.wicket.protocol.http.WebApplication;
-import org.springframework.context.ApplicationContext;
 import org.testng.annotations.BeforeMethod;
 
 import static org.mockito.Mockito.when;
@@ -23,14 +23,14 @@ public abstract class AbstractRMTWicketMockitoTests extends AbstractWicketMockit
     protected TestData testData = new TestData();
 
     @Override
-    protected WicketTester createWicketTester(final ApplicationContext mockCtx) {
+    protected WicketTester createWicketTester(final MockitoFactoryApplicationContext mockCtx) {
         WebApplication webApp = new TestRMTApplication(mockCtx);
         WicketTester wicketTester = new WicketTester(webApp);
         return wicketTester;
     }
 
     @BeforeMethod
-    public void initSecurityService() {
+    public final void initSecurityService() {
         ISecurityService securityService = mockCtx.getMock(ISecurityService.class);
         User user = testData.newUser();
         when(securityService.getUser()).thenReturn(user);

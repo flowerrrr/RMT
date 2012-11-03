@@ -16,7 +16,7 @@ import static org.testng.Assert.*;
 public class WicketUrlProviderTest extends AbstractRMTWicketIntegrationTests {
 
     @Autowired
-    private WicketUrlProvider wicketLinkProvider;
+    private WicketUrlProvider wicketUrlProvider;
 
     @Autowired
     private UrlProvider urlProvider;
@@ -27,7 +27,7 @@ public class WicketUrlProviderTest extends AbstractRMTWicketIntegrationTests {
     @Test
     public void testDeepLink() {
         Long eventId = 1L;
-        CharSequence url = wicketLinkProvider.deepLinkEvent(eventId);
+        CharSequence url = wicketUrlProvider.deepLinkEvent(eventId);
         assertEquals(url, "http://localhost/context/servlet/event/1");
         BookmarkablePageLink link =  new BookmarkablePageLink("id", EventPage.class, EventPage.getPageParams(eventId));
         url = (CharSequence) ReflectionTestUtils.invokeGetterMethod(link, "getURL");
@@ -37,7 +37,7 @@ public class WicketUrlProviderTest extends AbstractRMTWicketIntegrationTests {
         assertEquals(url, "http://localhost/context/servlet/event/1");
 
         Long articleId = 1L;
-        url = wicketLinkProvider.deepLinkBlog(articleId);
+        url = wicketUrlProvider.deepLinkBlog(articleId);
         assertEquals(url, "http://localhost/context/servlet/blog/1");
     }
 }

@@ -18,7 +18,7 @@ public class AnonymousNavigationPanel extends BasePanel {
     public AnonymousNavigationPanel() {
         super("navigationPanel");
 
-        add(new BookmarkablePageLink("aboutLink", AboutPage.class));
+        add(new BookmarkablePageLink("about", AboutPage.class));
 
         add(createMenuItem(HOME, Links.contextRoot("home"), null));
     }

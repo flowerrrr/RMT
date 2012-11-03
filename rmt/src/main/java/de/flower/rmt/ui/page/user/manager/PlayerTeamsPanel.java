@@ -104,7 +104,8 @@ public class PlayerTeamsPanel extends BasePanel<User> {
                 if (model.getObject().isNew()) {
                     return Collections.emptyList();
                 } else {
-                    return playerManager.sortByTeam(playerManager.findAllByUser(model.getObject(), Player_.team));
+                    List<Player> allByUser = playerManager.findAllByUser(model.getObject(), Player_.team);
+                    return playerManager.sortByTeam(allByUser);
                 }
             }
         };
