@@ -240,6 +240,14 @@ public class EventManager extends AbstractService implements IEventManager {
         activityManager.onCreateOrUpdateEvent(event, EventUpdateMessage.Type.CANCELED);
     }
 
+    @Override
+    public Event copyOf(final Event event) {
+        Event e = loadById(event.getId(), Event_.team, Event_.venue, Event_.opponent);
+        Event newEvent = newInstance(e.getEventType());
+        newEvent.copyFrom(e);
+        return newEvent;
+    }
+
     private void sendEventCanceledMessage(final Event event) {
         List<Invitation> invitations = invitationManager.findAllByEventAndStatus(event, RSVPStatus.ACCEPTED, Invitation_.user);
         invitations.addAll(invitationManager.findAllByEventAndStatus(event, RSVPStatus.UNSURE, Invitation_.user));

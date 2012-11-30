@@ -52,7 +52,8 @@ public class EventPage extends ManagerBasePage {
     }
 
     public EventPage(IModel<Event> model) {
-        super(model);
+        // super(model); do not call super(model). model is set in init-method. overriding an already set model would
+        // lead to detach of the model.
         init(model);
     }
 

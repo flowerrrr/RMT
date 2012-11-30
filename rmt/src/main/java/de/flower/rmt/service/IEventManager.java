@@ -75,4 +75,6 @@ public interface IEventManager {
     boolean isEventClosed(Event event);
 
     void cancelEvent(Long id);
+
+    Event copyOf(Event event);
 }

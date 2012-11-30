@@ -6,7 +6,11 @@ import de.flower.rmt.model.db.type.Surface;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalTime;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
@@ -49,6 +53,15 @@ public abstract class AbstractSoccerEvent extends Event {
 
     protected AbstractSoccerEvent() {
         super();
+    }
+
+    @Override
+    public void copyFrom(Event event) {
+        super.copyFrom(event);
+        AbstractSoccerEvent asEvent = (AbstractSoccerEvent) event;
+        setKickoff(asEvent.getKickoff());
+        setUniform(asEvent.getUniform());
+        setSurfaceList(asEvent.getSurfaceList());
     }
 
     public LocalTime getKickoff() {

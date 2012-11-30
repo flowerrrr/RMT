@@ -17,5 +17,6 @@ public class EventEditSecondaryPanel extends BasePanel<Event> {
         // treat subpanels as top level secondary panels to have spacer between them
         setRenderBodyOnly(true);
         add(new CancelEventPanel(model));
+        add(new CopyEventPanel(model));
     }
 }

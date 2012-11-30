@@ -143,6 +143,16 @@ public class Event extends AbstractClubRelatedEntity {
         this.team = team;
     }
 
+    public void copyFrom(final Event event) {
+        setTeam(event.getTeam());
+        setDateTime(event.getDateTime());
+        setDateTimeEnd(event.getDateTimeEnd());
+        setVenue(event.getVenue());
+        _setOpponent(_getOpponent());
+        setSummary(event.getSummary());
+        setComment(event.getComment());
+    }
+
     public Team getTeam() {
         return team;
     }
@@ -360,5 +370,6 @@ public class Event extends AbstractClubRelatedEntity {
                 ", summary='" + summary + '\'' +
                 '}';
     }
+
 
 }

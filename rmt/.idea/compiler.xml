@@ -4,7 +4,7 @@
     <option name="ajcPath" value="C:\Users\oblume\.gradle\cache\org.aspectj\aspectjtools\jars\aspectjtools-1.6.11.jar" />
   </component>
   <component name="CompilerConfiguration">
-    <option name="DEFAULT_COMPILER" value="compAPI" />
+    <option name="DEFAULT_COMPILER" value="Javac" />
     <resourceExtensions />
     <wildcardResourcePatterns>
       <entry name="?*.properties" />
@@ -20,8 +20,16 @@
       <entry name="?*.js" />
       <entry name="?*.vm" />
     </wildcardResourcePatterns>
-    <annotationProcessing enabled="true" useClasspath="true">
-      <processModule name="rmt" generatedDirName="src/generated/jpa" />
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="false">
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Profile1" enabled="true">
+        <sourceOutputDir name="src/generated/jpa" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="rmt" />
+      </profile>
     </annotationProcessing>
   </component>
 </project>
