@@ -9,45 +9,28 @@
 @borderColor:       #DDDDDD;
 @widthContent:      560px;
 
-/
-/
-Border Radius
-.
-
-border-radius
-(
-@radius: 5px) {
+// Border Radius
+.border-radius(@radius: 5px) {
   -webkit-border-radius: @radius;
      -moz-border-radius: @radius;
           border-radius: @radius;
 }
 
-/
-/
-Drop shadows
-.
-
-box-shadow
-(
-@shadow: 0 1px 3px rgba(0,0,0,.25)) {
+// Drop shadows
+.box-shadow(@shadow: 0 1px 3px rgba(0,0,0,.25)) {
   -webkit-box-shadow: @shadow;
      -moz-box-shadow: @shadow;
           box-shadow: @shadow;
 }
 
-/
-/
-Opacity
-.
-
-opacity
-(
-@opacity: 100) {
+// Opacity
+.opacity(@opacity: 100) {
 	filter: e(%("alpha(opacity=%d)", @opacity));
 	-khtml-opacity: @opacity / 100;
 	  -moz-opacity: @opacity / 100;
 	       opacity: @opacity / 100;
 }
+
 
 /*************************************************************************
     overriding bootstrap settings
@@ -57,17 +40,13 @@ opacity
     width: 820px;
 }
 
-/
-/
-navbar text very dark
+// navbar text very dark
 .navbar .nav > li > a {
     color: #bbb;
 }
-
 .navbar .caret {
     opacity: 0.6;
 }
-
 .navbar .dropdown-menu li > h6 {
     padding-left: 15px;
 }
@@ -81,22 +60,15 @@ html, body {
 }
 
 html {
-
-/
-/
-always show vertical scrollbar to avoid horizontal shifting of centered content when switching between a long and a short page.
-    overflow-y: scroll
-
-;
-    }
+    // always show vertical scrollbar to avoid horizontal shifting of centered content when switching between a long and a short page.
+    overflow-y: scroll;
+}
 
 body {
     padding-top: 40px; /* to adjust for usage of fixed topBar */
 }
 
-/
-/
-ul are unstyled by default
+// ul are unstyled by default
 ul {
     list-style: none;
     margin-left: 0;
@@ -114,61 +86,24 @@ li {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
     margin: 0 -20px;
     padding: 20px;
-    padding-right: 18px;
-
-/
-/
-20
-px default. avoids layout bug when zooming out of page in firefox.
-
-    }
-
-.page-header {
-
-/
-/
-background-color: #F5F5F5
-
-;
-margin:
-
--
-20
-px
-
--
-20
-px
-
-20
-px
-
-;
-padding:
-
-20
-px
-
-20
-px
-
-10
-px
-
-;
-
-h1 {
-    display: inline;
-    margin-right: 10px;
-
-small {
-    font-size: 16px;
-    text-transform: uppercase;
+    padding-right: 18px; // 20px default. avoids layout bug when zooming out of page in firefox.
 }
 
-    }
+.page-header {
+    // background-color: #F5F5F5;
+    margin: -20px -20px 20px;
+    padding: 20px 20px 10px;
 
+    h1 {
+        display: inline;
+        margin-right: 10px;
+
+        small {
+            font-size: 16px;
+            text-transform: uppercase;
+        }
     }
+}
 
 .page-footer {
     text-align: center;
@@ -179,36 +114,32 @@ small {
     width: @widthContent;
     /* let content always have a minimum width. looks nicer on empty pages. */
     min-height: 500px;
-    border-right: 1px solid #CCCCCC;
+    border-right:  1px solid #CCCCCC;
     padding-right: 19px;
 }
+
 
 .secondary h4, .main h4 {
     line-height: normal;
     margin-bottom: 10px;
 }
 
-/
-/
-have separate rule for IE8
+// have separate rule for IE8
 .secondary > div {
     border-bottom: 1px solid #CCCCCC;
     margin-bottom: 20px;
     padding-bottom: 20px;
 }
-
 .secondary > div:last-child {
     border-bottom: 0px;
 }
 
 .secondary .btn-wide {
-    width: 198px;
-/ / 220 - padding - border
+    width: 198px; // 220 - padding - border
 }
 
 .secondary button.btn-wide {
-    width: 218px;
-/ / 220 - border
+    width: 218px; // 220 - border
 }
 
 .secondary .btn-group .dropdown-toggle {
@@ -217,23 +148,21 @@ have separate rule for IE8
 }
 
 .toggleButton {
-    width: 198px;
-/ / 220 - padding - border
+    width: 198px; // 220 - padding - border
 }
 
+
 .secondary form {
-    margin-bottom: 0px;
-/ / form-margin would add to bottom-padding of divs
+    margin-bottom: 0px; // form-margin would add to bottom-padding of divs
 }
 
 .ajaxEditableMultiLineLabel {
+    .enabled {
+        cursor: pointer;
 
-.enabled {
-    cursor: pointer;
-
-}
 
     }
+}
 
 /*************************************************************************
     reset wicket styling of modal window and use twitter styles instead
@@ -241,39 +170,32 @@ have separate rule for IE8
 .w_top_1, .w_bottom_1, .w_caption {
     display: none;
 }
-
 div.wicket-modal {
-
-div.w_right_1, div.w_content_1 {
-    margin-left: 0px;
-    margin-right: 0px;
-}
-
-div.w_content_2 {
-    padding-top: 0px;
-}
-
-div.w_content_3 {
-    border: 0px;
-}
-
+    div.w_right_1, div.w_content_1 {
+        margin-left: 0px;
+        margin-right: 0px;
     }
+    div.w_content_2 {
+        padding-top: 0px;
+    }
+    div.w_content_3 {
+        border: 0px;
+    }
+}
 
 /*************************************************************************
     alternate layout without secondary panel
 **************************************************************************/
 .no-secondary {
-
-.main {
-    width: 820px;
-    border-right: 0px;
-}
-
-.secondary {
-    display: none;
-}
-
+    .main {
+        width: 820px;
+        border-right: 0px;
     }
+    .secondary {
+        display: none;
+    }
+}
+
 
 /*************************************************************************
     misc
@@ -293,16 +215,12 @@ div.w_content_3 {
     text-align: right;
 }
 
-/
-/
-get rid of outline
+// get rid of outline
 *, a, a:focus, .btn:focus {
     outline: none;
 }
 
-/
-/
-for links that should not underline when hovering
+// for links that should not underline when hovering
 a.no-hover:hover {
     text-decoration: none;
 }
@@ -318,19 +236,22 @@ a.no-hover:hover {
   links
 **************************************************************************/
 a.btn-link:after {
-/ / right arrow content : '\00A0 \2192';
-/ / float : right;
-/ / causes issues in chrome
+    // right arrow
+    content: '\00A0 \2192';
+    // float: right;  // causes issues in chrome
 }
 
+
 a.btn-link-external:after {
-/ / right double arrow content : '\00A0 \21D2';
-/ / float : right;
+    // right double arrow
+    content: '\00A0 \21D2';
+    // float: right;
 }
 
 .btn-link-external, .btn-link {
     color: @grayDark;
 }
+
 
 /*************************************************************************
     ajax loading
@@ -344,6 +265,7 @@ a.btn-link-external:after {
     height: 16px;
     width: 16px;
 }
+
 
 /*************************************************************************
    form field tweaking
@@ -369,54 +291,33 @@ select {
 }
 
 select.input-small {
-    width: 100px;
-/ / select box not same size as text input
+    width: 100px; // select box not same size as text input
 }
 
-/
-/
-use default bootstrap settings for input-fields
-
-(
-datepicker is readonly but should look like normal input
-
-)
+// use default bootstrap settings for input-fields (datepicker is readonly but should look like normal input)
 input[readonly].reset {
     background-color: #fff;
     border-color: #ccc;
     cursor: auto;
-
-&:focus {
-    outline: 0;
-    border-color: rgba(82, 168, 236, .8);
-@shadow : inset 0 1 px 3 px rgba ( 0, 0, 0, .1 ), 0 0 8 px rgba ( 82, 168, 236, .6 );
-
-.
-
-box-shadow
-(
-@shadow);
+    &:focus {
+        outline: 0;
+        border-color: rgba(82,168,236,.8);
+        @shadow: inset 0 1px 3px rgba(0,0,0,.1), 0 0 8px rgba(82,168,236,.6);
+        .box-shadow(@shadow);
     }
+}
 
-    }
-
-/
-/
-give reset class the correct border in error cases
+// give reset class the correct border in error cases
 .error input[readonly].reset {
     border-color: #B94A48;
 }
 
-/
-/
-white background for action panels
+// white background for action panels
 .form-actions {
-    background-color: #FFFFFF;
+	background-color: #FFFFFF;
 }
 
-/
-/
-custom-made div look-alike a twitter formfield
+// custom-made div look-alike a twitter formfield
 .listarea {
     border: 1px solid #CCCCCC;
     border-radius: 3px 3px 3px 3px;
@@ -428,29 +329,23 @@ custom-made div look-alike a twitter formfield
     display: inline-block;
     margin-bottom: 0;
     overflow: auto;
-/ / resize : vertical;
+    // resize: vertical;
     min-height: 38px;
     max-height: 210px;
-
-li {
-    list-style: none;
-    color: #555555;
-
-.close {
-    display: none;
-}
-
+    li {
+        list-style: none;
+        color: #555555;
+        .close {
+            display: none;
+        }
     }
-
-li:hover {
-    background-color: #f5f5f5;
-}
-
-small {
-    font-size: 80%;
-}
-
+    li:hover {
+        background-color: #f5f5f5;
     }
+    small {
+        font-size: 80%;
+    }
+}
 
 .listarea:focus {
     border-color: rgba(82, 168, 236, 0.8);
@@ -463,9 +358,7 @@ small {
     border-color: #b94a48;
 }
 
-/
-/
-red border for ckEditor
+// red border for ckEditor
 .control-group.error span.cke_skin_kama {
     border-color: #b94a48;
 }
@@ -474,6 +367,7 @@ option[selected] {
     font-weight: bold;
 }
 
+
 /*************************************************************************
    form styling
 **************************************************************************/
@@ -481,100 +375,80 @@ form .alert {
     display: inline-block; /* let div shrink to size of message. */
     margin-bottom: 0px;
 }
-
-/
-/
-for displaying validation messages in a div and not a span like in twitter
+// for displaying validation messages in a div and not a span like in twitter
 form.form-horizontal .field {
     float: left;
     margin-right: 10px;
 }
-
 form.form-vertical {
-
-label {
-    padding-left: 6px;
-}
-
-.form-actions {
-    padding-left: 0px;
-}
-
-.input-xxlarge {
-    width: 98%;
-}
-
-.error input {
-    margin-bottom: 0px;
-}
-
+    label {
+        padding-left: 6px;
     }
+    .form-actions {
+        padding-left: 0px;
+    }
+    .input-xxlarge {
+        width: 98%;
+    }
+    .error input {
+        margin-bottom: 0px;
+    }
+}
 
 form.form-horizontal .help-inline {
     padding-top: 5px;
 }
-
 .error input, .error textarea {
     background: url(../img/error.png) no-repeat scroll 98% 7px;
 }
-
 .valid input, .valid textarea {
     background: url(../img/valid.png) no-repeat scroll 98% 7px;
 }
 
-/
-/
-forms in secondary panel should not use margin. required for feedbackpanel
+
+// forms in secondary panel should not use margin. required for feedbackpanel
 .secondary form .input {
     margin-left: 0px;
 }
+
 
 /*************************************************************************
     form feedback
 **************************************************************************/
 .field-feedback {
-
-.feedback {
-    margin-bottom: 5px;
-}
-
-.feedbackPanel {
-    display: inline;
-    margin: 0px;
-}
-
-.feedbackPanel li {
-    display: inline;
-}
-
+    .feedback{
+        margin-bottom: 5px;
     }
+    .feedbackPanel {
+        display: inline;
+        margin: 0px;
+    }
+    .feedbackPanel li {
+        display: inline;
+    }
+}
 
 .form-feedback {
-
-ul {
-    list-style: disc;
-    margin-left: 25px;
-/ / margin-bottom : 0 px;
+    ul {
+        list-style: disc;
+        margin-left: 25px;
+        // margin-bottom: 0px;
+    }
 }
 
-    }
-
-/
-/
-non-form feedback message
+// non-form feedback message
 
 
 /*************************************************************************
    readonly view of form-data
 **************************************************************************/
 div.form-horizontal {
-
-.control-label {
-    padding-top: 0px;
-/ / override twitter default
+    .control-label {
+        padding-top: 0px; // override twitter default
+    }
 }
 
-    }
+
 
 /*************************************************************************
    tabbed panel
@@ -582,36 +456,28 @@ div.form-horizontal {
 **************************************************************************/
 .tab-row {
     clear: both;
-
-ul {
-
-/
-/
-todo: add .tabs to tabs-markup .tabs
-
-;
+    ul {
+        // todo: add .tabs to tabs-markup .tabs;
     }
-
-.selected > a, .selected > a:hover {
-    -moz-border-bottom-colors: none;
-    -moz-border-image: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    background-color: #FFFFFF;
-    border-color: @borderColor @borderColor transparent;
-    border-style: solid;
-    border-width: 1px;
-    color: #808080;
-    cursor: default;
+    .selected > a, .selected > a:hover {
+        -moz-border-bottom-colors: none;
+        -moz-border-image: none;
+        -moz-border-left-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-top-colors: none;
+        background-color: #FFFFFF;
+        border-color: @borderColor @borderColor transparent;
+        border-style: solid;
+        border-width: 1px;
+        color: #808080;
+        cursor: default;
+    }
 }
-
-    }
 
 .tab-panel {
-    padding-left: 2px;
-/ / looks better when table inside
+    padding-left: 2px; // looks better when table inside
 }
+
 
 /*************************************************************************
     navbar
@@ -621,8 +487,7 @@ todo: add .tabs to tabs-markup .tabs
 }
 
 .navbar .dropdown-menu {
-    margin-top: 2px;
-/ / increase to have little gap above dropdown menu and navbar
+    margin-top: 2px;  // increase to have little gap above dropdown menu and navbar
 }
 
 .navbar .brand {
@@ -635,9 +500,7 @@ todo: add .tabs to tabs-markup .tabs
     display: block;
 }
 
-/
-/
-position beta span below brand
+// position beta span below brand
 
 .beta {
     display: block;
@@ -668,48 +531,29 @@ position beta span below brand
 .welcome-message {
     overflow: auto;
 
-div:first-child {
-    float: left;
+    div:first-child {
+        float: left;
+    }
+    div:last-child {
+        float: right;
+
+		a {
+			float: left;
+		}
+    }
+
+    .close {
+        margin-left: -10px;  // beyond my understanding of css.
+        line-height: 28px;
+        top: -1px;
+    }
 }
 
-div:last-child {
-    float: right;
-
-a {
-    float: left;
-}
-
-    }
-
-.close {
-    margin-left: -10px;
-
-/
-/
-beyond my understanding of css.
-        line-height:
-
-28
-px
-
-;
-top:
-
--
-1
-px
-
-;
-    }
-
-    }
 
 /*************************************************************************
     icons and labels
 **************************************************************************/
-/
-/
-add some opacity to twitter icons
+// add some opacity to twitter icons
 [class^="icon-"], [class*=" icon-"] {
     opacity: 0.6;
 }
@@ -717,209 +561,96 @@ add some opacity to twitter icons
 .xicon-abstract {
     padding: 1px 8px;
     border: 1px solid #ccc;
-
-.
-
-border-radius
-(
-9
-px
-
-)
-;
-background-position: center center
-
-;
-background-repeat: no-repeat
-
-;
-    }
+    .border-radius(9px);
+    background-position: center center;
+    background-repeat: no-repeat;
+}
 
 .xicon-checked, .xicon-unsure {
-
-.xicon-abstract
-
-;
-background-image:
-
-url
-(
-../img/checked.png
-)
-;
-    }
+    .xicon-abstract;
+    background-image: url(../img/checked.png);
+}
 
 .xicon-unsure {
-
-.xicon-abstract
-
-;
-background-image:
-
-url
-(
-../img/double-tilde.png
-)
-;
-    }
+    .xicon-abstract;
+    background-image: url(../img/double-tilde.png);
+}
 
 .xicon-accepted {
-
-.xicon-abstract
-
-;
-background-image:
-
-url
-(
-../img/valid.png
-)
-;
-    }
+    .xicon-abstract;
+    background-image: url(../img/valid.png);
+}
 
 .xicon-declined {
-
-.xicon-abstract
-
-;
-background-image:
-
-url
-(
-../img/error.png
-)
-;
-    }
+    .xicon-abstract;
+    background-image: url(../img/error.png);
+}
 
 .xicon-noresponse {
-
-.xicon-abstract
-
-;
-background-image:
-
-url
-(
-../img/question.png
-)
-;
-    }
+    .xicon-abstract;
+    background-image: url(../img/question.png);
+}
 
 .xicon-info {
-
-.xicon-abstract
-
-;
-/
-/
-todo add class to html markup .label
-
-;
-font-weight:
-
-900
-;
-/
-/
-as thick as possible
-    padding:
-
-1
-px
-
-6
-px
-
-0
-px
-
-6
-px
-
-;
-/
-/
-line-height:
-
-18
-px
-
-;
-&:before {
-    color: @grayDark;
-    content: '!';
-    font-size: 13px;
-}
-
+    .xicon-abstract;
+    // todo add class to html markup .label;
+    font-weight: 900; // as thick as possible
+    padding: 1px 6px 0px 6px;
+    // line-height: 18px;
+    &:before {
+        color: @grayDark;
+        content: '!';
+        font-size: 13px;
     }
+}
 
 td .drop-down-menu-panel {
-/ / give space to preceding info icon margin-left : 5 px;
+    // give space to preceding info icon
+    margin-left: 5px;
     float: right;
-
-ul {
-    margin-top: -1px;
-/ / to vertically align with info-icon
-}
-
+    ul {
+        margin-top: -1px; // to vertically align with info-icon
     }
+}
 
 /*************************************************************************
     tooltips
 **************************************************************************/
-/
-/
-custom tailor twipsy
+// custom tailor twipsy
 .tooltip {
-
-/
-/
-make it fully opaque
+    // make it fully opaque
     &.fade.in {
-
-.
-
-opacity
-(
-100
-)
-;
+        .opacity(100);
     }
-
-    }
+}
 
 /*************************************************************************
     football icon with dropdown menu on white background
 **************************************************************************/
 ul.dropdown {
-    text-align: left;
-
-/
-/
-in case parent container defines different alignment
+    text-align: left; // in case parent container defines different alignment
 
     .dropdown-menu {
-    right: 0px;
-/ / make it have top rounded corners border-radius : 6 px;
-    border-width: 1px;
-    top: 25px;
-    min-width: 120px;
-}
-
-.dropdown-toggle {
-    padding-right: 5px;
-}
-
-/
-/
-disable default hightlighted background when menu is open
-    .dropdown.open .dropdown-toggle {
-/ / background : none repeat scroll 0 0 rgba ( 0, 0, 0, 0.3 );
-    background: none;
-    color: #FFFFFF;
-}
-
+        right: 0px;
+        // make it have top rounded corners
+        border-radius: 6px;
+        border-width: 1px;
+        top: 25px;
+        min-width: 120px;
     }
+
+    .dropdown-toggle {
+        padding-right: 5px;
+    }
+
+    // disable default hightlighted background when menu is open
+    .dropdown.open .dropdown-toggle {
+        // background: none repeat scroll 0 0 rgba(0, 0, 0, 0.3);
+        background: none;
+        color: #FFFFFF;
+    }
+
+}
 
 /*************************************************************************
     table styling
@@ -933,7 +664,7 @@ disable default hightlighted background when menu is open
 }
 
 thead, .thead {
-    border-bottom: 2px solid #CCCCCC;
+    border-bottom:  2px solid #CCCCCC;
 }
 
 table th, .table thead th, .table .th {
@@ -944,49 +675,32 @@ table th, .table thead th, .table .th {
 }
 
 .table tr.thead:hover .th {
-    background-color: #FFFFFF;
-/ / disable for special invitation table
+    background-color: #FFFFFF; // disable for special invitation table
 }
 
 .table tbody td {
     border-bottom: 1px solid #CCCCCC;
-    word-wrap: break-word;
-/ / to avoid long text overflowing table cells
+    word-wrap: break-word; // to avoid long text overflowing table cells
 }
 
 .table .paging, .paging {
     text-align: right;
-
-a {
-    color: @grayDark;
-}
-
->
-span {
-    color: @grayLight;
-
-/
-/
-disabled link.
-
+    a {
+        color: @grayDark;
     }
-
-a:hover {
-    text-decoration: none;
-}
-
->
-* {
-    padding: 0px 5px;
-/ / more gaps between controls
-}
-
-.goto {
-    padding: 0px 2px;
-/ / less between pages
-}
-
+    > span {
+        color: @grayLight; // disabled link.
     }
+    a:hover {
+        text-decoration: none;
+    }
+    > * {
+        padding: 0px 5px; // more gaps between controls
+    }
+    .goto {
+        padding: 0px 2px; // less between pages
+    }
+}
 
 .show-on-hover {
     display: none;
@@ -1004,31 +718,26 @@ tr:hover .visible-on-hover, li:hover .visible-on-hover {
     visibility: visible;
 }
 
-/
-/
-when dropdown is open don
-
-'t hide dropdown toggle
+// when dropdown is open don't hide dropdown toggle
 .dropdown.open .visible-on-hover {
     visibility: visible;
 }
+
 
 /*************************************************************************
     Inline editing
 **************************************************************************/
 .inline-edit {
-
-select {
-    width: auto;
-    height: auto;
-    padding: 0px;
-}
-
-a:hover {
-    text-decoration: none;
-}
-
+    select {
+        width: auto;
+        height: auto;
+        padding: 0px;
     }
+    a:hover {
+        text-decoration: none;
+    }
+}
+
 
 /*************************************************************************
     login form
@@ -1039,12 +748,10 @@ a:hover {
     min-height: 700px;
     position: absolute;
     top: 10%;
-
-.modal {
-    position: absolute;
-}
-
+    .modal {
+        position: absolute;
     }
+}
 
 .modal-header {
     border-bottom: 1px solid @borderColor;
@@ -1061,13 +768,13 @@ a:hover {
 
 #loginForm .password-forgotten, .email-forgotten {
     display: inline-block;
-
-a {
-    font-size: 10px;
-    margin-left: 5px;
+    a {
+        font-size: 10px;
+        margin-left: 5px;
+    }
 }
 
-    }
+
 
 /*************************************************************************
     Event list
@@ -1077,35 +784,29 @@ td.rsvpstatus {
     width: 100px;
 }
 
-/
-/
-list of icons summarizing response status
+// list of icons summarizing response status
 .invitation-summary-panel {
     width: 165px;
 }
 
 .num-invitation {
     padding-left: 4px;
-
-&:not(:last-child) {
-    padding-right: 3px;
-    width: 15px;
-/ / both single and double digits should fit into display : inline-block;
-}
-
+    &:not(:last-child) {
+        padding-right: 3px;
+        width: 15px; // both single and double digits should fit into
+        display: inline-block;
     }
+}
 
 /*************************************************************************
     Event quick navigation
 **************************************************************************/
 .player-event-select-panel, .manager-event-select-panel {
-
-select {
-    margin-bottom: 0px;
-    width: @widthContent;
-}
-
+    select {
+        margin-bottom: 0px;
+        width: @widthContent;
     }
+}
 
 .manager-event-select-panel {
     margin-bottom: 20px;
@@ -1115,33 +816,26 @@ select {
     Event details list
 **************************************************************************/
 .details {
-
-h6 {
-    font-size: 10px;
-    line-height: normal;
-}
-
-li {
-    margin-bottom: 5px;
-}
-
-word-wrap: break-word
-
-;
+    h6 {
+        font-size: 10px;
+        line-height: normal;
     }
+
+    li {
+        margin-bottom: 5px;
+    }
+
+    word-wrap: break-word;
+}
 
 .event-details-panel {
-
-.details {
-
-li:first-child {
-    float: left;
-    width: 50%;
+    .details {
+        li:first-child {
+            float: left;
+            width: 50%;
+        }
+    }
 }
-
-    }
-
-    }
 
 /*************************************************************************
     Notification
@@ -1151,37 +845,30 @@ textarea.input-xlarge, input.input-xlarge, .recipient-list-panel {
 }
 
 .notification-panel {
-
-textarea {
-    height: 200px;
-    white-space: pre;
-    font-family: monospace;
-    font-size: 85%;
-}
-
-.select-template-panel {
-    margin-top: 20px;
-
-.dropdown-menu {
-    min-width: 120px;
-}
-
+    textarea {
+        height: 200px;
+        white-space: pre;
+        font-family: monospace;
+        font-size: 85%;
     }
-
+    .select-template-panel {
+        margin-top: 20px;
+        .dropdown-menu {
+            min-width: 120px;
+        }
     }
+}
 
 .recipient-list-panel {
-
-.listarea {
-    float: left;
-    margin-right: 10px;
-}
-
-.btn-group {
-/ / needed to have dropdown be positioned correctly float : left;
-}
-
+    .listarea {
+        float: left;
+        margin-right: 10px;
     }
+    .btn-group {
+        // needed to have dropdown be positioned correctly
+        float: left;
+    }
+}
 
 /*************************************************************************
     modal windows
@@ -1192,45 +879,39 @@ textarea {
     overflow-y: scroll;
     border: 1px solid @borderColor;
 
-li:hover {
-    background-color: #f5f5f5;
-}
-
-li.selected, li.selected:hover {
-    background-color: #0088cc;
-
-label {
-    color: #FFFFFF;
-}
-
+    li:hover {
+        background-color: #f5f5f5;
     }
 
+    li.selected, li.selected:hover {
+        background-color: #0088cc;
+        label {
+            color: #FFFFFF;
+        }
     }
+}
 
 .recipient-list, .recipient-list-header, .recipient-list-footer {
 
-li {
-    border-top: 1px solid #FFFFFF;
-    padding-left: 10px;
-    padding-right: 10px;
-}
+    li {
+        border-top: 1px solid #FFFFFF;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 
-label {
-    padding-top: 3px;
-    padding-bottom: 3px;
-    margin-bottom: 0px;
-
-/
-/
-override twitter bootstrap
+    label {
+        padding-top: 3px;
+        padding-bottom: 3px;
+        margin-bottom: 0px; // override twitter bootstrap
 
         input {
-/ / override twitter bootstrap display : inline;
+            // override twitter bootstrap
+            display: inline;
+        }
+    }
+
 }
 
-    }
-
-    }
 
 /*************************************************************************
     Invitation list
@@ -1242,131 +923,98 @@ override twitter bootstrap
 }
 
 .comments-panel {
-
-/
-/
-display top-border for
-
-2
-,
-3
-,
-... comment
+    // display top-border for 2,3,... comment
     li:nth-child(n+2) {
-    border-top: 1px solid @borderColor;
-    padding: 3px 0 1px 0px;
-
-textarea {
-    margin-top: 2px;
-/ / some gap to top-border;
-}
-
+        border-top: 1px solid @borderColor;
+        padding: 3px 0 1px 0px;
+        textarea {
+            margin-top: 2px; // some gap to top-border;
+        }
     }
-
-.author {
-    color: #BBBBBB;
-    font-size: 9px;
-    margin-left: 5px;
-/ / display : block;
-}
-
-.text {
-
-/
-/
-override default settings
+    .author {
+        color: #BBBBBB;
+        font-size: 9px;
+        margin-left: 5px;
+        // display: block;
+    }
+    .text {
+        // override default settings
         div {
-    cursor: pointer;
-    display: inline;
-}
-
-p {
-    margin-bottom: 0px;
-    display: inline;
-}
-
+            cursor: pointer;
+            display: inline;
+        }
+        p {
+            margin-bottom: 0px;
+            display: inline;
+        }
+    }
+    textarea {
+        // no border glowing
+        box-shadow: none;
+        border-color: #CCCCCC;
+        width: 100%;
     }
 
-textarea {
-/ / no border glowing box-shadow : none;
-    border-color: #CCCCCC;
-    width: 100%;
 }
-
-    }
-
 /*************************************************************************
     Lineup
 **************************************************************************/
 .lineup-invitee-list-panel {
-
-ul {
-    margin-top: 5px;
-    margin-bottom: 10px;
-}
-
-.draggable-container {
-    position: relative;
-    height: 21px;
-}
-
-.placeholder {
-    position: absolute;
-    color: #BBBBBB;
-    text-align: center;
-    width: 100px;
-    padding: 0px 4px;
-    border: 1px solid #F3F3F3;
-    border-radius: 3px 3px 3px 3px;
-}
-
-.draggable-player-panel {
-
-span {
-    width: 100%;
-/ / since no remove button is visible
-}
-
+    ul {
+        margin-top: 5px;
+        margin-bottom: 10px;
     }
-
+    .draggable-container {
+        position: relative;
+        height: 21px;
     }
+   .placeholder {
+        position: absolute;
+        color: #BBBBBB;
+        text-align: center;
+        width: 100px;
+        padding: 0px 4px;
+        border: 1px solid #F3F3F3;
+        border-radius: 3px 3px 3px 3px;
+    }
+    .draggable-player-panel {
+        span {
+            width: 100%; // since no remove button is visible
+        }
+    }
+}
 
 .lineup-grid {
     width: 540px;
     height: 262px;
     background-image: url('../img/football-field.jpg');
-
-.draggable-player-panel {
-    background-color: #F3F3F3;
-    border-color: #C9C9C9;
-}
-
-.no-lineup {
-    position: relative;
-    margin: 0px auto;
-    text-align: center;
-    top: 100px;
-    width: 200px;
-    background-color: white;
-    border: 1px solid #CCCCCC;
-    border-radius: 3px 3px 3px 3px;
-}
-
+    .draggable-player-panel {
+        background-color: #F3F3F3;
+        border-color: #C9C9C9;
     }
+    .no-lineup {
+        position: relative;
+        margin: 0px auto;
+        text-align: center;
+        top: 100px;
+        width: 200px;
+        background-color: white;
+        border: 1px solid #CCCCCC;
+        border-radius: 3px 3px 3px 3px;
+    }
+}
 
 .draggable-player-panel, .placeholder {
-
-.name {
-    overflow: hidden;
-    display: block;
-    float: left;
-    width: 90px;
-    text-align: center;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
+    .name {
+        overflow: hidden;
+        display: block;
+        float: left;
+        width: 90px;
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
+}
 
 .draggable-player-panel {
     background-color: white;
@@ -1377,22 +1025,15 @@ span {
     padding: 0 4px;
     text-align: center;
     width: 100px;
-
-&.edit {
-    cursor: move;
-}
-
-&.view {
-
-span {
-    width: 100%;
-/ / since no remove button is shown
-}
-
+    &.edit {
+        cursor: move;
     }
-
+    &.view {
+        span {
+            width: 100%; // since no remove button is shown
+        }
     }
-
+}
 .lineup-edit-panel, .lineup-panel {
     padding-top: 40px;
 }
@@ -1409,339 +1050,252 @@ span {
     Vertical form in secondary panel
 **************************************************************************/
 .ul-form {
-
-li {
-    margin-bottom: 0px;
-
-&.control-group {
-    padding-bottom: 9px;
+    li {
+        margin-bottom: 0px;
+        &.control-group {
+            padding-bottom: 9px;
+        }
+    }
+    .ul-form-actions {
+        margin-top: 5px;
+        .btn {
+            width: 35%; // must reset default width of buttons in secondary panel
+        }
+    }
+    label {
+        padding-left: 2px;
+        margin-bottom: 2px;
+        &.checkbox, &.radio {
+            padding-left: 19px; // restore bootstrap value
+        }
+    }
+    select {
+        padding-left: 0px; // to align text of selectbox with text of text input field.
+    }
 }
 
-    }
-
-.ul-form-actions {
-    margin-top: 5px;
-
-.btn {
-    width: 35%;
-/ / must reset default width of buttons in secondary panel
-}
-
-    }
-
-label {
-    padding-left: 2px;
-    margin-bottom: 2px;
-
-&.checkbox, &.radio {
-    padding-left: 19px;
-/ / restore bootstrap value
-}
-
-    }
-
-select {
-    padding-left: 0px;
-
-/
-/
-to align text of selectbox with text of text input field.
-
-    }
-
-    }
 
 /*************************************************************************
     Invitation form
 **************************************************************************/
 .invitationForm {
-
-.status {
-    margin-bottom: 9px;
-/ / same margin as input or textarea
-}
-
-.radio {
-    display: block;
-}
-
-.form-feedback-panel {
-    margin-top: 10px;
-}
-
+    .status {
+        margin-bottom: 9px; // same margin as input or textarea
     }
+    .radio {
+        display: block;
+    }
+    .form-feedback-panel {
+        margin-top: 10px;
+    }
+}
 
 /*************************************************************************
     Calendar edit panel form
 **************************************************************************/
 
+
 /*************************************************************************
     Table width for several tables
 **************************************************************************/
 .player-list-panel, .user-list-panel {
-
-.date {
-    font-size: 80%;
-}
-
-.table {
-
-.name {
-    width: 100px;
-}
-
-.email {
-
-/ / width : auto;
-}
-
-.teams {
-    width: 140px;
-}
-
-.menu {
-    width: 69px;
-}
-
-.role {
-    width: 34px;
-}
-
+    .date {
+        font-size: 80%;
     }
+    .table {
+        .name {
+            width: 100px;
+        }
+        .email {
 
+            // width: auto;
+        }
+        .teams {
+            width: 140px;
+        }
+        .menu {
+            width: 69px;
+        }
+        .role {
+            width: 34px;
+        }
     }
-
+}
 .event-list-panel {
-
-.table {
-
-.date {
-    width: 78px;
-}
-
-tr.next-event {
-
-/
-/
-background-color: #F5F5F5
-
-;
-font-weight: bold
-
-;
+    .table {
+        .date {
+            width: 78px;
+        }
+        tr.next-event {
+            // background-color: #F5F5F5;
+            font-weight: bold;
+        }
+        .canceled-event {
+            color: @grayMedium;
+            // font-style: italic;
+        }
     }
-
-.canceled-event {
-    color: @grayMedium;
-/ / font-style : italic;
-}
-
+    .table.player {
+        .status {
+            width: 96px;
+        }
     }
-
-.table.player {
-
-.status {
-    width: 96px;
-}
-
+    .table.manager {
+        .invitations {
+            width: 176px;
+        }
+        .menu {
+            width: 69px;
+        }
     }
-
-.table.manager {
-
-.invitations {
-    width: 176px;
 }
-
-.menu {
-    width: 69px;
-}
-
-    }
-
-    }
-
 .invitationListTable {
-
-thead {
-    border-bottom: 0px;
-}
-
-thead th {
-/ / height : 0 px;
-    padding: 0px;
-}
-
-.thead .th {
-    padding-top: 20px;
-    border-top: 0px;
-}
-
-.thead:first-child .th {
-    padding-top: 0px;
-}
-
-.date, .position {
-    font-size: 80%;
-}
-
-.date {
-    width: 110px;
-}
-
-.position {
-    width: 36px;
-}
-
-.name {
-    width: 110px;
-}
-
-.menu {
-    width: 30px;
-}
-
+    thead {
+        border-bottom: 0px;
     }
+    thead th {
+        // height: 0px;
+        padding: 0px;
+    }
+    .thead .th {
+        padding-top: 20px;
+        border-top: 0px;
+    }
+    .thead:first-child .th {
+        padding-top: 0px;
+    }
+    .date, .position {
+        font-size: 80%;
+    }
+    .date {
+        width: 110px;
+    }
+    .position {
+        width: 36px;
+    }
+    .name {
+        width: 110px;
+    }
+    .menu {
+        width: 30px;
+    }
+}
+
+
 
 /*************************************************************************
     Squad Page - Add player panel + Invitation Form
 **************************************************************************/
 .add-player-panel, .add-invitee-panel, .add-guest-player-panel, .invitation-form-panel {
-
-.info-text {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.team {
-    font-weight: bold;
-}
-
+    .info-text {
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
+    .team {
+        font-weight: bold;
+    }
+}
+
 
 /*************************************************************************
     Blog
 **************************************************************************/
 .blog-unread {
     margin-left: 1px;
-
-i {
-    opacity: 1.0;
-}
-
+    i {
+        opacity: 1.0;
     }
+}
 
 .article-list-panel, .article-panel {
+    .article {
+        border-bottom: 1px solid #CCCCCC;
+        padding-bottom: 30px;
+        margin-bottom: 30px;
 
-.article {
-    border-bottom: 1px solid #CCCCCC;
-    padding-bottom: 30px;
-    margin-bottom: 30px;
+        a.heading {
+            color: @grayDark;
+        }
+        h1 {
+            font-size: 22px;
+        }
+        .meta {
+            margin-bottom: 10px;
 
-a.heading {
-    color: @grayDark;
-}
-
-h1 {
-    font-size: 22px;
-}
-
-.meta {
-    margin-bottom: 10px;
-
-.numComments {
-    float: right;
-}
-
+            .numComments {
+                float: right;
+            }
+        }
+        .text {
+            line-height: 22px;
+            * {
+                line-height: 22px;
+            }
+            ul {
+                // reset to default values
+                list-style: inherit;
+                margin-left:  25px;
+                margin-bottom: 9px;
+            }
+        }
     }
-
-.text {
-    line-height: 22px;
-
-* {
-    line-height: 22px;
-}
-
-ul {
-/ / reset to default values list-style : inherit;
-    margin-left: 25px;
-    margin-bottom: 9px;
-}
-
+    .b-comments-panel {
+        h4 {
+            margin: 20px 0px;
+        }
     }
-
+    .comments {
+        margin-top: 10px;
     }
+    .comment {
+        border-bottom: 1px dotted #CCCCCC;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
 
-.b-comments-panel {
-
-h4 {
-    margin: 20px 0px;
+        .meta {
+            margin-bottom: 10px;
+            font-size: 11px;
+        }
+        .text {
+            * {
+                line-height: 22px;
+            }
+        }
+    }
+    .comment, .comment-form-panel {
+        textarea {
+            // no border glowing
+            box-shadow: none;
+            border-color: #CCCCCC;
+            width: 98%;
+            height: 150px;
+        }
+    }
 }
-
-    }
-
-.comments {
-    margin-top: 10px;
-}
-
-.comment {
-    border-bottom: 1px dotted #CCCCCC;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-
-.meta {
-    margin-bottom: 10px;
-    font-size: 11px;
-}
-
-.text {
-
-* {
-    line-height: 22px;
-}
-
-    }
-
-    }
-
-.comment, .comment-form-panel {
-
-textarea {
-/ / no border glowing box-shadow : none;
-    border-color: #CCCCCC;
-    width: 98%;
-    height: 150px;
-}
-
-    }
-
-    }
 
 .article-list-panel {
-
-.actions {
-    margin-top: 10px;
+        .actions {
+            margin-top: 10px;
+        }
 }
-
-    }
-
 .article-panel {
-
-.article .actions {
-    font-size: 11px;
-    margin-left: 10px;
+        .article .actions {
+            font-size: 11px;
+            margin-left: 10px;
+        }
 }
 
-    }
+
 
 /*************************************************************************
     google maps
     need to set initial width and height.
 **************************************************************************/
 .map label {
-/ / must override bootstrap settings that would be applied to google maps elements to fix layout bug float : none;
+    // must override bootstrap settings that would be applied to google maps elements to fix layout bug
+    float: none;
     padding-top: none;
 }
-
 .venue-map {
     /* map with one venue on it */
     width: 400px;
@@ -1755,68 +1309,51 @@ textarea {
 }
 
 #venue-tabs {
-    float: none; /* needed to make map work inside tabs. */
+    float: none;  /* needed to make map work inside tabs. */
 }
 
 .info-window {
-
-li {
-    padding: 2px 0px;
-}
-
-.name {
-    font-weight: bold;
-}
-
+    li {
+        padding: 2px 0px;
     }
-
+    .name {
+        font-weight: bold;
+    }
+}
 /*************************************************************************
     Geocoding panel
 **************************************************************************/
 .venue-edit-panel {
-
-.address textarea {
-    margin-right: 10px;
-/ / margin to geocodebutton height : 73 px;
-/ / 4 lines
-}
-
-/
-/
-position search icon inside textarea
+    .address textarea {
+        margin-right: 10px; // margin to geocodebutton
+        height: 73px; // 4 lines
+    }
+    // position search icon inside textarea
     .address {
-    position: relative;
-
-.search-button {
-    position: absolute;
-    right: 12px;
-    top: 2px;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 3px 3px 3px 5px;
+        position: relative;
+        .search-button {
+            position: absolute;
+            right: 12px;
+            top: 2px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 3px 3px 3px 5px;
+        }
+    }
 }
-
-    }
-
-    }
 
 .geocode-results-panel {
-
-.result-list {
-
-td {
-    padding-top: 0px;
-    padding-bottom: 0px;
-}
-
-a {
-    padding: 8px 0px;
-    color: @grayDark;
-    display: block;
-}
-
+    .result-list {
+        td {
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
+        a {
+            padding: 8px 0px;
+            color: @grayDark;
+            display: block;
+        }
     }
-
-    }
+}
 
 /*************************************************************************
     Weather widget
@@ -1824,8 +1361,8 @@ a {
 iframe.wetteronline {
     border: 0px none;
     height: 308px;
-    margin-left: -15px;
-/ / to left-align with heading overflow : hidden;
+    margin-left: -15px; // to left-align with heading
+    overflow: hidden;
     width: 220px;
 }
 
@@ -1834,52 +1371,43 @@ iframe.wetteronline {
 **************************************************************************/
 .about-panel, .change-log-panel {
 
-.control-label {
-    padding-top: 0px;
-/ / override twitter default
-}
+    .control-label {
+        padding-top: 0px; // override twitter default
+    }
+    h3 {
+        text-transform: uppercase;
+        color: #999999;
+        font-size: 16px;
+        font-weight: normal;
 
-h3 {
-    text-transform: uppercase;
-    color: #999999;
-    font-size: 16px;
-    font-weight: normal;
-
-small {
-    font-size: 10px;
-}
-
+        small {
+            font-size: 10px;
+        }
+    }
+    h6 {
+        display: inline;
+        font-size: 9px;
+    }
+    .date {
+        color: #999999;
     }
 
-h6 {
-    display: inline;
-    font-size: 9px;
-}
-
-.date {
-    color: #999999;
-}
-
-.items > li {
-    margin-bottom: 10px;
-}
-
-.items ul {
-    list-style: square;
-    margin-left: 15px;
-    margin-bottom: 5px;
-}
-
+    .items > li {
+        margin-bottom: 10px;
     }
+    .items ul {
+        list-style: square;
+        margin-left: 15px;
+        margin-bottom: 5px;
+    }
+}
 
 .change-log-panel .controls {
-
-ul {
-    margin-top: 5px;
-    margin-bottom: 20px;
-}
-
+    ul {
+        margin-top: 5px;
+        margin-bottom: 20px;
     }
+}
 
 /*************************************************************************
     Activity feed
@@ -1887,67 +1415,46 @@ ul {
 .activity-feed-panel {
 }
 
-/
-/
-hide scrollbar of inner ul. only scrolling by mouse-wheel
+// hide scrollbar of inner ul. only scrolling by mouse-wheel
 .activity-feed-container {
     overflow-x: hidden;
 }
-
 .activity-feed {
     width: 235px;
     max-height: 450px;
     overflow-y: scroll;
     overflow-x: hidden;
-    padding-right: 5px;
-
-/
-/
-to have some padding when scrollbar appears
+    padding-right: 5px; // to have some padding when scrollbar appears
     .status {
-    font-style: italic;
-}
-
-.btn-more {
-    visibility: hidden;
-/ / hide initialy ( for feeds without any content )
-}
-
-/
-/
-center ajax-spinner
+        font-style: italic;
+    }
+    .btn-more {
+        visibility: hidden; // hide initialy (for feeds without any content)
+    }
+    // center ajax-spinner
     .btn-more .ajax-loader {
-    margin-left: auto;
-    margin-right: auto;
-}
-
+        margin-left: auto;
+        margin-right: auto;
     }
-
+}
 .activity-feed, .latest-comments-panel {
-
-ul {
-    width: 220px;
-/ / need for ipad
-}
-
-li {
-    padding: 5px 0px;
-    border-bottom: 1px dotted #CCCCCC;
-    font-size: 85%;
-    line-height: 15px;
-
-h6 {
-    font-size: 9px;
-/ / text-transform : none;
-}
-
-.spacer {
-    height: 3px;
-}
-
+    ul {
+         width: 220px; // need for ipad
     }
-
+    li {
+        padding: 5px 0px;
+        border-bottom: 1px dotted #CCCCCC;
+        font-size: 85%;
+        line-height: 15px;
+        h6 {
+            font-size: 9px;
+            // text-transform: none;
+        }
+        .spacer {
+            height: 3px;
+        }
     }
+}
 
 /*************************************************************************
     Calendar
@@ -1956,29 +1463,21 @@ h6 {
 
 .fc-event-skin {
     background-color: inherit;
-    border-color: inherit;
+    border-color:  inherit;
 }
 
 .fc-event {
     height: 18px;
 }
-
 .fc-event:hover {
     height: auto;
-    z-index: 100 !important;
-/ / to overlap other events
+    z-index: 100 !important; // to overlap other events
 }
-
 .fc-view {
-    overflow: visible;
-/ / to make events at bottom of calendar overflow calendar when hovering
+    overflow: visible; // to make events at bottom of calendar overflow calendar when hovering
 }
 
-.
-
-fc-styled-event
-(
-@color) {
+.fc-styled-event(@color) {
     background-color: @color;
     border-color: @color;
     &:hover {
@@ -1988,49 +1487,27 @@ fc-styled-event
 }
 
 .cal-type-user {
-
-.
-
-fc-styled-event
-(
-#6666CC
-
-)
-;
-    }
+    .fc-styled-event(#6666CC);
+}
 
 .cal-type-others {
-
-.
-
-fc-styled-event
-(
-#336699
-
-)
-;
-    }
+    .fc-styled-event(#336699);
+}
 
 .cal-type-event {
+    .fc-styled-event(#996644);
+}
 
-.
-
-fc-styled-event
-(
-#996644
-
-)
-;
-    }
 
 /*************************************************************************
     CkEditor patches are located at the end of the original files.
 **************************************************************************/
 
+
+
 /*************************************************************************
     Wicket debug bar
 **************************************************************************/
 #wicketDebugBar {
-    z-index: 99999999;
-/ / to stay on top of navbar
+    z-index: 99999999; // to stay on top of navbar
 }
