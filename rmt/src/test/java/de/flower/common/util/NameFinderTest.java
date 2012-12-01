@@ -29,6 +29,18 @@ public class NameFinderTest {
             }
         });
         assertEquals(name, "DELETED-" + base + "-100");
+    }
 
+    @Test
+    public void testSuffixes() {
+        String base = "Team";
+        String name = NameFinder.newName(base, "A.B.C".split("\\."), new Predicate<String>() {
+
+            @Override
+            public boolean apply(final String input) {
+                return true;
+            }
+        });
+        assertEquals(name, base + " A");
     }
 }

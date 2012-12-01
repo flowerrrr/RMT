@@ -5,27 +5,37 @@
 
 <wicket:panel>
 
-    <h4><wicket:message key="manager.event.invitee"/></h4>
+    <h4>
+        <wicket:message key="manager.event.invitee"/>
+    </h4>
 
-    <h6><wicket:message key="invitation.accepted" /></h6>
+    <h6>
+        <wicket:message key="invitation.accepted"/>
+    </h6>
     <ul>
         <li wicket:id="acceptedList" class="draggable-container">
             <wicket:container wicket:id="itemPanel"/>
         </li>
     </ul>
-    <h6><wicket:message key="invitation.unsure" /></h6>
+    <h6>
+        <wicket:message key="invitation.unsure"/>
+    </h6>
     <ul>
         <li wicket:id="unsureList" class="draggable-container">
             <wicket:container wicket:id="itemPanel"/>
         </li>
     </ul>
-    <h6><wicket:message key="invitation.declined" /></h6>
+    <h6>
+        <wicket:message key="invitation.declined"/>
+    </h6>
     <ul>
         <li wicket:id="declinedList" class="draggable-container">
             <wicket:container wicket:id="itemPanel"/>
         </li>
     </ul>
-    <h6><wicket:message key="invitation.noresponse" /></h6>
+    <h6>
+        <wicket:message key="invitation.noresponse"/>
+    </h6>
     <ul>
         <li wicket:id="noresponseList" class="draggable-container">
             <wicket:container wicket:id="itemPanel"/>
@@ -35,9 +45,9 @@
 
     <wicket:fragment wicket:id="itemFragment">
         <div class="placeholder">
-            <span wicket:id="placeholder" class="name" />
+            <span wicket:id="placeholder" class="name"/>
         </div>
-        <div wicket:id="draggablePlayerPanel" class="edit" />
+        <div wicket:id="playerPanel" class="edit"/>
     </wicket:fragment>
 
 </wicket:panel>

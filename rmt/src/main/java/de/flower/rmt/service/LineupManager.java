@@ -11,7 +11,7 @@ import de.flower.rmt.model.db.entity.LineupItem;
 import de.flower.rmt.model.db.entity.QLineup;
 import de.flower.rmt.model.db.entity.QLineupItem;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.model.dto.LineupItemDto;
+import de.flower.rmt.model.dto.InvitationDto;
 import de.flower.rmt.repository.ILineupItemRepo;
 import de.flower.rmt.repository.ILineupRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,7 +72,7 @@ public class LineupManager extends AbstractService implements ILineupManager {
     }
 
     @Override
-    public void drop(final LineupItemDto dto) {
+    public void drop(final InvitationDto dto) {
         Invitation invitation = invitationManager.loadById(dto.invitationId, Invitation_.event);
         Lineup lineup = findLineup(invitation.getEvent());
         Check.notNull(lineup);

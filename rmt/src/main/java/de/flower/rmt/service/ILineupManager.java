@@ -5,7 +5,7 @@ import com.mysema.query.types.Path;
 import de.flower.rmt.model.db.entity.Lineup;
 import de.flower.rmt.model.db.entity.LineupItem;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.model.dto.LineupItemDto;
+import de.flower.rmt.model.dto.InvitationDto;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public interface ILineupManager {
 
     Lineup createLineup(final Event event);
 
-    void drop(LineupItemDto dto);
+    void drop(InvitationDto dto);
 
     void removeLineupItem(Long invitationId);
 

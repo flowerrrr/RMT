@@ -9,8 +9,9 @@ import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.LineupItem;
 import de.flower.rmt.model.db.entity.QLineupItem;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.model.dto.LineupItemDto;
+import de.flower.rmt.model.dto.InvitationDto;
 import de.flower.rmt.service.ILineupManager;
+import de.flower.rmt.ui.page.event.manager.teams.PlayerPanel;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AbstractDefaultAjaxBehavior;
@@ -71,7 +72,7 @@ public class LineupEditPanel extends BasePanel {
 
         final AbstractDefaultAjaxBehavior behavior = new DropCallbackBehavior() {
             @Override
-            protected void onDrop(final AjaxRequestTarget target, final LineupItemDto dto) {
+            protected void onDrop(final AjaxRequestTarget target, final InvitationDto dto) {
                 lineupManager.drop(dto);
                 AjaxEventSender.entityEvent(getComponent(), LineupItem.class);
             }
@@ -83,7 +84,6 @@ public class LineupEditPanel extends BasePanel {
                 return "'" + behavior.getCallbackUrl().toString() + "'";
             }
         }));
-
     }
 
     private IModel<List<LineupItem>> getListModel(final IModel<Event> model) {
@@ -119,8 +119,8 @@ public class LineupEditPanel extends BasePanel {
                 log.warn("Dropped component not found.");
                 return;
             }
-            LineupItemDto dto = new LineupItemDto();
-            dto.invitationId = ((DraggablePlayerPanel) draggedComponent).getInvitationId();
+            InvitationDto dto = new InvitationDto();
+            dto.invitationId = ((PlayerPanel) draggedComponent).getInvitationId();
             dto.top = parameterMap.getValue(top);
             dto.left = parameterMap.getValue(left);
             dto.width = parameterMap.getValue(width);
@@ -134,6 +134,6 @@ public class LineupEditPanel extends BasePanel {
             return new Parameter[]{id, top, left, width, height};
         }
 
-        protected abstract void onDrop(AjaxRequestTarget target, LineupItemDto dto);
+        protected abstract void onDrop(AjaxRequestTarget target, InvitationDto dto);
     }
 }

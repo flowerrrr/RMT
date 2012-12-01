@@ -21,6 +21,7 @@ import de.flower.rmt.service.ICalendarManager;
 import de.flower.rmt.service.IClubManager;
 import de.flower.rmt.service.ICommentManager;
 import de.flower.rmt.service.IEventManager;
+import de.flower.rmt.service.IEventTeamManager;
 import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.service.ILineupManager;
 import de.flower.rmt.service.IPlayerManager;
@@ -160,6 +161,9 @@ public class AbstractRMTIntegrationTests extends AbstractTestNGSpringContextTest
 
     @Autowired
     protected INotificationService notificationService;
+
+    @Autowired
+    protected IEventTeamManager eventTeamManager;
 
     @Autowired
     protected ISecurityService securityService;

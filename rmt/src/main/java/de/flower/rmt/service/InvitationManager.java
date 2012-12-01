@@ -51,9 +51,6 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     private IPlayerManager playerManager;
 
     @Autowired
-    private IEventManager eventManager;
-
-    @Autowired
     private IUserManager userManager;
 
     @Autowired
@@ -67,6 +64,12 @@ public class InvitationManager extends AbstractService implements IInvitationMan
 
     @Autowired
     private ICalendarManager calendarManager;
+
+    @Autowired
+    private ILineupManager lineupManager;
+
+    @Autowired
+    private IEventTeamManager eventTeamManager;
 
     @Autowired
     private MessageSourceAccessor messageSource;
@@ -290,6 +293,9 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     @Override
     @Transactional(readOnly = false)
     public void delete(final Long id) {
+        // delete from lineup
+        lineupManager.removeLineupItem(id);
+        eventTeamManager.removePlayer(id);
         invitationRepo.delete(id);
     }
 
@@ -332,7 +338,7 @@ public class InvitationManager extends AbstractService implements IInvitationMan
         List<CalItem> list = calendarManager.findAllByUserAndRange(invitation.getUser(), eventDate, eventDate);
         for (CalItem calItem : list) {
             if (calItem.isAutoDecline()) {
-                log.info("Auto declining user [{}] for event [{}] due to calendar item [{}]", new Object[] { invitation.getUser().getEmail(), invitation.getEvent(), calItem });
+                log.info("Auto declining user [{}] for event [{}] due to calendar item [{}]", new Object[]{invitation.getUser().getEmail(), invitation.getEvent(), calItem});
                 invitation.setStatus(RSVPStatus.DECLINED);
                 // no validation, no activity log, just plain save
                 invitationRepo.save(invitation);

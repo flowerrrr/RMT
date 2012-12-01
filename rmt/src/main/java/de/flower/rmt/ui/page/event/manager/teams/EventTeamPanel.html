@@ -5,23 +5,23 @@
 
 <wicket:panel>
 
-    <div wicket:id="grid" class="lineup-grid" style="position: relative;">
+    <div wicket:id="grid" class="player-grid" style="position: relative;">
         <ul wicket:id="itemContainer">
             <li wicket:id="items">
-                <div wicket:id="playerPanel" class="edit"/>
+                <div wicket:id="playerPanel" class="draggable-player-panel edit"/>
             </li>
         </ul>
     </div>
 
     <script>
         $(function () {
-            $('.lineup-grid').droppable({
+            $('.player-grid').droppable({
                 drop: function (event, ui) {
                     var top = ui.offset.top - $(this).position().top;
                     var left = ui.offset.left - $(this).position().left;
                     var width = $(this).width();
                     var height = $(this).height();
-                    var url = $('.lineup-grid').attr('url');
+                    var url = $('.player-grid').attr('url');
                     var callback = eval(url);
                     wicketAjaxGet(callback);
                 }

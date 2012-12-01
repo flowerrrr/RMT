@@ -3,7 +3,7 @@ package de.flower.rmt.model.dto;
 /**
  * @author flowerrrr
  */
-public class LineupItemDto {
+public class InvitationDto {
 
     public Long invitationId;
 
@@ -14,5 +14,4 @@ public class LineupItemDto {
     public Long width;
 
     public Long height;
-
 }
