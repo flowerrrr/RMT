@@ -45,16 +45,12 @@ public class ClazzTest {
     @Test
     public void testIsAnonymousClass() {
         Object o = new Object();
-        assertFalse(Clazz.isAnonymousInnerClass(o.getClass()));
+        assertFalse(Clazz.isAnonymousClass(o.getClass()));
         o = new Object() {
-            @Override
-            public String toString() {
-                return "foo";
-            }
         };
-        assertTrue(Clazz.isAnonymousInnerClass(o.getClass()));
-        assertFalse(Clazz.isAnonymousInnerClass(InnerStaticClass.class));
-        assertFalse(Clazz.isAnonymousInnerClass(InnerClass.class));
+        assertTrue(Clazz.isAnonymousClass(o.getClass()));
+        assertFalse(Clazz.isAnonymousClass(InnerStaticClass.class));
+        assertFalse(Clazz.isAnonymousClass(InnerClass.class));
     }
 
     @Test
@@ -62,7 +58,7 @@ public class ClazzTest {
         Object o = new Object() {
         };
         o.getClass().getSuperclass();
-        assertTrue(Clazz.isAnonymousInnerClass(o.getClass()));
+        assertTrue(Clazz.isAnonymousClass(o.getClass()));
         assertEquals(Clazz.getSuperClass(o.getClass()), Object.class);
     }
 
@@ -86,10 +82,15 @@ public class ClazzTest {
         class C  {
 
         }
+        B clazz = new B() {
+
+        };
         List<Class<?>> classes = Clazz.getClassList(B.class, A.class);
-        assertEquals(classes, Lists.newArrayList(B.class, A.class));
+        assertEquals(classes, Lists.newArrayList(B.class, A.class), classes.toString());
         classes = Clazz.getClassList(C.class, Object.class);
-        assertEquals(classes, Lists.newArrayList(C.class, Object.class));
+        assertEquals(classes, Lists.newArrayList(C.class, Object.class), classes.toString());
+        classes = Clazz.getClassList(clazz.getClass(), A.class);
+        assertEquals(classes, Lists.newArrayList(B.class, A.class), classes.toString());
         try {
             Clazz.getClassList(C.class, A.class);
             fail();

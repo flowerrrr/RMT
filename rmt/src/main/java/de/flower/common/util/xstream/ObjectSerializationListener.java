@@ -40,7 +40,7 @@ public class ObjectSerializationListener implements IObjectSerializationListener
     @Override
     public void notify(final Object object) {
         Class<?> clazz = object.getClass();
-        if (Clazz.isAnonymousInnerClass(clazz)) {
+        if (Clazz.isAnonymousClass(clazz)) {
             clazz = Clazz.getSuperClass(clazz);
         }
         Context context = getContext();

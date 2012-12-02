@@ -1,6 +1,9 @@
 package de.flower.common.ui.panel;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Function;
+import com.google.common.base.Predicate;
+import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 import de.flower.common.util.Clazz;
 import de.flower.common.util.Strings;
@@ -87,8 +90,15 @@ public class BasePanel<T> extends GenericPanel<T> {
         }
     }
 
-    private String getCssClasses() {
+    @VisibleForTesting
+    protected String getCssClasses() {
         List<Class<?>> panelClasses = Clazz.getClassList(this.getClass(), Panel.class);
+        panelClasses = Lists.newArrayList(Collections2.filter(panelClasses, new Predicate<Class<?>>() {
+            @Override
+            public boolean apply(final Class<?> input) {
+                return !Clazz.isAnonymousClass(input);
+            }
+        }));
         List<String> cssClasses = Lists.transform(panelClasses, new Function<Class<?>, String>() {
             @Override
             public String apply(final Class<?> input) {
@@ -100,10 +110,11 @@ public class BasePanel<T> extends GenericPanel<T> {
 
     public static String getCssClass(Class<?> clazz) {
         return Strings.camelCaseToHyphen(getClassName(clazz)).toLowerCase();
+        // return getClassName(clazz);
     }
 
     private static String getClassName(Class<?> clazz) {
-        if (Clazz.isAnonymousInnerClass(clazz)) {
+        if (Clazz.isAnonymousClass(clazz)) {
             return Clazz.getSuperClass(clazz).getSimpleName();
         } else {
             return clazz.getSimpleName();

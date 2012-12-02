@@ -60,8 +60,9 @@ public final class Clazz {
         return ccg.getClass(frame);
     }
 
+    @Deprecated // has issues when used with groovy compiled code
     public static String getShortName(final Class<?> clazz) {
-        if (isAnonymousInnerClass(clazz)) {
+        if (isAnonymousClass(clazz)) {
             return clazz.getName().substring(clazz.getName().lastIndexOf(".") + 1);
         } else {
             return clazz.getSimpleName();
@@ -80,13 +81,25 @@ public final class Clazz {
         }
     }
 
-    public static boolean isAnonymousInnerClass(Class<?> clazz) {
-        // return clazz.getName().contains("$") && clazz.getSimpleName().equals("");
-        return clazz.getEnclosingClass() != null && clazz.getName().contains("$") && clazz.getSimpleName().equals("");
+    /**
+     * Method currently does not return correct results for groovy-compiled classes.
+     * See http://jira.codehaus.org/browse/GROOVY-4980.
+     */
+    @Deprecated // has issues when used with groovy compiled code
+    public static boolean isAnonymousClass(Class<?> clazz) {
+        boolean hasEnclosingClass = clazz.getEnclosingClass() != null;
+        boolean nameContainsDollar = clazz.getName().contains("$");
+        boolean simpleNameEmpty = clazz.getSimpleName().equals("");
+        boolean isAnonymousClass = hasEnclosingClass && nameContainsDollar && simpleNameEmpty;
+        if (isAnonymousClass != clazz.isAnonymousClass()) {
+            throw new IllegalStateException("Something wrong");
+        }
+        return clazz.isAnonymousClass();
     }
 
+    @Deprecated // has issues when used with groovy compiled code
     public static Class<?> getSuperClass(Class<?> anonymousClass) {
-        Check.isTrue(isAnonymousInnerClass(anonymousClass));
+        Check.isTrue(isAnonymousClass(anonymousClass));
         return anonymousClass.getSuperclass();
     }
 
