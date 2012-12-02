@@ -9,7 +9,7 @@
 @borderColor:       #DDDDDD;
 @widthContent:      560px;
 
-/* Border Radius */
+// Border Radius
 .border-radius(@radius: 5px) {
   -webkit-border-radius: @radius;
      -moz-border-radius: @radius;

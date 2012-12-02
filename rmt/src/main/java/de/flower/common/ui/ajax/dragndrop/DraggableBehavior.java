@@ -16,6 +16,7 @@ public class DraggableBehavior extends Behavior {
     public void bind(final Component c) {
         this.c = c;
         c.add(AttributeModifier.append("class", "draggable"));
+        c.add(AttributeModifier.append("style", "position: absolute;"));
     }
 
     @Override

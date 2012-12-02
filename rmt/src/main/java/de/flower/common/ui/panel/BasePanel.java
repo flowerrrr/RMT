@@ -76,7 +76,6 @@ public class BasePanel<T> extends GenericPanel<T> {
      * good naming strategy in your code.
      * Must use static method cause it is used in super() call.
      *
-     * @param basePanelClass@return
      */
     protected static String getId(String id, final Class<?> callee) {
         if (id != null) {
