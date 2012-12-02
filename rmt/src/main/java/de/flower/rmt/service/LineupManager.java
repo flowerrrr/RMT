@@ -1,8 +1,11 @@
 package de.flower.rmt.service;
 
 import com.google.common.annotations.VisibleForTesting;
+import com.google.common.base.Function;
+import com.google.common.collect.Lists;
 import com.mysema.query.types.Path;
 import com.mysema.query.types.expr.BooleanExpression;
+import de.flower.common.ui.ajax.dragndrop.DraggableDto;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.Invitation_;
@@ -11,7 +14,6 @@ import de.flower.rmt.model.db.entity.LineupItem;
 import de.flower.rmt.model.db.entity.QLineup;
 import de.flower.rmt.model.db.entity.QLineupItem;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.model.dto.InvitationDto;
 import de.flower.rmt.repository.ILineupItemRepo;
 import de.flower.rmt.repository.ILineupRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +67,17 @@ public class LineupManager extends AbstractService implements ILineupManager {
     }
 
     @Override
+    public List<Invitation> findInvitationsInLinuep(final Event event) {
+        List<LineupItem> lineupItems = findLineupItems(event, QLineupItem.lineupItem.invitation);
+        return Lists.transform(lineupItems, new Function<LineupItem, Invitation>() {
+            @Override
+            public Invitation apply(final LineupItem input) {
+                return input.getInvitation();
+            }
+        });
+    }
+
+    @Override
     public Lineup createLineup(final Event event) {
         Lineup lineup = new Lineup(event);
         lineupRepo.save(lineup);
@@ -72,8 +85,8 @@ public class LineupManager extends AbstractService implements ILineupManager {
     }
 
     @Override
-    public void drop(final InvitationDto dto) {
-        Invitation invitation = invitationManager.loadById(dto.invitationId, Invitation_.event);
+    public void drop(final DraggableDto dto) {
+        Invitation invitation = invitationManager.loadById(dto.entityId, Invitation_.event);
         Lineup lineup = findLineup(invitation.getEvent());
         Check.notNull(lineup);
         LineupItem item = lineupItemRepo.findByLineupAndInvitation(lineup, invitation);
@@ -81,8 +94,8 @@ public class LineupManager extends AbstractService implements ILineupManager {
             item = new LineupItem(lineup, invitation);
         }
         // update positions
-        item.setTop(dto.top, dto.height);
-        item.setLeft(dto.left, dto.width);
+        item.setTop(dto.top);
+        item.setLeft(dto.left);
         save(item);
     }
 

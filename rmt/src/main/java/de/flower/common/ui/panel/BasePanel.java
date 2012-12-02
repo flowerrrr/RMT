@@ -1,17 +1,22 @@
 package de.flower.common.ui.panel;
 
+import com.google.common.base.Function;
+import com.google.common.collect.Lists;
 import de.flower.common.util.Clazz;
 import de.flower.common.util.Strings;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.Markup;
 import org.apache.wicket.markup.html.panel.GenericPanel;
+import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author flowerrrr
@@ -39,7 +44,7 @@ public class BasePanel<T> extends GenericPanel<T> {
         if (log.isTraceEnabled()) log.trace("new " + getId());
         setOutputMarkupId(true);
         // always append a css class to the panels
-        add(new AttributeAppender("class", Model.of("panel " + getCssClass()), " "));
+        add(new AttributeAppender("class", Model.of(getCssClasses()), " "));
     }
 
     /**
@@ -83,8 +88,15 @@ public class BasePanel<T> extends GenericPanel<T> {
         }
     }
 
-    private String getCssClass() {
-        return getCssClass(getClass());
+    private String getCssClasses() {
+        List<Class<?>> panelClasses = Clazz.getClassList(this.getClass(), Panel.class);
+        List<String> cssClasses = Lists.transform(panelClasses, new Function<Class<?>, String>() {
+            @Override
+            public String apply(final Class<?> input) {
+                return getCssClass(input);
+            }
+        });
+        return StringUtils.join(cssClasses, " ");
     }
 
     public static String getCssClass(Class<?> clazz) {

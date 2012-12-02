@@ -1,15 +1,12 @@
 package de.flower.rmt.ui.page.event.manager.lineup;
 
-import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.Invitation_;
-import de.flower.rmt.model.db.entity.LineupItem;
-import de.flower.rmt.model.db.entity.QLineupItem;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.service.IInvitationManager;
-import de.flower.rmt.service.ILineupManager;
+import de.flower.rmt.ui.page.event.manager.lineup.dragndrop.DraggableEntityLabel;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -26,28 +23,12 @@ import java.util.List;
  *
  * @author flowerrrr
  */
-public class LineupInviteeListPanel extends BasePanel {
+public abstract class DraggableInviteeListPanel extends BasePanel {
 
     @SpringBean
     private IInvitationManager invitationManager;
 
-    @SpringBean
-    private ILineupManager lineupManager;
-
-    // used to filter out those players that are already dragged to the lineup-grid.
-    private IModel<List<LineupItem>> lineupItemListModel;
-
-    public LineupInviteeListPanel(final IModel<Event> model) {
-
-        add(new AjaxEventListener(LineupItem.class));
-
-        lineupItemListModel = new LoadableDetachableModel<List<LineupItem>>() {
-            @Override
-            protected List<LineupItem> load() {
-                List<LineupItem> lineupItems = lineupManager.findLineupItems(model.getObject(), QLineupItem.lineupItem.invitation);
-                return lineupItems;
-            }
-        };
+    public DraggableInviteeListPanel(final IModel<Event> model) {
 
         add(createListView("acceptedList", RSVPStatus.ACCEPTED, model));
         add(createListView("unsureList", RSVPStatus.UNSURE, model));
@@ -72,8 +53,8 @@ public class LineupInviteeListPanel extends BasePanel {
 
         frag.add(new Label("placeholder", invitation.getName()));
 
-        DraggablePlayerPanel draggablePlayer = new DraggablePlayerPanel(item.getModelObject(), null, false);
-        draggablePlayer.setVisible(!isInLineup(invitation));
+        DraggableEntityLabel draggablePlayer = new DraggableEntityLabel(invitation.getId(), invitation.getName(), false);
+        draggablePlayer.setVisible(!isDraggablePlayerVisible(invitation));
         frag.add(draggablePlayer);
 
         return frag;
@@ -89,20 +70,6 @@ public class LineupInviteeListPanel extends BasePanel {
         };
     }
 
-    private boolean isInLineup(Invitation invitation) {
-        for (LineupItem item : lineupItemListModel.getObject()) {
-            if (item.getInvitation().equals(invitation)) {
-                return true;
-            }
-        }
-        return false;
-    }
+    protected abstract boolean isDraggablePlayerVisible(Invitation invitation);
 
-    @Override
-    protected void onDetach() {
-        super.onDetach();
-        if (lineupItemListModel != null) {
-            lineupItemListModel.detach();
-        }
-    }
 }

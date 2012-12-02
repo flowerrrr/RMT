@@ -1,5 +1,6 @@
 package de.flower.rmt.model.db.entity;
 
+import com.mysema.query.annotations.QueryInit;
 import de.flower.common.model.db.entity.AbstractBaseEntity;
 import org.hibernate.annotations.Index;
 
@@ -7,16 +8,20 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 /**
  * @author flowerrrr
  */
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"eventTeam_id", "invitation_id"}))
 public class EventTeamPlayer extends AbstractBaseEntity {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
+    @QueryInit("event")
     @Index(name = "ix_team")
     private EventTeam eventTeam;
 

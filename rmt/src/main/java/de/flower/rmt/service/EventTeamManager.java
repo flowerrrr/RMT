@@ -1,6 +1,8 @@
 package de.flower.rmt.service;
 
+import com.google.common.base.Function;
 import com.google.common.base.Predicate;
+import com.google.common.collect.Lists;
 import com.mysema.query.types.Order;
 import com.mysema.query.types.OrderSpecifier;
 import com.mysema.query.types.Path;
@@ -57,6 +59,20 @@ public class EventTeamManager extends AbstractService implements IEventTeamManag
     }
 
     @Override
+    public List<Invitation> findInvitationsInEventTeams(final Event event) {
+        BooleanExpression isEvent = QEventTeamPlayer.eventTeamPlayer.eventTeam.event.eq(event);
+        List<EventTeamPlayer> items = eventTeamPlayerRepo.findAll(isEvent, QEventTeamPlayer.eventTeamPlayer.invitation);
+        List<Invitation> invitations = Lists.transform(items, new Function<EventTeamPlayer, Invitation>() {
+            @Override
+            public Invitation apply(final EventTeamPlayer item) {
+                return item.getInvitation();
+            }
+        });
+
+        return invitations;
+    }
+
+    @Override
     @Transactional(readOnly = false)
     public EventTeam addTeam(final Event event) {
         EventTeam entity = new EventTeam(event);
@@ -82,11 +98,25 @@ public class EventTeamManager extends AbstractService implements IEventTeamManag
     public void addPlayer(final Long eventTeamId, final Long invitationId) {
         EventTeam eventTeam = eventTeamRepo.findOne(eventTeamId);
         Invitation invitation = invitationManager.loadById(invitationId);
-        EventTeamPlayer entity = new EventTeamPlayer(eventTeam, invitation);
-        entity.setOrder(0);
-        eventTeamPlayerRepo.save(entity);
-        eventTeam.getPlayers().add(entity);
-        eventTeamRepo.save(eventTeam);
+        // player already assigned to a team?
+        EventTeamPlayer player = eventTeamPlayerRepo.findByInvitation(invitation);
+        if (player != null) {
+            // is already player of given team
+            if (player.getEventTeam().equals(eventTeam)) {
+                // nothing to do
+                return;
+            } else {
+                // assign new team
+                player.setEventTeam(eventTeam);
+                return;
+            }
+        } else {
+            EventTeamPlayer entity = new EventTeamPlayer(eventTeam, invitation);
+            entity.setOrder(0);
+            eventTeamPlayerRepo.save(entity);
+            eventTeam.getPlayers().add(entity);
+            eventTeamRepo.save(eventTeam);
+        }
     }
 
     @Override

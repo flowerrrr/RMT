@@ -7,28 +7,11 @@
 
     <div wicket:id="grid" class="player-grid" style="position: relative;">
         <ul wicket:id="itemContainer">
-            <li wicket:id="items">
-                <div wicket:id="playerPanel" class="draggable-player-panel edit"/>
+            <li wicket:id="items" class="draggable-container">
+                <div wicket:id="entityLabel" class="draggable-entity-label edit"/>
             </li>
         </ul>
     </div>
-
-    <script>
-        $(function () {
-            $('.player-grid').droppable({
-                drop: function (event, ui) {
-                    var top = ui.offset.top - $(this).position().top;
-                    var left = ui.offset.left - $(this).position().left;
-                    var width = $(this).width();
-                    var height = $(this).height();
-                    var url = $('.player-grid').attr('url');
-                    var callback = eval(url);
-                    wicketAjaxGet(callback);
-                }
-            });
-        });
-
-    </script>
 
 </wicket:panel>
 

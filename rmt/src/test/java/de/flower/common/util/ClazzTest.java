@@ -1,6 +1,9 @@
 package de.flower.common.util;
 
+import com.google.common.collect.Lists;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 import static org.testng.Assert.*;
 
@@ -70,6 +73,29 @@ public class ClazzTest {
         }.getClass()), "ClazzTest$3");
         assertEquals(Clazz.getShortName(InnerStaticClass.class), "InnerStaticClass");
         assertEquals(Clazz.getShortName(InnerClass.class), "InnerClass");
+    }
+
+    @Test
+    public void testGetClassList() {
+        class A {
+
+        };
+        class B extends A {
+
+        }   ;
+        class C  {
+
+        }
+        List<Class<?>> classes = Clazz.getClassList(B.class, A.class);
+        assertEquals(classes, Lists.newArrayList(B.class, A.class));
+        classes = Clazz.getClassList(C.class, Object.class);
+        assertEquals(classes, Lists.newArrayList(C.class, Object.class));
+        try {
+            Clazz.getClassList(C.class, A.class);
+            fail();
+        } catch (IllegalArgumentException e) {
+            // what we expect
+        }
     }
 
     public static class InnerStaticClass {

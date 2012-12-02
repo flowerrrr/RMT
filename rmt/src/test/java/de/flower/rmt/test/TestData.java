@@ -347,8 +347,8 @@ public class TestData {
         lineup.setName("Lineup #" + RandomUtils.nextInt(100));
         for (Invitation invitation : event.getInvitations()) {
             LineupItem item = new LineupItem(lineup, invitation);
-            item.setTop(RandomUtils.nextInt(500), 500);
-            item.setLeft(RandomUtils.nextInt(400), 400);
+            item.setTop(Long.valueOf(RandomUtils.nextInt(500)));
+            item.setLeft(Long.valueOf(RandomUtils.nextInt(400)));
             lineup.getItems().add(item);
         }
         return lineup;
@@ -361,8 +361,8 @@ public class TestData {
         Check.notEmpty(accepted);
         for (Invitation invitation : accepted) {
             LineupItem item = new LineupItem(lineup, invitation);
-            item.setTop(RandomUtils.nextInt(500), 500);
-            item.setLeft(RandomUtils.nextInt(400), 400);
+            item.setTop(Long.valueOf(RandomUtils.nextInt(500)));
+            item.setLeft(Long.valueOf(RandomUtils.nextInt(400)));
             lineup.getItems().add(item);
             lineupManager.save(item);
         }

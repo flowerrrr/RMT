@@ -1,5 +1,9 @@
 package de.flower.common.util;
 
+import com.google.common.collect.Lists;
+
+import java.util.List;
+
 /**
  * http://stackoverflow.com/questions/936684/getting-the-class-name-from-a-static-method-in-java
  *
@@ -26,8 +30,8 @@ public final class Clazz {
      * If A has a method that calls this method and B calls A's method, then
      * B is returned.
      *
-     * @return
      * @param callee
+     * @return
      */
     public static Class<?> getCallingClassStatic(final Class<?> callee) {
         CurrentClassGetter ccg = new CurrentClassGetter();
@@ -84,5 +88,26 @@ public final class Clazz {
     public static Class<?> getSuperClass(Class<?> anonymousClass) {
         Check.isTrue(isAnonymousInnerClass(anonymousClass));
         return anonymousClass.getSuperclass();
+    }
+
+    /**
+     * Returns class hierarchy. Starts at object.getClass() and descends down to baseClass.
+     *
+     * @param object
+     * @param baseClass
+     * @return
+     */
+    public static List<Class<?>> getClassList(Class<?> subClass, Class<?> baseClass) {
+        List<Class<?>> classes = Lists.newArrayList();
+        Class<?> c = subClass;
+        classes.add(c);
+        while (!c.equals(baseClass)) {
+            c = c.getSuperclass();
+            if (c == null) {
+                throw new IllegalArgumentException(String.format("Baseclass [%s] not part of type hierarchy of [%s]", baseClass, subClass));
+            }
+            classes.add(c);
+        }
+        return classes;
     }
 }

@@ -16,15 +16,6 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class LineupItem extends AbstractBaseEntity {
 
-    /**
-     * Coordinates are between 0 .. 1. Origin is upper left corner of editor grid.
-     */
-    @Column
-    private Double relLeft;
-
-    @Column
-    private Double relTop;
-
     @Column
     private Long absTop;
 
@@ -50,34 +41,12 @@ public class LineupItem extends AbstractBaseEntity {
         this.invitation = invitation;
     }
 
-    public Double getRelLeft() {
-        return relLeft;
-    }
-
-    public void setRelLeft(final Double relLeft) {
-        this.relLeft = relLeft;
-    }
-
-    public Double getRelTop() {
-        return relTop;
-    }
-
-    public void setRelTop(final Double relTop) {
-        this.relTop = relTop;
-    }
-
     public Long getTop() {
         return absTop;
     }
 
     public void setTop(final Long top) {
         this.absTop = top;
-    }
-
-
-    public void setTop(final long top, final long maxTop) {
-        setTop(top);
-        setRelTop((double) top / maxTop);
     }
 
     public Long getLeft() {
@@ -88,10 +57,6 @@ public class LineupItem extends AbstractBaseEntity {
         this.absLeft = left;
     }
 
-    public void setLeft(final long left, final long maxLeft) {
-        setLeft(left);
-        setRelLeft((double) left / maxLeft);
-    }
     public Lineup getLineup() {
         return lineup;
     }

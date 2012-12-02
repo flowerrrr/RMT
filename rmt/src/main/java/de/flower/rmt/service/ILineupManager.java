@@ -2,10 +2,11 @@ package de.flower.rmt.service;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.mysema.query.types.Path;
+import de.flower.common.ui.ajax.dragndrop.DraggableDto;
+import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.Lineup;
 import de.flower.rmt.model.db.entity.LineupItem;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.model.dto.InvitationDto;
 
 import java.util.List;
 
@@ -16,11 +17,13 @@ public interface ILineupManager {
 
     Lineup findLineup(Event event, Path<?>... attributes);
 
-    List<LineupItem> findLineupItems(Event object, Path<?>... attributes);
+    List<LineupItem> findLineupItems(Event event, Path<?>... attributes);
+
+    List<Invitation> findInvitationsInLinuep(Event event);
 
     Lineup createLineup(final Event event);
 
-    void drop(InvitationDto dto);
+    void drop(DraggableDto dto);
 
     void removeLineupItem(Long invitationId);
 
@@ -31,4 +34,5 @@ public interface ILineupManager {
     @VisibleForTesting
     @Deprecated
     void save(LineupItem item);
+
 }

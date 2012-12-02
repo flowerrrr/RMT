@@ -9,7 +9,7 @@
 @borderColor:       #DDDDDD;
 @widthContent:      560px;
 
-// Border Radius
+/* Border Radius */
 .border-radius(@radius: 5px) {
   -webkit-border-radius: @radius;
      -moz-border-radius: @radius;
@@ -959,27 +959,28 @@ textarea.input-xlarge, input.input-xlarge, .recipient-list-panel {
 /*************************************************************************
     Lineup
 **************************************************************************/
-.lineup-invitee-list-panel {
+.draggable-container {
+    position: relative;
+    height: 29px;
+}
+
+.draggable-invitee-list-panel {
     ul {
         margin-top: 5px;
         margin-bottom: 10px;
-    }
-    .draggable-container {
-        position: relative;
-        height: 21px;
     }
    .placeholder {
         position: absolute;
         color: #BBBBBB;
         text-align: center;
-        width: 100px;
-        padding: 0px 4px;
+        width: 120px;
+        padding: 3px 4px;
         border: 1px solid #F3F3F3;
         border-radius: 3px 3px 3px 3px;
     }
-    .draggable-player-panel {
+    .draggable-entity-label {
         span {
-            width: 100%; // since no remove button is visible
+            // width: 100%; // since no remove button is visible
         }
     }
 }
@@ -988,7 +989,7 @@ textarea.input-xlarge, input.input-xlarge, .recipient-list-panel {
     width: 540px;
     height: 262px;
     background-image: url('../img/football-field.jpg');
-    .draggable-player-panel {
+    .draggable-entity-label {
         background-color: #F3F3F3;
         border-color: #C9C9C9;
     }
@@ -1004,27 +1005,27 @@ textarea.input-xlarge, input.input-xlarge, .recipient-list-panel {
     }
 }
 
-.draggable-player-panel, .placeholder {
+.draggable-entity-label, .placeholder {
     .name {
         overflow: hidden;
         display: block;
         float: left;
-        width: 90px;
+        width: 110px;
         text-align: center;
         text-overflow: ellipsis;
         white-space: nowrap;
     }
 }
 
-.draggable-player-panel {
+.draggable-entity-label {
     background-color: white;
     border: 1px solid #CCCCCC;
     border-radius: 3px 3px 3px 3px;
     height: 18px;
     overflow: hidden;
-    padding: 0 4px;
+    padding: 3px 4px;
     text-align: center;
-    width: 100px;
+    width: 120px;
     &.edit {
         cursor: move;
     }
