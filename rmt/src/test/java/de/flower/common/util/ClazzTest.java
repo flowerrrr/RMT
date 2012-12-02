@@ -43,6 +43,34 @@ public class ClazzTest {
     }
 
     @Test
+    public void testGetThisClassStatic() {
+        class A {
+
+            public Class<?> thisClass;
+
+            public A() {
+                thisClass = Clazz.getThisClassStatic(A.class);
+            }
+        }
+        ;
+        class B extends A {
+
+            public B() {
+            }
+        }
+        ;
+        class C extends B {
+
+            public C() {
+            }
+        }
+
+        assertEquals(new A().thisClass, A.class);
+        assertEquals(new B().thisClass, B.class);
+        assertEquals(new C().thisClass, C.class);
+    }
+
+   @Test
     public void testIsAnonymousClass() {
         Object o = new Object();
         assertFalse(Clazz.isAnonymousClass(o.getClass()));

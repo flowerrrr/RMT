@@ -14,7 +14,7 @@ public class AjaxEditableMultiLineLabelExtended<T> extends AjaxEditableMultiLine
 
     public AjaxEditableMultiLineLabelExtended(final String id, final IModel<T> iModel) {
         super(id, iModel);
-        add(AttributeModifier.append("class", "ajaxEditableMultiLineLabel"));
+        add(AttributeModifier.append("class", "AjaxEditableMultiLineLabel"));
         getLabel().add(AttributeModifier.append("class", new AbstractReadOnlyModel<String>() {
                     @Override
                     public String getObject() {

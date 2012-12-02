@@ -28,20 +28,20 @@ public class ResultsPanelTest extends AbstractRMTWicketMockitoTests {
             result.setLatLng(new LatLng(RandomUtils.nextDouble(), RandomUtils.nextDouble()));
             listModel.getObject().add(result);
         }
-        wicketTester.startComponentInPage(new TestResultsPanel(listModel));
+        wicketTester.startComponentInPage(new TestGeocodeResultsPanel(listModel));
         wicketTester.dumpComponentWithPage();
     }
 
     @Test
     public void testRenderEmptyList() {
         ListModel listModel = new ListModel(new ArrayList());
-        wicketTester.startComponentInPage(new TestResultsPanel(listModel));
+        wicketTester.startComponentInPage(new TestGeocodeResultsPanel(listModel));
         wicketTester.dumpComponentWithPage();
     }
 
-    private static class TestResultsPanel extends ResultsPanel {
+    private static class TestGeocodeResultsPanel extends GeocodeResultsPanel {
 
-        public TestResultsPanel(final IModel<List<GeocodingResult>> listModel) {
+        public TestGeocodeResultsPanel(final IModel<List<GeocodingResult>> listModel) {
             super(listModel);
         }
 

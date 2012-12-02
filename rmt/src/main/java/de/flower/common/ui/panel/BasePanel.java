@@ -12,7 +12,6 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.Markup;
 import org.apache.wicket.markup.html.panel.GenericPanel;
-import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.slf4j.Logger;
@@ -84,15 +83,18 @@ public class BasePanel<T> extends GenericPanel<T> {
         if (id != null) {
             return id;
         } else {
-            Class<?> callingClass = Clazz.getCallingClassStatic(callee);
-            String className = Clazz.getShortName(callingClass);
+            Class<?> thisClass = Clazz.getThisClassStatic(callee);
+            if (Clazz.isAnonymousClass(thisClass)) {
+                thisClass = Clazz.getSuperClass(thisClass);
+            }
+            String className = Clazz.getShortName(thisClass);
             return Strings.uncapitalize(className);
         }
     }
 
     @VisibleForTesting
     protected String getCssClasses() {
-        List<Class<?>> panelClasses = Clazz.getClassList(this.getClass(), Panel.class);
+        List<Class<?>> panelClasses = Clazz.getClassList(this.getClass(), BasePanel.class);
         panelClasses = Lists.newArrayList(Collections2.filter(panelClasses, new Predicate<Class<?>>() {
             @Override
             public boolean apply(final Class<?> input) {
@@ -109,8 +111,8 @@ public class BasePanel<T> extends GenericPanel<T> {
     }
 
     public static String getCssClass(Class<?> clazz) {
-        return Strings.camelCaseToHyphen(getClassName(clazz)).toLowerCase();
-        // return getClassName(clazz);
+        // return Strings.camelCaseToHyphen(getClassName(clazz)).toLowerCase();
+        return getClassName(clazz);
     }
 
     private static String getClassName(Class<?> clazz) {

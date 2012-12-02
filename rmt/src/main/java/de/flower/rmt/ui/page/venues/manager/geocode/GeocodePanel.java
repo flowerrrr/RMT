@@ -62,8 +62,8 @@ public abstract class GeocodePanel extends BasePanel {
         geocodeButton.setDefaultFormProcessing(false);
         getGeocodeButtonParent().add(geocodeButton);
 
-        ResultsPanel resultsPanel;
-        add(resultsPanel = new ResultsPanel(resultListModel) {
+        GeocodeResultsPanel geocodeResultsPanel;
+        add(geocodeResultsPanel = new GeocodeResultsPanel(resultListModel) {
             @Override
             protected void onSelect(final AjaxRequestTarget target, final GeocodingResult result) {
                 self.onSelect(target, result);
@@ -74,7 +74,7 @@ public abstract class GeocodePanel extends BasePanel {
                 return resultListModel.getObject() != null;
             }
         });
-        resultsPanel.setOnCloseCallback(new BasePanel.IOnCloseCallback() {
+        geocodeResultsPanel.setOnCloseCallback(new BasePanel.IOnCloseCallback() {
 
             @Override
             public void onClose(final AjaxRequestTarget target) {

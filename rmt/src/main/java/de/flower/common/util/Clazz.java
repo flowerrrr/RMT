@@ -24,6 +24,37 @@ public final class Clazz {
         return getClassStatic(3);
     }
 
+    public static Class<?> getThisClassStatic(final Class<?> baseClass) {
+        CurrentClassGetter ccg = new CurrentClassGetter();
+        final Class[] classContext = ccg.getClassContext2();
+        int index = -1;
+        for (int i = 0; i < classContext.length; i++) {
+            if (classContext[i].equals(baseClass)) {
+                index = i;
+                break;
+            }
+        }
+        // search for next class in stack that differs from clazz
+        for (int i = index + 1; i < classContext.length; i++) {
+            Class<?> callingClass = classContext[i];
+            if (!(callingClass.equals(baseClass) || isSubClass(callingClass, baseClass))) {
+                return classContext[i - 1];
+            }
+        }
+        throw new RuntimeException("This should not happen");
+    }
+
+    public static boolean isSubClass(final Class<?> subClass, final Class<?> baseClass) {
+        Class<?> tmp = subClass.getSuperclass();
+        while (tmp != null) {
+            if (tmp.equals(baseClass)) {
+                return true;
+            }
+            tmp = tmp.getSuperclass();
+        }
+        return false;
+    }
+
     /**
      * Returns the class that is calling the caller of this method.
      * <p/>
@@ -69,6 +100,7 @@ public final class Clazz {
         }
     }
 
+
     private static class CurrentClassGetter extends SecurityManager {
 
         public Class getClass(int frame) {
@@ -106,9 +138,6 @@ public final class Clazz {
     /**
      * Returns class hierarchy. Starts at object.getClass() and descends down to baseClass.
      *
-     * @param object
-     * @param baseClass
-     * @return
      */
     public static List<Class<?>> getClassList(Class<?> subClass, Class<?> baseClass) {
         List<Class<?>> classes = Lists.newArrayList();

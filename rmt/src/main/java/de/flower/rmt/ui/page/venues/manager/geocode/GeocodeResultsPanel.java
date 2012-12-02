@@ -16,9 +16,9 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public abstract class ResultsPanel extends BasePanel<List<GeocodingResult>> {
+public abstract class GeocodeResultsPanel extends BasePanel<List<GeocodingResult>> {
 
-    public ResultsPanel(final IModel<List<GeocodingResult>> listModel) {
+    public GeocodeResultsPanel(final IModel<List<GeocodingResult>> listModel) {
         super(listModel);
 
         add(new AjaxEventListener(GeocodingResult.class));
