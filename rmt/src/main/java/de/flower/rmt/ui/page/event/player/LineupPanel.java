@@ -1,5 +1,6 @@
 package de.flower.rmt.ui.page.event.player;
 
+import de.flower.common.ui.behavior.AbsolutePositionBehavior;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.Invitation;
@@ -49,8 +50,11 @@ public class LineupPanel extends BasePanel {
         final ListView<LineupItem> items = new ListView<LineupItem>("items", listModel) {
             @Override
             protected void populateItem(final ListItem<LineupItem> item) {
-                Invitation invitation = item.getModelObject().getInvitation();
-                item.add(new EntityLabel(invitation.getId(), invitation.getName(), false));
+                LineupItem lineupItem = item.getModelObject();
+                Invitation invitation = lineupItem.getInvitation();
+                EntityLabel entityLabel = new EntityLabel(invitation.getId(), invitation.getName(), false);
+                entityLabel.add(new AbsolutePositionBehavior(lineupItem.getTop(), lineupItem.getLeft()));
+                item.add(entityLabel);
             }
 
             @Override
@@ -83,7 +87,7 @@ public class LineupPanel extends BasePanel {
         return new LoadableDetachableModel<Lineup>() {
             @Override
             protected Lineup load() {
-                return lineupManager.findLineup(model.getObject());
+                return lineupManager.findOrCreateLineup(model.getObject());
             }
         };
     }

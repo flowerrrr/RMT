@@ -53,6 +53,8 @@ public class NavigationPanel extends RMTBasePanel {
     private IBlogManager blogManager;
 
     public NavigationPanel(INavigationPanelAware page) {
+        System.out.println("*****************************************+");
+        System.out.println(this.getId());
 
         setRenderBodyOnly(true);
 

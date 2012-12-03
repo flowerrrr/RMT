@@ -85,6 +85,8 @@
 
     <logger name="trace" level="INFO"/>
 
+    <logger name="de.flower.common.ui.panel.BasePanel" level="TRACE"/>
+
     <logger name="xstream" additivity="false" level="TRACE">
         <appender-ref ref="XSTREAM_FILE"/>
     </logger>

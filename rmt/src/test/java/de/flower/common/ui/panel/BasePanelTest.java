@@ -40,4 +40,5 @@ public class BasePanelTest extends AbstractWicketUnitTests {
     static class TestPanel extends BasePanel {
 
     }
+
 }

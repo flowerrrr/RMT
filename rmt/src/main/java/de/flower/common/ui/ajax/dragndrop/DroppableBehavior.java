@@ -15,25 +15,28 @@ public abstract class DroppableBehavior extends Behavior {
 
     private final static String SCRIPT = "$(function () {\n" +
             "            var id = '%s';\n" +
-            "            var repositionAfterDrop = %s;\n" +
+            "            var rerenderAfterDrop = %s;\n" +
             "            $('#' + id).droppable({\n" +
+            "                hoverClass: 'droppable-hover',\n" +
+            "                greedy: true,\n" +
             "                drop: function (event, ui) {\n" +
-            "                    var top = ui.offset.top - $(this).position().top;\n" +
-            "                    var left = ui.offset.left - $(this).position().left;\n" +
+            // values can be decimals. better round it to avoid parsing exception in wicket long converter.
+            "                    var top = Math.round(ui.offset.top - $(this).position().top);\n" +
+            "                    var left = Math.round(ui.offset.left - $(this).position().left);\n" +
             "                    var width = $(this).width();\n" +
             "                    var height = $(this).height();\n" +
             "                    var url = $('#' + id).attr('url');\n" +
             "                    var callback = eval(url);\n" +
             "                    wicketAjaxGet(callback);\n" +
-            "                    if (repositionAfterDrop) ui.draggable.remove();\n" + // remove dragged object
+            "                    if (rerenderAfterDrop) ui.draggable.remove();\n" + // remove dragged object
             "                }\n" +
             "            });\n" +
             "        });\n";
 
-    private boolean repositionAfterDrop;
+    private boolean rerenderAfterDrop;
 
-    protected DroppableBehavior(final boolean repositionAfterDrop) {
-        this.repositionAfterDrop = repositionAfterDrop;
+    protected DroppableBehavior(final boolean rerenderAfterDrop) {
+        this.rerenderAfterDrop = rerenderAfterDrop;
     }
 
     @Override
@@ -55,7 +58,7 @@ public abstract class DroppableBehavior extends Behavior {
 
     @Override
     public void renderHead(final Component component, final IHeaderResponse response) {
-        response.renderOnDomReadyJavaScript(String.format(SCRIPT, component.getMarkupId(), repositionAfterDrop));
+        response.renderOnDomReadyJavaScript(String.format(SCRIPT, component.getMarkupId(), rerenderAfterDrop));
     }
 
     protected abstract void onDrop(final AjaxRequestTarget target, final DraggableDto dto);

@@ -21,7 +21,7 @@ public class EventTeamManagerTest extends AbstractRMTIntegrationTests {
         Event event = testData.createEvent();
         Invitation invitation = invitationManager.findAllByEvent(event).get(0);
         EventTeam eventTeam = eventTeamManager.addTeam(event);
-        eventTeamManager.addPlayer(eventTeam.getId(), invitation.getId());
+        eventTeamManager.addPlayer(eventTeam.getId(), invitation.getId(), null);
         List<EventTeamPlayer> players = eventTeamManager.findEventTeamPlayers(eventTeam);
         assertEquals(players.size(), 1);
     }

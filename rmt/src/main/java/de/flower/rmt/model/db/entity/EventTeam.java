@@ -80,4 +80,30 @@ public class EventTeam extends AbstractBaseEntity {
     public void setPlayers(final List<EventTeamPlayer> players) {
         this.players = players;
     }
+
+    public void addPlayer(final EventTeamPlayer player, final EventTeamPlayer insertBeforePlayer) {
+        if (insertBeforePlayer == null) {
+            // add to end of player list.
+            player.setOrder(players.size());
+            players.add(player);
+        } else {
+            int index = players.indexOf(insertBeforePlayer);
+            player.setOrder(insertBeforePlayer.getOrder());
+            for (int i = index; i < players.size(); i++) {
+                EventTeamPlayer p = players.get(i);
+                p.setOrder(p.getOrder() + 1);
+            }
+            players.add(index, player);
+        }
+    }
+
+    public void removePlayer(final EventTeamPlayer player) {
+        int index = players.indexOf(player);
+        players.remove(index);
+        // from i on decrement order
+        for (int i = index; i < players.size(); i++) {
+            EventTeamPlayer p = players.get(i);
+            p.setOrder(p.getOrder() - 1);
+        }
+    }
 }

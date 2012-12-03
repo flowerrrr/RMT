@@ -30,7 +30,7 @@ public class LineupPanelTest extends AbstractRMTWicketMockitoTests {
     public void testRenderNoLineup() {
         Event event = testData.newEvent();
         Lineup lineup = null;
-        when(lineupManager.findLineup(event)).thenReturn(lineup);
+        when(lineupManager.findOrCreateLineup(event)).thenReturn(lineup);
 
         wicketTester.startComponentInPage(new LineupPanel("panel", Model.of(event)));
         wicketTester.dumpComponentWithPage();
@@ -42,7 +42,7 @@ public class LineupPanelTest extends AbstractRMTWicketMockitoTests {
     public void testRenderLineupNotPubslished() {
         Event event = testData.newEvent();
         Lineup lineup = testData.newLineup(event);
-        when(lineupManager.findLineup(event)).thenReturn(lineup);
+        when(lineupManager.findOrCreateLineup(event)).thenReturn(lineup);
 
         wicketTester.startComponentInPage(new LineupPanel("panel", Model.of(event)));
         wicketTester.dumpComponentWithPage();
@@ -55,7 +55,7 @@ public class LineupPanelTest extends AbstractRMTWicketMockitoTests {
         Event event = testData.newEvent();
         Lineup lineup = testData.newLineup(event);
         lineup.setPublished(true);
-        when(lineupManager.findLineup(event)).thenReturn(lineup);
+        when(lineupManager.findOrCreateLineup(event)).thenReturn(lineup);
         when(lineupManager.findLineupItems(eq(event), Mockito.<Path>anyVararg())).thenReturn(lineup.getItems());
 
         wicketTester.startComponentInPage(new LineupPanel("panel", Model.of(event)));

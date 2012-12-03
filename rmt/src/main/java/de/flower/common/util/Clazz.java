@@ -37,7 +37,7 @@ public final class Clazz {
         // search for next class in stack that differs from clazz
         for (int i = index + 1; i < classContext.length; i++) {
             Class<?> callingClass = classContext[i];
-            if (!(callingClass.equals(baseClass) || isSubClass(callingClass, baseClass))) {
+            if (!(callingClass.equals(classContext[i-1]) || isSubClass(callingClass, classContext[i - 1]))) {
                 return classContext[i - 1];
             }
         }

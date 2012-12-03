@@ -23,9 +23,11 @@ public interface IEventTeamManager {
 
     void removeTeam(EventTeam eventTeam);
 
-    void addPlayer(Long eventTeamId, Long invitationId);
+    void addPlayer(Long eventTeamId, Long invitationId, final Long insertBeforePlayerId);
 
     void removePlayer(Long playerId);
 
     void removeInvitation(Long invitationId);
+
+    void save(EventTeam eventTeam);
 }

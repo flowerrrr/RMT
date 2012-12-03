@@ -15,7 +15,9 @@ import java.util.List;
  */
 public interface ILineupManager {
 
-    Lineup findLineup(Event event, Path<?>... attributes);
+    Lineup findLineup(Event entity);
+
+    Lineup findOrCreateLineup(Event event, Path<?>... attributes);
 
     List<LineupItem> findLineupItems(Event event, Path<?>... attributes);
 
@@ -34,5 +36,4 @@ public interface ILineupManager {
     @VisibleForTesting
     @Deprecated
     void save(LineupItem item);
-
 }

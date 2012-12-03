@@ -25,6 +25,7 @@
             <list>
                 <value>.*Behavior</value>
                 <value>.*Panel</value>
+                <value>.*Label</value>
                 <value>.*EntityForm</value>
                 <value>.*FormComponent</value>
                 <value>.*Page</value>

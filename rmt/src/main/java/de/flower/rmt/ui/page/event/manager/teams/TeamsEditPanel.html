@@ -5,18 +5,17 @@
 
 <wicket:panel>
 
-    <ul>
-        <li wicket:id="teamList">
-            <span wicket:id="name"/>
-
+    <ul class="clearfix">
+        <li wicket:id="teamList" class="team-container">
+            <h6 class="team-name">
+                <span wicket:id="name" wicket:message="title:button.edit" />
+                <a wicket:id="removeTeamButton" wicket:message="title:button.remove.team" class="pull-right no-hover">&times;</a>
+            </h6>
             <div wicket:id="eventTeamPanel"/>
-            <a wicket:id="removeTeamButton">
-                <wicket:message key="button.remove.team"/>
-            </a>
         </li>
     </ul>
 
-    <a wicket:id="addTeamButton">
+    <a wicket:id="addTeamButton" class="btn">
         <wicket:message key="button.add.team"/>
     </a>
 

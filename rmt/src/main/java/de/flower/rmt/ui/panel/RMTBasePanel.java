@@ -34,7 +34,7 @@ public class RMTBasePanel<T> extends BasePanel<T> {
     }
 
     public RMTBasePanel(final String id, final IModel<T> model) {
-        super(getId(id, RMTBasePanel.class), model);
+        super(id, model);
         // always append a css class indicating the view
         add(AttributeModifier.append("class", new AbstractReadOnlyModel<String>() {
             @Override

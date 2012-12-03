@@ -159,8 +159,6 @@ li {
 .AjaxEditableMultiLineLabel {
     .enabled {
         cursor: pointer;
-
-
     }
 }
 
@@ -956,9 +954,11 @@ textarea.input-xlarge, input.input-xlarge, .RecipientListPanel {
     }
 
 }
+
 /*************************************************************************
-    Lineup
+    Lineup + EventTeams - Draggables
 **************************************************************************/
+
 .draggable-container {
     position: relative;
     height: 29px;
@@ -985,27 +985,7 @@ textarea.input-xlarge, input.input-xlarge, .RecipientListPanel {
     }
 }
 
-.lineup-grid {
-    width: 540px;
-    height: 262px;
-    background-image: url('../img/football-field.jpg');
-    .DraggableEntityLabel {
-        background-color: #F3F3F3;
-        border-color: #C9C9C9;
-    }
-    .no-lineup {
-        position: relative;
-        margin: 0px auto;
-        text-align: center;
-        top: 100px;
-        width: 200px;
-        background-color: white;
-        border: 1px solid #CCCCCC;
-        border-radius: 3px 3px 3px 3px;
-    }
-}
-
-.DraggableEntityLabel, .placeholder {
+.EntityLabel, .placeholder {
     .name {
         overflow: hidden;
         display: block;
@@ -1017,7 +997,7 @@ textarea.input-xlarge, input.input-xlarge, .RecipientListPanel {
     }
 }
 
-.DraggableEntityLabel {
+.EntityLabel {
     background-color: white;
     border: 1px solid #CCCCCC;
     border-radius: 3px 3px 3px 3px;
@@ -1035,6 +1015,40 @@ textarea.input-xlarge, input.input-xlarge, .RecipientListPanel {
         }
     }
 }
+
+/*************************************************************************
+     Droppable
+**************************************************************************/
+.droppable-hover {
+    border: 1px;
+    border-color: rgba(82, 168, 236, 0.8);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+}
+
+
+/*************************************************************************
+     Lineup
+**************************************************************************/
+.lineup-grid {
+    width: 540px;
+    height: 262px;
+    background-image: url('../img/football-field.jpg');
+    .EntityLabel {
+        background-color: #F3F3F3;
+        border-color: #C9C9C9;
+    }
+    .no-lineup {
+        position: relative;
+        margin: 0px auto;
+        text-align: center;
+        top: 100px;
+        width: 200px;
+        background-color: white;
+        border: 1px solid #CCCCCC;
+        border-radius: 3px 3px 3px 3px;
+    }
+}
+
 .LineupEditPanel, .LineupPanel {
     padding-top: 40px;
 }
@@ -1042,9 +1056,50 @@ textarea.input-xlarge, input.input-xlarge, .RecipientListPanel {
 /*************************************************************************
     Event team
 **************************************************************************/
+.team-container {
+    float: left;
+    width: 130px;
+    margin-right: 8px;
+    margin-bottom: 15px;
+}
+
+.team-name {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+    cursor: pointer;
+    span {
+        width: 100px;
+        height: 15px;
+        display: inline-block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    a {
+        margin-right: 7px;
+    }
+    // editable label
+    input {
+        width: 110px;
+        height: 15px;
+        margin-bottom: -1px;
+        margin-left: -2px;
+        padding: 0px 0px 1px 0px;
+        border: 1px solid #ccc;
+        box-shadow: none;
+        border-radius: 0px;
+        // copy styles of h6
+        color: #999999;
+        font-size: 11px;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+}
+
 .player-grid {
-    width: 540px;
-    height: 100px;
+    width: 100%;
+    min-height: 60px;
+    padding-bottom: 30px;
 }
 
 /*************************************************************************
@@ -1208,7 +1263,7 @@ textarea.input-xlarge, input.input-xlarge, .RecipientListPanel {
     }
 }
 
-.ArticleListPanel, .ArticleListPanel {
+.ArticleListPanel, .ArticlePanel {
     .article {
         border-bottom: 1px solid #CCCCCC;
         padding-bottom: 30px;
@@ -1279,7 +1334,7 @@ textarea.input-xlarge, input.input-xlarge, .RecipientListPanel {
             margin-top: 10px;
         }
 }
-.ArticleListPanel {
+.ArticlePanel {
         .article .actions {
             font-size: 11px;
             margin-left: 10px;

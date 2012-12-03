@@ -30,6 +30,9 @@ public class EventTeamPlayer extends AbstractBaseEntity {
     @Index(name = "ix_invitation")
     private Invitation invitation;
 
+    /**
+     * Zero based order.
+     */
     @NotNull
     @Column(name = "sort_order")
     private Integer order;

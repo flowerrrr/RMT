@@ -7,6 +7,7 @@ import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.service.IEventTeamManager;
 import de.flower.rmt.ui.page.event.manager.lineup.DraggableInviteeListPanel;
+import de.flower.rmt.ui.page.event.manager.lineup.LineupSecondaryPanel.LineupPublishPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -22,6 +23,8 @@ public class TeamsSecondaryPanel extends BasePanel {
 
         // treat subpanels as top level secondary panels to have spacer between them
         setRenderBodyOnly(true);
+
+        add(new LineupPublishPanel(model));
 
         add(new EventTeamInviteeListPanel(model));
     }

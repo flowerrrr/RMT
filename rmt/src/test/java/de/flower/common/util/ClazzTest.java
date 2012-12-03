@@ -64,10 +64,19 @@ public class ClazzTest {
             public C() {
             }
         }
+        class D extends A {
+
+            public Class<?> innerThisClass;
+
+            public D() {
+                innerThisClass = new C().thisClass;
+            }
+        }
 
         assertEquals(new A().thisClass, A.class);
         assertEquals(new B().thisClass, B.class);
         assertEquals(new C().thisClass, C.class);
+        assertEquals(new D().innerThisClass, C.class);
     }
 
    @Test

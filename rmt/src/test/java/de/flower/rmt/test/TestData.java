@@ -355,7 +355,7 @@ public class TestData {
     }
 
     public Lineup createLineup(Event event) {
-        Lineup lineup = lineupManager.findLineup(event);
+        Lineup lineup = lineupManager.findOrCreateLineup(event);
         Check.notNull(lineup);
         List<Invitation> accepted = invitationManager.findAllByEventAndStatus(event, RSVPStatus.ACCEPTED);
         Check.notEmpty(accepted);

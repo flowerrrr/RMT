@@ -1,10 +1,12 @@
 package de.flower.rmt.ui.page.event.manager.teams;
 
+import com.google.common.collect.Lists;
 import de.flower.common.ui.ajax.dragndrop.DraggableDto;
 import de.flower.common.ui.ajax.dragndrop.DroppableBehavior;
 import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.panel.BasePanel;
+import de.flower.common.util.S;
 import de.flower.rmt.model.db.entity.EventTeam;
 import de.flower.rmt.model.db.entity.EventTeamPlayer;
 import de.flower.rmt.model.db.entity.Invitation;
@@ -17,6 +19,7 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -57,19 +60,55 @@ public class EventTeamPanel extends BasePanel<EventTeam> {
                     }
                 };
                 item.add(entityLabel);
+                item.add(new DroppableBehavior(true) {
+                    @Override
+                    protected void onDrop(final AjaxRequestTarget target, final DraggableDto dto) {
+                        eventTeamManager.addPlayer(model.getObject().getId(), dto.entityId, item.getModelObject().getId());
+                        AjaxEventSender.send(grid, model);
+                        // must update other teams if player was moved from one team to another
+                        AjaxEventSender.entityEvent(grid, EventTeam.class);
+                    }
+                });
             }
         };
         itemContainer.add(items);
 
-        grid.add(new DroppableBehavior(true) {
+        // render placerholders as droppable containers for appending items to end of list
+        ListView<Object> placeholders = new ListView<Object>("placeholders", getPlaceholdersModel(items.getModel())) {
             @Override
-            protected void onDrop(final AjaxRequestTarget target, final DraggableDto dto) {
-                eventTeamManager.addPlayer(model.getObject().getId(), dto.entityId);
-                AjaxEventSender.send(grid, model);
-                // must update other teams if player was moved from one team to another
-                AjaxEventSender.entityEvent(grid, EventTeamPlayer.class);
+            protected void populateItem(final ListItem<Object> item) {
+                item.add(new DroppableBehavior(true) {
+                    @Override
+                    protected void onDrop(final AjaxRequestTarget target, final DraggableDto dto) {
+                        eventTeamManager.addPlayer(model.getObject().getId(), dto.entityId, null);
+                        AjaxEventSender.send(grid, model);
+                        // must update other teams if player was moved from one team to another
+                        AjaxEventSender.entityEvent(grid, EventTeam.class);
+                    }
+                });
             }
-        });
+        };
+        itemContainer.add(placeholders);
+    }
+
+    private IModel<? extends List<?>> getPlaceholdersModel(final IModel<? extends List<EventTeamPlayer>> model) {
+        return new AbstractReadOnlyModel<List<?>>() {
+            @Override
+            public List<?> getObject() {
+                // return list so that at least one placeholder and combined size of players and placeholders is minimum 3.
+                int size = Math.max(1, 3 - model.getObject().size());
+                return newList(size, null);
+            }
+        };
+    }
+
+    private static <T> List<T> newList(int size, T defaultElement) {
+        List<T> list = Lists.newArrayList();
+        for (int i = 0; i < size; i++) {
+            list.add(defaultElement);
+        }
+        S.log(list.toString());
+        return list;
     }
 
     private IModel<List<EventTeamPlayer>> getListModel(final IModel<EventTeam> model) {

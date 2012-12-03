@@ -9,12 +9,16 @@ import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.EventTeam;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.service.IEventTeamManager;
+import de.flower.rmt.ui.page.event.manager.teams.TeamsSecondaryPanel.EventTeamInviteeListPanel;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.extensions.ajax.markup.html.AjaxEditableLabel;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
+import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
@@ -42,13 +46,27 @@ public class TeamsEditPanel extends BasePanel {
         ListView<EventTeam> teamList = new ListView<EventTeam>("teamList", listModel) {
             @Override
             protected void populateItem(final ListItem<EventTeam> item) {
-                item.add(new Label("name", item.getModelObject().getName()));
+                // item.add(new Label("name", item.getModelObject().getName()));
+                AjaxEditableLabel<String> editableLabel = new AjaxEditableLabel<String>("name", new PropertyModel<String>(item.getModel(), "name")) {
+                    {
+                        getEditor().add(AttributeModifier.replace("maxlength", 15));
+                    }
+                    @Override
+                    protected void onSubmit(final AjaxRequestTarget target) {
+                        super.onSubmit(target);
+                        if (!StringUtils.isBlank(item.getModelObject().getName())) {
+                            eventTeamManager.save(item.getModelObject());
+                        }
+                    }
+                };
+                item.add(editableLabel);
                 item.add(new EventTeamPanel(item.getModel()));
                 item.add(new AjaxLinkWithConfirmation("removeTeamButton", new ResourceModel("manager.eventteam.remove.confirm")) {
                     @Override
                     public void onClick(final AjaxRequestTarget target) {
                         eventTeamManager.removeTeam(item.getModelObject());
                         AjaxEventSender.entityEvent(this, EventTeam.class);
+                        AjaxEventSender.send(this, EventTeamInviteeListPanel.class);
                     }
                 });
             }

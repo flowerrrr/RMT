@@ -95,26 +95,42 @@ public class EventTeamManager extends AbstractService implements IEventTeamManag
 
     @Override
     @Transactional(readOnly = false)
-    public void addPlayer(final Long eventTeamId, final Long invitationId) {
+    public void addPlayer(final Long eventTeamId, final Long invitationId, final Long insertBeforePlayerId) {
         EventTeam eventTeam = eventTeamRepo.findOne(eventTeamId);
         Invitation invitation = invitationManager.loadById(invitationId);
         // player already assigned to a team?
         EventTeamPlayer player = eventTeamPlayerRepo.findByInvitation(invitation);
+        EventTeamPlayer insertBeforePlayer = null;
+        if (insertBeforePlayerId != null) {
+            insertBeforePlayer = eventTeamPlayerRepo.findOne(insertBeforePlayerId);
+        }
         if (player != null) {
             // is already player of given team
-            if (player.getEventTeam().equals(eventTeam)) {
-                // nothing to do
-                return;
+            EventTeam oldTeam = player.getEventTeam();
+            if (oldTeam.equals(eventTeam)) {
+                if (player.equals(insertBeforePlayer)) {
+                    // player dropped on itself - nothing to do
+                } else {
+                    // resort player
+                    eventTeam.removePlayer(player);
+                    eventTeam.addPlayer(player, insertBeforePlayer);
+                    eventTeamPlayerRepo.save(player);
+                    eventTeamRepo.save(eventTeam);
+                }
             } else {
+                // re-order oldTeam. close gap that player leaves when removed from the team
+                oldTeam.removePlayer(player);
                 // assign new team
                 player.setEventTeam(eventTeam);
-                return;
+                // add to end of list
+                eventTeam.addPlayer(player, insertBeforePlayer);
+                eventTeamPlayerRepo.save(player);
+                eventTeamRepo.save(eventTeam);
             }
         } else {
             EventTeamPlayer entity = new EventTeamPlayer(eventTeam, invitation);
-            entity.setOrder(0);
+            eventTeam.addPlayer(entity, insertBeforePlayer);
             eventTeamPlayerRepo.save(entity);
-            eventTeam.getPlayers().add(entity);
             eventTeamRepo.save(eventTeam);
         }
     }
@@ -122,6 +138,9 @@ public class EventTeamManager extends AbstractService implements IEventTeamManag
     @Override
     @Transactional(readOnly = false)
     public void removePlayer(final Long playerId) {
+        EventTeamPlayer player = eventTeamPlayerRepo.findOne(playerId);
+        player.getEventTeam().removePlayer(player);
+        eventTeamRepo.save(player.getEventTeam());
         eventTeamPlayerRepo.delete(playerId);
     }
 
@@ -130,6 +149,12 @@ public class EventTeamManager extends AbstractService implements IEventTeamManag
     public void removeInvitation(final Long invitationId) {
         Invitation invitation = invitationManager.loadById(invitationId);
         EventTeamPlayer player = eventTeamPlayerRepo.findByInvitation(invitation);
-        eventTeamPlayerRepo.delete(player);
+        removePlayer(player.getId());
+    }
+
+    @Override
+    public void save(final EventTeam eventTeam) {
+        validate(eventTeam);
+        eventTeamRepo.save(eventTeam);
     }
 }
