@@ -82,7 +82,7 @@ public class LineupSecondaryPanel extends BasePanel {
 
         @Override
         protected boolean isDraggablePlayerVisible(final Invitation invitation) {
-            return lineupItemListModel.getObject().contains(invitation);
+            return !lineupItemListModel.getObject().contains(invitation);
         }
 
         @Override

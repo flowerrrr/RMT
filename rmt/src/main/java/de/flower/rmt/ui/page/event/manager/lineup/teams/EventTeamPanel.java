@@ -67,6 +67,7 @@ public class EventTeamPanel extends RMTBasePanel<EventTeam> {
                             AjaxEventSender.send(grid, model);
                             // must update other teams if player was moved from one team to another
                             AjaxEventSender.entityEvent(grid, EventTeam.class);
+                            AjaxEventSender.send(grid, EventTeamInviteeListPanel.class);
                         }
                     });
                 }
@@ -85,6 +86,7 @@ public class EventTeamPanel extends RMTBasePanel<EventTeam> {
                         AjaxEventSender.send(grid, model);
                         // must update other teams if player was moved from one team to another
                         AjaxEventSender.entityEvent(grid, EventTeam.class);
+                        AjaxEventSender.send(grid, EventTeamInviteeListPanel.class);
                     }
                 });
             }

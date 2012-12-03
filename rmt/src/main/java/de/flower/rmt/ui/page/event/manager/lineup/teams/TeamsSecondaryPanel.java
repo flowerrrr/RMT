@@ -52,7 +52,7 @@ public class TeamsSecondaryPanel extends BasePanel {
 
         @Override
         protected boolean isDraggablePlayerVisible(final Invitation invitation) {
-            return playerItemListModel.getObject().contains(invitation);
+            return !playerItemListModel.getObject().contains(invitation);
         }
 
         @Override

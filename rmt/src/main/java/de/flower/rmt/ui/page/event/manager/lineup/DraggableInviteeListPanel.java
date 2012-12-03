@@ -1,5 +1,8 @@
 package de.flower.rmt.ui.page.event.manager.lineup;
 
+import com.google.common.base.Predicate;
+import com.google.common.collect.Collections2;
+import com.google.common.collect.Lists;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.Invitation_;
@@ -54,7 +57,7 @@ public abstract class DraggableInviteeListPanel extends BasePanel {
         frag.add(new Label("placeholder", invitation.getName()));
 
         DraggableEntityLabel draggablePlayer = new DraggableEntityLabel(invitation.getId(), invitation.getName(), false);
-        draggablePlayer.setVisible(!isDraggablePlayerVisible(invitation));
+        draggablePlayer.setVisible(isDraggablePlayerVisible(invitation));
         frag.add(draggablePlayer);
 
         return frag;
@@ -65,7 +68,12 @@ public abstract class DraggableInviteeListPanel extends BasePanel {
             @Override
             protected List<Invitation> load() {
                 List<Invitation> invitations = invitationManager.findAllByEventAndStatusSortedByName(model.getObject(), status, Invitation_.user);
-                return invitations;
+                return Lists.newArrayList(Collections2.filter(invitations, new Predicate<Invitation>() {
+                    @Override
+                    public boolean apply(final Invitation input) {
+                        return isDraggablePlayerVisible(input);
+                    }
+                }));
             }
         };
     }
