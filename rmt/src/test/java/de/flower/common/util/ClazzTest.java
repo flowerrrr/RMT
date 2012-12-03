@@ -127,7 +127,7 @@ public class ClazzTest {
         classes = Clazz.getClassList(C.class, Object.class);
         assertEquals(classes, Lists.newArrayList(C.class, Object.class), classes.toString());
         classes = Clazz.getClassList(clazz.getClass(), A.class);
-        assertEquals(classes, Lists.newArrayList(B.class, A.class), classes.toString());
+        assertEquals(classes, Lists.newArrayList(clazz.getClass(), B.class, A.class), classes.toString());
         try {
             Clazz.getClassList(C.class, A.class);
             fail();

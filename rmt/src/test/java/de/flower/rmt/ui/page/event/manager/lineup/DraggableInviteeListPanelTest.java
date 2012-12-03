@@ -15,12 +15,19 @@ public class DraggableInviteeListPanelTest extends AbstractRMTWicketIntegrationT
     public void testRender() {
         Event event = testData.createEventWithResponses();
         testData.createLineup(event);
-        wicketTester.startComponentInPage(new DraggableInviteeListPanel(new EventModel(event)) {
-            @Override
-            protected boolean isDraggablePlayerVisible(final Invitation invitation) {
-                return true;
-            }
-        });
+        wicketTester.startComponentInPage(new TestDraggableInviteeListPanel(event));
         wicketTester.dumpComponentWithPage();
+    }
+
+    private static class TestDraggableInviteeListPanel extends DraggableInviteeListPanel {
+
+        public TestDraggableInviteeListPanel(final Event event) {
+            super(new EventModel(event));
+        }
+
+        @Override
+        protected boolean isDraggablePlayerVisible(final Invitation invitation) {
+            return true;
+        }
     }
 }
