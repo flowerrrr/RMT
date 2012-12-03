@@ -149,7 +149,9 @@ public class EventTeamManager extends AbstractService implements IEventTeamManag
     public void removeInvitation(final Long invitationId) {
         Invitation invitation = invitationManager.loadById(invitationId);
         EventTeamPlayer player = eventTeamPlayerRepo.findByInvitation(invitation);
-        removePlayer(player.getId());
+        if (player != null) {
+            removePlayer(player.getId());
+        }
     }
 
     @Override

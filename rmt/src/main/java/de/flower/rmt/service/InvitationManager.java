@@ -295,7 +295,8 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     public void delete(final Long id) {
         // delete from lineup
         lineupManager.removeLineupItem(id);
-        eventTeamManager.removePlayer(id);
+        eventTeamManager.removeInvitation(id);
+
         invitationRepo.delete(id);
     }
 

@@ -114,10 +114,18 @@ li {
     width: @widthContent;
     /* let content always have a minimum width. looks nicer on empty pages. */
     min-height: 500px;
-    border-right:  1px solid #CCCCCC;
+    height: 100%;
+    border-right:  1px solid #ddd;
     padding-right: 19px;
 }
 
+/* border between main and secondary panel */
+.secondary {
+    border-left:  1px solid #ddd;
+    /* hack to overlay borders of main and secondary */
+    margin-left: -1px;
+    padding-left: 20px;
+}
 
 .secondary h4, .main h4 {
     line-height: normal;
@@ -126,7 +134,7 @@ li {
 
 // have separate rule for IE8
 .secondary > div {
-    border-bottom: 1px solid #CCCCCC;
+    border-bottom: 1px solid #ddd;
     margin-bottom: 20px;
     padding-bottom: 20px;
 }
@@ -156,7 +164,7 @@ li {
     margin-bottom: 0px; // form-margin would add to bottom-padding of divs
 }
 
-.AjaxEditableMultiLineLabel {
+.AjaxEditableMultiLineLabel, .AjaxEditableLabel {
     .enabled {
         cursor: pointer;
     }
@@ -1066,7 +1074,6 @@ textarea.input-xlarge, input.input-xlarge, .RecipientListPanel {
 .team-name {
     border-bottom: 1px solid #ccc;
     margin-bottom: 10px;
-    cursor: pointer;
     span {
         width: 100px;
         height: 15px;

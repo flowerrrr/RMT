@@ -1,12 +1,10 @@
-package de.flower.rmt.ui.page.event.manager.teams;
+package de.flower.rmt.ui.page.event.manager.lineup.teams;
 
 import com.google.common.collect.Lists;
 import de.flower.common.ui.ajax.dragndrop.DraggableDto;
 import de.flower.common.ui.ajax.dragndrop.DroppableBehavior;
 import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.common.ui.ajax.event.AjaxEventSender;
-import de.flower.common.ui.panel.BasePanel;
-import de.flower.common.util.S;
 import de.flower.rmt.model.db.entity.EventTeam;
 import de.flower.rmt.model.db.entity.EventTeamPlayer;
 import de.flower.rmt.model.db.entity.Invitation;
@@ -14,7 +12,8 @@ import de.flower.rmt.model.db.entity.QEventTeamPlayer;
 import de.flower.rmt.service.IEventTeamManager;
 import de.flower.rmt.ui.page.event.manager.lineup.dragndrop.DraggableEntityLabel;
 import de.flower.rmt.ui.page.event.manager.lineup.dragndrop.EntityLabel;
-import de.flower.rmt.ui.page.event.manager.teams.TeamsSecondaryPanel.EventTeamInviteeListPanel;
+import de.flower.rmt.ui.page.event.manager.lineup.teams.TeamsSecondaryPanel.EventTeamInviteeListPanel;
+import de.flower.rmt.ui.panel.RMTBasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -29,7 +28,7 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class EventTeamPanel extends BasePanel<EventTeam> {
+public class EventTeamPanel extends RMTBasePanel<EventTeam> {
 
     @SpringBean
     private IEventTeamManager eventTeamManager;
@@ -49,7 +48,7 @@ public class EventTeamPanel extends BasePanel<EventTeam> {
             @Override
             protected void populateItem(final ListItem<EventTeamPlayer> item) {
                 Invitation invitation = item.getModelObject().getInvitation();
-                EntityLabel entityLabel = new DraggableEntityLabel(invitation.getId(), invitation.getName(), true) {
+                EntityLabel entityLabel = new DraggableEntityLabel(invitation.getId(), invitation.getName(), EventTeamPanel.this.isManagerView()) {
                     @Override
                     protected void onRemove(final AjaxRequestTarget target, final Long invitationId) {
                         // remove player
@@ -60,15 +59,17 @@ public class EventTeamPanel extends BasePanel<EventTeam> {
                     }
                 };
                 item.add(entityLabel);
-                item.add(new DroppableBehavior(true) {
-                    @Override
-                    protected void onDrop(final AjaxRequestTarget target, final DraggableDto dto) {
-                        eventTeamManager.addPlayer(model.getObject().getId(), dto.entityId, item.getModelObject().getId());
-                        AjaxEventSender.send(grid, model);
-                        // must update other teams if player was moved from one team to another
-                        AjaxEventSender.entityEvent(grid, EventTeam.class);
-                    }
-                });
+                if (EventTeamPanel.this.isManagerView()) {
+                    item.add(new DroppableBehavior(true) {
+                        @Override
+                        protected void onDrop(final AjaxRequestTarget target, final DraggableDto dto) {
+                            eventTeamManager.addPlayer(model.getObject().getId(), dto.entityId, item.getModelObject().getId());
+                            AjaxEventSender.send(grid, model);
+                            // must update other teams if player was moved from one team to another
+                            AjaxEventSender.entityEvent(grid, EventTeam.class);
+                        }
+                    });
+                }
             }
         };
         itemContainer.add(items);
@@ -88,6 +89,7 @@ public class EventTeamPanel extends BasePanel<EventTeam> {
                 });
             }
         };
+        placeholders.setVisible(isManagerView());
         itemContainer.add(placeholders);
     }
 
@@ -107,7 +109,6 @@ public class EventTeamPanel extends BasePanel<EventTeam> {
         for (int i = 0; i < size; i++) {
             list.add(defaultElement);
         }
-        S.log(list.toString());
         return list;
     }
 

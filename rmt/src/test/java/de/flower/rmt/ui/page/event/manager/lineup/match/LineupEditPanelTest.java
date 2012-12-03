@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.page.event.manager.lineup;
+package de.flower.rmt.ui.page.event.manager.lineup.match;
 
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.test.AbstractRMTWicketIntegrationTests;

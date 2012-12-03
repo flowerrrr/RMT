@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.page.event.manager.lineup;
+package de.flower.rmt.ui.page.event.manager.lineup.match;
 
 import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.common.ui.panel.BasePanel;
@@ -7,6 +7,8 @@ import de.flower.rmt.model.db.entity.Lineup;
 import de.flower.rmt.model.db.entity.LineupItem;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.service.ILineupManager;
+import de.flower.rmt.ui.page.event.manager.lineup.DraggableInviteeListPanel;
+import de.flower.rmt.ui.page.event.manager.lineup.PublishPanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;

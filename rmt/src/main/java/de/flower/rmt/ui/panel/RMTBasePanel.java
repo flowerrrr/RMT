@@ -44,7 +44,7 @@ public class RMTBasePanel<T> extends BasePanel<T> {
         }));
     }
 
-    protected boolean isManagerView() {
+    public boolean isManagerView() {
         return getView() == View.MANAGER && securityService.getUser().isManager() /* redundant check, but doesn't hurt. */;
     }
 

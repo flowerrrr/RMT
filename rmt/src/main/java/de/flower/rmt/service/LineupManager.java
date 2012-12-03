@@ -108,10 +108,13 @@ public class LineupManager extends AbstractService implements ILineupManager {
     @Override
     public void removeLineupItem(final Long invitationId) {
         Invitation invitation = invitationManager.loadById(invitationId);
-        Lineup lineup = findOrCreateLineup(invitation.getEvent());
-        Check.notNull(lineup);
-        LineupItem item = lineupItemRepo.findByLineupAndInvitation(lineup, invitation);
-        lineupItemRepo.delete(item);
+        Lineup lineup = findLineup(invitation.getEvent());
+        if (lineup != null) {
+            LineupItem item = lineupItemRepo.findByLineupAndInvitation(lineup, invitation);
+            if (item != null) {
+                lineupItemRepo.delete(item);
+            }
+        }
     }
 
     @VisibleForTesting

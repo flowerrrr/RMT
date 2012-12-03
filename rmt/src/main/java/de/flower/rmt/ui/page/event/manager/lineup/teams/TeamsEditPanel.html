@@ -5,10 +5,12 @@
 
 <wicket:panel>
 
+    <div wicket:id="noLineup" class="no-lineup"><wicket:message key="player.lineup.nolineup"/></div>
+
     <ul class="clearfix">
         <li wicket:id="teamList" class="team-container">
             <h6 class="team-name">
-                <span wicket:id="name" wicket:message="title:button.edit" />
+                <span wicket:id="name" />
                 <a wicket:id="removeTeamButton" wicket:message="title:button.remove.team" class="pull-right no-hover">&times;</a>
             </h6>
             <div wicket:id="eventTeamPanel"/>

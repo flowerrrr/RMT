@@ -1,19 +1,21 @@
-package de.flower.rmt.ui.page.event.manager.teams;
+package de.flower.rmt.ui.page.event.manager.lineup.teams;
 
 import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.common.ui.ajax.event.AjaxEventSender;
+import de.flower.common.ui.ajax.markup.html.AjaxEditableLabelExtended;
 import de.flower.common.ui.ajax.markup.html.AjaxLink;
 import de.flower.common.ui.ajax.markup.html.AjaxLinkWithConfirmation;
-import de.flower.common.ui.panel.BasePanel;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.EventTeam;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.service.IEventTeamManager;
-import de.flower.rmt.ui.page.event.manager.teams.TeamsSecondaryPanel.EventTeamInviteeListPanel;
+import de.flower.rmt.ui.page.event.manager.lineup.teams.TeamsSecondaryPanel.EventTeamInviteeListPanel;
+import de.flower.rmt.ui.panel.RMTBasePanel;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.ajax.markup.html.AjaxEditableLabel;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
@@ -29,7 +31,7 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class TeamsEditPanel extends BasePanel {
+public class TeamsEditPanel extends RMTBasePanel {
 
     private final static Logger log = LoggerFactory.getLogger(TeamsEditPanel.class);
 
@@ -41,15 +43,16 @@ public class TeamsEditPanel extends BasePanel {
         Check.notNull(model);
         add(new AjaxEventListener(EventTeam.class));
 
-        IModel<List<EventTeam>> listModel = getListModel(model);
+        final IModel<List<EventTeam>> listModel = getListModel(model);
         // render existing event teams
         ListView<EventTeam> teamList = new ListView<EventTeam>("teamList", listModel) {
             @Override
             protected void populateItem(final ListItem<EventTeam> item) {
                 // item.add(new Label("name", item.getModelObject().getName()));
-                AjaxEditableLabel<String> editableLabel = new AjaxEditableLabel<String>("name", new PropertyModel<String>(item.getModel(), "name")) {
+                final AjaxEditableLabel<String> editableLabel = new AjaxEditableLabelExtended<String>("name", new PropertyModel<String>(item.getModel(), "name")) {
                     {
                         getEditor().add(AttributeModifier.replace("maxlength", 15));
+                        setEnabled(TeamsEditPanel.this.isManagerView());
                     }
                     @Override
                     protected void onSubmit(final AjaxRequestTarget target) {
@@ -61,25 +64,37 @@ public class TeamsEditPanel extends BasePanel {
                 };
                 item.add(editableLabel);
                 item.add(new EventTeamPanel(item.getModel()));
-                item.add(new AjaxLinkWithConfirmation("removeTeamButton", new ResourceModel("manager.eventteam.remove.confirm")) {
+                AjaxLinkWithConfirmation button = new AjaxLinkWithConfirmation("removeTeamButton", new ResourceModel("manager.eventteam.remove.confirm")) {
                     @Override
                     public void onClick(final AjaxRequestTarget target) {
                         eventTeamManager.removeTeam(item.getModelObject());
                         AjaxEventSender.entityEvent(this, EventTeam.class);
                         AjaxEventSender.send(this, EventTeamInviteeListPanel.class);
                     }
-                });
+                };
+                button.setVisible(TeamsEditPanel.this.isManagerView());
+                item.add(button);
             }
         };
         add(teamList);
 
-        add(new AjaxLink("addTeamButton") {
+        AjaxLink button = new AjaxLink("addTeamButton") {
             @Override
             public void onClick(final AjaxRequestTarget target) {
                 eventTeamManager.addTeam(model.getObject());
                 AjaxEventSender.entityEvent(this, EventTeam.class);
             }
+        };
+        button.setVisible(isManagerView());
+        add(button);
+
+        add(new WebMarkupContainer("noLineup") {
+            @Override
+            public boolean isVisible() {
+                return listModel.getObject().isEmpty() && !isManagerView();
+            }
         });
+
     }
 
     private IModel<List<EventTeam>> getListModel(final IModel<Event> model) {

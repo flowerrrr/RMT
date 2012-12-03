@@ -1,4 +1,4 @@
-package de.flower.rmt.ui.page.event.manager.lineup;
+package de.flower.rmt.ui.page.event.manager.lineup.match;
 
 import de.flower.common.ui.ajax.dragndrop.DraggableDto;
 import de.flower.common.ui.ajax.dragndrop.DroppableBehavior;
