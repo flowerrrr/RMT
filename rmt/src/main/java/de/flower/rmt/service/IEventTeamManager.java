@@ -15,7 +15,9 @@ public interface IEventTeamManager {
 
     EventTeam addTeam(Event event);
 
-    List<EventTeam> findTeams(Event event);
+    List<EventTeam> findTeams(Event object);
+
+    List<EventTeam> findTeamsOrderByRank(Event event);
 
     List<EventTeamPlayer> findEventTeamPlayers(EventTeam eventTeam, Path<?>... attributes);
 
@@ -30,4 +32,7 @@ public interface IEventTeamManager {
     void removeInvitation(Long invitationId);
 
     void save(EventTeam eventTeam);
+
+    void setRank(Long eventTeamId, EventTeam insertBeforeEventTeam);
+
 }

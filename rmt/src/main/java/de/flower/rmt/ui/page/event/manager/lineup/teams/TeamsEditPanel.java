@@ -3,7 +3,6 @@ package de.flower.rmt.ui.page.event.manager.lineup.teams;
 import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.ajax.markup.html.AjaxEditableLabelExtended;
-import de.flower.common.ui.ajax.markup.html.AjaxLink;
 import de.flower.common.ui.ajax.markup.html.AjaxLinkWithConfirmation;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.EventTeam;
@@ -29,6 +28,7 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 /**
+ * Panel servers manager and player view.
  * @author flowerrrr
  */
 public class TeamsEditPanel extends RMTBasePanel {
@@ -78,16 +78,6 @@ public class TeamsEditPanel extends RMTBasePanel {
         };
         add(teamList);
 
-        AjaxLink button = new AjaxLink("addTeamButton") {
-            @Override
-            public void onClick(final AjaxRequestTarget target) {
-                eventTeamManager.addTeam(model.getObject());
-                AjaxEventSender.entityEvent(this, EventTeam.class);
-            }
-        };
-        button.setVisible(isManagerView());
-        add(button);
-
         add(new WebMarkupContainer("noLineup") {
             @Override
             public boolean isVisible() {
@@ -95,6 +85,7 @@ public class TeamsEditPanel extends RMTBasePanel {
             }
         });
 
+        add(new RankingPanel(model));
     }
 
     private IModel<List<EventTeam>> getListModel(final IModel<Event> model) {

@@ -40,8 +40,8 @@ public class EventTeamManager extends AbstractService implements IEventTeamManag
     private IInvitationManager invitationManager;
 
     @Override
-    public List<EventTeam> findTeams(final Event event) {
-        return eventTeamRepo.findByEvent(event);
+    public List<EventTeam> findTeamsOrderByRank(final Event event) {
+        return eventTeamRepo.findByEventOrderByRankAsc(event);
     }
 
     @Override
@@ -83,8 +83,14 @@ public class EventTeamManager extends AbstractService implements IEventTeamManag
             }
         });
         entity.setName(name);
+        entity.setRank(Integer.MAX_VALUE); // add at end of ranked teams
         eventTeamRepo.save(entity);
         return entity;
+    }
+
+    @Override
+    public List<EventTeam> findTeams(final Event event) {
+        return eventTeamRepo.findByEvent(event);
     }
 
     @Override
@@ -158,5 +164,25 @@ public class EventTeamManager extends AbstractService implements IEventTeamManag
     public void save(final EventTeam eventTeam) {
         validate(eventTeam);
         eventTeamRepo.save(eventTeam);
+    }
+
+    @Override
+    @Transactional(readOnly = false)
+    public void setRank(final Long eventTeamId, final EventTeam insertBeforeEventTeam) {
+        EventTeam eventTeam = eventTeamRepo.findOne(eventTeamId);
+        if (eventTeam.equals(insertBeforeEventTeam)) {
+            // dropped on itself -> do nothing
+            return;
+        }
+        // get all teams ordered by rank
+        List<EventTeam> teams = findTeamsOrderByRank(eventTeam.getEvent());
+        // remove player and then insert at specified position
+        teams.remove(eventTeam);
+        teams.add(teams.indexOf(insertBeforeEventTeam), eventTeam);
+        // now itereate of teams and set Rank according to index
+        for (EventTeam team : teams) {
+            team.setRank(teams.indexOf(team) + 1);
+            eventTeamRepo.save(team);
+        }
     }
 }

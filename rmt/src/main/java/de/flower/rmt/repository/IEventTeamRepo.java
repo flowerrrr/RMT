@@ -14,7 +14,13 @@ import java.util.List;
  */
 public interface IEventTeamRepo extends IRepository<EventTeam, Long> {
 
+    /**
+     * Ordered by date of creation.
+     */
     List<EventTeam> findByEvent(Event event);
 
+    List<EventTeam> findByEventOrderByRankAsc(Event event);
+
     EventTeam findByName(String name);
+
 }

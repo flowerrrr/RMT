@@ -1109,6 +1109,12 @@ textarea.input-xlarge, input.input-xlarge, .RecipientListPanel {
     padding-bottom: 30px;
 }
 
+.RankingPanel {
+    .team-item {
+        width: 130px;
+    }
+}
+
 /*************************************************************************
     Vertical form in secondary panel
 **************************************************************************/
