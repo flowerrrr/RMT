@@ -10,7 +10,7 @@
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
-            <!-- set to none to disable automatic validation on insert and updates -->
+            <!-- set to none to disable automatic bean validation on insert and updates -->
             <property name="javax.persistence.validation.mode " value="none" />
         </properties>
     </persistence-unit>
@@ -21,7 +21,7 @@
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
-            <!-- set to none to disable automatic validation on insert and updates -->
+            <!-- set to none to disable automatic bean validation on insert and updates -->
             <property name="javax.persistence.validation.mode " value="none" />
         </properties>
     </persistence-unit>

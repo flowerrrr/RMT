@@ -1,7 +1,7 @@
 package de.flower.rmt.model.db.type.activity;
 
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.model.db.entity.event.EventType;
+import de.flower.rmt.model.db.type.EventType;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;

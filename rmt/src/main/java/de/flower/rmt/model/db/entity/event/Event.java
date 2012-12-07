@@ -7,6 +7,7 @@ import de.flower.rmt.model.db.entity.Opponent;
 import de.flower.rmt.model.db.entity.Team;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.Venue;
+import de.flower.rmt.model.db.type.EventType;
 import org.hibernate.annotations.Index;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;

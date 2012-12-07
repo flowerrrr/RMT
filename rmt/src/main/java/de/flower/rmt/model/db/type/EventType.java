@@ -1,16 +1,23 @@
-package de.flower.rmt.model.db.entity.event;
+package de.flower.rmt.model.db.type;
 
 import de.flower.rmt.model.db.entity.Club;
+import de.flower.rmt.model.db.entity.event.AbstractSoccerEvent;
+import de.flower.rmt.model.db.entity.event.Event;
+import de.flower.rmt.model.db.entity.event.Match;
+import de.flower.rmt.model.db.entity.event.Tournament;
+import de.flower.rmt.model.db.entity.event.Training;
 
 /**
  * @author flowerrrr
+ *
+ * NOTE: Do not move, it will break the activity feed as persisted messages cannot be deserialized again.
  */
 public enum EventType {
 
-    Event(Event.class, 0, 4*60 /* only a guess */),
-    Match(Match.class, 45, 105),
-    Training(Training.class, 15, 90),
-    Tournament(Tournament.class, 45, 6 * 60);
+    Event(de.flower.rmt.model.db.entity.event.Event.class, 0, 4*60 /* only a guess */),
+    Match(de.flower.rmt.model.db.entity.event.Match.class, 45, 105),
+    Training(de.flower.rmt.model.db.entity.event.Training.class, 15, 90),
+    Tournament(de.flower.rmt.model.db.entity.event.Tournament.class, 45, 6 * 60);
 
     private Class<? extends Event> clazz;
 

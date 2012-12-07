@@ -6,7 +6,7 @@ import de.flower.common.ui.util.convert.AbstractConverter;
 import de.flower.rmt.model.db.entity.Uniform;
 import de.flower.rmt.model.db.entity.Venue;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.model.db.entity.event.EventType;
+import de.flower.rmt.model.db.type.EventType;
 import de.flower.rmt.model.db.type.Surface;
 import de.flower.rmt.ui.markup.html.form.renderer.SurfaceRenderer;
 import de.flower.rmt.ui.model.ModelFactory;

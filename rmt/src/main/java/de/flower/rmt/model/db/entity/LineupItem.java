@@ -16,6 +16,16 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class LineupItem extends AbstractBaseEntity {
 
+    /**
+     * Coordinates are between 0 .. 1. Origin is upper left corner of editor grid.
+     */
+    @Column
+    // TODO (flowerrrr - 04.12.12) remove after migration to eventteams.
+    private Double relLeft;
+
+    @Column
+    private Double relTop;
+
     @Column
     private Long absTop;
 

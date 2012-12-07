@@ -21,6 +21,6 @@ public interface IEventTeamRepo extends IRepository<EventTeam, Long> {
 
     List<EventTeam> findByEventOrderByRankAsc(Event event);
 
-    EventTeam findByName(String name);
+    EventTeam findByEventAndName(final Event event, String name);
 
 }

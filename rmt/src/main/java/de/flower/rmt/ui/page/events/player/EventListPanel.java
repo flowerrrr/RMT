@@ -6,7 +6,7 @@ import de.flower.common.ui.tooltips.TooltipBehavior;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.model.db.entity.event.EventType;
+import de.flower.rmt.model.db.type.EventType;
 import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.service.IInvitationManager;

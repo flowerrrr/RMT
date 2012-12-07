@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.page.event.manager.edit;
 
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.model.db.entity.event.EventType;
+import de.flower.rmt.model.db.type.EventType;
 import de.flower.rmt.test.AbstractRMTWicketIntegrationTests;
 import de.flower.rmt.ui.model.EventModel;
 import org.apache.wicket.util.tester.FormTester;

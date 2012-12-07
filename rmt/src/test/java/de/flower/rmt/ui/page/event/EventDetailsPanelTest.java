@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.page.event;
 
-import de.flower.rmt.model.db.entity.event.EventType;
 import de.flower.rmt.model.db.entity.event.Match;
+import de.flower.rmt.model.db.type.EventType;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
 import de.flower.rmt.ui.app.IViewResolver;

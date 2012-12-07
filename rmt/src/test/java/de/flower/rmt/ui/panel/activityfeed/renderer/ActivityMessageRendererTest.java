@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.panel.activityfeed.renderer;
 
-import de.flower.rmt.model.db.entity.event.EventType;
+import de.flower.rmt.model.db.type.EventType;
 import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.model.db.type.activity.BlogUpdateMessage;
 import de.flower.rmt.model.db.type.activity.EmailSentMessage;

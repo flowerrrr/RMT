@@ -79,7 +79,7 @@ public class EventTeamManager extends AbstractService implements IEventTeamManag
         String name = NameFinder.newName("Team", "A.B.C.D.E.F.G.H.I.J.K.L.M.N.O.P".split("\\."), new Predicate<String>() {
             @Override
             public boolean apply(final String input) {
-                return eventTeamRepo.findByName(input) == null;
+                return eventTeamRepo.findByEventAndName(event, input) == null;
             }
         });
         entity.setName(name);
