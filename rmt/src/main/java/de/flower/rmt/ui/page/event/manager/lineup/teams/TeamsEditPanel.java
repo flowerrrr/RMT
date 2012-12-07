@@ -8,6 +8,7 @@ import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.EventTeam;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.service.IEventTeamManager;
+import de.flower.rmt.service.ILineupManager;
 import de.flower.rmt.ui.page.event.manager.lineup.teams.TeamsSecondaryPanel.EventTeamInviteeListPanel;
 import de.flower.rmt.ui.panel.RMTBasePanel;
 import org.apache.commons.lang3.StringUtils;
@@ -29,6 +30,7 @@ import java.util.List;
 
 /**
  * Panel servers manager and player view.
+ *
  * @author flowerrrr
  */
 public class TeamsEditPanel extends RMTBasePanel {
@@ -38,14 +40,18 @@ public class TeamsEditPanel extends RMTBasePanel {
     @SpringBean
     private IEventTeamManager eventTeamManager;
 
+    @SpringBean
+    private ILineupManager lineupManager;
+
     public TeamsEditPanel(String id, final IModel<Event> model) {
         super(id);
         Check.notNull(model);
         add(new AjaxEventListener(EventTeam.class));
 
         final IModel<List<EventTeam>> listModel = getListModel(model);
+        final IModel<Boolean> isPublishedModel = getLineupPublishedModel(model);
         // render existing event teams
-        ListView<EventTeam> teamList = new ListView<EventTeam>("teamList", listModel) {
+        final ListView<EventTeam> teamList = new ListView<EventTeam>("teamList", listModel) {
             @Override
             protected void populateItem(final ListItem<EventTeam> item) {
                 // item.add(new Label("name", item.getModelObject().getName()));
@@ -54,6 +60,7 @@ public class TeamsEditPanel extends RMTBasePanel {
                         getEditor().add(AttributeModifier.replace("maxlength", 15));
                         setEnabled(TeamsEditPanel.this.isManagerView());
                     }
+
                     @Override
                     protected void onSubmit(final AjaxRequestTarget target) {
                         super.onSubmit(target);
@@ -75,13 +82,19 @@ public class TeamsEditPanel extends RMTBasePanel {
                 button.setVisible(TeamsEditPanel.this.isManagerView());
                 item.add(button);
             }
+
+            @Override
+            public boolean isVisible() {
+                return isManagerView() || isPublishedModel.getObject();
+            }
         };
         add(teamList);
 
-        add(new WebMarkupContainer("noLineup") {
+        add(new WebMarkupContainer("noLineup", isPublishedModel /* pass to component so it gets detached automatically */) {
+
             @Override
             public boolean isVisible() {
-                return listModel.getObject().isEmpty() && !isManagerView();
+                return !isPublishedModel.getObject() && !isManagerView();
             }
         });
 
@@ -93,6 +106,15 @@ public class TeamsEditPanel extends RMTBasePanel {
             @Override
             protected List<EventTeam> load() {
                 return eventTeamManager.findTeams(model.getObject());
+            }
+        };
+    }
+
+    private IModel<Boolean> getLineupPublishedModel(final IModel<Event> model) {
+        return new LoadableDetachableModel<Boolean>() {
+            @Override
+            protected Boolean load() {
+                return lineupManager.findOrCreateLineup(model.getObject()).isPublished();
             }
         };
     }
