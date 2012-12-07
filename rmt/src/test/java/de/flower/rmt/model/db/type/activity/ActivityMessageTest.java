@@ -19,6 +19,7 @@ public class ActivityMessageTest {
         Class.forName(packageName + "EventUpdate" + "Message");
         Class.forName(packageName + "InvitationUpdate" + "Message");
         Class.forName(packageName + "InvitationUpdate" + "Message2");
+        Class.forName("de.flower.rmt.mo" + "" /* refactoring safe */ + "del.db.type.EventType");
     }
 
 }
