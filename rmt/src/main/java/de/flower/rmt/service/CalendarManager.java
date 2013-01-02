@@ -52,7 +52,7 @@ public class CalendarManager extends AbstractService implements ICalendarManager
     private MessageSourceAccessor messageSource;
 
     @Autowired
-    private IUrlProvider urlProvider;
+    private IInvitationManager invitationManager;
 
     @Override
     public CalItem loadById(final Long id, Attribute... attributes) {
@@ -80,6 +80,9 @@ public class CalendarManager extends AbstractService implements ICalendarManager
         validate(entity);
         calItemRepo.save(entity);
         dto.setId(entity.getId());
+        if (entity.isAutoDecline()) {
+            invitationManager.onAutoDeclineCalItem(entity);
+        }
     }
 
     @Override

@@ -1,6 +1,7 @@
 package de.flower.rmt.service;
 
 import com.mysema.query.types.Path;
+import de.flower.rmt.model.db.entity.CalItem;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
@@ -95,4 +96,10 @@ public interface IInvitationManager {
      */
     void addGuestPlayer(Event entity, String guestName);
 
+    /**
+     * Should be called when a cal item with auto-decline is saved.
+     * Invitation manager then updates invitations of this user which are not
+     * responded yet.
+     */
+    void onAutoDeclineCalItem(CalItem calItem);
 }

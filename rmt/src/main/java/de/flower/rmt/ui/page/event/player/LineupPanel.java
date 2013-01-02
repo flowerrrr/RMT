@@ -9,6 +9,7 @@ import de.flower.rmt.model.db.entity.LineupItem;
 import de.flower.rmt.model.db.entity.QLineupItem;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.service.ILineupManager;
+import de.flower.rmt.ui.model.LineupModel;
 import de.flower.rmt.ui.page.event.manager.lineup.dragndrop.EntityLabel;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -37,7 +38,7 @@ public class LineupPanel extends BasePanel {
         super(id);
         Check.notNull(model);
 
-        final IModel<Lineup> lineupModel = getLineupModel(model);
+        final IModel<Lineup> lineupModel = new LineupModel(model);
 
         final WebMarkupContainer grid = new WebMarkupContainer("grid");
         add(grid);
@@ -83,12 +84,4 @@ public class LineupPanel extends BasePanel {
         };
     }
 
-    private IModel<Lineup> getLineupModel(final IModel<Event> model) {
-        return new LoadableDetachableModel<Lineup>() {
-            @Override
-            protected Lineup load() {
-                return lineupManager.findOrCreateLineup(model.getObject());
-            }
-        };
-    }
 }

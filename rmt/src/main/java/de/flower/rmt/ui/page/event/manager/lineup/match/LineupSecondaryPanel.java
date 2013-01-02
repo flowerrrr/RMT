@@ -7,6 +7,7 @@ import de.flower.rmt.model.db.entity.Lineup;
 import de.flower.rmt.model.db.entity.LineupItem;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.service.ILineupManager;
+import de.flower.rmt.ui.model.LineupModel;
 import de.flower.rmt.ui.page.event.manager.lineup.DraggableInviteeListPanel;
 import de.flower.rmt.ui.page.event.manager.lineup.PublishPanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -40,12 +41,7 @@ public class LineupSecondaryPanel extends BasePanel {
 
         public LineupPublishPanel(final IModel<Event> model) {
             super(model);
-            lineupModel = new LoadableDetachableModel<Lineup>() {
-                @Override
-                protected Lineup load() {
-                    return lineupManager.findOrCreateLineup(model.getObject());
-                }
-            };
+            lineupModel = new LineupModel(model);
         }
 
         @Override
@@ -86,8 +82,8 @@ public class LineupSecondaryPanel extends BasePanel {
         }
 
         @Override
-        protected void onDetach() {
-            super.onDetach();
+        public void detachModels() {
+            super.detachModels();
             if (lineupItemListModel != null) {
                 lineupItemListModel.detach();
             }

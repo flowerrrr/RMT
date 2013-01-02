@@ -1,6 +1,12 @@
 package de.flower.rmt.service;
 
-import de.flower.rmt.model.db.entity.*;
+import de.flower.rmt.model.db.entity.CalItem;
+import de.flower.rmt.model.db.entity.Comment;
+import de.flower.rmt.model.db.entity.Invitation;
+import de.flower.rmt.model.db.entity.Invitation_;
+import de.flower.rmt.model.db.entity.Player;
+import de.flower.rmt.model.db.entity.Team;
+import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.model.dto.CalItemDto;
@@ -108,8 +114,11 @@ public class InvitationManagerTest extends AbstractRMTIntegrationTests {
         invitationManager.findAllForUnsureReminder(event);
     }
 
+    /**
+     * Verify that auto-decline kicks in when a new invitation is saved.
+     */
     @Test
-    public void testAutoDecline() {
+    public void testAutoDeclineOnNewInvitation() {
         Team team = testData.createTeamWithPlayers("FCB " + System.currentTimeMillis(), 15);
         Event event = testData.createEvent(team, false);
         // now create calendar holiday event for a user
@@ -145,5 +154,30 @@ public class InvitationManagerTest extends AbstractRMTIntegrationTests {
         // find invitation and assert status
         invitation = invitationManager.findByEventAndUser(event, user);
         assertEquals(invitation.getStatus(), RSVPStatus.NORESPONSE);
+    }
+
+    /**
+     * Verify that auto-decline kicks in when a new auto-decline calitem is saved.
+     */
+    @Test
+    public void testAutoDeclineByCalItem() {
+        Team team = testData.createTeamWithPlayers("FCB " + System.currentTimeMillis(), 15);
+        Event event = testData.createEvent(team, false);
+        User user = team.getPlayers().get(0).getUser();
+        // now create invitation for this user
+        invitationManager.addUsers(event, Arrays.asList(user.getId()));
+        // now create calendar holiday event for a user
+        CalItemDto dto = new CalItemDto();
+        dto.setType(CalItem.Type.HOLIDAY);
+        dto.setSummary("South Tyrol");
+        dto.setStartDateTime(event.getDateTime());
+        dto.setEndDateTime(event.getDateTime().plusDays(3));
+        dto.setAllDay(true);
+        dto.setAutoDecline(true);
+        // save should trigger auto-decline of all invitations not responded yet.
+        calendarManager.save(dto, user);
+        // find invitation and assert status
+        Invitation invitation = invitationManager.findByEventAndUser(event, user);
+        assertEquals(invitation.getStatus(), RSVPStatus.DECLINED);
     }
 }

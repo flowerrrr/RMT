@@ -6,9 +6,11 @@ import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.EventTeam;
+import de.flower.rmt.model.db.entity.Lineup;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.service.IEventManager;
 import de.flower.rmt.service.IEventTeamManager;
+import de.flower.rmt.ui.model.LineupModel;
 import de.flower.rmt.ui.page.event.manager.lineup.dragndrop.DraggableEntityLabel;
 import de.flower.rmt.ui.page.event.manager.lineup.dragndrop.EntityLabel;
 import de.flower.rmt.ui.panel.RMTBasePanel;
@@ -38,11 +40,14 @@ public class RankingPanel extends RMTBasePanel<Event> {
     @SpringBean
     private IEventManager eventManager;
 
+    private IModel<Lineup> lineupModel;
+
     public RankingPanel(final IModel<Event> model) {
         super(model);
         Check.notNull(model);
         add(new AjaxEventListener(EventTeam.class));
 
+        lineupModel = new LineupModel(model);
         final IModel<List<EventTeam>> listModel = getListModel(model);
         // render existing event teams
         ListView<EventTeam> items = new ListView<EventTeam>("items", listModel) {
@@ -66,7 +71,7 @@ public class RankingPanel extends RMTBasePanel<Event> {
 
     @Override
     public boolean isVisible() {
-        return getModelObject().getDateTimeEnd().isBefore(DateTime.now());
+        return getModelObject().getDateTimeEnd().isBefore(DateTime.now()) && lineupModel.getObject().isPublished();
     }
 
     private IModel<List<EventTeam>> getListModel(final IModel<Event> model) {
@@ -76,5 +81,11 @@ public class RankingPanel extends RMTBasePanel<Event> {
                 return eventTeamManager.findTeamsOrderByRank(model.getObject());
             }
         };
+    }
+
+    @Override
+    public void detachModels() {
+        super.detachModels();
+        lineupModel.detach();
     }
 }

@@ -6,9 +6,11 @@ import de.flower.common.ui.ajax.markup.html.AjaxEditableLabelExtended;
 import de.flower.common.ui.ajax.markup.html.AjaxLinkWithConfirmation;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.EventTeam;
+import de.flower.rmt.model.db.entity.Lineup;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.service.IEventTeamManager;
 import de.flower.rmt.service.ILineupManager;
+import de.flower.rmt.ui.model.LineupModel;
 import de.flower.rmt.ui.page.event.manager.lineup.teams.TeamsSecondaryPanel.EventTeamInviteeListPanel;
 import de.flower.rmt.ui.panel.RMTBasePanel;
 import org.apache.commons.lang3.StringUtils;
@@ -49,7 +51,7 @@ public class TeamsEditPanel extends RMTBasePanel {
         add(new AjaxEventListener(EventTeam.class));
 
         final IModel<List<EventTeam>> listModel = getListModel(model);
-        final IModel<Boolean> isPublishedModel = getLineupPublishedModel(model);
+        final IModel<Lineup> lineupModel = new LineupModel(model);
         // render existing event teams
         final ListView<EventTeam> teamList = new ListView<EventTeam>("teamList", listModel) {
             @Override
@@ -85,16 +87,16 @@ public class TeamsEditPanel extends RMTBasePanel {
 
             @Override
             public boolean isVisible() {
-                return isManagerView() || isPublishedModel.getObject();
+                return isManagerView() || lineupModel.getObject().isPublished();
             }
         };
         add(teamList);
 
-        add(new WebMarkupContainer("noLineup", isPublishedModel /* pass to component so it gets detached automatically */) {
+        add(new WebMarkupContainer("noLineup", lineupModel /* pass to component so it gets detached automatically */) {
 
             @Override
             public boolean isVisible() {
-                return !isPublishedModel.getObject() && !isManagerView();
+                return !lineupModel.getObject().isPublished() && !isManagerView();
             }
         });
 
@@ -110,12 +112,4 @@ public class TeamsEditPanel extends RMTBasePanel {
         };
     }
 
-    private IModel<Boolean> getLineupPublishedModel(final IModel<Event> model) {
-        return new LoadableDetachableModel<Boolean>() {
-            @Override
-            protected Boolean load() {
-                return lineupManager.findOrCreateLineup(model.getObject()).isPublished();
-            }
-        };
-    }
 }

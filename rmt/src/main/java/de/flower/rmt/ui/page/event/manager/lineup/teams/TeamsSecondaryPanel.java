@@ -73,10 +73,11 @@ public class TeamsSecondaryPanel extends RMTBasePanel<Event> {
         }
 
         @Override
-        protected void onDetach() {
-            super.onDetach();
+        public void detachModels() {
+            super.detachModels();
             if (playerItemListModel != null) {
                 playerItemListModel.detach();
             }
         }
-    }}
+    }
+}

@@ -339,28 +339,32 @@ public class InvitationManager extends AbstractService implements IInvitationMan
         List<CalItem> list = calendarManager.findAllByUserAndRange(invitation.getUser(), eventDate, eventDate);
         for (CalItem calItem : list) {
             if (calItem.isAutoDecline()) {
-                log.info("Auto declining user [{}] for event [{}] due to calendar item [{}]", new Object[]{invitation.getUser().getEmail(), invitation.getEvent(), calItem});
-                invitation.setStatus(RSVPStatus.DECLINED);
-                // no validation, no activity log, just plain save
-                invitationRepo.save(invitation);
-
-                // set comment
-                String comment;
-                if (calItem.getType() == CalItem.Type.OTHER) {
-                    comment = calItem.getSummary();
-                } else {
-                    comment = messageSource.getMessage(CalItem.Type.getResourceKey(calItem.getType()));
-                }
-                if (!calItem.isSingleDay() && calItem.getType() == CalItem.Type.HOLIDAY) {
-                    comment += String.format(" (%s - %s)", Dates.formatDateShort(calItem.getStartDateTime().toDate()),
-                            Dates.formatDateShort(calItem.getEndDateTime().toDate()));
-                }
-
-                commentManager.updateOrRemoveComment(invitation, comment, invitation.getUser());
+                autoDecline(invitation, calItem);
                 return true;
             }
         }
         return false;
+    }
+
+    private void autoDecline(final Invitation invitation, final CalItem calItem) {
+        log.info("Auto declining user [{}] for event [{}] due to calendar item [{}]", new Object[]{invitation.getUser().getEmail(), invitation.getEvent(), calItem});
+        invitation.setStatus(RSVPStatus.DECLINED);
+        // no validation, no activity log, just plain save
+        invitationRepo.save(invitation);
+
+        // set comment
+        String comment;
+        if (calItem.getType() == CalItem.Type.OTHER) {
+            comment = calItem.getSummary();
+        } else {
+            comment = messageSource.getMessage(CalItem.Type.getResourceKey(calItem.getType()));
+        }
+        if (!calItem.isSingleDay() && calItem.getType() == CalItem.Type.HOLIDAY) {
+            comment += String.format(" (%s - %s)", Dates.formatDateShort(calItem.getStartDateTime().toDate()),
+                    Dates.formatDateShort(calItem.getEndDateTime().toDate()));
+        }
+
+        commentManager.updateOrRemoveComment(invitation, comment, invitation.getUser());
     }
 
     @Override
@@ -378,5 +382,24 @@ public class InvitationManager extends AbstractService implements IInvitationMan
             }
         });
         return list;
+    }
+
+    @Override
+    @Transactional(readOnly = false)
+    public void onAutoDeclineCalItem(final CalItem calItem) {
+        // find all invitations belonging to user and inside calendar event range.
+        Check.isTrue(calItem.isAutoDecline());
+        List<Invitation> invitations = findAllByUserAndRange(calItem.getUser(), calItem.getStartDateTime(), calItem.getEndDateTime());
+        for (Invitation invitation : invitations) {
+            if (invitation.getStatus() == RSVPStatus.NORESPONSE) {
+                autoDecline(invitation, calItem);
+            }
+        }
+    }
+
+    private List<Invitation> findAllByUserAndRange(final User user, final DateTime dateStart, final DateTime dateEnd) {
+        BooleanExpression isUser = QInvitation.invitation.user.eq(user);
+        BooleanExpression isEventInRange = QInvitation.invitation.event.dateTime.between(dateStart, dateEnd);
+        return invitationRepo.findAll(isUser.and(isEventInRange));
     }
 }

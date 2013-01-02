@@ -155,6 +155,8 @@
         updateDate timestamp,
         absLeft bigint,
         absTop bigint,
+        relLeft double,
+        relTop double,
         invitation_id bigint,
         lineup_id bigint,
         primary key (id)

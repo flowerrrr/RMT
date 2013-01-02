@@ -34,8 +34,6 @@ public abstract class AbstractSoccerEvent extends Event {
     /**
      * Map list of surfaces to a string. Not done as @ElementCollection cause it causes trouble with DotNode.getDataType() when
      * used in a subperclass like here.
-     * Also not implemented as hibernate usertype cause user type is just a pain in the ass.
-     * Much faster to do conversion here manually in code.
      */
     @Basic
     @Type(type = "de.flower.rmt.model.db.type.SurfaceListType")
