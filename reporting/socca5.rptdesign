@@ -798,13 +798,22 @@ from eventteamplayer etp
                         <extended-item extensionName="AggregationCell" id="354">
                             <property name="aggregationOnRow">Player/PlayerRankingPerEvent::FULLNAME</property>
                             <property name="aggregationOnColumn">EventDate/NumTeamsPerEvent::DATETIME</property>
-                            <property name="borderRightStyle">solid</property>
-                            <property name="borderRightWidth">thin</property>
-                            <property name="borderRightColor">#FFFFFF</property>
+                            <property name="textAlign">center</property>
                             <property name="content">
                                 <data id="355">
                                     <property name="textAlign">right</property>
+                                    <property name="display">inline</property>
                                     <property name="resultSetColumn">rank_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME_1</property>
+                                </data>
+                                <data id="375">
+                                    <property name="paddingLeft">1pt</property>
+                                    <property name="paddingRight">1pt</property>
+                                    <structure name="numberFormat">
+                                        <property name="category">Custom</property>
+                                        <property name="pattern">/ #</property>
+                                    </structure>
+                                    <property name="display">inline</property>
+                                    <property name="resultSetColumn">numTeams_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME_1</property>
                                 </data>
                             </property>
                         </extended-item>
@@ -813,37 +822,7 @@ from eventteamplayer etp
                         <extended-item extensionName="CrosstabCell" id="356">
                             <property name="content">
                                 <label id="357">
-                                    <text-property name="text">rank</text-property>
-                                </label>
-                            </property>
-                        </extended-item>
-                    </property>
-                </extended-item>
-                <extended-item extensionName="MeasureView" id="373">
-                    <property name="measure">numTeams</property>
-                    <property name="detail">
-                        <extended-item extensionName="AggregationCell" id="374">
-                            <property name="aggregationOnRow">Player/PlayerRankingPerEvent::FULLNAME</property>
-                            <property name="aggregationOnColumn">EventDate/NumTeamsPerEvent::DATETIME</property>
-                            <property name="content">
-                                <data id="375">
-                                    <property name="paddingLeft">1pt</property>
-                                    <property name="paddingRight">1pt</property>
-                                    <structure name="numberFormat">
-                                        <property name="category">Custom</property>
-                                        <property name="pattern">/ #</property>
-                                    </structure>
-                                    <property name="resultSetColumn">numTeams_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME_1</property>
-                                </data>
-                            </property>
-                        </extended-item>
-                    </property>
-                    <property name="header">
-                        <extended-item extensionName="CrosstabCell" id="376">
-                            <property name="content">
-                                <label id="377">
-                                    <property name="display">block</property>
-                                    <text-property name="text"></text-property>
+                                    <text-property name="text">Platz</text-property>
                                 </label>
                             </property>
                         </extended-item>
@@ -856,6 +835,7 @@ from eventteamplayer etp
                             <property name="aggregationOnRow">Player/PlayerRankingPerEvent::FULLNAME</property>
                             <property name="aggregationOnColumn">EventDate/NumTeamsPerEvent::DATETIME</property>
                             <property name="textAlign">right</property>
+                            <property name="paddingRight">15pt</property>
                             <property name="content">
                                 <data id="365">
                                     <structure name="numberFormat">
@@ -870,6 +850,8 @@ from eventteamplayer etp
                     <property name="aggregations">
                         <extended-item extensionName="AggregationCell" id="395">
                             <property name="aggregationOnRow">Player/PlayerRankingPerEvent::FULLNAME</property>
+                            <property name="textAlign">right</property>
+                            <property name="paddingRight">15pt</property>
                             <property name="content">
                                 <data id="396">
                                     <structure name="numberFormat">
@@ -885,14 +867,14 @@ from eventteamplayer etp
                         <extended-item extensionName="CrosstabCell" id="366">
                             <property name="content">
                                 <label id="367">
-                                    <text-property name="text">points</text-property>
+                                    <text-property name="text">Punkte</text-property>
                                 </label>
                             </property>
                         </extended-item>
                         <extended-item extensionName="CrosstabCell" id="399">
                             <property name="content">
                                 <label id="400">
-                                    <text-property name="text">points</text-property>
+                                    <text-property name="text">Punkte / Termin</text-property>
                                 </label>
                             </property>
                         </extended-item>
@@ -911,6 +893,7 @@ from eventteamplayer etp
                                         <extended-item extensionName="CrosstabCell" id="346">
                                             <property name="content">
                                                 <data name="PlayerRankingPerEvent::FULLNAME" id="347">
+                                                    <property name="display">block</property>
                                                     <property name="resultSetColumn">PlayerRankingPerEvent::FULLNAME</property>
                                                 </data>
                                             </property>
@@ -931,7 +914,7 @@ from eventteamplayer etp
                         <extended-item extensionName="CrosstabCell" id="394">
                             <property name="content">
                                 <label id="403">
-                                    <text-property name="text">Grand Total</text-property>
+                                    <text-property name="text"></text-property>
                                 </label>
                             </property>
                         </extended-item>
