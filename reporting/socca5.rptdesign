@@ -778,6 +778,8 @@ from eventteamplayer etp
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
+            <property name="type">a4</property>
+            <property name="orientation">landscape</property>
             <page-footer>
                 <text id="3">
                     <property name="contentType">html</property>
@@ -796,10 +798,13 @@ from eventteamplayer etp
                         <extended-item extensionName="AggregationCell" id="354">
                             <property name="aggregationOnRow">Player/PlayerRankingPerEvent::FULLNAME</property>
                             <property name="aggregationOnColumn">EventDate/NumTeamsPerEvent::DATETIME</property>
+                            <property name="borderRightStyle">solid</property>
+                            <property name="borderRightWidth">thin</property>
+                            <property name="borderRightColor">#FFFFFF</property>
                             <property name="content">
                                 <data id="355">
                                     <property name="textAlign">right</property>
-                                    <property name="resultSetColumn">rank_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME</property>
+                                    <property name="resultSetColumn">rank_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME_1</property>
                                 </data>
                             </property>
                         </extended-item>
@@ -822,6 +827,12 @@ from eventteamplayer etp
                             <property name="aggregationOnColumn">EventDate/NumTeamsPerEvent::DATETIME</property>
                             <property name="content">
                                 <data id="375">
+                                    <property name="paddingLeft">1pt</property>
+                                    <property name="paddingRight">1pt</property>
+                                    <structure name="numberFormat">
+                                        <property name="category">Custom</property>
+                                        <property name="pattern">/ #</property>
+                                    </structure>
                                     <property name="resultSetColumn">numTeams_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME_1</property>
                                 </data>
                             </property>
@@ -831,6 +842,7 @@ from eventteamplayer etp
                         <extended-item extensionName="CrosstabCell" id="376">
                             <property name="content">
                                 <label id="377">
+                                    <property name="display">block</property>
                                     <text-property name="text"></text-property>
                                 </label>
                             </property>
@@ -843,6 +855,7 @@ from eventteamplayer etp
                         <extended-item extensionName="AggregationCell" id="364">
                             <property name="aggregationOnRow">Player/PlayerRankingPerEvent::FULLNAME</property>
                             <property name="aggregationOnColumn">EventDate/NumTeamsPerEvent::DATETIME</property>
+                            <property name="textAlign">right</property>
                             <property name="content">
                                 <data id="365">
                                     <structure name="numberFormat">
@@ -859,6 +872,10 @@ from eventteamplayer etp
                             <property name="aggregationOnRow">Player/PlayerRankingPerEvent::FULLNAME</property>
                             <property name="content">
                                 <data id="396">
+                                    <structure name="numberFormat">
+                                        <property name="category">Fixed</property>
+                                        <property name="pattern">###0.00{RoundingMode=HALF_UP}</property>
+                                    </structure>
                                     <property name="resultSetColumn">sumPointsDivNumEvents_Player/PlayerRankingPerEvent::FULLNAME</property>
                                 </data>
                             </property>
@@ -897,6 +914,8 @@ from eventteamplayer etp
                                                     <property name="resultSetColumn">PlayerRankingPerEvent::FULLNAME</property>
                                                 </data>
                                             </property>
+                                            <property name="textAlign">left</property>
+                                            <property name="width">140px</property>
                                         </extended-item>
                                     </property>
                                 </extended-item>
@@ -927,6 +946,10 @@ from eventteamplayer etp
                                         <extended-item extensionName="CrosstabCell" id="351">
                                             <property name="content">
                                                 <data name="NumTeamsPerEvent::DATETIME" id="352">
+                                                    <structure name="dateTimeFormat">
+                                                        <property name="category">Short Date</property>
+                                                        <property name="pattern">Short Date</property>
+                                                    </structure>
                                                     <property name="resultSetColumn">NumTeamsPerEvent::DATETIME</property>
                                                 </data>
                                             </property>
@@ -955,13 +978,18 @@ from eventteamplayer etp
                 </structure>
                 <structure>
                     <property name="name">rank_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME</property>
-                    <expression name="expression">measure["rank"]</expression>
                     <property name="dataType">integer</property>
                     <simple-property-list name="aggregateOn">
                         <value>Player/PlayerRankingPerEvent::FULLNAME</value>
                         <value>EventDate/NumTeamsPerEvent::DATETIME</value>
                     </simple-property-list>
                     <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">measure["rank"]</expression>
+                        </structure>
+                    </list-property>
                 </structure>
                 <structure>
                     <property name="name">numTeams_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME</property>
@@ -1004,6 +1032,16 @@ from eventteamplayer etp
                     <property name="dataType">float</property>
                     <simple-property-list name="aggregateOn">
                         <value>Player/PlayerRankingPerEvent::FULLNAME</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                </structure>
+                <structure>
+                    <property name="name">rank_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME_1</property>
+                    <expression name="expression">measure["rank"]</expression>
+                    <property name="dataType">integer</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>Player/PlayerRankingPerEvent::FULLNAME</value>
+                        <value>EventDate/NumTeamsPerEvent::DATETIME</value>
                     </simple-property-list>
                     <property name="aggregateFunction">SUM</property>
                 </structure>
