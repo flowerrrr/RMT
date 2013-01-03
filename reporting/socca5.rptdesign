@@ -15,12 +15,26 @@
     </list-property>
     <property name="Data Cube - PlayerRankingPerEvent.PlayerRankingPerEvent.x">135</property>
     <property name="Data Cube - PlayerRankingPerEvent.PlayerRankingPerEvent.y">80</property>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">8</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">8</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">8</property>
+        </structure>
+    </list-property>
     <property name="units">in</property>
     <property name="iconFile">/templates/blank_report.gif</property>
     <property name="bidiLayoutOrientation">ltr</property>
     <property name="imageDPI">96</property>
     <data-sources>
-        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="rmt@vmware" id="230">
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="rmtDS" id="230">
             <list-property name="privateDriverProperties">
                 <ex-property>
                     <name>metadataBidiFormatStr</name>
@@ -47,6 +61,7 @@
     </data-sources>
     <data-sets>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="PlayerRankingPerEvent" id="8">
+            <property name="nullsOrdering">nulls lowest</property>
             <list-property name="columnHints">
                 <structure>
                     <property name="columnName">ID</property>
@@ -89,7 +104,7 @@
                     </structure>
                 </list-property>
             </structure>
-            <property name="dataSource">rmt@vmware</property>
+            <property name="dataSource">rmtDS</property>
             <list-property name="resultSet">
                 <structure>
                     <property name="position">1</property>
@@ -216,7 +231,7 @@ order by e.datetime]]></xml-property>
                     </structure>
                 </list-property>
             </structure>
-            <property name="dataSource">rmt@vmware</property>
+            <property name="dataSource">rmtDS</property>
             <list-property name="resultSet">
                 <structure>
                     <property name="position">1</property>
@@ -471,7 +486,7 @@ order by e.datetime]]></xml-property>
                     </structure>
                 </list-property>
             </structure>
-            <property name="dataSource">rmt@vmware</property>
+            <property name="dataSource">rmtDS</property>
             <list-property name="resultSet">
                 <structure>
                     <property name="position">1</property>
@@ -889,6 +904,13 @@ from eventteamplayer etp
                             <property name="levels">
                                 <extended-item extensionName="LevelView" name="NewLevel View" id="345">
                                     <property name="level">Player/PlayerRankingPerEvent::FULLNAME</property>
+                                    <property name="sort">
+                                        <sort-element>
+                                            <expression name="key" type="javascript">data["sumPointsDivNumEvents_Player/PlayerRankingPerEvent::FULLNAME"]</expression>
+                                            <property name="direction">desc</property>
+                                            <property name="strength">-1</property>
+                                        </sort-element>
+                                    </property>
                                     <property name="member">
                                         <extended-item extensionName="CrosstabCell" id="346">
                                             <property name="content">
