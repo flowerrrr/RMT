@@ -15,48 +15,29 @@
     </list-property>
     <property name="Data Cube - PlayerRankingPerEvent.PlayerRankingPerEvent.x">135</property>
     <property name="Data Cube - PlayerRankingPerEvent.PlayerRankingPerEvent.y">80</property>
-    <list-property name="propertyBindings">
-        <structure>
-            <property name="name">odaDriverClass</property>
-            <property name="id">230</property>
-        </structure>
-        <structure>
-            <property name="name">odaURL</property>
-            <property name="id">230</property>
-        </structure>
-        <structure>
-            <property name="name">odaUser</property>
-            <property name="id">230</property>
-        </structure>
-        <structure>
-            <property name="name">odaAutoCommit</property>
-            <property name="id">230</property>
-        </structure>
-        <structure>
-            <property name="name">odaIsolationMode</property>
-            <property name="id">230</property>
-        </structure>
-        <structure>
-            <property name="name">odaPassword</property>
-            <property name="id">230</property>
-        </structure>
-        <structure>
-            <property name="name">odaJndiName</property>
-            <property name="id">230</property>
-        </structure>
-        <structure>
-            <property name="name">OdaConnProfileName</property>
-            <property name="id">230</property>
-        </structure>
-        <structure>
-            <property name="name">OdaConnProfileStorePath</property>
-            <property name="id">230</property>
-        </structure>
-    </list-property>
     <property name="units">in</property>
     <property name="iconFile">/templates/blank_report.gif</property>
     <property name="bidiLayoutOrientation">ltr</property>
     <property name="imageDPI">96</property>
+    <parameters>
+        <scalar-parameter name="minNumEvents" id="503">
+            <property name="hidden">true</property>
+            <text-property name="helpText">Mindestanzahl an Teilnahmen</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">5</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="rmtDS" id="230">
             <list-property name="privateDriverProperties">
@@ -478,16 +459,19 @@ order by e.datetime]]></xml-property>
                 <structure>
                     <property name="columnName">id</property>
                     <property name="analysis">measure</property>
+                    <text-property name="displayName">id</text-property>
                     <text-property name="heading">id</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">fullname</property>
                     <property name="analysis">dimension</property>
+                    <text-property name="displayName">fullname</text-property>
                     <text-property name="heading">fullname</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">eventsPerPlayer</property>
                     <property name="analysis">measure</property>
+                    <text-property name="displayName">eventsPerPlayer</text-property>
                     <text-property name="heading">eventsPerPlayer</text-property>
                 </structure>
             </list-property>
@@ -536,9 +520,11 @@ order by e.datetime]]></xml-property>
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[select u.id, u.fullname, count(etp.id) as eventsPerPlayer
-from eventteamplayer etp
+from eventteam et
+    left join eventteamplayer etp on (et.id = etp.eventteam_id)
 	left join invitation i on (etp.invitation_id = i.id)
     inner join users u on (i.user_id = u.id)
+where et.rank is not null
     group by u.id]]></xml-property>
         </oda-data-set>
         <joint-data-set name="dsMain" id="181">
@@ -820,7 +806,7 @@ from eventteamplayer etp
         <simple-master-page name="Simple MasterPage" id="2">
             <property name="type">custom</property>
             <property name="height">4000mm</property>
-            <property name="width">297mm</property>
+            <property name="width">1400px</property>
             <property name="orientation">landscape</property>
             <property name="showFooterOnLast">false</property>
             <page-footer>
@@ -832,6 +818,13 @@ from eventteamplayer etp
         </simple-master-page>
     </page-setup>
     <body>
+        <text id="417">
+            <property name="marginLeft">10px</property>
+            <property name="contentType">html</property>
+            <text-property name="content"><![CDATA[<H1>
+Socca5 Ranking Saison 2012/2013
+</H1>]]></text-property>
+        </text>
         <extended-item extensionName="Crosstab" extensionVersion="2.5.0" id="341">
             <property name="cube">Data Cube - PlayerRanking</property>
             <property name="measures">
@@ -892,6 +885,23 @@ from eventteamplayer etp
                                     <property name="resultSetColumn">numTeams_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME_1</property>
                                 </data>
                             </property>
+                            <property name="width">40px</property>
+                        </extended-item>
+                    </property>
+                    <property name="aggregations">
+                        <extended-item extensionName="AggregationCell" id="445">
+                            <property name="aggregationOnRow">Player/PlayerRankingPerEvent::FULLNAME</property>
+                            <property name="textAlign">right</property>
+                            <property name="paddingRight">10pt</property>
+                            <property name="content">
+                                <data id="446">
+                                    <property name="paddingRight">10pt</property>
+                                    <property name="textAlign">right</property>
+                                    <property name="display">inline</property>
+                                    <property name="resultSetColumn">rank_Player/PlayerRankingPerEvent::FULLNAME</property>
+                                </data>
+                            </property>
+                            <property name="width">57px</property>
                         </extended-item>
                     </property>
                     <property name="header">
@@ -899,6 +909,16 @@ from eventteamplayer etp
                             <property name="content">
                                 <label id="357">
                                     <text-property name="text">Platz</text-property>
+                                </label>
+                            </property>
+                        </extended-item>
+                        <extended-item extensionName="CrosstabCell" id="449">
+                            <property name="content">
+                                <label id="450">
+                                    <property name="textAlign">center</property>
+                                    <property name="whiteSpace">pre</property>
+                                    <text-property name="text">Teil-&#13;
+nahmen</text-property>
                                 </label>
                             </property>
                         </extended-item>
@@ -922,20 +942,20 @@ from eventteamplayer etp
                                     <property name="resultSetColumn">points_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME</property>
                                 </data>
                             </property>
+                            <property name="width">50px</property>
                         </extended-item>
                     </property>
                     <property name="aggregations">
-                        <extended-item extensionName="AggregationCell" id="395">
+                        <extended-item extensionName="AggregationCell" id="447">
                             <property name="aggregationOnRow">Player/PlayerRankingPerEvent::FULLNAME</property>
-                            <property name="textAlign">center</property>
-                            <property name="paddingRight">1pt</property>
                             <property name="content">
-                                <data id="396">
+                                <data id="448">
                                     <structure name="numberFormat">
                                         <property name="category">Custom</property>
                                         <property name="pattern">+0.00;-0.00</property>
                                     </structure>
-                                    <property name="resultSetColumn">sumPointsDivNumEvents_Player/PlayerRankingPerEvent::FULLNAME</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="resultSetColumn">points_Player/PlayerRankingPerEvent::FULLNAME</property>
                                 </data>
                             </property>
                             <property name="width">100px</property>
@@ -949,9 +969,10 @@ from eventteamplayer etp
                                 </label>
                             </property>
                         </extended-item>
-                        <extended-item extensionName="CrosstabCell" id="399">
+                        <extended-item extensionName="CrosstabCell" id="451">
                             <property name="content">
-                                <label id="400">
+                                <label id="452">
+                                    <property name="textAlign">center</property>
                                     <text-property name="text">Punkte-durchschnitt</text-property>
                                 </label>
                             </property>
@@ -967,6 +988,16 @@ from eventteamplayer etp
                             <property name="levels">
                                 <extended-item extensionName="LevelView" name="NewLevel View" id="345">
                                     <property name="level">Player/PlayerRankingPerEvent::FULLNAME</property>
+                                    <property name="filter">
+                                        <filter-condition-element>
+                                            <expression name="expr" type="javascript">data["rank_Player/PlayerRankingPerEvent::FULLNAME"]</expression>
+                                            <property name="operator">ge</property>
+                                            <simple-property-list name="value1">
+                                                <value type="javascript">params["minNumEvents"].value</value>
+                                            </simple-property-list>
+                                            <property name="updateAggregation">true</property>
+                                        </filter-condition-element>
+                                    </property>
                                     <property name="sort">
                                         <sort-element>
                                             <expression name="key" type="javascript">data["sumPointsDivNumEvents_Player/PlayerRankingPerEvent::FULLNAME"]</expression>
@@ -996,10 +1027,10 @@ from eventteamplayer etp
             <property name="columns">
                 <extended-item extensionName="CrosstabView" id="348">
                     <property name="grandTotal">
-                        <extended-item extensionName="CrosstabCell" id="394">
+                        <extended-item extensionName="CrosstabCell" id="444">
                             <property name="content">
-                                <label id="403">
-                                    <text-property name="text"></text-property>
+                                <label id="453">
+                                    <text-property name="text">Gesamt</text-property>
                                 </label>
                             </property>
                         </extended-item>
@@ -1034,7 +1065,9 @@ from eventteamplayer etp
                 <extended-item extensionName="CrosstabCell" id="342"/>
             </property>
             <property name="rowPageBreakInterval">0</property>
+            <property name="display">block</property>
             <property name="pageBreakInside">avoid</property>
+            <property name="marginLeft">10px</property>
             <list-property name="boundDataColumns">
                 <structure>
                     <property name="name">PlayerRankingPerEvent::FULLNAME</property>
@@ -1115,11 +1148,51 @@ from eventteamplayer etp
                     </simple-property-list>
                     <property name="aggregateFunction">SUM</property>
                 </structure>
+                <structure>
+                    <property name="name">sumPointsDivNumEvents_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME</property>
+                    <expression name="expression">measure["sumPointsDivNumEvents"]</expression>
+                    <property name="dataType">float</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>Player/PlayerRankingPerEvent::FULLNAME</value>
+                        <value>EventDate/NumTeamsPerEvent::DATETIME</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                </structure>
+                <structure>
+                    <property name="name">rank_Player/PlayerRankingPerEvent::FULLNAME</property>
+                    <text-property name="displayName">eventsPerPlayer</text-property>
+                    <property name="dataType">integer</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>Player/PlayerRankingPerEvent::FULLNAME</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">measure["rank"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">points_Player/PlayerRankingPerEvent::FULLNAME</property>
+                    <property name="dataType">float</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>Player/PlayerRankingPerEvent::FULLNAME</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">measure["sumPointsDivNumEvents"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
             </list-property>
         </extended-item>
         <text id="416">
+            <property name="marginLeft">10px</property>
             <property name="contentType">html</property>
-            <text-property name="content"><![CDATA[<br/><br/>
+            <text-property name="content"><![CDATA[<br/>
 <H3>
 Legende
 </H3>
@@ -1127,9 +1200,380 @@ Legende
 <li>Platz: Platzierung und Anzahl der Teams</li>
 <li>Punkte = 1 - ((([Platz] * 2) -1) / [Anzahl Teams])</li>
 <li>Punktedurchschnitt: Gesamtpunktzahl geteilt durch Anzahl Turniere</li>
-<li>Mindestteilnahme: 50% der Termine</li>
+<li>Mindestteilnahme: <VALUE-OF>params["minNumEvents"].value</VALUE-OF> Turniere</li>
 </ul>
 ]]></text-property>
         </text>
+        <text id="502">
+            <property name="marginLeft">10px</property>
+            <property name="contentType">html</property>
+            <text-property name="content"><![CDATA[<H3>
+Spieler mit weniger als  <VALUE-OF>params["minNumEvents"].value</VALUE-OF> Teilnahmen
+</H3>]]></text-property>
+        </text>
+        <extended-item extensionName="Crosstab" extensionVersion="2.5.0" id="469">
+            <property name="cube">Data Cube - PlayerRanking</property>
+            <property name="measures">
+                <extended-item extensionName="MeasureView" id="470">
+                    <property name="measure">rank</property>
+                    <property name="detail">
+                        <extended-item extensionName="AggregationCell" id="471">
+                            <property name="aggregationOnRow">Player/PlayerRankingPerEvent::FULLNAME</property>
+                            <property name="aggregationOnColumn">EventDate/NumTeamsPerEvent::DATETIME</property>
+                            <property name="textAlign">center</property>
+                            <property name="content">
+                                <data id="472">
+                                    <property name="textAlign">right</property>
+                                    <property name="display">inline</property>
+                                    <property name="showIfBlank">false</property>
+                                    <property name="canShrink">false</property>
+                                    <list-property name="mapRules">
+                                        <structure>
+                                            <expression name="testExpr" type="javascript">data["rank_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME_1"]</expression>
+                                            <property name="operator">is-null</property>
+                                            <text-property name="display">-</text-property>
+                                        </structure>
+                                        <structure>
+                                            <expression name="testExpr" type="javascript">true</expression>
+                                            <property name="operator">eq</property>
+                                            <simple-property-list name="value1">
+                                                <value type="javascript">false</value>
+                                            </simple-property-list>
+                                            <text-property name="display">comment: mapping needed to avoid rendering of empty divs that would break the layout</text-property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">rank_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME_1</property>
+                                </data>
+                                <data id="473">
+                                    <property name="paddingLeft">1pt</property>
+                                    <property name="paddingRight">1pt</property>
+                                    <structure name="numberFormat">
+                                        <property name="category">Custom</property>
+                                        <property name="pattern">/ #</property>
+                                    </structure>
+                                    <property name="display">inline</property>
+                                    <property name="showIfBlank">true</property>
+                                    <list-property name="mapRules">
+                                        <structure>
+                                            <expression name="testExpr" type="javascript">data["numTeams_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME_1"]</expression>
+                                            <property name="operator">is-null</property>
+                                            <text-property name="display">/ -</text-property>
+                                        </structure>
+                                        <structure>
+                                            <expression name="testExpr" type="javascript">true</expression>
+                                            <property name="operator">eq</property>
+                                            <simple-property-list name="value1">
+                                                <value type="javascript">false</value>
+                                            </simple-property-list>
+                                            <text-property name="display">comment: mapping needed to avoid rendering of empty divs that would break the layout</text-property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">numTeams_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME_1</property>
+                                </data>
+                            </property>
+                            <property name="width">40px</property>
+                        </extended-item>
+                    </property>
+                    <property name="aggregations">
+                        <extended-item extensionName="AggregationCell" id="474">
+                            <property name="aggregationOnRow">Player/PlayerRankingPerEvent::FULLNAME</property>
+                            <property name="textAlign">right</property>
+                            <property name="paddingRight">10pt</property>
+                            <property name="content">
+                                <data id="475">
+                                    <property name="paddingRight">10pt</property>
+                                    <property name="textAlign">right</property>
+                                    <property name="display">inline</property>
+                                    <property name="resultSetColumn">rank_Player/PlayerRankingPerEvent::FULLNAME</property>
+                                </data>
+                            </property>
+                            <property name="width">57px</property>
+                        </extended-item>
+                    </property>
+                    <property name="header">
+                        <extended-item extensionName="CrosstabCell" id="476">
+                            <property name="content">
+                                <label id="477">
+                                    <text-property name="text">Platz</text-property>
+                                </label>
+                            </property>
+                        </extended-item>
+                        <extended-item extensionName="CrosstabCell" id="478">
+                            <property name="content">
+                                <label id="479">
+                                    <property name="textAlign">center</property>
+                                    <property name="whiteSpace">pre</property>
+                                    <text-property name="text">Teil-&#13;
+nahmen</text-property>
+                                </label>
+                            </property>
+                        </extended-item>
+                    </property>
+                </extended-item>
+                <extended-item extensionName="MeasureView" id="480">
+                    <property name="measure">points</property>
+                    <property name="detail">
+                        <extended-item extensionName="AggregationCell" id="481">
+                            <property name="aggregationOnRow">Player/PlayerRankingPerEvent::FULLNAME</property>
+                            <property name="aggregationOnColumn">EventDate/NumTeamsPerEvent::DATETIME</property>
+                            <property name="textAlign">center</property>
+                            <property name="paddingRight">1pt</property>
+                            <property name="content">
+                                <data id="482">
+                                    <structure name="numberFormat">
+                                        <property name="category">Custom</property>
+                                        <property name="pattern">+0.00;-0.00</property>
+                                    </structure>
+                                    <property name="whiteSpace">nowrap</property>
+                                    <property name="resultSetColumn">points_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME</property>
+                                </data>
+                            </property>
+                            <property name="width">50px</property>
+                        </extended-item>
+                    </property>
+                    <property name="aggregations">
+                        <extended-item extensionName="AggregationCell" id="483">
+                            <property name="aggregationOnRow">Player/PlayerRankingPerEvent::FULLNAME</property>
+                            <property name="content">
+                                <data id="484">
+                                    <structure name="numberFormat">
+                                        <property name="category">Custom</property>
+                                        <property name="pattern">+0.00;-0.00</property>
+                                    </structure>
+                                    <property name="textAlign">center</property>
+                                    <property name="resultSetColumn">points_Player/PlayerRankingPerEvent::FULLNAME</property>
+                                </data>
+                            </property>
+                            <property name="width">100px</property>
+                        </extended-item>
+                    </property>
+                    <property name="header">
+                        <extended-item extensionName="CrosstabCell" id="485">
+                            <property name="content">
+                                <label id="486">
+                                    <text-property name="text">Punkte</text-property>
+                                </label>
+                            </property>
+                        </extended-item>
+                        <extended-item extensionName="CrosstabCell" id="487">
+                            <property name="content">
+                                <label id="488">
+                                    <property name="textAlign">center</property>
+                                    <text-property name="text">Punkte-durchschnitt</text-property>
+                                </label>
+                            </property>
+                        </extended-item>
+                    </property>
+                </extended-item>
+            </property>
+            <property name="rows">
+                <extended-item extensionName="CrosstabView" id="489">
+                    <property name="views">
+                        <extended-item extensionName="DimensionView" id="490">
+                            <property name="dimension">Player</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View2" id="491">
+                                    <property name="level">Player/PlayerRankingPerEvent::FULLNAME</property>
+                                    <property name="filter">
+                                        <filter-condition-element>
+                                            <expression name="expr" type="javascript">data["rank_Player/PlayerRankingPerEvent::FULLNAME"]</expression>
+                                            <property name="operator">lt</property>
+                                            <simple-property-list name="value1">
+                                                <value type="javascript">params["minNumEvents"].value</value>
+                                            </simple-property-list>
+                                            <property name="updateAggregation">true</property>
+                                        </filter-condition-element>
+                                    </property>
+                                    <property name="sort">
+                                        <sort-element>
+                                            <expression name="key" type="javascript">data["sumPointsDivNumEvents_Player/PlayerRankingPerEvent::FULLNAME"]</expression>
+                                            <property name="direction">desc</property>
+                                            <property name="strength">-1</property>
+                                        </sort-element>
+                                    </property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="492">
+                                            <property name="content">
+                                                <data name="PlayerRankingPerEvent::FULLNAME1" id="493">
+                                                    <property name="display">block</property>
+                                                    <property name="resultSetColumn">PlayerRankingPerEvent::FULLNAME</property>
+                                                </data>
+                                            </property>
+                                            <property name="textAlign">left</property>
+                                            <property name="width">140px</property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                    </property>
+                    <property name="grandTotalLocation">after</property>
+                </extended-item>
+            </property>
+            <property name="columns">
+                <extended-item extensionName="CrosstabView" id="494">
+                    <property name="grandTotal">
+                        <extended-item extensionName="CrosstabCell" id="495">
+                            <property name="content">
+                                <label id="496">
+                                    <text-property name="text">Gesamt</text-property>
+                                </label>
+                            </property>
+                        </extended-item>
+                    </property>
+                    <property name="views">
+                        <extended-item extensionName="DimensionView" id="497">
+                            <property name="dimension">EventDate</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View11" id="498">
+                                    <property name="level">EventDate/NumTeamsPerEvent::DATETIME</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="499">
+                                            <property name="content">
+                                                <data name="NumTeamsPerEvent::DATETIME1" id="500">
+                                                    <structure name="dateTimeFormat">
+                                                        <property name="category">Short Date</property>
+                                                        <property name="pattern">Short Date</property>
+                                                    </structure>
+                                                    <property name="resultSetColumn">NumTeamsPerEvent::DATETIME</property>
+                                                </data>
+                                            </property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                    </property>
+                    <property name="grandTotalLocation">after</property>
+                </extended-item>
+            </property>
+            <property name="header">
+                <extended-item extensionName="CrosstabCell" id="501"/>
+            </property>
+            <property name="rowPageBreakInterval">0</property>
+            <property name="pageBreakInside">avoid</property>
+            <property name="marginBottom">30px</property>
+            <property name="marginLeft">10px</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">PlayerRankingPerEvent::FULLNAME</property>
+                    <expression name="expression">dimension["Player"]["PlayerRankingPerEvent::FULLNAME"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">NumTeamsPerEvent::DATETIME</property>
+                    <expression name="expression">dimension["EventDate"]["NumTeamsPerEvent::DATETIME"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">rank_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME</property>
+                    <property name="dataType">integer</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>Player/PlayerRankingPerEvent::FULLNAME</value>
+                        <value>EventDate/NumTeamsPerEvent::DATETIME</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">measure["rank"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">numTeams_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME</property>
+                    <property name="dataType">string</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>Player/PlayerRankingPerEvent::FULLNAME</value>
+                        <value>EventDate/NumTeamsPerEvent::DATETIME</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">measure["numTeams"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">points_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME</property>
+                    <expression name="expression">measure["points"]</expression>
+                    <property name="dataType">float</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>Player/PlayerRankingPerEvent::FULLNAME</value>
+                        <value>EventDate/NumTeamsPerEvent::DATETIME</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                </structure>
+                <structure>
+                    <property name="name">numTeams_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME_1</property>
+                    <expression name="expression">measure["numTeams"]</expression>
+                    <property name="dataType">decimal</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>Player/PlayerRankingPerEvent::FULLNAME</value>
+                        <value>EventDate/NumTeamsPerEvent::DATETIME</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                </structure>
+                <structure>
+                    <property name="name">sumPointsDivNumEvents_Player/PlayerRankingPerEvent::FULLNAME</property>
+                    <expression name="expression">measure["sumPointsDivNumEvents"]</expression>
+                    <property name="dataType">float</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>Player/PlayerRankingPerEvent::FULLNAME</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                </structure>
+                <structure>
+                    <property name="name">rank_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME_1</property>
+                    <expression name="expression">measure["rank"]</expression>
+                    <property name="dataType">integer</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>Player/PlayerRankingPerEvent::FULLNAME</value>
+                        <value>EventDate/NumTeamsPerEvent::DATETIME</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                </structure>
+                <structure>
+                    <property name="name">sumPointsDivNumEvents_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME</property>
+                    <expression name="expression">measure["sumPointsDivNumEvents"]</expression>
+                    <property name="dataType">float</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>Player/PlayerRankingPerEvent::FULLNAME</value>
+                        <value>EventDate/NumTeamsPerEvent::DATETIME</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                </structure>
+                <structure>
+                    <property name="name">rank_Player/PlayerRankingPerEvent::FULLNAME</property>
+                    <text-property name="displayName">eventsPerPlayer</text-property>
+                    <property name="dataType">integer</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>Player/PlayerRankingPerEvent::FULLNAME</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">measure["rank"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+                <structure>
+                    <property name="name">points_Player/PlayerRankingPerEvent::FULLNAME</property>
+                    <property name="dataType">float</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>Player/PlayerRankingPerEvent::FULLNAME</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">measure["sumPointsDivNumEvents"]</expression>
+                        </structure>
+                    </list-property>
+                </structure>
+            </list-property>
+        </extended-item>
     </body>
 </report>
