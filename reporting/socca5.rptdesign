@@ -822,6 +822,7 @@ from eventteamplayer etp
             <property name="height">4000mm</property>
             <property name="width">297mm</property>
             <property name="orientation">landscape</property>
+            <property name="showFooterOnLast">false</property>
             <page-footer>
                 <text id="3">
                     <property name="contentType">html</property>
@@ -845,6 +846,23 @@ from eventteamplayer etp
                                 <data id="355">
                                     <property name="textAlign">right</property>
                                     <property name="display">inline</property>
+                                    <property name="showIfBlank">false</property>
+                                    <property name="canShrink">false</property>
+                                    <list-property name="mapRules">
+                                        <structure>
+                                            <expression name="testExpr" type="javascript">data["rank_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME_1"]</expression>
+                                            <property name="operator">is-null</property>
+                                            <text-property name="display">-</text-property>
+                                        </structure>
+                                        <structure>
+                                            <expression name="testExpr" type="javascript">true</expression>
+                                            <property name="operator">eq</property>
+                                            <simple-property-list name="value1">
+                                                <value type="javascript">false</value>
+                                            </simple-property-list>
+                                            <text-property name="display">comment: mapping needed to avoid rendering of empty divs that would break the layout</text-property>
+                                        </structure>
+                                    </list-property>
                                     <property name="resultSetColumn">rank_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME_1</property>
                                 </data>
                                 <data id="375">
@@ -855,6 +873,22 @@ from eventteamplayer etp
                                         <property name="pattern">/ #</property>
                                     </structure>
                                     <property name="display">inline</property>
+                                    <property name="showIfBlank">true</property>
+                                    <list-property name="mapRules">
+                                        <structure>
+                                            <expression name="testExpr" type="javascript">data["numTeams_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME_1"]</expression>
+                                            <property name="operator">is-null</property>
+                                            <text-property name="display">/ -</text-property>
+                                        </structure>
+                                        <structure>
+                                            <expression name="testExpr" type="javascript">true</expression>
+                                            <property name="operator">eq</property>
+                                            <simple-property-list name="value1">
+                                                <value type="javascript">false</value>
+                                            </simple-property-list>
+                                            <text-property name="display">comment: mapping needed to avoid rendering of empty divs that would break the layout</text-property>
+                                        </structure>
+                                    </list-property>
                                     <property name="resultSetColumn">numTeams_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME_1</property>
                                 </data>
                             </property>
@@ -1083,5 +1117,19 @@ from eventteamplayer etp
                 </structure>
             </list-property>
         </extended-item>
+        <text id="416">
+            <property name="contentType">html</property>
+            <text-property name="content"><![CDATA[<br/><br/>
+<H3>
+Legende
+</H3>
+<ul>
+<li>Platz: Platzierung und Anzahl der Teams</li>
+<li>Punkte = 1 - ((([Platz] * 2) -1) / [Anzahl Teams])</li>
+<li>Punktedurchschnitt: Gesamtpunktzahl geteilt durch Anzahl Turniere</li>
+<li>Mindestteilnahme: 50% der Termine</li>
+</ul>
+]]></text-property>
+        </text>
     </body>
 </report>
