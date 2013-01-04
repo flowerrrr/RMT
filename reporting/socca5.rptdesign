@@ -173,6 +173,7 @@ from EVENTTEAMPLAYER evt
   left join event e on (et.event_id = e.id)
   left join invitation i on (evt.invitation_id = i.id)
   inner join users u on (i.user_id = u.id)
+where et.rank is not null
 order by e.datetime]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
@@ -817,7 +818,9 @@ from eventteamplayer etp
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
-            <property name="type">a4</property>
+            <property name="type">custom</property>
+            <property name="height">4000mm</property>
+            <property name="width">297mm</property>
             <property name="orientation">landscape</property>
             <page-footer>
                 <text id="3">
@@ -873,14 +876,15 @@ from eventteamplayer etp
                         <extended-item extensionName="AggregationCell" id="364">
                             <property name="aggregationOnRow">Player/PlayerRankingPerEvent::FULLNAME</property>
                             <property name="aggregationOnColumn">EventDate/NumTeamsPerEvent::DATETIME</property>
-                            <property name="textAlign">right</property>
-                            <property name="paddingRight">15pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="paddingRight">1pt</property>
                             <property name="content">
                                 <data id="365">
                                     <structure name="numberFormat">
-                                        <property name="category">Fixed</property>
-                                        <property name="pattern">###0.00{RoundingMode=HALF_UP}</property>
+                                        <property name="category">Custom</property>
+                                        <property name="pattern">+0.00;-0.00</property>
                                     </structure>
+                                    <property name="whiteSpace">nowrap</property>
                                     <property name="resultSetColumn">points_Player/PlayerRankingPerEvent::FULLNAME_EventDate/NumTeamsPerEvent::DATETIME</property>
                                 </data>
                             </property>
@@ -889,17 +893,18 @@ from eventteamplayer etp
                     <property name="aggregations">
                         <extended-item extensionName="AggregationCell" id="395">
                             <property name="aggregationOnRow">Player/PlayerRankingPerEvent::FULLNAME</property>
-                            <property name="textAlign">right</property>
-                            <property name="paddingRight">15pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="paddingRight">1pt</property>
                             <property name="content">
                                 <data id="396">
                                     <structure name="numberFormat">
-                                        <property name="category">Fixed</property>
-                                        <property name="pattern">###0.00{RoundingMode=HALF_UP}</property>
+                                        <property name="category">Custom</property>
+                                        <property name="pattern">+0.00;-0.00</property>
                                     </structure>
                                     <property name="resultSetColumn">sumPointsDivNumEvents_Player/PlayerRankingPerEvent::FULLNAME</property>
                                 </data>
                             </property>
+                            <property name="width">100px</property>
                         </extended-item>
                     </property>
                     <property name="header">
@@ -913,7 +918,7 @@ from eventteamplayer etp
                         <extended-item extensionName="CrosstabCell" id="399">
                             <property name="content">
                                 <label id="400">
-                                    <text-property name="text">Punkte / Termin</text-property>
+                                    <text-property name="text">Punkte-durchschnitt</text-property>
                                 </label>
                             </property>
                         </extended-item>
@@ -994,6 +999,8 @@ from eventteamplayer etp
             <property name="header">
                 <extended-item extensionName="CrosstabCell" id="342"/>
             </property>
+            <property name="rowPageBreakInterval">0</property>
+            <property name="pageBreakInside">avoid</property>
             <list-property name="boundDataColumns">
                 <structure>
                     <property name="name">PlayerRankingPerEvent::FULLNAME</property>
