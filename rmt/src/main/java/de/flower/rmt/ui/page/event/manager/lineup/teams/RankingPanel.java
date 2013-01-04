@@ -14,6 +14,7 @@ import de.flower.rmt.ui.model.LineupModel;
 import de.flower.rmt.ui.page.event.manager.lineup.dragndrop.DraggableEntityLabel;
 import de.flower.rmt.ui.page.event.manager.lineup.dragndrop.EntityLabel;
 import de.flower.rmt.ui.panel.RMTBasePanel;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
@@ -64,6 +65,8 @@ public class RankingPanel extends RMTBasePanel<Event> {
                         }
                     });
                 }
+                // if rank is null indicate that the teams haven't been ranked yet.
+                entityLabel.add(AttributeModifier.append("class", item.getModelObject().getRank() == null ? "not-ranked" : ""));
             }
         };
         add(items);

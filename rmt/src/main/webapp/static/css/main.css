@@ -1113,6 +1113,9 @@ textarea.input-xlarge, input.input-xlarge, .RecipientListPanel {
     .team-item {
         width: 130px;
     }
+    .not-ranked {
+        opacity: 0.2;
+    }
 }
 
 /*************************************************************************
