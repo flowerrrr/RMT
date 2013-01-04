@@ -17,16 +17,40 @@
     <property name="Data Cube - PlayerRankingPerEvent.PlayerRankingPerEvent.y">80</property>
     <list-property name="propertyBindings">
         <structure>
-            <property name="name">queryText</property>
-            <property name="id">8</property>
+            <property name="name">odaDriverClass</property>
+            <property name="id">230</property>
         </structure>
         <structure>
-            <property name="name">queryTimeOut</property>
-            <property name="id">8</property>
+            <property name="name">odaURL</property>
+            <property name="id">230</property>
         </structure>
         <structure>
-            <property name="name">rowFetchSize</property>
-            <property name="id">8</property>
+            <property name="name">odaUser</property>
+            <property name="id">230</property>
+        </structure>
+        <structure>
+            <property name="name">odaAutoCommit</property>
+            <property name="id">230</property>
+        </structure>
+        <structure>
+            <property name="name">odaIsolationMode</property>
+            <property name="id">230</property>
+        </structure>
+        <structure>
+            <property name="name">odaPassword</property>
+            <property name="id">230</property>
+        </structure>
+        <structure>
+            <property name="name">odaJndiName</property>
+            <property name="id">230</property>
+        </structure>
+        <structure>
+            <property name="name">OdaConnProfileName</property>
+            <property name="id">230</property>
+        </structure>
+        <structure>
+            <property name="name">OdaConnProfileStorePath</property>
+            <property name="id">230</property>
         </structure>
     </list-property>
     <property name="units">in</property>
@@ -55,7 +79,7 @@
             <property name="odaURL">jdbc:mysql://vmware:3306/rmt</property>
             <property name="odaUser">rmt</property>
             <encrypted-property name="odaPassword" encryptionID="base64">YXNkYXNk</encrypted-property>
-            <property name="OdaConnProfileName">rmt@vmware</property>
+            <property name="OdaConnProfileName">rmtDS</property>
             <property name="OdaConnProfileStorePath">connection-profile-store.dat</property>
         </oda-data-source>
     </data-sources>
