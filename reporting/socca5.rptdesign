@@ -843,7 +843,7 @@ where et.rank is not null
         <simple-master-page name="Simple MasterPage" id="2">
             <property name="type">custom</property>
             <property name="height">4000mm</property>
-            <property name="width">1400px</property>
+            <property name="width">2400px</property>
             <property name="orientation">landscape</property>
             <property name="showFooterOnLast">false</property>
             <page-footer>
