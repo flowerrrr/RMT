@@ -197,7 +197,7 @@ public class WicketTester extends org.apache.wicket.util.tester.WicketTester {
     }
 
     /**
-     * @throws IllegalStateException when the logging seriliazer detects illegal objects in the page-object-graph.
+     * @throws IllegalStateException when the logging serializer detects illegal objects in the page-object-graph.
      */
     private void inspectSerializedPage() {
         final Page page = getLastRenderedPage();

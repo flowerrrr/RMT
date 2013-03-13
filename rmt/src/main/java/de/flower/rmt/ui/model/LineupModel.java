@@ -20,7 +20,6 @@ public class LineupModel extends LoadableDetachableModel<Lineup> {
 
     public LineupModel(IModel<Event> eventModel) {
         this.eventModel = eventModel;
-        this.eventModel = eventModel;
         Injector.get().inject(this);
     }
 

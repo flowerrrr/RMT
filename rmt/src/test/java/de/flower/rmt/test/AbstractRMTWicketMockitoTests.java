@@ -26,6 +26,7 @@ public abstract class AbstractRMTWicketMockitoTests extends AbstractWicketMockit
     protected WicketTester createWicketTester(final MockitoFactoryApplicationContext mockCtx) {
         WebApplication webApp = new TestRMTApplication(mockCtx);
         WicketTester wicketTester = new WicketTester(webApp);
+        wicketTester.setSerializationCheck(false);
         return wicketTester;
     }
 

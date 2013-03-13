@@ -9,7 +9,6 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.FormTester;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import javax.mail.internet.InternetAddress;
@@ -24,11 +23,6 @@ import static org.testng.Assert.*;
  * @author flowerrrr
  */
 public class SelectRecipientPanelTest extends AbstractRMTWicketMockitoTests {
-
-    @BeforeMethod
-    public void setUp() {
-        wicketTester.setSerializationCheck(false);
-    }
 
     @Test
     public void testSubmitSelectedRecipients() {

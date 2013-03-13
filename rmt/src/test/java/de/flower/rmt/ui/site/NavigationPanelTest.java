@@ -12,7 +12,6 @@ public class NavigationPanelTest extends AbstractRMTWicketMockitoTests {
 
     @Test
     public void testRender() {
-        wicketTester.setSerializationCheck(false);
         wicketTester.startComponentInPage(new NavigationPanel(new INavigationPanelAware() {
             @Override
             public String getActiveTopBarItem() {
