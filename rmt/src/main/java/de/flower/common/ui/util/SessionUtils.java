@@ -20,4 +20,9 @@ public final class SessionUtils {
         return clientInfo.getProperties().getRemoteAddress();
     }
 
+    public static String getUserAgent() {
+        final WebClientInfo clientInfo = WebSession.get().getClientInfo();
+        return "" + clientInfo.getUserAgent();
+    }
+
 }

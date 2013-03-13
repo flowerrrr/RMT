@@ -1,5 +1,6 @@
 package de.flower.rmt.ui.app;
 
+import de.flower.common.ui.util.SessionUtils;
 import de.flower.common.util.Collections;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.Component;
@@ -52,13 +53,26 @@ public class Links {
                                 // return ia.toString();
                             }
                         });
-                // outlook likes ';', iphone mail client prefers ','. but according to most sources ';' is correct when used in mailto.
-                // could try to detect user agent
-                String href = StringUtils.join(stringList, ";");
+                String href = StringUtils.join(stringList, getAddressDelimiter());
                 return "mailTo:" + URLEncoder.encode(href);
             }
-        } ;
+        };
         return new ExternalLink(id, hrefModel);
+    }
+
+    private static String getAddressDelimiter() {
+        // outlook likes ';', iphone mail client prefers ','. but according to most sources ';' is correct when used in mailto.
+        // could try to detect user agent
+        String userAgent = SessionUtils.getUserAgent();
+        String DEFAULT = ";";
+        String MAC = ",";
+        if (userAgent.toLowerCase().contains("windows")) {
+            return DEFAULT;
+        } else if (userAgent.toLowerCase().contains("mac")) {
+            return MAC;
+        } else {
+            return DEFAULT;
+        }
     }
 
     public static Component logoutLink(final String id) {
