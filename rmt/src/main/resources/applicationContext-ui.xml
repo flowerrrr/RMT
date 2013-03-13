@@ -52,6 +52,7 @@
                 <value>org.wicketstuff.jsr303.validator.PropertyValidator</value>
                 <value>de.flower.common.util.geo.LatLng</value>
                 <value>wicket.contrib.gmap3..*</value>
+                <value>com.google.common.collect.*</value>
                 <!-- for TimeDropDownChoice -->
                 <value>org.joda.time.LocalTime</value>
                 <value>org.joda.time.tz.FixedDateTimeZone</value>
