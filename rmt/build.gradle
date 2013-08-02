@@ -1,6 +1,8 @@
 apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'idea'
+apply plugin: 'jacoco'
+
 
 // use jdk 1.7
 sourceCompatibility = "1.7"
