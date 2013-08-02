@@ -26,7 +26,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import java.util.List;
 
 /**
- * Panel servers for manager and player view.
+ * Panel serves for manager and player view.
  * @author flowerrrr
  */
 public class EventTeamPanel extends RMTBasePanel<EventTeam> {

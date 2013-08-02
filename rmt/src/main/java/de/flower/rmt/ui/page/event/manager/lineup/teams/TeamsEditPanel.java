@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 /**
- * Panel servers manager and player view.
+ * Panel serves manager and player view.
  *
  * @author flowerrrr
  */
