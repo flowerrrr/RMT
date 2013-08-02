@@ -138,7 +138,9 @@ compileQueryDslJava {
 [compileJava, compileTestJava, compileGroovy, compileTestGroovy]*.options*.encoding = 'UTF-8'
 
 test {
+    jvmArgs "-XX:MaxPermSize=256m"
     useTestNG()
+    // include '**/EventDetailsPanelTest.*'
     exclude '**/*ManualTest.*'
     // must use gradle -i to see test output
     testLogging.showStandardStreams = true
@@ -147,7 +149,12 @@ test {
         logger.lifecycle("Running test: " + descriptor)
     }
 }
-
+// http://forums.gradle.org/gradle/topics/_1_6_rc_1_jacoco_plugin_does_not_show_line_numbers
+jacocoTestReport {
+  group = "Reporting"
+  description = "Generate Jacoco coverage reports after running tests."
+  additionalSourceDirs = files(sourceSets.main.allJava.srcDirs)
+}
 
 /**
  * Use this task to update idea project file with dependencies.
