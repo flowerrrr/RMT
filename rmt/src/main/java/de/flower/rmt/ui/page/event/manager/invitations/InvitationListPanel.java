@@ -24,7 +24,11 @@ import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Fragment;
-import org.apache.wicket.model.*;
+import org.apache.wicket.model.AbstractReadOnlyModel;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.LoadableDetachableModel;
+import org.apache.wicket.model.Model;
+import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import javax.mail.internet.InternetAddress;
@@ -46,17 +50,17 @@ public class InvitationListPanel extends BasePanel {
     public InvitationListPanel(String id, IModel<Event> model) {
         super(id);
         Check.notNull(model);
-        addList(RSVPStatus.ACCEPTED, model);
-        addList(RSVPStatus.UNSURE, model);
-        addList(RSVPStatus.DECLINED, model);
-        addList(RSVPStatus.NORESPONSE, model);
+        addList(RSVPStatus.ACCEPTED, model, true);
+        addList(RSVPStatus.UNSURE, model, false);
+        addList(RSVPStatus.DECLINED, model, false);
+        addList(RSVPStatus.NORESPONSE, model, false);
         add(new AjaxEventListener(Invitation.class));
     }
 
-    private void addList(RSVPStatus status, IModel<Event> model) {
+    private void addList(RSVPStatus status, IModel<Event> model, final boolean printOrder) {
         final IModel<List<Invitation>> listModel = getInvitationList(model, status);
         add(createHead(status.name().toLowerCase() + "ListHead", status, listModel));
-        add(createListView(status.name().toLowerCase() + "List", status, listModel));
+        add(createListView(status.name().toLowerCase() + "List", status, listModel, printOrder));
     }
 
     private Component createHead(String id, RSVPStatus status, final IModel<List<Invitation>> listModel) {
@@ -86,20 +90,23 @@ public class InvitationListPanel extends BasePanel {
         return head;
     }
 
-    private Component createListView(String id, RSVPStatus status, IModel<List<Invitation>> listModel) {
+    private Component createListView(String id, RSVPStatus status, IModel<List<Invitation>> listModel, final boolean printOrder) {
         ListView list = new EntityListView<Invitation>(id, listModel) {
             @Override
             protected void populateItem(ListItem<Invitation> item) {
-                item.add(createInvitationFragement(item));
+                item.add(createInvitationFragement(item, printOrder));
             }
         };
         return list;
     }
 
-    private Component createInvitationFragement(ListItem<Invitation> item) {
+    private Component createInvitationFragement(ListItem<Invitation> item, boolean printOrder) {
         final Invitation invitation = item.getModelObject();
         Fragment frag = new Fragment("itemPanel", "fragmentRow", this);
         frag.add(new Label("name", invitation.getName()));
+        final Label label = new Label("position", (item.getIndex() + 1) + ". - ");
+        label.setVisible(printOrder);
+        frag.add(label);
         frag.add(DateLabel.forDatePattern("date", Model.of(invitation.getDate()), Dates.DATE_TIME_SHORT));
         frag.add(new CommentsPanel(item.getModel()));
         // now the dropdown menu

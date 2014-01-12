@@ -63,7 +63,7 @@ public class InvitationListPanel extends BasePanel {
     private Component createInvitationFragement(final ListItem<Invitation> item, final boolean printOrder) {
         final Invitation invitation = item.getModelObject();
         Fragment frag = new Fragment("itemPanel", "itemFragment", this);
-        final Label label = new Label("position", "#" + (item.getIndex() + 1));
+        final Label label = new Label("position", (item.getIndex() + 1) + ".");
         label.setVisible(printOrder);
         frag.add(label);
         frag.add(new Label("name", invitation.getName()));
