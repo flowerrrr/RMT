@@ -1,1 +1,1 @@
-java -cp C:\Users\oblume\.gradle\cache\com.h2database\h2\jars\h2-1.3.160.jar org.h2.tools.Server -tcp -ifExists
+java -cp C:\Users\oblume\.gradle\caches\artifacts-24\filestore\com.h2database\h2\1.3.160\jar\e5df74e741da2260b825511ce08de5d7730c684a\h2-1.3.160.jar org.h2.tools.Server -tcp -ifExists
