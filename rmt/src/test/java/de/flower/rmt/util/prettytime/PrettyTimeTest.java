@@ -1,11 +1,13 @@
 package de.flower.rmt.util.prettytime;
 
+import static org.testng.Assert.assertEquals;
+
+import java.util.Locale;
+
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
-
-import static org.testng.Assert.*;
 
 /**
  * @author flowerrrr
@@ -48,6 +50,8 @@ public class PrettyTimeTest {
 
     @Test
     public void testFormat() {
+        Locale.setDefault(Locale.GERMAN);
+        
         int hourOfDay = 22;
         DateTime now = new DateTime(2012, 05, 1, hourOfDay, 0, 0); // tuesday
 
