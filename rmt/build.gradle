@@ -95,12 +95,12 @@ dependencies {
 }
 
 // wicket app: need to copy .html files from java-src to output
-sourceSets.main.resources.srcDirs('/src/main/java')
-sourceSets.test.resources.srcDirs('/src/test/java')
-sourceSets.test.resources.srcDirs('/src/test/groovy')
+sourceSets.main.resources.srcDirs('src/main/java')
+sourceSets.test.resources.srcDirs('src/test/java')
+sourceSets.test.resources.srcDirs('src/test/groovy')
 
 // add directory with db-unit files to test-classpath
-sourceSets.test.resources.srcDirs('/src/test/database')
+sourceSets.test.resources.srcDirs('src/test/database')
 
 // fix for http://forums.gradle.org/gradle/topics/regression_with_classloading_in_the_jetty_plugin_with_gradle_1_0_milestone_6?from_gsfn=true
 sourceSets.main.output.resourcesDir = sourceSets.main.output.classesDir
@@ -110,11 +110,11 @@ sourceSets.main.output.resourcesDir = sourceSets.main.output.classesDir
 sourceSets {
     queryDsl {
         java {
-            srcDir '/src/main/java'
+            srcDir 'src/main/java'
         }
     }
 }
-compileQueryDslJava.destinationDir = file('/src/generated/querydsl')
+compileQueryDslJava.destinationDir = file('src/generated/querydsl')
 
 compileJava.dependsOn compileQueryDslJava
 clean.dependsOn cleanCompileQueryDslJava
