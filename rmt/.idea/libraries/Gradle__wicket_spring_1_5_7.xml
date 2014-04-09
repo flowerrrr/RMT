@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: wicket-spring-1.5.7">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.wicket/wicket-spring/1.5.7/30537a5a0e0d16bd1723ead50feca4d807117896/wicket-spring-1.5.7.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.wicket/wicket-spring/1.5.7/9a07934616d36daf1659f2013e0828adc5ba8599/wicket-spring-1.5.7-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.wicket/wicket-spring/1.5.7/68340bf7049b0c0e2e3b425a7275502211cfe61e/wicket-spring-1.5.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

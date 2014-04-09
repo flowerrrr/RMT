@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="CheckStyle-IDEA">
-    <option name="configuration">
-      <map>
-        <entry key="active-configuration" value="file:$PROJECT_DIR$/qa/checkstyle/sun_checks-modified.xml:Flowerrr Checkstyle rules (based on sun_checks.xml)" />
-        <entry key="check-test-classes" value="false" />
-        <entry key="location-0" value="CLASSPATH:/sun_checks.xml:The default CheckStyle rules." />
-        <entry key="location-1" value="file:$PROJECT_DIR$/qa/checkstyle/sun_checks-modified.xml:Flowerrr Checkstyle rules (based on sun_checks.xml)" />
-        <entry key="thirdparty-classpath" value="" />
-      </map>
-    </option>
+  <component name="EclipseCodeFormatter">
+    <option name="defaultSettings" value="true" />
+    <option name="formatter" value="ECLIPSE" />
+    <option name="id" value="1395832319690" />
+    <option name="name" value="default" />
+    <option name="pathToConfigFileJava" value="$PROJECT_DIR$/../../../comSysto/recruitersearch/gulp-recruitersearch/config/codeformat.xml" />
+    <option name="selectedJavaProfile" value="gulp" />
   </component>
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
@@ -19,6 +16,7 @@
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="BeanValidation" url="file://$PROJECT_DIR$/src/main/resources/META-INF/validation.xml" />
+    <file type="web" url="file://$PROJECT_DIR$" />
   </component>
   <component name="IdProvider" IDEtalkID="67AF08D9F13A9110E08052F7D169FC85" />
   <component name="JavadocGenerationManager">
@@ -61,7 +59,7 @@
   <component name="ProjectResources">
     <default-html-doctype>$APPLICATION_HOME_DIR$/lib/idea.jar!/standardSchemas/html5/xhtml5.xsd</default-html-doctype>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" assert-keyword="true" jdk-15="true" project-jdk-name="1.7.0_51" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="WebServicesPlugin" addRequiredLibraries="true" />

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: wiquery-jquery-ui-1.5.7">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.odlabs.wiquery/wiquery-jquery-ui/1.5.7/7deb181f992f89cd80e3ee05de589622a1cc75fe/wiquery-jquery-ui-1.5.7.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.odlabs.wiquery/wiquery-jquery-ui/1.5.7/85c94c01005b693fa4700bec1698b75a54455aaf/wiquery-jquery-ui-1.5.7-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.odlabs.wiquery/wiquery-jquery-ui/1.5.7/a4839055749916ffe7535d543dab16b071eedf85/wiquery-jquery-ui-1.5.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
