@@ -6,6 +6,7 @@
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-validator/4.2.0.Final/a41e980a54e139faae6eb7054dc545b14125e090/hibernate-validator-4.2.0.Final-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-validator/4.2.0.Final/a41e980a54e139faae6eb7054dc545b14125e090/hibernate-validator-4.2.0.Final-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

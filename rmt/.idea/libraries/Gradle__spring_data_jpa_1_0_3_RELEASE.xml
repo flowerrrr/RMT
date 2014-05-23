@@ -5,8 +5,10 @@
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/1.0.3.RELEASE/5d8b18162e0e038aff1718a62a7e5cd27a287bfc/spring-data-jpa-1.0.3.RELEASE-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/1.0.3.RELEASE/5d8b18162e0e038aff1718a62a7e5cd27a287bfc/spring-data-jpa-1.0.3.RELEASE-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/1.0.3.RELEASE/d291a720002f514dea3e2d4583c1f181a64c6ec4/spring-data-jpa-1.0.3.RELEASE-sources.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/1.0.3.RELEASE/d291a720002f514dea3e2d4583c1f181a64c6ec4/spring-data-jpa-1.0.3.RELEASE-sources.jar!/" />
     </SOURCES>
   </library>

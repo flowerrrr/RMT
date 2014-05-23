@@ -6,6 +6,7 @@
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/3.1.0.RELEASE/e8191f9a849b984a403939a37de818b1b356e7e5/spring-expression-3.1.0.RELEASE-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/3.1.0.RELEASE/e8191f9a849b984a403939a37de818b1b356e7e5/spring-expression-3.1.0.RELEASE-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

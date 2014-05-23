@@ -6,6 +6,7 @@
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-entitymanager/3.6.7.Final/287bc3107a69f70f8a5c9a1ca1dfd50a96f3127f/hibernate-entitymanager-3.6.7.Final-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-entitymanager/3.6.7.Final/287bc3107a69f70f8a5c9a1ca1dfd50a96f3127f/hibernate-entitymanager-3.6.7.Final-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

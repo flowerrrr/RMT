@@ -2,11 +2,14 @@
   <library name="Gradle: wiquery-core-1.5.7">
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.odlabs.wiquery/wiquery-core/1.5.7/a82a5902ac24c49f18317dfa20e42ab9b62caf94/wiquery-core-1.5.7.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.odlabs.wiquery/wiquery-core/1.5.7/a82a5902ac24c49f18317dfa20e42ab9b62caf94/wiquery-core-1.5.7.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.odlabs.wiquery/wiquery-core/1.5.7/2929f7c77999a00d78f9407033683327c3666417/wiquery-core-1.5.7-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.odlabs.wiquery/wiquery-core/1.5.7/2929f7c77999a00d78f9407033683327c3666417/wiquery-core-1.5.7-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.odlabs.wiquery/wiquery-core/1.5.7/73f3f17421f288330df4933b0290430bf12a78b6/wiquery-core-1.5.7-sources.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.odlabs.wiquery/wiquery-core/1.5.7/73f3f17421f288330df4933b0290430bf12a78b6/wiquery-core-1.5.7-sources.jar!/" />
     </SOURCES>
   </library>

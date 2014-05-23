@@ -5,8 +5,10 @@
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-jpamodelgen/1.1.1.Final/5a2d8fb616bd8cecc4037b10fdf6ae432b5b2bb/hibernate-jpamodelgen-1.1.1.Final-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-jpamodelgen/1.1.1.Final/5a2d8fb616bd8cecc4037b10fdf6ae432b5b2bb/hibernate-jpamodelgen-1.1.1.Final-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-jpamodelgen/1.1.1.Final/14ef2047c0cabaf0eb6b6278cd4fa9b59bcfac79/hibernate-jpamodelgen-1.1.1.Final-sources.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-jpamodelgen/1.1.1.Final/14ef2047c0cabaf0eb6b6278cd4fa9b59bcfac79/hibernate-jpamodelgen-1.1.1.Final-sources.jar!/" />
     </SOURCES>
   </library>

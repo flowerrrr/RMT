@@ -6,6 +6,7 @@
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjrt/1.6.8/2e399f32ac7388ecbb042017df2ff1bc1ca8c16/aspectjrt-1.6.8-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjrt/1.6.8/2e399f32ac7388ecbb042017df2ff1bc1ca8c16/aspectjrt-1.6.8-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
