@@ -1,19 +1,21 @@
 package de.flower.rmt.service;
 
-import de.flower.common.util.Check;
-import de.flower.rmt.model.db.entity.Venue;
-import de.flower.rmt.model.db.entity.Venue_;
-import de.flower.rmt.repository.IVenueRepo;
+import static de.flower.rmt.repository.Specs.asc;
+import static org.springframework.data.jpa.domain.Specifications.where;
+
+import java.util.List;
+
+import javax.persistence.metamodel.Attribute;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.metamodel.Attribute;
-import java.util.List;
-
-import static de.flower.rmt.repository.Specs.asc;
-import static org.springframework.data.jpa.domain.Specifications.where;
+import de.flower.common.util.Check;
+import de.flower.rmt.model.db.entity.Venue;
+import de.flower.rmt.model.db.entity.Venue_;
+import de.flower.rmt.repository.IVenueRepo;
 
 /**
  * @author flowerrrr
@@ -47,6 +49,7 @@ public class VenueManager extends AbstractService implements IVenueManager {
     @Transactional(readOnly = false)
     public void delete(Long id) {
         Venue entity = loadById(id);
+        // TODO (flowerrrr - 23.05.2014) fails if name is close to upper size limit. should use NameFinder and then truncate candidate to 80 characters
         entity.setName("DELETED-" + entity.getName());
         venueRepo.softDelete(entity);
     }
