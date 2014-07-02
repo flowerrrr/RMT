@@ -1,12 +1,13 @@
 package de.flower.rmt.ui.page.base;
 
-import de.flower.common.ui.panel.BasePanel;
-import de.flower.rmt.ui.app.Links;
-import de.flower.rmt.ui.page.about.AboutPage;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+
+import de.flower.common.ui.panel.BasePanel;
+import de.flower.rmt.ui.app.Links;
+import de.flower.rmt.ui.page.about.AboutPage;
 
 /**
  * @author flowerrrr
@@ -20,7 +21,8 @@ public class AnonymousNavigationPanel extends BasePanel {
 
         add(new BookmarkablePageLink("about", AboutPage.class));
 
-        add(createMenuItem(HOME, Links.contextRoot("home"), null));
+        // renamed link id to xhome to avoid RMT-751
+        add(createMenuItem(HOME, Links.contextRoot("xhome"), null));
     }
 
     public WebMarkupContainer createMenuItem(String pageName, AbstractLink link, final INavigationPanelAware page) {
