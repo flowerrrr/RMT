@@ -5,10 +5,8 @@
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.wicket/wicket-devutils/1.5.7/81c15276b4c2365d2f53b88b372ada44c6861cfe/wicket-devutils-1.5.7-javadoc.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.wicket/wicket-devutils/1.5.7/81c15276b4c2365d2f53b88b372ada44c6861cfe/wicket-devutils-1.5.7-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.wicket/wicket-devutils/1.5.7/5d6808130869f8404cbc87b92cc328d900f7e36d/wicket-devutils-1.5.7-sources.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.wicket/wicket-devutils/1.5.7/5d6808130869f8404cbc87b92cc328d900f7e36d/wicket-devutils-1.5.7-sources.jar!/" />
     </SOURCES>
   </library>

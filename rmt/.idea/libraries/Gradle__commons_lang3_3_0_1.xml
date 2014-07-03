@@ -5,10 +5,8 @@
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.0.1/617cdb59e57a5d5076da244d3e57c57f50e674d4/commons-lang3-3.0.1-javadoc.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.0.1/617cdb59e57a5d5076da244d3e57c57f50e674d4/commons-lang3-3.0.1-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.0.1/e048d9cecbc49a3563fb05cdd8db1a25da887201/commons-lang3-3.0.1-sources.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.0.1/e048d9cecbc49a3563fb05cdd8db1a25da887201/commons-lang3-3.0.1-sources.jar!/" />
     </SOURCES>
   </library>

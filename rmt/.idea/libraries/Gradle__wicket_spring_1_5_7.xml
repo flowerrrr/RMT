@@ -5,10 +5,8 @@
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.wicket/wicket-spring/1.5.7/9a07934616d36daf1659f2013e0828adc5ba8599/wicket-spring-1.5.7-javadoc.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.wicket/wicket-spring/1.5.7/9a07934616d36daf1659f2013e0828adc5ba8599/wicket-spring-1.5.7-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.wicket/wicket-spring/1.5.7/68340bf7049b0c0e2e3b425a7275502211cfe61e/wicket-spring-1.5.7-sources.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.wicket/wicket-spring/1.5.7/68340bf7049b0c0e2e3b425a7275502211cfe61e/wicket-spring-1.5.7-sources.jar!/" />
     </SOURCES>
   </library>

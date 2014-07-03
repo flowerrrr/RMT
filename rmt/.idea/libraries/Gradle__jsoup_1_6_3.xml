@@ -5,10 +5,8 @@
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jsoup/jsoup/1.6.3/4e705c71128c5a25404fa6700f48f62e1b05da13/jsoup-1.6.3-javadoc.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jsoup/jsoup/1.6.3/4e705c71128c5a25404fa6700f48f62e1b05da13/jsoup-1.6.3-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jsoup/jsoup/1.6.3/242ea29175dcca8cbbea614d64f8bd91193a1537/jsoup-1.6.3-sources.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jsoup/jsoup/1.6.3/242ea29175dcca8cbbea614d64f8bd91193a1537/jsoup-1.6.3-sources.jar!/" />
     </SOURCES>
   </library>
