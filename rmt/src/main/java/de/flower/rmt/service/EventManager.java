@@ -11,6 +11,8 @@ import de.flower.rmt.model.db.entity.Invitation_;
 import de.flower.rmt.model.db.entity.Lineup;
 import de.flower.rmt.model.db.entity.Team;
 import de.flower.rmt.model.db.entity.User;
+import de.flower.rmt.model.db.entity.event.AbstractSoccerEvent;
+import de.flower.rmt.model.db.entity.event.AbstractSoccerEvent_;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.entity.event.Event_;
 import de.flower.rmt.model.db.entity.event.QEvent;
@@ -242,7 +244,12 @@ public class EventManager extends AbstractService implements IEventManager {
 
     @Override
     public Event copyOf(final Event event) {
-        Event e = loadById(event.getId(), Event_.team, Event_.venue, Event_.opponent);
+        Event e;
+        if (event instanceof AbstractSoccerEvent) {
+            e = loadById(event.getId(), Event_.team, Event_.venue, Event_.opponent, AbstractSoccerEvent_.uniform);
+        }else {
+            e = loadById(event.getId(), Event_.team, Event_.venue, Event_.opponent);
+        }
         Event newEvent = newInstance(e.getEventType());
         newEvent.copyFrom(e);
         return newEvent;

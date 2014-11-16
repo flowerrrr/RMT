@@ -7,6 +7,7 @@ import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.entity.event.Match;
 import de.flower.rmt.model.db.entity.event.QEvent;
+import de.flower.rmt.model.db.entity.event.Training;
 import de.flower.rmt.model.db.type.EventType;
 import de.flower.rmt.model.db.type.Surface;
 import de.flower.rmt.test.AbstractRMTIntegrationTests;
@@ -126,5 +127,14 @@ public class EventManagerTest extends AbstractRMTIntegrationTests {
     @Test
     public void testFetchOpponent() {
         eventManager.findAll(QEvent.event.team, QEvent.event.opponent);
+    }
+
+    @Test
+    public void testCopyEvent() {
+        testData.setEventType(EventType.Training);
+        Event event = testData.createEvent();
+        Training copy = (Training) eventManager.copyOf(event);
+        // check if LIE is thrown
+        copy.getUniform().getName();
     }
 }
