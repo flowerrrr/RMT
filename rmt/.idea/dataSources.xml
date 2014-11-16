@@ -1,3 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="4" />
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="3489893090">
+    <data-source source="LOCAL" name="H2 - rmt-db@localhost" uuid="8d7b8b7a-4c50-45d9-aac4-a6c2c28160af">
+      <driver-ref>h2.remote</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.h2.Driver</jdbc-driver>
+      <jdbc-url>jdbc:h2:tcp://localhost/$PROJECT_DIR$/../database/rmt-db</jdbc-url>
+      <user-name>root</user-name>
+      <schema-pattern>RMT-DB.PUBLIC</schema-pattern>
+      <default-schemas>RMT-DB.PUBLIC</default-schemas>
+      <libraries />
+    </data-source>
+  </component>
+</project>
 

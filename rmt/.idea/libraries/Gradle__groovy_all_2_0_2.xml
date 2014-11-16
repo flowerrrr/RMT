@@ -2,11 +2,17 @@
   <library name="Gradle: groovy-all-2.0.2">
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.groovy/groovy-all/2.0.2/56c8df76e7688216c72842cda7c057257316ae49/groovy-all-2.0.2.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.groovy/groovy-all/2.0.2/56c8df76e7688216c72842cda7c057257316ae49/groovy-all-2.0.2.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.groovy/groovy-all/2.0.2/56c8df76e7688216c72842cda7c057257316ae49/groovy-all-2.0.2.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.groovy/groovy-all/2.0.2/28834b72ead356512d86e553751d56be3156c236/groovy-all-2.0.2-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.groovy/groovy-all/2.0.2/28834b72ead356512d86e553751d56be3156c236/groovy-all-2.0.2-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.groovy/groovy-all/2.0.2/28834b72ead356512d86e553751d56be3156c236/groovy-all-2.0.2-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.groovy/groovy-all/2.0.2/2b13e375de185de153034cc4d658b9da0e0e5c13/groovy-all-2.0.2-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.groovy/groovy-all/2.0.2/2b13e375de185de153034cc4d658b9da0e0e5c13/groovy-all-2.0.2-sources.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.groovy/groovy-all/2.0.2/2b13e375de185de153034cc4d658b9da0e0e5c13/groovy-all-2.0.2-sources.jar!/" />
     </SOURCES>
   </library>

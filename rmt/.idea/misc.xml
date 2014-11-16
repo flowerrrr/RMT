@@ -24,6 +24,7 @@
     <option name="formatter" value="ECLIPSE" />
     <option name="id" value="1395832319690" />
     <option name="name" value="default" />
+    <option name="optimizeImports" value="false" />
     <option name="pathToConfigFileJava" value="$PROJECT_DIR$/../../../comSysto/gulp/config/codeformat.xml" />
     <option name="selectedJavaProfile" value="gulp" />
   </component>
@@ -84,7 +85,7 @@
   <component name="ProjectResources">
     <default-html-doctype>$APPLICATION_HOME_DIR$/lib/idea.jar!/standardSchemas/html5/xhtml5.xsd</default-html-doctype>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" assert-keyword="true" jdk-15="true" project-jdk-name="1.7.0_51" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="SuppressionsComponent">
