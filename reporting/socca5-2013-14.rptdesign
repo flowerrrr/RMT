@@ -44,7 +44,7 @@
             <property name="dataType">string</property>
             <property name="distinct">true</property>
             <simple-property-list name="defaultValue">
-                <value type="constant">2014-11-01</value>
+                <value type="constant">2013-11-01</value>
             </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -60,7 +60,7 @@
             <property name="dataType">string</property>
             <property name="distinct">true</property>
             <simple-property-list name="defaultValue">
-                <value type="constant">2015-05-30</value>
+                <value type="constant">2014-05-30</value>
             </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -896,7 +896,7 @@ where et.rank is not null and
             <property name="marginLeft">10px</property>
             <property name="contentType">html</property>
             <text-property name="content"><![CDATA[<H1>
-Socca5 Ranking Saison 2014/2015
+Socca5 Ranking Saison 2013/2014
 </H1>]]></text-property>
         </text>
         <extended-item extensionName="Crosstab" extensionVersion="2.5.0" id="341">
