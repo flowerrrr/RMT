@@ -186,8 +186,8 @@
             </list-property>
             <xml-property name="queryText"><![CDATA[select 
   e.id as eventId, e.DATETIME, u.id as userId, u.fullname, et.rank
-from EVENTTEAMPLAYER evt 
-  left join EVENTTEAM et on (evt.eventTeam_id = et.id) 
+from eventteamplayer evt 
+  left join eventteam et on (evt.eventTeam_id = et.id) 
   left join event e on (et.event_id = e.id)
   left join invitation i on (evt.invitation_id = i.id)
   inner join users u on (i.user_id = u.id)
@@ -300,7 +300,7 @@ order by e.datetime]]></xml-property>
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[select e.id as eventId, count(e.id) as numTeams, e.datetime
-from eventTeam et
+from eventteam et
   left join event e on (et.event_id = e.id)
 group by eventId
 order by e.datetime]]></xml-property>
