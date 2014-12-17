@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.util.Locale;
+
 @Component(value = "wicketApplication")
 public class RMTApplication extends WebApplication {
 
@@ -51,6 +53,9 @@ public class RMTApplication extends WebApplication {
         log.info("*** Version " + Version.VERSION);
         log.info("***********************************************************************************");
         super.init();
+
+        Locale.setDefault(Locale.GERMANY);
+
         // add support for @SpringBean
         getComponentInstantiationListeners().add(getSpringComponentInjector());
         // google maps have problems when wicket tags are rendered in development mode, so strip those tags
