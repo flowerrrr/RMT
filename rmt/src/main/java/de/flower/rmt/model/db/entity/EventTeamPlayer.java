@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
  * @author flowerrrr
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"eventTeam_id", "invitation_id"}))
+@Table(name = "eventteamplayer", uniqueConstraints = @UniqueConstraint(columnNames = {"eventTeam_id", "invitation_id"}))
 public class EventTeamPlayer extends AbstractBaseEntity {
 
     @NotNull

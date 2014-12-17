@@ -4,7 +4,11 @@ import de.flower.common.validation.unique.Unique;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Size;
 import javax.validation.groups.Default;
 import java.util.ArrayList;
@@ -14,7 +18,7 @@ import java.util.List;
  * @author flowerrrr
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(name = "name", columnNames = {"name", "club_id"}))
+@Table(name = "team", uniqueConstraints = @UniqueConstraint(name = "name", columnNames = {"name", "club_id"}))
 @Unique(name = "name",
         clazz = Team.class,
         message = Team.Validation.nameNotUniqueMessage,

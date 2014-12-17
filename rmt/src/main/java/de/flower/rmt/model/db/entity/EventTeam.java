@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import java.util.List;
  */
 @SuppressWarnings("FieldCanBeLocal")
 @Entity
+@Table(name = "eventteam")
 public class EventTeam extends AbstractBaseEntity {
 
     @NotNull

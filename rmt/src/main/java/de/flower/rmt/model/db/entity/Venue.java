@@ -5,12 +5,14 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 /**
  * @author flowerrrr
  */
 @Entity
+@Table(name = "venue")
 public class Venue extends AbstractClubRelatedEntity {
 
     @NotBlank

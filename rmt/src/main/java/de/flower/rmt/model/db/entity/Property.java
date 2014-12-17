@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 /**
@@ -15,6 +16,7 @@ import javax.validation.constraints.Size;
  */
 @SuppressWarnings("FieldCanBeLocal")
 @Entity
+@Table(name = "property")
 public class Property extends AbstractBaseEntity {
 
     /**

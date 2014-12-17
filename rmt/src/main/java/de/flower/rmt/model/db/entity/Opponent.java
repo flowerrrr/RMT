@@ -17,7 +17,7 @@ import javax.validation.groups.Default;
  * @author flowerrrr
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(name = "name", columnNames = {"name", "club_id"}))
+@Table(name = "opponent", uniqueConstraints = @UniqueConstraint(name = "name", columnNames = {"name", "club_id"}))
 @Unique(name = "name",
         clazz = Opponent.class,
         message = Opponent.Validation.nameNotUniqueMessage,

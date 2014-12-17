@@ -6,6 +6,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -15,6 +16,7 @@ import java.util.Date;
  * @author flowerrrr
  */
 @Entity
+@Table(name = "activity")
 public class Activity extends AbstractClubRelatedEntity {
 
     /**

@@ -15,6 +15,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -27,6 +28,7 @@ import java.util.List;
  */
 @SuppressWarnings("FieldCanBeLocal")
 @Entity
+@Table(name = "invitation")
 public class Invitation extends AbstractBaseEntity {
 
     @Enumerated(EnumType.STRING)

@@ -3,7 +3,12 @@ package de.flower.rmt.model.db.entity;
 import de.flower.common.model.db.entity.AbstractBaseEntity;
 import org.hibernate.annotations.Index;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -11,7 +16,7 @@ import javax.validation.constraints.NotNull;
  * @author flowerrrr
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "authority"}))
+@Table(name = "role", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "authority"}))
 public class Role extends AbstractBaseEntity {
 
     /**
