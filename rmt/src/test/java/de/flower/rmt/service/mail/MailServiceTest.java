@@ -105,12 +105,12 @@ public class MailServiceTest extends AbstractRMTIntegrationTests {
      */
     @Test(enabled = false)
     public void testSpam() {
-        mailSender.setHost("mail.flower.de");
+        mailSender.setHost("92.51.163.51");
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("oliver@flower.de");
         message.setReplyTo("oliver@flower.de");
-        message.setTo("oliver@flower.de");
-        message.setSubject("Nur ein kleiner Unit test");
+        message.setTo("oliver.blume@yahoo.de");
+        message.setSubject("Rückmeldetool: Nur ein kleiner Unit test");
         message.setText("Test test, was man so kennt. Grüße, Wiedersehen.");
         mailService.sendMail(message);
         log.info("Check postbox at [{}] for email.");
