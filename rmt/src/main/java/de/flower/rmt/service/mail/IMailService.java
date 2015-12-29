@@ -10,11 +10,8 @@ public interface IMailService {
 
     void sendMail(SimpleMailMessage message);
 
-    void sendMail(String receiver, final String bcc, String subject, String body);
-
     /**
-     * Sends a mail to multiple recipients (all on bcc).
-     * Uses pre-configured to-address.
+     * Sends a mail to multiple recipients (individual messages to each recipient).
      *
      * @param notification
      */

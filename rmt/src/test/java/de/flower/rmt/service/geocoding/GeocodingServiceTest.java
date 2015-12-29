@@ -26,6 +26,6 @@ public class GeocodingServiceTest {
         List<GeocodingResult> results = geocodingService.geocode("Werner-Heisenberg-Allee 25\n 80939 München", "de", "de");
         log.info(results.toString());
         assertEquals(results.size(), 1);
-        assertEquals(results.get(0).getLatLng(), new LatLng(48.2186, 11.62362));
+        assertEquals(results.get(0).getLatLng(), new LatLng(48.2187997, 11.6247047));
     }
 }

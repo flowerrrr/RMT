@@ -21,7 +21,6 @@ import de.flower.rmt.service.IInvitationManager;
 import de.flower.rmt.service.IUrlProvider;
 import de.flower.rmt.ui.markup.html.form.renderer.SurfaceRenderer;
 import de.flower.rmt.util.Dates;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +30,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.mail.internet.InternetAddress;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -194,12 +194,12 @@ public class NotificationService implements INotificationService, IICalendarProv
     public void sendNoResponseReminder(Event event, final List<Invitation> invitations) {
         Check.isTrue(!event.isCanceled(), "Trying to send reminder mail for canceled event.");
         log.info("Sending no-response reminder to [{}]", invitations);
-        SimpleMailMessage message = getNoResponseReminderMessage(event);
+        Notification notification = getNoResponseReminderMessage(event);
 
-        List<String> to = Lists.newArrayList();
+        List<InternetAddress> to = Lists.newArrayList();
         for (Invitation invitation : invitations) {
             if (invitation.hasEmail()) {
-                to.addAll(Arrays.asList(invitation.getEmails()));
+                to.addAll(Arrays.asList(invitation.getInternetAddresses()));
             } else {
                 log.info("Cannot send reminder for invitation without email address [{}].", invitation);
             }
@@ -210,25 +210,31 @@ public class NotificationService implements INotificationService, IICalendarProv
             return;
         }
 
-        message.setBcc(to.toArray(new String[]{}));
+        notification.setRecipients(to);
 
-        mailService.sendMail(message);
+        mailService.sendMassMail(notification);
 
         // send mail to manager
         sendSummaryToManager(event, to, "No response to invitation mail.");
     }
 
-    private void sendSummaryToManager(final Event event, final List<String> to, final String reason) {
+    private void sendSummaryToManager(final Event event, final List<InternetAddress> recipients, final String reason) {
         final SimpleMailMessage message;
         message = new SimpleMailMessage();
         message.setTo(event.getCreatedBy().getEmail());
         message.setSubject("das tool: Reminder-Mail summary");
 
+        String emails = "";
+        for (InternetAddress internetAddress : recipients) {
+            emails += internetAddress.getAddress();
+            emails += "\n";
+        }
+
         String body = "An auto-reminder-mail was sent to the following recpients.\n"
                 + "Event: " + urlProvider.deepLinkEvent(event.getId()) + "\n"
                 + "Reason: " + reason + "\n"
                 + "Users:\n";
-        body += StringUtils.join(to, "\n");
+        body += emails;
         body += "\n"
                 + "_____________________________________________________\n"
                 + "Sent by das-tool reminder task.";
@@ -238,29 +244,29 @@ public class NotificationService implements INotificationService, IICalendarProv
     }
 
     @VisibleForTesting
-    protected SimpleMailMessage getNoResponseReminderMessage(final Event event) {
-        SimpleMailMessage message = new SimpleMailMessage();
+    protected Notification getNoResponseReminderMessage(final Event event) {
+        Notification notification = new Notification();
 
         final Map<String, Object> model = getEventDetailsModel(event);
         String eventDetails = templateService.mergeTemplate(EmailTemplate.EVENT_DETAILS.getTemplate(), model);
         model.put("eventDetails", eventDetails);
 
-        message.setSubject(templateService.mergeTemplate(EmailTemplate.NORESPONSE_REMINDER.getSubject(), model));
-        message.setText(templateService.mergeTemplate(EmailTemplate.NORESPONSE_REMINDER.getContent(), model));
+        notification.setSubject(templateService.mergeTemplate(EmailTemplate.NORESPONSE_REMINDER.getSubject(), model));
+        notification.setBody(templateService.mergeTemplate(EmailTemplate.NORESPONSE_REMINDER.getContent(), model));
 
-        return message;
+        return notification;
     }
 
     @Override
     public void sendUnsureReminder(final Event event, final List<Invitation> invitations) {
         Check.isTrue(!event.isCanceled(), "Trying to send reminder mail for canceled event.");
         log.info("Sending unsure reminder to [{}]", invitations);
-        SimpleMailMessage message = getUnsureReminderMessage(event);
+        Notification notification = getUnsureReminderMessage(event);
 
-        List<String> to = Lists.newArrayList();
+        List<InternetAddress> to = Lists.newArrayList();
         for (Invitation invitation : invitations) {
             if (invitation.hasEmail()) {
-                to.addAll(Arrays.asList(invitation.getEmails()));
+                to.addAll(Arrays.asList(invitation.getInternetAddresses()));
             } else {
                 log.info("Cannot send reminder for invitation without email address [{}].", invitation);
             }
@@ -271,56 +277,56 @@ public class NotificationService implements INotificationService, IICalendarProv
             return;
         }
 
-        message.setBcc(to.toArray(new String[]{}));
+        notification.setRecipients(to);
 
-        mailService.sendMail(message);
+        mailService.sendMassMail(notification);
 
         // send mail to manager
         sendSummaryToManager(event, to, "Response status set to 'maybe'.");
     }
 
     @VisibleForTesting
-    protected SimpleMailMessage getUnsureReminderMessage(final Event event) {
-        SimpleMailMessage message = new SimpleMailMessage();
+    protected Notification getUnsureReminderMessage(final Event event) {
+        Notification notification = new Notification();
 
         final Map<String, Object> model = getEventDetailsModel(event);
         String eventDetails = templateService.mergeTemplate(EmailTemplate.EVENT_DETAILS.getTemplate(), model);
         model.put("eventDetails", eventDetails);
 
-        message.setSubject(templateService.mergeTemplate(EmailTemplate.UNSURE_REMINDER.getSubject(), model));
-        message.setText(templateService.mergeTemplate(EmailTemplate.UNSURE_REMINDER.getContent(), model));
+        notification.setSubject(templateService.mergeTemplate(EmailTemplate.UNSURE_REMINDER.getSubject(), model));
+        notification.setBody(templateService.mergeTemplate(EmailTemplate.UNSURE_REMINDER.getContent(), model));
 
-        return message;
+        return notification;
     }
 
     @Override
     public void sendEventCanceledMessage(final Event event, final List<Invitation> invitations) {
         log.info("Sending event canceled notification to [{}]", invitations);
-        SimpleMailMessage message = getEventCanceledMessage(event);
+        Notification notification = getEventCanceledMessage(event);
 
-        List<String> to = Lists.newArrayList();
+        List<InternetAddress> to = Lists.newArrayList();
         for (Invitation invitation : invitations) {
             if (invitation.hasEmail()) {
-                to.addAll(Arrays.asList(invitation.getEmails()));
+                to.addAll(Arrays.asList(invitation.getInternetAddresses()));
             }
         }
-        message.setBcc(to.toArray(new String[]{}));
+        notification.setRecipients(to);
 
-        mailService.sendMail(message);
+        mailService.sendMassMail(notification);
     }
 
     @VisibleForTesting
-    protected SimpleMailMessage getEventCanceledMessage(final Event event) {
-        SimpleMailMessage message = new SimpleMailMessage();
+    protected Notification getEventCanceledMessage(final Event event) {
+        Notification notification = new Notification();
 
         final Map<String, Object> model = getEventDetailsModel(event);
         String eventDetails = templateService.mergeTemplate(EmailTemplate.EVENT_DETAILS.getTemplate(), model);
         model.put("eventDetails", eventDetails);
 
-        message.setSubject(templateService.mergeTemplate(EmailTemplate.EVENT_CANCELED.getSubject(), model));
-        message.setText(templateService.mergeTemplate(EmailTemplate.EVENT_CANCELED.getContent(), model));
+        notification.setSubject(templateService.mergeTemplate(EmailTemplate.EVENT_CANCELED.getSubject(), model));
+        notification.setBody(templateService.mergeTemplate(EmailTemplate.EVENT_CANCELED.getContent(), model));
 
-        return message;
+        return notification;
     }
 
     protected String getEventDetails(Event event) {

@@ -83,7 +83,7 @@ public class NotificationPanel extends BasePanel {
             }
         });
         form.add(body);
-        form.add(new CheckBoxPanel("bccMySelf"));
+        form.add(new CheckBoxPanel("copyToMySelf"));
     }
 
     private Notification newNotification(Event event) {

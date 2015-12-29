@@ -25,7 +25,7 @@ public class Notification implements Serializable {
     @NotBlank
     private String body;
 
-    private boolean bccMySelf;
+    private boolean copyToMySelf;
 
     private Attachment attachment;
 
@@ -53,12 +53,12 @@ public class Notification implements Serializable {
         this.body = body;
     }
 
-    public boolean isBccMySelf() {
-        return bccMySelf;
+    public boolean isCopyToMySelf() {
+        return copyToMySelf;
     }
 
-    public void setBccMySelf(final boolean bccMySelf) {
-        this.bccMySelf = bccMySelf;
+    public void setCopyToMySelf(final boolean copyToMySelf) {
+        this.copyToMySelf = copyToMySelf;
     }
 
     public void addRecipient(final String address, final String personal) {

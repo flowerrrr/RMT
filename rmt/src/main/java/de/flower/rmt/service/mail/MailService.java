@@ -1,5 +1,6 @@
 package de.flower.rmt.service.mail;
 
+import com.google.common.collect.Sets;
 import de.flower.common.mail.MimeMessageUtils;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.User;
@@ -23,6 +24,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author flowerrrr
@@ -51,6 +53,41 @@ public class MailService implements IMailService {
         }
     }
 
+    @Override
+    public final void sendMail(SimpleMailMessage message) {
+        // Create a thread safe "copy" of the template message and customize it
+        MimeMailMessage msg = newMimeMailMessage();
+        message.copyTo(msg);
+        sendMail(msg);
+    }
+
+    @Override
+    public void sendMassMail(final Notification notification) {
+        // fields like sender, reply-to, to are preset by default mail template.
+        Set<String> recipients = Sets.newHashSet();
+        for (InternetAddress iAddress : notification.getRecipients()) {
+            recipients.add(iAddress.toString());
+        }
+        if (notification.isCopyToMySelf()) {
+            recipients.add(getCurrentUserEmail());
+        }
+        for (String recipient : recipients) {
+            MimeMailMessage message = newMimeMailMessage();
+            message.setTo(recipient);
+            message.setSubject(notification.getSubject());
+            message.setText(notification.getBody());
+            Notification.Attachment attachment = notification.getAttachment();
+            if (attachment != null) {
+                try {
+                    message.getMimeMessageHelper().addAttachment(attachment.name, attachment.getInputStreamSource(), attachment.contentType);
+                } catch (MessagingException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            sendMail(message);
+        }
+    }
+
     private MimeMailMessage newMimeMailMessage() {
         MimeMailMessage message;
         try {
@@ -60,56 +97,7 @@ public class MailService implements IMailService {
         }
         // preset with defaults from templateMessage
         templateMessage.copyTo(message);
-        // use default undisclosed recipients address if no recipient is defined (like in mass mails)
-        // check if template is configured correctly.
-        Address[] tmp;
-        try {
-            tmp = message.getMimeMessageHelper().getMimeMessage().getRecipients(Message.RecipientType.TO);
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        }
-        Check.isTrue(tmp.length > 0);
         return message;
-    }
-
-    @Override
-    public void sendMassMail(final Notification notification) {
-        // fields like sender, reply-to, to are preset by default mail template.
-        MimeMailMessage message = newMimeMailMessage();
-        List<String> recipients = new ArrayList<String>();
-        for (InternetAddress iAddress : notification.getRecipients()) {
-            recipients.add(iAddress.toString());
-        }
-        if (notification.isBccMySelf()) {
-            recipients.add(getCurrentUserEmail());
-        }
-        message.setBcc(recipients.toArray(new String[]{}));
-        message.setReplyTo(getCurrentUserEmail());
-        message.setSubject(notification.getSubject());
-        message.setText(notification.getBody());
-        Notification.Attachment attachment = notification.getAttachment();
-        if (attachment != null) {
-            try {
-                message.getMimeMessageHelper().addAttachment(attachment.name, attachment.getInputStreamSource(), attachment.contentType);
-            } catch (MessagingException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        sendMail(message);
-    }
-
-    @Override
-    public void sendMail(final String receiver, final String bcc, final String subject, final String content) {
-        // mail to single person gets managers email as reply to.
-        MimeMailMessage message = newMimeMailMessage();
-        message.setReplyTo(getCurrentUserEmail());
-        message.setTo(receiver);
-        if (bcc != null) {
-            message.setBcc(bcc);
-        }
-        message.setSubject(subject);
-        message.setText(content);
-        sendMail(message);
     }
 
     /**
@@ -117,7 +105,7 @@ public class MailService implements IMailService {
      *
      * @throws RuntimeException the mail interface exception
      */
-    private final void sendMail(MimeMailMessage message) {
+    private void sendMail(MimeMailMessage message) {
 
         try {
             log.info("Sending mail:\n" + MimeMessageUtils.toString(message.getMimeMessage()));
@@ -126,13 +114,6 @@ public class MailService implements IMailService {
             log.error("Error sending mail.", e);
             throw new RuntimeException(e);
         }
-    }
-
-    public final void sendMail(SimpleMailMessage message) {
-        // Create a thread safe "copy" of the template message and customize it
-        MimeMailMessage msg = newMimeMailMessage();
-        message.copyTo(msg);
-        sendMail(msg);
     }
 
     /**
