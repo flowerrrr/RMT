@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: net.sourceforge.findbugs:jsr305:1.3.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sourceforge.findbugs/jsr305/1.3.2/98d0f52eeb0b987a95af89253cae57850d558c9e/jsr305-1.3.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -27,7 +27,7 @@
       <profile default="false" name="Profile1" enabled="true">
         <sourceOutputDir name="src/generated/jpa" />
         <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="true">
+        <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-jpamodelgen/1.1.1.Final/6b6722b879636cea65e766abe9c1e6c02d94788d/hibernate-jpamodelgen-1.1.1.Final.jar" />
         </processorPath>
         <module name="rmt" />
@@ -35,4 +35,3 @@
     </annotationProcessing>
   </component>
 </project>
-
