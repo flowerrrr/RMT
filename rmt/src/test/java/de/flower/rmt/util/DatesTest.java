@@ -22,7 +22,7 @@ public class DatesTest {
     public void testFormat() {
         Locale.setDefault(Locale.GERMAN);
         Date date = new DateTime(2000, 5, 6, 10, 3, 59).toDate();
-        assertEquals(Dates.formatDateTimeMedium(date), "06.05.2000 10:03:59");
+        assertEquals(Dates.formatDateTimeMedium(date), "06.05.2000, 10:03:59");
         assertEquals(Dates.formatDateLong(date), "6. Mai 2000");
         assertEquals(Dates.formatDateMedium(date), "06.05.2000");
         assertEquals(Dates.formatDateShort(date), "06.05.");

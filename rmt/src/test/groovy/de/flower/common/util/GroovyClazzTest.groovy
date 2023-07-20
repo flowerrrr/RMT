@@ -2,9 +2,11 @@ package de.flower.common.util
 import org.testng.annotations.Test
 
 import static org.testng.Assert.assertFalse
+import static org.testng.Assert.assertTrue
+
 /**
  * Test class in grooy.
- * Groovy generated anonymous classes seem to behave differently from java classes.
+ * Groovy generated anonymous classes seemed to behave differently from java classes.
  *
  * @author flowerrrr
  */
@@ -12,14 +14,14 @@ import static org.testng.Assert.assertFalse
 public class GroovyClazzTest {
 
     /**
-     * Class#isAnonymousClass() is broken in groovy-compiled classes.
+     * Class#isAnonymousClass() was broken in groovy-compiled classes.
      */
     @Test
-    def void testIsAnonymousClassIsBroken() {
+    def void testIsAnonymousClassIsFixed() {
         def Object o = new Object() {
 
         }
-        assertFalse(Clazz.isAnonymousClass(o.getClass()))
+        assertTrue(Clazz.isAnonymousClass(o.getClass()))
     }
 
 }

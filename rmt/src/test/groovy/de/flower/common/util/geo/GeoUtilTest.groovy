@@ -23,7 +23,7 @@ class GeoUtilTest {
         assertEquals(center, new LatLng(0, 90))
 
         assertEquals(GeoUtil.centerOf([new LatLng(48, 11)]), new LatLng(48, 11))
-        assertEquals(GeoUtil.centerOf([new LatLng(48, 11), new LatLng(49,12)]), new LatLng(48.5, 11.5))
+        assertEquals(GeoUtil.centerOf([new LatLng(48, 11), new LatLng(49,12)]), new LatLng(48.5d, 11.5d))
     }
 
 }

@@ -113,11 +113,6 @@ public final class Clazz {
         }
     }
 
-    /**
-     * Method currently does not return correct results for groovy-compiled classes.
-     * See http://jira.codehaus.org/browse/GROOVY-4980.
-     */
-    @Deprecated // has issues when used with groovy compiled code
     public static boolean isAnonymousClass(Class<?> clazz) {
         boolean hasEnclosingClass = clazz.getEnclosingClass() != null;
         boolean nameContainsDollar = clazz.getName().contains("$");

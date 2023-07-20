@@ -1,7 +1,8 @@
 apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'idea'
-apply plugin: 'jacoco'
+// Läuft nicht mit Java 11
+// apply plugin: 'jacoco'
 apply plugin: 'war'
 
 
@@ -19,12 +20,12 @@ repositories {
 // version properties
 project.ext.versions = [
         commons_collection: "3.2.1",
-        groovy: "2.0.2",
-        hibernate: "3.6.7.Final",
-        slf4j: "1.6.4",
-        spring: "3.1.0.RELEASE",
-        spring_security: "3.1.0.RELEASE",
-        wicket: "1.5.7",
+        groovy            : "2.4.21",
+        hibernate         : "3.6.7.Final",
+        slf4j             : "1.6.4",
+        spring            : "3.1.0.RELEASE",
+        spring_security   : "3.1.0.RELEASE",
+        wicket            : "1.5.7",
 ]
 
 configurations {
@@ -33,26 +34,26 @@ configurations {
     hibernateAnnotationProcessor
 
     all {
-         //   Define how to handle dependency conflicts
-         resolutionStrategy {
-             // fail eagerly on version conflict (includes transitive dependencies)
-             // e.g. multiple different versions of the same dependency (group and name are equal)
-             failOnVersionConflict()
+        //   Define how to handle dependency conflicts
+        resolutionStrategy {
+            // fail eagerly on version conflict (includes transitive dependencies)
+            // e.g. multiple different versions of the same dependency (group and name are equal)
+            // failOnVersionConflict()
 
-             force "commons-collections:commons-collections:" + versions.commons_collection
-             force "org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final"
-             force "org.springframework:spring-aop:" + versions.spring
-             force "org.springframework:spring-beans:" + versions.spring
-             force "org.springframework:spring-context:" + versions.spring
-             force "org.springframework:spring-core:" + versions.spring
-             force "org.springframework:spring-expression:" + versions.spring
-             force "org.springframework:spring-jdbc:" + versions.spring
-             force "org.springframework:spring-tx:" + versions.spring
-             force "org.slf4j:slf4j-api:" + versions.slf4j
-             force "org.slf4j:jcl-over-slf4j:" + versions.slf4j
-             force "junit:junit:3.8.2" // included in dbunit and testng with different versions
-         }
-     }
+            force "commons-collections:commons-collections:" + versions.commons_collection
+            force "org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final"
+            force "org.springframework:spring-aop:" + versions.spring
+            force "org.springframework:spring-beans:" + versions.spring
+            force "org.springframework:spring-context:" + versions.spring
+            force "org.springframework:spring-core:" + versions.spring
+            force "org.springframework:spring-expression:" + versions.spring
+            force "org.springframework:spring-jdbc:" + versions.spring
+            force "org.springframework:spring-tx:" + versions.spring
+            force "org.slf4j:slf4j-api:" + versions.slf4j
+            force "org.slf4j:jcl-over-slf4j:" + versions.slf4j
+            force "junit:junit:4.13.2" // included in dbunit and testng with different versions
+        }
+    }
 
 }
 
@@ -65,7 +66,10 @@ dependencies {
             'com.thoughtworks.xstream:xstream:1.4.1',
             'commons-beanutils:commons-beanutils:1.8.3',
             'commons-collections:commons-collections:' + versions.commons_collection,
+            'javax.annotation:javax.annotation-api:1.3.2',
             'javax.mail:mail:1.4.4',
+            "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2",
+            "org.glassfish.jaxb:jaxb-runtime:2.3.2",
             'joda-time:joda-time:2.0',
             'joda-time:joda-time-hibernate:1.3',
             'org.apache.commons:commons-lang3:3.0.1',
@@ -88,7 +92,7 @@ dependencies {
             'org.springframework.data:spring-data-jpa:1.0.3.RELEASE',
             'org.springframework.security:spring-security-web:' + versions.spring_security
     )
-    providedCompile (
+    providedCompile(
             'javax.servlet:servlet-api:2.5',
     )
 //    hibernateAnnotationProcessor (
@@ -178,11 +182,11 @@ test {
     }
 }
 // http://forums.gradle.org/gradle/topics/_1_6_rc_1_jacoco_plugin_does_not_show_line_numbers
-jacocoTestReport {
-  group = "Reporting"
-  description = "Generate Jacoco coverage reports after running tests."
-  additionalSourceDirs = files(sourceSets.main.allJava.srcDirs)
-}
+//jacocoTestReport {
+//  group = "Reporting"
+//  description = "Generate Jacoco coverage reports after running tests."
+//  additionalSourceDirs = files(sourceSets.main.allJava.srcDirs)
+//}
 
 war {
     baseName = "das-tool"
