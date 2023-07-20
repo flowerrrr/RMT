@@ -1,0 +1,29 @@
+// This is only a copy of the pipeline used in Jenkins-Docker.
+
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'master',
+                url: 'https://github.com/flowerrrr/RMT'
+            }
+        }
+
+        stage('Run Gradle') {
+            steps {
+                dir('rmt') {
+                    sh 'pwd'
+                    sh 'chmod +x ./gradlew'
+                    sh './gradlew bN'
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+           junit '**/rmt/build/test-results/**/*.xml'
+        }
+    }
+}

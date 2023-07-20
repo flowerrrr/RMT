@@ -11,6 +11,9 @@
     <bean id="springApplicationContextBridge" factory-method="getInstance"
     	class="de.flower.common.spring.SpringApplicationContextBridge" />
 
-    <context:property-placeholder location="classpath:application.properties,classpath:application.target.properties,classpath:credentials.properties"/>
+    <!--  ignore-resource-not-found="true" is set, cause credentials.properties is not checked in and thus not available in jenkins builds -->
+    <context:property-placeholder
+            ignore-resource-not-found="true"
+            location="classpath:application.properties,classpath:application.target.properties,classpath:credentials.properties"/>
 
 </beans>
