@@ -1,3 +1,0 @@
-<component name="DependencyValidationManager">
-  <scope name="rmt-model" pattern="src[rmt]:de.flower.rmt.model..*" />
-</component>

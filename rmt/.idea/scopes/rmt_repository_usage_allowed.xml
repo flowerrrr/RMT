@@ -1,3 +1,0 @@
-<component name="DependencyValidationManager">
-  <scope name="rmt-repository-usage-allowed" pattern="(src[rmt]:de.flower.rmt.service..*||src:de.flower.rmt.repository..*)&amp;&amp;!src:de.flower.rmt.service.geocoding.*" />
-</component>
