@@ -167,7 +167,6 @@ compileQueryDslJava {
 [compileJava, compileTestJava, compileGroovy, compileTestGroovy]*.options*.encoding = 'UTF-8'
 
 test {
-    jvmArgs "-XX:MaxPermSize=256m"
     useTestNG()
     // include '**/EventDetailsPanelTest.*'
     exclude '**/*ManualTest.*'
