@@ -132,8 +132,6 @@ sourceSets.test.resources.srcDirs('src/test/groovy')
 // add directory with db-unit files to test-classpath
 sourceSets.test.resources.srcDirs('src/test/database')
 
-// fix for http://forums.gradle.org/gradle/topics/regression_with_classloading_in_the_jetty_plugin_with_gradle_1_0_milestone_6?from_gsfn=true
-sourceSets.main.output.resourcesDir = sourceSets.main.output.classesDir
 
 // needed to get querydsl preprocessor executed
 // s. http://gradle.1045684.n5.nabble.com/Javac-Java-Annotation-Processor-Maven-classpath-dependencies-in-Gradle-td4626751.html
@@ -211,33 +209,35 @@ idea.module {
 
 // Find any 3rd party libraries which have released new versions
 // to the central Maven repo since we last upgraded.
-task checkLibVersions << {
-    def checked = [:]
-    allprojects {
-        configurations.each { configuration ->
-            configuration.allDependencies.each { dependency ->
-                def version = dependency.version
-                if (!version.contains('SNAPSHOT') && !checked[dependency]) {
-                    def group = dependency.group
-                    def path = group.replace('.', '/')
-                    def name = dependency.name
-                    def url = "http://repo1.maven.org/maven2/$path/$name/maven-metadata.xml"
-                    try {
-                        def metadata = new XmlSlurper().parseText(url.toURL().text)
-                        def versions = metadata.versioning.versions.version.collect { it.text() }
-                        versions.removeAll { it.toLowerCase().contains('alpha') }
-                        versions.removeAll { it.toLowerCase().contains('beta') }
-                        versions.removeAll { it.toLowerCase().contains('rc') }
-                        def newest = versions.max()
-                        if (version != newest) {
-                            println "$group:$name $version -> $newest"
+task checkLibVersions {
+    doLast {
+        def checked = [:]
+        allprojects {
+            configurations.each { configuration ->
+                configuration.allDependencies.each { dependency ->
+                    def version = dependency.version
+                    if (!version.contains('SNAPSHOT') && !checked[dependency]) {
+                        def group = dependency.group
+                        def path = group.replace('.', '/')
+                        def name = dependency.name
+                        def url = "https://repo1.maven.org/maven2/$path/$name/maven-metadata.xml"
+                        try {
+                            def metadata = new XmlSlurper().parseText(url.toURL().text)
+                            def versions = metadata.versioning.versions.version.collect { it.text() }
+                            versions.removeAll { it.toLowerCase().contains('alpha') }
+                            versions.removeAll { it.toLowerCase().contains('beta') }
+                            versions.removeAll { it.toLowerCase().contains('rc') }
+                            def newest = versions.max()
+                            if (version != newest) {
+                                println "$group:$name $version -> $newest"
+                            }
+                        } catch (FileNotFoundException e) {
+                            logger.debug "Unable to download $url: $e.message"
+                        } catch (org.xml.sax.SAXParseException e) {
+                            logger.debug "Unable to parse $url: $e.message"
                         }
-                    } catch (FileNotFoundException e) {
-                        logger.debug "Unable to download $url: $e.message"
-                    } catch (org.xml.sax.SAXParseException e) {
-                        logger.debug "Unable to parse $url: $e.message"
+                        checked[dependency] = true
                     }
-                    checked[dependency] = true
                 }
             }
         }
