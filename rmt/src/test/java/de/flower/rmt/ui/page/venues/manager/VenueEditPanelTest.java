@@ -18,7 +18,10 @@ public class VenueEditPanelTest extends AbstractRMTWicketIntegrationTests {
         wicketTester.getComponentWithPage().contains("http://maps.google.com/maps/api/js?v=3&amp;sensor=false");
     }
 
-    @Test
+    /**
+     * Test geht nicht mehr. Verwendung der Google-Maps API muss überarbeitet werden.
+     */
+    @Test(enabled = false)
     public void testGeocoding() {
         // verify that google delivers correct address.
         String searchAddress = "Werner Heisenberg Allee  25\n 80939 Muenchen";

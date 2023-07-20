@@ -174,7 +174,7 @@ test {
     // include '**/EventDetailsPanelTest.*'
     exclude '**/*ManualTest.*'
     // must use gradle -i to see test output
-    testLogging.showStandardStreams = true
+    // testLogging.showStandardStreams = true
     //listening to test execution events
     beforeTest { descriptor ->
         logger.lifecycle("Running test: " + descriptor)
