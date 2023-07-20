@@ -73,10 +73,10 @@ public class MailServiceTest extends AbstractRMTIntegrationTests {
      */
     @Test(enabled = false)
     public void testICalendarAttachment() {
-        mailSender.setHost("mail.flower.de");
+        // mailSender.setHost("mail.flower.de");
         Event event = testData.createEvent();
         Notification notification = notificationService.newEventNotification(event);
-        String address = "oliver@flower.de";
+        String address = "oliver.blume.1968@gmail.com";
         notification.addRecipient(address, null);
         mailService.sendMassMail(notification);
         log.info("Check postbox at [{}] for email.", address);
@@ -88,11 +88,11 @@ public class MailServiceTest extends AbstractRMTIntegrationTests {
      */
     @Test(enabled = false)
     public void testSpam() {
-        mailSender.setHost("92.51.163.51");
+        // mailSender.setHost("92.51.163.51");
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("oliver@flower.de");
+        message.setFrom("das.tool.flower.de@gmail.com");
         message.setReplyTo("oliver@flower.de");
-        message.setTo("oliver.blume@yahoo.de");
+        message.setTo("oliver.blume.1968@gmail.com");
         message.setSubject("Rückmeldetool: Nur ein kleiner Unit test");
         message.setText("Test test, was man so kennt. Grüße, Wiedersehen.");
         mailService.sendMail(message);

@@ -17,7 +17,7 @@
             <level>ERROR</level>
         </filter>
         <smtpHost>${mail.smtp.host}</smtpHost>
-        <to>das-tool-admin@flower.de</to>
+        <to>das.tool.flower.de@gmail.com</to>
         <from>rmt-log-monitor@localhost</from>
         <username>${mail.smtp.username}</username>
         <password>${mail.smtp.password}</password>
