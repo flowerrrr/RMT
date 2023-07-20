@@ -6,6 +6,29 @@
 
     <persistence-unit name="rmt-pu" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>de.flower.rmt.model.db.entity.Activity</class>
+        <class>de.flower.rmt.model.db.entity.BArticle</class>
+        <class>de.flower.rmt.model.db.entity.BComment</class>
+        <class>de.flower.rmt.model.db.entity.CalItem</class>
+        <class>de.flower.rmt.model.db.entity.Club</class>
+        <class>de.flower.rmt.model.db.entity.Comment</class>
+        <class>de.flower.rmt.model.db.entity.EventTeam</class>
+        <class>de.flower.rmt.model.db.entity.EventTeamPlayer</class>
+        <class>de.flower.rmt.model.db.entity.Invitation</class>
+        <class>de.flower.rmt.model.db.entity.Lineup</class>
+        <class>de.flower.rmt.model.db.entity.LineupItem</class>
+        <class>de.flower.rmt.model.db.entity.Opponent</class>
+        <class>de.flower.rmt.model.db.entity.Player</class>
+        <class>de.flower.rmt.model.db.entity.Property</class>
+        <class>de.flower.rmt.model.db.entity.Role</class>
+        <class>de.flower.rmt.model.db.entity.Team</class>
+        <class>de.flower.rmt.model.db.entity.Uniform</class>
+        <class>de.flower.rmt.model.db.entity.User</class>
+        <class>de.flower.rmt.model.db.entity.Venue</class>
+        <class>de.flower.rmt.model.db.entity.event.Event</class>
+        <class>de.flower.rmt.model.db.entity.event.Match</class>
+        <class>de.flower.rmt.model.db.entity.event.Tournament</class>
+        <class>de.flower.rmt.model.db.entity.event.Training</class>
         <validation-mode>NONE</validation-mode>
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
@@ -17,8 +40,32 @@
 
     <persistence-unit name="rmt-test-pu" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>de.flower.rmt.model.db.entity.Activity</class>
+        <class>de.flower.rmt.model.db.entity.BArticle</class>
+        <class>de.flower.rmt.model.db.entity.BComment</class>
+        <class>de.flower.rmt.model.db.entity.CalItem</class>
+        <class>de.flower.rmt.model.db.entity.Club</class>
+        <class>de.flower.rmt.model.db.entity.Comment</class>
+        <class>de.flower.rmt.model.db.entity.EventTeam</class>
+        <class>de.flower.rmt.model.db.entity.EventTeamPlayer</class>
+        <class>de.flower.rmt.model.db.entity.Invitation</class>
+        <class>de.flower.rmt.model.db.entity.Lineup</class>
+        <class>de.flower.rmt.model.db.entity.LineupItem</class>
+        <class>de.flower.rmt.model.db.entity.Opponent</class>
+        <class>de.flower.rmt.model.db.entity.Player</class>
+        <class>de.flower.rmt.model.db.entity.Property</class>
+        <class>de.flower.rmt.model.db.entity.Role</class>
+        <class>de.flower.rmt.model.db.entity.Team</class>
+        <class>de.flower.rmt.model.db.entity.Uniform</class>
+        <class>de.flower.rmt.model.db.entity.User</class>
+        <class>de.flower.rmt.model.db.entity.Venue</class>
+        <class>de.flower.rmt.model.db.entity.event.Event</class>
+        <class>de.flower.rmt.model.db.entity.event.Match</class>
+        <class>de.flower.rmt.model.db.entity.event.Tournament</class>
+        <class>de.flower.rmt.model.db.entity.event.Training</class>
         <validation-mode>NONE</validation-mode>
         <properties>
+            <!-- Scan for annotated classes and Hibernate mapping XML files -->
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
             <!-- set to none to disable automatic bean validation on insert and updates -->
