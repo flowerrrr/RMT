@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: <root-pw>
+      MYSQL_DATABASE: rmt
+      MYSQL_USER: rmt
+      MYSQL_PASSWORD: <rmt-pw>
+    volumes:
+      - ./mysql/scripts:/docker-entrypoint-initdb.d # Assuming you have a sql-scripts folder in your directory
+
+  tomcat:
+    image: tomcat:9-jdk11-openjdk-slim
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../build/libs/das-tool.war:/usr/local/tomcat/webapps/das-tool.war

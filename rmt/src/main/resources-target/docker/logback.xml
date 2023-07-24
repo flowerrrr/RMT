@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true" scan="true">
+
+    <property resource="credentials.properties" />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned the type
+     ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>%d{dd.MM. HH:mm:ss.SSS} [%.5thread] %-5level %-36logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+      <file>logs/rmt.log</file>
+      <append>false</append>
+      <!-- encoders are assigned the type
+           ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+      <encoder>
+          <pattern>%d{dd.MM. HH:mm:ss.SSS} [%.5thread] %-5level %-36logger{36} - %msg%n</pattern>
+      </encoder>
+    </appender>
+
+    <appender name="FILE-ERROR" class="ch.qos.logback.core.FileAppender">
+        <file>logs/rmt.error.log</file>
+        <append>false</append>
+        <!-- deny all events with a level below WARN -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+        <!-- encoders are assigned the type
+     ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>%d{dd.MM HH:mm:ss.SSS} [%.5thread] %-5level %-36logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <appender name="XSTREAM_FILE" class="ch.qos.logback.core.FileAppender">
+      <file>logs/rmt-xstream.log</file>
+      <append>false</append>
+      <!-- encoders are assigned the type
+           ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+      <encoder>
+          <pattern>%d{dd.MM. HH:mm:ss.SSS} [%.5thread] %-5level %-36logger{36} - %msg%n</pattern>
+      </encoder>
+    </appender>
+
+    <logger name="org.apache.wicket" level="INFO" />
+    <logger name="org.apache.wicket.devutils" level="INFO" />
+    <logger name="org.wicketstuff" level="INFO" />
+    <logger name="org.springframework" level="INFO" />
+
+    <logger name="org.hibernate.SQL" level="INFO" />
+
+    <logger name="de.flower" level="INFO" />
+
+    <logger name="trace" level="INFO" />
+
+    <logger name="xstream" additivity="false" level="INFO" >
+        <appender-ref ref="XSTREAM_FILE" />
+    </logger>
+
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
+        <appender-ref ref="FILE-ERROR" />
+    </root>
+
+</configuration>

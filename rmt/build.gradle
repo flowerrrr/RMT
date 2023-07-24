@@ -188,9 +188,16 @@ test {
 //  additionalSourceDirs = files(sourceSets.main.allJava.srcDirs)
 //}
 
+/**
+ * When building war for docker-image use
+ *     gradle war -Ptarget=docker
+ */
+def targetEnv = project.hasProperty('target') ? project.getProperty('target') : 'prod'
+println "Using target env: " + targetEnv
+
 war {
     baseName = "das-tool"
-    from("src/main/resources-target/prod") {
+    from("src/main/resources-target/${targetEnv}") {
         include '*.*'
         into 'WEB-INF/classes'
     }
