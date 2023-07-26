@@ -24,6 +24,9 @@ public class ServiceConfig {
     @Value("${mail.smtp.host}")
     private String host;
 
+    @Value("${mail.smtp.port}")
+    private int port;
+
     @Value("${mail.smtp.username}")
     private String username;
 
@@ -49,7 +52,7 @@ public class ServiceConfig {
     public JavaMailSenderImpl mailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost(host);
-        mailSender.setPort(587);
+        mailSender.setPort(port);
         mailSender.setUsername(username);
         mailSender.setPassword(password);
 
@@ -112,6 +115,7 @@ public class ServiceConfig {
     public MessageSourceAccessor messageSourceAccessor() {
         return new MessageSourceAccessor(messageSource());
     }
+
 
     /**
      * defaults for template service.

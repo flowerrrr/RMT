@@ -9,7 +9,7 @@
     <!-- Spring Mail support -->
      <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
          <property name="host" value="${mail.smtp.host}"/>
-         <property name="port" value="587"/>
+         <property name="port" value="${mail.smtp.port}"/>
          <property name="username" value="${mail.smtp.username}" />
          <property name="password" value="${mail.smtp.password}" />
          <property name="javaMailProperties">
