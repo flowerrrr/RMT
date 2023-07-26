@@ -2,7 +2,7 @@ package de.flower.rmt.test;
 
 import de.flower.common.test.wicket.WicketTester;
 import de.flower.common.ui.serialize.Filter;
-import org.apache.wicket.protocol.http.WebApplication;
+import de.flower.rmt.ui.app.TestRMTApplication;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -19,15 +19,10 @@ public abstract class AbstractRMTWicketIntegrationTests extends AbstractRMTInteg
     protected WicketTester wicketTester = null;
 
     @Autowired
-    private WebApplication webApp;
+    private TestRMTApplication webApp;
 
     @Autowired
     private Filter filter;
-
-    protected WebApplication createWebApp(ApplicationContext ctx) {
-//        return new TestApplication(ctx);
-        return webApp;
-    }
 
     @BeforeMethod
     public final void init() {
@@ -42,7 +37,6 @@ public abstract class AbstractRMTWicketIntegrationTests extends AbstractRMTInteg
     }
 
     private void createTester(ApplicationContext ctx) {
-        WebApplication webApp = createWebApp(ctx);
         wicketTester = new WicketTester(webApp);
         wicketTester.setPageSerializationValidatorFilter(filter);
     }

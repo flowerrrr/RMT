@@ -16,7 +16,7 @@
         <div class="modal-body">
 
             <!-- accept-charset added as fix for RMT-620 -->
-            <form class="form-horizontal" id="loginForm" action="j_spring_security_check" method="POST" accept-charset="UTF-8">
+            <form class="form-horizontal" id="loginForm" action="login" method="POST" accept-charset="UTF-8">
                 <fieldset>
                     <div wicket:id="loginFailure" class="control-group">
                         <div class="controls">
@@ -26,19 +26,19 @@
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="j_username"><wicket:message key="login.username" /></label>
+                        <label class="control-label" for="username"><wicket:message key="login.username" /></label>
                         <div class="controls">
-                            <input wicket:id="j_username" type="text"/>
+                            <input wicket:id="username" type="text"/>
                             <script>
-                                document.getElementById('j_username').focus();
+                                document.getElementById('username').focus();
                             </script>
                         </div>
                     </div>
                     <div class="control-group" style="margin-bottom: 10px;">
-                        <label class="control-label" for="j_password"><wicket:message key="login.password" /></label>
+                        <label class="control-label" for="password"><wicket:message key="login.password" /></label>
                         <div class="controls">
                             <div class="password-forgotten">
-                                <input name="j_password" type="password"/>
+                                <input name="password" type="password"/>
                                 <div>
                                     <a wicket:id="passwordForgottenLink" ><wicket:message key="login.password.forgotten" /></a>
                                 </div>
@@ -48,7 +48,7 @@
                     <div class="control-group">
                         <div class="controls">
                             <label class="checkbox" for="remember-me">
-                            <input id="remember-me" type="checkbox" name="_spring_security_remember_me" checked="checked"/>
+                            <input id="remember-me" type="checkbox" name="remember-me" checked="checked"/>
                             <wicket:message key="login.rememberme">[Remember me]</wicket:message></label>
                         </div>
                     </div>

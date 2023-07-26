@@ -36,8 +36,8 @@ public class LoginPage extends AbstractBasePage {
         });
 
         // preset username field with previous value if login attempt failed
-        TextField username = new TextField("j_username", Model.of(getLastUsername()));
-        username.setMarkupId("j_username");
+        TextField username = new TextField("username", Model.of(getLastUsername()));
+        username.setMarkupId("username");
         add(username);
 
         add(new BookmarkablePageLink("passwordForgottenLink", PasswordForgottenPage.class));

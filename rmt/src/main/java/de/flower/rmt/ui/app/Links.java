@@ -76,6 +76,6 @@ public class Links {
     }
 
     public static Component logoutLink(final String id) {
-        return new ExternalLink(id, "/j_spring_security_logout").setContextRelative(true);
+        return new ExternalLink(id, "/logout").setContextRelative(true);
     }
 }

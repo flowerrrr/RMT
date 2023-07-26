@@ -24,6 +24,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.QueryDslJpaRepository;
+import org.springframework.data.jpa.repository.support.Querydsl;
 
 import javax.persistence.EntityManager;
 import java.io.Serializable;
@@ -38,9 +39,15 @@ public class ExtendedQueryDslJpaRepository<T, ID extends Serializable> extends Q
 
     private EntityManager em;
 
+    /**
+     * Must have different name than in super class.
+     */
+    private final Querydsl querydslFromSuperClass;
+
     public ExtendedQueryDslJpaRepository(JpaEntityInformation<T, ID> entityMetadata, EntityManager entityManager) {
         super(entityMetadata, entityManager);
         this.em = entityManager;
+        this.querydslFromSuperClass = (Querydsl) ReflectionUtil.getField(this, "querydsl");
     }
 
     public List<T> findAll(final Predicate predicate, final Path<?>... fetchAttributes) {
@@ -49,7 +56,7 @@ public class ExtendedQueryDslJpaRepository<T, ID extends Serializable> extends Q
 
     public Page<T> findAll(final Predicate predicate, Pageable pageable, final Path<?>... fetchAttributes) {
         JPQLQuery countQuery = createQuery(predicate);
-        JPQLQuery query = applyPagination(createQuery(fetchAttributes).where(predicate), pageable);
+        JPQLQuery query = querydslFromSuperClass.applyPagination(pageable, createQuery(fetchAttributes).where(predicate));
 
         return new PageImpl<T>(query.list(getPath()), pageable, countQuery.count());
     }

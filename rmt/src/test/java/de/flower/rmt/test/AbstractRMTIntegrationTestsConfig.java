@@ -1,30 +1,41 @@
 package de.flower.rmt.test;
 
+import de.flower.common.test.mock.MockJavaMailSender;
+import de.flower.rmt.config.*;
 import de.flower.rmt.ui.app.TestRMTApplication;
 import org.springframework.context.annotation.*;
-import org.wicketstuff.jsr303.spring.JSR303SpringConfig;
 
 /**
  * @author flowerrrr
  */
 @Configuration
-@ImportResource({"classpath:/applicationContext-base.xml",
-        "classpath:/applicationContext-dao.xml",
-        "classpath:/applicationContext-service.xml",
-        "classpath:/applicationContext-security.xml",
-        "classpath:/applicationContext-ui.xml",
-        "classpath:/applicationContext-test.xml"})
-@ComponentScan(basePackages = {"de.flower.common.test", "de.flower.rmt.test"})
-// although defined in an xml-context we have to manually import other javaconfig-files.
-@Import({JSR303SpringConfig.class})
+@Import({
+        BaseConfig.class,
+        DaoConfig.class,
+        ServiceConfig.class,
+        SecurityConfig.class,
+        UIConfig.class
+})
+@ComponentScan(basePackages = {
+        "de.flower.common.test",
+        "de.flower.rmt.test"
+})
 public class AbstractRMTIntegrationTestsConfig {
 
-
     /**
-     * override RMTApplication and use TestApplication instead.
+     * Replace RMTApplication and use TestApplication instead.
      */
     @Bean
-    TestRMTApplication wicketApplication() {
+    public TestRMTApplication testWicketApplication() {
         return new TestRMTApplication();
     }
+
+    // Overriding mailSender to avoid sending mails by unit tests.
+    // Overriding in JavaConfig doesn't seem to work.
+    @Bean
+    @Primary
+    public MockJavaMailSender testMailSender() {
+        return new MockJavaMailSender();
+    }
+
 }

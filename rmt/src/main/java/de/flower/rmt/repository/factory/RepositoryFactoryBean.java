@@ -40,7 +40,7 @@ public class RepositoryFactoryBean<T extends JpaRepository<S, ID>, S, ID extends
         protected <T, ID extends Serializable> JpaRepository<?, ?>
         getTargetRepository(RepositoryMetadata metadata, EntityManager entityManager) {
             JpaEntityInformation<?, Serializable> entityInformation =
-                    getEntityInformation(metadata.getDomainClass());
+                    getEntityInformation(metadata.getDomainType());
             Assert.notNull(entityInformation);
             return new BaseRepository(entityInformation, entityManager, securityService);
         }
