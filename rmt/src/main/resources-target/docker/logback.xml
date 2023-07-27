@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="true" scan="true">
 
-    <property resource="credentials.properties" />
-
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <!-- encoders are assigned the type
      ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
@@ -49,7 +47,7 @@
     <logger name="org.apache.wicket" level="INFO" />
     <logger name="org.apache.wicket.devutils" level="INFO" />
     <logger name="org.wicketstuff" level="INFO" />
-    <logger name="org.springframework" level="DEBUG" />
+    <logger name="org.springframework" level="INFO" />
 
     <logger name="org.hibernate.SQL" level="INFO" />
 
