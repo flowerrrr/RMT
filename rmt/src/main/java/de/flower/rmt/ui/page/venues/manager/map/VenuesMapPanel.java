@@ -1,18 +1,11 @@
 package de.flower.rmt.ui.page.venues.manager.map;
 
 import de.flower.common.ui.panel.BasePanel;
-import de.flower.common.util.geo.LatLng;
 import de.flower.rmt.model.db.entity.Venue;
 import de.flower.rmt.service.IUrlProvider;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-import wicket.contrib.gmap3.GMap;
-import wicket.contrib.gmap3.overlay.GInfoWindow;
-import wicket.contrib.gmap3.overlay.GMarker;
-import wicket.contrib.gmap3.overlay.GMarkerOptions;
-import wicket.contrib.gmap3.overlay.GOverlayEvent;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,6 +20,9 @@ public class VenuesMapPanel extends BasePanel {
     private IUrlProvider urlProvider;
 
     public VenuesMapPanel(IModel<List<Venue>> listModel) {
+
+/*
+    Google Maps API hat sich geändert, Code funktioniert nicht mehr.
 
         final GMap map = new GMap("map");
         add(map);
@@ -52,6 +48,7 @@ public class VenuesMapPanel extends BasePanel {
         // updates of venue locations must be done via javascript. repainting the whole map
         // takes to long and doesn't look nice.
         // add(new AjaxUpdateBehavior(Event.EntityAll(Venue.class)));
+*/
     }
 
 }

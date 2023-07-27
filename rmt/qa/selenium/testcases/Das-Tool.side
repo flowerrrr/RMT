@@ -701,67 +701,7 @@
       "command": "type",
       "target": "name=address:input",
       "targets": [],
-      "value": "München"
-    }, {
-      "id": "4c05e799-1609-472b-bc5e-0cd644246aad",
-      "comment": "",
-      "command": "click",
-      "target": "css=.icon-search",
-      "targets": [
-        ["css=.icon-search", "css:finder"],
-        ["xpath=//a[@id='id76']/i", "xpath:idRelative"],
-        ["xpath=//i", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "f50aa67e-2d58-4068-8dc8-a9e81eeb1e44",
-      "comment": "",
-      "command": "click",
-      "target": "//span[@wicketpath='container_mainPanel_venueEditPanel_form_geocodePanel_resultsPanel_resultList_0_chooseLink_address']",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "9965a6e0-9f45-4191-9865-dc2ebbb7b97d",
-      "comment": "",
-      "command": "mouseDown",
-      "target": "//div[@class=\"gmnoprint\"]//area",
-      "targets": [],
-      "value": "select marker"
-    }, {
-      "id": "2a95dee1-ed25-4261-9264-256d6140352c",
-      "comment": "",
-      "command": "storeEval",
-      "target": "Math.floor(Math.random() * 2000 - 1000)",
-      "targets": [],
-      "value": "x"
-    }, {
-      "id": "a69ea274-0f7d-4cb7-85e5-8e7735138cf7",
-      "comment": "",
-      "command": "storeEval",
-      "target": "Math.floor(Math.random() * 2000 - 1000)",
-      "targets": [],
-      "value": "y"
-    }, {
-      "id": "2c734fd5-d62a-4053-84fb-8b1aae2162b8",
-      "comment": "",
-      "command": "mouseMoveAt",
-      "target": "//div[@class=\"map\"]",
-      "targets": [],
-      "value": "${x},${y}"
-    }, {
-      "id": "8dadd9e3-48d7-442b-a291-98b8d3392761",
-      "comment": "",
-      "command": "pause",
-      "target": "javascript{Math.floor(Math.random() * 5000)}",
-      "targets": [],
-      "value": "required to let marker move"
-    }, {
-      "id": "73d01d13-4688-4da9-b84d-c7c0b9c487a4",
-      "comment": "",
-      "command": "mouseUp",
-      "target": "//div[@class=\"gmnoprint\"]//area",
-      "targets": [],
-      "value": ""
+      "value": "Sebastiansplatz 3, 80331 München"
     }, {
       "id": "66c75fb1-14af-4ebb-a69e-fbc9d4209ac6",
       "comment": "",

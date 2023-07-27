@@ -10,13 +10,20 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 /**
  * @author flowerrrr
  */
-public class GetDirectionsPanel extends BasePanel {
+public class GetDirectionsPanel extends BasePanel<Venue> {
 
     @SpringBean(name = "urlProvider")
     private IUrlProvider urlProvider;
 
     public GetDirectionsPanel(final IModel<Venue> model) {
-        add(new ExternalLink("link", urlProvider.getDirectionsUrl(model.getObject().getLatLng())));
+        super(model);
+        String directionsUrl = model.getObject().getLatLng() != null ? urlProvider.getDirectionsUrl(model.getObject().getLatLng()) : null;
+        add(new ExternalLink("link", directionsUrl));
+    }
+
+    @Override
+    public boolean isVisible() {
+        return getModelObject().getLatLng() != null;
     }
 
 }

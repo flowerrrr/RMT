@@ -42,7 +42,7 @@ public class GMarkerImage implements GValue, Cloneable {
     private GPoint _anchor = null;
 
     public GMarkerImage() {
-        _url = "http://www.google.com/mapfiles/marker.png";
+        _url = "https://www.google.com/mapfiles/marker.png";
     }
 
     public GMarkerImage(final String image) {

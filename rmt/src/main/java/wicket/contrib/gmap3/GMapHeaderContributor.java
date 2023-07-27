@@ -17,7 +17,7 @@ public class GMapHeaderContributor extends Behavior {
     // URL for Google Maps' API endpoint.
     private static final String GMAP_API_URL = "://maps.google.com/maps/api/js?v=3&sensor=false";
 
-    private static final String HTTP = "http";
+    private static final String HTTPS = "https";
 
     // We have some custom Javascript.
     private static final ResourceReference WICKET_GMAP_JS = new JavaScriptResourceReference(GMap.class,
@@ -29,7 +29,7 @@ public class GMapHeaderContributor extends Behavior {
      * Instantiates a new g map header contributor.
      */
     public GMapHeaderContributor() {
-        _schema = HTTP;
+        _schema = HTTPS;
     }
 
     /* (non-Javadoc)

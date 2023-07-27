@@ -11,7 +11,7 @@ public class VenuesPage extends ManagerBasePage {
     public VenuesPage() {
 
         setHeading("manager.venues.heading", null);
-        addMainPanel(new VenueMainPanel());
+        addMainPanel(new VenuesMainPanel());
         addSecondaryPanel(new VenuesSecondaryPanel());
     }
 

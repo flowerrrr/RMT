@@ -39,6 +39,6 @@ public class UrlProvider implements IUrlProvider {
         DecimalFormat format = new DecimalFormat("##.##############", DecimalFormatSymbols.getInstance(Locale.US));
         String lat = format.format(latLng.getLat());
         String lng = format.format(latLng.getLng());
-        return "http://maps.google.com/maps?daddr=" + lat + "," + lng;
+        return "https://maps.google.com/maps?daddr=" + lat + "," + lng;
     }
 }

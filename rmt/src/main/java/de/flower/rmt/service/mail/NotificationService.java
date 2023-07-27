@@ -347,7 +347,7 @@ public class NotificationService implements INotificationService, IICalendarProv
         model.put("eventLink", urlProvider.deepLinkEvent(event.getId()));
 
         model.put("isSoccerEvent", EventType.isSoccerEvent(event));
-        if (event.getVenue() != null) {
+        if (event.getVenue() != null && event.getVenue().getLatLng() != null) {
             model.put("directionsLink", urlProvider.getDirectionsUrl(event.getVenue().getLatLng()));
         }
         if (EventType.isSoccerEvent(event)) {

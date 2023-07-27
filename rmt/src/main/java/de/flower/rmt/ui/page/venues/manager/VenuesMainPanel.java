@@ -15,12 +15,12 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class VenueMainPanel extends BasePanel {
+public class VenuesMainPanel extends BasePanel {
 
     @SpringBean
     private IVenueManager venueManager;
 
-    public VenueMainPanel() {
+    public VenuesMainPanel() {
         final IModel<List<Venue>> listModel = getListModel();
 
         add(new WebMarkupContainer("noEntry") {

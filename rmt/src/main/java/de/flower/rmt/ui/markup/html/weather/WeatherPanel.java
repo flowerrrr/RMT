@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  */
 public class WeatherPanel extends BasePanel<String> {
 
-    private static final String url = "http://www.wetteronline.de/cgi-bin/hpweather?PLZ={0}&FORMAT=long&MENU=dropdown&MAP=rainradar";
+    private static final String url = "https://www.wetteronline.de/?FORMAT=long&MAP=rainradar&MENU=dropdown&PLZ={0}&pid=p_city_hpweather";
 
     public WeatherPanel(final IModel<String> addressModel) {
         IModel<String> iframeSrcModel = getIframeSrcModel(addressModel);

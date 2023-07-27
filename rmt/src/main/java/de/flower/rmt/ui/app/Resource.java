@@ -10,7 +10,7 @@ public interface Resource {
 
     public static final String lessJsUrl = "static/js/less-1.3.0.min.js";
 
-    public static final String jqueryJsUrl = "http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js";
+    public static final String jqueryJsUrl = "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js";
 
     public static final String jqueryUiJsUrl = "static/js/jquery-ui-1.8.21.custom.min.js";
 

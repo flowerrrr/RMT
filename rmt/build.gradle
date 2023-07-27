@@ -197,7 +197,7 @@ def targetEnv = project.hasProperty('target') ? project.getProperty('target') : 
 println "Using target env: " + targetEnv
 
 war {
-    baseName = "das-tool"
+    baseName = targetEnv == 'docker' ? 'das-tool-docker' : 'das-tool'
     from("src/main/resources-target/${targetEnv}") {
         include '*.*'
         into 'WEB-INF/classes'
