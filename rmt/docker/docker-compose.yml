@@ -5,10 +5,10 @@ services:
     image: mysql:latest
     restart: no
     environment:
-      MYSQL_ROOT_PASSWORD: <pw>
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: rmt
       MYSQL_USER: rmt
-      MYSQL_PASSWORD: <pw>
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - ./mysql/scripts:/docker-entrypoint-initdb.d # Assuming you have a sql-scripts folder in your directory
 
@@ -21,9 +21,15 @@ services:
       JPDA_TRANSPORT: dt_socket
     ports:
       - "8080:8080"
+      - "8443:8443"
       - "8000:8000"  # Port for remote debugger
     volumes:
-      - ../build/libs/das-tool.war:/usr/local/tomcat/webapps/das-tool.war
+      - ../build/libs/das-tool-docker.war:/usr/local/tomcat/webapps/das-tool.war
+      - ./tomcat/server.xml:/usr/local/tomcat/conf/server.xml # path to your server.xml file
+      # Keystore wurde mit folgendem Cmd erstellt:
+      # keytool -genkey -keyalg RSA -noprompt -alias tomcat -dname "CN=localhost, OU=NA, O=NA, L=NA, S=NA, C=NA" -keystore keystore.jks -validity 9999 -storepass changeme -keypass changeme
+      - ./tomcat/keystore.jks:/usr/local/tomcat/conf/keystore.jks # path to your keystore file
+
     command: catalina.sh jpda run  # Start Tomcat with remote debugging
 
   mailhog:
