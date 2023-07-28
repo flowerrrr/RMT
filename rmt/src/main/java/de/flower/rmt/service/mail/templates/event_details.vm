@@ -17,7 +17,11 @@ Gegner: $opponent
 #end
 #if ($event.getVenue())
 #set ($venue = $event.getVenue().getName())
+#if ($directionsLink)
 Ort: $venue ($directionsLink)
+#else
+Ort: $venue
+#end
 #else
 Ort: <noch nicht festgelegt>
 #end
