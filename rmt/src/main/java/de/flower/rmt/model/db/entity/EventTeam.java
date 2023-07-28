@@ -30,7 +30,7 @@ public class EventTeam extends AbstractBaseEntity {
     @Size(max = 40)
     private String name;
 
-    @Column
+    @Column(name = "`rank`") // rank is reserved keyword in mysql 8.x
     private Integer rank;
 
     @NotNull
