@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.app;
 
-import de.flower.rmt.security.ISecurityService;
+import de.flower.rmt.security.SecurityService;
 import org.apache.commons.lang3.EnumUtils;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +10,11 @@ import org.springframework.stereotype.Component;
  * @author flowerrrr
  */
 @Component
-public class ViewResolver implements IViewResolver {
+public class ViewResolver {
 
     @Autowired
-    private ISecurityService securityService;
+    private SecurityService securityService;
 
-    @Override
     public View getView() {
         // RMT-693
         // nav bar depends on view-page-parameter, then session-stored value, then user role

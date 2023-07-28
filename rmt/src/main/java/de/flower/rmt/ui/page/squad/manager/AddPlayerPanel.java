@@ -8,8 +8,8 @@ import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.Player;
 import de.flower.rmt.model.db.entity.Team;
 import de.flower.rmt.model.db.entity.User;
-import de.flower.rmt.service.IPlayerManager;
-import de.flower.rmt.service.IUserManager;
+import de.flower.rmt.service.PlayerManager;
+import de.flower.rmt.service.UserManager;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -31,10 +31,10 @@ import java.util.List;
 public class AddPlayerPanel extends BasePanel<Team> {
 
     @SpringBean
-    private IUserManager userManager;
+    private UserManager userManager;
 
     @SpringBean
-    private IPlayerManager playerManager;
+    private PlayerManager playerManager;
 
     /**
      * Ok to store entities in field cause field is dismissed when panel is processed.

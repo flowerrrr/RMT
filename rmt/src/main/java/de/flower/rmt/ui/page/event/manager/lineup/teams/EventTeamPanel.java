@@ -9,7 +9,7 @@ import de.flower.rmt.model.db.entity.EventTeam;
 import de.flower.rmt.model.db.entity.EventTeamPlayer;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.QEventTeamPlayer;
-import de.flower.rmt.service.IEventTeamManager;
+import de.flower.rmt.service.EventTeamManager;
 import de.flower.rmt.ui.page.event.manager.lineup.dragndrop.DraggableEntityLabel;
 import de.flower.rmt.ui.page.event.manager.lineup.dragndrop.EntityLabel;
 import de.flower.rmt.ui.page.event.manager.lineup.teams.TeamsSecondaryPanel.EventTeamInviteeListPanel;
@@ -32,7 +32,7 @@ import java.util.List;
 public class EventTeamPanel extends RMTBasePanel<EventTeam> {
 
     @SpringBean
-    private IEventTeamManager eventTeamManager;
+    private EventTeamManager eventTeamManager;
 
     public EventTeamPanel(final IModel<EventTeam> model) {
         super(model);

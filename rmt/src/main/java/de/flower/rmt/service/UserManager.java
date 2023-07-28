@@ -3,7 +3,7 @@ package de.flower.rmt.service;
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Lists;
-import de.flower.common.service.security.IPasswordGenerator;
+import de.flower.common.service.security.PasswordGenerator;
 import de.flower.common.util.Check;
 import de.flower.common.util.NameFinder;
 import de.flower.rmt.model.db.entity.Player_;
@@ -16,7 +16,7 @@ import de.flower.rmt.model.dto.Password;
 import de.flower.rmt.repository.IRoleRepo;
 import de.flower.rmt.repository.IUserRepo;
 import de.flower.rmt.repository.Specs;
-import de.flower.rmt.service.mail.INotificationService;
+import de.flower.rmt.service.mail.NotificationService;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
@@ -39,7 +39,7 @@ import static org.springframework.data.jpa.domain.Specifications.where;
  */
 @Service
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-public class UserManager extends AbstractService implements IUserManager {
+public class UserManager extends AbstractService {
 
     @Autowired
     private IUserRepo userRepo;
@@ -51,21 +51,20 @@ public class UserManager extends AbstractService implements IUserManager {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private IPasswordGenerator passwordGenerator;
+    private PasswordGenerator passwordGenerator;
 
     @Autowired
-    private INotificationService notificationService;
+    private NotificationService notificationService;
 
     @Autowired
-    private IRoleManager roleManager;
+    private RoleManager roleManager;
 
     @Autowired
-    private IPlayerManager playerManager;
+    private PlayerManager playerManager;
 
     @Autowired
     private Validator validator;
 
-    @Override
     public User loadById(Long id, final Attribute... attributes) {
         User entity = userRepo.findOne(where(eq(User_.id, id)).and(fetch(attributes)).and(fetch(User_.club)));
         Check.notNull(entity);
@@ -73,13 +72,11 @@ public class UserManager extends AbstractService implements IUserManager {
         return entity;
     }
 
-    @Override
     public User findByUsername(String username, final Attribute... attributes) {
         User entity = userRepo.findOne(where(eq(User_.email, username)).and(fetch(attributes)));
         return entity;
     }
 
-    @Override
     @Transactional(readOnly = false)
     public void save(User user) {
         // check that a role is assigned
@@ -95,7 +92,6 @@ public class UserManager extends AbstractService implements IUserManager {
         }
     }
 
-    @Override
     @Transactional(readOnly = false)
     public void save(final User user, final boolean isManager) {
         validate(user);
@@ -107,36 +103,30 @@ public class UserManager extends AbstractService implements IUserManager {
         }
     }
 
-    @Override
     public List<User> findAll(final Attribute... attributes) {
         List<User> list = userRepo.findAll(where(fetch(attributes)).and(asc(User_.fullname)));
         return list;
     }
 
-    @Override
     public List<User> findAllFetchTeams(final Attribute... attributes) {
         List<User> list = userRepo.findAllFetchTeams(getClub());
         return list;
     }
 
-    @Override
     public List<User> findAllByTeam(final Team team) {
         Check.notNull(team);
         Specification spec = Specs.joinEq(User_.players, Player_.team, team);
         return userRepo.findAll(where(spec).and(asc(User_.fullname)));
     }
 
-    @Override
     public List<User> findAllUnassignedPlayers(final Team team) {
         return userRepo.findAllUnassignedPlayers(team, getClub());
     }
 
-    @Override
     public List<User> findAllUninvitedPlayers(final Event event) {
         return userRepo.findAllUninvitedPlayers(event, getClub());
     }
 
-    @Override
     public List<User> findAllUninvitedPlayersByTeam(final Event event, final Team team) {
         // get list of uninvited users and list of users of this team and intersect both sets.
         List<User> uninvited = findAllUninvitedPlayers(event);
@@ -145,7 +135,6 @@ public class UserManager extends AbstractService implements IUserManager {
         return uninvited;
     }
 
-    @Override
     @Transactional(readOnly = false)
     public void delete(Long id) {
         User entity = loadById(id);
@@ -171,7 +160,6 @@ public class UserManager extends AbstractService implements IUserManager {
 
     }
 
-    @Override
     public User newInstance() {
 
         User user = new User(getClub());
@@ -185,7 +173,6 @@ public class UserManager extends AbstractService implements IUserManager {
         return user;
     }
 
-    @Override
     @Transactional(readOnly = false)
     public void resetPassword(final User user, final boolean sendMail) {
         initPassword(user);
@@ -203,7 +190,6 @@ public class UserManager extends AbstractService implements IUserManager {
         user.setEncryptedPassword(encodePassword(initialPassword));
     }
 
-    @Override
     public void updatePassword(final Long userId, Password password) {
         Check.notNull(userId);
         User user = loadById(userId);
@@ -217,7 +203,6 @@ public class UserManager extends AbstractService implements IUserManager {
         return passwordEncoder.encodePassword(password, null);
     }
 
-    @Override
     @Transactional(readOnly = false)
     public void sendInvitation(Long userId) {
         User user = loadById(userId);
@@ -226,7 +211,6 @@ public class UserManager extends AbstractService implements IUserManager {
         userRepo.save(user);
     }
 
-    @Override
     public List<InternetAddress> getAddressesForfAllUsers() {
         List<User> users = findAll();
         // convert to list of internet addresses
@@ -240,7 +224,6 @@ public class UserManager extends AbstractService implements IUserManager {
         return de.flower.common.util.Collections.flattenArray(internetAddresses);
     }
 
-    @Override
     public void onLoginSuccess(final User userIn) {
         User user = loadById(userIn.getId());
         user.setLastLogin(new DateTime());

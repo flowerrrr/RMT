@@ -21,8 +21,8 @@ import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.model.db.type.activity.EventUpdateMessage;
 import de.flower.rmt.model.dto.Notification;
 import de.flower.rmt.repository.IEventRepo;
-import de.flower.rmt.service.mail.IMailService;
-import de.flower.rmt.service.mail.INotificationService;
+import de.flower.rmt.service.mail.MailService;
+import de.flower.rmt.service.mail.NotificationService;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,28 +47,28 @@ import static org.springframework.data.jpa.domain.Specifications.where;
  */
 @Service
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-public class EventManager extends AbstractService implements IEventManager {
+public class EventManager extends AbstractService {
 
     @Autowired
     private IEventRepo eventRepo;
 
     @Autowired
-    private IInvitationManager invitationManager;
+    private InvitationManager invitationManager;
 
     @Autowired
-    private INotificationService notificationService;
+    private NotificationService notificationService;
 
     @Autowired
-    private IUserManager userManager;
+    private UserManager userManager;
 
     @Autowired
-    private IMailService mailService;
+    private MailService mailService;
 
     @Autowired
-    private IActivityManager activityManager;
+    private ActivityManager activityManager;
 
     @Autowired
-    private ILineupManager lineupManager;
+    private LineupManager lineupManager;
 
     @Value("${event.closed.before.hours}")
     private Integer eventClosedBeforeHours;
@@ -76,7 +76,6 @@ public class EventManager extends AbstractService implements IEventManager {
     @Autowired
     private MessageSourceAccessor messageSource;
 
-    @Override
     @Transactional(readOnly = false)
     public void save(Event entity) {
         validate(entity);
@@ -85,7 +84,6 @@ public class EventManager extends AbstractService implements IEventManager {
         activityManager.onCreateOrUpdateEvent(entity, type);
     }
 
-    @Override
     @Transactional(readOnly = false)
     public void create(final Event entity, final boolean createInvitations) {
         Check.notNull(entity);
@@ -99,7 +97,6 @@ public class EventManager extends AbstractService implements IEventManager {
         }
     }
 
-    @Override
     public Event loadById(Long id, final Attribute... attributes) {
         Specification fetch = fetch(attributes);
         Event entity = eventRepo.findOne(where(eq(Event_.id, id)).and(fetch));
@@ -110,7 +107,6 @@ public class EventManager extends AbstractService implements IEventManager {
         return entity;
     }
 
-    @Override
     public long getNumEventsByUser(final User user) {
         if (user != null) {
             BooleanExpression isUser = QEvent.event.invitations.any().user.eq(user);
@@ -123,12 +119,10 @@ public class EventManager extends AbstractService implements IEventManager {
     /**
      * Uses spring data spec instead of querydsl in order to be able to eager fetch opponents.
      */
-    @Override
     public List<Event> findAll(EntityPath<?>... attributes) {
         return eventRepo.findAll(null, attributes);
     }
 
-    @Override
     public List<Event> findAll(final int page, final int size, final User user, final EntityPath<?>... attributes) {
         BooleanExpression isUser = null;
         if (user != null) {
@@ -137,7 +131,6 @@ public class EventManager extends AbstractService implements IEventManager {
         return eventRepo.findAll(isUser, new PageRequest(page, size, Sort.Direction.DESC, Event_.dateTime.getName()), attributes).getContent();
     }
 
-    @Override
     public Event findNextEvent(final User user) {
         BooleanExpression isUser = null;
         if (user != null) {
@@ -149,7 +142,6 @@ public class EventManager extends AbstractService implements IEventManager {
         return (upcoming.isEmpty()) ? null : upcoming.get(0);
     }
 
-    @Override
     public List<Event> findAllNextNHours(final int hours) {
         // when: 5 days before event, but at least 48 h after invitation mail
         DateTime now = new DateTime();
@@ -158,13 +150,11 @@ public class EventManager extends AbstractService implements IEventManager {
         return eventRepo.findAll(insideNextNDays.and(notCanceled));
     }
 
-    @Override
     public List<Event> findAllByDateRange(final DateTime start, final DateTime end, EntityPath<?>... attributes) {
         BooleanExpression isBeetween = QEvent.event.dateTime.between(start, end);
         return eventRepo.findAll(isBeetween, attributes);
     }
 
-    @Override
     public List<Event> findAllByDateRangeAndUser(final DateTime start, final DateTime end, final User user, EntityPath<?>... attributes) {
         BooleanExpression isBeetween = QEvent.event.dateTime.between(start, end);
         BooleanExpression isUser = null;
@@ -174,7 +164,6 @@ public class EventManager extends AbstractService implements IEventManager {
         return eventRepo.findAll(isBeetween.and(isUser), new OrderSpecifier(Order.DESC, QEvent.event.dateTime), attributes);
     }
 
-    @Override
     @Transactional(readOnly = false)
     public void delete(Long id) {
         Event entity = loadById(id);
@@ -190,7 +179,6 @@ public class EventManager extends AbstractService implements IEventManager {
         eventRepo.delete(entity);
     }
 
-    @Override
     @Transactional(readOnly = false)
     public void deleteByTeam(Team team) {
         for (Event event : eventRepo.findAllByTeam(team)) {
@@ -198,7 +186,6 @@ public class EventManager extends AbstractService implements IEventManager {
         }
     }
 
-    @Override
     public Event newInstance(EventType eventType) {
         Check.notNull(eventType);
         Event event = eventType.newInstance(getClub());
@@ -206,7 +193,6 @@ public class EventManager extends AbstractService implements IEventManager {
         return event;
     }
 
-    @Override
     public void sendInvitationMail(final Long eventId, final Notification notification) {
         Event event = loadById(eventId);
         mailService.sendMassMail(notification);
@@ -217,7 +203,6 @@ public class EventManager extends AbstractService implements IEventManager {
         activityManager.onInvitationMailSent(event);
     }
 
-    @Override
     public boolean isEventClosed(Event event) {
         // RMT-733
         if (event.isCanceled()) {
@@ -228,7 +213,6 @@ public class EventManager extends AbstractService implements IEventManager {
         return now.plusHours(eventClosedBeforeHours).isAfter(event.getDateTime());
     }
 
-    @Override
     public void cancelEvent(final Long id) {
         Event event = loadById(id);
         event.setCanceled(true);
@@ -242,7 +226,6 @@ public class EventManager extends AbstractService implements IEventManager {
         activityManager.onCreateOrUpdateEvent(event, EventUpdateMessage.Type.CANCELED);
     }
 
-    @Override
     public Event copyOf(final Event event) {
         Event e;
         if (event instanceof AbstractSoccerEvent) {

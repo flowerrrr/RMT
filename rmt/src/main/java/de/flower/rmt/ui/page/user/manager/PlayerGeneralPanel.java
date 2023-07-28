@@ -3,9 +3,9 @@ package de.flower.rmt.ui.page.user.manager;
 import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.User;
-import de.flower.rmt.security.ISecurityService;
-import de.flower.rmt.service.IRoleManager;
-import de.flower.rmt.service.IUserManager;
+import de.flower.rmt.security.SecurityService;
+import de.flower.rmt.service.RoleManager;
+import de.flower.rmt.service.UserManager;
 import de.flower.rmt.ui.markup.html.form.EntityForm;
 import de.flower.rmt.ui.markup.html.form.field.AbstractFormFieldPanel;
 import de.flower.rmt.ui.markup.html.form.field.CheckBoxPanel;
@@ -24,13 +24,13 @@ import org.wicketstuff.jsr303.validator.FormComponentBeanValidator;
 public class PlayerGeneralPanel extends BasePanel<User> {
 
     @SpringBean
-    private IUserManager userManager;
+    private UserManager userManager;
 
     @SpringBean
-    private IRoleManager roleManager;
+    private RoleManager roleManager;
 
     @SpringBean
-    private ISecurityService securityService;
+    private SecurityService securityService;
 
     private IModel<Boolean> managerModel;
 

@@ -5,7 +5,7 @@ import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.ajax.markup.html.AjaxLinkWithConfirmation;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.Opponent;
-import de.flower.rmt.service.IOpponentManager;
+import de.flower.rmt.service.OpponentManager;
 import de.flower.rmt.ui.model.OpponentModel;
 import de.flower.rmt.ui.panel.DropDownMenuPanel;
 import de.flower.rmt.ui.panel.ListViewPanel;
@@ -26,7 +26,7 @@ import java.util.List;
 public class OpponentListPanel extends BasePanel {
 
     @SpringBean
-    private IOpponentManager opponentManager;
+    private OpponentManager opponentManager;
 
     public OpponentListPanel() {
 

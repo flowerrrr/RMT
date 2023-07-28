@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.markup.html.form;
 
 import de.flower.rmt.model.db.entity.Venue;
-import de.flower.rmt.service.IVenueManager;
+import de.flower.rmt.service.VenueManager;
 import de.flower.rmt.ui.markup.html.form.field.AbstractFormFieldPanel;
 import de.flower.rmt.ui.markup.html.form.field.DropDownChoicePanel;
 import org.apache.wicket.model.IModel;
@@ -16,7 +16,7 @@ import java.util.List;
 public class VenueDropDownChoicePanel extends DropDownChoicePanel<Venue> {
 
     @SpringBean
-    private IVenueManager venueManager;
+    private VenueManager venueManager;
 
     public VenueDropDownChoicePanel(String id) {
         super(id, new VenueDropDownChoice(AbstractFormFieldPanel.ID));

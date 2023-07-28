@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @author flowerrrr
  */
-public class LogBackListAppender extends AppenderBase<ILoggingEvent> implements IListAppender<ILoggingEvent> {
+public class LogBackListAppender extends AppenderBase<ILoggingEvent> implements Appender<ILoggingEvent> {
 
     private List<ILoggingEvent> list = new ArrayList<ILoggingEvent>();
 
@@ -63,8 +63,8 @@ public class LogBackListAppender extends AppenderBase<ILoggingEvent> implements 
         list.add(e);
     }
 
-    public static IListAppender<ILoggingEvent> configureListAppender() {
-        IListAppender appender = new LogBackListAppender();
+    public static LogBackListAppender configureListAppender() {
+        LogBackListAppender appender = new LogBackListAppender();
         appender.start();
         addAppender2Root(appender);
         return appender;

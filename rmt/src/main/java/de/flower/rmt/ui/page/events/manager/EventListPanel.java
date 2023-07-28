@@ -7,7 +7,7 @@ import de.flower.common.ui.panel.BasePanel;
 import de.flower.common.ui.tooltips.TooltipBehavior;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.EventType;
-import de.flower.rmt.service.IEventManager;
+import de.flower.rmt.service.EventManager;
 import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.page.event.manager.EventPage;
 import de.flower.rmt.ui.page.event.manager.EventTabPanel;
@@ -35,7 +35,7 @@ public class EventListPanel extends BasePanel {
     public static final int ITEMS_PER_PAGE = 10;
 
     @SpringBean
-    private IEventManager eventManager;
+    private EventManager eventManager;
 
     public EventListPanel() {
 

@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-public class RoleManager implements IRoleManager {
+public class RoleManager {
 
     @Autowired
     private IRoleRepo roleRepo;
@@ -25,7 +25,7 @@ public class RoleManager implements IRoleManager {
     private IUserRepo userRepo;
 
     @Autowired
-    private IUserManager userManager;
+    private UserManager userManager;
 
     @Transactional(readOnly = false)
     public void addRole(Long userId, String roleName) {
@@ -54,7 +54,6 @@ public class RoleManager implements IRoleManager {
         }
     }
 
-    @Override
     public boolean isManager(final Long userId) {
         Check.notNull(userId);
         User user = userManager.loadById(userId, User_.roles);

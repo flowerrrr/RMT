@@ -12,7 +12,7 @@ abstract class AbstractValidationErrorBuilder<T> {
     protected final ConstraintViolation<T> violation;
 
     @SpringBean
-    private ViolationMessageRenderer violationMessageRenderer;
+    private DefaultViolationMessageRenderer violationMessageRenderer;
 
     public AbstractValidationErrorBuilder(final ConstraintViolation<T> violation) {
         Preconditions.checkNotNull(violation, "violation");
@@ -43,7 +43,7 @@ abstract class AbstractValidationErrorBuilder<T> {
         }
     }
 
-    public ViolationMessageRenderer getViolationMessageRenderer() {
+    public DefaultViolationMessageRenderer getViolationMessageRenderer() {
         return violationMessageRenderer;
     }
 }

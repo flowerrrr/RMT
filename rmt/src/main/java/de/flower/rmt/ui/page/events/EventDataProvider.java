@@ -4,7 +4,7 @@ import de.flower.common.ui.inject.InjectorAwareObject;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.entity.event.QEvent;
-import de.flower.rmt.service.IEventManager;
+import de.flower.rmt.service.EventManager;
 import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.model.UserModel;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
@@ -19,7 +19,7 @@ import java.util.Iterator;
 public class EventDataProvider extends InjectorAwareObject implements IDataProvider<Event> {
 
     @SpringBean
-    private IEventManager eventManager;
+    private EventManager eventManager;
 
     private int itemsPerPage;
 

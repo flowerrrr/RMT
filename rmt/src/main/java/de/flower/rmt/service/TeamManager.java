@@ -22,41 +22,36 @@ import java.util.List;
  */
 @Service
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-public class TeamManager extends AbstractService implements ITeamManager {
+public class TeamManager extends AbstractService {
 
     @Autowired
     private ITeamRepo teamRepo;
 
     @Autowired
-    private IEventManager eventManager;
+    private EventManager eventManager;
 
     @Autowired
-    private IPlayerManager playerManager;
+    private PlayerManager playerManager;
 
-    @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void save(Team entity) {
         validate(entity);
         teamRepo.save(entity);
     }
 
-    @Override
     public Team loadById(Long id) {
         return Check.notNull(teamRepo.findOne(id));
     }
 
-    @Override
     public List<Team> findAll() {
         return teamRepo.findAll();
     }
 
-    @Override
     public List<Team> findAllByUserPlayer(final User user) {
         Specification spec = Specs.joinEq(Team_.players, Player_.user, user);
         return teamRepo.findAll(spec);
     }
 
-    @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void delete(Long id) {
         Team entity = loadById(id);
@@ -73,7 +68,6 @@ public class TeamManager extends AbstractService implements ITeamManager {
         playerManager.deleteByTeam(entity);
     }
 
-    @Override
     public Team newInstance() {
         return new Team(getClub());
     }

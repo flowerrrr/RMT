@@ -20,7 +20,7 @@ import java.util.Map;
  * @author flowerrrr
  */
 @Service
-public class TemplateService implements ITemplateService {
+public class TemplateService {
 
     private final static Logger log = LoggerFactory.getLogger(TemplateService.class);
 
@@ -44,8 +44,7 @@ public class TemplateService implements ITemplateService {
       *
       * @return the merged template
       */
-    @Override
-     public String mergeTemplate(String template, Map<String, Object> input) {
+    public String mergeTemplate(String template, Map<String, Object> input) {
         Check.notNull(template);
 
         // nicely formatted time string

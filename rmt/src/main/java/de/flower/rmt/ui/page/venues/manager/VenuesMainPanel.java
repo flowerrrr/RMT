@@ -2,7 +2,7 @@ package de.flower.rmt.ui.page.venues.manager;
 
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.Venue;
-import de.flower.rmt.service.IVenueManager;
+import de.flower.rmt.service.VenueManager;
 import de.flower.rmt.ui.page.venues.manager.map.VenuesMapPanel;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -18,7 +18,7 @@ import java.util.List;
 public class VenuesMainPanel extends BasePanel {
 
     @SpringBean
-    private IVenueManager venueManager;
+    private VenueManager venueManager;
 
     public VenuesMainPanel() {
         final IModel<List<Venue>> listModel = getListModel();

@@ -3,7 +3,7 @@ package de.flower.rmt.ui.page.blog;
 import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.behavior.CkEditorBehavior;
 import de.flower.rmt.model.db.entity.BArticle;
-import de.flower.rmt.service.IBlogManager;
+import de.flower.rmt.service.BlogManager;
 import de.flower.rmt.ui.app.Resource;
 import de.flower.rmt.ui.markup.html.form.CancelableEntityForm;
 import de.flower.rmt.ui.markup.html.form.EntityForm;
@@ -21,7 +21,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public class ArticleEditPanel extends RMTBasePanel<BArticle> {
 
     @SpringBean
-    private IBlogManager blogManager;
+    private BlogManager blogManager;
 
     public ArticleEditPanel(final IModel<BArticle> model) {
         super(model);

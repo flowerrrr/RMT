@@ -37,24 +37,23 @@ import static org.springframework.data.jpa.domain.Specifications.where;
  */
 @Service
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-public class CalendarManager extends AbstractService implements ICalendarManager {
+public class CalendarManager extends AbstractService {
 
     @Autowired
     private ICalItemRepo calItemRepo;
 
     @Autowired
-    private IEventManager eventManager;
+    private EventManager eventManager;
 
     @Autowired
-    private ITeamManager teamManager;
+    private TeamManager teamManager;
 
     @Autowired
     private MessageSourceAccessor messageSource;
 
     @Autowired
-    private IInvitationManager invitationManager;
+    private InvitationManager invitationManager;
 
-    @Override
     public CalItem loadById(final Long id, Attribute... attributes) {
         Specification fetch = fetch(attributes);
         CalItem entity = calItemRepo.findOne(where(eq(CalItem_.id, id)).and(fetch));
@@ -62,7 +61,6 @@ public class CalendarManager extends AbstractService implements ICalendarManager
         return entity;
     }
 
-    @Override
     public void save(final CalItemDto dto, final User user) {
         if (dto.isAllDay()) {
             // set start time to 0:00 and end time to 23:59
@@ -85,7 +83,6 @@ public class CalendarManager extends AbstractService implements ICalendarManager
         }
     }
 
-    @Override
     public List<CalEvent> findAllByCalendarAndRange(List<CalendarFilter> calendarFilters, final DateTime start, final DateTime end) {
         List<?> list = Lists.newArrayList();
         for (CalendarFilter filter : calendarFilters) {
@@ -105,7 +102,6 @@ public class CalendarManager extends AbstractService implements ICalendarManager
         return transform(list);
     }
 
-    @Override
     public List<CalItem> findAllByUserAndRange(final User user, final DateTime calStart, final DateTime calEnd) {
         BooleanExpression isUser = QCalItem.calItem.user.eq(user);
         BooleanExpression isNotStartAfterCalEnd = QCalItem.calItem.startDateTime.after(calEnd).not();
@@ -178,14 +174,12 @@ public class CalendarManager extends AbstractService implements ICalendarManager
         return calEvent;
     }
 
-    @Override
     public void delete(final Long id) {
         CalItem entity = loadById(id);
         // no security assertions yet.
         calItemRepo.delete(entity);
     }
 
-    @Override
     public List<CalendarFilter> getCalendarFilters() {
         List<CalendarFilter> filters = Lists.newArrayList();
         filters.add(CalendarFilter.USER);

@@ -2,7 +2,7 @@ package de.flower.rmt.ui.page.calendar;
 
 import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.panel.BasePanel;
-import de.flower.rmt.service.ICalendarManager;
+import de.flower.rmt.service.CalendarManager;
 import de.flower.rmt.service.type.CalendarFilter;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormChoiceComponentUpdatingBehavior;
@@ -22,7 +22,7 @@ import java.util.List;
 public class CalendarSelectPanel extends BasePanel<List<CalendarFilter>> {
 
     @SpringBean
-    private ICalendarManager calendarManager;
+    private CalendarManager calendarManager;
 
     public CalendarSelectPanel(final IModel<List<CalendarFilter>> model) {
         super(model);

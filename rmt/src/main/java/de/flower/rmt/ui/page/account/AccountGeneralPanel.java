@@ -3,7 +3,7 @@ package de.flower.rmt.ui.page.account;
 import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.User;
-import de.flower.rmt.service.IUserManager;
+import de.flower.rmt.service.UserManager;
 import de.flower.rmt.ui.markup.html.form.EntityForm;
 import de.flower.rmt.ui.markup.html.form.field.TextFieldPanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -18,7 +18,7 @@ import org.wicketstuff.jsr303.validator.FormComponentBeanValidator;
 public class AccountGeneralPanel extends BasePanel<User> {
 
     @SpringBean
-    private IUserManager userManager;
+    private UserManager userManager;
 
     public AccountGeneralPanel(String id, final IModel<User> model) {
         super(id, model);

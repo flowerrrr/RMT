@@ -6,7 +6,7 @@ import de.flower.common.ui.markup.html.link.HistoryBackLink;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.EventType;
-import de.flower.rmt.service.IEventManager;
+import de.flower.rmt.service.EventManager;
 import de.flower.rmt.ui.markup.html.form.CancelableEntityForm;
 import de.flower.rmt.ui.markup.html.form.EntityForm;
 import de.flower.rmt.ui.markup.html.form.OpponentDropDownChoicePanel;
@@ -44,7 +44,7 @@ import org.joda.time.LocalTime;
 public class EventEditPanel extends BasePanel<Event> {
 
     @SpringBean
-    private IEventManager eventManager;
+    private EventManager eventManager;
 
     private UniformDropDownChoicePanel uniformDDCPanel;
 

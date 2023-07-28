@@ -21,29 +21,25 @@ import static org.springframework.data.jpa.domain.Specifications.where;
  */
 @Service
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-public class OpponentManager extends AbstractService implements IOpponentManager {
+public class OpponentManager extends AbstractService {
 
     @Autowired
     private IOpponentRepo opponentRepo;
 
-    @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void save(Opponent entity) {
         validate(entity);
         opponentRepo.save(entity);
     }
 
-    @Override
     public Opponent loadById(Long id) {
         return Check.notNull(opponentRepo.findOne(id));
     }
 
-    @Override
     public List<Opponent> findAll() {
         return opponentRepo.findAll(where(asc(Opponent_.name)));
     }
 
-    @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void delete(Long id) {
         Opponent entity = loadById(id);
@@ -56,7 +52,6 @@ public class OpponentManager extends AbstractService implements IOpponentManager
         opponentRepo.softDelete(entity);
     }
 
-    @Override
     public Opponent newInstance() {
         return new Opponent(getClub());
     }

@@ -7,15 +7,15 @@ import de.flower.rmt.model.db.entity.CalItem_;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.dto.CalItemDto;
-import de.flower.rmt.security.ISecurityService;
-import de.flower.rmt.service.ICalendarManager;
-import de.flower.rmt.service.IEventManager;
+import de.flower.rmt.security.SecurityService;
+import de.flower.rmt.service.CalendarManager;
+import de.flower.rmt.service.EventManager;
 import de.flower.rmt.service.type.CalendarFilter;
-import de.flower.rmt.ui.app.IPageResolver;
 import de.flower.rmt.ui.app.RMTApplication;
 import de.flower.rmt.ui.markup.html.calendar.CalEvent;
 import de.flower.rmt.ui.markup.html.calendar.FullCalendarPanel;
 import de.flower.rmt.ui.panel.RMTBasePanel;
+import de.flower.rmt.ui.site.PageResolver;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -30,16 +30,16 @@ import java.util.Map;
 public abstract class CalendarPanel extends RMTBasePanel<List<CalendarFilter>> {
 
     @SpringBean
-    private ICalendarManager calendarManager;
+    private CalendarManager calendarManager;
 
     @SpringBean
-    private IEventManager eventManager;
+    private EventManager eventManager;
 
     @SpringBean
-    private ISecurityService securityService;
+    private SecurityService securityService;
 
     @SpringBean
-    private IPageResolver pageResolver;
+    private PageResolver pageResolver;
 
     public CalendarPanel(String id, final IModel<List<CalendarFilter>> model) {
         super(id, model);

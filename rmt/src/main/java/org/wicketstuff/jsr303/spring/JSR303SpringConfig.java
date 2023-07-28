@@ -2,8 +2,8 @@ package org.wicketstuff.jsr303.spring;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.wicketstuff.jsr303.DefaultViolationMessageRenderer;
 import org.wicketstuff.jsr303.JSR303ValidationFactory;
-import org.wicketstuff.jsr303.ViolationMessageRenderer;
 
 import javax.validation.Validator;
 
@@ -24,7 +24,7 @@ public class JSR303SpringConfig {
     }
 
     @Bean
-    ViolationMessageRenderer violationMessageRenderer() {
+    DefaultViolationMessageRenderer violationMessageRenderer() {
         return jsr303ValidationFactory().getViolationMessageRenderer();
     }
 

@@ -2,7 +2,7 @@ package de.flower.rmt.ui.page.event.manager;
 
 import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.service.IEventManager;
+import de.flower.rmt.service.EventManager;
 import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.page.Pages;
 import de.flower.rmt.ui.page.base.manager.ManagerBasePage;
@@ -30,7 +30,7 @@ public class EventPage extends ManagerBasePage {
     public final static String PARAM_EVENTID = "event";
 
     @SpringBean
-    private IEventManager eventManager;
+    private EventManager eventManager;
 
     public static PageParameters getPageParams(Long eventId) {
         return new PageParameters().set(EventPage.PARAM_EVENTID, eventId);

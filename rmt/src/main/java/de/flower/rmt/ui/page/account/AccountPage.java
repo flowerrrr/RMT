@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.page.account;
 
 import de.flower.rmt.model.db.entity.User;
-import de.flower.rmt.security.ISecurityService;
+import de.flower.rmt.security.SecurityService;
 import de.flower.rmt.ui.model.UserModel;
 import de.flower.rmt.ui.page.base.AbstractCommonBasePage;
 import org.apache.wicket.model.IModel;
@@ -13,7 +13,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public class AccountPage extends AbstractCommonBasePage {
 
     @SpringBean
-    private ISecurityService securityService;
+    private SecurityService securityService;
 
     public AccountPage() {
         setHeading("account.heading", "account.heading.sub");

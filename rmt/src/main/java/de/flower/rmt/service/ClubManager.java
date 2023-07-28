@@ -14,12 +14,11 @@ import java.util.List;
  */
 @Service
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-public class ClubManager implements IClubManager {
+public class ClubManager {
 
     @Autowired
     private IClubRepo clubRepo;
 
-    @Override
     public List<Club> findAllClubs() {
         return clubRepo.findAll();
     }

@@ -2,7 +2,7 @@ package de.flower.rmt.ui.page.base;
 
 import de.flower.common.ui.alert.AlertMessage;
 import de.flower.common.ui.alert.AlertMessagePanel;
-import de.flower.rmt.service.IApplicationService;
+import de.flower.rmt.service.ApplicationService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.model.IModel;
@@ -15,7 +15,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public class MessageOfTheDayMessage extends AlertMessage {
 
     @SpringBean
-    private IApplicationService applicationService;
+    private ApplicationService applicationService;
 
     public MessageOfTheDayMessage() {
         super(null, null);

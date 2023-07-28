@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.page.squad.manager;
 
 import de.flower.rmt.model.db.entity.Team;
-import de.flower.rmt.service.IPlayerManager;
+import de.flower.rmt.service.PlayerManager;
 import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -15,7 +15,7 @@ import static org.mockito.Mockito.when;
 public class PlayerListPanelTest extends AbstractRMTWicketMockitoTests {
 
     @SpringBean
-    private IPlayerManager playerManager;
+    private PlayerManager playerManager;
 
     @Test
     public void testRender() {

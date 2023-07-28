@@ -4,7 +4,7 @@ import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.markup.html.form.TextAreaMaxLengthBehavior;
 import de.flower.rmt.model.db.entity.BArticle;
 import de.flower.rmt.model.db.entity.BComment;
-import de.flower.rmt.service.IBlogManager;
+import de.flower.rmt.service.BlogManager;
 import de.flower.rmt.ui.markup.html.form.EntityForm;
 import de.flower.rmt.ui.panel.RMTBasePanel;
 import org.apache.commons.lang3.StringUtils;
@@ -23,7 +23,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public class CommentFormPanel extends RMTBasePanel<BArticle> {
 
     @SpringBean
-    private IBlogManager blogManager;
+    private BlogManager blogManager;
 
     public CommentFormPanel(final IModel<BArticle> model) {
         super(model);

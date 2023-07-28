@@ -3,8 +3,8 @@ package de.flower.rmt.ui.page.venues.manager;
 import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.Venue;
-import de.flower.rmt.security.ISecurityService;
-import de.flower.rmt.service.IVenueManager;
+import de.flower.rmt.security.SecurityService;
+import de.flower.rmt.service.VenueManager;
 import de.flower.rmt.ui.markup.html.form.CancelableEntityForm;
 import de.flower.rmt.ui.markup.html.form.EntityForm;
 import de.flower.rmt.ui.markup.html.form.field.TextAreaPanel;
@@ -20,10 +20,10 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public class VenueEditPanel extends BasePanel {
 
     @SpringBean
-    private IVenueManager venueManager;
+    private VenueManager venueManager;
 
     @SpringBean
-    private ISecurityService securityService;
+    private SecurityService securityService;
 
     public VenueEditPanel(final IModel<Venue> model) {
         super(model);

@@ -27,7 +27,7 @@ import static org.springframework.data.jpa.domain.Specifications.where;
  */
 @Service
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-public class PlayerManager extends AbstractService implements IPlayerManager {
+public class PlayerManager extends AbstractService {
 
     @Autowired
     private IPlayerRepo playerRepo;
@@ -41,43 +41,36 @@ public class PlayerManager extends AbstractService implements IPlayerManager {
     @Autowired
     private IUserRepo userRepo;
 
-    @Override
     public List<Player> findAllByTeam(Team team) {
         return playerRepo.findAll(where(eq(Player_.team, team)).and(orderByJoin(Player_.user, User_.fullname, true)));
     }
 
-    @Override
     public List<Player> findAllByUser(User user, Attribute... attributes) {
         return playerRepo.findAll(where(eq(Player_.user, user)).and(fetch(attributes)));
     }
 
-    @Override
     @Deprecated // not used
     public Player findByTeamAndUser(final Team team, final User user) {
         Specifications spec = where(eq(Player_.team, team)).and(eq(Player_.user, user));
         return playerRepo.findOne(spec);
     }
 
-    @Override
     @Deprecated // not used
     public Player findByEventAndUser(final Event event, final User user) {
         eventRepo.reattach(event);
         return findByTeamAndUser(event.getTeam(), user);
     }
 
-    @Override
     public void save(final Player entity) {
         validate(entity);
         playerRepo.save(entity);
     }
 
-    @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void addPlayer(Team team, User user) {
         addPlayers(team, Arrays.asList(user));
     }
 
-    @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void addPlayers(Team team, List<User> users) {
         teamRepo.reattach(team);
@@ -93,7 +86,6 @@ public class PlayerManager extends AbstractService implements IPlayerManager {
         }
     }
 
-    @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void removePlayer(Team team, Player player) {
         teamRepo.reattach(team);
@@ -105,7 +97,6 @@ public class PlayerManager extends AbstractService implements IPlayerManager {
         playerRepo.delete(player);
     }
 
-    @Override
     public void removeUserFromAllTeams(final User user) {
         List<Player> list = findAllByUser(user);
         for (Player player : list) {
@@ -113,7 +104,6 @@ public class PlayerManager extends AbstractService implements IPlayerManager {
         }
     }
 
-    @Override
     @Transactional(readOnly = false)
     public void deleteByTeam(Team team) {
         teamRepo.reattach(team);
@@ -124,7 +114,6 @@ public class PlayerManager extends AbstractService implements IPlayerManager {
         }
     }
 
-    @Override
     public List<Player> sortByTeam(List<Player> list) {
         // return sorted by team name
         Collections.sort(list, new Comparator<Player>() {

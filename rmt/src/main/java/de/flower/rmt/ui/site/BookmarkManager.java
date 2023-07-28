@@ -1,6 +1,5 @@
 package de.flower.rmt.ui.site;
 
-import de.flower.rmt.ui.app.IBookmarkManager;
 import de.flower.rmt.ui.page.about.AboutPage;
 import de.flower.rmt.ui.page.about.ChangeLogPage;
 import de.flower.rmt.ui.page.account.AccountPage;
@@ -23,7 +22,7 @@ import org.springframework.stereotype.Component;
  * @author flowerrrr
  */
 @Component
-public class BookmarkManager implements IBookmarkManager {
+public class BookmarkManager {
 
     public void initBookmarkablePages(final WebApplication webApplication) {
         webApplication.mountPage("manager", EventsPage.class);

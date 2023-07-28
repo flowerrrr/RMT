@@ -19,13 +19,13 @@ public class JSR303ValidationFactory {
 
     private ValidatorFactory validatorFactory;
 
-    private ViolationMessageRenderer violationMessageRenderer;
+    private DefaultViolationMessageRenderer violationMessageRenderer;
 
     public Validator getValidator() {
         return validatorFactory.getValidator();
     }
 
-    public ViolationMessageRenderer getViolationMessageRenderer() {
+    public DefaultViolationMessageRenderer getViolationMessageRenderer() {
         return violationMessageRenderer;
     }
 

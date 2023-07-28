@@ -2,8 +2,8 @@ package de.flower.rmt.ui.page.blog;
 
 import de.flower.common.util.Strings;
 import de.flower.rmt.model.db.entity.BArticle;
-import de.flower.rmt.service.IBlogManager;
-import de.flower.rmt.ui.app.IPropertyProvider;
+import de.flower.rmt.service.BlogManager;
+import de.flower.rmt.ui.app.PropertyProvider;
 import de.flower.rmt.ui.panel.RMTBasePanel;
 import de.flower.rmt.util.Dates;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -30,10 +30,10 @@ public class ArticleListPanel extends RMTBasePanel {
     private static final int ITEMS_PER_PAGE = 5;
 
     @SpringBean
-    private IPropertyProvider propertyProvider;
+    private PropertyProvider propertyProvider;
 
     @SpringBean
-    private IBlogManager blogManager;
+    private BlogManager blogManager;
 
     public ArticleListPanel() {
 
@@ -97,7 +97,7 @@ public class ArticleListPanel extends RMTBasePanel {
     public static class NumCommentsLabel extends Label {
 
         @SpringBean
-        private IBlogManager blogManager;
+        private BlogManager blogManager;
 
         private boolean showWhenNoComments;
 

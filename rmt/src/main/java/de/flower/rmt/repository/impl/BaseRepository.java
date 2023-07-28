@@ -18,7 +18,7 @@ import de.flower.rmt.model.db.entity.AbstractClubRelatedEntity_;
 import de.flower.rmt.model.db.entity.Club;
 import de.flower.rmt.repository.IRepository;
 import de.flower.rmt.repository.Specs;
-import de.flower.rmt.security.ISecurityService;
+import de.flower.rmt.security.SecurityService;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.LockOptions;
 import org.hibernate.Session;
@@ -42,9 +42,9 @@ public class BaseRepository<T extends AbstractBaseEntity, ID extends Serializabl
 
     private JpaEntityInformation<T, ID> entityInformation;
 
-    private ISecurityService securityService;
+    private SecurityService securityService;
 
-    public BaseRepository(JpaEntityInformation<T, ID> entityInformation, EntityManager entityManager, final ISecurityService securityService) {
+    public BaseRepository(JpaEntityInformation<T, ID> entityInformation, EntityManager entityManager, final SecurityService securityService) {
         super(entityInformation, entityManager);
         this.em = entityManager;
         this.entityInformation = entityInformation;

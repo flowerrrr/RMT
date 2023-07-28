@@ -2,10 +2,9 @@ package de.flower.rmt.service.mail;
 
 import com.google.common.collect.Sets;
 import de.flower.common.mail.MimeMessageUtils;
-import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.dto.Notification;
-import de.flower.rmt.security.ISecurityService;
+import de.flower.rmt.security.SecurityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,19 +17,15 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import javax.mail.Address;
-import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 /**
  * @author flowerrrr
  */
 @Service
-public class MailService implements IMailService {
+public class MailService {
 
     private final static Logger log = LoggerFactory.getLogger(MailService.class);
 
@@ -41,7 +36,7 @@ public class MailService implements IMailService {
     private JavaMailSender mailSender;
 
     @Autowired
-    private ISecurityService securityService;
+    private SecurityService securityService;
 
     @PostConstruct
     public void init() {
@@ -53,7 +48,6 @@ public class MailService implements IMailService {
         }
     }
 
-    @Override
     public final void sendMail(SimpleMailMessage message) {
         // Create a thread safe "copy" of the template message and customize it
         MimeMailMessage msg = newMimeMailMessage();
@@ -61,7 +55,6 @@ public class MailService implements IMailService {
         sendMail(msg);
     }
 
-    @Override
     public void sendMassMail(final Notification notification) {
         // fields like sender, reply-to, to are preset by default mail template.
         Set<String> recipients = Sets.newHashSet();

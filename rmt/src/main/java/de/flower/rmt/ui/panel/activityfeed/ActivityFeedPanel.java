@@ -7,7 +7,7 @@ import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.Activity;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.service.IActivityManager;
+import de.flower.rmt.service.ActivityManager;
 import de.flower.rmt.ui.model.ActivityModel;
 import de.flower.rmt.ui.panel.activityfeed.renderer.ActivityMessageRenderer;
 import de.flower.rmt.util.Dates;
@@ -37,7 +37,7 @@ public class ActivityFeedPanel extends BasePanel {
     private final static Logger log = LoggerFactory.getLogger(ActivityFeedPanel.class);
 
     @SpringBean
-    private IActivityManager activityManager;
+    private ActivityManager activityManager;
 
     private int currentPage = 0;
 

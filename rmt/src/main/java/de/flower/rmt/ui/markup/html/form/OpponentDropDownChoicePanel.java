@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.markup.html.form;
 
 import de.flower.rmt.model.db.entity.Opponent;
-import de.flower.rmt.service.IOpponentManager;
+import de.flower.rmt.service.OpponentManager;
 import de.flower.rmt.ui.markup.html.form.field.AbstractFormFieldPanel;
 import de.flower.rmt.ui.markup.html.form.field.DropDownChoicePanel;
 import org.apache.wicket.model.IModel;
@@ -16,7 +16,7 @@ import java.util.List;
 public class OpponentDropDownChoicePanel extends DropDownChoicePanel<Opponent> {
 
     @SpringBean
-    private IOpponentManager opponentManager;
+    private OpponentManager opponentManager;
 
     public OpponentDropDownChoicePanel(String id) {
         super(id, new OpponentDropDownChoice(AbstractFormFieldPanel.ID));

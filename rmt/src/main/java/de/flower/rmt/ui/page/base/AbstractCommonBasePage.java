@@ -2,6 +2,7 @@ package de.flower.rmt.ui.page.base;
 
 import de.flower.rmt.ui.app.RMTSession;
 import de.flower.rmt.ui.app.View;
+import de.flower.rmt.ui.site.PanelProvider;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -11,7 +12,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public abstract class AbstractCommonBasePage extends AbstractBaseLayoutPage implements INavigationPanelAware {
 
     @SpringBean
-    private IPanelProvider panelProvider;
+    private PanelProvider panelProvider;
 
     public AbstractCommonBasePage() {
         this(null, null);

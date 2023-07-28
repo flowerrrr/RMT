@@ -5,7 +5,7 @@ import de.flower.common.ui.ajax.markup.html.form.AjaxSubmitLink;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.service.IInvitationManager;
+import de.flower.rmt.service.InvitationManager;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
@@ -23,7 +23,7 @@ import java.io.Serializable;
 public class AddGuestPlayerPanel extends BasePanel<Event> {
 
     @SpringBean
-    private IInvitationManager invitationManager;
+    private InvitationManager invitationManager;
 
     private FEntity fEntity;
 

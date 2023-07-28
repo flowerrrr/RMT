@@ -4,7 +4,7 @@ import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.Venue;
-import de.flower.rmt.service.IVenueManager;
+import de.flower.rmt.service.VenueManager;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
@@ -21,7 +21,7 @@ import java.util.List;
 public class VenueListPanel extends BasePanel {
 
     @SpringBean
-    private IVenueManager venueManager;
+    private VenueManager venueManager;
 
     public VenueListPanel(IModel<List<Venue>> listModel) {
 

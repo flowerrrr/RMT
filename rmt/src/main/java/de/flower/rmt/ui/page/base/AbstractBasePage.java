@@ -2,8 +2,8 @@ package de.flower.rmt.ui.page.base;
 
 import de.flower.common.ui.ajax.behavior.test.SeleniumWaitForAjaxSupportBehavior;
 import de.flower.common.ui.modal.ModalDialogWindowPanel;
-import de.flower.rmt.security.ISecurityService;
-import de.flower.rmt.service.IApplicationService;
+import de.flower.rmt.security.SecurityService;
+import de.flower.rmt.service.ApplicationService;
 import de.flower.rmt.ui.app.Resource;
 import org.apache.wicket.Application;
 import org.apache.wicket.Component;
@@ -24,10 +24,10 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public abstract class AbstractBasePage extends WebPage implements IAjaxIndicatorAware {
 
     @SpringBean
-    private ISecurityService securityService;
+    private SecurityService securityService;
 
     @SpringBean
-    private IApplicationService applicationService;
+    private ApplicationService applicationService;
 
     public AbstractBasePage() {
         this(null);

@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.model;
 
 import de.flower.rmt.model.db.entity.Opponent;
-import de.flower.rmt.service.IOpponentManager;
+import de.flower.rmt.service.OpponentManager;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -11,7 +11,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public class OpponentModel extends AbstractEntityModel<Opponent> {
 
     @SpringBean
-    private IOpponentManager manager;
+    private OpponentManager manager;
 
     public OpponentModel(Opponent entity) {
         super(entity);

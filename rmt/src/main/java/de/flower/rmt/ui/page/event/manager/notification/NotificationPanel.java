@@ -7,8 +7,8 @@ import de.flower.common.ui.js.JQuery;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.dto.Notification;
-import de.flower.rmt.service.IEventManager;
-import de.flower.rmt.service.mail.INotificationService;
+import de.flower.rmt.service.EventManager;
+import de.flower.rmt.service.mail.NotificationService;
 import de.flower.rmt.ui.markup.html.form.EntityForm;
 import de.flower.rmt.ui.markup.html.form.field.AbstractFormFieldPanel;
 import de.flower.rmt.ui.markup.html.form.field.CheckBoxPanel;
@@ -34,10 +34,10 @@ import java.util.List;
 public class NotificationPanel extends BasePanel {
 
     @SpringBean
-    private IEventManager eventManager;
+    private EventManager eventManager;
 
     @SpringBean
-    private INotificationService notificationService;
+    private NotificationService notificationService;
 
     public NotificationPanel(String id, final IModel<Event> model) {
         super(id, model);

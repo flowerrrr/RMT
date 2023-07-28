@@ -13,7 +13,7 @@ import java.util.Comparator;
  *
  * @author flowerrrr
  */
-public class ObjectSerializationListener implements IObjectSerializationListener {
+public class ObjectSerializationListener {
 
     private final static Logger log = LoggerFactory.getLogger(ObjectSerializationListener.class);
 
@@ -37,7 +37,6 @@ public class ObjectSerializationListener implements IObjectSerializationListener
 
     private static ThreadLocal<Context> threadLocal = new ThreadLocal<Context>();
 
-    @Override
     public void notify(final Object object) {
         Class<?> clazz = object.getClass();
         if (Clazz.isAnonymousClass(clazz)) {

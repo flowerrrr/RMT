@@ -22,7 +22,7 @@ import static de.flower.common.util.Check.*;
  * @author flowerrrr
  */
 @Service
-public class GoogleGeocodingService implements IGeocodingService {
+public class GoogleGeocodingService {
 
     private final static Logger log = LoggerFactory.getLogger(GoogleGeocodingService.class);
 
@@ -34,7 +34,6 @@ public class GoogleGeocodingService implements IGeocodingService {
     @Value("${geocoding.default.language}")
     private String defaultLanguage;
 
-    @Override
     public List<GeocodingResult> geocode(String address) {
         return geocode(address, defaultRegion, defaultLanguage);
     }

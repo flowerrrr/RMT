@@ -21,36 +21,31 @@ import java.util.List;
  */
 @Service
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-public class UniformManager extends AbstractService implements IUniformManager {
+public class UniformManager extends AbstractService {
 
     @Autowired
     private IUniformRepo uniformRepo;
 
-    @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void save(Uniform entity) {
         validate(entity);
         uniformRepo.save(entity);
     }
 
-    @Override
     public Uniform loadById(Long id) {
         return Check.notNull(uniformRepo.findOne(id));
     }
 
-    @Override
     public List<Uniform> findAll() {
         return uniformRepo.findAll();
     }
 
-    @Override
     public List<Uniform> findAllByTeam(Team team) {
         Check.notNull(team);
         Specification spec = Specs.eq(Uniform_.team, team);
         return uniformRepo.findAll(spec);
     }
 
-    @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void delete(Long id) {
         Uniform entity = loadById(id);
@@ -63,7 +58,6 @@ public class UniformManager extends AbstractService implements IUniformManager {
         uniformRepo.softDelete(entity);
     }
 
-    @Override
     public Uniform newInstance(Team team) {
         return new Uniform(team);
     }

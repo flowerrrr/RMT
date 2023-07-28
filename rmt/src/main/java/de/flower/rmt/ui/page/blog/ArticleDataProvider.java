@@ -3,7 +3,7 @@ package de.flower.rmt.ui.page.blog;
 import de.flower.common.ui.inject.InjectorAwareObject;
 import de.flower.rmt.model.db.entity.BArticle;
 import de.flower.rmt.model.db.entity.QBArticle;
-import de.flower.rmt.service.IBlogManager;
+import de.flower.rmt.service.BlogManager;
 import de.flower.rmt.ui.model.BArticleModel;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
@@ -17,7 +17,7 @@ import java.util.Iterator;
 public class ArticleDataProvider extends InjectorAwareObject implements IDataProvider<BArticle> {
 
     @SpringBean
-    private IBlogManager blogManager;
+    private BlogManager blogManager;
 
     private int itemsPerPage;
 

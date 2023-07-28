@@ -6,7 +6,7 @@ import de.flower.common.ui.ajax.markup.html.AjaxLinkWithConfirmation;
 import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.Team;
-import de.flower.rmt.service.ITeamManager;
+import de.flower.rmt.service.TeamManager;
 import de.flower.rmt.ui.model.TeamModel;
 import de.flower.rmt.ui.page.squad.manager.SquadPage;
 import de.flower.rmt.ui.page.uniforms.manager.UniformsPage;
@@ -29,7 +29,7 @@ import java.util.List;
 public class TeamListPanel extends BasePanel {
 
     @SpringBean
-    private ITeamManager teamManager;
+    private TeamManager teamManager;
 
     public TeamListPanel() {
 

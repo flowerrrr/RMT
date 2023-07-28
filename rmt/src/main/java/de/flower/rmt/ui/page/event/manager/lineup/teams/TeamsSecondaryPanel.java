@@ -7,7 +7,7 @@ import de.flower.rmt.model.db.entity.EventTeam;
 import de.flower.rmt.model.db.entity.EventTeamPlayer;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.service.IEventTeamManager;
+import de.flower.rmt.service.EventTeamManager;
 import de.flower.rmt.ui.page.event.manager.lineup.DraggableInviteeListPanel;
 import de.flower.rmt.ui.page.event.manager.lineup.match.LineupSecondaryPanel.LineupPublishPanel;
 import de.flower.rmt.ui.panel.RMTBasePanel;
@@ -24,7 +24,7 @@ import java.util.List;
 public class TeamsSecondaryPanel extends RMTBasePanel<Event> {
 
     @SpringBean
-    private IEventTeamManager eventTeamManager;
+    private EventTeamManager eventTeamManager;
 
     public TeamsSecondaryPanel(final IModel<Event> model) {
 
@@ -49,7 +49,7 @@ public class TeamsSecondaryPanel extends RMTBasePanel<Event> {
     public static class EventTeamInviteeListPanel extends DraggableInviteeListPanel {
 
         @SpringBean
-        private IEventTeamManager eventTeamManager;
+        private EventTeamManager eventTeamManager;
 
         // used to filter out those players that are already dragged to the player-grids.
         private IModel<List<Invitation>> playerItemListModel;

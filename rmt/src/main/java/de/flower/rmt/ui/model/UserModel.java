@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.model;
 
 import de.flower.rmt.model.db.entity.User;
-import de.flower.rmt.service.IUserManager;
+import de.flower.rmt.service.UserManager;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -11,7 +11,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public class UserModel extends AbstractEntityModel<User> {
 
     @SpringBean
-    private IUserManager manager;
+    private UserManager manager;
 
     public UserModel(User entity) {
         super(entity);

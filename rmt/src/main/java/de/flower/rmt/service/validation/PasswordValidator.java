@@ -1,10 +1,8 @@
 package de.flower.rmt.service.validation;
 
-import de.flower.common.validation.spring.IBeanValidator;
 import de.flower.rmt.model.db.entity.User;
-import de.flower.rmt.model.dto.IPasswordValidator;
 import de.flower.rmt.model.dto.Password;
-import de.flower.rmt.service.IUserManager;
+import de.flower.rmt.service.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,15 +11,14 @@ import org.springframework.stereotype.Service;
  * @author flowerrrr
  */
 @Service
-public class PasswordValidator implements IBeanValidator, IPasswordValidator {
+public class PasswordValidator {
 
     @Autowired
-    private IUserManager userManager;
+    private UserManager userManager;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Override
     public boolean isValid(final Object bean) {
         Password password = (Password) bean;
         User user = userManager.loadById(password.getUserId());

@@ -2,7 +2,7 @@ package de.flower.rmt.ui.page.user.manager;
 
 import de.flower.rmt.model.db.entity.Player_;
 import de.flower.rmt.model.db.entity.User;
-import de.flower.rmt.service.IPlayerManager;
+import de.flower.rmt.service.PlayerManager;
 import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
 import org.apache.wicket.Component;
 import org.apache.wicket.model.Model;
@@ -19,7 +19,7 @@ import static org.mockito.Mockito.*;
 public class PlayerTeamsPanelTest extends AbstractRMTWicketMockitoTests {
 
     @SpringBean
-    private IPlayerManager playerManager;
+    private PlayerManager playerManager;
 
     @Override
     protected boolean isMockitoVerboseLogging() {

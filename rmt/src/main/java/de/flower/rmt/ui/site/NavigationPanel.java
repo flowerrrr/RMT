@@ -3,8 +3,8 @@ package de.flower.rmt.ui.site;
 import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.entity.event.QEvent;
-import de.flower.rmt.service.IBlogManager;
-import de.flower.rmt.service.IEventManager;
+import de.flower.rmt.service.BlogManager;
+import de.flower.rmt.service.EventManager;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.app.View;
 import de.flower.rmt.ui.markup.html.form.renderer.EventRenderer;
@@ -47,10 +47,10 @@ import java.util.List;
 public class NavigationPanel extends RMTBasePanel {
 
     @SpringBean
-    private IEventManager eventManager;
+    private EventManager eventManager;
 
     @SpringBean
-    private IBlogManager blogManager;
+    private BlogManager blogManager;
 
     public NavigationPanel(INavigationPanelAware page) {
         setRenderBodyOnly(true);

@@ -8,7 +8,7 @@ import de.flower.common.ui.markup.html.form.TextAreaMaxLengthBehavior;
 import de.flower.rmt.model.db.entity.BArticle;
 import de.flower.rmt.model.db.entity.BComment;
 import de.flower.rmt.model.db.entity.QBComment;
-import de.flower.rmt.service.IBlogManager;
+import de.flower.rmt.service.BlogManager;
 import de.flower.rmt.ui.panel.RMTBasePanel;
 import de.flower.rmt.util.Dates;
 import org.apache.commons.lang3.StringUtils;
@@ -32,7 +32,7 @@ import java.util.List;
 public class BCommentsPanel extends RMTBasePanel<BArticle> {
 
     @SpringBean
-    private IBlogManager blogManager;
+    private BlogManager blogManager;
 
     public BCommentsPanel(final IModel<BArticle> model) {
         super(model);

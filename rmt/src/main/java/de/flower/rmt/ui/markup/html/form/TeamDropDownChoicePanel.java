@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.markup.html.form;
 
 import de.flower.rmt.model.db.entity.Team;
-import de.flower.rmt.service.ITeamManager;
+import de.flower.rmt.service.TeamManager;
 import de.flower.rmt.ui.markup.html.form.field.DropDownChoicePanel;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.model.IModel;
@@ -16,7 +16,7 @@ import java.util.List;
 public class TeamDropDownChoicePanel extends DropDownChoicePanel<Team> {
 
     @SpringBean
-    private ITeamManager teamManager;
+    private TeamManager teamManager;
 
     public TeamDropDownChoicePanel(String id) {
         super(id);

@@ -2,7 +2,7 @@ package de.flower.common.validation.unique;
 
 import de.flower.common.model.db.entity.IEntity;
 import de.flower.common.validation.unique.impl.IColumnResolver;
-import de.flower.common.validation.unique.impl.IRowCountChecker;
+import de.flower.common.validation.unique.impl.RowCountChecker;
 import de.flower.common.validation.unique.impl.UniqueDef;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.testng.annotations.BeforeMethod;
@@ -16,7 +16,7 @@ import static org.testng.Assert.*;
 
 public class UniqueValidatorTest {
 
-    private IRowCountChecker rowCountChecker;
+    private RowCountChecker rowCountChecker;
     private UniqueValidator validator;
     private IEntity entity;
     private ConstraintValidatorContext context;
@@ -24,7 +24,7 @@ public class UniqueValidatorTest {
     @BeforeMethod
     public void init() {
         final IColumnResolver columnResolver = mock(IColumnResolver.class);
-        rowCountChecker = mock(IRowCountChecker.class);
+        rowCountChecker = mock(RowCountChecker.class);
         entity = mock(IEntity.class);
         when(entity.getId()).thenReturn(1L);
         context = mock(ConstraintValidatorContext.class);

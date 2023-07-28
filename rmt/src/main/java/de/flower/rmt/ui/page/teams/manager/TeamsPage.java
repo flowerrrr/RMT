@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.page.teams.manager;
 
-import de.flower.rmt.service.ITeamManager;
+import de.flower.rmt.service.TeamManager;
 import de.flower.rmt.ui.page.Pages;
 import de.flower.rmt.ui.page.base.manager.ManagerBasePage;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -11,7 +11,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public class TeamsPage extends ManagerBasePage {
 
     @SpringBean
-    private ITeamManager teamManager;
+    private TeamManager teamManager;
 
     public TeamsPage() {
         setHeading("manager.teams.heading", null);

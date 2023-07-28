@@ -25,7 +25,7 @@ import java.util.List;
  */
 @Service
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-public class BlogManager extends AbstractService implements IBlogManager {
+public class BlogManager extends AbstractService {
 
     private final static String BLOG_LAST_READ = "blog.last.read";
 
@@ -36,19 +36,17 @@ public class BlogManager extends AbstractService implements IBlogManager {
     private IBCommentRepo commentRepo;
 
     @Autowired
-    private IActivityManager activityManager;
+    private ActivityManager activityManager;
 
     @Autowired
-    private IApplicationService applicationService;
+    private ApplicationService applicationService;
 
-    @Override
     public BArticle newArticle(final User author) {
         Check.notNull(author);
         BArticle entity = new BArticle(author, getClub());
         return entity;
     }
 
-    @Override
     public BComment newComment(final BArticle article, final User author) {
         Check.notNull(article);
         Check.notNull(author);
@@ -56,7 +54,6 @@ public class BlogManager extends AbstractService implements IBlogManager {
         return entity;
     }
 
-    @Override
     public void save(final BArticle article) {
         validate(article);
         boolean isNew = article.isNew();
@@ -67,7 +64,6 @@ public class BlogManager extends AbstractService implements IBlogManager {
         }
     }
 
-    @Override
     public void save(final BComment comment) {
         validate(comment);
         boolean isNew = comment.isNew();
@@ -78,47 +74,39 @@ public class BlogManager extends AbstractService implements IBlogManager {
         }
     }
 
-    @Override
     public void remove(final BComment comment) {
         commentRepo.delete(comment.getId());
     }
 
-    @Override
     public BArticle loadArticleById(final Long id) {
         BArticle article = articleRepo.findOne(id);
         assertClub(article);
         return article;
     }
 
-    @Override
     public List<BArticle> findAllArticles(final int page, final int size, EntityPath<?>... attributes) {
         return articleRepo.findAll(null, new PageRequest(page, size, Sort.Direction.DESC, BArticle_.createDate.getName()), attributes).getContent();
     }
 
-    @Override
     public Long getNumArticles() {
         return articleRepo.count();
     }
 
-    @Override
     public Long getNumComments(final BArticle article) {
         BooleanExpression isArticle = QBComment.bComment.article.eq(article);
         return commentRepo.count(isArticle);
     }
 
-    @Override
     public List<BComment> findAllComments(final BArticle article, EntityPath<?>... attributes) {
         BooleanExpression isArticle = QBComment.bComment.article.eq(article);
         return commentRepo.findAll(isArticle, new OrderSpecifier(Order.ASC, QBComment.bComment.createDate), attributes);
     }
 
-    @Override
     public List<BComment> findLastNComments(final int num, EntityPath<?>... attributes) {
         BooleanExpression isClub = QBComment.bComment.article.club.eq(getClub());
         return commentRepo.findAll(isClub, new PageRequest(0, num, Sort.Direction.DESC, BComment_.createDate.getName()), attributes).getContent();
     }
 
-    @Override
     public boolean hasUnreadArticleOrComment(final User user) {
         String lastRead = applicationService.getUserProperty(user, BLOG_LAST_READ);
         // find last article or comment
@@ -154,7 +142,6 @@ public class BlogManager extends AbstractService implements IBlogManager {
         }
     }
 
-    @Override
     public void markAllRead(final User user) {
         applicationService.saveUserProperty(user, BLOG_LAST_READ, "" + new Date().getTime());
     }

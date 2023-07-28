@@ -1,7 +1,9 @@
 package de.flower.rmt.ui.app;
 
-import de.flower.common.ui.serialize.ISerializerListener;
+import de.flower.common.ui.serialize.PageSerializationValidatorListener;
 import de.flower.common.ui.serialize.SerializerWrapper;
+import de.flower.rmt.ui.site.BookmarkManager;
+import de.flower.rmt.ui.site.PageResolver;
 import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.Session;
 import org.apache.wicket.protocol.http.WebApplication;
@@ -27,13 +29,13 @@ public class RMTApplication extends WebApplication {
     public static final int PAGE_EXPIRED_STATUS_CODE = 666;
 
     @Autowired
-    private ISerializerListener pageSerializationValidatorListener;
+    private PageSerializationValidatorListener pageSerializationValidatorListener;
 
     @Autowired
-    private IPageResolver pageResolver;
+    private PageResolver pageResolver;
 
     @Autowired
-    private IBookmarkManager bookmarkManager;
+    private BookmarkManager bookmarkManager;
 
     public static RMTApplication get() {
         return (RMTApplication) WebApplication.get();
@@ -42,7 +44,7 @@ public class RMTApplication extends WebApplication {
     public RMTApplication() {
     }
 
-    protected RMTApplication(IPageResolver pageResolver, IBookmarkManager bookmarkManager) {
+    protected RMTApplication(PageResolver pageResolver, BookmarkManager bookmarkManager) {
         this.pageResolver = pageResolver;
         this.bookmarkManager = bookmarkManager;
     }

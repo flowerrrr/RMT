@@ -3,7 +3,7 @@ package de.flower.rmt.ui.page.teams.manager;
 import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.Team;
-import de.flower.rmt.service.ITeamManager;
+import de.flower.rmt.service.TeamManager;
 import de.flower.rmt.ui.markup.html.form.CancelableEntityForm;
 import de.flower.rmt.ui.markup.html.form.EntityForm;
 import de.flower.rmt.ui.markup.html.form.field.TextFieldPanel;
@@ -19,7 +19,7 @@ import org.wicketstuff.jsr303.validator.FormComponentBeanValidator;
 public class TeamEditPanel extends BasePanel {
 
     @SpringBean
-    private ITeamManager teamManager;
+    private TeamManager teamManager;
 
     public TeamEditPanel(final IModel<Team> model) {
 

@@ -4,37 +4,35 @@ package de.flower.rmt.test;
  * @author flowerrrr
  */
 
-import ch.qos.logback.classic.spi.ILoggingEvent;
-import de.flower.common.service.security.IPasswordGenerator;
-import de.flower.common.test.mock.IListAppender;
+import de.flower.common.service.security.PasswordGenerator;
 import de.flower.common.test.mock.LogBackListAppender;
 import de.flower.rmt.repository.IClubRepo;
 import de.flower.rmt.repository.IEventRepo;
 import de.flower.rmt.repository.IInvitationRepo;
 import de.flower.rmt.repository.ITeamRepo;
 import de.flower.rmt.repository.IUserRepo;
-import de.flower.rmt.security.ISecurityService;
-import de.flower.rmt.service.IActivityManager;
-import de.flower.rmt.service.IApplicationService;
-import de.flower.rmt.service.IBlogManager;
-import de.flower.rmt.service.ICalendarManager;
-import de.flower.rmt.service.IClubManager;
-import de.flower.rmt.service.ICommentManager;
-import de.flower.rmt.service.IEventManager;
-import de.flower.rmt.service.IEventTeamManager;
-import de.flower.rmt.service.IInvitationManager;
-import de.flower.rmt.service.ILineupManager;
-import de.flower.rmt.service.IPlayerManager;
-import de.flower.rmt.service.IResponseManager;
-import de.flower.rmt.service.IRoleManager;
-import de.flower.rmt.service.ITeamManager;
-import de.flower.rmt.service.IUniformManager;
+import de.flower.rmt.security.SecurityService;
+import de.flower.rmt.service.ActivityManager;
+import de.flower.rmt.service.ApplicationService;
+import de.flower.rmt.service.BlogManager;
+import de.flower.rmt.service.CalendarManager;
+import de.flower.rmt.service.ClubManager;
+import de.flower.rmt.service.CommentManager;
+import de.flower.rmt.service.EventManager;
+import de.flower.rmt.service.EventTeamManager;
 import de.flower.rmt.service.IUrlProvider;
-import de.flower.rmt.service.IUserManager;
-import de.flower.rmt.service.geocoding.IGeocodingService;
-import de.flower.rmt.service.mail.IMailService;
-import de.flower.rmt.service.mail.INotificationService;
-import de.flower.rmt.service.mail.ITemplateService;
+import de.flower.rmt.service.InvitationManager;
+import de.flower.rmt.service.LineupManager;
+import de.flower.rmt.service.PlayerManager;
+import de.flower.rmt.service.ResponseManager;
+import de.flower.rmt.service.RoleManager;
+import de.flower.rmt.service.TeamManager;
+import de.flower.rmt.service.UniformManager;
+import de.flower.rmt.service.UserManager;
+import de.flower.rmt.service.geocoding.GoogleGeocodingService;
+import de.flower.rmt.service.mail.MailService;
+import de.flower.rmt.service.mail.NotificationService;
+import de.flower.rmt.service.mail.TemplateService;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -106,70 +104,70 @@ public class AbstractRMTIntegrationTests extends AbstractTestNGSpringContextTest
      */
 
     @Autowired
-    protected ITeamManager teamManager;
+    protected TeamManager teamManager;
 
     @Autowired
-    protected IUserManager userManager;
+    protected UserManager userManager;
 
     @Autowired
-    protected IRoleManager roleManager;
+    protected RoleManager roleManager;
 
     @Autowired
-    protected IEventManager eventManager;
+    protected EventManager eventManager;
 
     @Autowired
-    protected IPlayerManager playerManager;
+    protected PlayerManager playerManager;
 
     @Autowired
-    protected IResponseManager responseManager;
+    protected ResponseManager responseManager;
 
     @Autowired
-    protected IInvitationManager invitationManager;
+    protected InvitationManager invitationManager;
 
     @Autowired
-    protected ICommentManager commentManager;
+    protected CommentManager commentManager;
 
     @Autowired
-    protected ILineupManager lineupManager;
+    protected LineupManager lineupManager;
 
     @Autowired
-    protected ICalendarManager calendarManager;
+    protected CalendarManager calendarManager;
 
     @Autowired
-    protected IUniformManager uniformManager;
+    protected UniformManager uniformManager;
 
     @Autowired
-    protected IActivityManager activityManager;
+    protected ActivityManager activityManager;
 
     @Autowired
-    protected IClubManager clubManager;
+    protected ClubManager clubManager;
 
     @Autowired
-    protected IBlogManager blogManager;
+    protected BlogManager blogManager;
 
     @Autowired
     protected UserDetailsService userDetailService;
 
     @Autowired
-    protected IGeocodingService geocodingService;
+    protected GoogleGeocodingService geocodingService;
 
     @Autowired
-    protected IMailService mailService;
+    protected MailService mailService;
 
     @Autowired
-    protected ITemplateService templateService;
+    protected TemplateService templateService;
 
     @Autowired
-    protected INotificationService notificationService;
+    protected NotificationService notificationService;
 
     @Autowired
-    protected IEventTeamManager eventTeamManager;
+    protected EventTeamManager eventTeamManager;
 
     @Autowired
-    protected ISecurityService securityService;
+    protected SecurityService securityService;
 
     @Autowired
-    protected IApplicationService applicationService;
+    protected ApplicationService applicationService;
 
     @Autowired
     protected IUrlProvider urlProvider;
@@ -181,7 +179,7 @@ public class AbstractRMTIntegrationTests extends AbstractTestNGSpringContextTest
     protected Validator validator;
 
     @Autowired
-    protected IPasswordGenerator passwordGenerator;
+    protected PasswordGenerator passwordGenerator;
 
     @PersistenceContext
     protected EntityManager em;
@@ -192,7 +190,7 @@ public class AbstractRMTIntegrationTests extends AbstractTestNGSpringContextTest
     @Autowired
     protected DataSource dataSource;
 
-    protected IListAppender<ILoggingEvent> listAppender;
+    protected LogBackListAppender listAppender;
 
     @Autowired
     protected TestData testData;

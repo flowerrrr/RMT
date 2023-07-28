@@ -3,7 +3,7 @@ package de.flower.rmt.ui.page.user.manager;
 import de.flower.common.ui.ajax.markup.html.AjaxLink;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.User;
-import de.flower.rmt.service.IUserManager;
+import de.flower.rmt.service.UserManager;
 import de.flower.rmt.ui.markup.html.panel.SimpleFeedbackPanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.feedback.ComponentFeedbackMessageFilter;
@@ -18,7 +18,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public class SendInvitationPanel extends BasePanel<User> {
 
     @SpringBean
-    private IUserManager userManager;
+    private UserManager userManager;
 
     public SendInvitationPanel(final IModel<User> model) {
         super(model);

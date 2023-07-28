@@ -5,9 +5,9 @@ import de.flower.common.ui.modal.ModalPanel;
 import de.flower.rmt.model.db.entity.Comment;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.type.RSVPStatus;
-import de.flower.rmt.security.ISecurityService;
-import de.flower.rmt.service.ICommentManager;
-import de.flower.rmt.service.IInvitationManager;
+import de.flower.rmt.security.SecurityService;
+import de.flower.rmt.service.CommentManager;
+import de.flower.rmt.service.InvitationManager;
 import de.flower.rmt.ui.markup.html.form.field.TextAreaPanel;
 import de.flower.rmt.ui.markup.html.panel.FormFeedbackPanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -31,13 +31,13 @@ import org.wicketstuff.jsr303.validator.BeanValidator;
 public class InvitationEditPanel extends ModalPanel<Invitation> {
 
     @SpringBean
-    private IInvitationManager invitationManager;
+    private InvitationManager invitationManager;
 
     @SpringBean
-    private ICommentManager commentManager;
+    private CommentManager commentManager;
 
     @SpringBean
-    private ISecurityService securityService;
+    private SecurityService securityService;
 
     public InvitationEditPanel(final IModel<Invitation> model) {
         super(model);

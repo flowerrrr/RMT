@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.page.users;
 
-import de.flower.rmt.service.IUserManager;
+import de.flower.rmt.service.UserManager;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.markup.html.panel.SearchFilterPanel;
 import de.flower.rmt.ui.page.user.manager.PlayerPage;
@@ -18,7 +18,7 @@ import java.util.List;
 public class UsersSecondaryPanel extends RMTBasePanel {
 
     @SpringBean
-    private IUserManager userManager;
+    private UserManager userManager;
 
     public UsersSecondaryPanel() {
         setRenderBodyOnly(true);

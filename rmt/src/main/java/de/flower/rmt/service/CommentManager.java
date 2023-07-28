@@ -18,21 +18,19 @@ import java.util.List;
  */
 @Service
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-public class CommentManager extends AbstractService implements ICommentManager {
+public class CommentManager extends AbstractService {
 
     @Autowired
     private ICommentRepo commentRepo;
 
     @Autowired
-    private IActivityManager activityManager;
+    private ActivityManager activityManager;
 
-    @Override
     public Comment newInstance(final Invitation invitation) {
         Comment comment = new Comment(invitation, securityService.getUser());
         return comment;
     }
 
-    @Override
     @Transactional(readOnly = false)
     public void save(final Comment comment) {
         validate(comment);
@@ -45,7 +43,6 @@ public class CommentManager extends AbstractService implements ICommentManager {
         commentRepo.save(comment);
     }
 
-    @Override
     @Transactional(readOnly = false)
     public void updateOrRemoveComment(Invitation invitation, String text, User author) {
         Check.isTrue(!invitation.isNew());
@@ -71,7 +68,6 @@ public class CommentManager extends AbstractService implements ICommentManager {
         }
     }
 
-    @Override
     public Comment findByInvitationAndAuthor(final Invitation invitation, final User author, final int index) {
         List<Comment> authorComments = commentRepo.findByInvitationAndAuthor(invitation, author);
         if (authorComments.size() <= index) {
@@ -81,7 +77,6 @@ public class CommentManager extends AbstractService implements ICommentManager {
         }
     }
 
-    @Override
     public void remove(final Comment comment) {
         commentRepo.delete(comment.getId());
     }

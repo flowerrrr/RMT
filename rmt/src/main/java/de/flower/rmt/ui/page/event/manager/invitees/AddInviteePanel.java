@@ -9,9 +9,9 @@ import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.Team;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.service.IInvitationManager;
-import de.flower.rmt.service.ITeamManager;
-import de.flower.rmt.service.IUserManager;
+import de.flower.rmt.service.InvitationManager;
+import de.flower.rmt.service.TeamManager;
+import de.flower.rmt.service.UserManager;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxCheckBox;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -37,13 +37,13 @@ import java.util.Set;
 public class AddInviteePanel extends BasePanel<Event> {
 
     @SpringBean
-    private IInvitationManager invitationManager;
+    private InvitationManager invitationManager;
 
     @SpringBean
-    private IUserManager userManager;
+    private UserManager userManager;
 
     @SpringBean
-    private ITeamManager teamManager;
+    private TeamManager teamManager;
 
     private Set<Long> selectedUsers = new HashSet<Long>();
 

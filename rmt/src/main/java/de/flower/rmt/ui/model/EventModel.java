@@ -6,7 +6,7 @@ import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.entity.event.Event_;
 import de.flower.rmt.model.db.entity.event.Match_;
 import de.flower.rmt.model.db.type.EventType;
-import de.flower.rmt.service.IEventManager;
+import de.flower.rmt.service.EventManager;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -20,7 +20,7 @@ import java.util.List;
 public class EventModel<T extends Event> extends AbstractEntityModel<T> {
 
     @SpringBean
-    private IEventManager manager;
+    private EventManager manager;
 
     private EventType type;
 

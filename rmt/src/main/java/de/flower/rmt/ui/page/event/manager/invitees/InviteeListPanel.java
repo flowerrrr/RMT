@@ -8,7 +8,7 @@ import de.flower.common.ui.tooltips.TooltipBehavior;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.service.IInvitationManager;
+import de.flower.rmt.service.InvitationManager;
 import de.flower.rmt.ui.model.UserModel;
 import de.flower.rmt.ui.page.user.manager.PlayerPage;
 import de.flower.rmt.ui.panel.DropDownMenuPanel;
@@ -31,7 +31,7 @@ import java.util.List;
 public class InviteeListPanel extends BasePanel {
 
     @SpringBean
-    private IInvitationManager invitationManager;
+    private InvitationManager invitationManager;
 
     public InviteeListPanel(String id, IModel<Event> model) {
         super(id);

@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.page.blog;
 
 import de.flower.rmt.model.db.entity.BArticle;
-import de.flower.rmt.service.IBlogManager;
+import de.flower.rmt.service.BlogManager;
 import de.flower.rmt.ui.model.BArticleModel;
 import de.flower.rmt.ui.page.Pages;
 import de.flower.rmt.ui.page.base.AbstractCommonBasePage;
@@ -27,7 +27,7 @@ public class ArticlePage extends AbstractCommonBasePage {
     private final static Logger log = LoggerFactory.getLogger(ArticlePage.class);
 
     @SpringBean
-    private IBlogManager blogManager;
+    private BlogManager blogManager;
 
     /**
      * Deep link support

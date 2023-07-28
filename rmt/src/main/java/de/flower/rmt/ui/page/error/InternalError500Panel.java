@@ -2,9 +2,9 @@ package de.flower.rmt.ui.page.error;
 
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.common.ui.util.LoggingUtils;
-import de.flower.rmt.security.ISecurityService;
-import de.flower.rmt.ui.app.IPropertyProvider;
+import de.flower.rmt.security.SecurityService;
 import de.flower.rmt.ui.app.Links;
+import de.flower.rmt.ui.app.PropertyProvider;
 import org.apache.wicket.Application;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.RuntimeConfigurationType;
@@ -21,10 +21,10 @@ public class InternalError500Panel extends BasePanel {
     private final static Logger log = LoggerFactory.getLogger(InternalError500Panel.class);
 
     @SpringBean
-    private IPropertyProvider propertyProvider;
+    private PropertyProvider propertyProvider;
 
     @SpringBean
-    private ISecurityService securityService;
+    private SecurityService securityService;
 
     public InternalError500Panel(final Exception exception) {
         add(Links.contextRoot("home"));

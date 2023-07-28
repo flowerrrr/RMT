@@ -4,9 +4,9 @@ import de.flower.rmt.model.db.entity.Comment;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.QInvitation;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.security.ISecurityService;
-import de.flower.rmt.service.ICommentManager;
-import de.flower.rmt.service.IInvitationManager;
+import de.flower.rmt.security.SecurityService;
+import de.flower.rmt.service.CommentManager;
+import de.flower.rmt.service.InvitationManager;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
@@ -18,13 +18,13 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public class EventInvitationModel extends LoadableDetachableModel<Invitation> {
 
     @SpringBean
-    private ISecurityService securityService;
+    private SecurityService securityService;
 
     @SpringBean
-    private IInvitationManager invitationManager;
+    private InvitationManager invitationManager;
 
     @SpringBean
-    private ICommentManager commentManager;
+    private CommentManager commentManager;
 
     private IModel<Event> eventModel;
 

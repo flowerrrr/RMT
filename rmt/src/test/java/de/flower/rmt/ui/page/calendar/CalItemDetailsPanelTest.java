@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.page.calendar;
 
 import de.flower.rmt.model.db.entity.CalItem;
-import de.flower.rmt.service.IEventManager;
+import de.flower.rmt.service.EventManager;
 import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -15,7 +15,7 @@ import static org.testng.Assert.*;
 public class CalItemDetailsPanelTest extends AbstractRMTWicketMockitoTests {
 
     @SpringBean
-    private IEventManager eventManager;
+    private EventManager eventManager;
 
     @Test
     public void testRender() {

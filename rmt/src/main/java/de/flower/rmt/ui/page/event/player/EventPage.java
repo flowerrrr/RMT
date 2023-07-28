@@ -4,8 +4,8 @@ import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.RSVPStatus;
-import de.flower.rmt.service.IEventManager;
-import de.flower.rmt.service.IInvitationManager;
+import de.flower.rmt.service.EventManager;
+import de.flower.rmt.service.InvitationManager;
 import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.page.Pages;
 import de.flower.rmt.ui.page.base.player.PlayerBasePage;
@@ -24,10 +24,10 @@ public class EventPage extends PlayerBasePage {
     private final static Logger log = LoggerFactory.getLogger(EventPage.class);
 
     @SpringBean
-    private IEventManager eventManager;
+    private EventManager eventManager;
 
     @SpringBean
-    private IInvitationManager invitationManager;
+    private InvitationManager invitationManager;
 
     private EventInvitationModel invitationModel;
 

@@ -5,7 +5,7 @@ import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.Player;
 import de.flower.rmt.model.db.entity.Player_;
 import de.flower.rmt.model.db.entity.User;
-import de.flower.rmt.service.IPlayerManager;
+import de.flower.rmt.service.PlayerManager;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -22,7 +22,7 @@ import java.util.List;
 public class TeamsPanel extends BasePanel<User> {
 
     @SpringBean
-    private IPlayerManager playerManager;
+    private PlayerManager playerManager;
 
     public TeamsPanel(IModel<User> model) {
         super(model);

@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.page.blog;
 
 import de.flower.rmt.model.db.entity.BArticle;
-import de.flower.rmt.service.IBlogManager;
+import de.flower.rmt.service.BlogManager;
 import de.flower.rmt.ui.panel.RMTBasePanel;
 import de.flower.rmt.util.Dates;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
@@ -19,7 +19,7 @@ import java.util.Date;
 public class ArticlePanel extends RMTBasePanel<BArticle> {
 
     @SpringBean
-    private IBlogManager blogManager;
+    private BlogManager blogManager;
 
     public ArticlePanel(final IModel<BArticle> model) {
         super(model);

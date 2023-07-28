@@ -8,8 +8,8 @@ import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.EventTeam;
 import de.flower.rmt.model.db.entity.Lineup;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.service.IEventTeamManager;
-import de.flower.rmt.service.ILineupManager;
+import de.flower.rmt.service.EventTeamManager;
+import de.flower.rmt.service.LineupManager;
 import de.flower.rmt.ui.model.LineupModel;
 import de.flower.rmt.ui.page.event.manager.lineup.teams.TeamsSecondaryPanel.EventTeamInviteeListPanel;
 import de.flower.rmt.ui.panel.RMTBasePanel;
@@ -40,10 +40,10 @@ public class TeamsEditPanel extends RMTBasePanel {
     private final static Logger log = LoggerFactory.getLogger(TeamsEditPanel.class);
 
     @SpringBean
-    private IEventTeamManager eventTeamManager;
+    private EventTeamManager eventTeamManager;
 
     @SpringBean
-    private ILineupManager lineupManager;
+    private LineupManager lineupManager;
 
     public TeamsEditPanel(String id, final IModel<Event> model) {
         super(id);

@@ -15,10 +15,9 @@ import de.flower.rmt.model.db.entity.event.Match_;
 import de.flower.rmt.model.db.type.EventType;
 import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.model.dto.Notification;
-import de.flower.rmt.service.IEventManager;
-import de.flower.rmt.service.IICalendarProvider;
-import de.flower.rmt.service.IInvitationManager;
+import de.flower.rmt.service.EventManager;
 import de.flower.rmt.service.IUrlProvider;
+import de.flower.rmt.service.InvitationManager;
 import de.flower.rmt.ui.markup.html.form.renderer.SurfaceRenderer;
 import de.flower.rmt.util.Dates;
 import org.slf4j.Logger;
@@ -40,21 +39,21 @@ import java.util.Map;
  * @author flowerrrr
  */
 @Service
-public class NotificationService implements INotificationService, IICalendarProvider {
+public class NotificationService {
 
     private final static Logger log = LoggerFactory.getLogger(NotificationService.class);
 
     @Autowired
-    private IMailService mailService;
+    private MailService mailService;
 
     @Autowired
-    private ITemplateService templateService;
+    private TemplateService templateService;
 
     @Autowired
-    private IEventManager eventManager;
+    private EventManager eventManager;
 
     @Autowired
-    private IInvitationManager invitationManager;
+    private InvitationManager invitationManager;
 
     @Autowired
     private IUrlProvider urlProvider;
@@ -62,7 +61,6 @@ public class NotificationService implements INotificationService, IICalendarProv
     @Autowired
     private MessageSourceAccessor messageSource;
 
-    @Override
     public void sendResetPasswordMail(final User user, final User manager) {
         mailService.sendMail(getResetPasswordMessage(user, manager));
     }
@@ -84,7 +82,6 @@ public class NotificationService implements INotificationService, IICalendarProv
         return message;
     }
 
-    @Override
     public void sendInvitationNewUser(final User user, final User manager) {
         mailService.sendMail(getInvitationNewUserMessage(user, manager));
     }
@@ -107,7 +104,6 @@ public class NotificationService implements INotificationService, IICalendarProv
         return message;
     }
 
-    @Override
     @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
     // required to enable lazy fetching of event and event.created by user
     public void sendStatusChangedMessage(final Invitation invitationIn) {
@@ -139,7 +135,6 @@ public class NotificationService implements INotificationService, IICalendarProv
         return message;
     }
 
-    @Override
     public Notification newEventNotification(final Event eventIn) {
         Event event = eventManager.loadById(eventIn.getId(), Event_.venue, Event_.team, AbstractSoccerEvent_.uniform, Match_.opponent);
         return getNewEventNotification(event);
@@ -163,7 +158,6 @@ public class NotificationService implements INotificationService, IICalendarProv
         return notification;
     }
 
-    @Override
     public String getICalendar(final Event event) {
         final Map<String, Object> model = Maps.newHashMap();
         ICalendarHelper iCalendarHelper = new ICalendarHelper(event);
@@ -190,7 +184,6 @@ public class NotificationService implements INotificationService, IICalendarProv
         return attachment;
     }
 
-    @Override
     public void sendNoResponseReminder(Event event, final List<Invitation> invitations) {
         Check.isTrue(!event.isCanceled(), "Trying to send reminder mail for canceled event.");
         log.info("Sending no-response reminder to [{}]", invitations);
@@ -257,7 +250,6 @@ public class NotificationService implements INotificationService, IICalendarProv
         return notification;
     }
 
-    @Override
     public void sendUnsureReminder(final Event event, final List<Invitation> invitations) {
         Check.isTrue(!event.isCanceled(), "Trying to send reminder mail for canceled event.");
         log.info("Sending unsure reminder to [{}]", invitations);
@@ -299,7 +291,6 @@ public class NotificationService implements INotificationService, IICalendarProv
         return notification;
     }
 
-    @Override
     public void sendEventCanceledMessage(final Event event, final List<Invitation> invitations) {
         log.info("Sending event canceled notification to [{}]", invitations);
         Notification notification = getEventCanceledMessage(event);

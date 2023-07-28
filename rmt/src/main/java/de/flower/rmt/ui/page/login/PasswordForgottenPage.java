@@ -2,7 +2,7 @@ package de.flower.rmt.ui.page.login;
 
 import de.flower.common.ui.ajax.markup.html.form.AjaxSubmitLink;
 import de.flower.rmt.model.db.entity.User;
-import de.flower.rmt.service.IUserManager;
+import de.flower.rmt.service.UserManager;
 import de.flower.rmt.ui.markup.html.panel.SimpleFeedbackPanel;
 import de.flower.rmt.ui.page.base.AbstractBasePage;
 import de.flower.rmt.ui.page.base.AnonymousNavigationPanel;
@@ -22,7 +22,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public class PasswordForgottenPage extends AbstractBasePage {
 
     @SpringBean
-    private IUserManager userManager;
+    private UserManager userManager;
 
     private static String[] links = new String[]{
             "http://www.buerlecithin.de/",

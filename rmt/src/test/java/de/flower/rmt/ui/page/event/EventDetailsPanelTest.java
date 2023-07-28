@@ -2,10 +2,10 @@ package de.flower.rmt.ui.page.event;
 
 import de.flower.rmt.model.db.entity.event.Match;
 import de.flower.rmt.model.db.type.EventType;
-import de.flower.rmt.service.IEventManager;
+import de.flower.rmt.service.EventManager;
 import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
-import de.flower.rmt.ui.app.IViewResolver;
 import de.flower.rmt.ui.app.View;
+import de.flower.rmt.ui.app.ViewResolver;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.mockito.Matchers;
@@ -22,10 +22,10 @@ import static org.mockito.Mockito.when;
 public class EventDetailsPanelTest extends AbstractRMTWicketMockitoTests {
 
     @SpringBean
-    private IEventManager eventManager;
+    private EventManager eventManager;
 
     @SpringBean
-    private IViewResolver viewResolver;
+    private ViewResolver viewResolver;
 
     @Test
     public void testRender() {

@@ -12,14 +12,13 @@ import org.springframework.stereotype.Service;
  * @author flowerrrr
  */
 @Service
-public class SecurityService implements ISecurityService {
+public class SecurityService {
 
     private final static Logger log = LoggerFactory.getLogger(SecurityService.class);
 
     @Autowired
     private SecurityContextHolderStrategy schs;
 
-    @Override
     public UserDetailsBean getCurrentUser() {
         Authentication authentication = schs.getContext().getAuthentication();
         if (authentication == null) {
@@ -37,22 +36,18 @@ public class SecurityService implements ISecurityService {
         }
     }
 
-    @Override
     public boolean isCurrentUserLoggedIn() {
         return getCurrentUser() != null;
     }
 
-    @Override
     public boolean isCurrentUser(User user) {
         return getCurrentUser().getUser().equals(user);
     }
 
-    @Override
     public boolean isCurrentUserOrManager(final User user) {
         return isCurrentUser(user) || getUser().isManager();
     }
 
-    @Override
     public User getUser() {
         return (getCurrentUser() == null) ? null: getCurrentUser().getUser();
     }

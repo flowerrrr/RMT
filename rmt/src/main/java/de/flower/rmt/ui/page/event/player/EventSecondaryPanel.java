@@ -6,8 +6,8 @@ import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.RSVPStatus;
-import de.flower.rmt.service.IEventManager;
-import de.flower.rmt.service.IInvitationManager;
+import de.flower.rmt.service.EventManager;
+import de.flower.rmt.service.InvitationManager;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.page.event.EventCanceledPanel;
 import de.flower.rmt.ui.page.event.EventDetailsPanel;
@@ -27,7 +27,7 @@ import java.util.List;
 public class EventSecondaryPanel extends BasePanel {
 
     @SpringBean
-    private IInvitationManager invitationManager;
+    private InvitationManager invitationManager;
 
     public EventSecondaryPanel(final IModel<Event> model, final IModel<Invitation> invitationModel) {
         // treat subpanels as top level secondary panels to have spacer between them
@@ -58,10 +58,10 @@ public class EventSecondaryPanel extends BasePanel {
     public static class SlideableInvitationFormPanel extends BasePanel<Invitation> {
 
         @SpringBean
-        private IInvitationManager invitationManager;
+        private InvitationManager invitationManager;
 
         @SpringBean
-        private IEventManager eventManager;
+        private EventManager eventManager;
 
         public SlideableInvitationFormPanel(final IModel<Invitation> invitationModel) {
             super(invitationModel);

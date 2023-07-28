@@ -18,7 +18,7 @@ import java.util.List;
  * Does the actual database operations used for validation.
  */
 @Service
-public final class RowCountChecker implements IRowCountChecker {
+public class RowCountChecker {
 
     /**
      * Need to create own EntityManager. Otherwise when validating during a save/update the database query will force a
@@ -34,7 +34,6 @@ public final class RowCountChecker implements IRowCountChecker {
         this.emFactory = Check.notNull(emFactory);
     }
 
-    @Override
     public Long rowCount(final IEntity entity, final List<String> attributeNames) {
         EntityManager em = null;
         try {

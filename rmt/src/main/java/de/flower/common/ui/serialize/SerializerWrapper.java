@@ -12,7 +12,7 @@ public class SerializerWrapper implements ISerializer {
 
     private ISerializer serializer;
 
-    private List<ISerializerListener> listeners = new ArrayList();
+    private List<PageSerializationValidatorListener> listeners = new ArrayList();
 
     public SerializerWrapper(ISerializer serializer) {
         this.serializer = serializer;
@@ -26,7 +26,7 @@ public class SerializerWrapper implements ISerializer {
     }
 
     private void notify(Object object, byte[] data) {
-        for (ISerializerListener listener : listeners) {
+        for (PageSerializationValidatorListener listener : listeners) {
             listener.notify(object, data);
         }
     }
@@ -36,7 +36,7 @@ public class SerializerWrapper implements ISerializer {
         return serializer.deserialize(data);
     }
 
-    public void addListener(ISerializerListener listener) {
+    public void addListener(PageSerializationValidatorListener listener) {
         listeners.add(listener);
     }
 }

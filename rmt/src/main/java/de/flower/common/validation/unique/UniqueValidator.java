@@ -3,7 +3,7 @@ package de.flower.common.validation.unique;
 import de.flower.common.model.db.entity.IEntity;
 import de.flower.common.util.Check;
 import de.flower.common.validation.unique.impl.IColumnResolver;
-import de.flower.common.validation.unique.impl.IRowCountChecker;
+import de.flower.common.validation.unique.impl.RowCountChecker;
 import de.flower.common.validation.unique.impl.UniqueDef;
 import de.flower.common.validation.unique.impl.UniqueDefFactory;
 import org.apache.commons.beanutils.PropertyUtils;
@@ -24,13 +24,13 @@ public final class UniqueValidator implements ConstraintValidator<Unique, IEntit
 
     private final IColumnResolver columnResolver;
 
-    private final IRowCountChecker rowCountChecker;
+    private final RowCountChecker rowCountChecker;
 
     private UniqueDef constraintDef;
 
     @Autowired
     public UniqueValidator(final IColumnResolver columnResolver,
-            final IRowCountChecker rowCountChecker) {
+            final RowCountChecker rowCountChecker) {
         this.columnResolver = Check.notNull(columnResolver);
         this.rowCountChecker = Check.notNull(rowCountChecker);
     }

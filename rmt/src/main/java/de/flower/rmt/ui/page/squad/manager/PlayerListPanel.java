@@ -8,8 +8,8 @@ import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.Player;
 import de.flower.rmt.model.db.entity.Team;
-import de.flower.rmt.service.IPlayerManager;
-import de.flower.rmt.service.ITeamManager;
+import de.flower.rmt.service.PlayerManager;
+import de.flower.rmt.service.TeamManager;
 import de.flower.rmt.ui.model.UserModel;
 import de.flower.rmt.ui.page.user.manager.PlayerMainPanel;
 import de.flower.rmt.ui.page.user.manager.PlayerPage;
@@ -32,10 +32,10 @@ import java.util.List;
 public class PlayerListPanel extends BasePanel<Team> {
 
     @SpringBean
-    private ITeamManager teamManager;
+    private TeamManager teamManager;
 
     @SpringBean
-    private IPlayerManager playerManager;
+    private PlayerManager playerManager;
 
     public PlayerListPanel(IModel<Team> model) {
         super(model);

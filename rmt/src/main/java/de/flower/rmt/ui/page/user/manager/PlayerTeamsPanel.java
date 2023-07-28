@@ -6,7 +6,7 @@ import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.Player;
 import de.flower.rmt.model.db.entity.Player_;
 import de.flower.rmt.model.db.entity.User;
-import de.flower.rmt.service.IPlayerManager;
+import de.flower.rmt.service.PlayerManager;
 import de.flower.rmt.ui.markup.html.form.field.DropDownChoicePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.OnChangeAjaxBehavior;
@@ -30,7 +30,7 @@ import java.util.List;
 public class PlayerTeamsPanel extends BasePanel<User> {
 
     @SpringBean
-    private IPlayerManager playerManager;
+    private PlayerManager playerManager;
 
     public PlayerTeamsPanel(String id, IModel<User> model) {
         super(id, model);

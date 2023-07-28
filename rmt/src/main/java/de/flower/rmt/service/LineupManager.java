@@ -28,7 +28,7 @@ import java.util.List;
  */
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
-public class LineupManager extends AbstractService implements ILineupManager {
+public class LineupManager extends AbstractService {
 
     @Autowired
     private ILineupRepo lineupRepo;
@@ -37,18 +37,16 @@ public class LineupManager extends AbstractService implements ILineupManager {
     private ILineupItemRepo lineupItemRepo;
 
     @Autowired
-    private IInvitationManager invitationManager;
+    private InvitationManager invitationManager;
 
     @Autowired
-    private IActivityManager activityManager;
+    private ActivityManager activityManager;
 
-    @Override
     public Lineup findLineup(final Event event) {
         BooleanExpression isEvent = QLineup.lineup.event.eq(event);
         return lineupRepo.findOne(isEvent);
     }
 
-    @Override
     public Lineup findOrCreateLineup(final Event event, Path<?>... attributes) {
         Lineup lineup = findLineup(event);
         if (lineup == null) {
@@ -57,7 +55,6 @@ public class LineupManager extends AbstractService implements ILineupManager {
         return lineup;
     }
 
-    @Override
     public List<LineupItem> findLineupItems(final Event event, Path<?>... attributes) {
         Lineup lineup = findOrCreateLineup(event);
         BooleanExpression isEvent = QLineupItem.lineupItem.lineup.event.eq(event);
@@ -72,7 +69,6 @@ public class LineupManager extends AbstractService implements ILineupManager {
         return items;
     }
 
-    @Override
     public List<Invitation> findInvitationsInLinuep(final Event event) {
         List<LineupItem> lineupItems = findLineupItems(event, QLineupItem.lineupItem.invitation);
         return Lists.transform(lineupItems, new Function<LineupItem, Invitation>() {
@@ -83,14 +79,12 @@ public class LineupManager extends AbstractService implements ILineupManager {
         });
     }
 
-    @Override
     public Lineup createLineup(final Event event) {
         Lineup lineup = new Lineup(event);
         lineupRepo.save(lineup);
         return lineup;
     }
 
-    @Override
     public void drop(final DraggableDto dto) {
         Invitation invitation = invitationManager.loadById(dto.entityId, Invitation_.event);
         Lineup lineup = findOrCreateLineup(invitation.getEvent());
@@ -105,7 +99,6 @@ public class LineupManager extends AbstractService implements ILineupManager {
         save(item);
     }
 
-    @Override
     public void removeLineupItem(final Long invitationId) {
         Invitation invitation = invitationManager.loadById(invitationId);
         Lineup lineup = findLineup(invitation.getEvent());
@@ -117,19 +110,17 @@ public class LineupManager extends AbstractService implements ILineupManager {
         }
     }
 
+    @Deprecated
     @VisibleForTesting
-    @Override
     public void save(final LineupItem item) {
         validate(item);
         lineupItemRepo.save(item);
     }
 
-    @Override
     public void delete(final Long lineupId) {
         lineupRepo.delete(lineupId); // delete is cascaded to lineupitems
     }
 
-    @Override
     public void publishLineup(final Event event) {
         Lineup lineup = findOrCreateLineup(event);
         Check.notNull(lineup);

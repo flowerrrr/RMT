@@ -8,7 +8,7 @@ import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.Invitation_;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.RSVPStatus;
-import de.flower.rmt.service.IInvitationManager;
+import de.flower.rmt.service.InvitationManager;
 import de.flower.rmt.ui.page.event.manager.lineup.dragndrop.DraggableEntityLabel;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
@@ -29,7 +29,7 @@ import java.util.List;
 public abstract class DraggableInviteeListPanel extends BasePanel {
 
     @SpringBean
-    private IInvitationManager invitationManager;
+    private InvitationManager invitationManager;
 
     public DraggableInviteeListPanel(final IModel<Event> model) {
 

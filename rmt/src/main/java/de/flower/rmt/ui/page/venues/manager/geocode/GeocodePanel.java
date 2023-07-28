@@ -4,7 +4,7 @@ import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.ajax.markup.html.form.AjaxSubmitLink;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.service.geocoding.GeocodingResult;
-import de.flower.rmt.service.geocoding.IGeocodingService;
+import de.flower.rmt.service.geocoding.GoogleGeocodingService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -26,7 +26,7 @@ public abstract class GeocodePanel extends BasePanel {
     private final static Logger log = LoggerFactory.getLogger(GeocodePanel.class);
 
     @SpringBean
-    private IGeocodingService geocodingService;
+    private GoogleGeocodingService geocodingService;
 
     private IModel<List<GeocodingResult>> resultListModel = new ListModel<>();
 

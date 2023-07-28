@@ -3,7 +3,7 @@ package de.flower.rmt.ui.page.event.player;
 import com.mysema.query.types.Path;
 import de.flower.rmt.model.db.entity.Lineup;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.service.ILineupManager;
+import de.flower.rmt.service.LineupManager;
 import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -19,7 +19,7 @@ import static org.mockito.Mockito.*;
 public class LineupPanelTest extends AbstractRMTWicketMockitoTests {
 
     @SpringBean
-    private ILineupManager lineupManager;
+    private LineupManager lineupManager;
 
     @Override
     protected boolean isMockitoVerboseLogging() {

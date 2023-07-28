@@ -19,7 +19,7 @@ import java.util.List;
  * @author flowerrrr
  */
 @Component
-public class PageSerializationValidatorListener implements ISerializerListener {
+public class PageSerializationValidatorListener {
 
     public static class PageSerializationException extends RuntimeException {
 
@@ -48,7 +48,6 @@ public class PageSerializationValidatorListener implements ISerializerListener {
         this.filter = filter;
     }
 
-    @Override
     public void notify(Object object, byte[] data) {
         ObjectSerializationListener.reset();
         final String xml = xstream.toXML(object);

@@ -41,16 +41,16 @@ import java.util.List;
  */
 @Service
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-public class ActivityManager extends AbstractService implements IActivityManager {
+public class ActivityManager extends AbstractService {
 
     @Autowired
     private IActivityRepo activityRepo;
 
     @Autowired
-    private IInvitationManager invitationManager;
+    private InvitationManager invitationManager;
 
     @Autowired
-    private IEventManager eventManager;
+    private EventManager eventManager;
 
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void save(Activity entity) {
@@ -65,12 +65,10 @@ public class ActivityManager extends AbstractService implements IActivityManager
         return entity;
     }
 
-    @Override
     public Activity loadById(final Long id) {
         return activityRepo.findOne(id);
     }
 
-    @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void onCreateOrUpdateEvent(Event event, EventUpdateMessage.Type type) {
         event = eventManager.loadById(event.getId(), Event_.team);
@@ -83,7 +81,6 @@ public class ActivityManager extends AbstractService implements IActivityManager
         save(entity);
     }
 
-    @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void onLineupPublished(final Lineup lineup) {
         Activity entity = newInstance();
@@ -94,7 +91,6 @@ public class ActivityManager extends AbstractService implements IActivityManager
         save(entity);
     }
 
-    @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void onInvitationMailSent(final Event event) {
         Activity entity = newInstance();
@@ -104,7 +100,6 @@ public class ActivityManager extends AbstractService implements IActivityManager
         save(entity);
     }
 
-    @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void onInvitationUpdated(final Invitation invitation, final Invitation origInvitation, final String comment, final String origComment) {
         Check.isTrue(invitation != origInvitation);
@@ -193,7 +188,6 @@ public class ActivityManager extends AbstractService implements IActivityManager
         return list;
     }
 
-    @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void onCommentUpdated(final Comment comment, final Comment origComment) {
         boolean changed = false;
@@ -220,7 +214,6 @@ public class ActivityManager extends AbstractService implements IActivityManager
         }
     }
 
-    @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void onBArticleCreate(final BArticle article) {
         BlogUpdateMessage message = new BlogUpdateMessage(article);
@@ -229,7 +222,6 @@ public class ActivityManager extends AbstractService implements IActivityManager
         save(activity);
     }
 
-    @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void onBCommentCreate(final BComment comment) {
         BlogUpdateMessage message = new BlogUpdateMessage(comment.getArticle(), comment);
@@ -238,7 +230,6 @@ public class ActivityManager extends AbstractService implements IActivityManager
         save(activity);
     }
 
-    @Override
     public List<Activity> findLastN(final int page, final int size) {
         return activityRepo.findAll(new PageRequest(page, size, Sort.Direction.DESC, Activity_.date.getName())).getContent();
     }

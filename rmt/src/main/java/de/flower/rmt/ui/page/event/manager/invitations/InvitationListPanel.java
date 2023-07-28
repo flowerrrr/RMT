@@ -10,7 +10,7 @@ import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.Invitation_;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.RSVPStatus;
-import de.flower.rmt.service.IInvitationManager;
+import de.flower.rmt.service.InvitationManager;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.page.event.CommentsPanel;
 import de.flower.rmt.ui.panel.DropDownMenuPanel;
@@ -41,7 +41,7 @@ import java.util.List;
 public class InvitationListPanel extends BasePanel {
 
     @SpringBean
-    private IInvitationManager invitationManager;
+    private InvitationManager invitationManager;
 
     public InvitationListPanel(IModel<Event> model) {
         this(null, model);

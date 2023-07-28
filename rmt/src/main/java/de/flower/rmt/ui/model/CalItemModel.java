@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.model;
 
 import de.flower.rmt.model.db.entity.CalItem;
-import de.flower.rmt.service.ICalendarManager;
+import de.flower.rmt.service.CalendarManager;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -11,7 +11,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public class CalItemModel extends AbstractEntityModel<CalItem> {
 
     @SpringBean
-    private ICalendarManager manager;
+    private CalendarManager manager;
 
     public CalItemModel(CalItem entity) {
         super(entity);

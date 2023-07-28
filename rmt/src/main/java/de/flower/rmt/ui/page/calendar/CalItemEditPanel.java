@@ -8,9 +8,9 @@ import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.CalItem;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.dto.CalItemDto;
-import de.flower.rmt.security.ISecurityService;
-import de.flower.rmt.service.ICalendarManager;
-import de.flower.rmt.service.IUserManager;
+import de.flower.rmt.security.SecurityService;
+import de.flower.rmt.service.CalendarManager;
+import de.flower.rmt.service.UserManager;
 import de.flower.rmt.ui.markup.html.form.DatePicker;
 import de.flower.rmt.ui.markup.html.form.EntityForm;
 import de.flower.rmt.ui.markup.html.form.TimeDropDownChoice;
@@ -41,13 +41,13 @@ import java.util.List;
 public class CalItemEditPanel extends RMTBasePanel<CalItemDto> {
 
     @SpringBean
-    private ICalendarManager calendarManager;
+    private CalendarManager calendarManager;
 
     @SpringBean
-    private IUserManager userManager;
+    private UserManager userManager;
 
     @SpringBean
-    private ISecurityService securityService;
+    private SecurityService securityService;
 
     private FormComponent startDateTime;
 

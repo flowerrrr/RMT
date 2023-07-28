@@ -2,9 +2,9 @@ package de.flower.rmt.ui.panel;
 
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.User;
-import de.flower.rmt.security.ISecurityService;
-import de.flower.rmt.ui.app.IViewResolver;
+import de.flower.rmt.security.SecurityService;
 import de.flower.rmt.ui.app.View;
+import de.flower.rmt.ui.app.ViewResolver;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
@@ -16,10 +16,10 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public class RMTBasePanel<T> extends BasePanel<T> {
 
     @SpringBean
-    protected ISecurityService securityService;
+    protected SecurityService securityService;
 
     @SpringBean
-    private IViewResolver viewResolver;
+    private ViewResolver viewResolver;
 
     public RMTBasePanel() {
         this(null, null);

@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.model;
 
 import de.flower.rmt.model.db.entity.Venue;
-import de.flower.rmt.service.IVenueManager;
+import de.flower.rmt.service.VenueManager;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -11,7 +11,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public class VenueModel extends AbstractEntityModel<Venue> {
 
     @SpringBean
-    private IVenueManager manager;
+    private VenueManager manager;
 
     public VenueModel(Venue entity) {
         super(entity);

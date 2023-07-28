@@ -29,18 +29,18 @@ import de.flower.rmt.repository.IClubRepo;
 import de.flower.rmt.repository.IEventRepo;
 import de.flower.rmt.repository.IPlayerRepo;
 import de.flower.rmt.repository.ITeamRepo;
-import de.flower.rmt.service.IActivityManager;
-import de.flower.rmt.service.IBlogManager;
-import de.flower.rmt.service.ICommentManager;
-import de.flower.rmt.service.IEventManager;
-import de.flower.rmt.service.IInvitationManager;
-import de.flower.rmt.service.ILineupManager;
-import de.flower.rmt.service.IOpponentManager;
-import de.flower.rmt.service.IPlayerManager;
-import de.flower.rmt.service.ITeamManager;
-import de.flower.rmt.service.IUniformManager;
-import de.flower.rmt.service.IUserManager;
-import de.flower.rmt.service.IVenueManager;
+import de.flower.rmt.service.ActivityManager;
+import de.flower.rmt.service.BlogManager;
+import de.flower.rmt.service.CommentManager;
+import de.flower.rmt.service.EventManager;
+import de.flower.rmt.service.InvitationManager;
+import de.flower.rmt.service.LineupManager;
+import de.flower.rmt.service.OpponentManager;
+import de.flower.rmt.service.PlayerManager;
+import de.flower.rmt.service.TeamManager;
+import de.flower.rmt.service.UniformManager;
+import de.flower.rmt.service.UserManager;
+import de.flower.rmt.service.VenueManager;
 import org.apache.commons.lang.math.RandomUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.Validate;
@@ -91,40 +91,40 @@ public class TestData {
     private IActivityRepo activityRepo;
 
     @Autowired
-    private ITeamManager teamManager;
+    private TeamManager teamManager;
 
     @Autowired
-    private IUniformManager uniformManager;
+    private UniformManager uniformManager;
 
     @Autowired
-    private IPlayerManager playerManager;
+    private PlayerManager playerManager;
 
     @Autowired
-    private IEventManager eventManager;
+    private EventManager eventManager;
 
     @Autowired
-    private ILineupManager lineupManager;
+    private LineupManager lineupManager;
 
     @Autowired
-    protected IInvitationManager invitationManager;
+    protected InvitationManager invitationManager;
 
     @Autowired
-    protected ICommentManager commentManager;
+    protected CommentManager commentManager;
 
     @Autowired
-    private IVenueManager venueManager;
+    private VenueManager venueManager;
 
     @Autowired
-    private IOpponentManager opponentManager;
+    private OpponentManager opponentManager;
 
     @Autowired
-    private IUserManager userManager;
+    private UserManager userManager;
 
     @Autowired
-    private IBlogManager blogManager;
+    private BlogManager blogManager;
 
     @Autowired
-    private IActivityManager activityManager;
+    private ActivityManager activityManager;
 
     private Random random = new Random();
 

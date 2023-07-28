@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.page.venues.player;
 
 import de.flower.rmt.model.db.entity.Venue;
-import de.flower.rmt.service.IVenueManager;
+import de.flower.rmt.service.VenueManager;
 import de.flower.rmt.ui.markup.html.weather.WeatherPanel;
 import de.flower.rmt.ui.model.VenueModel;
 import de.flower.rmt.ui.page.Pages;
@@ -25,7 +25,7 @@ public class VenuePage extends PlayerBasePage {
     public final static String PARAM_VENUEID = "venue";
 
     @SpringBean
-    private IVenueManager venueManager;
+    private VenueManager venueManager;
 
     /**
      * Deep link support

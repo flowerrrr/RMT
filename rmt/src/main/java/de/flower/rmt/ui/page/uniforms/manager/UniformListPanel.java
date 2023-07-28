@@ -7,7 +7,7 @@ import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.Team;
 import de.flower.rmt.model.db.entity.Uniform;
-import de.flower.rmt.service.IUniformManager;
+import de.flower.rmt.service.UniformManager;
 import de.flower.rmt.ui.model.UniformModel;
 import de.flower.rmt.ui.panel.DropDownMenuPanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -29,7 +29,7 @@ import java.util.List;
 public class UniformListPanel extends BasePanel<Team> {
 
     @SpringBean
-    private IUniformManager uniformManager;
+    private UniformManager uniformManager;
 
     public UniformListPanel(final IModel<Team> model) {
         super(model);

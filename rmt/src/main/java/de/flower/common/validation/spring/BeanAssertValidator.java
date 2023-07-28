@@ -1,5 +1,6 @@
 package de.flower.common.validation.spring;
 
+import de.flower.rmt.service.validation.PasswordValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class BeanAssertValidator implements ConstraintValidator<BeanAssert, Obje
 
     private BeanAssert constraint;
 
-    private IBeanValidator beanValidator;
+    private PasswordValidator beanValidator;
 
     @Autowired
     private ApplicationContext applicationContext;
@@ -25,7 +26,7 @@ public class BeanAssertValidator implements ConstraintValidator<BeanAssert, Obje
     @Override
     public void initialize(final BeanAssert constraint) {
         this.constraint = constraint;
-        beanValidator = (IBeanValidator) applicationContext.getBean(constraint.beanClass());
+        beanValidator = (PasswordValidator) applicationContext.getBean(constraint.beanClass());
     }
 
     @Override

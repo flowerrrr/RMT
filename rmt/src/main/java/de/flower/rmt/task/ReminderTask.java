@@ -3,10 +3,10 @@ package de.flower.rmt.task;
 import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.security.ISecurityService;
-import de.flower.rmt.service.IEventManager;
-import de.flower.rmt.service.IInvitationManager;
-import de.flower.rmt.service.mail.INotificationService;
+import de.flower.rmt.security.SecurityService;
+import de.flower.rmt.service.EventManager;
+import de.flower.rmt.service.InvitationManager;
+import de.flower.rmt.service.mail.NotificationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,16 +27,16 @@ public class ReminderTask {
     private final static Logger log = LoggerFactory.getLogger(ReminderTask.class);
 
     @Autowired
-    private IInvitationManager invitationManager;
+    private InvitationManager invitationManager;
 
     @Autowired
-    private INotificationService notificationService;
+    private NotificationService notificationService;
 
     @Autowired
-    private ISecurityService securityService;
+    private SecurityService securityService;
 
     @Autowired
-    private IEventManager eventManager;
+    private EventManager eventManager;
 
     @Value("${reminder.noresponse.days.before.event}")
     private Integer noResponseDaysBeforeEvent;

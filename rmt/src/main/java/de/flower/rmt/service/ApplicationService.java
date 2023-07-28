@@ -19,7 +19,7 @@ import java.nio.charset.Charset;
  * @author flowerrrr
  */
 @Service
-public class ApplicationService extends AbstractService implements IApplicationService {
+public class ApplicationService extends AbstractService {
 
     @Value("${resource.motd}")
     private Resource motdResource;
@@ -33,7 +33,6 @@ public class ApplicationService extends AbstractService implements IApplicationS
      *
      * @return
      */
-    @Override
     public String getMessageOfTheDay() {
         // resource.exists also returns true when resource was loaded and is later removed from file system. so
         // need to check if file actually exist.
@@ -59,19 +58,16 @@ public class ApplicationService extends AbstractService implements IApplicationS
      * @param name
      * @return null, if no property is found.
      */
-    @Override
     public String getProperty(String name) {
         Property property = propertyRepo.findByClubAndName(getClub(), name);
         return property == null ? null : property.getValue();
     }
 
-    @Override
     public String getUserProperty(User user, String name) {
         Property property = propertyRepo.findByUserAndName(user, name);
         return property == null ? null : property.getValue();
     }
 
-    @Override
     public void saveUserProperty(User user, String name, String value) {
         Property property = propertyRepo.findByUserAndName(user, name);
         if (property == null) {

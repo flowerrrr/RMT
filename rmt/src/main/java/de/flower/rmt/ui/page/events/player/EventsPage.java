@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.page.events.player;
 
-import de.flower.rmt.security.ISecurityService;
+import de.flower.rmt.security.SecurityService;
 import de.flower.rmt.ui.model.UserModel;
 import de.flower.rmt.ui.page.Pages;
 import de.flower.rmt.ui.page.base.player.PlayerBasePage;
@@ -13,7 +13,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public class EventsPage extends PlayerBasePage {
 
     @SpringBean
-    private ISecurityService securityService;
+    private SecurityService securityService;
 
     public EventsPage() {
         setHeading("player.events.heading");

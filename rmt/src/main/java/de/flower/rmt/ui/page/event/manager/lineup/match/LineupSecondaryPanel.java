@@ -6,7 +6,7 @@ import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.Lineup;
 import de.flower.rmt.model.db.entity.LineupItem;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.service.ILineupManager;
+import de.flower.rmt.service.LineupManager;
 import de.flower.rmt.ui.model.LineupModel;
 import de.flower.rmt.ui.page.event.manager.lineup.DraggableInviteeListPanel;
 import de.flower.rmt.ui.page.event.manager.lineup.PublishPanel;
@@ -35,7 +35,7 @@ public class LineupSecondaryPanel extends BasePanel {
     public static class LineupPublishPanel extends PublishPanel<Event> {
 
         @SpringBean
-        private ILineupManager lineupManager;
+        private LineupManager lineupManager;
 
         private IModel<Lineup> lineupModel;
 
@@ -59,7 +59,7 @@ public class LineupSecondaryPanel extends BasePanel {
     public static class LineupInviteeListPanel extends DraggableInviteeListPanel {
 
         @SpringBean
-        private ILineupManager lineupManager;
+        private LineupManager lineupManager;
 
         // used to filter out those players that are already dragged to the lineup-grid.
         private final IModel<List<Invitation>> lineupItemListModel;

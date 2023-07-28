@@ -8,8 +8,8 @@ import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.EventTeam;
 import de.flower.rmt.model.db.entity.Lineup;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.service.IEventManager;
-import de.flower.rmt.service.IEventTeamManager;
+import de.flower.rmt.service.EventManager;
+import de.flower.rmt.service.EventTeamManager;
 import de.flower.rmt.ui.model.LineupModel;
 import de.flower.rmt.ui.page.event.manager.lineup.dragndrop.DraggableEntityLabel;
 import de.flower.rmt.ui.page.event.manager.lineup.dragndrop.EntityLabel;
@@ -36,10 +36,10 @@ public class RankingPanel extends RMTBasePanel<Event> {
     private final static Logger log = LoggerFactory.getLogger(RankingPanel.class);
 
     @SpringBean
-    private IEventTeamManager eventTeamManager;
+    private EventTeamManager eventTeamManager;
 
     @SpringBean
-    private IEventManager eventManager;
+    private EventManager eventManager;
 
     private IModel<Lineup> lineupModel;
 

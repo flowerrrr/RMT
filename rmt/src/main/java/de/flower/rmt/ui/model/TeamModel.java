@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.model;
 
 import de.flower.rmt.model.db.entity.Team;
-import de.flower.rmt.service.ITeamManager;
+import de.flower.rmt.service.TeamManager;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -11,7 +11,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public class TeamModel extends AbstractEntityModel<Team> {
 
     @SpringBean
-    private ITeamManager manager;
+    private TeamManager manager;
 
     public TeamModel(Team entity) {
         super(entity);

@@ -18,18 +18,17 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-public class ResponseManager extends AbstractService implements IResponseManager {
+public class ResponseManager extends AbstractService {
 
     @Autowired
-    private IEventManager eventManager;
+    private EventManager eventManager;
 
     @Autowired
-    private IUserManager userManager;
+    private UserManager userManager;
 
     @Autowired
-    private IInvitationManager invitationManager;
+    private InvitationManager invitationManager;
 
-    @Override
     public Invitation respond(final Long eventId, final Long userId, final RSVPStatus status) {
         Check.notNull(eventId);
         Check.notNull(userId);

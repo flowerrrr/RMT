@@ -3,7 +3,7 @@ package de.flower.rmt.task;
 import de.flower.rmt.model.db.entity.Club;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.security.UserDetailsBean;
-import de.flower.rmt.service.IClubManager;
+import de.flower.rmt.service.ClubManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ public class TaskScheduler {
     private SecurityContextHolderStrategy schs;
 
     @Autowired
-    private IClubManager clubManager;
+    private ClubManager clubManager;
 
     @Autowired
     private ReminderTask reminderTask;

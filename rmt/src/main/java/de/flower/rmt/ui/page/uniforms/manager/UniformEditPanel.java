@@ -3,7 +3,7 @@ package de.flower.rmt.ui.page.uniforms.manager;
 import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.Uniform;
-import de.flower.rmt.service.IUniformManager;
+import de.flower.rmt.service.UniformManager;
 import de.flower.rmt.ui.markup.html.form.CancelableEntityForm;
 import de.flower.rmt.ui.markup.html.form.EntityForm;
 import de.flower.rmt.ui.markup.html.form.field.TextFieldPanel;
@@ -18,7 +18,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public class UniformEditPanel extends BasePanel {
 
     @SpringBean
-    private IUniformManager uniformManager;
+    private UniformManager uniformManager;
 
     public UniformEditPanel(final IModel<Uniform> model) {
 

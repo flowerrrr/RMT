@@ -1,6 +1,6 @@
 package de.flower.rmt.ui.panel.activityfeed;
 
-import de.flower.rmt.service.IActivityManager;
+import de.flower.rmt.service.ActivityManager;
 import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.testng.annotations.BeforeMethod;
@@ -14,7 +14,7 @@ import static org.mockito.Mockito.when;
 public class ActivityFeedPanelTest extends AbstractRMTWicketMockitoTests {
 
     @SpringBean
-    private IActivityManager activityManager;
+    private ActivityManager activityManager;
 
     @BeforeMethod
     public void setUp() {

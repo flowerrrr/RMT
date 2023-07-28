@@ -6,7 +6,7 @@ import de.flower.common.ui.ajax.markup.html.AjaxLinkWithConfirmation;
 import de.flower.common.ui.markup.html.list.EntityListView;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.Venue;
-import de.flower.rmt.service.IVenueManager;
+import de.flower.rmt.service.VenueManager;
 import de.flower.rmt.ui.model.VenueModel;
 import de.flower.rmt.ui.panel.DropDownMenuPanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -26,7 +26,7 @@ import java.util.List;
 public class VenueListPanel extends BasePanel {
 
     @SpringBean
-    private IVenueManager venueManager;
+    private VenueManager venueManager;
 
     public VenueListPanel(IModel<List<Venue>> listModel) {
 

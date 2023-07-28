@@ -2,7 +2,7 @@ package de.flower.rmt.ui.markup.html.form;
 
 import de.flower.rmt.model.db.entity.Team;
 import de.flower.rmt.model.db.entity.Uniform;
-import de.flower.rmt.service.IUniformManager;
+import de.flower.rmt.service.UniformManager;
 import de.flower.rmt.ui.markup.html.form.field.AbstractFormFieldPanel;
 import de.flower.rmt.ui.markup.html.form.field.DropDownChoicePanel;
 import org.apache.wicket.model.IModel;
@@ -18,7 +18,7 @@ import java.util.List;
 public class UniformDropDownChoicePanel extends DropDownChoicePanel<Uniform> {
 
     @SpringBean
-    private IUniformManager uniformManager;
+    private UniformManager uniformManager;
 
     private IModel<Team> teamModel;
 

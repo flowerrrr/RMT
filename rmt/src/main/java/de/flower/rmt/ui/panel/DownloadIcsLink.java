@@ -1,8 +1,8 @@
 package de.flower.rmt.ui.panel;
 
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.service.IICalendarProvider;
 import de.flower.rmt.service.mail.ICalendarHelper;
+import de.flower.rmt.service.mail.NotificationService;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.markup.html.link.ResourceLink;
 import org.apache.wicket.model.IModel;
@@ -21,7 +21,7 @@ public class DownloadIcsLink extends ResourceLink {
     public static class ICalendarResource extends ByteArrayResource {
 
         @SpringBean
-        private IICalendarProvider iCalendarProvider;
+        private NotificationService iCalendarProvider;
 
         private IModel<Event> model;
 

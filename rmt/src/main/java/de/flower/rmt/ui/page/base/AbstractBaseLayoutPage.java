@@ -3,9 +3,9 @@ package de.flower.rmt.ui.page.base;
 import de.flower.common.ui.alert.AlertMessageFeedbackPanel;
 import de.flower.common.ui.markup.html.panel.WrappingPanel;
 import de.flower.common.ui.panel.BasePanel;
-import de.flower.rmt.security.ISecurityService;
-import de.flower.rmt.ui.app.IPropertyProvider;
+import de.flower.rmt.security.SecurityService;
 import de.flower.rmt.ui.app.Links;
+import de.flower.rmt.ui.app.PropertyProvider;
 import de.flower.rmt.ui.page.about.AboutPage;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
@@ -27,10 +27,10 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
 
     @SpringBean
-    private IPropertyProvider propertyProvider;
+    private PropertyProvider propertyProvider;
 
     @SpringBean
-    private ISecurityService securityService;
+    private SecurityService securityService;
 
     private Panel secondaryPanel;
 

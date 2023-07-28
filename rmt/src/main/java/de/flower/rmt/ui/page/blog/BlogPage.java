@@ -1,7 +1,7 @@
 package de.flower.rmt.ui.page.blog;
 
-import de.flower.rmt.security.ISecurityService;
-import de.flower.rmt.service.IBlogManager;
+import de.flower.rmt.security.SecurityService;
+import de.flower.rmt.service.BlogManager;
 import de.flower.rmt.ui.page.Pages;
 import de.flower.rmt.ui.page.base.AbstractCommonBasePage;
 import org.apache.wicket.Component;
@@ -29,10 +29,10 @@ public class BlogPage extends AbstractCommonBasePage {
     public static class BlogMarkAllReadBehavior extends Behavior {
 
         @SpringBean
-        private IBlogManager blogManager;
+        private BlogManager blogManager;
 
         @SpringBean
-        private ISecurityService securityService;
+        private SecurityService securityService;
 
         @Override
         public void onConfigure(final Component component) {

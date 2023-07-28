@@ -8,9 +8,9 @@ import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.EventType;
 import de.flower.rmt.model.db.type.RSVPStatus;
-import de.flower.rmt.service.IEventManager;
-import de.flower.rmt.service.IInvitationManager;
-import de.flower.rmt.service.IResponseManager;
+import de.flower.rmt.service.EventManager;
+import de.flower.rmt.service.InvitationManager;
+import de.flower.rmt.service.ResponseManager;
 import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.model.UserModel;
 import de.flower.rmt.ui.page.event.player.EventPage;
@@ -38,13 +38,13 @@ import java.util.List;
 public class EventListPanel extends BasePanel {
 
     @SpringBean
-    private IResponseManager responseManager;
+    private ResponseManager responseManager;
 
     @SpringBean
-    private IInvitationManager invitationManager;
+    private InvitationManager invitationManager;
 
     @SpringBean
-    private IEventManager eventManager;
+    private EventManager eventManager;
 
     private static final int ITEMS_PER_PAGE = de.flower.rmt.ui.page.events.manager.EventListPanel.ITEMS_PER_PAGE;
 

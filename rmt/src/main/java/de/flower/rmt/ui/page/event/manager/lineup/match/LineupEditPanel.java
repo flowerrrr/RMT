@@ -11,7 +11,7 @@ import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.LineupItem;
 import de.flower.rmt.model.db.entity.QLineupItem;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.service.ILineupManager;
+import de.flower.rmt.service.LineupManager;
 import de.flower.rmt.ui.page.event.manager.lineup.dragndrop.DraggableEntityLabel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -33,7 +33,7 @@ public class LineupEditPanel extends BasePanel {
     private final static Logger log = LoggerFactory.getLogger(LineupEditPanel.class);
 
     @SpringBean
-    private ILineupManager lineupManager;
+    private LineupManager lineupManager;
 
     public LineupEditPanel(String id, final IModel<Event> model) {
         super(id);

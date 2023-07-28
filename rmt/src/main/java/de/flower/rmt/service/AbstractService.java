@@ -4,7 +4,7 @@ import de.flower.common.util.Check;
 import de.flower.rmt.model.db.entity.AbstractClubRelatedEntity;
 import de.flower.rmt.model.db.entity.Club;
 import de.flower.rmt.model.db.entity.User;
-import de.flower.rmt.security.ISecurityService;
+import de.flower.rmt.security.SecurityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public abstract class AbstractService {
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    protected ISecurityService securityService;
+    protected SecurityService securityService;
 
     @Autowired
     private Validator validator;

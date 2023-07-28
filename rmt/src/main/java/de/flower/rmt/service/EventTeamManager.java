@@ -28,7 +28,7 @@ import java.util.List;
  */
 @Service
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-public class EventTeamManager extends AbstractService implements IEventTeamManager {
+public class EventTeamManager extends AbstractService {
 
     @Autowired
     private IEventTeamRepo eventTeamRepo;
@@ -37,14 +37,12 @@ public class EventTeamManager extends AbstractService implements IEventTeamManag
     private IEventTeamPlayerRepo eventTeamPlayerRepo;
 
     @Autowired
-    private IInvitationManager invitationManager;
+    private InvitationManager invitationManager;
 
-    @Override
     public List<EventTeam> findTeamsOrderByRank(final Event event) {
         return eventTeamRepo.findByEventOrderByRankAsc(event);
     }
 
-    @Override
     public List<EventTeamPlayer> findEventTeamPlayers(final EventTeam eventTeam, final Path<?>... attributes) {
         BooleanExpression isEventTeam = QEventTeamPlayer.eventTeamPlayer.eventTeam.eq(eventTeam);
         List<EventTeamPlayer> items = eventTeamPlayerRepo.findAll(isEventTeam, new OrderSpecifier(Order.ASC, QEventTeamPlayer.eventTeamPlayer.order), attributes);
@@ -58,7 +56,6 @@ public class EventTeamManager extends AbstractService implements IEventTeamManag
         return items;
     }
 
-    @Override
     public List<Invitation> findInvitationsInEventTeams(final Event event) {
         BooleanExpression isEvent = QEventTeamPlayer.eventTeamPlayer.eventTeam.event.eq(event);
         List<EventTeamPlayer> items = eventTeamPlayerRepo.findAll(isEvent, QEventTeamPlayer.eventTeamPlayer.invitation);
@@ -72,7 +69,6 @@ public class EventTeamManager extends AbstractService implements IEventTeamManag
         return invitations;
     }
 
-    @Override
     @Transactional(readOnly = false)
     public EventTeam addTeam(final Event event) {
         EventTeam entity = new EventTeam(event);
@@ -88,18 +84,15 @@ public class EventTeamManager extends AbstractService implements IEventTeamManag
         return entity;
     }
 
-    @Override
     public List<EventTeam> findTeams(final Event event) {
         return eventTeamRepo.findByEvent(event);
     }
 
-    @Override
     @Transactional(readOnly = false)
     public void removeTeam(final EventTeam eventTeam) {
         eventTeamRepo.delete(eventTeam);
     }
 
-    @Override
     @Transactional(readOnly = false)
     public void addPlayer(final Long eventTeamId, final Long invitationId, final Long insertBeforePlayerId) {
         EventTeam eventTeam = eventTeamRepo.findOne(eventTeamId);
@@ -141,7 +134,6 @@ public class EventTeamManager extends AbstractService implements IEventTeamManag
         }
     }
 
-    @Override
     @Transactional(readOnly = false)
     public void removePlayer(final Long playerId) {
         EventTeamPlayer player = eventTeamPlayerRepo.findOne(playerId);
@@ -150,7 +142,6 @@ public class EventTeamManager extends AbstractService implements IEventTeamManag
         eventTeamPlayerRepo.delete(playerId);
     }
 
-    @Override
     @Transactional(readOnly = false)
     public void removeInvitation(final Long invitationId) {
         Invitation invitation = invitationManager.loadById(invitationId);
@@ -160,13 +151,11 @@ public class EventTeamManager extends AbstractService implements IEventTeamManag
         }
     }
 
-    @Override
     public void save(final EventTeam eventTeam) {
         validate(eventTeam);
         eventTeamRepo.save(eventTeam);
     }
 
-    @Override
     @Transactional(readOnly = false)
     public void setRank(final Long eventTeamId, final EventTeam insertBeforeEventTeam) {
         EventTeam eventTeam = eventTeamRepo.findOne(eventTeamId);

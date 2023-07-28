@@ -3,7 +3,7 @@ package de.flower.rmt.ui.page.blog;
 import de.flower.common.ui.ajax.event.AjaxEventListener;
 import de.flower.rmt.model.db.entity.BComment;
 import de.flower.rmt.model.db.entity.QBComment;
-import de.flower.rmt.service.IBlogManager;
+import de.flower.rmt.service.BlogManager;
 import de.flower.rmt.ui.panel.RMTBasePanel;
 import de.flower.rmt.util.Dates;
 import org.apache.wicket.markup.html.basic.Label;
@@ -28,7 +28,7 @@ public class LatestCommentsPanel extends RMTBasePanel {
     private final static Logger log = LoggerFactory.getLogger(LatestCommentsPanel.class);
 
     @SpringBean
-    private IBlogManager blogManager;
+    private BlogManager blogManager;
 
     private int currentPage = 0;
 

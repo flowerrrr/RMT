@@ -2,7 +2,7 @@ package de.flower.rmt.ui.markup.html.form;
 
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.entity.event.QEvent;
-import de.flower.rmt.service.IEventManager;
+import de.flower.rmt.service.EventManager;
 import de.flower.rmt.ui.markup.html.form.field.AbstractFormFieldPanel;
 import de.flower.rmt.ui.markup.html.form.field.DropDownChoicePanel;
 import org.apache.wicket.model.IModel;
@@ -17,7 +17,7 @@ import java.util.List;
 public class EventDropDownChoicePanel extends DropDownChoicePanel<Event> {
 
     @SpringBean
-    private IEventManager eventManager;
+    private EventManager eventManager;
 
     public EventDropDownChoicePanel(String id) {
         super(id, new EventDropDownChoice(AbstractFormFieldPanel.ID));

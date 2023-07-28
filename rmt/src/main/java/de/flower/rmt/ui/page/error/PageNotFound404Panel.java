@@ -2,7 +2,7 @@ package de.flower.rmt.ui.page.error;
 
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.common.ui.util.LoggingUtils;
-import de.flower.rmt.security.ISecurityService;
+import de.flower.rmt.security.SecurityService;
 import de.flower.rmt.ui.app.Links;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -17,7 +17,7 @@ public class PageNotFound404Panel extends BasePanel {
     private final static Logger log = LoggerFactory.getLogger(PageNotFound404Panel.class);
 
     @SpringBean
-    private ISecurityService securityService;
+    private SecurityService securityService;
 
     @SpringBean
     private PageNotFoundAutoRedirecter pageNotFoundAutoRedirecter;

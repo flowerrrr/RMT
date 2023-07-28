@@ -7,12 +7,11 @@ import org.springframework.stereotype.Service;
  * @author flowerrrr
  */
 @Service
-public class PasswordGenerator implements IPasswordGenerator {
+public class PasswordGenerator {
 
     // chars that might be hard to distinguish
     public static final String passwordChars = "23456789abcdefghkmnpqrstuvwxyz";
 
-    @Override
     public String generatePassword() {
         String password = RandomStringUtils.random(4, passwordChars);
         return password;

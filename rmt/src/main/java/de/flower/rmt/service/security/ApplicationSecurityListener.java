@@ -1,7 +1,7 @@
 package de.flower.rmt.service.security;
 
 import de.flower.rmt.security.UserDetailsBean;
-import de.flower.rmt.service.IUserManager;
+import de.flower.rmt.service.UserManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class ApplicationSecurityListener implements ApplicationListener<Interact
     private final static Logger log = LoggerFactory.getLogger(ApplicationSecurityListener.class);
 
     @Autowired
-    private IUserManager userManager;
+    private UserManager userManager;
 
     @Override
     public void onApplicationEvent(final InteractiveAuthenticationSuccessEvent event) {

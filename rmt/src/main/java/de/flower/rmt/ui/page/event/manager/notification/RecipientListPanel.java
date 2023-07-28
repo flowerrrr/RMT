@@ -10,7 +10,7 @@ import de.flower.common.util.Collections;
 import de.flower.rmt.model.db.entity.Invitation;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.RSVPStatus;
-import de.flower.rmt.service.IInvitationManager;
+import de.flower.rmt.service.InvitationManager;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -29,7 +29,7 @@ import java.util.List;
 public class RecipientListPanel extends BasePanel<List<InternetAddress>> {
 
     @SpringBean
-    private IInvitationManager invitationManager;
+    private InvitationManager invitationManager;
 
     public RecipientListPanel(final IModel<List<InternetAddress>> model, final IModel<Event> eventModel) {
         super(model);

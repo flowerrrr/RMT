@@ -16,7 +16,7 @@ public class ClassEmittingReflectionConverter extends ReflectionConverter {
 
     private final static Logger log = LoggerFactory.getLogger(ClassEmittingReflectionConverter.class);
 
-    private IObjectSerializationListener listener;
+    private ObjectSerializationListener listener;
 
     public ClassEmittingReflectionConverter(XStream xstream) {
         super(xstream.getMapper(), new JVM().bestReflectionProvider());
@@ -43,11 +43,11 @@ public class ClassEmittingReflectionConverter extends ReflectionConverter {
         }
     }
 
-    public IObjectSerializationListener getListener() {
+    public ObjectSerializationListener getListener() {
         return listener;
     }
 
-    public void setListener(final IObjectSerializationListener listener) {
+    public void setListener(final ObjectSerializationListener listener) {
         this.listener = listener;
     }
 }

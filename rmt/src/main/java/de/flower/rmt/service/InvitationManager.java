@@ -16,7 +16,7 @@ import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.db.type.RSVPStatus;
 import de.flower.rmt.repository.IInvitationRepo;
-import de.flower.rmt.service.mail.INotificationService;
+import de.flower.rmt.service.mail.NotificationService;
 import de.flower.rmt.util.Dates;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,53 +42,50 @@ import static org.springframework.data.jpa.domain.Specifications.where;
  */
 @Service
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-public class InvitationManager extends AbstractService implements IInvitationManager {
+public class InvitationManager extends AbstractService {
 
     @Autowired
     private IInvitationRepo invitationRepo;
 
     @Autowired
-    private IPlayerManager playerManager;
+    private PlayerManager playerManager;
 
     @Autowired
-    private IUserManager userManager;
+    private UserManager userManager;
 
     @Autowired
-    private IActivityManager activityManager;
+    private ActivityManager activityManager;
 
     @Autowired
-    private INotificationService notificationService;
+    private NotificationService notificationService;
 
     @Autowired
-    private ICommentManager commentManager;
+    private CommentManager commentManager;
 
     @Autowired
-    private ICalendarManager calendarManager;
+    private CalendarManager calendarManager;
 
     @Autowired
-    private ILineupManager lineupManager;
+    private LineupManager lineupManager;
 
     @Autowired
-    private IEventTeamManager eventTeamManager;
+    private EventTeamManager eventTeamManager;
 
     @Autowired
     private MessageSourceAccessor messageSource;
 
-    @Override
     public Invitation newInstance(final Event event, User user) {
         Check.notNull(event);
         Check.notNull(user);
         return new Invitation(event, user);
     }
 
-    @Override
     public Invitation newInstance(final Event event, String guestName) {
         Check.notNull(event);
         Check.notBlank(guestName);
         return new Invitation(event, guestName);
     }
 
-    @Override
     public Invitation loadById(Long id, final Attribute... attributes) {
         Check.notNull(id);
         Specification fetch = fetch(attributes);
@@ -97,20 +94,17 @@ public class InvitationManager extends AbstractService implements IInvitationMan
         return entity;
     }
 
-    @Override
     public List<Invitation> findAllByEvent(final Event event, final Attribute... attributes) {
         Specification fetch = fetch(attributes);
         return invitationRepo.findAll(where(eq(Invitation_.event, event)).and(fetch));
     }
 
-    @Override
     public List<Invitation> findAllByEventSortedByName(final Event event, Attribute... attributes) {
         List<Invitation> list = findAllByEvent(event, attributes);
         // use in-memory sorting cause field username is derived and would required complicated sql-query to sort after.
         return sortByName(list);
     }
 
-    @Override
     public List<Invitation> findAllByEventAndStatusSortedByName(final Event event, final RSVPStatus status, final Attribute... attributes) {
         List<Invitation> list = findAllByEventAndStatus(event, status, attributes);
         // list is sorted by date -> resort
@@ -118,7 +112,6 @@ public class InvitationManager extends AbstractService implements IInvitationMan
     }
 
     // TODO (flowerrrr - 20.04.12) not a nice method, neither name nor implementation. refactor!
-    @Override
     public List<Invitation> findAllForNotificationByEventSortedByName(final Event event) {
         List<Invitation> list = findAllByEventSortedByName(event);
 
@@ -149,7 +142,6 @@ public class InvitationManager extends AbstractService implements IInvitationMan
         return ImmutableList.copyOf(filtered);
     }
 
-    @Override
     public List<InternetAddress> getAddressesForfAllInvitees(final Event event) {
         List<Invitation> list = findAllByEventSortedByName(event);
         // convert to list of internet addresses
@@ -167,7 +159,6 @@ public class InvitationManager extends AbstractService implements IInvitationMan
         return de.flower.common.util.Collections.flattenArray(internetAddresses);
     }
 
-    @Override
     public List<Invitation> findAllByEventAndStatus(Event event, RSVPStatus rsvpStatus, final Attribute... attributes) {
         List<Invitation> list = invitationRepo.findAll(where(eq(Invitation_.event, event))
                 .and(eq(Invitation_.status, rsvpStatus))
@@ -180,12 +171,10 @@ public class InvitationManager extends AbstractService implements IInvitationMan
         return list;
     }
 
-    @Override
     public Long numByEventAndStatus(final Event event, final RSVPStatus rsvpStatus) {
         return invitationRepo.numByEventAndStatus(event, rsvpStatus);
     }
 
-    @Override
     public List<Invitation> findAllForNoResponseReminder(final Event event, final int hoursAfterInvitationSent) {
         DateTime now = new DateTime();
         BooleanExpression isEvent = QInvitation.invitation.event.eq(event);
@@ -197,7 +186,6 @@ public class InvitationManager extends AbstractService implements IInvitationMan
         return invitationRepo.findAll(isEvent.and(isInvitationSent).and(isNoResponse).and(isHoursAfterInvitationSent).and(isNotReminderSent), QInvitation.invitation.user);
     }
 
-    @Override
     public List<Invitation> findAllForUnsureReminder(final Event event) {
         BooleanExpression isEvent = QInvitation.invitation.event.eq(event);
         BooleanExpression isUnsure = QInvitation.invitation.status.eq(RSVPStatus.UNSURE);
@@ -205,14 +193,12 @@ public class InvitationManager extends AbstractService implements IInvitationMan
         return invitationRepo.findAll(isEvent.and(isUnsure).and(isNotReminderSent), QInvitation.invitation.user);
     }
 
-    @Override
     public Invitation loadByEventAndUser(Event event, User user) {
         Invitation invitation = findByEventAndUser(event, user);
         Check.notNull(invitation, "No invitation found");
         return invitation;
     }
 
-    @Override
     public Invitation findByEventAndUser(Event event, User user, Path<?>... attributes) {
         BooleanExpression isEvent = QInvitation.invitation.event.eq(event);
         BooleanExpression isUser = QInvitation.invitation.user.eq(user);
@@ -220,13 +206,11 @@ public class InvitationManager extends AbstractService implements IInvitationMan
         return invitation;
     }
 
-    @Override
     @Transactional(readOnly = false)
     public void save(final Invitation invitation) {
         _save(invitation, null);
     }
 
-    @Override
     @Transactional(readOnly = false)
     public void save(final Invitation invitation, String comment) {
         _save(invitation, (comment == null) ? "" : comment);
@@ -290,7 +274,6 @@ public class InvitationManager extends AbstractService implements IInvitationMan
         }
     }
 
-    @Override
     @Transactional(readOnly = false)
     public void delete(final Long id) {
         // delete from lineup
@@ -300,24 +283,20 @@ public class InvitationManager extends AbstractService implements IInvitationMan
         invitationRepo.delete(id);
     }
 
-    @Override
     @Transactional(readOnly = false)
     public void markInvitationSent(final Event event, final List<String> addressList, Date date) {
         invitationRepo.markInvitationSent(event, addressList, date == null ? new Date() : date);
     }
 
-    @Override
     @Transactional(readOnly = false)
     public void markNoResponseReminderSent(final List<Invitation> invitations) {
         invitationRepo.markNoResponseReminderSent(invitations, new Date());
     }
 
-    @Override
     public void markUnsureReminderSent(final List<Invitation> invitations) {
         invitationRepo.markUnsureReminderSent(invitations, new Date());
     }
 
-    @Override
     @Transactional(readOnly = false)
     public void addUsers(final Event entity, final Collection<Long> userIds) {
         for (Long userId : userIds) {
@@ -368,7 +347,6 @@ public class InvitationManager extends AbstractService implements IInvitationMan
         commentManager.updateOrRemoveComment(invitation, comment, invitation.getUser());
     }
 
-    @Override
     @Transactional(readOnly = false)
     public void addGuestPlayer(final Event entity, final String guestName) {
         Invitation invitation = newInstance(entity, guestName);
@@ -385,7 +363,6 @@ public class InvitationManager extends AbstractService implements IInvitationMan
         return list;
     }
 
-    @Override
     @Transactional(readOnly = false)
     public void onAutoDeclineCalItem(final CalItem calItem) {
         // find all invitations belonging to user and inside calendar event range.

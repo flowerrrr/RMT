@@ -4,7 +4,7 @@ import de.flower.common.ui.ajax.event.AjaxEventSender;
 import de.flower.common.ui.ajax.markup.html.AjaxLinkWithConfirmation;
 import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.event.Event;
-import de.flower.rmt.service.IEventManager;
+import de.flower.rmt.service.EventManager;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
@@ -16,7 +16,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public class CancelEventPanel extends BasePanel<Event> {
 
     @SpringBean
-    private IEventManager eventManager;
+    private EventManager eventManager;
 
     public CancelEventPanel(final IModel<Event> model) {
         super(model);

@@ -2,7 +2,7 @@ package de.flower.rmt.ui.model;
 
 import de.flower.rmt.model.db.entity.Team;
 import de.flower.rmt.model.db.entity.Uniform;
-import de.flower.rmt.service.IUniformManager;
+import de.flower.rmt.service.UniformManager;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -12,7 +12,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public class UniformModel extends AbstractEntityModel<Uniform> {
 
     @SpringBean
-    private IUniformManager manager;
+    private UniformManager manager;
 
     private IModel<Team> teamModel;
 

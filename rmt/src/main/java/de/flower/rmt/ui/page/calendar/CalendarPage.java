@@ -7,11 +7,11 @@ import de.flower.rmt.model.db.entity.CalItem;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.event.Event;
 import de.flower.rmt.model.dto.CalItemDto;
-import de.flower.rmt.security.ISecurityService;
-import de.flower.rmt.service.ICalendarManager;
+import de.flower.rmt.security.SecurityService;
+import de.flower.rmt.service.CalendarManager;
 import de.flower.rmt.service.type.CalendarFilter;
-import de.flower.rmt.ui.app.IViewResolver;
 import de.flower.rmt.ui.app.View;
+import de.flower.rmt.ui.app.ViewResolver;
 import de.flower.rmt.ui.model.CalItemModel;
 import de.flower.rmt.ui.model.EventModel;
 import de.flower.rmt.ui.model.UserModel;
@@ -43,13 +43,13 @@ public class CalendarPage extends AbstractCommonBasePage {
     public static final String CALENDAR_SECONDARY_PANEL_ID = "calendarSecondaryPanel";
 
     @SpringBean
-    private ICalendarManager calendarManager;
+    private CalendarManager calendarManager;
 
     @SpringBean
-    private ISecurityService securityService;
+    private SecurityService securityService;
 
     @SpringBean
-    private IViewResolver viewResolver;
+    private ViewResolver viewResolver;
 
     public CalendarPage() {
         init(new UserModel(securityService.getUser()));

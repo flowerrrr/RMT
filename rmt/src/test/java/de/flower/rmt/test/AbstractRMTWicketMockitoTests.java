@@ -4,7 +4,7 @@ import de.flower.common.test.wicket.AbstractWicketMockitoTests;
 import de.flower.common.test.wicket.MockitoFactoryApplicationContext;
 import de.flower.common.test.wicket.WicketTester;
 import de.flower.rmt.model.db.entity.User;
-import de.flower.rmt.security.ISecurityService;
+import de.flower.rmt.security.SecurityService;
 import de.flower.rmt.security.UserDetailsBean;
 import de.flower.rmt.ui.app.TestRMTApplication;
 import org.apache.wicket.protocol.http.WebApplication;
@@ -32,7 +32,7 @@ public abstract class AbstractRMTWicketMockitoTests extends AbstractWicketMockit
 
     @BeforeMethod
     public final void initSecurityService() {
-        ISecurityService securityService = mockCtx.getMock(ISecurityService.class);
+        SecurityService securityService = mockCtx.getMock(SecurityService.class);
         User user = testData.newUser();
         when(securityService.getUser()).thenReturn(user);
 

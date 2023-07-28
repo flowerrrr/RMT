@@ -3,7 +3,7 @@ package de.flower.rmt.service.security;
 import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.User_;
 import de.flower.rmt.security.UserDetailsBean;
-import de.flower.rmt.service.IUserManager;
+import de.flower.rmt.service.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserDetailServiceBean implements UserDetailsService {
 
     @Autowired
-    private IUserManager userManager;
+    private UserManager userManager;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DataAccessException {
