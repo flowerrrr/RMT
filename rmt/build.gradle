@@ -23,7 +23,7 @@ project.ext.versions = [
         groovy            : "2.4.21",
         hibernate         : "3.6.7.Final",
         slf4j             : "2.0.1",
-        spring            : "3.2.18.RELEASE",
+        spring            : "4.0.9.RELEASE",
         spring_security   : "3.2.10.RELEASE",
         wicket            : "1.5.7",
 ]
