@@ -835,19 +835,6 @@
       ],
       "value": ""
     }, {
-      "id": "8ec3514e-2830-44ce-9d62-4bdcd54a71be",
-      "comment": "",
-      "command": "click",
-      "target": "xpath=//form/div[2]/ul/li[4]/input",
-      "targets": [
-        ["id=id142", "id"],
-        ["css=#id142", "css:finder"],
-        ["xpath=//input[@id='id142']", "xpath:attributes"],
-        ["xpath=//form[@id='id13e']/div[2]/ul/li[3]/input", "xpath:idRelative"],
-        ["xpath=//li[3]/input", "xpath:position"]
-      ],
-      "value": ""
-    }, {
       "id": "d9da6e79-f672-4ea5-84ed-8c500642d53a",
       "comment": "",
       "command": "click",
