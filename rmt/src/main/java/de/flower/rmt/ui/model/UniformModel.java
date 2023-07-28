@@ -6,9 +6,7 @@ import de.flower.rmt.service.UniformManager;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-/**
- * @author flowerrrr
- */
+
 public class UniformModel extends AbstractEntityModel<Uniform> {
 
     @SpringBean

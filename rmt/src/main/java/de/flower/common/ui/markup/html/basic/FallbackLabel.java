@@ -4,9 +4,7 @@ import de.flower.common.ui.model.FallbackModel;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
 
-/**
- * @author flowerrrr
- */
+
 public class FallbackLabel extends Label {
 
     private IModel<?> defaultModel;

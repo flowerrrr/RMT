@@ -5,9 +5,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.html.IHeaderResponse;
 
-/**
- * @author flowerrrr
- */
+
 public class DraggableBehavior extends Behavior {
 
     private Component c;

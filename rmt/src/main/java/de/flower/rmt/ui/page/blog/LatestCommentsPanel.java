@@ -20,9 +20,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Date;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class LatestCommentsPanel extends RMTBasePanel {
 
     private final static Logger log = LoggerFactory.getLogger(LatestCommentsPanel.class);

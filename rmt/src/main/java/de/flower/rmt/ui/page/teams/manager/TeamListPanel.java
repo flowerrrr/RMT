@@ -23,9 +23,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class TeamListPanel extends BasePanel {
 
     @SpringBean

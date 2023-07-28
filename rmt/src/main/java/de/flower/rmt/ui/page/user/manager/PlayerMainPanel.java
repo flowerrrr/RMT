@@ -11,9 +11,7 @@ import org.apache.wicket.model.ResourceModel;
 
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class PlayerMainPanel extends AbstractAjaxTabbedPanel<User> {
 
     public static final int TEAM_SETTINGS_PANEL_INDEX = 1;

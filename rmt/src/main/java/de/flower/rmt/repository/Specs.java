@@ -13,9 +13,7 @@ import javax.persistence.metamodel.PluralAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class Specs {
 
     public static <X, T> Specification eq(final SingularAttribute<X, T> attribute, final T object) {

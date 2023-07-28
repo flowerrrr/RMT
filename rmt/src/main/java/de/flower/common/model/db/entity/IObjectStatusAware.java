@@ -4,8 +4,6 @@ import de.flower.common.model.db.type.ObjectStatus;
 
 /**
  * Should be implemented by classes which status is manageable by a <code>ObjectStatus</code> enum.
- * 
- * @author flowerrrr
  */
 public interface IObjectStatusAware {
 

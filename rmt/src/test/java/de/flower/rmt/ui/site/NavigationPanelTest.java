@@ -4,9 +4,7 @@ import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
 import de.flower.rmt.ui.page.base.INavigationPanelAware;
 import org.testng.annotations.Test;
 
-/**
- * @author flowerrrr
- */
+
 
 public class NavigationPanelTest extends AbstractRMTWicketMockitoTests {
 

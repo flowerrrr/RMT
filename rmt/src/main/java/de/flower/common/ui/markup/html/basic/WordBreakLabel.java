@@ -7,7 +7,6 @@ import org.apache.wicket.markup.html.basic.Label;
 
 /**
  * Inserts soft-hyphens into the displayed label.
- * @author flowerrrr
  */
 public class WordBreakLabel extends Label {
 

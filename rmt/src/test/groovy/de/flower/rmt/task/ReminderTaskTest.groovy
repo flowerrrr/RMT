@@ -16,9 +16,7 @@ import org.testng.annotations.Test
 import static org.testng.Assert.assertEquals
 import static org.testng.Assert.assertTrue
 
-/**
- * @author flowerrrr
- */
+
 // @groovy.transform.TypeChecked  // problems with invitationRepo.findOne() or .save() calls.
 @ContextConfiguration(classes = [Config.class])
 public class ReminderTaskTest extends AbstractRMTIntegrationTests {

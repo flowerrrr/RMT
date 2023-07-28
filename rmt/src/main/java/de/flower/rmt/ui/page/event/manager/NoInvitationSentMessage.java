@@ -7,9 +7,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-/**
- * @author flowerrrr
- */
+
 public class NoInvitationSentMessage extends AlertMessage {
 
     private IModel<Event> model;

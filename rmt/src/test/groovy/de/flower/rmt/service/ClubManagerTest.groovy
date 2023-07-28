@@ -5,9 +5,7 @@ import de.flower.rmt.test.AbstractRMTIntegrationTests
 import org.testng.annotations.Test
 import static org.testng.Assert.assertEquals
 
-/**
- * @author flowerrrr
- */
+
 @groovy.transform.TypeChecked
 public class ClubManagerTest extends AbstractRMTIntegrationTests {
 

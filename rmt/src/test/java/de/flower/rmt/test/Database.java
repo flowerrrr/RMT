@@ -18,9 +18,7 @@ import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.util.Map;
 
-/**
- * @author flowerrrr
- */
+
 
 public class Database {
 

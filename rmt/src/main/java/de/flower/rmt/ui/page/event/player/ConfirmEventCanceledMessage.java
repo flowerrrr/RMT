@@ -9,8 +9,6 @@ import org.apache.wicket.model.ResourceModel;
 
 /**
  * Displayed on event page if player has not yet changed his status to declined after event has been canceled.
- *
- * @author flowerrrr
  */
 public abstract class ConfirmEventCanceledMessage extends AlertMessage {
 

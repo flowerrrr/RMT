@@ -8,9 +8,7 @@ import org.apache.wicket.model.LoadableDetachableModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * @author flowerrrr
- */
+
 public abstract class AbstractEntityModel<T extends IEntity> extends LoadableDetachableModel<T> {
 
     private final static Logger log = LoggerFactory.getLogger(AbstractEntityModel.class);

@@ -6,9 +6,7 @@ import org.apache.wicket.model.IModel;
 
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public abstract class EntityListView<T extends IEntity> extends ListView<T> {
 
     public EntityListView(String id, IModel<? extends List<? extends T>> iModel) {

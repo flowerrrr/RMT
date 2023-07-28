@@ -12,9 +12,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class UniformDropDownChoicePanel extends DropDownChoicePanel<Uniform> {
 
     @SpringBean

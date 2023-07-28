@@ -7,10 +7,6 @@ import de.flower.rmt.ui.model.TeamModel;
 import de.flower.rmt.ui.model.UniformModel;
 import org.testng.annotations.Test;
 
-/**
- * 
- * @author flowerrrr
- */
 
 public class UniformEditPageTest extends AbstractRMTWicketIntegrationTests {
 

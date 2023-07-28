@@ -9,9 +9,7 @@ import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.Model;
 import org.testng.annotations.Test;
 
-/**
- * @author flowerrrr
- */
+
 public class TooltipBehaviorTest extends AbstractWicketUnitTests {
 
     private static String tooltip = "this is a tooltip";

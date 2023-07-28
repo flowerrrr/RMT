@@ -2,9 +2,7 @@ package de.flower.common.util.geo;
 
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class GeoUtil {
 
     public static LatLng centerOf(List<LatLng> latLngs) {

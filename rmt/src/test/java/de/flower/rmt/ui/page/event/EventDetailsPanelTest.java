@@ -16,9 +16,7 @@ import javax.persistence.metamodel.Attribute;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.when;
 
-/**
- * @author flowerrrr
- */
+
 public class EventDetailsPanelTest extends AbstractRMTWicketMockitoTests {
 
     @SpringBean

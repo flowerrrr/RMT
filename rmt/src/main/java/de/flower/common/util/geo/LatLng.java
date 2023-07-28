@@ -4,9 +4,7 @@ import wicket.contrib.gmap3.api.GLatLng;
 
 import static de.flower.common.util.Check.*;
 
-/**
- * @author flowerrrr
- */
+
 public class LatLng extends GLatLng {
 
     public LatLng(double lat, double lng) {

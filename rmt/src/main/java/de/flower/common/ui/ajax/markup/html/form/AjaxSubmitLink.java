@@ -6,9 +6,7 @@ import org.apache.wicket.ajax.IAjaxCallDecorator;
 import org.apache.wicket.ajax.calldecorator.AjaxPreprocessingCallDecorator;
 import org.apache.wicket.markup.html.form.Form;
 
-/**
- * @author flowerrrr
- */
+
 public abstract class AjaxSubmitLink extends org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink {
 
     private String preprocessingCallDecoratorScript;

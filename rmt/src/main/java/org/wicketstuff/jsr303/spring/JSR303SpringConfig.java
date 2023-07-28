@@ -7,9 +7,7 @@ import org.wicketstuff.jsr303.JSR303ValidationFactory;
 
 import javax.validation.Validator;
 
-/**
- * @author flowerrrr
- */
+
 @Configuration
 public class JSR303SpringConfig {
 

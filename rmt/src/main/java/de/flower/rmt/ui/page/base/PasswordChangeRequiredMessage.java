@@ -7,9 +7,7 @@ import de.flower.rmt.ui.page.account.AccountTabPanel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-/**
- * @author flowerrrr
- */
+
 public class PasswordChangeRequiredMessage extends AlertMessage {
 
     public PasswordChangeRequiredMessage() {

@@ -4,9 +4,7 @@ import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
 import org.apache.wicket.markup.html.link.ExternalLink;
 import org.testng.annotations.Test;
 
-/**
- * @author flowerrrr
- */
+
 public class DropDownMenuPanelTest extends AbstractRMTWicketMockitoTests {
 
     @Test

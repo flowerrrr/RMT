@@ -9,8 +9,6 @@ import org.testng.annotations.BeforeMethod;
 /**
  * Base class for pure wicket unit tests.
  * Adds a dummy string resource locator so that all resource keys can be resolved.
- *
- * @author flowerrrr
  */
 public class AbstractWicketUnitTests {
 

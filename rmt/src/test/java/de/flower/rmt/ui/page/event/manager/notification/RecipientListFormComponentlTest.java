@@ -13,9 +13,7 @@ import org.testng.annotations.Test;
 
 import java.util.Collections;
 
-/**
- * @author flowerrrr
- */
+
 public class RecipientListFormComponentlTest extends AbstractRMTWicketMockitoTests {
 
     @Test

@@ -6,9 +6,7 @@ import org.apache.wicket.datetime.PatternDateConverter;
 import org.apache.wicket.datetime.markup.html.form.DateTextField;
 import org.apache.wicket.markup.html.IHeaderResponse;
 
-/**
- * @author flowerrrr
- */
+
 public class DatePicker extends DateTextField {
 
     public DatePicker(final String id, final String datePattern) {

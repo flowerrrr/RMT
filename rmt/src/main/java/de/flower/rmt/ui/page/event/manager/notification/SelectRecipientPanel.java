@@ -18,9 +18,7 @@ import javax.mail.internet.InternetAddress;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public abstract class SelectRecipientPanel extends ModalPanel {
 
     private List<InternetAddress[]> recipients = new ArrayList<InternetAddress[]>();

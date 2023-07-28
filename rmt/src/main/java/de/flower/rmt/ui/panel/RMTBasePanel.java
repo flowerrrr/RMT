@@ -10,9 +10,7 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-/**
- * @author flowerrrr
- */
+
 public class RMTBasePanel<T> extends BasePanel<T> {
 
     @SpringBean

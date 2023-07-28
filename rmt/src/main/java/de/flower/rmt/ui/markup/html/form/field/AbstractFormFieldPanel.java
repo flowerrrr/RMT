@@ -21,9 +21,7 @@ import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.validation.IValidator;
 
-/**
- * @author flowerrrr
- */
+
 public abstract class AbstractFormFieldPanel extends Panel {
 
     // must match the wicket:for attribute of the label

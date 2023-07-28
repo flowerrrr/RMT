@@ -10,9 +10,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
-/**
- * @author flowerrrr
- */
+
 
 public class PlayerGeneralPanelITest extends AbstractRMTWicketIntegrationTests {
 

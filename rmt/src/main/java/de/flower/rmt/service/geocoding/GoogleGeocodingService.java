@@ -18,9 +18,7 @@ import java.util.List;
 
 import static de.flower.common.util.Check.*;
 
-/**
- * @author flowerrrr
- */
+
 @Service
 public class GoogleGeocodingService {
 

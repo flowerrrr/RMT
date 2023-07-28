@@ -5,9 +5,7 @@ import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.event.Event;
 import org.apache.wicket.model.IModel;
 
-/**
- * @author flowerrrr
- */
+
 public class EventCanceledPanel extends BasePanel<Event> {
 
     public EventCanceledPanel(final IModel<Event> model) {

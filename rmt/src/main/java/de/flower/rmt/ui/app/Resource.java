@@ -1,8 +1,6 @@
 package de.flower.rmt.ui.app;
 
-/**
- * @author flowerrrr
- */
+
 // TODO (flowerrrr - 21.04.12) replace with ContextRelativeResource and use wickets caching support.
 public interface Resource {
 

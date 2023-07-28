@@ -2,9 +2,7 @@ package de.flower.common.util;
 
 import org.apache.commons.lang3.Validate;
 
-/**
- * @author flowerrrr
- */
+
 public class Check extends Validate {
 
     public static void isEqual(Object actual, Object expected, String message) {

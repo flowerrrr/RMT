@@ -14,10 +14,6 @@ import org.testng.annotations.BeforeMethod
 
 import static org.testng.Assert.assertFalse
 
-/**
- *
- * @author flowerrrr
- */
 @Deprecated // not sure what this test is all about
 class LoggingAspectTest {
 

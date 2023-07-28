@@ -7,10 +7,6 @@ import org.springframework.beans.factory.annotation.Configurable
 import org.testng.annotations.Test
 import static org.testng.Assert.assertNotNull
 
-/**
- * 
- * @author flowerrrr
- */
 @Deprecated // not working
 class ConfigurableTest extends AbstractRMTIntegrationTests {
 

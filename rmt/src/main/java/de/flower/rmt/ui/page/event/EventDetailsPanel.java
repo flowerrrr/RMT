@@ -34,9 +34,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * @author flowerrrr
- */
+
 public class EventDetailsPanel extends RMTBasePanel<Event> {
 
     public EventDetailsPanel(final IModel<? extends Event> model) {

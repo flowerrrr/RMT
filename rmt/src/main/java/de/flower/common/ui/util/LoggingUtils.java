@@ -8,9 +8,7 @@ import org.apache.wicket.protocol.http.servlet.ErrorAttributes;
 import org.apache.wicket.protocol.http.servlet.ForwardAttributes;
 import org.apache.wicket.request.Request;
 
-/**
- * @author flowerrrr
- */
+
 public class LoggingUtils {
 
     public static String toString(Request request) {

@@ -7,9 +7,7 @@ import de.flower.rmt.ui.model.EventModel;
 import org.apache.wicket.util.tester.FormTester;
 import org.testng.annotations.Test;
 
-/**
- * @author flowerrrr
- */
+
 public class EventEditPanelTest extends AbstractRMTWicketIntegrationTests {
 
     @Test

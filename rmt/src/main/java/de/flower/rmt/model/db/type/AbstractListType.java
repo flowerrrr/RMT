@@ -19,7 +19,6 @@ import java.util.List;
  * User type to store lists of objects in a single varchar.
  *
  * @param T type of list element
- * @author flowerrrr
  */
 public abstract class AbstractListType<T> implements UserType {
 

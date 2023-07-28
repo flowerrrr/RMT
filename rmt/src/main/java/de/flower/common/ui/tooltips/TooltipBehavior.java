@@ -8,9 +8,7 @@ import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.IHeaderResponse;
 import org.apache.wicket.model.IModel;
 
-/**
- * @author flowerrrr
- */
+
 public class TooltipBehavior extends Behavior {
 
     public static final String TOOLTIP_JS = "$(function () { $(\"[rel=tooltip]\").tooltip({ live: false }) })";

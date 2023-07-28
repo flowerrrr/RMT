@@ -17,8 +17,6 @@ import java.util.Map;
 /**
  * Redirects commonly observed old bookmark errors to sensible pages. Avoids displaying 404 page
  * for users that are too lazy to update their bookmarks.
- *
- * @author flowerrrr
  */
 @Component
 public class PageNotFoundAutoRedirecter {

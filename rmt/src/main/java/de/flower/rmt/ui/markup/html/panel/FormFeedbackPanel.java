@@ -11,9 +11,7 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 
-/**
- * @author flowerrrr
- */
+
 public class FormFeedbackPanel extends BasePanel {
 
     public FormFeedbackPanel(final MarkupContainer parent) {

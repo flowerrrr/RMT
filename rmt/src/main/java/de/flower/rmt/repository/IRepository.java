@@ -13,9 +13,7 @@ import org.springframework.data.repository.NoRepositoryBean;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 @NoRepositoryBean
 public interface IRepository<T, ID extends Serializable> extends JpaRepository<T, ID>, JpaSpecificationExecutor<T>, QueryDslPredicateExecutor<T> {
 

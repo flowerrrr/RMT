@@ -4,9 +4,7 @@ import com.google.common.base.Predicate;
 
 import java.text.MessageFormat;
 
-/**
- * @author flowerrrr
- */
+
 public class NameFinder {
 
     public static String generate(String base, String format, Predicate<String> predicate) {

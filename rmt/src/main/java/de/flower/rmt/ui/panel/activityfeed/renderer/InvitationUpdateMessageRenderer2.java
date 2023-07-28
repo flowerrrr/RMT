@@ -8,9 +8,7 @@ import org.apache.wicket.model.StringResourceModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * @author flowerrrr
- */
+
 public class InvitationUpdateMessageRenderer2 extends AbstractEventMessageRenderer implements IMessageRenderer<InvitationUpdateMessage2> {
 
     private final static Logger log = LoggerFactory.getLogger(InvitationUpdateMessageRenderer2.class);

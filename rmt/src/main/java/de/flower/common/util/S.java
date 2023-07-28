@@ -2,8 +2,6 @@ package de.flower.common.util;
 
 /**
  * Utility class to output log messages in a format that can't be overlooked.
- *
- * @author flowerrrr
  */
 public class S {
 

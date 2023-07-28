@@ -14,9 +14,7 @@ import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * @author flowerrrr
- */
+
 @MappedSuperclass
 public abstract class AbstractBaseEntity implements Serializable, IEntity, IObjectStatusAware, Cloneable {
 

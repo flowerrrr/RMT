@@ -35,9 +35,7 @@ import javax.mail.internet.InternetAddress;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class InvitationListPanel extends BasePanel {
 
     @SpringBean

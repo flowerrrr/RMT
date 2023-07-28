@@ -3,9 +3,7 @@ package de.flower.rmt.ui.page.error;
 import de.flower.rmt.ui.page.base.AbstractBaseLayoutPage;
 import de.flower.rmt.ui.page.base.AnonymousNavigationPanel;
 
-/**
- * @author flowerrrr
- */
+
 public class PageNotFound404Page extends AbstractBaseLayoutPage {
 
     public PageNotFound404Page() {

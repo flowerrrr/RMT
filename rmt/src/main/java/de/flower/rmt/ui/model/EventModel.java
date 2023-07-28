@@ -14,9 +14,7 @@ import javax.persistence.metamodel.Attribute;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class EventModel<T extends Event> extends AbstractEntityModel<T> {
 
     @SpringBean

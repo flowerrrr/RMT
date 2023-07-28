@@ -25,8 +25,6 @@ import org.wicketstuff.jsr303.validator.BeanValidator;
 
 /**
  * Panel for manager to edit players invitation status and give his own comments.
- *
- * @author flowerrrr
  */
 public class InvitationEditPanel extends ModalPanel<Invitation> {
 

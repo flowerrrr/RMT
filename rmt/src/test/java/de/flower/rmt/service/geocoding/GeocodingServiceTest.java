@@ -9,9 +9,7 @@ import java.util.List;
 
 import static org.testng.Assert.*;
 
-/**
- * @author flowerrrr
- */
+
 public class GeocodingServiceTest {
 
     private final static Logger log = LoggerFactory.getLogger(GeocodingServiceTest.class);

@@ -14,8 +14,6 @@ import javax.validation.constraints.Size;
 
 /**
  * blog article.
- *
- * @author flowerrrr
  */
 @Entity
 @Table(name = "barticle")

@@ -3,9 +3,7 @@ package de.flower.common.ui.modal;
 import de.flower.common.ui.panel.BasePanel;
 import org.apache.wicket.markup.html.form.Form;
 
-/**
- * @author flowerrrr
- */
+
 public class ModalDialogWindowPanel extends BasePanel {
 
     public ModalDialogWindowPanel() {

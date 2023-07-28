@@ -8,9 +8,7 @@ import org.testng.annotations.Test
 import static org.testng.Assert.assertFalse
 import static org.testng.Assert.assertTrue
 
-/**
- * @author flowerrrr
- */
+
 @SuppressWarnings("GroovyAccessibility")
 public class EventListPanelTest {
 

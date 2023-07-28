@@ -14,9 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-/**
- * @author flowerrrr
- */
+
 @Entity
 @Table(name = "calitem")
 public class CalItem extends AbstractBaseEntity {

@@ -6,9 +6,7 @@ import org.apache.wicket.model.IModel;
 
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class DropDownChoicePanel<T> extends AbstractFormFieldPanel {
 
     public DropDownChoicePanel(String id) {

@@ -9,9 +9,7 @@ import org.testng.annotations.Test;
 
 import static org.mockito.Mockito.when;
 
-/**
- * @author flowerrrr
- */
+
 public class PlayerListPanelTest extends AbstractRMTWicketMockitoTests {
 
     @SpringBean

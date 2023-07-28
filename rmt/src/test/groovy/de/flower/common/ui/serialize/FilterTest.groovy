@@ -4,10 +4,6 @@ import de.flower.common.ui.serialize.Filter.MatchType
 import org.testng.annotations.Test
 import static org.testng.Assert.assertEquals
 
-/**
- *
- * @author flowerrrr
- */
 @groovy.transform.TypeChecked
 class FilterTest {
 

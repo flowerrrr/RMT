@@ -8,7 +8,6 @@ import java.util.Iterator;
 
 /**
  * Allows to add an arbitrary list of components to a container panel
- * @author flowerrrr
  */
 public class WrappingPanel extends BasePanel {
 

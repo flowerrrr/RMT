@@ -4,9 +4,7 @@ import org.apache.wicket.markup.html.form.DropDownChoice;
 
 import java.util.Arrays;
 
-/**
- * @author flowerrrr
- */
+
 public class BooleanDropDownChoice extends DropDownChoice<Boolean> {
 
     public BooleanDropDownChoice(final String id, final String keyPrefix) {

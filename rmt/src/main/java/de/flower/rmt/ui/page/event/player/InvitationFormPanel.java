@@ -20,9 +20,7 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.StringResourceModel;
 
-/**
- * @author flowerrrr
- */
+
 public abstract class InvitationFormPanel extends BasePanel {
 
     public InvitationFormPanel(String id, final IModel<Invitation> model, final IModel<Boolean> eventClosedModel) {

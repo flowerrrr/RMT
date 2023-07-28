@@ -2,9 +2,7 @@ package de.flower.rmt.service.geocoding;
 
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class GeocodingResponse {
 
     private String json;

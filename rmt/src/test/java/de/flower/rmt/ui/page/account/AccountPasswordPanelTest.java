@@ -8,9 +8,7 @@ import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.util.tester.FormTester;
 import org.testng.annotations.Test;
 
-/**
- * @author flowerrrr
- */
+
 public class AccountPasswordPanelTest extends AbstractRMTWicketIntegrationTests {
 
     @Test

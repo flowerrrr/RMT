@@ -8,9 +8,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class VenuesMapPanel extends BasePanel {
 
     /** Google maps maximum zoom level in map mode is 19 (22 in satellite). */

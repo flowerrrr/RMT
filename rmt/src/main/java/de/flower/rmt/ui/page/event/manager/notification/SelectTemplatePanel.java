@@ -10,9 +10,7 @@ import org.apache.wicket.model.ResourceModel;
 
 import java.util.Arrays;
 
-/**
- * @author flowerrrr
- */
+
 public class SelectTemplatePanel extends BasePanel {
 
     protected enum Template {

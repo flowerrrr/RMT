@@ -11,9 +11,7 @@ import org.apache.wicket.protocol.http.WebSession;
 
 import java.lang.reflect.Method;
 
-/**
- * @author flowerrrr
- */
+
 public class AlertMessagePanel extends Panel {
 
     private AlertMessage alertMessage;

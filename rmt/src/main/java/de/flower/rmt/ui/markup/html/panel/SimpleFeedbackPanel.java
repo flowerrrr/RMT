@@ -6,7 +6,6 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 
 /**
  * Simple wrapper for wicket FeedbackPanel to simplify styling.
- * @author flowerrrr
  */
 public class SimpleFeedbackPanel extends BasePanel {
 

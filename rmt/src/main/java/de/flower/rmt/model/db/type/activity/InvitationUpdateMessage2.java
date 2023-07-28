@@ -5,9 +5,7 @@ import de.flower.rmt.model.db.type.RSVPStatus;
 
 import java.util.Objects;
 
-/**
- * @author flowerrrr
- */
+
 public class InvitationUpdateMessage2 extends AbstractEventMessage {
 
     public enum Type {

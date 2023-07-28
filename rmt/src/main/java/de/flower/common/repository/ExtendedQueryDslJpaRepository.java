@@ -32,8 +32,6 @@ import java.util.List;
 
 /**
  * Adds support for prefetching associations.
- *
- * @author flower
  */
 public class ExtendedQueryDslJpaRepository<T, ID extends Serializable> extends QueryDslJpaRepository<T, ID> {
 

@@ -32,8 +32,6 @@ import java.util.List;
 
 /**
  * Panel serves manager and player view.
- *
- * @author flowerrrr
  */
 public class TeamsEditPanel extends RMTBasePanel {
 

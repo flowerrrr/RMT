@@ -4,9 +4,7 @@ import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.event.Event;
 import org.apache.wicket.model.IModel;
 
-/**
- * @author flowerrrr
- */
+
 public class EventEditSecondaryPanel extends BasePanel<Event> {
 
     public EventEditSecondaryPanel(IModel<Event> model) {

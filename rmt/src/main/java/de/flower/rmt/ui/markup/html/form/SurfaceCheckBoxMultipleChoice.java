@@ -6,9 +6,7 @@ import org.apache.wicket.markup.html.form.CheckBoxMultipleChoice;
 
 import java.util.Arrays;
 
-/**
- * @author flowerrrr
- */
+
 public class SurfaceCheckBoxMultipleChoice extends CheckBoxMultipleChoice<Surface> {
 
     public SurfaceCheckBoxMultipleChoice(String id) {

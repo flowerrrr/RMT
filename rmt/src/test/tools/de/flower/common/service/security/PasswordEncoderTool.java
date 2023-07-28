@@ -9,8 +9,6 @@ import org.testng.annotations.Test;
 /**
  * Class used to encode passwords for initial filling of database.
  * Saves us from using a command line tool.
- *
- * @author flowerrrr
  */
 public class PasswordEncoderTool {
 

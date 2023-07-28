@@ -22,9 +22,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
-/**
- * @author flowerrrr
- */
+
 public class ArticleListPanel extends RMTBasePanel {
 
     private static final int ITEMS_PER_PAGE = 5;

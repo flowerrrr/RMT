@@ -8,8 +8,6 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 
 /**
  * FeedbackPanel that can render AlertMessages.
- *
- * @author flowerrrr
  */
 public class AlertMessageFeedbackPanel extends FeedbackPanel {
 

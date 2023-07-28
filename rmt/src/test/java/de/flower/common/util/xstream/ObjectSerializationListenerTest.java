@@ -6,9 +6,7 @@ import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 
-/**
- * @author flowerrrr
- */
+
 public class ObjectSerializationListenerTest {
 
     private final static Logger log = LoggerFactory.getLogger(ObjectSerializationListenerTest.class);

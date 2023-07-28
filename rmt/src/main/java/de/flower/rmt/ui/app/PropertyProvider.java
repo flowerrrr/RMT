@@ -3,9 +3,7 @@ package de.flower.rmt.ui.app;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-/**
- * @author flowerrrr
- */
+
 @Component
 public class PropertyProvider {
 

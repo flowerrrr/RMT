@@ -5,9 +5,7 @@ import org.apache.wicket.resource.loader.IStringResourceLoader;
 
 import java.util.Locale;
 
-/**
- * @author flowerrrr
- */
+
 public class MockStringResourceLoader implements IStringResourceLoader {
 
     @Override

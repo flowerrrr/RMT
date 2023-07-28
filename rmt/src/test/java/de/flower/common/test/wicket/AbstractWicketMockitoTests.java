@@ -14,8 +14,7 @@ import org.testng.annotations.BeforeMethod;
  * Wicket components will get mockito mocks injected whenever
  * a @SpringBean annotation is evaluated.
  *
- * @author flowerrrr
- * @SpringBean can also be used in the test classes.
+ *  @SpringBean can also be used in the test classes.
  */
 public abstract class AbstractWicketMockitoTests {
 

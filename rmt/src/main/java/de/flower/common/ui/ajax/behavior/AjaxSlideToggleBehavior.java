@@ -8,8 +8,6 @@ import org.apache.wicket.markup.ComponentTag;
 
 /**
  * Behavior can be used to fade in / fade out panels.
- *
- * @author flowerrrr
  */
 public class AjaxSlideToggleBehavior extends Behavior {
 

@@ -9,9 +9,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
-/**
- * @author flowerrrr
- */
+
 public class SplitDateTimeTest {
 
     private final static Logger log = LoggerFactory.getLogger(SplitDateTimeTest.class);

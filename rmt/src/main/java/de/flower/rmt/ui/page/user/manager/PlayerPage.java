@@ -7,9 +7,7 @@ import de.flower.rmt.ui.page.Pages;
 import de.flower.rmt.ui.page.base.manager.ManagerBasePage;
 import org.apache.wicket.model.IModel;
 
-/**
- * @author flowerrrr
- */
+
 public class PlayerPage extends ManagerBasePage {
 
     public PlayerPage() {

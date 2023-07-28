@@ -34,9 +34,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 @Entity
 @Table(name = "event")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)

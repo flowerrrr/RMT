@@ -1,8 +1,6 @@
 package de.flower.rmt.model.db.type;
 
-/**
- * @author flowerrrr
- */
+
 public class SurfaceListType extends AbstractListType<Surface> {
 
     @Override

@@ -6,9 +6,7 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 import org.testng.annotations.Test;
 
-/**
- * @author flowerrrr
- */
+
 public class ResetPasswordPanelTest extends AbstractRMTWicketMockitoTests {
 
     @Test

@@ -6,9 +6,7 @@ import org.apache.wicket.markup.Markup;
 import org.apache.wicket.markup.html.form.Form;
 import org.testng.annotations.Test;
 
-/**
- * @author flowerrrr
- */
+
 public class FormFeedbackPanelTest extends AbstractWicketUnitTests {
 
     protected final static String message = "jöksdifuwe9823hkldhf";

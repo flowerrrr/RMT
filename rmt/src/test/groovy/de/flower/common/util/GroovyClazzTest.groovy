@@ -1,14 +1,11 @@
 package de.flower.common.util
+
 import org.testng.annotations.Test
 
-import static org.testng.Assert.assertFalse
 import static org.testng.Assert.assertTrue
-
 /**
  * Test class in grooy.
  * Groovy generated anonymous classes seemed to behave differently from java classes.
- *
- * @author flowerrrr
  */
 @groovy.transform.TypeChecked
 public class GroovyClazzTest {

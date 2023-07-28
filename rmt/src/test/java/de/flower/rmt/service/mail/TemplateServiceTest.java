@@ -9,9 +9,7 @@ import java.util.Map;
 
 import static de.flower.rmt.test.Assert.assertContains;
 
-/**
- * @author flowerrrr
- */
+
 public class TemplateServiceTest extends AbstractRMTIntegrationTests {
 
     @Value("${app.title}")

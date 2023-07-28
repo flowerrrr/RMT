@@ -5,9 +5,7 @@ import de.flower.rmt.test.AbstractRMTWicketMockitoTests;
 import org.apache.wicket.model.Model;
 import org.testng.annotations.Test;
 
-/**
- * @author flowerrrr
- */
+
 public class InvitationSummaryPanelTest extends AbstractRMTWicketMockitoTests {
 
     @Test

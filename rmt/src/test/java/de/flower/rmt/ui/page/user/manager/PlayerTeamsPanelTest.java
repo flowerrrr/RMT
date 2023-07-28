@@ -13,9 +13,7 @@ import org.testng.annotations.Test;
 
 import static org.mockito.Mockito.*;
 
-/**
- * @author flowerrrr
- */
+
 public class PlayerTeamsPanelTest extends AbstractRMTWicketMockitoTests {
 
     @SpringBean

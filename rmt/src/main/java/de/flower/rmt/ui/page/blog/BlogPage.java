@@ -8,9 +8,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-/**
- * @author flowerrrr
- */
+
 public class BlogPage extends AbstractCommonBasePage {
 
     public BlogPage() {

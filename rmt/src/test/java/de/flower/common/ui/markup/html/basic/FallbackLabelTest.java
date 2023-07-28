@@ -8,9 +8,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.testng.annotations.Test;
 
-/**
- * @author flowerrrr
- */
+
 public class FallbackLabelTest extends AbstractWicketUnitTests {
 
     @Test

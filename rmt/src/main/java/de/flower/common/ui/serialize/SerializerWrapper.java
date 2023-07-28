@@ -5,9 +5,7 @@ import org.apache.wicket.serialize.ISerializer;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class SerializerWrapper implements ISerializer {
 
     private ISerializer serializer;

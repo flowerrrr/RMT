@@ -8,9 +8,7 @@ import java.io.Serializable;
 
 import static org.testng.Assert.*;
 
-/**
- * @author flowerrrr
- */
+
 public class AbstractEntityModelTest {
     
     @Test 

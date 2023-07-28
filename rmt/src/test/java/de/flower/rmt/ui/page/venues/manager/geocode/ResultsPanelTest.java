@@ -13,9 +13,7 @@ import org.testng.annotations.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class ResultsPanelTest extends AbstractRMTWicketMockitoTests {
 
 

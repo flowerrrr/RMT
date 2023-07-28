@@ -13,8 +13,6 @@ import javax.validation.groups.Default;
 
 /**
  * Opponents for matches.
- *
- * @author flowerrrr
  */
 @Entity
 @Table(name = "opponent", uniqueConstraints = @UniqueConstraint(name = "name", columnNames = {"name", "club_id"}))

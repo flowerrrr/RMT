@@ -5,9 +5,7 @@ import de.flower.rmt.service.CalendarManager;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-/**
- * @author flowerrrr
- */
+
 public class CalItemModel extends AbstractEntityModel<CalItem> {
 
     @SpringBean

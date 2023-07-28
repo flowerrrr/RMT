@@ -11,9 +11,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
-/**
- * @author flowerrrr
- */
+
 public abstract class AbstractDateHandler implements IDateHandler {
 
     private ResourceBundle bundle;

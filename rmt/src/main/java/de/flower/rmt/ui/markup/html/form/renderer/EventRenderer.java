@@ -7,9 +7,7 @@ import de.flower.rmt.util.Dates;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.model.ResourceModel;
 
-/**
- * @author flowerrrr
- */
+
 public class EventRenderer implements IChoiceRenderer<Event> {
 
     private boolean dateLong;

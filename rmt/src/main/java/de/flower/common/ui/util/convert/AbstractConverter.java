@@ -4,9 +4,7 @@ import org.apache.wicket.util.convert.IConverter;
 
 import java.util.Locale;
 
-/**
- * @author flowerrrr
- */
+
 public abstract class AbstractConverter<C> implements IConverter<C> {
 
     @Override

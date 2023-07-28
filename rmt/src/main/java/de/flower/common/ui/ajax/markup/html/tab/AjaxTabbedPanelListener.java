@@ -8,8 +8,6 @@ import org.apache.wicket.extensions.ajax.markup.html.tabs.AjaxTabbedPanel;
 /**
  * Listener that fires when a tab of an AjaxTabbedPanel is part of an ajax request target.
  * This allows other components to re-render if the visible tab changes.
- *
- * @author flowerrrr
  */
 public abstract class AjaxTabbedPanelListener extends AjaxRequestListener {
 

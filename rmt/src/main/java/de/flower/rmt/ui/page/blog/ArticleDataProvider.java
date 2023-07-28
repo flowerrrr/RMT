@@ -11,9 +11,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import java.util.Iterator;
 
-/**
- * @author flowerrrr
- */
+
 public class ArticleDataProvider extends InjectorAwareObject implements IDataProvider<BArticle> {
 
     @SpringBean

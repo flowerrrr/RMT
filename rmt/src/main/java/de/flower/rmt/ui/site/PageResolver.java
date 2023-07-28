@@ -12,9 +12,7 @@ import org.apache.wicket.Page;
 import org.apache.wicket.request.component.IRequestablePage;
 import org.springframework.stereotype.Component;
 
-/**
- * @author flowerrrr
- */
+
 @Component
 public class PageResolver {
 

@@ -11,9 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-/**
- * @author flowerrrr
- */
+
 @SuppressWarnings("FieldCanBeLocal")
 @Entity
 @Table(name = "property")

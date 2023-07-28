@@ -13,8 +13,6 @@ import org.apache.wicket.model.IModel;
  * Assumes:
  * - model containing domain object is a LoadableDetachableModel. Needed to avoid
  * serializing domain objects to the page store.
- *
- * @author flowerrrr
  */
 public abstract class EntityForm<T> extends Form<T> {
 

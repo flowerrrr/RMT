@@ -6,9 +6,7 @@ import de.flower.rmt.model.db.entity.Opponent;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-/**
- * @author flowerrrr
- */
+
 @Entity
 @DiscriminatorValue("Match")
 public class Match extends AbstractSoccerEvent {

@@ -24,8 +24,6 @@ import java.util.List;
 
 /**
  * read-only version of LineupEditPanel.
- *
- * @author flowerrrr
  */
 public class LineupPanel extends BasePanel {
 

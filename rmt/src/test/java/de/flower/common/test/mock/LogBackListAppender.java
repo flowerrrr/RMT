@@ -10,9 +10,7 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class LogBackListAppender extends AppenderBase<ILoggingEvent> implements Appender<ILoggingEvent> {
 
     private List<ILoggingEvent> list = new ArrayList<ILoggingEvent>();

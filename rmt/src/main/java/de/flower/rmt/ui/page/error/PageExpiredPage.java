@@ -5,9 +5,7 @@ import de.flower.rmt.ui.page.base.AbstractBaseLayoutPage;
 import de.flower.rmt.ui.page.base.AnonymousNavigationPanel;
 import org.apache.wicket.request.http.WebResponse;
 
-/**
- * @author flowerrrr
- */
+
 public class PageExpiredPage extends AbstractBaseLayoutPage {
 
     public PageExpiredPage() {

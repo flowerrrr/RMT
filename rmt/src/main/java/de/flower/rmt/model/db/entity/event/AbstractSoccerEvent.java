@@ -16,9 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 @MappedSuperclass
 public abstract class AbstractSoccerEvent extends Event {
 

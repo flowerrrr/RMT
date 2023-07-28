@@ -12,7 +12,6 @@ import javax.mail.internet.MimeMessage;
 
 /**
  * Does not send email, rather logs it away on console.
- * @author flowerrrr
  */
 public class MockJavaMailSender extends JavaMailSenderImpl {
 

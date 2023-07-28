@@ -1,8 +1,6 @@
 package de.flower.rmt.service.mail;
 
-/**
- * @author flowerrrr
- */
+
 public enum EmailTemplate {
 
     PASSWORD_RESET,

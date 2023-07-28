@@ -10,7 +10,6 @@ import org.apache.wicket.markup.html.pages.ExceptionErrorPage;
 
 /**
  * Copied from wickets ExceptionErrorPage.
- * @author flowerrrr
  */
 public class StacktracePanel extends BasePanel {
 

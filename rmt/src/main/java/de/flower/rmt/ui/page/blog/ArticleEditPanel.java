@@ -15,9 +15,7 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-/**
- * @author flowerrrr
- */
+
 public class ArticleEditPanel extends RMTBasePanel<BArticle> {
 
     @SpringBean

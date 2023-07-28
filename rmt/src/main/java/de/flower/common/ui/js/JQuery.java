@@ -3,9 +3,7 @@ package de.flower.common.ui.js;
 import de.flower.common.util.Check;
 import org.apache.wicket.Component;
 
-/**
- * @author flowerrrr
- */
+
 public class JQuery {
 
     public static String slideDown(Component component, String duration) {

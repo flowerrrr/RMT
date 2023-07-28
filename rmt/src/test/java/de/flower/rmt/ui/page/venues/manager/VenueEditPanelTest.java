@@ -5,9 +5,7 @@ import de.flower.rmt.ui.model.VenueModel;
 import org.apache.wicket.Component;
 import org.testng.annotations.Test;
 
-/**
- * @author flowerrrr
- */
+
 public class VenueEditPanelTest extends AbstractRMTWicketIntegrationTests {
 
     @Test

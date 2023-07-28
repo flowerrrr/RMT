@@ -4,9 +4,7 @@ import org.apache.wicket.model.IModel;
 
 import java.io.Serializable;
 
-/**
- * @author flowerrrr
- */
+
 public abstract class AlertMessage implements Serializable {
 
     private IModel<String> messageModel;

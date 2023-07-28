@@ -7,9 +7,7 @@ import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.html.IHeaderResponse;
 import org.apache.wicket.markup.html.form.TextArea;
 
-/**
- * @author flowerrrr
- */
+
 public class TextAreaMaxLengthBehavior extends Behavior {
 
     private int maxLength;

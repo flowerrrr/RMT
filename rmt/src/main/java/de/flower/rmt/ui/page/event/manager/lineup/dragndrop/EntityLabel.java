@@ -6,9 +6,7 @@ import de.flower.common.ui.panel.BasePanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.basic.Label;
 
-/**
- * @author flowerrrr
- */
+
 public class EntityLabel extends BasePanel implements IDraggable {
 
     private Long entityId;

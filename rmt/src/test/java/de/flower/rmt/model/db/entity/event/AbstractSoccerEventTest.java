@@ -5,9 +5,7 @@ import de.flower.rmt.test.AbstractRMTIntegrationTests;
 import org.springframework.transaction.TransactionStatus;
 import org.testng.annotations.Test;
 
-/**
- * @author flowerrrr
- */
+
 public class AbstractSoccerEventTest extends AbstractRMTIntegrationTests {
 
     /**

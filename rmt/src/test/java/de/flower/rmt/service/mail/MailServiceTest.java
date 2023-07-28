@@ -18,7 +18,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * @author flowerrrr
  * Start smtp4dev before launching these tests.
  */
 // use real mailsender (by defaul all unit-tests use mock-mailsender)

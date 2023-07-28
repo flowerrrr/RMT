@@ -21,8 +21,6 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 /**
  * This class only defines layout but not content.
  * Content is provided by subclasses.
- *
- * @author flowerrrr
  */
 public abstract class AbstractBaseLayoutPage extends AbstractBasePage {
 

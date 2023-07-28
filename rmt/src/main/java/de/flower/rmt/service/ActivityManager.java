@@ -36,9 +36,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 @Service
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
 public class ActivityManager extends AbstractService {

@@ -10,8 +10,6 @@ import java.util.Collection;
 
 /**
  * Model for labels that returns a fallback model when default model returns empty or blank object.
- *
- * @author flowerrrr
  */
 public class FallbackModel<T> extends AbstractReadOnlyModel<T> {
 

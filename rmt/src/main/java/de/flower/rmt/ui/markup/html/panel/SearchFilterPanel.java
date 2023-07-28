@@ -6,8 +6,6 @@ import org.apache.wicket.markup.html.IHeaderResponse;
 
 /**
  * Input box with associated search-filter.js to filter elements in html pages.
- *
- * @author flowerrrr
  */
 public class SearchFilterPanel extends BasePanel {
 

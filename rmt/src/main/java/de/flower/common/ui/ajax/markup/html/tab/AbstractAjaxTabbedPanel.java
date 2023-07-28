@@ -10,9 +10,7 @@ import org.apache.wicket.model.IModel;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public abstract class AbstractAjaxTabbedPanel<T> extends BasePanel<T> {
 
     /**

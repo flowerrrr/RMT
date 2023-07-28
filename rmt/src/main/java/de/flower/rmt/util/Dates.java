@@ -10,8 +10,6 @@ import java.util.Date;
 
 /**
  * Central class everybody has to use when formatting dates.
- *
- * @author flowerrrr
  */
 public class Dates {
 

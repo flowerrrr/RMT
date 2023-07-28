@@ -7,9 +7,7 @@ import de.flower.rmt.ui.page.base.manager.ManagerBasePage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
 
-/**
- * @author flowerrrr
- */
+
 public class UniformEditPage extends ManagerBasePage {
 
     public UniformEditPage(final IModel<Uniform> model, final IModel<Team> teamModel) {

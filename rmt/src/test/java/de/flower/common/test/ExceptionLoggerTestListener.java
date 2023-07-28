@@ -5,9 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 
-/**
- * @author flowerrrr
- */
+
 
 public class ExceptionLoggerTestListener extends TestListenerAdapter {
 

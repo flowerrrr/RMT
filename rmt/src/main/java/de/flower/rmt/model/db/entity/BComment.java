@@ -16,8 +16,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * blog comment.
- *
- * @author flowerrrr
  */
 @Entity
 @Table(name = "bcomment")

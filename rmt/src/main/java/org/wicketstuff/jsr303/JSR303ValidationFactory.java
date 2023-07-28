@@ -10,8 +10,6 @@ import javax.validation.*;
 
 /**
  * Patched version to use cached validator factory instead of re-creating validator factory for every #getValidator call.
- *
- * @author flowerrrr
  */
 
 @Patched

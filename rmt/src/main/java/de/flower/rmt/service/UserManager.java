@@ -34,9 +34,7 @@ import static de.flower.common.util.Check.*;
 import static de.flower.rmt.repository.Specs.*;
 import static org.springframework.data.jpa.domain.Specifications.where;
 
-/**
- * @author flowerrrr
- */
+
 @Service
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
 public class UserManager extends AbstractService {

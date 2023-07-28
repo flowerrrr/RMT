@@ -17,8 +17,6 @@ import java.util.List;
  *
  * Note: This is a general way of accessing spring beans from legacy code.
  * In a webcontext one could also use {org.springframework.web.context.support.WebApplicationContextUtils#getWebApplicationContext(javax.servlet.ServletContext)}
- *
- * @author flowerrrr
  */
 public final class SpringApplicationContextBridge implements ApplicationContextAware {
 

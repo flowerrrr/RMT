@@ -3,10 +3,6 @@ package de.flower.common.collection
 import org.testng.annotations.Test
 import static org.testng.Assert.*
 
-/**
- *
- * @author flowerrrr
- */
 
 // @groovy.transform.TypeChecked
 class MRUCacheTest {

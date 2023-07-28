@@ -3,9 +3,7 @@ package de.flower.rmt.ui.app;
 import org.apache.wicket.protocol.http.WebSession;
 import org.apache.wicket.request.Request;
 
-/**
- * @author flowerrrr
- */
+
 public class RMTSession extends WebSession {
 
     private View view;

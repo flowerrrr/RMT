@@ -8,9 +8,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.test.context.ContextConfiguration
 import org.testng.annotations.Test
 
-/**
- * @author flowerrrr
- */
+
 @groovy.transform.TypeChecked
 @ContextConfiguration(classes = [Config.class])
 public class TaskSchedulerTest extends AbstractRMTIntegrationTests {

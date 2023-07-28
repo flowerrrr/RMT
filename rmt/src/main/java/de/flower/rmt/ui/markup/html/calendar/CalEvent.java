@@ -2,9 +2,7 @@ package de.flower.rmt.ui.markup.html.calendar;
 
 import java.util.Date;
 
-/**
-* @author flowerrrr
-*/
+ 
 public class CalEvent {
 
     public String id;

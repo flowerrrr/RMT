@@ -12,9 +12,7 @@ import org.apache.wicket.model.ResourceModel;
 
 import java.util.Date;
 
-/**
- * @author flowerrrr
- */
+
 public class CalItemDetailsPanel extends BasePanel<CalItem> {
 
     public CalItemDetailsPanel(final String id, final IModel<CalItem> model) {

@@ -6,9 +6,7 @@ import de.flower.rmt.model.db.entity.BComment;
 
 import java.io.Serializable;
 
-/**
- * @author flowerrrr
- */
+
 public class BlogUpdateMessage implements Serializable {
 
     /**

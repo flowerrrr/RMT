@@ -3,9 +3,7 @@ package de.flower.common.service.security;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Service;
 
-/**
- * @author flowerrrr
- */
+
 @Service
 public class PasswordGenerator {
 

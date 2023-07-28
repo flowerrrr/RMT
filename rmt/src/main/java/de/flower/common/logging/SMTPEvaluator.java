@@ -11,8 +11,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Class to throttle sending of mails through logbacks SMTPAppender.
- *
- * @author flowerrrr
  */
 public class SMTPEvaluator extends EventEvaluatorBase<ILoggingEvent> {
 

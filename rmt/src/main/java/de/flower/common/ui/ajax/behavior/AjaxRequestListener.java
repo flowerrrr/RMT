@@ -7,8 +7,6 @@ import org.apache.wicket.event.IEvent;
 
 /**
  * Add to any component that wants to listen to arbitrary ajax requests.
- *
- * @author flowerrrr
  */
 public abstract class AjaxRequestListener extends Behavior {
 

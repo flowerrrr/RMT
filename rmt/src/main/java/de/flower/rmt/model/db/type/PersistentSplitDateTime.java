@@ -26,8 +26,6 @@ import java.sql.SQLException;
 
 /**
  * Persist {@link SplitDateTime} via hibernate.
- * 
- * @author flowerrrr
  */
 @Deprecated // not used
 public class PersistentSplitDateTime extends PersistentDateTime {

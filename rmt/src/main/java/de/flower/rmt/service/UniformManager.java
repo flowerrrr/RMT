@@ -16,9 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 @Service
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
 public class UniformManager extends AbstractService {

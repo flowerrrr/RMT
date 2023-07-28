@@ -9,9 +9,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.resource.ByteArrayResource;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-/**
- * @author flowerrrr
- */
+
 public class DownloadIcsLink extends ResourceLink {
 
     public DownloadIcsLink(final String id, final IModel<Event> model, String filename) {

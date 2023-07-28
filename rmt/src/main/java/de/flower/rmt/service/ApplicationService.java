@@ -15,8 +15,6 @@ import java.nio.charset.Charset;
 
 /**
  * Service for everything that does not fit somewhere else.
- *
- * @author flowerrrr
  */
 @Service
 public class ApplicationService extends AbstractService {

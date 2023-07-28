@@ -13,8 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * Service used for quick response label.
  * Could be removed and replaced by InvitationManager.
- *
- * @author flowerrrr
  */
 @Service
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)

@@ -8,9 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolderStrategy;
 import org.springframework.stereotype.Service;
 
-/**
- * @author flowerrrr
- */
+
 @Service
 public class SecurityService {
 

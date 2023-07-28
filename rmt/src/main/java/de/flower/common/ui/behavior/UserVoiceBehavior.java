@@ -6,8 +6,6 @@ import org.apache.wicket.markup.html.IHeaderResponse;
 
 /**
  * Renders uservoice feedback tab into page.
- *
- * @author flowerrrr
  */
 public abstract class UserVoiceBehavior extends Behavior {
 

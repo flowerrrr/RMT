@@ -1,8 +1,6 @@
 package de.flower.rmt.test;
 
-/**
- * @author flowerrrr
- */
+
 
 import de.flower.common.service.security.PasswordGenerator;
 import de.flower.common.test.mock.LogBackListAppender;
@@ -63,8 +61,6 @@ import java.util.Map;
 /**
  * Base class for integration tests from app-layer downwards. no ui-support.
  * Use @link AbstractWicketIntegrationTests.
- *
- * @author flowerrrr
  */
 @SuppressWarnings("Dependency")
 @Listeners({de.flower.common.test.ExceptionLoggerTestListener.class})

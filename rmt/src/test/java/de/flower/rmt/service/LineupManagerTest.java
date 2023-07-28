@@ -8,9 +8,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class LineupManagerTest extends AbstractRMTIntegrationTests {
 
     @Test

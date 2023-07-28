@@ -5,9 +5,7 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 
 import java.util.Date;
 
-/**
- * @author flowerrrr
- */
+
 public abstract class SelectCallbackBehavior extends AbstractParameterizedDefaultAjaxBehavior {
 
     public Parameter<Long> paramStart = Parameter.of("start", Long.class, "start.getTime()");

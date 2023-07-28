@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import java.lang.reflect.Modifier;
 
 /**
- * @author flowerrrr
  * @NotThreadSafe Uses unsynchronized and not thread context bound stack to
  * trace start time in #logEnter.
  */

@@ -3,9 +3,7 @@ package de.flower.rmt.ui.page.venues.manager;
 import de.flower.rmt.test.AbstractRMTWicketIntegrationTests;
 import org.testng.annotations.Test;
 
-/**
- * @author flowerrrr
- */
+
 
 public class VenueEditPageTest extends AbstractRMTWicketIntegrationTests {
 

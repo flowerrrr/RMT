@@ -12,9 +12,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * @author flowerrrr
- */
+
 @Entity
 @Table(name = "activity")
 public class Activity extends AbstractClubRelatedEntity {

@@ -11,9 +11,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * @author flowerrrr
- */
+
 @ScriptAssert.List({
         @ScriptAssert(script = "_this.isStartBeforeEnd()",
                 message = "{validation.calitem.endbeforestart}", lang = "javascript"

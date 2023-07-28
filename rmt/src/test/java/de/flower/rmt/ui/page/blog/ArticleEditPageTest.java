@@ -4,9 +4,7 @@ import de.flower.rmt.test.AbstractRMTWicketIntegrationTests;
 import de.flower.rmt.ui.model.BArticleModel;
 import org.testng.annotations.Test;
 
-/**
- * @author flowerrrr
- */
+
 public class ArticleEditPageTest extends AbstractRMTWicketIntegrationTests {
 
     @Test

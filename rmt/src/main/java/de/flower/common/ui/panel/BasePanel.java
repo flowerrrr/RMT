@@ -20,9 +20,7 @@ import org.slf4j.LoggerFactory;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class BasePanel<T> extends GenericPanel<T> {
 
     private static final Logger log = LoggerFactory.getLogger(BasePanel.class);

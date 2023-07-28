@@ -3,9 +3,7 @@ package de.flower.rmt.ui.page.venues.manager;
 import de.flower.common.ui.panel.BasePanel;
 import org.apache.wicket.markup.html.link.Link;
 
-/**
- * @author flowerrrr
- */
+
 public class VenuesSecondaryPanel extends BasePanel {
 
     public VenuesSecondaryPanel() {

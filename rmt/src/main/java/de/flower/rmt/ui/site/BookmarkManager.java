@@ -18,9 +18,7 @@ import de.flower.rmt.ui.page.venues.player.VenuePage;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.springframework.stereotype.Component;
 
-/**
- * @author flowerrrr
- */
+
 @Component
 public class BookmarkManager {
 

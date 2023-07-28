@@ -5,9 +5,7 @@ import org.apache.wicket.ajax.IAjaxCallDecorator;
 import org.apache.wicket.ajax.IAjaxIndicatorAware;
 import org.apache.wicket.model.IModel;
 
-/**
- * @author flowerrrr
- */
+
 public abstract class AjaxLink<T> extends org.apache.wicket.ajax.markup.html.AjaxLink<T>  {
 
     public AjaxLink(String id) {

@@ -8,8 +8,6 @@ package de.flower.common.model.db.type;
  * <b>Important: Changing Enum order will mess up an existing database, because our Enums are stored
  * by their ordinal value.</b>
  * </p>
- * 
- * @author flowerrrr
  */
 public enum ObjectStatus {
 

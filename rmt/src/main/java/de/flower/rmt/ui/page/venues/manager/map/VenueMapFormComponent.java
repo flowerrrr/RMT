@@ -5,9 +5,7 @@ import org.apache.wicket.markup.Markup;
 import org.apache.wicket.markup.html.form.FormComponentPanel;
 import org.apache.wicket.model.IModel;
 
-/**
- * @author flowerrrr
- */
+
 public class VenueMapFormComponent extends FormComponentPanel<LatLng> {
 
     private IModel<LatLng> mapModel;

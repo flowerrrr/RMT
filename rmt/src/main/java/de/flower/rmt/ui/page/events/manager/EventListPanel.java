@@ -27,9 +27,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-/**
- * @author flowerrrr
- */
+
 public class EventListPanel extends BasePanel {
 
     public static final int ITEMS_PER_PAGE = 10;

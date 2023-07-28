@@ -27,9 +27,7 @@ import java.util.List;
 
 import static org.testng.Assert.*;
 
-/**
- * @author flowerrrr
- */
+
 
 public class WicketTester extends org.apache.wicket.util.tester.WicketTester {
 

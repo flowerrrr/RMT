@@ -8,8 +8,6 @@ import java.io.Serializable;
 /**
  * Model stores last value that was set. Helps to deal with detachable models when it is necessary
  * to access previously submitted values.
- *
- * @author flowerrrr
  */
 public class StateSavingModel<T extends Serializable> extends AbstractChainingModel<T, T> {
 

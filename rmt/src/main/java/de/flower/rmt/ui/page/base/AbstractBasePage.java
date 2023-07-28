@@ -18,9 +18,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-/**
- * @author flowerrrr
- */
+
 public abstract class AbstractBasePage extends WebPage implements IAjaxIndicatorAware {
 
     @SpringBean

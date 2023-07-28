@@ -7,9 +7,7 @@ import java.util.List;
 
 import static org.testng.Assert.*;
 
-/**
- * @author flowerrrr
- */
+
 public class ClazzTest {
 
     @Test

@@ -7,9 +7,7 @@ import org.apache.wicket.model.IModel;
 
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class UserDropDownChoice extends DropDownChoice<User> {
 
     public UserDropDownChoice(String id, IModel<User> model, IModel<List<User>> choices) {

@@ -4,10 +4,6 @@ import de.flower.rmt.test.AbstractRMTWicketIntegrationTests
 import de.flower.rmt.ui.model.TeamModel
 import org.testng.annotations.Test
 
-/**
- *
- * @author flowerrrr
- */
 
 class SquadPageTest extends AbstractRMTWicketIntegrationTests {
 

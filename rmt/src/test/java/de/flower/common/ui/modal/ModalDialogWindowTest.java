@@ -10,9 +10,7 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.testng.annotations.Test;
 
-/**
- * @author flowerrrr
- */
+
 public class ModalDialogWindowTest extends AbstractWicketUnitTests {
 
     @Test

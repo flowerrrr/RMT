@@ -9,9 +9,7 @@ import org.apache.wicket.model.IModel;
 
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class VenuesPage extends PlayerBasePage {
 
     public VenuesPage() {

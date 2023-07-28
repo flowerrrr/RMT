@@ -3,9 +3,7 @@ package de.flower.rmt.ui.markup.html.form.field;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.form.ListMultipleChoice;
 
-/**
- * @author flowerrrr
- */
+
 public class CheckBoxMultipleChoicePanel<T> extends AbstractFormFieldPanel {
 
     public CheckBoxMultipleChoicePanel(final String id, final FormComponent fc) {

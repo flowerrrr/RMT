@@ -6,9 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class Authentication {
 
     public static boolean hasRole(String role) {

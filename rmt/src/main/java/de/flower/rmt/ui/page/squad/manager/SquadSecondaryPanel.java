@@ -6,9 +6,7 @@ import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.model.db.entity.Team;
 import org.apache.wicket.model.IModel;
 
-/**
- * @author flowerrrr
- */
+
 public class SquadSecondaryPanel extends BasePanel {
 
     private AjaxSlideToggleBehavior toggleBehavior;

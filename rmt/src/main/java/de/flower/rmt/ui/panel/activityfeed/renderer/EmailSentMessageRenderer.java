@@ -4,9 +4,7 @@ import de.flower.rmt.model.db.type.activity.EmailSentMessage;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.StringResourceModel;
 
-/**
- * @author flowerrrr
- */
+
 public class EmailSentMessageRenderer extends AbstractEventMessageRenderer implements IMessageRenderer<EmailSentMessage> {
 
     @Override

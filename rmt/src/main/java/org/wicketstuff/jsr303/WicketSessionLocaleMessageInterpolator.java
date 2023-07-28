@@ -6,9 +6,7 @@ import org.apache.wicket.Session;
 import javax.validation.MessageInterpolator;
 import java.util.Locale;
 
-/**
-* @author flowerrrr
-*/
+ 
 public class WicketSessionLocaleMessageInterpolator implements MessageInterpolator {
 
     private final MessageInterpolator delegate;

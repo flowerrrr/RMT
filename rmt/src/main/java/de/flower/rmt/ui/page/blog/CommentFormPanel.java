@@ -17,8 +17,6 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
  * form to create new comment.
- *
- * @author flowerrrr
  */
 public class CommentFormPanel extends RMTBasePanel<BArticle> {
 

@@ -22,8 +22,6 @@ import java.util.Map.Entry;
 
 /**
  * Calendar widget based on wonderful http://arshaw.com/fullcalendar/.
- *
- * @author flowerrrr
  */
 public abstract class FullCalendarPanel extends BasePanel {
 

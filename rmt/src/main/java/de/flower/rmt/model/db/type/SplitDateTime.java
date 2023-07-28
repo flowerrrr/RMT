@@ -10,8 +10,6 @@ import java.util.Date;
 /**
  * Extended datetime with separate getter/setter for date and time part to be used with property models
  * in wicket forms that use two components to edit the dateTime (a datepicker and a time-dropdown).
- *
- * @author flowerrrr
  */
 @Deprecated // not used
 public class SplitDateTime {

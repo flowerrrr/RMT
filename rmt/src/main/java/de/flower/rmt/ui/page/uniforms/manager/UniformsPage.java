@@ -6,9 +6,7 @@ import de.flower.rmt.ui.page.base.manager.ManagerBasePage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 
-/**
- * @author flowerrrr
- */
+
 public class UniformsPage extends ManagerBasePage {
 
     public UniformsPage(final IModel<Team> model) {

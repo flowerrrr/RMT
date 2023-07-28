@@ -11,9 +11,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.util.string.Strings;
 
-/**
- * @author flowerrrr
- */
+
 public class VenuePanel extends BasePanel {
 
     @SpringBean(name = "urlProvider")

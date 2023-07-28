@@ -19,9 +19,7 @@ import java.util.Set;
 
 import static org.testng.Assert.*;
 
-/**
- * @author flowerrrr
- */
+
 public class SelectRecipientPanelTest extends AbstractRMTWicketMockitoTests {
 
     @Test

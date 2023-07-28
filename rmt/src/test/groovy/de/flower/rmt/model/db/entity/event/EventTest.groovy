@@ -6,9 +6,7 @@ import org.joda.time.LocalTime
 import org.testng.annotations.Test
 import static org.testng.Assert.*
 
-/**
- * @author flowerrrr
- */
+
 @groovy.transform.TypeChecked
 public class EventTest {
 

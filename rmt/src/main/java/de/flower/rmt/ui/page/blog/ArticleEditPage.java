@@ -9,8 +9,6 @@ import org.apache.wicket.model.StringResourceModel;
 
 /**
  * edits a blog article.
- *
- * @author flowerrrr
  */
 public class ArticleEditPage extends AbstractCommonBasePage {
 

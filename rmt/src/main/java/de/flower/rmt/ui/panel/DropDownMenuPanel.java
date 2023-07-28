@@ -11,9 +11,7 @@ import org.apache.wicket.model.ResourceModel;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class DropDownMenuPanel extends BasePanel {
 
     public final static String LINK_ID = "link";

@@ -10,9 +10,7 @@ import org.testng.annotations.Test;
 
 import java.util.Arrays;
 
-/**
- * @author flowerrrr
- */
+
 public class FormFieldPanelTest extends AbstractRMTWicketMockitoTests {
 
     @Test

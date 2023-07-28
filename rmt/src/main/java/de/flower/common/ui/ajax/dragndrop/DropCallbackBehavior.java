@@ -7,9 +7,6 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
-* @author flowerrrr
-*/
 abstract class DropCallbackBehavior extends AbstractParameterizedDefaultAjaxBehavior {
 
     private final static Logger log = LoggerFactory.getLogger(DropCallbackBehavior.class);

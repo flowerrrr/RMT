@@ -5,9 +5,7 @@ import de.flower.rmt.test.AbstractRMTWicketIntegrationTests;
 import de.flower.rmt.ui.model.VenueModel;
 import org.testng.annotations.Test;
 
-/**
- * @author flowerrrr
- */
+
 public class VenuePageTest  extends AbstractRMTWicketIntegrationTests {
 
     @Test

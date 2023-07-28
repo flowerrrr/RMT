@@ -5,9 +5,7 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import wicket.contrib.gmap3.GMap;
 import wicket.contrib.gmap3.js.Constructor;
 
-/**
- * @author flowerrrr
- */
+
 public class GInfoWindow extends GOverlay {
 
     private String content;

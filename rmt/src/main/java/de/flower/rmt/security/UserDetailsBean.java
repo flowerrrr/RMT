@@ -8,9 +8,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class UserDetailsBean extends org.springframework.security.core.userdetails.User {
 
     private User user;

@@ -31,9 +31,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * @author flowerrrr
- */
+
 public class AddInviteePanel extends BasePanel<Event> {
 
     @SpringBean

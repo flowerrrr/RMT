@@ -4,9 +4,7 @@ import de.flower.rmt.model.db.type.RSVPStatus;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.model.ResourceModel;
 
-/**
- * @author flowerrrr
- */
+
 public class RSVPStatusRenderer implements IChoiceRenderer<RSVPStatus> {
 
     @Override

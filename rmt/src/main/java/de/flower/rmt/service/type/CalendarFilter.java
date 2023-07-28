@@ -4,9 +4,7 @@ import de.flower.rmt.model.db.entity.Team;
 
 import java.io.Serializable;
 
-/**
- * @author flowerrrr
- */
+
 public class CalendarFilter implements Serializable {
 
     public static final CalendarFilter USER = new CalendarFilter(Type.USER);

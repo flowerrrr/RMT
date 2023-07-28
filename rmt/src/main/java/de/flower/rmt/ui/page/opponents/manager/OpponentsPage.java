@@ -3,9 +3,7 @@ package de.flower.rmt.ui.page.opponents.manager;
 import de.flower.rmt.ui.page.Pages;
 import de.flower.rmt.ui.page.base.manager.ManagerBasePage;
 
-/**
- * @author flowerrrr
- */
+
 public class OpponentsPage extends ManagerBasePage {
 
     public OpponentsPage() {

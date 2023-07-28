@@ -27,7 +27,6 @@ import java.util.List;
 
 /**
  * Panel serves for manager and player view.
- * @author flowerrrr
  */
 public class EventTeamPanel extends RMTBasePanel<EventTeam> {
 

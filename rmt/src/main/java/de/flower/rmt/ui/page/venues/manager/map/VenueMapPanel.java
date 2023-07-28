@@ -16,8 +16,6 @@ import wicket.contrib.gmap3.overlay.GOverlayEventHandler;
 
 /**
  * The model contains the latLng of the marker to display. If null no marker is displayed.
- *
- * @author flowerrrr
  */
 public class VenueMapPanel extends BasePanel<LatLng> {
 

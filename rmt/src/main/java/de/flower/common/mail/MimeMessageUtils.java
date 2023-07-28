@@ -3,9 +3,7 @@ package de.flower.common.mail;
 import javax.mail.internet.MimeMessage;
 import java.io.ByteArrayOutputStream;
 
-/**
- * @author flowerrrr
- */
+
 public class MimeMessageUtils {
 
     private MimeMessageUtils() {

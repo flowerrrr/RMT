@@ -13,9 +13,7 @@ import org.apache.wicket.model.IModel;
 
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public abstract class GeocodeResultsPanel extends BasePanel<List<GeocodingResult>> {
 
     public GeocodeResultsPanel(final IModel<List<GeocodingResult>> listModel) {

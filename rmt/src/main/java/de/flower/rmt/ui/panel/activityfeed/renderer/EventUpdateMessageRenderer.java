@@ -5,9 +5,7 @@ import de.flower.rmt.model.db.type.activity.EventUpdateMessage.Type;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.StringResourceModel;
 
-/**
- * @author flowerrrr
- */
+
 public class EventUpdateMessageRenderer extends AbstractEventMessageRenderer implements IMessageRenderer<EventUpdateMessage> {
 
     @Override

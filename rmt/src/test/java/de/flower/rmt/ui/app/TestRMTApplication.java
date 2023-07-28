@@ -9,9 +9,7 @@ import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
-/**
- * @author flowerrrr
- */
+
 
 public class TestRMTApplication extends RMTApplication {
 

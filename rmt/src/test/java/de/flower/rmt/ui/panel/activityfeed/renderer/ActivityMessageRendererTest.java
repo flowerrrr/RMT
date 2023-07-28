@@ -19,9 +19,7 @@ import java.util.Date;
 import static org.mockito.Mockito.anyLong;
 import static org.mockito.Mockito.when;
 
-/**
- * @author flowerrrr
- */
+
 public class ActivityMessageRendererTest extends AbstractRMTWicketMockitoTests {
 
     @SpringBean

@@ -18,9 +18,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public abstract class GeocodePanel extends BasePanel {
 
     private final static Logger log = LoggerFactory.getLogger(GeocodePanel.class);

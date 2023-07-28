@@ -14,9 +14,7 @@ import javax.mail.internet.InternetAddress;
 import java.net.URLEncoder;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class Links {
 
     /**

@@ -20,9 +20,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * @author flowerrrr
- */
+
 public class EventPage extends ManagerBasePage {
 
     private final static Logger log = LoggerFactory.getLogger(EventPage.class);

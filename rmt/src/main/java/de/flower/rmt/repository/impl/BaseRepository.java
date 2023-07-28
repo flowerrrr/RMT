@@ -33,9 +33,7 @@ import javax.persistence.EntityManager;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class BaseRepository<T extends AbstractBaseEntity, ID extends Serializable> extends ExtendedQueryDslJpaRepository<T, ID> implements IRepository<T, ID> {
 
     private EntityManager em;

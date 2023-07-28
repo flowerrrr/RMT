@@ -3,9 +3,7 @@ package de.flower.rmt.service;
 import de.flower.rmt.test.AbstractRMTIntegrationTests;
 import org.testng.annotations.Test;
 
-/**
- * @author flowerrrr
- */
+
 public class ApplicationServiceTest extends AbstractRMTIntegrationTests {
 
     @Test

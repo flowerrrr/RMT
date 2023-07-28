@@ -9,9 +9,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * @author flowerrrr
- */
+
 public class PageNotFound404Panel extends BasePanel {
 
     private final static Logger log = LoggerFactory.getLogger(PageNotFound404Panel.class);

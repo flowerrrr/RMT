@@ -42,9 +42,7 @@ import static de.flower.rmt.repository.Specs.eq;
 import static de.flower.rmt.repository.Specs.fetch;
 import static org.springframework.data.jpa.domain.Specifications.where;
 
-/**
- * @author flowerrrr
- */
+
 @Service
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
 public class EventManager extends AbstractService {

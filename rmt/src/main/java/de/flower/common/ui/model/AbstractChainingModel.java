@@ -3,9 +3,7 @@ package de.flower.common.ui.model;
 import org.apache.wicket.model.IChainingModel;
 import org.apache.wicket.model.IModel;
 
-/**
- * @author flowerrrr
- */
+
 public abstract class AbstractChainingModel<S, T> implements IChainingModel<S> {
 
     private IModel<T> chainedModel;

@@ -23,8 +23,6 @@ import java.util.List;
 
 /**
  * Lists all invitees as drag-able labels.
- *
- * @author flowerrrr
  */
 public abstract class DraggableInviteeListPanel extends BasePanel {
 

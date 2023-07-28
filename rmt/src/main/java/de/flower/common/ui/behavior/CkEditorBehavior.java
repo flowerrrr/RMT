@@ -15,8 +15,6 @@ import java.util.Map;
 
 /**
  * behavior to be bound to textarea to transform it to a ckeditor instance.
- *
- * @author flowerrrr
  */
 public class CkEditorBehavior extends Behavior {
 

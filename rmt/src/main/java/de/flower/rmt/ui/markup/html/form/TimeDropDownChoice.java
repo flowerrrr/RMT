@@ -10,9 +10,7 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class TimeDropDownChoice extends DropDownChoice<LocalTime> {
 
     private final static Logger log = LoggerFactory.getLogger(TimeDropDownChoice.class);

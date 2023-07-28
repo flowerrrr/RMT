@@ -4,9 +4,7 @@ import de.flower.rmt.model.db.entity.Opponent;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 
-/**
- * @author flowerrrr
- */
+
 public class OpponentDropDownChoice extends DropDownChoice<Opponent> {
 
     public OpponentDropDownChoice(String id) {

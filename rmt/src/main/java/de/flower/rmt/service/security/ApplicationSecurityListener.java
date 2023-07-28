@@ -10,7 +10,6 @@ import org.springframework.security.authentication.event.InteractiveAuthenticati
 
 /**
  * Spring security application listener to track last login of users.
- * @author flowerrrr
  */
 public class ApplicationSecurityListener implements ApplicationListener<InteractiveAuthenticationSuccessEvent> {
 

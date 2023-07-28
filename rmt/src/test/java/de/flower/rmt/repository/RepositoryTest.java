@@ -12,9 +12,7 @@ import java.util.List;
 
 import static org.testng.Assert.*;
 
-/**
- * @author flowerrrr
- */
+
 public class RepositoryTest extends AbstractRMTIntegrationTests {
 
     @Test(expectedExceptions = {LazyInitializationException.class})

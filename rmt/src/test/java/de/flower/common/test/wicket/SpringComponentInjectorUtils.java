@@ -17,8 +17,6 @@ import java.util.List;
  * Resets all previously injected beans.
  * Simulates DirtiesContext.AFTER_METHOD.
  * Required cause Mockito.reset() does not fully reset mocks.
- *
- * @author flowerrrr
  */
 public class SpringComponentInjectorUtils {
 

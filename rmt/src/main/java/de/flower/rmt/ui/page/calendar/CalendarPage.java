@@ -33,9 +33,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class CalendarPage extends AbstractCommonBasePage {
 
     private final static Logger log = LoggerFactory.getLogger(CalendarPage.class);

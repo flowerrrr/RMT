@@ -1,8 +1,6 @@
 package de.flower.rmt.ui.page.base;
 
-/**
- * @author flowerrrr
- */
+
 public interface INavigationPanelAware {
 
     /**

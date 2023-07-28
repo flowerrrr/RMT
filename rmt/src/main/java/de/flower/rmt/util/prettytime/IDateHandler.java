@@ -2,9 +2,7 @@ package de.flower.rmt.util.prettytime;
 
 import java.util.Date;
 
-/**
- * @author flowerrrr
- */
+
 public interface IDateHandler {
 
     String format(Date date, final long delta);

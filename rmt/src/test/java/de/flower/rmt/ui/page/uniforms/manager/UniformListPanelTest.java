@@ -12,9 +12,7 @@ import java.util.List;
 
 import static org.mockito.Mockito.when;
 
-/**
- * @author flowerrrr
- */
+
 public class UniformListPanelTest extends AbstractRMTWicketMockitoTests {
 
     @SpringBean

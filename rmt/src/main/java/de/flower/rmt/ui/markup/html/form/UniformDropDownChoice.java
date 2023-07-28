@@ -4,9 +4,7 @@ import de.flower.rmt.model.db.entity.Uniform;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 
-/**
- * @author flowerrrr
- */
+
 public class UniformDropDownChoice extends DropDownChoice<Uniform> {
 
     public UniformDropDownChoice(String id) {

@@ -7,9 +7,7 @@ import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-/**
- * @author flowerrrr
- */
+
 public class GetDirectionsPanel extends BasePanel<Venue> {
 
     @SpringBean(name = "urlProvider")

@@ -21,9 +21,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import java.util.Set;
 
-/**
- * @author flowerrrr
- */
+
 @Service
 public class MailService {
 

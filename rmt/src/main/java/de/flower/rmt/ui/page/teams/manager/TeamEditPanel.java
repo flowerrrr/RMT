@@ -13,9 +13,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.wicketstuff.jsr303.validator.FormComponentBeanValidator;
 
-/**
- * @author flowerrrr
- */
+
 public class TeamEditPanel extends BasePanel {
 
     @SpringBean

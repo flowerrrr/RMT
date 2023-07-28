@@ -15,8 +15,6 @@ import java.util.List;
 
 /**
  * Monitors serialized pages and checks for serialized entities.
- *
- * @author flowerrrr
  */
 @Component
 public class PageSerializationValidatorListener {

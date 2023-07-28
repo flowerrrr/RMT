@@ -6,8 +6,6 @@ import java.util.List;
 
 /**
  * http://stackoverflow.com/questions/936684/getting-the-class-name-from-a-static-method-in-java
- *
- * @author flowerrrr
  */
 public final class Clazz {
 

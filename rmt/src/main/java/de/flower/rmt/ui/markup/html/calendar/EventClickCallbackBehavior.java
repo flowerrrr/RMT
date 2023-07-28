@@ -3,9 +3,7 @@ package de.flower.rmt.ui.markup.html.calendar;
 import de.flower.common.ui.ajax.AbstractParameterizedDefaultAjaxBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 
-/**
- * @author flowerrrr
- */
+
 public abstract class EventClickCallbackBehavior extends AbstractParameterizedDefaultAjaxBehavior {
 
     private Parameter<Long> paramId = Parameter.of("entityId", Long.class, "event.entityId");

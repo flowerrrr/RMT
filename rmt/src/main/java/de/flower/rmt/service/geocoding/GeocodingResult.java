@@ -6,9 +6,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author flowerrrr
- */
+
 public class GeocodingResult implements Serializable {
 
     private String formatted_address;

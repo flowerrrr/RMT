@@ -14,9 +14,7 @@ import org.apache.wicket.model.ResourceModel;
 
 import java.util.Arrays;
 
-/**
- * @author flowerrrr
- */
+
 public abstract class QuickResponseLabel extends AjaxEditableChoiceLabel<RSVPStatus> {
 
     private TooltipBehavior tooltipBehavior;

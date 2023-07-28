@@ -17,9 +17,7 @@ import org.wicketstuff.jsr303.validator.BeanValidator;
 
 import java.io.Serializable;
 
-/**
- * @author flowerrrr
- */
+
 public class AddGuestPlayerPanel extends BasePanel<Event> {
 
     @SpringBean

@@ -8,9 +8,7 @@ import org.joda.time.DateTime;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 
-/**
- * @author flowerrrr
- */
+
 public class ICalendarHelper {
 
     public static final String CHARSET = IO.CharacterEncoding.UTF8.toString();

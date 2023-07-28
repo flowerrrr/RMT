@@ -14,9 +14,7 @@ import javax.validation.groups.Default;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 @Entity
 @Table(name = "team", uniqueConstraints = @UniqueConstraint(name = "name", columnNames = {"name", "club_id"}))
 @Unique(name = "name",

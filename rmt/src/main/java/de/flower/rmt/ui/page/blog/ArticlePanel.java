@@ -13,9 +13,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import java.util.Date;
 
-/**
- * @author flowerrrr
- */
+
 public class ArticlePanel extends RMTBasePanel<BArticle> {
 
     @SpringBean

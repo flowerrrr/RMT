@@ -3,9 +3,7 @@ package de.flower.common.ui.markup.html.link;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.link.Link;
 
-/**
- * @author flowerrrr
- */
+
 public class FeatureNotImplementedLink extends Link {
 
     public FeatureNotImplementedLink(String id, String message) {

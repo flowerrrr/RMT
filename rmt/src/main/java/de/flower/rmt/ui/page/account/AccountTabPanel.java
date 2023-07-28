@@ -10,9 +10,7 @@ import org.apache.wicket.model.ResourceModel;
 
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class AccountTabPanel extends AbstractAjaxTabbedPanel<User> {
 
     public static final int PASSWORD_RESET_PANEL_INDEX = 1;

@@ -2,8 +2,6 @@ package de.flower.common.ui;
 
 /**
  * Constants for Css class names.
- *
- * @author flowerrrr
  */
 public interface Css {
 

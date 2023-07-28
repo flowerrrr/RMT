@@ -10,8 +10,6 @@ import java.util.Locale;
 /**
  * Pretty formatting of dates. Inspired by com.ocpsoft.pretty.time.PrettyTime.
  * Adds support for Today and Yesterday.
- *
- * @author flowerrrr
  */
 public class PrettyTime {
 

@@ -8,7 +8,6 @@ import org.apache.wicket.model.IModel;
 
 /**
  * Overrides some default behavior.
- * @author flowerrrr
  */
 public class AjaxEditableMultiLineLabelExtended<T> extends AjaxEditableMultiLineLabel<T> {
 

@@ -7,9 +7,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * @author flowerrrr
- */
+
 public abstract class AbstractEventMessage implements Serializable {
 
     /**

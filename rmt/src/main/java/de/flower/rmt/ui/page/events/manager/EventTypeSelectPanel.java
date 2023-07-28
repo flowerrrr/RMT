@@ -13,8 +13,6 @@ import java.util.Arrays;
 
 /**
  * Panel to let user select event type before event form is displayed.
- *
- * @author flowerrrr
  */
 public abstract class EventTypeSelectPanel extends BasePanel {
 

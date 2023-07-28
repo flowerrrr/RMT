@@ -3,9 +3,7 @@ package de.flower.common.ui.markup.html.form;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.model.ResourceModel;
 
-/**
- * @author flowerrrr
- */
+
 public class BooleanChoiceRenderer implements IChoiceRenderer<Boolean> {
 
     private String sTrue;

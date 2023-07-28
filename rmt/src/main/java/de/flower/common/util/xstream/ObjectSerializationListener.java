@@ -10,8 +10,6 @@ import java.util.Comparator;
 
 /**
  * Try threadlocal.
- *
- * @author flowerrrr
  */
 public class ObjectSerializationListener {
 

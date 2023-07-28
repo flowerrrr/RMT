@@ -2,9 +2,7 @@ package de.flower.rmt.ui.model;
 
 import de.flower.rmt.model.db.entity.event.Event;
 
-/**
- * @author flowerrrr
- */
+
 public class ModelFactory {
 
     /**

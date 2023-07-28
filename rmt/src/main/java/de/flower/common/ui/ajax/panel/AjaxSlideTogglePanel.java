@@ -13,8 +13,6 @@ import org.apache.wicket.model.ResourceModel;
 
 /**
  * Panel with a button and a wrapped panel. Wrapped panel is displayed when button is clicked.
- *
- * @author flowerrrr
  */
 public class AjaxSlideTogglePanel extends Panel {
 

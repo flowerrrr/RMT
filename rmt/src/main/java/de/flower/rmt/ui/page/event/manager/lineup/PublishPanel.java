@@ -8,9 +8,7 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.model.IModel;
 
-/**
-* @author flowerrrr
-*/
+ 
 public abstract class PublishPanel<T> extends BasePanel<T> {
 
     public PublishPanel(IModel<T> model) {

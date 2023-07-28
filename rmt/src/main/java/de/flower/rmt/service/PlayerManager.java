@@ -22,9 +22,7 @@ import java.util.List;
 import static de.flower.rmt.repository.Specs.*;
 import static org.springframework.data.jpa.domain.Specifications.where;
 
-/**
- * @author flowerrrr
- */
+
 @Service
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
 public class PlayerManager extends AbstractService {

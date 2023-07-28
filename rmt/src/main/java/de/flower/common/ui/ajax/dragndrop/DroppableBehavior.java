@@ -8,9 +8,7 @@ import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.html.IHeaderResponse;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 
-/**
- * @author flowerrrr
- */
+
 public abstract class DroppableBehavior extends Behavior {
 
     private final static String SCRIPT = "$(function () {\n" +

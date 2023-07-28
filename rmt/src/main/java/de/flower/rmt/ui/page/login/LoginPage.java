@@ -17,9 +17,7 @@ import org.springframework.security.web.WebAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-/**
- * @author flowerrrr
- */
+
 public class LoginPage extends AbstractBasePage {
 
     private final static Logger log = LoggerFactory.getLogger(LoginPage.class);

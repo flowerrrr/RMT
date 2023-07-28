@@ -3,9 +3,7 @@ package de.flower.rmt.model.db.type.activity;
 import de.flower.rmt.model.db.entity.event.Event;
 import org.hibernate.validator.constraints.NotBlank;
 
-/**
- * @author flowerrrr
- */
+
 public class EmailSentMessage extends AbstractEventMessage {
 
     /**

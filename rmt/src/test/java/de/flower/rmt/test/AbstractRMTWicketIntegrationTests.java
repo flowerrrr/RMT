@@ -11,8 +11,6 @@ import org.testng.annotations.BeforeMethod;
 
 /**
  * Base class for ui-test that require full application stack down to database.
- *
- * @author flowerrrr
  */
 public abstract class AbstractRMTWicketIntegrationTests extends AbstractRMTIntegrationTests {
 

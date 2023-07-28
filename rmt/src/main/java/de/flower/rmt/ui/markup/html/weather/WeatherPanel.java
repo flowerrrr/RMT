@@ -10,9 +10,7 @@ import java.text.MessageFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * @author flowerrrr
- */
+
 public class WeatherPanel extends BasePanel<String> {
 
     private static final String url = "https://www.wetteronline.de/?FORMAT=long&MAP=rainradar&MENU=dropdown&PLZ={0}&pid=p_city_hpweather";

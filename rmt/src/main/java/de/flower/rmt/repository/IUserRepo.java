@@ -9,9 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public interface IUserRepo extends IRepository<User, Long> {
 
     User findByFullname(String candidate);

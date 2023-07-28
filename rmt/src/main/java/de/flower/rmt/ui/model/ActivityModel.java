@@ -4,9 +4,7 @@ import de.flower.rmt.model.db.entity.Activity;
 import de.flower.rmt.service.ActivityManager;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-/**
- * @author flowerrrr
- */
+
 public class ActivityModel extends AbstractEntityModel<Activity> {
 
     @SpringBean

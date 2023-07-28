@@ -17,9 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 @Service
 @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 public class ReminderTask {

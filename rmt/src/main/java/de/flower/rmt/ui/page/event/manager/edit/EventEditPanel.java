@@ -38,8 +38,6 @@ import org.joda.time.LocalTime;
 /**
  * A bit different form other editing panels cause it is always
  * called with a domain object passed into the panel.
- *
- * @author flowerrrr
  */
 public class EventEditPanel extends BasePanel<Event> {
 

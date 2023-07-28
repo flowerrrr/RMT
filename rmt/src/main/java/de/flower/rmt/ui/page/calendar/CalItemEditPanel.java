@@ -35,9 +35,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class CalItemEditPanel extends RMTBasePanel<CalItemDto> {
 
     @SpringBean

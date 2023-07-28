@@ -3,9 +3,7 @@ package de.flower.common.collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * @author flowerrrr
- */
+
 public class MRUCache<K,V> extends LinkedHashMap<K,V> {
 
     private int maxSize;

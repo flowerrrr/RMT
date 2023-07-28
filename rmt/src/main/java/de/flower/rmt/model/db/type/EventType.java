@@ -8,8 +8,6 @@ import de.flower.rmt.model.db.entity.event.Tournament;
 import de.flower.rmt.model.db.entity.event.Training;
 
 /**
- * @author flowerrrr
- *
  * NOTE: Do not move, it will break the activity feed as persisted messages cannot be deserialized again.
  */
 public enum EventType {

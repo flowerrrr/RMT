@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-/**
- * @author flowerrrr
- */
+
 @Service
 public class PasswordValidator {
 

@@ -15,9 +15,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 @Component
 public class TaskScheduler {
 

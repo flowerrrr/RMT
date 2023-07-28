@@ -3,9 +3,7 @@ package de.flower.rmt.ui.panel.activityfeed.renderer;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class ActivityMessageRenderer {
 
     private final static List<IMessageRenderer<?>> renderers = new ArrayList<IMessageRenderer<?>>() {

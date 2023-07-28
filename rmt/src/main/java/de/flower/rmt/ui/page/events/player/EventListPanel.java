@@ -32,9 +32,7 @@ import org.joda.time.DateTime;
 
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class EventListPanel extends BasePanel {
 
     @SpringBean

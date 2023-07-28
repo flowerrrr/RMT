@@ -2,9 +2,7 @@ package de.flower.rmt.model.db.type.activity;
 
 import org.testng.annotations.Test;
 
-/**
- * @author flowerrrr
- */
+
 public class ActivityMessageTest {
 
     /**

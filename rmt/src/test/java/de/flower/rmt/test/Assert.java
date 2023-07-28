@@ -3,9 +3,7 @@ package de.flower.rmt.test;
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.fail;
 
-/**
- * @author flowerrrr
- */
+
 public class Assert {
 
     public static void assertContains(String s, String sub) {

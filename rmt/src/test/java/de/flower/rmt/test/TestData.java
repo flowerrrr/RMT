@@ -66,8 +66,6 @@ import java.util.concurrent.TimeUnit;
  * <p/>
  * Use #newXXX methods in unit tests.
  * Use #getXXX methods when running integration tests with underlying database.
- *
- * @author flowerrrr
  */
 @Service
 @Transactional(propagation = Propagation.REQUIRED)

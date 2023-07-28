@@ -27,8 +27,6 @@ import java.util.Set;
  * Requires that the form uses a CompoundPropertyModel containing the bean
  * to validate.
  * Must be added after the component is added to a form.
- *
- * @author flowerrrr
  */
 public class FormComponentBeanValidator<T> extends Behavior implements INullAcceptingValidator<String>, Serializable {
 

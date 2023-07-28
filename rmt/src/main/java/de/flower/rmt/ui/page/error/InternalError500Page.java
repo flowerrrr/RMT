@@ -9,9 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class InternalError500Page extends AbstractBaseLayoutPage {
 
     private final static Logger log = LoggerFactory.getLogger(InternalError500Page.class);

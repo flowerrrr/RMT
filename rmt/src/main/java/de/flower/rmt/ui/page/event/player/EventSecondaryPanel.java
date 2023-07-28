@@ -21,9 +21,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import javax.mail.internet.InternetAddress;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class EventSecondaryPanel extends BasePanel {
 
     @SpringBean

@@ -24,9 +24,7 @@ import java.util.List;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-/**
- * @author flowerrrr
- */
+
 public class EntityFormTest extends AbstractRMTWicketIntegrationTests {
 
     @Test

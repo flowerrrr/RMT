@@ -24,9 +24,7 @@ import org.joda.time.DateTime;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author flowerrrr
- */
+
 public abstract class CalendarPanel extends RMTBasePanel<List<CalendarFilter>> {
 
     @SpringBean

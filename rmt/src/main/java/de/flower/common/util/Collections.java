@@ -3,9 +3,7 @@ package de.flower.common.util;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class Collections {
 
     private Collections() {}

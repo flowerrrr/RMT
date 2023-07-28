@@ -16,8 +16,6 @@ import java.io.InputStream;
  * No real test. Just helps debugging into the appender code.
  *
  * Degraded to manual test cause it slowed down the jenkins build massively and messed the log-output of the other tests.
- *
- * @author flowerrrr
  */
 public class SMTPEvaluatorManualTest {
 

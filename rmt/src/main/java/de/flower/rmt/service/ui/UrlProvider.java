@@ -11,8 +11,6 @@ import java.util.Locale;
 
 /**
  * Url provider used when WicketUrlProvider is not available (i.e. when called from service layer without an wicket request).
- *
- * @author flowerrrr
  */
 @Component
 public class UrlProvider implements IUrlProvider {

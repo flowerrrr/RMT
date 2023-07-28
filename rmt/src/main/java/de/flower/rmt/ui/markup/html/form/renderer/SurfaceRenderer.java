@@ -8,9 +8,7 @@ import org.apache.wicket.model.ResourceModel;
 
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class SurfaceRenderer implements IChoiceRenderer<Surface> {
 
     @Override

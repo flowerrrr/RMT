@@ -17,8 +17,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * displays a blog article and related comments.
- *
- * @author flowerrrr
  */
 public class ArticlePage extends AbstractCommonBasePage {
 

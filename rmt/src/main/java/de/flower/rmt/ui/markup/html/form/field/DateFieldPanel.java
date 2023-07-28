@@ -3,9 +3,7 @@ package de.flower.rmt.ui.markup.html.form.field;
 import de.flower.rmt.ui.markup.html.form.DatePicker;
 import de.flower.rmt.util.Dates;
 
-/**
- * @author flowerrrr
- */
+
 public class DateFieldPanel extends AbstractFormFieldPanel {
 
     public DateFieldPanel(String id) {

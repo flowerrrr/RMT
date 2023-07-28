@@ -7,9 +7,7 @@ import java.util.Date;
 import static org.mockito.Mockito.when;
 import static org.testng.Assert.*;
 
-/**
- * @author flowerrrr
- */
+
 public class MockitoFactoryApplicationContextTest {
 
     MockitoFactoryApplicationContext mockCtx = new MockitoFactoryApplicationContext();

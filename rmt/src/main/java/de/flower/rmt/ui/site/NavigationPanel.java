@@ -41,9 +41,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class NavigationPanel extends RMTBasePanel {
 
     @SpringBean

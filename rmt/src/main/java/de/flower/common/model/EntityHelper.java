@@ -6,9 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class EntityHelper {
 
     public static List<Long> convertEntityListToIdList(Collection<? extends IEntity> entities) {

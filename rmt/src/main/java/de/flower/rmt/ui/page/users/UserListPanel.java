@@ -38,9 +38,7 @@ import javax.mail.internet.InternetAddress;
 import java.util.HashSet;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class UserListPanel extends RMTBasePanel {
 
     @SpringBean

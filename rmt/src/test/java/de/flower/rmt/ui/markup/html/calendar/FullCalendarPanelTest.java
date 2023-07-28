@@ -7,9 +7,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class FullCalendarPanelTest extends AbstractWicketUnitTests {
 
     @Test

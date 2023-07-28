@@ -8,8 +8,6 @@ import org.apache.wicket.model.ResourceModel;
 
 /**
  * Overrides some default behavior.
- *
- * @author flowerrrr
  */
 public class AjaxEditableLabelExtended<T> extends AjaxEditableLabel<T> {
 

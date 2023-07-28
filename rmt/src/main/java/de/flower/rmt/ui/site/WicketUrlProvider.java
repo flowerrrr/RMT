@@ -8,9 +8,7 @@ import org.apache.wicket.request.Url;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.springframework.stereotype.Component;
 
-/**
- * @author flowerrrr
- */
+
 @Component
 @Deprecated // should use LinkProvider instead
 public class WicketUrlProvider implements IUrlProvider {

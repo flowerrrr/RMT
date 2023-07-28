@@ -23,9 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
 public class LineupManager extends AbstractService {

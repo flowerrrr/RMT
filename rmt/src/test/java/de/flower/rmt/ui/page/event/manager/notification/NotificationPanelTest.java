@@ -5,9 +5,7 @@ import de.flower.rmt.test.AbstractRMTWicketIntegrationTests;
 import de.flower.rmt.ui.model.EventModel;
 import org.testng.annotations.Test;
 
-/**
- * @author flowerrrr
- */
+
 public class NotificationPanelTest extends AbstractRMTWicketIntegrationTests {
 
     @Test

@@ -16,9 +16,7 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 @Entity
 @Table(name = "lineup")
 public class Lineup extends AbstractBaseEntity {

@@ -3,9 +3,7 @@ package de.flower.rmt.ui.page.about;
 import de.flower.rmt.ui.page.base.AbstractBaseLayoutPage;
 import de.flower.rmt.ui.page.base.AnonymousNavigationPanel;
 
-/**
- * @author flowerrrr
- */
+
 public class ChangeLogPage extends AbstractBaseLayoutPage {
 
     public ChangeLogPage() {

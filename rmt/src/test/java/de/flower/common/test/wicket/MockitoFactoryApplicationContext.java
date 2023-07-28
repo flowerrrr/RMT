@@ -21,8 +21,6 @@ import static org.mockito.Mockito.withSettings;
  * Saves developer from adding all mocks to mock context in test-setup.
  * <p/>
  * Based on the ideas of http://www.petrikainulainen.net/programming/tips-and-tricks/mocking-spring-beans-with-apache-wicket-and-mockito/.
- *
- * @author flowerrrr
  */
 public class MockitoFactoryApplicationContext extends ApplicationContextMock {
 

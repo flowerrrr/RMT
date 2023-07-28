@@ -12,9 +12,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-/**
- * @author flowerrrr
- */
+
 public class SendInvitationPanel extends BasePanel<User> {
 
     @SpringBean

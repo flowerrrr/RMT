@@ -6,7 +6,6 @@ import java.util.Locale;
 
 /**
  * NOTE: Requires #setEscapeModelString(false) set on label.
- * @author flowerrrr
  */
 public class MultiLineConverter extends AbstractConverter<String> {
 

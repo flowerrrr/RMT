@@ -1,8 +1,6 @@
 package de.flower.common.util.geo;
 
-/**
- * @author flowerrrr
- */
+
 public class Area {
 
     public double top;

@@ -13,9 +13,7 @@ import javax.validation.constraints.Size;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-/**
- * @author flowerrrr
- */
+
 @Entity
 @Table(name = "comment")
 public class Comment extends AbstractBaseEntity {

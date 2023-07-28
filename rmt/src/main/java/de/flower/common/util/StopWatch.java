@@ -5,9 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.Callable;
 
-/**
- * @author flowerrrr
- */
+
 public class StopWatch {
 
     private final static Logger log = LoggerFactory.getLogger(StopWatch.class);

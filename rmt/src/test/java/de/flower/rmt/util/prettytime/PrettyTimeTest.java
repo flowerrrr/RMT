@@ -9,9 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
-/**
- * @author flowerrrr
- */
+
 public class PrettyTimeTest {
 
     private final static Logger log = LoggerFactory.getLogger(PrettyTimeTest.class);

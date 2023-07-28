@@ -29,8 +29,6 @@ import java.util.List;
 
 /**
  * Panel displays activity feed.
- *
- * @author flowerrrr
  */
 public class ActivityFeedPanel extends BasePanel {
 

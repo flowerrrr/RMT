@@ -2,9 +2,7 @@ package de.flower.rmt.model.db.type;
 
 import de.flower.rmt.test.AbstractRMTIntegrationTests;
 
-/**
- * @author flowerrrr
- */
+
 public class PersistentSplitDateTimeTypeTest extends AbstractRMTIntegrationTests {
 
     /**

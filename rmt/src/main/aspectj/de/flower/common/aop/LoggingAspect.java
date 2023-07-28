@@ -3,9 +3,7 @@ package de.flower.common.aop;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 
-/**
- * @author flowerrrr
- */
+
 @Aspect
 public class LoggingAspect extends AbstractSlf4JLoggingAspect {
 

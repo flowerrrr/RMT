@@ -29,7 +29,6 @@ import java.util.List;
 
 /**
  * Panel servers manager and player view.
- * @author flowerrrr
  */
 public class RankingPanel extends RMTBasePanel<Event> {
 

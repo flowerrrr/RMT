@@ -6,9 +6,7 @@ import org.apache.wicket.request.cycle.RequestCycle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-/**
- * @author flowerrrr
- */
+
 @Component
 public class ViewResolver {
 

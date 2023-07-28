@@ -13,9 +13,7 @@ import java.util.Set;
 
 import static org.testng.Assert.*;
 
-/**
- * @author flowerrrr
- */
+
 
 public class TeamManagerTest extends AbstractRMTIntegrationTests {
 

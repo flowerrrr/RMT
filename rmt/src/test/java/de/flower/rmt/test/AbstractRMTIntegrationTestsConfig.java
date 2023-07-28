@@ -5,9 +5,7 @@ import de.flower.rmt.config.*;
 import de.flower.rmt.ui.app.TestRMTApplication;
 import org.springframework.context.annotation.*;
 
-/**
- * @author flowerrrr
- */
+
 @Configuration
 @Import({
         BaseConfig.class,

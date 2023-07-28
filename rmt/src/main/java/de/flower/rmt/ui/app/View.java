@@ -5,8 +5,6 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 /**
  * Constants for both types of views that the application offers.
  * Manager can view pages in View.PLAYER mode. In such cases the view takes precedence over the manager-role.
- *
- * @author flowerrrr
  */
 public enum View {
 

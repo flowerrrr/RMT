@@ -19,8 +19,6 @@ import java.util.List;
 
 /**
  * Team for single event. Used to model Socca5 events.
- *
- * @author flowerrrr
  */
 @SuppressWarnings("FieldCanBeLocal")
 @Entity

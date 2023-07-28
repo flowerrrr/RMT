@@ -23,9 +23,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import javax.mail.internet.InternetAddress;
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class RecipientListPanel extends BasePanel<List<InternetAddress>> {
 
     @SpringBean

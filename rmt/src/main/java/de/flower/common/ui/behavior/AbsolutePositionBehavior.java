@@ -4,9 +4,7 @@ import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
 
-/**
- * @author flowerrrr
- */
+
 public class AbsolutePositionBehavior extends Behavior {
 
     private long top;

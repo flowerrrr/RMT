@@ -9,9 +9,7 @@ import de.flower.common.ui.panel.BasePanel;
 import de.flower.rmt.ui.app.Links;
 import de.flower.rmt.ui.page.about.AboutPage;
 
-/**
- * @author flowerrrr
- */
+
 public class AnonymousNavigationPanel extends BasePanel {
 
     public static final String HOME = "home";

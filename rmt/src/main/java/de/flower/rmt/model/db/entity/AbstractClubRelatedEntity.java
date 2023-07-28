@@ -9,9 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 
-/**
- * @author flowerrrr
- */
+
 @MappedSuperclass
 public abstract class AbstractClubRelatedEntity extends AbstractBaseEntity {
 

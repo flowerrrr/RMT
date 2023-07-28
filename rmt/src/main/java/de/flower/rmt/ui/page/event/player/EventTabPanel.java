@@ -12,9 +12,7 @@ import org.apache.wicket.model.ResourceModel;
 
 import java.util.List;
 
-/**
- * @author flowerrrr
- */
+
 public class EventTabPanel extends AbstractAjaxTabbedPanel<Event> {
 
     public static final int INVITATIONS_PANEL_INDEX = 0;

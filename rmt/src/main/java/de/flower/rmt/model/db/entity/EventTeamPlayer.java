@@ -12,9 +12,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
-/**
- * @author flowerrrr
- */
+
 @Entity
 @Table(name = "eventteamplayer", uniqueConstraints = @UniqueConstraint(columnNames = {"eventTeam_id", "invitation_id"}))
 public class EventTeamPlayer extends AbstractBaseEntity {

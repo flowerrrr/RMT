@@ -5,9 +5,7 @@ import de.flower.rmt.ui.page.Pages;
 import de.flower.rmt.ui.page.base.manager.ManagerBasePage;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-/**
- * @author flowerrrr
- */
+
 public class TeamsPage extends ManagerBasePage {
 
     @SpringBean

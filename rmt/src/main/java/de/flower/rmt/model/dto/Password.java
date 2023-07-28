@@ -11,8 +11,6 @@ import java.io.Serializable;
 
 /**
  * Model class for usage in password-change form.
- *
- * @author flowerrrr
  */
 @ScriptAssert(script = "_this.isEqualPasswords()",
         message = Password.Validation.passwordNotEqualMessage, lang = "javascript",

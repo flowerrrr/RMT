@@ -11,17 +11,10 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
-/**
-
- * @author flowerrrr
- */
 @Entity
 @Table(name = "role", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "authority"}))
 public class Role extends AbstractBaseEntity {
 
-    /**
-     * @author flowerrrr
-     */
     public enum Roles {
 
         PLAYER("ROLE_PLAYER"),
