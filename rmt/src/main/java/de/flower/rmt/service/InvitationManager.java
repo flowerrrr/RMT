@@ -375,7 +375,7 @@ public class InvitationManager extends AbstractService {
 
     private List<Invitation> findAllByUserAndRange(final User user, final DateTime dateStart, final DateTime dateEnd) {
         BooleanExpression isUser = QInvitation.invitation.user.eq(user);
-        BooleanExpression isEventInRange = QInvitation.invitation.event.dateTime.between(dateStart, dateEnd);
+        BooleanExpression isEventInRange = QInvitation.invitation.event.dateTime.between(dateStart.toDate(), dateEnd.toDate());
         return invitationRepo.findAll(isUser.and(isEventInRange));
     }
 }

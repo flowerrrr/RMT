@@ -9,7 +9,6 @@ import de.flower.rmt.model.db.entity.User;
 import de.flower.rmt.model.db.entity.Venue;
 import de.flower.rmt.model.db.type.EventType;
 import org.hibernate.annotations.Index;
-import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
@@ -86,16 +85,14 @@ public class Event extends AbstractClubRelatedEntity {
      */
     @Column
     @NotNull
-    @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
     @Index(name = "ix_datetime")
-    private DateTime dateTime;
+    private Date dateTime;
 
     /**
      * Optional field. Needed for iCalender objects
      */
     @Column
-    @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
-    private DateTime dateTimeEnd;
+    private Date dateTimeEnd;
 
     @Column
     @NotBlank
@@ -210,11 +207,11 @@ public class Event extends AbstractClubRelatedEntity {
      * @return
      */
     public DateTime getDateTime() {
-        return dateTime;
+        return dateTime == null ? null : new DateTime(dateTime);
     }
 
     public void setDateTime(final DateTime dateTime) {
-        this.dateTime = dateTime;
+        this.dateTime = dateTime == null ? null : dateTime.toDate();
         if (dateTime == null) {
             this.date = null;
             this.time = null;
@@ -230,7 +227,7 @@ public class Event extends AbstractClubRelatedEntity {
      * @return
      */
     public Date getDateTimeAsDate() {
-        return (dateTime == null) ? null : dateTime.toDate();
+        return dateTime;
     }
 
     private void updateDateTime(Date date) {
@@ -238,9 +235,9 @@ public class Event extends AbstractClubRelatedEntity {
             dateTime = null;
         } else {
             if (time == null) {
-                dateTime = new DateTime(date);
+                dateTime = date;
             } else {
-                dateTime = new DateTime(date).withFields(time);
+                dateTime = new DateTime(date).withFields(time).toDate();
             }
         }
     }
@@ -250,9 +247,9 @@ public class Event extends AbstractClubRelatedEntity {
             dateTime = null;
         } else {
             if (date == null) {
-                dateTime = new DateTime(0).withFields(time);
+                dateTime = new DateTime(0).withFields(time).toDate();
             } else {
-                dateTime = new DateTime(date).withFields(time);
+                dateTime = new DateTime(date).withFields(time).toDate();
             }
         }
     }
@@ -270,12 +267,12 @@ public class Event extends AbstractClubRelatedEntity {
              // guess duration of event.
              return getDateTime().plusMinutes(getEventType().getMeetBeforeKickOffMinutes() + getEventType().getDurationMinutes());
          }  else {
-            return dateTimeEnd;
+            return new DateTime(dateTimeEnd);
         }
     }
 
     public void setDateTimeEnd(final DateTime dateTimeEnd) {
-        this.dateTimeEnd = dateTimeEnd;
+        this.dateTimeEnd = dateTimeEnd == null ? null : dateTimeEnd.toDate();
         if (this.dateTimeEnd == null) {
             this.timeEnd = null;
         } else {

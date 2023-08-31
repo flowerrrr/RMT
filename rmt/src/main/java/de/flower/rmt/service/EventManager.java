@@ -134,7 +134,7 @@ public class EventManager extends AbstractService {
         if (user != null) {
             isUser = QEvent.event.invitations.any().user.eq(user);
         }
-        BooleanExpression isUpcomming = QEvent.event.dateTime.after(new LocalDate().toDateTimeAtStartOfDay());
+        BooleanExpression isUpcomming = QEvent.event.dateTime.after(new LocalDate().toDateTimeAtStartOfDay().toDate());
         BooleanExpression notCanceled = QEvent.event.canceled.isTrue().not();
         List<Event> upcoming = eventRepo.findAll(isUpcomming.and(isUser).and(notCanceled), new PageRequest(0, 1, Sort.Direction.ASC, Event_.dateTime.getName())).getContent();
         return (upcoming.isEmpty()) ? null : upcoming.get(0);
@@ -143,18 +143,18 @@ public class EventManager extends AbstractService {
     public List<Event> findAllNextNHours(final int hours) {
         // when: 5 days before event, but at least 48 h after invitation mail
         DateTime now = new DateTime();
-        BooleanExpression insideNextNDays = QEvent.event.dateTime.between(now, now.plusHours(hours));
+        BooleanExpression insideNextNDays = QEvent.event.dateTime.between(now.toDate(), now.plusHours(hours).toDate());
         BooleanExpression notCanceled = QEvent.event.canceled.ne(true);
         return eventRepo.findAll(insideNextNDays.and(notCanceled));
     }
 
     public List<Event> findAllByDateRange(final DateTime start, final DateTime end, EntityPath<?>... attributes) {
-        BooleanExpression isBeetween = QEvent.event.dateTime.between(start, end);
+        BooleanExpression isBeetween = QEvent.event.dateTime.between(start.toDate(), end.toDate());
         return eventRepo.findAll(isBeetween, attributes);
     }
 
     public List<Event> findAllByDateRangeAndUser(final DateTime start, final DateTime end, final User user, EntityPath<?>... attributes) {
-        BooleanExpression isBeetween = QEvent.event.dateTime.between(start, end);
+        BooleanExpression isBeetween = QEvent.event.dateTime.between(start.toDate(), end.toDate());
         BooleanExpression isUser = null;
         if (user != null) {
             isUser = QEvent.event.invitations.any().user.eq(user);

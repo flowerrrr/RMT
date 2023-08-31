@@ -13,7 +13,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
+import java.util.Date;
 
 @Entity
 @Table(name = "calitem")
@@ -37,15 +37,13 @@ public class CalItem extends AbstractBaseEntity {
 
     @NotNull
     @Column
-    @org.hibernate.annotations.Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
     @Index(name = "ix_startDate")
-    private DateTime startDateTime;
+    private Date startDateTime;
 
     @NotNull
     @Column
-    @org.hibernate.annotations.Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
     @Index(name = "ix_endDate")
-    private DateTime endDateTime;
+    private Date endDateTime;
 
     @Column
     private boolean allDay;
@@ -76,19 +74,19 @@ public class CalItem extends AbstractBaseEntity {
     }
 
     public DateTime getStartDateTime() {
-        return startDateTime;
+        return startDateTime == null ? null : new DateTime(startDateTime);
     }
 
     public void setStartDateTime(final DateTime startDateTime) {
-        this.startDateTime = startDateTime;
+        this.startDateTime = startDateTime == null ? null : startDateTime.toDate();
     }
 
     public DateTime getEndDateTime() {
-        return endDateTime;
+        return endDateTime == null ? null : new DateTime(endDateTime);
     }
 
     public void setEndDateTime(final DateTime endDateTime) {
-        this.endDateTime = endDateTime;
+        this.endDateTime = endDateTime == null ? null : endDateTime.toDate();
     }
 
     public boolean isAllDay() {
@@ -138,7 +136,7 @@ public class CalItem extends AbstractBaseEntity {
      * @return true if start and end date are on same day.
      */
     public boolean isSingleDay() {
-        return startDateTime.toLocalDate().equals(endDateTime.toLocalDate());
+        return getStartDateTime().toLocalDate().equals(getEndDateTime().toLocalDate());
     }
 
 
