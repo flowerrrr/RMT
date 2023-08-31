@@ -102,8 +102,8 @@ public class CalendarManager extends AbstractService {
 
     public List<CalItem> findAllByUserAndRange(final User user, final DateTime calStart, final DateTime calEnd) {
         BooleanExpression isUser = QCalItem.calItem.user.eq(user);
-        BooleanExpression isNotStartAfterCalEnd = QCalItem.calItem.startDateTime.after(calEnd.toDate()).not();
-        BooleanExpression isNotEndBeforeCalStart = QCalItem.calItem.endDateTime.before(calStart.toDate()).not();
+        BooleanExpression isNotStartAfterCalEnd = QCalItem.calItem.startDateTime.after(calEnd).not();
+        BooleanExpression isNotEndBeforeCalStart = QCalItem.calItem.endDateTime.before(calStart).not();
         return calItemRepo.findAll(isUser.and(isNotEndBeforeCalStart).and(isNotStartAfterCalEnd));
     }
 
@@ -111,15 +111,15 @@ public class CalendarManager extends AbstractService {
         BooleanExpression isNotCurrentUser = QCalItem.calItem.user.ne(securityService.getUser());
         // NOTE (flowerrrr - 25.06.12) make calitem extend abstractclubrelatedentity and remove this expression
         BooleanExpression isClub = QCalItem.calItem.user.club.eq(getClub());
-        BooleanExpression isNotStartAfterCalEnd = QCalItem.calItem.startDateTime.after(calEnd.toDate()).not();
-        BooleanExpression isNotEndBeforeCalStart = QCalItem.calItem.endDateTime.before(calStart.toDate()).not();
+        BooleanExpression isNotStartAfterCalEnd = QCalItem.calItem.startDateTime.after(calEnd).not();
+        BooleanExpression isNotEndBeforeCalStart = QCalItem.calItem.endDateTime.before(calStart).not();
         return calItemRepo.findAll(isNotCurrentUser.and(isClub).and(isNotEndBeforeCalStart).and(isNotStartAfterCalEnd));
     }
 
     private List<CalItem> findAllByTeamAndRange(final Team team, final DateTime calStart, final DateTime calEnd) {
         BooleanExpression isTeam = QCalItem.calItem.user.players.any().team.eq(team);
-        BooleanExpression isNotStartAfterCalEnd = QCalItem.calItem.startDateTime.after(calEnd.toDate()).not();
-        BooleanExpression isNotEndBeforeCalStart = QCalItem.calItem.endDateTime.before(calStart.toDate()).not();
+        BooleanExpression isNotStartAfterCalEnd = QCalItem.calItem.startDateTime.after(calEnd).not();
+        BooleanExpression isNotEndBeforeCalStart = QCalItem.calItem.endDateTime.before(calStart).not();
         return calItemRepo.findAll(isTeam.and(isNotEndBeforeCalStart).and(isNotStartAfterCalEnd));
     }
 

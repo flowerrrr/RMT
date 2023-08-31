@@ -2,6 +2,7 @@ package de.flower.rmt.model.db.entity;
 
 import de.flower.common.validation.unique.Unique;
 import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.joda.time.DateTime;
@@ -123,7 +124,8 @@ public class User extends AbstractClubRelatedEntity {
     private Boolean invitationSent;
 
     @Column
-    private Date lastLogin;
+    @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+    private DateTime lastLogin;
 
     /**
      * A user can be part of several teams.
@@ -235,15 +237,15 @@ public class User extends AbstractClubRelatedEntity {
     }
 
     public DateTime getLastLogin() {
-        return lastLogin == null ? null : new DateTime(lastLogin);
-    }
-
-    public Date getLastLoginAsDate() {
         return lastLogin;
     }
 
+    public Date getLastLoginAsDate() {
+        return lastLogin == null ? null : lastLogin.toDate();
+    }
+
     public void setLastLogin(final DateTime lastLogin) {
-        this.lastLogin = lastLogin == null ? null : lastLogin.toDate();
+        this.lastLogin = lastLogin;
     }
 
     public boolean mustChangePassword() {
