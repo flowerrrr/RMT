@@ -83,6 +83,11 @@ konfiguriert: https://kis.hosteurope.de/administration/domainservices/index.php?
 - Virtual Server Config: https://kis.hosteurope.de/administration/virtual-server-10-plus/
 - IP: 92.205.63.43
 
+### Deployment
+
+s. /var/lib/tomcat9/webapps/readme.txt
+
+
 ### Monitoring
 
 - https://uptimerobot.com
@@ -92,6 +97,11 @@ konfiguriert: https://kis.hosteurope.de/administration/domainservices/index.php?
 - Host panel bei hosteurope
 
   Generelle Serverüberwachung
+
+- Log-Files
+    
+      - /var/log/apache2/*
+      - /var/log/tomcat9/rmt.log
 
 ### Issue tracker
 
