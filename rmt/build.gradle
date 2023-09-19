@@ -21,7 +21,7 @@ repositories {
 project.ext.versions = [
         commons_collection: "3.2.1",
         groovy            : "2.4.21",
-        hibernate         : "3.6.7.Final",
+        hibernate         : "4.1.12.Final",
         slf4j             : "2.0.1",
         spring            : "4.0.9.RELEASE",
         spring_security   : "3.2.10.RELEASE",
@@ -59,7 +59,7 @@ configurations {
 
 dependencies {
     compile(
-            'c3p0:c3p0:0.9.1.2',
+            'com.mchange:c3p0:0.9.5.5',
             'ch.qos.logback:logback-classic:1.3.0',
             'com.google.code.gson:gson:1.7.2',
             'com.google.guava:guava:11.0.2',

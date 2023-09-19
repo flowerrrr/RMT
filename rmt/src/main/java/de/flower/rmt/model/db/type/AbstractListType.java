@@ -2,6 +2,7 @@ package de.flower.rmt.model.db.type;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.HibernateException;
+import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.type.descriptor.JdbcTypeNameMapper;
 import org.hibernate.usertype.UserType;
 import org.slf4j.Logger;
@@ -56,7 +57,7 @@ public abstract class AbstractListType<T> implements UserType {
     }
 
     @Override
-    public Object nullSafeGet(final ResultSet rs, final String[] names, final Object owner) throws HibernateException, SQLException {
+    public Object nullSafeGet(final ResultSet rs, final String[] names, SessionImplementor session, final Object owner) throws HibernateException, SQLException {
         String serialized = rs.getString(names[0]);
         if (log.isTraceEnabled()) {
             log.trace("found [" + serialized + "] as column [" + names[0] + "]");
@@ -65,7 +66,7 @@ public abstract class AbstractListType<T> implements UserType {
     }
 
     @Override
-    public void nullSafeSet(final PreparedStatement st, final Object value, final int index) throws HibernateException, SQLException {
+    public void nullSafeSet(final PreparedStatement st, final Object value, final int index, SessionImplementor session) throws HibernateException, SQLException {
         String string = (String) disassemble(value);
         if (log.isTraceEnabled()) {
             log.trace("binding parameter [" + index + "] as [" + JdbcTypeNameMapper.getTypeName(SQL_TYPES[0]) + "] - " + string);

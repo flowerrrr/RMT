@@ -16,6 +16,7 @@
 package org.joda.time.contrib.hibernate;
 
 import org.hibernate.HibernateException;
+import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.type.StandardBasicTypes;
 import org.hibernate.usertype.EnhancedUserType;
 import org.joda.time.DateTimeZone;
@@ -65,13 +66,14 @@ public class PersistentLocalTimeAsTime implements EnhancedUserType, Serializable
         return object.hashCode();
     }
 
-    public Object nullSafeGet(ResultSet resultSet, String[] strings, Object object) throws HibernateException, SQLException {
-        return nullSafeGet(resultSet, strings[0]);
+    @Override
+    public Object nullSafeGet(ResultSet resultSet, String[] strings, SessionImplementor session, Object object) throws HibernateException, SQLException {
+        return nullSafeGet(resultSet, strings[0], session);
 
     }
 
-    public Object nullSafeGet(ResultSet resultSet, String string) throws SQLException {
-        Object timestamp = StandardBasicTypes.TIME.nullSafeGet(resultSet, string);
+    public Object nullSafeGet(ResultSet resultSet, String string, SessionImplementor session) throws SQLException {
+        Object timestamp = StandardBasicTypes.TIME.nullSafeGet(resultSet, string, session);
         if (timestamp == null) {
             return null;
         }
@@ -79,13 +81,14 @@ public class PersistentLocalTimeAsTime implements EnhancedUserType, Serializable
         return new LocalTime(timestamp, DateTimeZone.UTC);
     }
 
-    public void nullSafeSet(PreparedStatement preparedStatement, Object value, int index) throws HibernateException, SQLException {
+    @Override
+    public void nullSafeSet(PreparedStatement preparedStatement, Object value, int index, SessionImplementor session) throws HibernateException, SQLException {
         if (value == null) {
-            StandardBasicTypes.TIME.nullSafeSet(preparedStatement, null, index);
+            StandardBasicTypes.TIME.nullSafeSet(preparedStatement, null, index, session);
         } else {
             LocalTime lt = ((LocalTime) value);
             Time time = new Time(lt.getMillisOfDay());
-            StandardBasicTypes.TIME.nullSafeSet(preparedStatement, time, index);
+            StandardBasicTypes.TIME.nullSafeSet(preparedStatement, time, index, session);
         }
     }
 
