@@ -18,6 +18,9 @@ public class UrlProvider implements IUrlProvider {
     @Value("${app.url}")
     private String baseUrl;
 
+    @Value("${app.das-tool-2.url}")
+    private String dasTool2Url;
+
     @Value("${event.url}")
     private String eventUrl;
 
@@ -25,6 +28,11 @@ public class UrlProvider implements IUrlProvider {
     @Override
     public String deepLinkEvent(final Long eventId) {
         return baseUrl + eventUrl + "/" + eventId;
+    }
+
+    @Override
+    public String deepLinkEvent2(final Long eventId) {
+        return dasTool2Url + "/event/" + eventId;
     }
 
     @Override

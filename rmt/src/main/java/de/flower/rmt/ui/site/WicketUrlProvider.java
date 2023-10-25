@@ -20,6 +20,11 @@ public class WicketUrlProvider implements IUrlProvider {
     }
 
     @Override
+    public String deepLinkEvent2(Long eventId) {
+        throw new UnsupportedOperationException("Use LinkProvider to get URL!");
+    }
+
+    @Override
     public String deepLinkBlog(final Long articleId) {
         String relativeUrl = urlForArticle(articleId).toString();
         return renderFullUrl(relativeUrl);

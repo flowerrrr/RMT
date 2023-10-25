@@ -50,6 +50,8 @@ public class NotificationServiceTest extends AbstractRMTIntegrationTests {
         log.info(notification.getSubject());
         log.info(notification.getBody());
         log.info(notification.getAttachment().toString());
+        assertTrue(notification.getBody().contains("Link zur Desktop App: http://localhost/context/servlet/event/9"));
+        assertTrue(notification.getBody().contains("NEU: Link zur Mobile App: http://localhost:4200/das-tool-2/event/9"));
         assertFalse(notification.getBody().contains("Gegner"));
         assertTrue(notification.getBody().contains("Trikotsatz: Hemd: " + uniform.getShirt()
                 + ", Hose: " + uniform.getShorts() + ", Stutzen: " + uniform.getSocks()));

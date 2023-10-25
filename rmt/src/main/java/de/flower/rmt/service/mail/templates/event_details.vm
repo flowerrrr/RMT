@@ -1,5 +1,6 @@
 ---------------------
-Link: $eventLink
+Link zur Desktop App: $eventLink
+NEU: Link zur Mobile App: $eventLink2
 
 Team: $event.getTeam().getName()
 Typ: $eventType

@@ -334,6 +334,7 @@ public class NotificationService {
         model.put("eventType", messageSource.getMessage(event.getEventType().getResourceKey()));
         model.put("eventTypeMatch", EventType.Match);
         model.put("eventLink", urlProvider.deepLinkEvent(event.getId()));
+        model.put("eventLink2", urlProvider.deepLinkEvent2(event.getId()));
 
         model.put("isSoccerEvent", EventType.isSoccerEvent(event));
         if (event.getVenue() != null && event.getVenue().getLatLng() != null) {
